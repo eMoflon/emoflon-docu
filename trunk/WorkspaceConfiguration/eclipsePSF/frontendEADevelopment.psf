@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.tigris.subversion.subclipse.core.svnnature">
+<project reference="0.9.3,svn+ssh://aanjorin@scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/ea/trunk/MOFLON2EAEcoreAddin,MOFLON2EAEcoreAddin"/>
+</provider>
+<workingSets editPageId="org.eclipse.ui.resourceWorkingSetPage" id="1287090804828_1" label="MOFLON2 Frontend - EA Addin Development" name="MOFLON2 Frontend - EA Addin Development">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MOFLON2EAEcoreAddin" type="4"/>
+</workingSets>
+</psf>
