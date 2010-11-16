@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.tigris.subversion.subclipse.core.svnnature">
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/Dependencies,Dependencies"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonIdeCore,MoflonIdeCore"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonIdeUi,MoflonIdeUi"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/WorkspaceConfiguration,WorkspaceConfiguration"/>
+</provider>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1289738775812_5" label="MOFLON2 Frontend - Eclipse IDE" name="MOFLON2 Frontend - Eclipse IDE">
+<item elementID="=MoflonIdeCore" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MoflonIdeUi" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1289914555858_6" label="Moflon-SetUp" name="Moflon-SetUp">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/WorkspaceConfiguration" type="4"/>
+<item elementID="=Dependencies" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+</psf>
