@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Dependencies
+Bundle-SymbolicName: org.moflon.dependencies
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Real-Time Systems Lab, TU Darmstadt.
