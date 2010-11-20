@@ -1,5 +1,9 @@
 package org.moflon.util;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -8,6 +12,13 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 import org.apache.log4j.PropertyConfigurator;
 
+/**
+ * A collection of useful helper methods.
+ * 
+ * @author anjorin
+ * @author (last editor) $Author$
+ * @version $Revision$ $Date$
+ */
 public class MoflonUtil
 {
    /**
@@ -73,5 +84,27 @@ public class MoflonUtil
          e.printStackTrace();
          return false;
       }
+   }
+
+   /**
+    * Copies contents of file named from to file named to
+    * 
+    * @param from
+    *           File whose contents are to be copied
+    * @param to
+    *           File to which contents are copied to
+    * @throws IOException
+    */
+   public static void copyFile(File from, File to) throws IOException
+   {
+      FileReader in = new FileReader(from);
+      FileWriter out = new FileWriter(to);
+
+      int c;
+      while ((c = in.read()) != -1)
+         out.write(c);
+
+      in.close();
+      out.close();
    }
 }
