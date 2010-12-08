@@ -4,7 +4,13 @@ Bundle-Name: Dependencies
 Bundle-SymbolicName: org.moflon.dependencies
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Real-Time Systems Lab, TU Darmstadt.
-Export-Package: org.apache.log4j,
+Export-Package: org.apache.commons.io,
+ org.apache.commons.io.comparator,
+ org.apache.commons.io.filefilter,
+ org.apache.commons.io.input,
+ org.apache.commons.io.monitor,
+ org.apache.commons.io.output,
+ org.apache.log4j,
  org.apache.log4j.chainsaw,
  org.apache.log4j.config,
  org.apache.log4j.helpers,
@@ -24,4 +30,5 @@ Export-Package: org.apache.log4j,
  org.apache.log4j.xml,
  org.moflon.util
 Bundle-ClassPath: lib/log4j.jar,
- .
+ .,
+ lib/commons-io-2.0.jar

@@ -6,7 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Enumeration;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.DailyRollingFileAppender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
@@ -95,7 +99,7 @@ public class MoflonUtil
     *           File to which contents are copied to
     * @throws IOException
     */
-   public static void copyFile(File from, File to) throws IOException
+   public static void copyFileToFile(File from, File to) throws IOException
    {
       FileReader in = new FileReader(from);
       FileWriter out = new FileWriter(to);
@@ -106,5 +110,32 @@ public class MoflonUtil
 
       in.close();
       out.close();
+   }
+
+   public static void copyDirToDir(URL sourceDir, File destination) throws IOException
+   {
+      if ("file".equals(sourceDir.getProtocol()))
+      {
+         // Copy from filesystem
+         File dir = new File(sourceDir.getFile());
+         FileUtils.copyDirectory(dir, destination);
+      } else if ("jar".equals(sourceDir.getProtocol()))
+      {
+         // Copy from jar
+         JarFile jar = new JarFile(sourceDir.getFile());
+         destination.mkdir();
+         Enumeration<? extends JarEntry> entries = jar.entries();
+         while (entries.hasMoreElements())
+         {
+            JarEntry entry = entries.nextElement();
+            if(entry.isDirectory()){
+               // Handle directory
+               new File(destination, entry.getName()).mkdir();
+            }else{
+               // Handle file
+               copyFileToFile(new File(entry.getName()), new File(destination, entry.getName()));
+            }
+         }
+      }
    }
 }
