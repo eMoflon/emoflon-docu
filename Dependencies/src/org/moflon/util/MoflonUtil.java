@@ -1,6 +1,7 @@
 package org.moflon.util;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.log4j.DailyRollingFileAppender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
@@ -112,13 +114,13 @@ public class MoflonUtil
       out.close();
    }
 
-   public static void copyDirToDir(URL sourceDir, File destination) throws IOException
+   public static void copyDirToDir(URL sourceDir, File destination, FileFilter filter) throws IOException
    {
       if ("file".equals(sourceDir.getProtocol()))
       {
          // Copy from filesystem
          File dir = new File(sourceDir.getFile());
-         FileUtils.copyDirectory(dir, destination);
+         FileUtils.copyDirectory(dir, destination, filter);
       } else if ("jar".equals(sourceDir.getProtocol()))
       {
          // Copy from jar
@@ -128,10 +130,14 @@ public class MoflonUtil
          while (entries.hasMoreElements())
          {
             JarEntry entry = entries.nextElement();
-            if(entry.isDirectory()){
+            if (entry.isDirectory())
+            {
                // Handle directory
-               new File(destination, entry.getName()).mkdir();
-            }else{
+               File dir = new File(destination, entry.getName());
+               if (filter.accept(dir))
+                  dir.mkdir();
+            } else
+            {
                // Handle file
                copyFileToFile(new File(entry.getName()), new File(destination, entry.getName()));
             }
