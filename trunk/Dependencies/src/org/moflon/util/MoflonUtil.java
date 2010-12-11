@@ -2,9 +2,8 @@ package org.moflon.util;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.net.JarURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Enumeration;
@@ -12,7 +11,6 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.log4j.DailyRollingFileAppender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
@@ -93,27 +91,16 @@ public class MoflonUtil
    }
 
    /**
-    * Copies contents of file named from to file named to
+    * Copies contents of directory named at sourceDir to directory at destination
     * 
-    * @param from
-    *           File whose contents are to be copied
-    * @param to
-    *           File to which contents are copied to
+    * @param sourceDir
+    *           Directory to be copied. Can be located in a jar or in the local filesystem
+    * @param destination
+    *           Directory to be created
+    * @param filter
+    *           Specifies what file/subdirectories are to be ignored
     * @throws IOException
     */
-   public static void copyFileToFile(File from, File to) throws IOException
-   {
-      FileReader in = new FileReader(from);
-      FileWriter out = new FileWriter(to);
-
-      int c;
-      while ((c = in.read()) != -1)
-         out.write(c);
-
-      in.close();
-      out.close();
-   }
-
    public static void copyDirToDir(URL sourceDir, File destination, FileFilter filter) throws IOException
    {
       if ("file".equals(sourceDir.getProtocol()))
@@ -124,22 +111,32 @@ public class MoflonUtil
       } else if ("jar".equals(sourceDir.getProtocol()))
       {
          // Copy from jar
-         JarFile jar = new JarFile(sourceDir.getFile());
+         JarURLConnection conn = (JarURLConnection) sourceDir.openConnection();
+         JarFile jar = conn.getJarFile();
+
          destination.mkdir();
          Enumeration<? extends JarEntry> entries = jar.entries();
          while (entries.hasMoreElements())
          {
             JarEntry entry = entries.nextElement();
-            if (entry.isDirectory())
+
+            if (entry.getName().startsWith(conn.getEntryName()) && 
+                  !entry.getName().equals(conn.getEntryName()))
             {
-               // Handle directory
-               File dir = new File(destination, entry.getName());
-               if (filter.accept(dir))
-                  dir.mkdir();
-            } else
-            {
-               // Handle file
-               copyFileToFile(new File(entry.getName()), new File(destination, entry.getName()));
+               int beginIndex = entry.getName().indexOf(conn.getEntryName()) + conn.getEntryName().length();
+               String childPath = entry.getName().substring(beginIndex);
+               
+               if (entry.isDirectory())
+               {
+                  // Handle directory
+                  File dir = new File(destination, childPath);
+                  if (filter.accept(dir))
+                     dir.mkdir();
+               } else
+               {
+                  // Handle file
+                  FileUtils.copyInputStreamToFile(jar.getInputStream(entry), new File(destination, childPath));
+               }
             }
          }
       }
