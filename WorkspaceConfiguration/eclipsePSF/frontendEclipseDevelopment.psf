@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <psf version="2.0">
 <provider id="org.tigris.subversion.subclipse.core.svnnature">
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/compiler/CodeGen2,CodeGen2"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/Dependencies,Dependencies"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonIdeCore,MoflonIdeCore"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonIdeFeature,MoflonIdeFeature"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonIdeUi,MoflonIdeUi"/>
-<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/WorkspaceConfiguration,WorkspaceConfiguration"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonIdeUpdateSite,MoflonIdeUpdateSite"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonModelEditor,MoflonModelEditor"/>
 </provider>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1289738775812_5" label="MOFLON2 Frontend - Eclipse IDE" name="MOFLON2 Frontend - Eclipse IDE">
 <item elementID="=MoflonIdeCore" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MoflonIdeFeature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MoflonIdeUpdateSite" type="4"/>
 <item elementID="=MoflonIdeUi" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MoflonModelEditor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1289914555858_6" label="Moflon-SetUp" name="Moflon-SetUp">
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1289914555858_6" label="MOFLON2 Common" name="MOFLON2 Common">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/WorkspaceConfiguration" type="4"/>
 <item elementID="=Dependencies" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1288082778026_3" label="MOFLON2 Backend - Compiler with CodeGen2" name="MOFLON2 Backend - Compiler with CodeGen2">
+<item elementID="=CodeGen2" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/EMFImporter" type="4"/>
 </workingSets>
 </psf>
