@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
 import java.net.JarURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;
@@ -61,29 +60,6 @@ public class MoflonUtil
          root.info("Logging to: " + logFile + "\n\n");
          return true;
       } catch (Exception e)
-      {
-         e.printStackTrace();
-         return false;
-      }
-   }
-
-   /**
-    * Set up logging globally
-    * 
-    * @param configFile
-    *           Absolute path to log4j property configuration file
-    * @param logFile
-    *           Absolute path to log file
-    * @return false if unable to setup and configure logging
-    */
-   public static boolean configureLogging(String configFile, String logFile)
-   {
-      URL configFileURL;
-      try
-      {
-         configFileURL = new URL(configFile);
-         return configureLogging(configFileURL, logFile);
-      } catch (MalformedURLException e)
       {
          e.printStackTrace();
          return false;
