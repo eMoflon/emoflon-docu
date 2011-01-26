@@ -6,6 +6,7 @@
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/Documentation,Documentation"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/doubleLinkedList/DoubleLinkedListLanguage,DoubleLinkedListLanguage"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2tstsuite/trunk/EclipseTestSuite,EclipseTestSuite"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/compiler/Ecore2FujabaTransformation,Ecore2FujabaTransformation"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/ea/trunk/MOFLON2EAEcoreAddin,MOFLON2EAEcoreAddin"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/ea/trunk/MOFLON2EAEcoreAddinInstaller,MOFLON2EAEcoreAddinInstaller"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonIdeCore,MoflonIdeCore"/>
@@ -15,11 +16,13 @@
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonModelEditor,MoflonModelEditor"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/languages/sdm/SDMLanguage,SDMLanguage"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2tstsuite/trunk/TestFramework,TestFramework"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/languages/tgg/TGGLanguage,TGGLanguage"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2tstsuite/trunk/VisualStudioTestSuite,VisualStudioTestSuite"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/WorkspaceConfiguration,WorkspaceConfiguration"/>
 </provider>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1288082778026_3" label="MOFLON2 Backend - Compiler with CodeGen2" name="MOFLON2 Backend - Compiler with CodeGen2">
 <item elementID="=CodeGen2" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Ecore2FujabaTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1289914555858_6" label="MOFLON2 Common" name="MOFLON2 Common">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Documentation" type="4"/>
@@ -40,6 +43,7 @@
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1292409103209_2" label="MOFLON2 Languages" name="MOFLON2 Languages">
 <item elementID="=DoubleLinkedListLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=SDMLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=TGGLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1291120342756_9" label="MOFLON2 TestSuite" name="MOFLON2 TestSuite">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/VisualStudioTestSuite" type="4"/>
