@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <psf version="2.0">
 <provider id="org.tigris.subversion.subclipse.core.svnnature">
-<project reference="0.9.3,svn+ssh://aanjorin@scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/specifications/MocaLanguages,MocaLanguages"/>
-<project reference="0.9.3,svn+ssh://aanjorin@scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/WorkspaceConfiguration,WorkspaceConfiguration"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/specifications/MocaLanguages,MocaLanguages"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/WorkspaceConfiguration,WorkspaceConfiguration"/>
 </provider>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1297103024593_3" label="Specifications" name="Specifications">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/DemoLanguages" type="4"/>
