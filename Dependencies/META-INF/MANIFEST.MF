@@ -32,3 +32,4 @@ Export-Package: org.apache.commons.io,
 Bundle-ClassPath: lib/log4j.jar,
  .,
  lib/commons-io-2.0.jar
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
