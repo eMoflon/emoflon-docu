@@ -1,0 +1,31 @@
+%Einstellungen der Seitenr‰nder
+\usepackage[left=2cm,right=3cm,top=3cm,bottom=3cm,includeheadfoot]{geometry}
+
+%neue Rechtschreibung
+%\usepackage{ngerman}
+
+\usepackage[ngerman, english]{babel} 
+
+%bilder einbingen
+\usepackage{graphicx} 
+
+%Umlaute ermˆglichen
+\usepackage[latin1]{inputenc}
+
+%sonderzeichen package
+\usepackage{amssymb}
+
+%Kopf- und Fuﬂzeile
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+%Kopfzeile links bzw. innen
+\fancyhead[L]{\nouppercase{\leftmark}}
+%Linie oben
+\renewcommand{\headrulewidth}{0.5pt}
+
+%Fuﬂzeile rechts bzw. auﬂen
+\fancyfoot[R]{\thepage}
+%Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
