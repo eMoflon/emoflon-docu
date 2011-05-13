@@ -1,19 +1,50 @@
-%%This is a very basic article template.
-%%There is just one section and two subsections.
-\documentclass{article}
+%Schriftgröße, Layout, Papierformat, Art des Dokumentes
+\documentclass[12pt,oneside,a4paper]{scrartcl}
+
+\input{header.tex}
 
 \begin{document}
+%einrücken nach absatz
+\setlength{\parindent}{0ex}
 
+\input{title.tex}
 
-\section{Title}
+\newpage
+\pagenumbering{roman}
+\addtocontents{Anhang}{}
+\tableofcontents
 
-\subsection{Subtitle}
+\newpage
+\listoffigures
 
-Plain text.
+\newpage
+\listoftables
 
-\subsection{Another subtitle}
+\newcounter{seitenzahlroemisch}
+\setcounter{seitenzahlroemisch}{\value{page}}
+\pagenumbering{arabic}
 
-More plain text.
+%----------------------------------------------
+\newpage
+\input{introduction.tex}
 
+\newpage
+\input{installation.tex}
+
+\newpage
+\input{memoryBox.tex}
+
+%----------------------------------------------
+\pagenumbering{Roman}
+\setcounter{page}{\value{seitenzahlroemisch}}
+
+\newpage
+\bibliographystyle{alphadin}
+\bibliography{literature}
+	
+\newpage
+\begin{appendix}
+\section{Appendix A}
+\end{appendix}
 
 \end{document}
