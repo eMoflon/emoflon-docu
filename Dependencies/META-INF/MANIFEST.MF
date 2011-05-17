@@ -42,5 +42,6 @@ Export-Package: org.apache.commons.io,
  org.moflon.util
 Bundle-ClassPath: lib/log4j.jar,
  .,
- lib/commons-io-2.0.jar
+ lib/commons-io-2.0.jar,
+ lib/commons-lang3-3.0-beta.jar
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
