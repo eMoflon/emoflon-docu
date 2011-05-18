@@ -30,4 +30,14 @@
 %Linie unten
 \renewcommand{\footrulewidth}{0.5pt}
 
-\usepackage{hyperref}
+%links
+\usepackage{hyperref} 
+\hypersetup{
+pdftoolbar =true;	%true,false 	Anzeigen der Acrobat toolbar oder nicht
+pdfmenubar =true; 	%true,false 	Anzeigen des Acrobat menu oder nicht
+pdftitle ={testTitle};	%={Text} 		Titel
+pdfsubject ={testSubject};	%={Text} 		Um was geht es
+pdfauthor 	={testauthor};%={Text} 		Autor bzw. Autoren 
+breaklinks;
+colorlinks=false;
+}
