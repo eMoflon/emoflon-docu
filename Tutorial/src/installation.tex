@@ -1,15 +1,17 @@
 \section{Installation and First Steps: Double Link List}
 
 \subsection{Step 01: Install Enterprise Architect}
-$\blacktriangleright$ Download and install EA\\
-Go to http://www.sparxsystems.com.au/ to get a free 30 day trial.
+$\blacktriangleright$ Download and install EA (Figure
+\ref{fig_enterpriseArchitextHomepage})\\ 
+Go to http://www.sparxsystems.com.au/ to get a free 30 day trial.\\
 \begin{figure}[!h]
 	\centering
   \includegraphics[width=0.5\textwidth]{pics/ea_download.png}
 	\caption{Enterprise Architect Homepage}
+	\label{fig_enterpriseArchitextHomepage}
 \end{figure}
 
-$\blacktriangleright$ Install our EA-Plugin\\
+$\blacktriangleright$ Install our EA-Plugin (Figure \ref{fig_eaPluginWizard})\\
 Go to
 \url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/ea-ecore-addin/ea-ecore-addin.zip}
 Just unpack the ZIP-File, run setup.exe and follow the instructions.
@@ -18,6 +20,7 @@ Just unpack the ZIP-File, run setup.exe and follow the instructions.
 	\centering
   \includegraphics[width=0.3\textwidth]{pics/eaplugin_install.png}
 	\caption{EA-Plugin Wizard}
+	\label{fig_eaPluginWizard}
 \end{figure}
 
 \subsection{Step 02: Install Eclipse}
@@ -25,12 +28,13 @@ $\blacktriangleright$ Install the latest version of JAVA (JDK).\\ %WO? bild ?
 %URL! online tutorial
 
 $\blacktriangleright$ Download the modeling Package ``Eclipse Modeling Tools
-(includes Incubating components)''\\
+(includes Incubating components)'' (Figure \ref{fig_downloadModelingPackage})\\
 http://www.eclipse.org/downloads/packages/eclipse-modeling-tools-includes-incubating-components/heliossr2\\
 \begin{figure}[!h]
 	\centering
   \includegraphics[width=0.5\textwidth]{pics/eclipse_modelingpackage.png}
 	\caption{Download Modeling Package}
+	\label{fig_downloadModelingPackage}
 \end{figure}
 
 $\blacktriangleright$ Download and install Eclipse.\\
@@ -44,19 +48,59 @@ http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/update-site2\
 Please note: Calculating requirements and dependencies when installing the
 plugin might take quite a while depending on your internet connection! 
 
-\subsection{Step 03: Try out our demo}
-$\blacktriangleright$ Start eclipse with a workspace of your choice.\\
+\subsection{Step 03: Now, try out our demo}
+$\blacktriangleright$ Start eclipse with a
+workspace of your choice.\\
 
 $\blacktriangleright$ Go to Window/Open Perspective/Other\ldots and choose
 Moflon.\\
 
 $\blacktriangleright$ In the toolbar a new action set should have appeared\ldots
-Choose ``New Metamodel''.\\
+Choose ``New Metamodel''. (Figure \ref{fig_eclipseNewMetamodel})\\
+The button with an "L" shows you our logfile (important input for us if
+something doesn´t work)\\
 \begin{figure}[!h]
 	\centering
   \includegraphics[width=0.8\textwidth]{pics/eclipse_metamodelButton.png}
 	\caption{Eclipse New Metamodel}
+	\label{fig_eclipseNewMetamodel}
 \end{figure}
+
+$\blacktriangleright$ Enter ``DemoLanguages'' as the name of the new metamodel
+project and confirm.\\ 
+An empty EA project file ``DemoLanguages.eap'' will be
+created in a new project and working set.\\
+
+$\blacktriangleright$ Choose working sets as your top level element in the
+package explorer.\\
+We will work a lot with working sets.\\
+
+$\blacktriangleright$ Open the newly created project and replace the
+``DemoLanguages.eap'' file with the DemoLanguages.eap that you will find in the
+same folder as this tutorial.\\
+This EA file already contains our simple demo
+projects.\\
+
+$\blacktriangleright$ Double click ``DemoLanguages.eap'' to start EA.\\
+
+$\blacktriangleright$ Take a look at the class diagrams and activity diagrams in
+the Project Browser.\\
+
+$\blacktriangleright$ Choose Add-Ins/MOFLON::Ecore Addin/Export to Workspace.\\
+
+$\blacktriangleright$ Switch to Eclipse, choose your Metamodel project and press
+F5 (refresh).\\
+All projects should be created and the code generator invoked
+automatically\ldots\\
+
+$\blacktriangleright$ Inspect the generated code (especially the methods!).\\
+NOTE: You might have to add some imports if generating code for the first time
+(retained in subsequent runs).\\
+
+$\blacktriangleright$ Switch to EA and try adding methods, classes, a new
+project\ldots\\
+To regenerate code in Eclipse right-click a project and choose
+eMoflon $\Rightarrow$ ``Rebuild Classes from GenModel''.
 
 \subsection{Step 04: }
 \subsection{Step 05: }
