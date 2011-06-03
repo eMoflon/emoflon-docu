@@ -1,14 +1,13 @@
-%Schriftgröße, Layout, Papierformat, Art des Dokumentes
-\documentclass[12pt,oneside,a4paper]{scrartcl}
-
 \input{header.tex}
+\input{title.tex}
 
 \begin{document}
 %einrücken nach absatz
 \setlength{\parindent}{0ex}
 
-\input{title.tex}
 
+\maketitle
+\input{firstpage.tex}
 \newpage
 \pagenumbering{roman}
 \addtocontents{Anhang}{}
@@ -17,7 +16,7 @@
 \newpage
 \listoffigures
 
-\newpage 
+\newpage
 \listoftables
 
 \newcounter{seitenzahlroemisch}
@@ -25,7 +24,6 @@
 \pagenumbering{arabic}
 
 %----------------------------------------------
-\newpage
 \input{introduction.tex}
 
 \newpage
@@ -44,7 +42,7 @@
 	
 \newpage
 \begin{appendix}
-\section{Appendix A}
+\chapter{Appendix A}
 \end{appendix}
 
 \end{document}
