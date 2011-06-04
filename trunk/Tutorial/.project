@@ -20,10 +20,5 @@
 			<type>1</type>
 			<location>C:/Program Files/MiKTeX 2.9/tex/latex/tools/.tex</location>
 		</link>
-		<link>
-			<name>src/literature.bib</name>
-			<type>1</type>
-			<location>C:/Users/dtoegel/AppData/Roaming/MiKTeX/2.9/bibtex/bib/biocon/literature.bib</location>
-		</link>
 	</linkedResources>
 </projectDescription>
