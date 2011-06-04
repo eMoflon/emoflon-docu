@@ -1,48 +1,46 @@
-\input{header.tex}
-\input{title.tex}
+\documentclass[11pt,a4paper,twoside]{book}
+\pagestyle{headings}
+ 
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amssymb} 
 
-\begin{document}
-%einrücken nach absatz
-\setlength{\parindent}{0ex}
+\setlength{\parindent}{0pt}
 
+\input{titlepage} 
+
+\begin{document}  
+
+\frontmatter
 
 \maketitle
-\input{firstpage.tex}
-\newpage
-\pagenumbering{roman}
-\addtocontents{Anhang}{}
+
+\begin{small} 
+  This document is free; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+ \vspace{0.5cm}
+ 
+  This document is distributed in the hope that it will be useful, but
+  \emph{without any warranty}; without even the implied warranty of
+  \emph{merchantability} or \emph{fittness for a particular purpose}\@.  See the GNU
+  General Public License for more details.
+ \vspace{0.5cm} 
+ 
+  You should have received a copy of the GNU General Public License
+  along with this document; if not, write to the Free Software
+  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+\end{small}
+
+
 \tableofcontents
 
-\newpage
-\listoffigures
+\mainmatter
 
-\newpage
-\listoftables
-
-\newcounter{seitenzahlroemisch}
-\setcounter{seitenzahlroemisch}{\value{page}}
-\pagenumbering{arabic}
-
-%----------------------------------------------
-\input{introduction.tex}
-
-\newpage
-\input{installation.tex}
-
-\newpage
-\input{memoryBox.tex}
-
-%----------------------------------------------
-\pagenumbering{Roman}
-\setcounter{page}{\value{seitenzahlroemisch}}
-
-\newpage
-\bibliographystyle{alphadin}
-\bibliography{literature}
-	
-\newpage
-\begin{appendix}
-\chapter{Appendix A}
-\end{appendix}
+\input{introduction}
+\input{installation}
 
 \end{document}
