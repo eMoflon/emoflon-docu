@@ -1,74 +1,68 @@
-\chapter{Installation and First Steps: Double Link List}
+\chapter{Installation}
 
-\section{Step 01: Install Enterprise Architect}
-$\blacktriangleright$ Download and install EA (Figure
-\ref{fig_enterpriseArchitextHomepage})\\ 
-Go to http://www.sparxsystems.com.au/ to get a free 30 day trial.\\
+\section{Install Our Plugin for Enterprise Architect (EA)}
+\begin{enumerate}
+\item[$\blacktriangleright$] Download and install EA (Fig.~
+\ref{fig_enterpriseArchitextHomepage}) 
+\item[] Go to \url{http://www.sparxsystems.com.au/} to get a free 30 day trial.
 \begin{figure}[!h]
 	\centering
   \includegraphics[width=0.7\textwidth]{pics/ea_download.png}
-	\caption{Enterprise Architect Homepage}
+	\caption{Download Enterprise Architect}
 	\label{fig_enterpriseArchitextHomepage}
-\end{figure}
-
-$\blacktriangleright$ Install our EA-Plugin (Figure \ref{fig_eaPluginWizard})\\
-Go to
-\url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/ea-ecore-addin/ea-ecore-addin.zip}
-Just unpack the ZIP-File, run setup.exe and follow the instructions.
-
+\end{figure} 
+\item[$\blacktriangleright$] Install our EA-Plugin (Fig.~
+\ref{fig_eaPluginWizard})
+\item[] Download zip from
+\url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/ea-ecore-addin/ea-ecore-addin.zip},
+unpack, and run setup.exe
 \begin{figure}[!h]
 	\centering
   \includegraphics[width=0.3\textwidth]{pics/eaplugin_install.png}
-	\caption{EA-Plugin Wizard}
+	\caption{Install our plugin for EA.}
 	\label{fig_eaPluginWizard}
 \end{figure}
+\end{enumerate}
 
-\section{Step 02: Install Eclipse}
-$\blacktriangleright$ Install the latest version of JAVA (JDK).\\ %WO? bild ?
-%URL! online tutorial
-
-$\blacktriangleright$ Download the modeling Package ``Eclipse Modeling Tools
-(includes Incubating components)'' (Figure \ref{fig_downloadModelingPackage})\\
-http://www.eclipse.org/downloads/packages/eclipse-modeling-tools-includes-incubating-components/heliossr2\\
+\section{Install Our Plugin for Eclipse}
+\begin{enumerate}
+\item[$\blacktriangleright$] Download and install Eclipse for Modeling
+``Eclipse Modeling Tools (includes Incubating components)''
+(Fig.~\ref{fig_downloadModelingPackage}) from:\\  
+\url{http://www.eclipse.org/downloads/packages/}
 \begin{figure}[!h]
 	\centering
   \includegraphics[width=0.7\textwidth]{pics/eclipse_modelingpackage.png}
-	\caption{Download Modeling Package}
+	\caption{Download Eclipse Modeling Tools.}
 	\label{fig_downloadModelingPackage}
 \end{figure}
+\item[$\blacktriangleright$] Install our Eclipse Plugin from the following
+update site\footnote{For a detailed tutorial on how to install Eclipse and
+Eclipse Plugins please refer to
+\url{http://www.vogella.de/articles/Eclipse/article.html}} 
+\footnote{Please note: Calculating requirements and dependencies when installing
+the plugin might take quite a while depending on your internet connection.}:
+\url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/update-site2}
+\end{enumerate}
 
-%$\blacktriangleright$ Download and install Eclipse.\\
-%For a detailed tutorial on how to install Eclipse and Eclipse Plugins please
-%refer to http://www.vogella.de/articles/Eclipse/article.html\\
-%(Tested for Windows 32bit, 64bit should work as well)\\
+\newpage
 
-$\blacktriangleright$ Start eclipse with a
-workspace of your choice.\\
+\section{Get a Simple Demo Running}
 
-$\blacktriangleright$ Install our Eclipse Plugin.\\
-%in eclipse BILD BILD
-http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/update-site2\\
-Please note: Calculating requirements and dependencies when installing the
-plugin might take quite a while depending on your internet connection! 
-You will have to restart Eclipse after installing the plugin.
-
-\section{Step 03: Now, try out our demo}
-
-$\blacktriangleright$ Go to Window/Open Perspective/Other\ldots and choose
-Moflon.(Figure \ref{fig_eclipse})\\
+\begin{enumerate}
+\item[$\blacktriangleright$] Go to ``Window/Open Perspective/Other\ldots'' and
+choose Moflon (Fig.~\ref{fig_eclipse}).
 \begin{figure}[!h]
 	\centering
   \includegraphics[width=0.7\textwidth]{pics/eclipse_firststart.png}
-	\caption{Eclipse}
+	\caption{Choose the Moflon Perspective.}
 	\label{fig_eclipse}
 \end{figure}
-%Bild mit markierung !
-%eclipse_firststart.png
 
-$\blacktriangleright$ In the toolbar a new action set should have appeared\ldots
-Choose ``New Metamodel''. (Figure \ref{fig_eclipseNewMetamodel})\\
-The button with an "L" shows you our logfile (important input for us if
-something doesn´t work)\\
+\item[$\blacktriangleright$] In the toolbar a new action set should have
+appeared. Choose ``New Metamodel'' (Fig.~\ref{fig_eclipseNewMetamodel}).
+The button with an ``L" shows you our logfile (important input for us if
+something goes wrong!).
 \begin{figure}[!h]
 	\centering
   \includegraphics[width=0.8\textwidth]{pics/eclipse_metamodelButton.png}
@@ -76,88 +70,99 @@ something doesn´t work)\\
 	\label{fig_eclipseNewMetamodel}
 \end{figure}
 
-$\blacktriangleright$ Enter ``demo'' as the name of a new metamodel
-project and confirm.\\ 
+\item[$\blacktriangleright$] Enter ``demo'' as the name of the new metamodel
+project and confirm. 
 An empty EA project file ``demo.eap'' will be
-created in a new project and working set.\\
+created in a new project with a certain project structure
+according to our conventions.
 
-$\blacktriangleright$ Choose working sets as your top level element in the
-package explorer.(Figure \ref{fig_eclipseWorkingsets})\\
-We will work a lot with working sets.\\
-%BILD ! eclipse_workingsets.png
+\newpage
+
+\item[$\blacktriangleright$] Choose working sets as your top level element in
+the package explorer (Fig.~\ref{fig_eclipseWorkingsets}).
+We work a lot with working sets and use them to structure the workspace in
+Eclipse.
 \begin{figure}[!h]
 	\centering
-  \includegraphics[width=0.7\textwidth]{pics/eclipse_workingsets.png}
-	\caption{Eclipse - Working sets}
+  \includegraphics[width=0.6\textwidth]{pics/eclipse_workingsets.png}
+	\caption{Choose Working Sets as Top Level Elements.}
 	\label{fig_eclipseWorkingsets}
 \end{figure}
 
-$\blacktriangleright$ Open the newly created project and replace the
+\item[$\blacktriangleright$] Open the newly created project and replace the
 ``demo.eap'' file with the demo.eap that you will find in the
-same folder as this tutorial.\\ 
-This EA file already contains our simple demo projects.\\
+same folder as this tutorial. 
+This EA file already contains our simple demo project.
 
-$\blacktriangleright$ Double click ``demo.eap'' to start EA.
-NOTE: Choose ``Ultimate" when starting EA for the first time.\\
+\item[$\blacktriangleright$] Double click ``demo.eap'' to start EA.
+Please choose ``Ultimate" when starting EA for the first time.
 
-$\blacktriangleright$ Choose Add-Ins/MOFLON::Ecore Addin/Export all to Workspace.(Figure \ref{fig_ea})\\
-%bild ea_firststart.png
+\item[$\blacktriangleright$] In EA, choose ``Add-Ins/MOFLON::Ecore Addin/Export
+all to Workspace'' (Fig.~\ref{fig_ea}).
 \begin{figure}[!h]
 	\centering
-  \includegraphics[width=0.7\textwidth]{pics/ea_firststart.png}
-	\caption{Enterprise Architect}
+  \includegraphics[width=0.65\textwidth]{pics/ea_firststart.png}
+	\caption{Export from EA with our plugin.}
 	\label{fig_ea}
 \end{figure}
 
-$\blacktriangleright$ Switch to Eclipse, choose your Metamodel project and press
-F5 (refresh).
-You can see the progress in the lower right corner. (Figure
-\ref{fig_eclipsebuilding})\\ 
-All projects should be created and the code generator invoked
-automatically\ldots\\
+\newpage
 
+\item[$\blacktriangleright$] Switch back to Eclipse, choose your Metamodel
+project and press F5 to refresh.
+The export from EA places all required files in a hidden folder in the
+project, and refreshing triggers a build process that invokes our different
+code generators automatically.
+You should be able to monitor the progress in the lower right corner
+(Fig.~\ref{fig_eclipsebuilding}).  
+Pressing the symbol opens a monitor view that gives more details of the build
+process. 
 \begin{figure}[!h]
 	\centering
-  \includegraphics[width=0.7\textwidth]{pics/eclipse_building.png}
-	\caption{Eclipse Building Workspace}
+  \includegraphics[width=0.6\textwidth]{pics/eclipse_building.png}
+	\caption{Automatically building the workspace after a refresh.}
 	\label{fig_eclipsebuilding}
 \end{figure}
+\end{enumerate}
 
+\section{Validate Your Installation with JUnit}
 
-\section{Step 04: JUnit tests}
-
-$\blacktriangleright$ Go to ``File - Import - General - Existing Projects
-into Workspace'' and import the TestSuite folder.(Figure \ref{fig_eclipseTestsuiteImport})
-%bild eclipse_testsuitimport.png
+\begin{enumerate}
+\item[$\blacktriangleright$] Go to ``File/Import/General/Existing Projects
+into Workspace'' (Fig.~\ref{fig_eclipseTestsuiteImport}) and choose the
+TestSuite project that is also in the same folder as this tutorial. 
 \begin{figure}[!h]
 	\centering
-  \includegraphics[width=0.7\textwidth]{pics/eclipse_testsuitimport.png}
-	\caption{Eclipse Testsuite Import}
+  \includegraphics[width=0.6\textwidth]{pics/eclipse_testsuitimport.png}
+	\caption{Import our Testsuite as an existing project.}
 	\label{fig_eclipseTestsuiteImport}
 \end{figure}
 
-The TestSuite should be a project of its own. (Figure \ref{fig_eclipsepackageexplorer})
+\newpage
 
+\item[] At this point, your workspace should resemble
+Fig.~\ref{fig_eclipsepackageexplorer}.
 \begin{figure}[!h]
 	\centering
   \includegraphics[width=0.2\textwidth]{pics/eclipse_packageexplorer.png}
-	\caption{Eclipse Package Explorer}
+	\caption{Workspace in Eclipse.}
 	\label{fig_eclipsepackageexplorer}
 \end{figure}
 
-
-
-$\blacktriangleright$ Right-Click on the Testsuite folder - ``Run as'' - ``JUnit
-Test''. (Figure \ref{fig_eclipsetestsuiterun})
-
+\item[$\blacktriangleright$] Right-click on the Testsuite project and select
+``Run as/JUnit Test''.
+Congratulations!  If you see a green bar  (Fig.~\ref{fig_eclipsetestsuiterun}),
+then everything has been set-up correctly and you are now ready to start
+metamodelling!
 \begin{figure}[!h]
 	\centering
   \includegraphics[width=0.2\textwidth]{pics/eclipse_testsuiterun.png}
-	\caption{Eclipse TestSuite Run}
+	\caption{All's well that ends well\ldots}
 	\label{fig_eclipsetestsuiterun}
 \end{figure}
+\end{enumerate}
 
+\newpage
 
-
-\section{Step 05: [Projektstruktur EA]}
-\section{Step 06: [Projektstruktur Eclipse]}
+\section{Your EA Workspace}
+\section{Your Eclipse Workspace}
