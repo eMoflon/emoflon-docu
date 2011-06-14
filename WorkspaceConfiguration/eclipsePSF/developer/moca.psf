@@ -6,9 +6,9 @@
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/Dependencies,Dependencies"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/Documentation,Documentation"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/compiler/Ecore2FujabaTransformation,Ecore2FujabaTransformation"/>
-<project reference="0.9.3,svn+ssh://aanjorin@scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/labelledGraph/LabelledGraphLanguage,LabelledGraphLanguage"/>
-<project reference="0.9.3,svn+ssh://aanjorin@scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/Moca,Moca"/>
-<project reference="0.9.3,svn+ssh://aanjorin@scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/specifications/MocaLanguages,MocaLanguages"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/labelledGraph/LabelledGraphLanguage,LabelledGraphLanguage"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/Moca,Moca"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/specifications/MocaLanguages,MocaLanguages"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonIdeCore,MoflonIdeCore"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonIdeFeature,MoflonIdeFeature"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonIdeUi,MoflonIdeUi"/>
