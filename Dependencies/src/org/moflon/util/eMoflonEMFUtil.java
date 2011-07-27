@@ -2,27 +2,30 @@ package org.moflon.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-/**
- * Simple utility methods for working with EMF models.
- * 
- * @author anjorin
- * @author (last editor) $Author$
- * @version $Revision$ $Date$
- */
-public class EMFPersistenceUtil
+public class eMoflonEMFUtil
 {
-   private static final Logger logger = Logger.getLogger(EMFPersistenceUtil.class);
+
+   public static ECrossReferenceAdapter adapter = new ECrossReferenceAdapter();
+
+   private static final Logger logger = Logger.getLogger(eMoflonEMFUtil.class);
 
    /**
     * Simple utility method to be used for testing. Loads a model from path.
@@ -47,6 +50,10 @@ public class EMFPersistenceUtil
       // Get the resource
       Resource resource = resourceSet.getResource(createFileURI(path, true), true);
 
+      // Add adapter for reverse navigation along unidirectional links 
+      if(!resourceSet.eAdapters().contains(eMoflonEMFUtil.adapter))
+         resourceSet.eAdapters().add(eMoflonEMFUtil.adapter);
+      
       // Return root model element
       return resource.getContents().get(0);
    }
@@ -104,4 +111,62 @@ public class EMFPersistenceUtil
       Map<String, Object> m = reg.getExtensionToFactoryMap();
       m.put("*", new XMIResourceFactoryImpl());
    }
+
+   /**
+    * This method only works when you registered an appropriate adapter right after loading your model! Further
+    * documentation can be found here: http://sdqweb.ipd.kit.edu/wiki/EMF_Reverse_Lookup_/
+    * _navigating_unidirectional_references_bidirectional
+    * 
+    * @param target
+    *           the target of this reference
+    * @param sourceType
+    *           the type of the opposite objects you are looking for
+    * @return a collection of all opposite objects
+    */
+   public static Collection<?> getOppositeReference(EObject target, @SuppressWarnings("rawtypes") Class sourceType)
+   {
+      Collection<EObject> returnList = new ArrayList<EObject>();
+
+      Collection<Setting> settings = adapter.getInverseReferences(target, true);
+      for (Setting setting : settings)
+      {
+         EClassifier clazz = setting.getEObject().eClass();
+         String clazzName = clazz.getInstanceClass().getPackage().getName() + "." + clazz.getName();
+
+         if (clazzName.equals(sourceType.getName()))
+         {
+            returnList.add(setting.getEObject());
+         }
+      }
+      return returnList;
+   }
+
+   public static void remove(EObject object)
+   {
+      EcoreUtil.delete(object, true);
+   }
+
+   @SuppressWarnings({ "unchecked", "rawtypes" })
+   public static void addOppositeReference(EObject source, EObject target, String targetRole)
+   {
+      EStructuralFeature reference = source.eClass().getEStructuralFeature(targetRole);
+      if (!reference.isMany())
+      {
+         source.eSet(reference, target);
+      } else
+         ((Collection) source.eGet(reference)).add(target);
+   }
+
+   @SuppressWarnings({ "rawtypes" })
+   public static void removeOppositeReference(EObject source, EObject target, String targetRole)
+   {
+      EStructuralFeature reference = source.eClass().getEStructuralFeature(targetRole);
+      if (!reference.isMany())
+      {
+         source.eSet(reference, null);
+      } else
+         ((Collection) source.eGet(reference)).remove(target);
+
+   }
+
 }
