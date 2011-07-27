@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.jdt.core.classpathVariableInitializer">
+      <classpathVariableInitializer
+            class="org.moflon.admin.DependenciesClasspathVariableInitializer"
+            variable="MOFLON_DEPENDENCIES">
+      </classpathVariableInitializer>
+   </extension>
+   <extension
+         point="org.eclipse.jdt.core.classpathVariableInitializer">
+      <classpathVariableInitializer
+            class="org.moflon.admin.Log4JClasspathVariableInitializer"
+            variable="LOG4J">
+      </classpathVariableInitializer>
+   </extension>
+   <extension
+         point="org.eclipse.jdt.core.classpathVariableInitializer">
+      <classpathVariableInitializer
+            class="org.moflon.admin.Codegen2ClasspathVariableInitializer"
+            variable="CODEGEN2_RUNTIMETOOLS">
+      </classpathVariableInitializer>
+   </extension>
+
+</plugin>
