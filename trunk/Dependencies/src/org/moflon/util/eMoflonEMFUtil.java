@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 public class eMoflonEMFUtil
 {
-
    public static ECrossReferenceAdapter adapter = new ECrossReferenceAdapter();
 
    private static final Logger logger = Logger.getLogger(eMoflonEMFUtil.class);
@@ -125,6 +124,8 @@ public class eMoflonEMFUtil
     */
    public static Collection<?> getOppositeReference(EObject target, @SuppressWarnings("rawtypes") Class sourceType)
    {
+      ensureCRAdapterIsUsed(target);
+      
       Collection<EObject> returnList = new ArrayList<EObject>();
 
       Collection<Setting> settings = adapter.getInverseReferences(target, true);
@@ -139,6 +140,17 @@ public class eMoflonEMFUtil
          }
       }
       return returnList;
+   }
+
+   private static void ensureCRAdapterIsUsed(EObject target)
+   {
+      if (target.eResource() != null)
+      {
+         ResourceSet resourceSet = target.eResource().getResourceSet();
+         if (resourceSet != null && !resourceSet.eAdapters().contains(eMoflonEMFUtil.adapter))
+            logger.error("The model element " + target
+                  + " might not have been loaded with a crossreferencing adapter!  Navigation along non-navigable links is probably not possible.");
+      }
    }
 
    public static void remove(EObject object)
