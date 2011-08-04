@@ -4,7 +4,10 @@ Bundle-Name: Dependencies
 Bundle-SymbolicName: org.moflon.dependencies;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Real-Time Systems Lab, TU Darmstadt
-Export-Package: org.apache.commons.io,
+Export-Package: de.upb.tools.fca,
+ de.upb.tools.pcs,
+ de.upb.tools.sdm,
+ org.apache.commons.io,
  org.apache.commons.io.comparator,
  org.apache.commons.io.filefilter,
  org.apache.commons.io.input,
@@ -40,12 +43,15 @@ Export-Package: org.apache.commons.io,
  org.apache.log4j.varia,
  org.apache.log4j.xml,
  org.moflon,
+ org.moflon.admin,
  org.moflon.util
 Bundle-ClassPath: lib/log4j.jar,
  .,
  lib/commons-io-2.0.jar,
  lib/commons-lang3-3.0-beta.jar,
- lib/RuntimeTools.jar
+ lib/RuntimeTools.jar,
+ lib/commons-io-2.0-sources.jar,
+ lib/commons-lang3-3.0-beta-sources.jar
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
  org.eclipse.jdt.core,
