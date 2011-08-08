@@ -533,13 +533,50 @@ metamodel closely resembles Fig.~\ref{fig:metamodel_complete}.
 	\label{fig:metamodel_complete}
 \end{figure}
 
-Review and explanation of metamodel.
+Lets take a step back and review our metamodel.  We have modelled a \texttt{Box}
+that contains arbitrary many \texttt{Partition}s.  A \texttt{Partition} in the
+\texttt{Box} has a \texttt{next} and \texttt{previous} \texttt{Partition} that
+can be set or not. Finally, \texttt{Partition}s contain \texttt{Card}s.
 
-Export and codegeneration, compare closely with tutorial if something goes
-wrong.
+A \texttt{Box} has a \texttt{name}, and can be extended by calling
+\texttt{grow}. A \texttt{Box} can print out its contents via \texttt{toString}. 
+We'll see later in the tutorial why these two methods need our
+\texttt{MemoryBoxUtil} as a parameter.
 
-Take a look at generated code, references, interfaces, and default
-implementation of methods.  EMF codegenerator supports hand-written
-implementations but we can do better!
+The main method of the memory box is \texttt{Partition::check} that takes a
+\texttt{Card} and the user's guess as an \texttt{EString} and returns
+\texttt{true} or \texttt{false} depending on if the guess was correct or not.
+A \texttt{Partition} can also \texttt{empty} itself of all \texttt{Cards}, or
+\texttt{remove} a particular \texttt{Card}.  Last but not least, a
+\texttt{Partition} has a \texttt{partitionSize} that can be used to indicate
+that the \texttt{Partition} is full and is ready to be revised.
 
-Now let's model the dynamic behaviour of our memory box.
+A \texttt{Card} contains the actual content to be learnt as a question on the
+card's \texttt{face} and the answer on the card's \texttt{back}. A \texttt{Card}
+also maintains a \texttt{partition\-History} which can be used to keep track of
+how often a \texttt{Card} has been answered correctly/wrongly.  This might
+indicate how difficult the \texttt{Card} is for a specific user.
+When learning a language, it makes sense to be able to swap the target and
+source langauge and this is supported by \texttt{Card} via \texttt{invert}
+(turns the card around).
+
+Now try to export the metamodel for codegeneration in Eclipse.  To do this
+right-click on \texttt{MemoryBoxLanguage} and choose ``Add-In/MOFLON::Ecore
+Addin/Export Selection to Workspace''.  Then switch to your Eclipse workspace
+and refresh the metamodel workspace.
+
+If you have done everything right, a new project \texttt{MemoryBoxLanguage}
+should be created in the \texttt{Demo} working set in your Eclipse workspace.
+If this is not the case please ensure that your metamodel is identical with
+Fig.~\ref{fig:metamodel_complete}.  If you believe everything is correct and
+things still don't work then feel free to contact us at
+\url{contact@moflon.org}.  If code is generated successfully, take a look at all
+the stuff that has been generated under \texttt{/gen}, especially the default
+implementation for all methods that just throws an
+\texttt{OperationNotSupported} exception.  We shall see later in the tutorial
+that the EMF codegenerator actually supports merging hand-written
+implementations of methods with generated code.  With eMoflon however, we can
+also model a large part of the dynamic semantics and only need to implement
+small helper methods for e.g. string manipulation by hand.
+
+Let's move on and model the dynamic behaviour of our memory box!

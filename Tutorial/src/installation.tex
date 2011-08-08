@@ -1,16 +1,16 @@
 \chapter{Installation}
 \label{chap:installation}
 
-\section{Install Our Plugin for Enterprise Architect (EA)}
+\section{Install Our Addin for Enterprise Architect (EA)}
 Enterprise Architect (EA) is a modelling tool that supports
 UML\footnote{Unified Modelling Language} and a host of other modelling
 languages.  EA is not only affordable but is also quite flexible and can be
-extended via \emph{plugins} to support new modelling languages.
+extended via \emph{addins} to support new modelling languages.
 \vspace{-0.1cm}
 \begin{enumerate}
 \item[$\blacktriangleright$] Download and install EA
 (Fig.~\ref{fig_enterpriseArchitextHomepage})
-\item[] Go to \url{http://www.sparxsystems.com.au/} to get a free 30 day trial.
+\item[] Go to \url{http://www.sparxsystems.com/} to get a free 30 day trial.
 \begin{figure}[!h]
 	\centering
   \includegraphics[width=0.7\textwidth]{pics/ea_download.png}
@@ -20,7 +20,7 @@ extended via \emph{plugins} to support new modelling languages.
 
 \newpage
 
-\item[$\blacktriangleright$] Install our EA-Plugin (Fig.~
+\item[$\blacktriangleright$] Install our EA-Addin (Fig.~
 \ref{fig_eaPluginWizard}) to add support for our modelling languages.
 \item[] Download
 \url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/ea-ecore-addin/ea-ecore-addin.zip},
@@ -38,11 +38,12 @@ unpack, and run setup.exe
 \begin{enumerate}
 \item[$\blacktriangleright$] Download and install Eclipse for Modeling
 ``Eclipse Modeling Tools (includes Incubating components)''
-(Fig.~\ref{fig_downloadModelingPackage}) from:\\  
+(Fig.~\ref{fig_downloadModelingPackage})\footnote{Tested for Eclipse 3.6
+(Helios).} from:\\
 \url{http://www.eclipse.org/downloads/packages/}
 \begin{figure}[!h]
 	\centering
-  \includegraphics[width=0.7\textwidth]{pics/eclipse_modelingpackage.png}
+  \includegraphics[width=0.65\textwidth]{pics/eclipse_modelingpackage.png}
 	\caption{Download Eclipse Modeling Tools.}
 	\label{fig_downloadModelingPackage}
 \end{figure}
@@ -59,9 +60,10 @@ the plugin might take quite a while depending on your internet connection.}:
 \section{Get a Simple Demo Running}
 
 \begin{enumerate}
-\item[$\blacktriangleright$] Go to ``Window/Open Perspective/Other\ldots'' and
-choose Moflon (Fig.~\ref{fig_eclipse}).
-\begin{figure}[!h]
+\item[$\blacktriangleright$] Go to ``Window/Open
+Perspective/Other\ldots''\footnote{A path given as ``foo/bar'' indicates how to
+navigate in a series of menus and submenus.} and choose Moflon
+(Fig.~\ref{fig_eclipse}). \begin{figure}[!h]
 	\centering
   \includegraphics[width=0.7\textwidth]{pics/eclipse_firststart.png}
 	\caption{Choose the Moflon Perspective.}
@@ -83,7 +85,8 @@ something goes wrong!).
 project and confirm. 
 An empty EA project file ``Demo.eap'' will be
 created in a new project with a certain project structure
-according to our conventions.
+according to our conventions.  For the moment, please do not rename, move or
+delete any folders.
 
 \newpage
 
@@ -107,7 +110,8 @@ This EA file already contains our simple demo project.
 Please choose ``Ultimate" when starting EA for the first time.
 
 \item[$\blacktriangleright$] In EA, choose ``Add-Ins/MOFLON::Ecore Addin/Export
-all to Workspace'' (Fig.~\ref{fig_ea}).
+all to Workspace'' (Fig.~\ref{fig_ea}).  You can of course browse the project
+structure, but please do not rename, move or delete anything yet.
 \begin{figure}[!h]
 	\centering
   \includegraphics[width=0.65\textwidth]{pics/ea_firststart.png}
@@ -125,10 +129,11 @@ code generators automatically.
 You should be able to monitor the progress in the lower right corner
 (Fig.~\ref{fig_eclipsebuilding}).  
 Pressing the symbol opens a monitor view that gives more details of the build
-process. 
+process. You don't need to worry about any of these details, just remember to
+refresh your Eclipse workspace after an export.
 \begin{figure}[!h]
 	\centering
-  \includegraphics[width=0.6\textwidth]{pics/eclipse_building.png}
+  \includegraphics[width=0.55\textwidth]{pics/eclipse_building.png}
 	\caption{Automatically building the workspace after a refresh.}
 	\label{fig_eclipsebuilding}
 \end{figure}
@@ -142,7 +147,7 @@ into Workspace'' (Fig.~\ref{fig_eclipseTestsuiteImport}) and choose the
 Testsuite project that is also in the same folder as this tutorial. 
 \begin{figure}[!h]
 	\centering
-  \includegraphics[width=0.6\textwidth]{pics/eclipse_testsuitimport.png}
+  \includegraphics[width=0.55\textwidth]{pics/eclipse_testsuitimport.png}
 	\caption{Import our Testsuite as an existing project.}
 	\label{fig_eclipseTestsuiteImport}
 \end{figure}
@@ -175,18 +180,21 @@ metamodelling!
 
 \section{Project Structure and Setup}
 Now that everything is installed and setup properly, let's take a closer look at
-the different workspaces and workflow.  Before we continue, please make
+the different workspaces and our workflow.  Before we continue, please make
 a few slight adjustments to EA so you can easily compare your current workspace 
 to our screenshots:
 \begin{itemize}
   \item[$\blacktriangleright$] Select ``Tools/Options/Standard Colors'' in EA,
-  and set your colours to reflect Fig.~\ref{fig_standardColoursEA}.
+  and set your colours to reflect Fig.~\ref{fig_standardColoursEA}.  This is
+  advisable but you're of course free to choose your own colour schema.
   \item[$\blacktriangleright$] In the same dialogue, select
   ``Diagram/Appearance'' and reflect the settings in
-  Fig.~\ref{fig_standardAppearanceEA}.
+  Fig.~\ref{fig_standardAppearanceEA}.  Again this is just a suggestion and not
+  mandatory.
   \item[$\blacktriangleright$] Last but not least, and still in the same
   dialogue, select ``Source Code Engineering'' and be sure to choose ``Ecore''
-  as the default language for code generation (Fig.~\ref{fig_standardSCEEA}).
+  as the default language for code generation (Fig.~\ref{fig_standardSCEEA}). 
+  This setting is very important.
 \end{itemize}
 \newpage
 %\usepackage{graphics} is needed for \includegraphics
@@ -271,11 +279,12 @@ the file and select ``Open With/Text Editor''.
 This Ecore model is used to drive a codegenerator that maps the model to Java
 interfaces and classes.  The generated Java code that represents the model is
 often referred to as a \emph{repository} and this is the reason why we refer to
-such projects as repository projects.  A repository can be viewed as an
-\emph{adapter} that enables building and manipulating concrete instances of a
-specific model via a programming language like Java.  This is why we
-indicate repository projects using a cute adapter/plug symbol on the project
-folder.
+such projects as repository projects\footnote{Not to be mixed up with CVS or SVN
+repositories, although the idea of a source code ``container'' is the same
+here.}. A repository can be viewed as an \emph{adapter} that enables building and
+manipulating concrete instances of a specific model via a programming language
+like Java.  This is why we indicate repository projects using a cute
+adapter/plug symbol on the project folder.  
 
 Figure~\ref{fig_fromEAtoEclipse} depicts how the class \texttt{Node} in the EA
 model is mapped to the Java interface \texttt{Node}.  Double-click
