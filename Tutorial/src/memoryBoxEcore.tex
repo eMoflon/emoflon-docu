@@ -304,7 +304,7 @@ Fig.~\ref{fig:attribute_completed}.
 Now choose \texttt{EPackage} from the toolbox and add it to the current diagram
 just like how we added EClasses. Enter \texttt{facade} as the name of the
 package. 
-
+ 
 Ecore supports packages that can be used to structure and group classes
 in a metamodel.  In our case, we need  a util class that implements helper
 methods for our memory box.  These methods  will be implemented by hand in Java
@@ -313,38 +313,41 @@ our model and hand-written code.  We shall soon  see how our Eclipse Plugin
 offers extra support if one follows this naming  convention for packages
 containing hand-written code. 
 
-To add a class to our new package, select it in the Project Browser and then
-press the button \texttt{Create Element} (Fig.~\ref{fig:epackage_newelement}).  
+To add a class to our new package, first of all create a new diagram in
+the package by choosing the \texttt{facade} subpackage and selecting \texttt{New
+Diagram} in the Project Browser (Fig.~\ref{fig:epackage_newelement}).
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.6\textwidth]{pics/memBox19.png}
+  \includegraphics[width=0.5\textwidth]{pics/memBox19}
 	\caption{Add a class to the package.}
 	\label{fig:epackage_newelement}
 \end{figure}
 
-In the dialogue that pops-up, the correct toolbox should be preselected.  Enter
-\texttt{MemoryBoxUtil} as the name of the class and click \texttt{Create}
-(Fig.~\ref{fig:epackage_createelement}).
+In the dialogue that pops-up, choose \texttt{Ecore Diagram} and confirm with
+\texttt{OK}.
+In the new diagram, create a new class and enter \texttt{MemoryBoxUtil} as its
+\texttt{name}.  You can switch between diagrams by choosing the tabs at the
+bottom of the screen or by pressing \texttt{alt + } $\Leftarrow$ or
+$\Rightarrow$ (Fig.~\ref{fig:epackage_newdiagram}). 
 
-\begin{figure}[htbp]
+\begin{figure}[htbp] 
 	\centering
-  \includegraphics[width=0.5\textwidth]{pics/memBox20.png}
-	\caption{Enter name of class to create.}
-	\label{fig:epackage_createelement}
+  \includegraphics[width=0.55\textwidth]{pics/memBox20}
+	\caption{Main and subdiagrams in EA.}
+	\label{fig:epackage_newdiagram}
 \end{figure}
+\clearpage 
 
-\clearpage
-
-Your workspace should now resemble Fig.~\ref{fig:epackage_completed}.  Every
-subpackage like \texttt{facade} can also contain diagrams that can be created
-and added using the Project Browser just like how we created the current
-diagram. In this way an arbitrary nesting of packages is possible.
+Your workspace should now resemble Fig.~\ref{fig:epackage_completed}.
+Any subpackage like \texttt{facade} can contain diagrams that can be
+created and added using the Project Browser. 
+In this way an arbitrary nesting of packages and diagrams is possible.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.7\textwidth]{pics/memBox22.png}
-	\caption{Workspace after adding package.}
+  \includegraphics[width=.8\textwidth]{pics/memBox22.png}
+	\caption{Workspace after adding package and util class.}
 	\label{fig:epackage_completed}
 \end{figure}
 
@@ -355,12 +358,12 @@ choose an element and note the little black arrow in its top-right corner
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.7\textwidth]{pics/memBox23.png}
-	\caption{Quick Link is a central gesture in EA.}
+  \includegraphics[width=0.4\textwidth]{pics/memBox23.png}
+	\caption{Quick Link is a central gesture in EA.} 
 	\label{fig:quicklink}
 \end{figure}
 
-\clearpage
+\clearpage 
 
 Now click on the black arrow and pull to another element you wish to ``quick
 link" to.  In this case quick link from \texttt{Partition} to \texttt{Box}.  In
@@ -376,9 +379,9 @@ the context-menu that pops-up, choose \texttt{EReference}.
 
 In the dialogue that pops-up (Fig.~\ref{fig:ereference_properties}), the
 direction of the reference can be set.  The default is bidirectional and this is
-ok for our \texttt{Box}-\texttt{Partition} connection.  A \texttt{Name} can also
-be entered, which is only used for documentation purposes and is not relevant
-for codegeneration.
+ok for our \texttt{Box}$\Leftrightarrow$\texttt{Partition} connection.
+A \texttt{Name} can also be entered, which is only used for documentation
+purposes and is not relevant for codegeneration.
 
 \begin{figure}[htbp]
 	\centering
@@ -450,9 +453,9 @@ Fig.~\ref{fig:metamodel_complete} for a better diagram of the metamodel.}.
  
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.7\textwidth]{pics/memBox34.png}
+  \includegraphics[width=0.5\textwidth]{pics/memBox34.png}
 	\caption{All relations in our metamodel.}
-	\label{fig:ereferences_all}
+	\label{fig:ereferences_all}  
 \end{figure}
 
 \clearpage
@@ -501,15 +504,23 @@ Parameter in a separate dialogue.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.6\textwidth]{pics/memBox38.png}
+  \includegraphics[width=0.55\textwidth]{pics/memBox38.png}
 	\caption{Parameters and Return Type.}
-	\label{fig:operation_parameters}
+	\label{fig:operation_parameters} 
 \end{figure}
 
 Repeat the process for the values in Fig.~\ref{fig:operation_partition}.  The
 \texttt{Return Type} can be chosen via the drop-down menu for primitives
 (\texttt{EBoolean}), or via the \texttt{\ldots} button for types in the
 metamodel (\texttt{Card}). 
+
+\vspace{-.6cm}
+\begin{quote}
+Please note: Non-primitive types \emph{must} be chosen via the
+\texttt{\ldots} button that allows you to browse for the corresponding elements in your
+project.  Just typing them unfortunately won't work!
+\end{quote}
+\vspace{-.6cm}
 
 If you've done everything right, your dialogue should
 now contain three methods \texttt{check}, \texttt{empty}, and
@@ -518,15 +529,16 @@ Fig.~\ref{fig:operation_partition}.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.6\textwidth]{pics/memBox39}
+  \includegraphics[width=0.55\textwidth]{pics/memBox39}
 	\caption{All operations in \texttt{Partition}.}
 	\label{fig:operation_partition}
 \end{figure}
 
 \clearpage
 
-Add all operations analogously for \texttt{Box} and \texttt{Card} so that your
-metamodel closely resembles Fig.~\ref{fig:metamodel_complete}.
+Add all operations analogously for \texttt{Box}, \texttt{Card} and
+\texttt{MemoryBoxUtil}, so that your metamodel closely resembles
+Fig.~\ref{fig:metamodel_complete}. 
  
 \begin{figure}[htbp]
 	\centering 
