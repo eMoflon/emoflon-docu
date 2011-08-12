@@ -42,12 +42,17 @@ public class eMoflonEMFUtil
    {
       initEMF(ePackage);
 
+      return loadModel(createFileURI(path, true), resourceSet);
+   }
+   
+   public static EObject loadModel(URI fileURI, ResourceSet resourceSet)
+   {
       // Obtain a new resource set if necessary
       if (resourceSet == null)
          resourceSet = new ResourceSetImpl();
 
       // Get the resource
-      Resource resource = resourceSet.getResource(createFileURI(path, true), true);
+      Resource resource = resourceSet.getResource(fileURI, true);
 
       // Add adapter for reverse navigation along unidirectional links 
       if(!resourceSet.eAdapters().contains(eMoflonEMFUtil.adapter))
@@ -90,7 +95,7 @@ public class eMoflonEMFUtil
          return false;
       }
    }
-
+   
    static private URI createFileURI(String path, boolean mustExist)
    {
       File filePath = new File(path);
@@ -180,5 +185,4 @@ public class eMoflonEMFUtil
          ((Collection) source.eGet(reference)).remove(target);
 
    }
-
 }
