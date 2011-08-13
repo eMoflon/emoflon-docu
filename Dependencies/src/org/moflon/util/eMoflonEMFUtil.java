@@ -77,11 +77,15 @@ public class eMoflonEMFUtil
    {
       initEMF(ePackage);
 
+      return saveModel(root, createFileURI(path, false));
+   }
+   
+   static public boolean saveModel(EObject root, URI path){
       // Obtain a new resource set
       ResourceSet resourceSet = new ResourceSetImpl();
 
       // Create a resource and add model
-      Resource resource = resourceSet.createResource(createFileURI(path, false));
+      Resource resource = resourceSet.createResource(path);
       resource.getContents().add(root);
 
       // Save model to file
@@ -94,6 +98,7 @@ public class eMoflonEMFUtil
          logger.error("Unable to save model to " + path);
          return false;
       }
+
    }
    
    static private URI createFileURI(String path, boolean mustExist)
