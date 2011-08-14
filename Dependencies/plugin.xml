@@ -22,5 +22,12 @@
             variable="CODEGEN2_RUNTIMETOOLS">
       </classpathVariableInitializer>
    </extension>
+   <extension
+         point="org.eclipse.jdt.core.classpathVariableInitializer">
+      <classpathVariableInitializer
+            class="org.moflon.admin.ANTLRClasspathVariableInitializer"
+            variable="ANTLR">
+      </classpathVariableInitializer>
+   </extension>
 
 </plugin>
