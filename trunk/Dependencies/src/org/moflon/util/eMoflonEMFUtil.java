@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -22,8 +23,6 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 public class eMoflonEMFUtil
 {
-   public static ECrossReferenceAdapter adapter = new ECrossReferenceAdapter();
-
    private static final Logger logger = Logger.getLogger(eMoflonEMFUtil.class);
 
    /**
@@ -38,31 +37,32 @@ public class eMoflonEMFUtil
     * 
     * @return Loaded model
     */
-   static public EObject loadModel(EPackage ePackage, String path, ResourceSet resourceSet)
+  static public EObject loadModel(EPackage ePackage, String path, ResourceSet resourceSet)
    {
       initEMF(ePackage);
 
       return loadModel(createFileURI(path, true), resourceSet);
    }
    
-   public static EObject loadModel(URI fileURI, ResourceSet resourceSet)
+   public static EObject loadModel(URI uri, ResourceSet resourceSet)
    {
       // Obtain a new resource set if necessary
       if (resourceSet == null)
          resourceSet = new ResourceSetImpl();
 
       // Get the resource
-      Resource resource = resourceSet.getResource(fileURI, true);
+      Resource resource = resourceSet.getResource(uri, true);
 
-      // Add adapter for reverse navigation along unidirectional links 
-      if(!resourceSet.eAdapters().contains(eMoflonEMFUtil.adapter))
-         resourceSet.eAdapters().add(eMoflonEMFUtil.adapter);
+      // Add adapter for reverse navigation along unidirectional links
+      ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
+      if(adapter == null)
+         resourceSet.eAdapters().add(new ECrossReferenceAdapter());
       
       // Return root model element
       return resource.getContents().get(0);
    }
 
-   /**
+  /**
     * Simple utility method for testing, saves model to file.
     * 
     * @param ePackage
@@ -100,8 +100,9 @@ public class eMoflonEMFUtil
       }
 
    }
-   
-   static private URI createFileURI(String path, boolean mustExist)
+
+  
+   static public URI createFileURI(String path, boolean mustExist)
    {
       File filePath = new File(path);
       if (!filePath.exists() && mustExist)
@@ -134,7 +135,7 @@ public class eMoflonEMFUtil
     */
    public static Collection<?> getOppositeReference(EObject target, @SuppressWarnings("rawtypes") Class sourceType)
    {
-      ensureCRAdapterIsUsed(target);
+      ECrossReferenceAdapter adapter = getCRAdapter(target);
       
       Collection<EObject> returnList = new ArrayList<EObject>();
 
@@ -152,15 +153,32 @@ public class eMoflonEMFUtil
       return returnList;
    }
 
-   private static void ensureCRAdapterIsUsed(EObject target)
+   private static ECrossReferenceAdapter getCRAdapter(EObject target)
    {
-      if (target.eResource() != null)
+      // Determine context
+      Notifier context = null;
+      
+      EObject root = EcoreUtil.getRootContainer(target, true);
+      Resource resource = root.eResource();
+      
+      if (resource != null)
       {
-         ResourceSet resourceSet = target.eResource().getResourceSet();
-         if (resourceSet != null && !resourceSet.eAdapters().contains(eMoflonEMFUtil.adapter))
-            logger.error("The model element " + target
-                  + " might not have been loaded with a crossreferencing adapter!  Navigation along non-navigable links is probably not possible.");
+         ResourceSet resourceSet = resource.getResourceSet();
+         if(resourceSet != null)
+            context = resourceSet;
+         else
+            context = resource;
+      }else
+         context = root;
+      
+      // Retrieve adapter and create+add on demand
+      ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(context);
+      if(adapter == null){
+         adapter = new ECrossReferenceAdapter();
+         context.eAdapters().add(adapter);
       }
+      
+      return adapter;
    }
 
    public static void remove(EObject object)
