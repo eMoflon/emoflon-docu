@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension point="org.eclipse.ui.startup">
+     <startup class="autobuildplugin.Activator"/>
+	</extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="autobuildplugin.preferences.AutoBuildPreferencePage"
+            id="autobuildplugin.preferences.AutoBuildPreferencePage"
+            name="AutoBuild">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="autobuildplugin.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="org.moflon.MoflonAutoTestPlugin.actionSet"
+            label="Moflon Auto Test ActionSet"
+            visible="false">
+         <menu
+               id="autoTestMenu"
+               label="Moflon Auto Test Menu">
+            <separator
+                  name="moflonAutoTestGroup">
+            </separator>
+         </menu>
+         <action
+               class="org.moflon.moflonautotestplugin.actions.StartMoflonAutoTestPluginAction"
+               icon="icons/es.gif"
+               id="org.moflon.moflonautotestplugin.actions.StartMoflonAutoTestPluginAction"
+               label="&amp;Moflon Action SetIcon"
+               toolbarPath="MoflonActionSet">
+         </action>
+      </actionSet>
+   </extension>
+
+</plugin>
