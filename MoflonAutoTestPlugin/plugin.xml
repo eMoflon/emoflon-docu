@@ -10,9 +10,21 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
+            category="autobuildplugin.preferences.moflon.devtools"
             class="autobuildplugin.preferences.AutoBuildPreferencePage"
-            id="autobuildplugin.preferences.AutoBuildPreferencePage"
+            id="autobuildplugin.preferences.moflon.devtools.autotest"
             name="AutoBuild">
+      </page>
+      <page
+            class="autobuildplugin.preferences.MoflonPreferencePage"
+            id="autobuildplugin.preferences.moflon"
+            name="Moflon">
+      </page>
+      <page
+            category="autobuildplugin.preferences.moflon"
+            class="autobuildplugin.preferences.DevToolsPreferencePage"
+            id="autobuildplugin.preferences.moflon.devtools"
+            name="DevTools">
       </page>
    </extension>
    <extension

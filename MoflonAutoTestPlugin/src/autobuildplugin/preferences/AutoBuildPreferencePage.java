@@ -1,5 +1,7 @@
 package autobuildplugin.preferences;
 
+import javax.swing.JList;
+
 import org.eclipse.jface.preference.*;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.IWorkbench;
@@ -69,6 +71,9 @@ public class AutoBuildPreferencePage extends FieldEditorPreferencePage
 								"5. Run Junit Tests",
 								PreferenceConstants.NEXTOPERATION.JUNIT
 										.toString() } }, getFieldEditorParent()));
+
+		// addField(new JList());
+		FieldEditor fe;
 	}
 
 	/*
@@ -85,20 +90,21 @@ public class AutoBuildPreferencePage extends FieldEditorPreferencePage
 				PreferenceConstants.AB_DEFAULT_NEXTOP);
 		store.setDefault(PreferenceConstants.AB_PROJECTSET,
 				PreferenceConstants.AB_DEFAULT_PROJECTSET);
-//
-//		if (store.getString(PreferenceConstants.AB_PROJECTSET).length() < 1) {
-//			store.setValue(PreferenceConstants.AB_PROJECTSET,
-//					PreferenceConstants.AB_DEFAULT_PROJECTSET);
-//		}
-//		 if (store.getString(PreferenceConstants.AB_LOG).length() < 1)
-//		 {
-//		 store.setValue(PreferenceConstants.AB_LOG,
-//		 PreferenceConstants.AB_LOG_PATH);
-//		 }
-//		if (store.getString(PreferenceConstants.AB_NEXTOP).length() < 1) {
-//			store.setValue(PreferenceConstants.AB_NEXTOP,
-//					PreferenceConstants.AB_DEFAULT_NEXTOP);
-//		}
+		//
+		// if (store.getString(PreferenceConstants.AB_PROJECTSET).length() < 1)
+		// {
+		// store.setValue(PreferenceConstants.AB_PROJECTSET,
+		// PreferenceConstants.AB_DEFAULT_PROJECTSET);
+		// }
+		// if (store.getString(PreferenceConstants.AB_LOG).length() < 1)
+		// {
+		// store.setValue(PreferenceConstants.AB_LOG,
+		// PreferenceConstants.AB_LOG_PATH);
+		// }
+		// if (store.getString(PreferenceConstants.AB_NEXTOP).length() < 1) {
+		// store.setValue(PreferenceConstants.AB_NEXTOP,
+		// PreferenceConstants.AB_DEFAULT_NEXTOP);
+		// }
 		setDescription("AutoBuild Plugin Preferences");
 		setPreferenceStore(store);
 	}
