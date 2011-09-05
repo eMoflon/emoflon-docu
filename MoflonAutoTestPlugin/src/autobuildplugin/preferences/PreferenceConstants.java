@@ -8,6 +8,8 @@ public class PreferenceConstants
 
    public static final String AB_PROJECTSET = "projectSetPreference";
    public static final String AB_DEFAULT_PROJECTSET = "<Path to PSF file>/<PSF file>.psf";
+   public static final String AB_LOG = "log";
+   public static final String AB_LOG_PATH = "<Store Log in Path>";
 
    public static final String AB_NEXTOP = "nextOPPreference";
    public static final String AB_DEFAULT_NEXTOP = NEXTOPERATION.IMPORTPROJECTSET.toString();

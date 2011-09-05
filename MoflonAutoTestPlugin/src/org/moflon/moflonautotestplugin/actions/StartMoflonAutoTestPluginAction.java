@@ -1,9 +1,12 @@
 package org.moflon.moflonautotestplugin.actions;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.util.LinkedList;
 
 import javax.mail.Session;
 
@@ -58,6 +61,7 @@ import autobuildplugin.preferences.PreferenceConstants;
  */
 public class StartMoflonAutoTestPluginAction implements
 		IWorkbenchWindowActionDelegate {
+	LinkedList<String> status = new LinkedList<String>();
 	private IWorkbenchWindow window;
 
 	/**
@@ -87,10 +91,8 @@ public class StartMoflonAutoTestPluginAction implements
 						turnOnAutoBuild();
 					}
 				});
-			} catch (InvocationTargetException e) {
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				status.add(e.toString());
 			}
 		}
 	}
@@ -153,8 +155,8 @@ public class StartMoflonAutoTestPluginAction implements
 			description.setAutoBuilding(false);
 			try {
 				workspace.setDescription(description);
-			} catch (CoreException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				status.add(e.toString());
 			}
 		}
 	}
@@ -170,8 +172,8 @@ public class StartMoflonAutoTestPluginAction implements
 			description.setAutoBuilding(true);
 			try {
 				workspace.setDescription(description);
-			} catch (CoreException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				status.add(e.toString());
 			}
 		}
 	}
@@ -184,16 +186,22 @@ public class StartMoflonAutoTestPluginAction implements
 		monitor.beginTask("auto build process", 100);
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		// // 2. delete folder
+		status.add("### EXCEPTION: DELETING PROJECTS\n");
 		deletingOldProjects(monitor, store);
 		// 3. import project set
+		status.add("### EXCEPTION: IMPORT PROJECT SET\n");
 		importingProjectSet(monitor, store);
 		// 4. build moflon
+		status.add("### EXCEPTION: GENERATING EAP MODELS\n");
 		buildingEAP(monitor, store);
 		// 5. refreshworkspace
+		status.add("### EXCEPTION: BUILDING MOFLON PROJECTS\n");
 		refreshWorkSpace(monitor, store);
 		// 6. junit
+		status.add("### EXCEPTION: RUNNING JUNIT TESTS\n");
 		runJUnitTest(monitor, store);
 		monitor.done();
+		writeRunningResults(store);
 	}
 
 	/**
@@ -208,12 +216,11 @@ public class StartMoflonAutoTestPluginAction implements
 			monitor.subTask("deleting projects");
 			deleteFolder( monitor);
 			monitor.worked(10);
-			// refreshWorkspace(monitor);
 			try {
 				ResourcesPlugin.getWorkspace().getRoot()
 						.refreshLocal(IResource.DEPTH_INFINITE, monitor);
-			} catch (CoreException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				status.add(e.toString());
 			}
 			store.setValue(PreferenceConstants.AB_NEXTOP,
 					PreferenceConstants.NEXTOPERATION.IMPORTPROJECTSET
@@ -239,10 +246,8 @@ public class StartMoflonAutoTestPluginAction implements
 					new IWorkingSet[0]);
 			try {
 				op.run(monitor);
-			} catch (InvocationTargetException e) {
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				status.add(e.toString());
 			}
 			monitor.worked(30);
 			store.setValue(PreferenceConstants.AB_NEXTOP,
@@ -285,10 +290,8 @@ public class StartMoflonAutoTestPluginAction implements
 						// }
 					}
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				status.add(e.toString());
 			}
 			monitor.worked(20);
 			store.setValue(PreferenceConstants.AB_NEXTOP,
@@ -319,8 +322,8 @@ public class StartMoflonAutoTestPluginAction implements
 				}
 				turnOffAutoBuild();
 				ws.getRoot().refreshLocal(IResource.DEPTH_INFINITE, monitor);
-			} catch (CoreException e1) {
-				e1.printStackTrace();
+			} catch (Exception e) {
+				status.add(e.toString());
 			}
 			monitor.worked(20);
 			store.setValue(PreferenceConstants.AB_NEXTOP,
@@ -352,8 +355,25 @@ public class StartMoflonAutoTestPluginAction implements
 						ILaunchManager.RUN_MODE);
 			}
 			store.setValue(PreferenceConstants.AB_NEXTOP,
-					PreferenceConstants.NEXTOPERATION.IMPORTPROJECTSET
+					PreferenceConstants.NEXTOPERATION.DELETEWORKSPACE
 							.toString());
+		}
+	}
+	
+	/**
+	 * writes the catched exceptions to a file in a path, which is stored in the plugin preferences
+	 * @param store
+	 */
+	private void writeRunningResults(IPreferenceStore store){
+		FileWriter fw;
+		try {
+			fw = new FileWriter(store.getString(PreferenceConstants.AB_LOG)+"/MoflonTestResults"+System.currentTimeMillis()+".log");
+			for(String s : status){
+				fw.write(s);
+			}
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -370,8 +390,8 @@ public class StartMoflonAutoTestPluginAction implements
 				System.out.println("DELETED " + projects[i].getName());
 				try {
 					projects[i].delete(true, true, null);
-				} catch (CoreException e) {
-					e.printStackTrace();
+				} catch (Exception e) {
+					status.add(e.toString());
 				}
 			}
 			monitor.worked(1);
