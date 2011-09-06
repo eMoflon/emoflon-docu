@@ -572,7 +572,7 @@ also maintains a \texttt{partition\-History} which can be used to keep track of
 how often a \texttt{Card} has been answered correctly/wrongly.  This might
 indicate how difficult the \texttt{Card} is for a specific user.
 When learning a language, it makes sense to be able to swap the target and
-source langauge and this is supported by \texttt{Card} via \texttt{invert}
+source language and this is supported by \texttt{Card} via \texttt{invert}
 (turns the card around).
 
 Now try to export the metamodel for codegeneration in Eclipse.  To do this
@@ -594,4 +594,68 @@ implementations of methods with generated code.  With eMoflon however, we can
 also model a large part of the dynamic semantics and only need to implement
 small helper methods for e.g. string manipulation by hand.
 
-Let's move on and model the dynamic behaviour of our memory box!
+\section{Create a model instance}
+\label{sect:instance}
+
+Before diving into modelling dynamic behaviour and some theory, let's have a
+look how to create a concrete instance of your metamodel with Ecore in Eclipse.
+For this reason, switch to your Eclipse workspace where eMoflon already created
+some projects and working sets.
+With Ecore as a plugin in Eclipse a generic model editor come for free that
+allows us to create and edit any instance of our metamodels designed with
+eMoflon!\\
+Being back in Eclipse, navigate into your \texttt{MemoryBoxLanguage} project and
+even further to the \texttt{model} folder.
+Open the \texttt{MemoryBoxLanguage.ecore} model with a double-click and the
+EMF model editor opens up.
+Expand this tree until you the different types you modelled within EA in the
+previous steps.
+In order to create a concrete instance, you have to select a type within the
+model.
+An instance of this type will become the rooted element within the
+to-be-created instance.
+In our case right-click the type \texttt{Box} and you'll find in the center of
+the context-menu the entry \texttt{Create Dynamic Instance\ldots} as shown in Fig.~\ref{fig:context_menu}.
+
+\begin{figure}[htbp]
+	\centering 
+  \includegraphics[width=0.53\textwidth]{pics/modelBrowserBilder/createInstance.png} 
+	\caption{Context menu of ecore model files in Eclipse}
+	\label{fig:context_menu}
+\end{figure}
+
+By doing so, you told Ecore that you're going now to create an instance of the
+selected model.
+Next, a dialog pops up asking for a place to persist your instance file.
+We suggest to save all your instances in a folder named \texttt{instances} that
+was already created together with this corresponding project.
+Nonetheless, you are free to store your instance anywhere.
+Last but not least, a name is required, depicted in Fig.~\ref{fig:store_dynamic_instance}.
+
+\begin{figure}[htbp]
+	\centering 
+  \includegraphics[width=0.53\textwidth]{pics/modelBrowserBilder/persistDialog.png} 
+	\caption{Dialog for creating a dynamic model instance}
+	\label{fig:store_dynamic_instance}
+\end{figure}
+ 
+Just click \texttt{Finish} and a new editor opens in front of you.
+This editor works just like the common and already known EMF model editor.
+You can add new children or siblings by right-clicking an element of the model
+and selecting the appropriate point within the context menu.
+Please note that EMF directly supports you by reducing the choice of
+creatable elements to valid types only (depicted in Fig.
+Figure~\ref{fig:create_instance}).
+
+\begin{figure}[htbp]
+	\centering 
+  \includegraphics[width=0.53\textwidth]{pics/modelBrowserBilder/adjustModel.png} 
+	\caption{Context menu for creating model elements}
+	\label{fig:create_instance}
+\end{figure}
+
+By pressing \texttt{Ctrl+S} your model is saved as an XMI file and can be
+reused and adjusted whenever you need to do so.
+
+\textsl{That's all from the ``static part". Now let's move on and model the
+dynamic behaviour of our memory box!}
