@@ -47,7 +47,7 @@
   See the GNU General Public License for more details.
  
   For your convenience, this document includes a copy of the \emph{GNU General
-  Public License} in App.~\ref{chap:gpl}.
+  Public License} starting from page~\pageref{chap:gpl}.
   
   For further information contact us at
   \href{mailto:contact@moflon.org}{contact@moflon.org}.
@@ -84,6 +84,7 @@
 % adjust page numbering 
 \pagenumbering{roman}
 \setcounter{page}{\value{romanpages}}
+\addtocounter{page}{1} 
 \let\originalclearpage=\clearpage
 \def\clearpage{\relax}
 \renewcommand*{\bibname}{}
