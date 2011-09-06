@@ -14,6 +14,8 @@
 	urlcolor=black}
 \usepackage{amssymb} 
 \usepackage{wasysym}
+\usepackage{float}
+\usepackage{floatflt}
 
 \newcommand{\note}[1]{\marginpar{\emph{#1}}}
  
@@ -31,12 +33,12 @@
 \maketitle
 
 \begin{small} 
-  Copyright \copyright 2011--2012 Anthony Anjorin, Marius Lauder, Daniel T\"ogel 
+  Copyright \copyright~2011--2012 Anthony Anjorin, Marius Lauder, Daniel T\"ogel 
   and Contributors. All rights reserved.
 
   This document is free; you can redistribute it and/or modify it
   under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
+  the Free Software Foundation; either version 3 of the License, or
   (at your option) any later version.
  
   This document is distributed in the hope that it will be useful, but
@@ -44,13 +46,16 @@
   \emph{merchantability} or \emph{fitness for a particular purpose}.
   See the GNU General Public License for more details.
  
-  You should have received a copy of the GNU General Public License
-  along with this document; if not, write to the Free Software
-  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+  For your convenience, this document includes a copy of the \emph{GNU General
+  Public License} in App.~\ref{chap:gpl}.
 \end{small}
 
 
 \tableofcontents
+
+% store page counter
+\newcounter{romanpages}
+\setcounter{romanpages}{\value{page}}
 
 \mainmatter
 
@@ -67,7 +72,20 @@
 \include{memoryBoxSDM_checkFastCard} 
 \include{conclusion}
 
+% Start appendix
+\begin{appendix}
+% adjust page numbering 
+\pagenumbering{roman}
+\setcounter{page}{\value{romanpages}}
+\let\originalclearpage=\clearpage
+\def\clearpage{\relax}
+\renewcommand*{\bibname}{}
+\chapter{References}\vskip-4cm
 \bibliographystyle{plain}  
 \bibliography{references} 
+\newpage
+
+\include{gpl}
+\end{appendix}
 
 \end{document}
