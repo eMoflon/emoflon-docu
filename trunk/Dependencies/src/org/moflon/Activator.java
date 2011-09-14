@@ -30,7 +30,7 @@ public class Activator extends Plugin
     *           The id of the plugin bundle to be searched
     * @return URL to the resource or null if nothing was found (URL because resource could be inside a jar).
     */
-   public URL getPathRelToPlugIn(String filePath, String PLUGIN_ID)
+   public static URL getPathRelToPlugIn(String filePath, String PLUGIN_ID)
    {
       try
       {
