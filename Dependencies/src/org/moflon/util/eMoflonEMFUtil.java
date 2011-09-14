@@ -12,11 +12,13 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
@@ -116,6 +118,11 @@ public class eMoflonEMFUtil
       // Initialize the model
       logger.debug("Initializing " + ePackage.getName());
 
+      registerXMIFactoryAsDefault();
+   }
+
+   public static void registerXMIFactoryAsDefault()
+   {
       // Add XMI factory to registry
       Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
       Map<String, Object> m = reg.getExtensionToFactoryMap();
@@ -207,5 +214,29 @@ public class eMoflonEMFUtil
       } else
          ((Collection) source.eGet(reference)).remove(target);
 
+   }
+   
+   public static EStructuralFeature getReference(EObject obj, String name){
+      for (EContentsEList.FeatureIterator featureIterator = (EContentsEList.FeatureIterator) obj.eCrossReferences().iterator(); featureIterator.hasNext();)
+      {
+         featureIterator.next();
+         EReference eReference = (EReference) featureIterator.feature();
+         if (eReference.getName().equals(name))
+            return eReference;
+      }
+
+      return null;
+   }
+   
+   public static EStructuralFeature getContainment(EObject container, String name){
+      for (EContentsEList.FeatureIterator featureIterator = (EContentsEList.FeatureIterator) container.eContents().iterator(); featureIterator.hasNext();)
+      {
+         featureIterator.next();
+         EReference eReference = (EReference) featureIterator.feature();
+         if (eReference.getName().equals(name))
+            return eReference;
+      }
+
+      return null;
    }
 }
