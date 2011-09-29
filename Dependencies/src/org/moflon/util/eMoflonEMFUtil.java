@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
@@ -239,4 +240,22 @@ public class eMoflonEMFUtil
 
       return null;
    }
+
+	public static String getName(EObject child) {		
+		Object name = "";
+		
+		EStructuralFeature nameFeature = (EStructuralFeature) child.eClass().getEStructuralFeature("name");		
+				
+		if(nameFeature != null)
+			name = child.eGet(nameFeature);
+		
+		return (String) (name instanceof String && !((String) name).equals("") ? name : child.toString());
+	}
+	
+	public static void addToResourceSet(ResourceSet set, EObject object) {
+		Resource resource = new ResourceImpl();
+		resource.setURI(URI.createURI(object.eClass().getEPackage().getNsURI()));
+		resource.getContents().add(object);
+		set.getResources().add(resource);
+	}
 }
