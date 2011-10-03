@@ -1,7 +1,7 @@
 \chapter{Installation}
 \label{chap:installation}
 
-\section{Install Our Addin for Enterprise Architect (EA)}
+\section{Install Our Extension for Enterprise Architect}
 Enterprise Architect (EA) is a modelling tool that supports
 UML\footnote{Unified Modelling Language} and a host of other modelling
 languages.  EA is not only affordable but is also quite flexible and can be
@@ -20,7 +20,7 @@ extended via \emph{addins} to support new modelling languages.
 
 \newpage
 
-\item[$\blacktriangleright$] Install our EA-Addin (Fig.~
+\item[$\blacktriangleright$] Install our EA-Extension (Fig.~
 \ref{fig_eaPluginWizard}) to add support for our modelling languages.
 \item[] Download
 \url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/ea-ecore-addin/ea-ecore-addin.zip},
@@ -28,18 +28,18 @@ unpack, and run setup.exe
 \begin{figure}[!h]
 	\centering
   \includegraphics[width=0.3\textwidth]{pics/eaplugin_install.png}
-	\caption{Install our plugin for EA.}
+	\caption{Install our extension for EA}
 	\label{fig_eaPluginWizard}
 \end{figure}
 \end{enumerate}
 \vspace{-1cm}
-
+ 
 \section{Install Our Plugin for Eclipse}
 \begin{enumerate}
 \item[$\blacktriangleright$] Download and install Eclipse for Modeling
 ``Eclipse Modeling Tools (includes Incubating components)''
-(Fig.~\ref{fig_downloadModelingPackage})\footnote{Tested for Eclipse 3.6
-(Helios).} from:\\
+(Fig.~\ref{fig_downloadModelingPackage})\footnote{Tested for Eclipse 3.7
+(Indigo).} from:\\
 \url{http://www.eclipse.org/downloads/packages/}
 \begin{figure}[!h]
 	\centering
@@ -109,14 +109,14 @@ Eclipse.
 \item[$\blacktriangleright$] Double click ``Demo.eap'' to start EA.
 Please choose ``Ultimate" when starting EA for the first time.
 
-\item[$\blacktriangleright$] In EA, choose ``Add-Ins/MOFLON::Ecore Addin/Export
+\item[$\blacktriangleright$] In EA, choose ``Extensions/MOFLON::Ecore Addin/Export
 all to Workspace'' (Fig.~\ref{fig_ea}).  You can of course browse the project
 structure, but please do not rename, move or delete anything yet.
 \begin{figure}[!h]
 	\centering
-  \includegraphics[width=0.65\textwidth]{pics/ea_firststart.png}
-	\caption{Export from EA with our plugin.}
-	\label{fig_ea}
+  \includegraphics[width=0.65\textwidth]{pics/ea_firststart}
+	\caption{Export from EA using our extension} 
+	\label{fig_ea} 
 \end{figure}
 
 \newpage
@@ -124,7 +124,7 @@ structure, but please do not rename, move or delete anything yet.
 \item[$\blacktriangleright$] Switch back to Eclipse, choose your Metamodel
 project and press F5 to refresh.
 The export from EA places all required files in a hidden folder in the
-project, and refreshing triggers a build process that invokes our different
+project, and refreshing triggers a build process that invokes our
 code generators automatically.
 You should be able to monitor the progress in the lower right corner
 (Fig.~\ref{fig_eclipsebuilding}).  
@@ -244,7 +244,7 @@ related \emph{Eclipse projects} in an Eclipse workspace, are called
 \emph{working sets}. The working set \texttt{Spe\-ci\-fi\-ca\-tions} contains
 all \emph{metamodel projects} in a  workspace.
  A metamodel project contains a single EAP (EA project) file and is
-used to communicate with EA and initiate codegeneration by simply pressing F5
+used to communicate with EA and initiate code generation by simply pressing F5
 or choosing ``refresh'' from the context menu.  In our case,
 \texttt{Specifications} should contain a single metamodel project \texttt{Demo}
 containing our EA project file  \texttt{Demo.eap}.
@@ -278,7 +278,7 @@ open the file in a simple tree-view editor in Eclipse.  If you are really
 interested in the nitty-gritty details or have a masochistic hang, right-click
 the file and select ``Open With/Text Editor''. 
 
-This Ecore model is used to drive a codegenerator that maps the model to Java
+This Ecore model is used to drive a code generator that maps the model to Java
 interfaces and classes.  The generated Java code that represents the model is
 often referred to as a \emph{repository} and this is the reason why we refer to
 such projects as repository projects\footnote{Not to be mixed up with CVS or SVN
@@ -296,7 +296,7 @@ class.  Indicated by the source folders \texttt{src} and \texttt{gen}, we
 advocate a clean separation of hand-written (this should go in \texttt{src}) and
 generated code (lands automatically in \texttt{gen}).  As we shall see later in
 the tutorial, hand-written code can also be integrated directly in generated
-classes and, if marked appropriately, merged nicely by the codegenerator. 
+classes and, if marked appropriately, merged nicely by the code generator. 
 This is sometimes more elegant for small helper functions but can quickly get
 problematic especially in combination with source code management systems.
 
@@ -313,11 +313,11 @@ model.  If this is your first time of seeing generated code, you might be
 shocked at the sheer amount of classes and code generated from our relatively
 simple EA model.  You might be thinking: ``hey - if I did this by hand I
 wouldn't need half of all this stuff!''.  Well you're right and you're wrong --
-the point is that an automatic mapping to Java via a codegenerator scales quite
+the point is that an automatic mapping to Java via a code generator scales quite
 well.  This means for simple, trivial examples (like our double linked list), it
 might be possible to come up with a leaner and simpler Java representation.  For
 complex, large models with lots of mean pitfalls, however, this becomes a
-daunting task.  The codegenerator provides you with years and years of
+daunting task.  The code generator provides you with years and years of
 experience of professional programmers who have thought up clever ways
 of handling multiple inheritance, an efficient event mechanism, reflection,
 consistency between bidirectionally linked objects and much more.
@@ -348,13 +348,13 @@ Fig.~\ref{fig_fromEAtoEclipse}.  We'll spend the rest of the tutorial
 understanding why SDMs are so  {\huge crazily} cool!
 
 \clearpage
-
+ 
 To recap all we've discussed, let's consider the complete workflow as depicted
 in Figure~\ref{fig_Overview}. We started with a concise model in EA, simple and
 independent of any platform specific details (1).  Our EA model consists not
 only of static aspects modelled as a class diagram (2), but also of dynamic
-aspects modelled using SDM (3).  After exporting the model and codegeneration
-(4), we basically switch from \emph{modelling}, to \emph{programming} in a
+aspects modelled using SDM (3).  After exporting the model and code generation
+(4), we basically switch from \emph{modelling} to \emph{programming} in a
 specific general purpose programming language (Java).  On this lower \emph{level
 of abstraction}, we can flesh out the generated repository (5) if necessary, and 
 mix as appropriate with hand-written code and libraries.  Our abstract specification of 
@@ -368,7 +368,7 @@ the body of the corresponding Java method (6).
 \end{figure}
 
 
-If you feel a bit lost at the moment please be patient, this first chapter has
+If you feel a bit lost at the moment please be patient; this first chapter has
 been a lot about installation and tool support and only aims at giving a very
 brief glimpse at the big picture of what is actually going on.    
 
