@@ -4,10 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -239,6 +243,26 @@ public class eMoflonEMFUtil
       }
 
       return null;
+   }
+   
+   /**
+    * Calculates the set of all outgoing references of a given EObject. 
+    * @param object
+    * @return set of references
+    */
+   public static Set<EStructuralFeature> getAllReferences(EObject object){
+	   EList<EStructuralFeature> references = new BasicEList<EStructuralFeature>();
+	   for (EContentsEList.FeatureIterator featureIterator = (EContentsEList.FeatureIterator) object.eCrossReferences().iterator(); featureIterator.hasNext();)
+	   {
+		   featureIterator.next();
+		   references.add(featureIterator.feature());
+	   }
+	   for (EContentsEList.FeatureIterator featureIterator = (EContentsEList.FeatureIterator) object.eContents().iterator(); featureIterator.hasNext();)
+	   {
+		   featureIterator.next();
+		   references.add(featureIterator.feature());
+	   }
+	   return new HashSet<EStructuralFeature>(references);
    }
 
 	public static String getName(EObject child) {		
