@@ -145,23 +145,25 @@ public class eMoflonEMFUtil
     *           the type of the opposite objects you are looking for
     * @return a collection of all opposite objects
     */
-   public static Collection<?> getOppositeReference(EObject target, @SuppressWarnings("rawtypes") Class sourceType)
+   public static Collection<?> getOppositeReference(EObject target, @SuppressWarnings("rawtypes") Class sourceType, String targetRoleName)
    {
       ECrossReferenceAdapter adapter = getCRAdapter(target);
-      
+
       Collection<EObject> returnList = new ArrayList<EObject>();
 
       Collection<Setting> settings = adapter.getInverseReferences(target, true);
       for (Setting setting : settings)
       {
-         EClassifier clazz = setting.getEObject().eClass();
-         String clazzName = clazz.getInstanceClass().getPackage().getName() + "." + clazz.getName();
-
-         if (clazzName.equals(sourceType.getName()))
+         if (setting.getEStructuralFeature().getName().equals(targetRoleName))
          {
-            returnList.add(setting.getEObject());
+            EClassifier clazz = setting.getEObject().eClass();
+            String clazzName = clazz.getInstanceClass().getPackage().getName() + "." + clazz.getName();
+
+            if (clazzName.equals(sourceType.getName()))
+               returnList.add(setting.getEObject());
          }
       }
+
       return returnList;
    }
 
