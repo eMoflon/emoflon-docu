@@ -355,7 +355,7 @@ In this way an arbitrary nesting of packages and diagrams is possible.
 A fundamental gesture in EA is \emph{Quick Link}.  Quick Link is used to create
 links between elements in a context sensitive manner.  To use Quick Link,
 choose an element and note the little black arrow in its top-right corner
-(Fig.~\ref{fig:quicklink}).
+(Fig.~\ref{fig:quicklink}). 
 
 \begin{figure}[htbp]
 	\centering
@@ -367,20 +367,19 @@ choose an element and note the little black arrow in its top-right corner
 \clearpage 
 
 Now click on the black arrow and pull to another element you wish to ``quick
-link" to.  In this case quick link from \texttt{Partition} to \texttt{Box}.  In
+link" to.  In this case quick link from \texttt{Box} to \texttt{Partition}.  In
 the context-menu that pops-up, choose \texttt{EReference}.
 (Fig.~\ref{fig:ereference}). 
 
-\begin{figure}[htbp]
+\begin{figure}[htbp] 
 	\centering
-  \includegraphics[width=0.6\textwidth]{pics/memBoxBilder/memBox24.png}
+  \includegraphics[width=0.4\textwidth]{pics/memBoxBilder/memBox24.png}
 	\caption{Create a reference via Quick Link.}
 	\label{fig:ereference}
 \end{figure}
 
 Double click the reference to invoke a dialogue (Fig.~\ref{fig:ereference_properties}), with which the
-direction of the reference can be set.  The default is bidirectional and this is
-ok for our \texttt{Box}$\Leftrightarrow$\texttt{Partition} connection.
+direction of the reference can be set.  The default is \texttt{Source} $\Rightarrow$ \texttt{Target} and must be changed to \texttt{Bi-Directional} for our \texttt{Box}$\Leftrightarrow$\texttt{Partition} connection.
 A \texttt{Name} can also be entered, which is only used for documentation
 purposes and is not relevant for code generation.
 
@@ -400,7 +399,7 @@ end of the reference (the \texttt{Box} role).  Important is a name for the role
 \texttt{Navigability}.  Repeat the process for the \texttt{Target Role}.
   
 \begin{figure}[htbp]
-	\centering
+	\centering 
   \includegraphics[width=0.5\textwidth]{pics/memBoxBilder/memBox26.png}\\
   \vspace{0.5cm}
   \includegraphics[width=0.5\textwidth]{pics/memBoxBilder/memBox27.png}
