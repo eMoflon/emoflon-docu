@@ -6,6 +6,8 @@
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/languages/specifications/CoreLanguages,CoreLanguages"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/specifications/DemoLanguages,DemoLanguages"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/Dependencies,Dependencies"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/dictionary/DictionaryCodeAdapter,DictionaryCodeAdapter"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/dictionary/DictionaryLanguage,DictionaryLanguage"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/Documentation,Documentation"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/doubleLinkedList/DoubleLinkedListLanguage,DoubleLinkedListLanguage"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2tstsuite/trunk/EclipseTestSuite,EclipseTestSuite"/>
@@ -47,19 +49,60 @@
 <item elementID="=RDBMSLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=SimpleClass2RDBMS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=SimpleClassLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SimpleClassLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=RDBMSLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SimpleClass2RDBMS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SimpleClassLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=RDBMSLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SimpleClass2RDBMS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SimpleClassLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=RDBMSLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SimpleClass2RDBMS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1297103567156_4" label="DemoLanguages" name="DemoLanguages">
 <item elementID="=MemoryBoxToDoubleLinkedListIntegration" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=DoubleLinkedListLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=MemoryBoxLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=MemoryBoxToDoubleLinkedListTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MemoryBoxToDoubleLinkedListIntegration" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MemoryBoxLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MemoryBoxToDoubleLinkedListTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=DictionaryCodeAdapter" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=DoubleLinkedListLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MemoryBoxToDoubleLinkedListIntegration" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MemoryBoxLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MemoryBoxToDoubleLinkedListTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=DictionaryCodeAdapter" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=DoubleLinkedListLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=DictionaryLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MemoryBoxToDoubleLinkedListIntegration" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MemoryBoxLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MemoryBoxToDoubleLinkedListTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=DictionaryCodeAdapter" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=DoubleLinkedListLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=DictionaryLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1305544177460_11" label="LSCToMPN" name="LSCToMPN">
 <item elementID="=MPNLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=LSCToMPNTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=LSCLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=LSCToMPNTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=LSCLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MPNLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=LSCToMPNTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=LSCLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MPNLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=LSCToMPNTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=LSCLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MPNLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1307879441172_12" label="Moca" name="Moca">
+<item elementID="=MocaTree" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Moca" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MocaTree" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Moca" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MocaTree" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Moca" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=MocaTree" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=Moca" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
@@ -91,6 +134,15 @@
 <item elementID="=TGGRuntime" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=SDMLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=TGGLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=TGGRuntime" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=TGGLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SDMLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=TGGRuntime" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=TGGLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SDMLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=TGGRuntime" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=TGGLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SDMLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1291120342756_9" label="MOFLON2 TestFramework" name="MOFLON2 TestFramework">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MoflonDevToolsFeature" type="4"/>
@@ -98,6 +150,8 @@
 <item elementID="=MoflonAutoTestPlugin" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MoflonDevToolsUpdateSite" type="4"/>
 <item elementID="=EclipseTestSuite" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MoflonValidationPlugin" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MoflonValidationPlugin" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=MoflonValidationPlugin" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1297108449437_9" label="Specifications" name="Specifications">
