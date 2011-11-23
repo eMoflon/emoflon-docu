@@ -1,0 +1,69 @@
+\chapter{Moca}
+
+%\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[htp]
+\begin{center}
+ \includegraphics[width=\textwidth]{pics/moca/overview}
+  \caption{Overview of model-to-text with the MOCA framework}
+  \label{moca-overview}
+\end{center}
+\end{figure} 
+ 
+%\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[htp]
+\begin{center}
+ \includegraphics[width=\textwidth]{pics/moca/0Install/0-MocaTree}
+  \caption{MocaTree metamodel}
+  \label{moca-mocatree}
+\end{center}
+\end{figure}  
+ 
+%\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[htp]
+\begin{center}
+ \includegraphics[width=\textwidth]{pics/moca/text-all}
+  \caption{Overview of model-to-text with different text representations}
+  \label{moca-text-all}
+\end{center}
+\end{figure}
+
+\section{ANTLR}
+
+%\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[htp]
+\begin{center}
+ \includegraphics[width=\textwidth]{pics/moca/0Install/1-antlr-package}
+  \caption{ANTLR installation: Builder preferences}
+  \label{moca-1-antlr-package}
+\end{center}
+\end{figure}
+
+%\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[htp]
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{pics/moca/0Install/2-choose-path-to-jar}
+  \caption{ANTLR installation: dialog for choosing ANTLRworks as builder}
+  \label{moca-2-choose-path-to-jar}
+\end{center}
+\end{figure}
+
+Install the ANTLR eclipse plugin from
+\url{http://antlrv3ide.sourceforge.net/updates}
+
+Download ANTLRworks (\url{http://www.antlr.org/works/index.html})
+\url{www.antlr.org/download/antlrworks-1.4.3.jar}
+
+Add ANTLR Package:
+- Window $>$ Preferences $>$ ANTLR $>$ Builder 
+- Choose ``Add'' (see Fig. \ref{moca-1-antlr-package})
+- Choose ``Directory'' and browse to the directory with the downloaded
+ANTLRworks jar (see Fig. \ref{moca-2-choose-path-to-jar})
+
+\input{mocaDictionaryMetaModel}
+
+%\input{mocaTextToMocaTree}
+
+%\input{mocaMocaTreeToModel}
+
+%\input{mocaHTML}
+ 
