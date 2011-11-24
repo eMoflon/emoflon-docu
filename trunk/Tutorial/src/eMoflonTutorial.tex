@@ -1,7 +1,7 @@
 \documentclass[11pt,a4paper, twoside]{book}
 \pagestyle{myheadings}
  
-  
+
 \usepackage[english]{babel}
 \usepackage{graphicx}
 \usepackage[colorlinks,hyperindex,plainpages=false]{hyperref}
@@ -11,11 +11,11 @@
 	filecolor=blue,% 
 	menucolor=black,% 
 	pagecolor=black,% 
-	urlcolor=black} 
+	urlcolor=black}
 \usepackage{amssymb} 
 \usepackage{wasysym}
 \usepackage{wrapfig}
-
+ 
 \newcommand{\note}[1]{\marginpar{\emph{#1}}}
   
 \setcounter{tocdepth}{1}
@@ -23,7 +23,7 @@
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
-\input{titlepage} 
+\input{main/titlepage} 
 
 \begin{document}   
   
@@ -66,18 +66,18 @@
 
 \mainmatter
 
-\include{introduction}
-\include{installation}
-\include{memoryBoxEcore}
-\include{memoryBoxSDMIntro}
-\include{memoryBoxSDM_removeCard}
-\include{memoryBoxSDM_check}
-\include{memoryBoxSDM_empty}
-\include{memoryBoxSDM_invert}
-\include{memoryBoxSDM_grow}
-\include{memoryBoxSDM_toString}
-\include{memoryBoxSDM_checkFastCard} 
-\include{conclusion}
+\include{main/introduction}
+\include{main/installation}
+\include{sdm/memoryBoxEcore}
+\include{sdm/memoryBoxSDMIntro}
+\include{sdm/memoryBoxSDM_removeCard}
+\include{sdm/memoryBoxSDM_check}
+\include{sdm/memoryBoxSDM_empty}
+\include{sdm/memoryBoxSDM_invert}
+\include{sdm/memoryBoxSDM_grow}
+\include{sdm/memoryBoxSDM_toString}
+\include{sdm/memoryBoxSDM_checkFastCard} 
+\include{main/conclusion}
 
 % Start appendix
 \begin{appendix}
@@ -93,7 +93,7 @@
 \bibliography{references} 
 \newpage
 
-\include{gpl}
+\include{main/gpl}
 \end{appendix}
 
 \end{document}
