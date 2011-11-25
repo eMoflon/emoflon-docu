@@ -1,96 +1,119 @@
-\section{Workspace for Model-to-Text Transformation}
+\section{Setup your M2T Workspace}
 
-- Start Eclipse with empty Workspace
-- Switch to the moflon perspective
+The next step is preparing an Eclipse workspace according to our suggested workflow.
+
+\begin{enumerate}
+\item[$\blacktriangleright$] In Eclipse (we recommend an empty workspace), switch to the Moflon perspective.
+\item[$\blacktriangleright$] Invoke the \texttt{New Metamodel} wizard (Fig.~\ref{fig:moca-1-NewMetamodelWizard}). 
 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
  \includegraphics[width=0.3\textwidth]{pics/moca/1DictionaryMetaModel/1-NewMetamodelWizard}
-  \caption{Opening the ``New Metamodel'' wizard}
-  \label{moca-1-NewMetamodelWizard}
+  \caption{Invoking the \texttt{New Metamodel} wizard.}
+  \label{fig:moca-1-NewMetamodelWizard}
 \end{center}
 \end{figure}
 
-- Open the ``New Metamodel'' wizard 
+\item[$\blacktriangleright$] Choose ``Dictionary'' as project name and select \texttt{Add Moca Support} as depicted in Fig.~\ref{fig:moca-2-AddMocaSupport-ProjectName}. 
 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
  \includegraphics[width=0.7\textwidth]{pics/moca/1DictionaryMetaModel/2-AddMocaSupport-ProjectName}
   \caption{Add Metamodel project with MOCA support}
-  \label{moca-2-AddMocaSupport-ProjectName}
+  \label{fig:moca-2-AddMocaSupport-ProjectName}
 \end{center}
 \end{figure}
 
-- Set project name to ``Dictionary''
-- Select "Add Moca Support" 
+\clearpage
 
+\item[$\blacktriangleright$] After the project is created as usual (Fig. \ref{fig:moca-3-WizardResult}) double-click the EAP file to open it.
 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
  \includegraphics[width=0.3\textwidth]{pics/moca/1DictionaryMetaModel/3-WizardResult}
-  \caption{Workspace after wizard finishes}
-  \label{moca-3-WizardResult}
+  \caption{Eclipse workspace after creating the \texttt{Dictionary} project}
+  \label{fig:moca-3-WizardResult}
 \end{center}
 \end{figure}
 
-- Project and eap file are created (see Fig. \ref{moca-3-WizardResult})
+\item[$\blacktriangleright$] In EA, the project is already populated with the metamodel for our generic tree.
+To differentiate this from other trees (ANTLR parse tree and abstract syntax tree, XML DOM tree, \ldots) we shall refer to it as \texttt{MocaTree} (Fig.~\ref{fig:moca-4-eapContainsMocatreeWithExportFalse}).
+Note that the \texttt{MocaTree} package has a special tagged value \texttt{Moflon::Export} that is set to \texttt{false}\footnote{Tagged values can be viewed in the \texttt{Tagged Values} view in EA (Fig.~\ref{fig:moca-4-eapContainsMocatreeWithExportFalse}).}.
+This ensures that the package is \emph{ignored} when exporting.
+As with all standard metamodels (e.g. Ecore) the \texttt{MocaTre} package in EA should be regarded as read-only and is only required in the EA project so that SMDs can refer to the classes defined in the package.
+The corresponding Java code is provided by our Eclipse plugin and is added automatically to the Java build path when necessary.
 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=0.5\textwidth]{pics/moca/1DictionaryMetaModel/4-eapContainsMocatreeWithExportFalse}
-  \caption{The EA project contains a package ``MocaTree'' with property
-  $Moflon::Export = false$}
-  \label{moca-4-eapContainsMocatreeWithExportFalse}
+ \includegraphics[width=0.4\textwidth]{pics/moca/1DictionaryMetaModel/4-eapContainsMocatreeWithExportFalse}
+  \caption{\texttt{MocaTree} in default EA project}
+  \label{fig:moca-4-eapContainsMocatreeWithExportFalse}
 \end{center}
 \end{figure}
+\end{enumerate}
 
-- open Dictionary.eap
-- eap file contains MocaTree package with $export = false$ (Fig.
-\ref{moca-4-eapContainsMocatreeWithExportFalse})
+\clearpage
+
+Go ahead and inspect the \texttt{MocaTree} metamodel (Fig.~\ref{fig:moca-tree}).
+It basically combines concepts from a filesystem (folders and files), XML concepts like text nodes and attributes, and a general node containment hierarchy.
 
 \begin{figure}[!htbp]
 \begin{center}
  \includegraphics[width=\textwidth]{pics/moca/0Install/0-MocaTree}
-  \caption{Mocatree metamodel}
-  \label{moca-tree}
+  \caption{Mocatree}
+  \label{fig:moca-tree}
 \end{center}
 \end{figure}
  
+\begin{enumerate}
+
+\item[$\blacktriangleright$] Add a new package \texttt{DictionaryLanguage} and model the required classes and relationships for our dictionary language (Fig.~\ref{fig:moca-5-DictionaryMM}).
+
+Every dictionary has a title and consists of entries.
+Entries have a content and a level that indicates how difficult the entry is.
+Dictionaries can be organized in shelves that have a description and shelves can be collected in a library.
+To make things interesting, each dictionary has an author.
+Note that arbitrary many different dictionaries, irrespective of their shelves, can share the same author.
 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
  \includegraphics[width=\textwidth]{pics/moca/1DictionaryMetaModel/DictionaryLanguage}
   \caption{Dictionary metamodel}
-  \label{moca-5-DictionaryMM}
+  \label{fig:moca-5-DictionaryMM}
 \end{center}
 \end{figure}
 
-- Add dictionary Metamodel like in (Fig. \ref{moca-5-DictionaryMM})
-- Add package ``DictionaryCodeAdapter''
+\clearpage
+
+\item[$\blacktriangleright$] For the moment, just add an empty package in EA for a \emph{code adapter} so that your EA workspace closely resembles Fig.~\ref{fig:moca-5-DictionaryMM-ProjectBrowser}.
+
+According to our conventions and workflow, a code adapter is a package that contains the tree-to-model transformation logic.
+This could of course be integrated directly in the corresponding metamodel (\texttt{Dictionary\-Language} in our case), but a separation makes sense as their could be \emph{different} code adapters for the same language.
+
 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=0.5\textwidth]{pics/moca/1DictionaryMetaModel/5-DictionaryMM-ProjectBrowser}
-  \caption{EA project view before exporting}
-  \label{moca-5-DictionaryMM-ProjectBrowser}
+ \includegraphics[width=0.3\textwidth]{pics/moca/1DictionaryMetaModel/5-DictionaryMM-ProjectBrowser}
+  \caption{EA workspace before exporting}
+  \label{fig:moca-5-DictionaryMM-ProjectBrowser}
 \end{center}
 \end{figure}
 
-- EA projects just before export (Fig. \ref{moca-5-DictionaryMM-ProjectBrowser}) 
+\item[$\blacktriangleright$] Export as usual and ensure that your Eclipse workspace closely resembles Fig.~\ref{fig:moca-6-ExportToEclipse}.
 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=0.3\textwidth]{pics/moca/1DictionaryMetaModel/6-ExportToEclipse}
+ \includegraphics[width=0.25\textwidth]{pics/moca/1DictionaryMetaModel/6-ExportToEclipse}
   \caption{Workspace after export to eclipse}
-  \label{moca-6-ExportToEclipse}
+  \label{fig:moca-6-ExportToEclipse}
 \end{center}
 \end{figure}
 
-- Export to eclipse  (Fig. \ref{moca-6-ExportToEclipse})
+\end{enumerate}
