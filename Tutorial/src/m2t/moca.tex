@@ -1,27 +1,60 @@
 \chapter{Model-to-Text with Moca}
 
-There are many different kinds of model transformations [Ref1: Czarn, Ref2: van Gorb].
+When establishing a model-driven solution \emph{model transformations} of some kind play a very central and important role.
+Be it for specifying dynamic semantics (like for our memory box), or, more generally, for transforming a certain model to another model for some reasons (consistency, adding platform details, \ldots).  
 
-An interesting dimension is the source target relationship and if the models involved conform to the same metamodel i.e. endogenous (in-place or out-place) vs. exogenous (always out-place).
+There are many many different \emph{kinds} of model transformations and these two papers give a nice and detailed classification along a set of dimensions: \cite{CH03,Mens_Gorp_2006}. 
+A dimension we shall explore in this chapter is the \emph{source-target relationship} and if the models involved conform to the same metamodel or not.
+We shall also see how \emph{model-to-text} transformations can be achieved with a nice mixture of \emph{string} and \emph{graph grammars}. 
 
-What we have seen till now are model transformations that manipulate a single model, therefore endogenous and in-place.  This is also the natural case for SDMs.
+For the rest of the chapter a model transformation is to be regarded as:
+\begin{displaymath}
+ 	\Delta: m_{src} \rightarrow m_{trg}
+\end{displaymath}
 
-SDMs can however be also used for out-place transformations both endogenous and exogenous.
+Where $m_{src}$ is the source model which is to be transformed to $m_{trg}$ the target model.
+What we have treated in the tutorial till now were model transformations (SDMs) that manipulated a single model, performing changes directly to the model.
+According to \cite{Mens_Gorp_2006} such transformations are \emph{in-place} as $m_{src}$ is destructively changed into $m_trg$ and \emph{endogenous} because both versions of the model obviously conform to the same metamodel.
+Although this is the natural case for SDMs, \emph{out-place} transformations that produce a separate $m_{trg}$ and do not modify $m_{src}$ can also be specified with SDMs.
 
-To see how this works we shall create another simple language for a Dictionary to complement our MemoryBox.  At the end of the Chapter we shall be able to transform dictionaries to memory boxes and vice-versa.  A dictionary is also used to learn new words or more general terms, but is more suitable to be used as a reference - i.e. one already knows most of the words and one just checks up single words now and then.  A memory box on the other hand is geared towards supporting the actual memorization process.  Ergo?  One could start with a memory box and, when all words have been memorized, transform it to a personalized dictionary for future reference.  If one notices that almost all words have been forgotten (typically after a long break) a dictionary can be transformed back to a memory box.  We shall see later on in the chapter, that this transformation is actually quite interesting, as one could for example use the history of cards or their difficulty level (fast cards are simple) to either annotate entries in the dictionary or pre-place cards appropriates when creating a memory box from scratch. 
+\clearpage
+To complete the classification and twist your brain a bit here are a few interesting statements:
+\begin{quote}
+Out-place transformations can be either endogenous or \emph{exogenous} if $m_{src}$ and $m_{trg}$ conform to the same or different metamodels respectively.
 
-To make things even more interesting, we shall also establish a textual concrete syntax for our dictionaries and explore how graph transformations can also be used, in combination with parser technology and template languages, to implement model-to-text and text-to-model transformations.
+In-place transformations can usually\footnote{One can always think up crazy examples right?} only be endogenous.  Exogenous transformations are, consequently, always out-place.  Why? 
+\end{quote}  
+  
 
+Yet another dimension is if $m_{src}$ and $m_{trg}$ are on the same \emph{abstraction level}.
+Depending on if abstraction levels are traversed or not, transformations are classified as being \emph{vertical} or \emph{horizontal}, respectively. 
 
+This is obviously a bit fuzzy and is best understood with a concrete example. 
+In this Chapter, we shall complement our memory box with a simple language for \emph{dictionaries}.
+A dictionary is also used to learn new words but is more suitable to be used as a reference, i.e., one already knows most of the words and only specific words are looked-up now and then.
+A memory box, on the other hand, is more geared towards supporting the actual memorization process.
+Ergo?  One could start with a memory box and, when all words have been memorized, transform it to a personalized dictionary for future reference.
+If one notices that too many words have been forgotten (typically after a long break or a lazy spell) a dictionary can be transformed \emph{back} to a memory box.
+We shall see later on in the chapter that this transformation is actually quite interesting, as one could, for example, use the history of cards or their difficulty level (fast cards are very simple) to either annotate entries in a dictionary or pre-place cards appropriately in a memory box. 
+
+To make things even more interesting, we shall also establish a textual concrete syntax for our dictionaries and explore how graph transformations can be used, in combination with parser technology and template languages, to implement model-to-text and text-to-model transformations.
+
+\emph{Moca} stands for \emph{Mo}flon \emph{C}ode \emph{A}dapter and refers to the approach we use to integrate string grammars, graph grammars and template languages, how we separate the transformation into different steps, the usage of a generic and simple tree metamodel to consolidate different platforms, and to the framework and tool support that acts as glue to hold all the different parts together.
+Fig.~\ref{fig:moca-overview} gives a ``big picture'' of what we plan to achieve in this Chapter.
+All explanations are integrated right in the figure so take your time and let it sink in.
+We'll be zooming in on bits and pieces in the following sections to make things clearer and more concrete.
 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[htp]
 \begin{center}
- \includegraphics[width=\textwidth]{pics/moca/text-to-model}
+ \includegraphics[angle=90, height=\textheight]{pics/moca/text-to-model}
   \caption{Overview of model-to-text with the MOCA framework}
-  \label{moca-overview}
+  \label{fig:moca-overview}
 \end{center}
 \end{figure} 
+
+
+\clearpage
 
 \input{m2t/antlr}
 

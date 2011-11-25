@@ -1,32 +1,43 @@
 \section{Setup ANTLR}
 
-Install the ANTLR eclipse plugin from \url{http://antlrv3ide.sourceforge.net/updates}
+Our first step will be to install and set-up a \emph{parser generator}.
+Nowadays \emph{no one} really writes a complex parser completely by hand.
+Although this is sometimes still necessary\footnote{There do exist some languages that are syntactically very very flexible.} most parsers can be whipped up pretty quickly using \emph{regular expressions} or, more generally, using context-free \emph{string grammars} or EBNF\footnote{Extended Backus-Naur Form}.
+ANTLR~\cite{ANTLR} is a tool that can generate a parser from a compact EBNF specification for a host of target programming languages, including Java.
+Although ANTLR might not be the most efficient or powerful parser generator out there, it is open-source, well documented and supported, and allows for a pragmatic and quite elegant \emph{fallback} to Java when things get nasty and we have to resort to some dirty tricks.
 
-Download ANTLRworks (\url{http://www.antlr.org/works/index.html})
-\url{www.antlr.org/download/antlrworks-1.4.3.jar}
+\begin{enumerate}
+\item[$\blacktriangleright$] Install the ANTLR IDE\footnote{\url{http://antlrv3ide.sourceforge.net/}} Eclipse plugin from:\\ \url{http://antlrv3ide.sourceforge.net/updates}.
 
+We suggest you use this Eclipse plugin for ANTLR as it integrates nicely with eMoflon (the same build function for generating code also triggers the parser generator) and offers adequate editor functionality.
+
+\item[$\blacktriangleright$] Download ANTLRWorks from:\\ \url{www.antlr.org/download/antlrworks-1.4.3.jar}.
+
+ANTLRWorks\footnote{\url{http://www.antlr.org/works/index.html}} is the IDE recommeded by \cite{ANTLR}.  
+It offers a nice debugger and visualization of parse trees and abstract syntax trees.
+You are free to use ANTLRWorks either together with the ANTLR IDE for Eclipse or as an alternative.
+For all screenshots and explanations, however, we shall assume you choose to work with ANTLR IDE.  
+Now choose \texttt{Directory} and browse to the directory with the downloaded ANTLRWorks jar file (Fig.~\ref{moca-2-choose-path-to-jar}).
+
+\item[$\blacktriangleright$] Configure ANTLR for Eclipse:\\ Go to ``Window/Preferences/ANTLR/Builder'' and choose \texttt{Add} as depicted in Fig.~\ref{moca-1-antlr-package}.
+
+As ANTLR IDE does not provide the actual jars for the parser generator, these have to be downloaded and referenced fro m the plugin.
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=\textwidth]{pics/moca/0Install/1-antlr-package}
-  \caption{ANTLR installation: Builder preferences}
+ \includegraphics[width=0.8\textwidth]{pics/moca/0Install/1-antlr-package}
+  \caption{Builder Preferences for ANTLR IDE}
   \label{moca-1-antlr-package}
 \end{center}
 \end{figure}
-
-Add ANTLR Package:
-- Window $>$ Preferences $>$ ANTLR $>$ Builder 
-- Choose ``Add'' (see Fig. \ref{moca-1-antlr-package})
-- Choose ``Directory'' and browse to the directory with the downloaded
-ANTLRworks jar (see Fig. \ref{moca-2-choose-path-to-jar})
-
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=0.7\textwidth]{pics/moca/0Install/2-choose-path-to-jar}
-  \caption{ANTLR installation: dialog for choosing ANTLRworks as builder}
+ \includegraphics[width=0.8\textwidth]{pics/moca/0Install/2-choose-path-to-jar}
+  \caption{Dialogue for choosing ANTLRWorks as Builder}
   \label{moca-2-choose-path-to-jar}
 \end{center}
 \end{figure}
+\end{enumerate}
 
-
+\clearpage
