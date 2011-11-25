@@ -1,10 +1,9 @@
-\section{Setup your M2T Workspace}
+\section{Set up your M2T Workspace}
 
 The next step is preparing an Eclipse workspace according to our suggested workflow.
 
 \begin{enumerate}
-\item[$\blacktriangleright$] In Eclipse (we recommend an empty workspace), switch to the Moflon perspective.
-\item[$\blacktriangleright$] Invoke the \texttt{New Metamodel} wizard (Fig.~\ref{fig:moca-1-NewMetamodelWizard}). 
+\item[$\blacktriangleright$] In Eclipse (preferably with an empty workspace), switch to our Moflon perspective and invoke the \texttt{New Metamodel} wizard (Fig.~\ref{fig:moca-1-NewMetamodelWizard}). 
 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
@@ -43,8 +42,8 @@ The next step is preparing an Eclipse workspace according to our suggested workf
 To differentiate this from other trees (ANTLR parse tree and abstract syntax tree, XML DOM tree, \ldots) we shall refer to it as \texttt{MocaTree} (Fig.~\ref{fig:moca-4-eapContainsMocatreeWithExportFalse}).
 Note that the \texttt{MocaTree} package has a special tagged value \texttt{Moflon::Export} that is set to \texttt{false}\footnote{Tagged values can be viewed in the \texttt{Tagged Values} view in EA (Fig.~\ref{fig:moca-4-eapContainsMocatreeWithExportFalse}).}.
 This ensures that the package is \emph{ignored} when exporting.
-As with all standard metamodels (e.g. Ecore) the \texttt{MocaTre} package in EA should be regarded as read-only and is only required in the EA project so that SMDs can refer to the classes defined in the package.
-The corresponding Java code is provided by our Eclipse plugin and is added automatically to the Java build path when necessary.
+As with all standard metamodels (e.g. Ecore or the SDM metamodel) the \texttt{MocaTre} package in EA should be regarded as read-only and is only required in the EA project so that SMDs can refer to the classes defined in the package.
+The corresponding Java code is provided by our Eclipse plugin and is added automatically to the Java build path whenever necessary.
 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
@@ -59,7 +58,7 @@ The corresponding Java code is provided by our Eclipse plugin and is added autom
 \clearpage
 
 Go ahead and inspect the \texttt{MocaTree} metamodel (Fig.~\ref{fig:moca-tree}).
-It basically combines concepts from a filesystem (folders and files), XML concepts like text nodes and attributes, and a general node containment hierarchy.
+It basically combines concepts from a filesystem (folders and files), XML concepts (text-only nodes and attributes), and a general indexed node containment hierarchy.
 
 \begin{figure}[!htbp]
 \begin{center}
@@ -90,10 +89,10 @@ Note that arbitrary many different dictionaries, irrespective of their shelves, 
 
 \clearpage
 
-\item[$\blacktriangleright$] For the moment, just add an empty package in EA for a \emph{code adapter} so that your EA workspace closely resembles Fig.~\ref{fig:moca-5-DictionaryMM-ProjectBrowser}.
+\item[$\blacktriangleright$] For the moment, add an empty package in EA named \texttt{Dic\-tion\-ary\-Code\-Adapter} so that your EA workspace closely resembles Fig.~\ref{fig:moca-5-DictionaryMM-ProjectBrowser}.
 
-According to our conventions and workflow, a code adapter is a package that contains the tree-to-model transformation logic.
-This could of course be integrated directly in the corresponding metamodel (\texttt{Dictionary\-Language} in our case), but a separation makes sense as their could be \emph{different} code adapters for the same language.
+According to our conventions and workflow, a \emph{code adapter} is a package that contains the tree-to-model transformation logic.
+This could of course be integrated directly in the corresponding metamodel (\texttt{Dic\-tion\-ary\-Language} in our case), but a separation makes sense as there could be \emph{different} code adapters for the \emph{same} language.
 
 
 %\usepackage{graphics} is needed for \includegraphics
@@ -106,6 +105,7 @@ This could of course be integrated directly in the corresponding metamodel (\tex
 \end{figure}
 
 \item[$\blacktriangleright$] Export as usual and ensure that your Eclipse workspace closely resembles Fig.~\ref{fig:moca-6-ExportToEclipse}.
+Note especially the library nodes (\texttt{Moflon} and \texttt{Moca}).
 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]

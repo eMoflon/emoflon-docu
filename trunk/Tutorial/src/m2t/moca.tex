@@ -1,10 +1,10 @@
 \chapter{Model-to-Text with Moca}
 
-When establishing a model-driven solution \emph{model transformations} of some kind play a very central and important role.
-Be it for specifying dynamic semantics (like for our memory box), or, more generally, for transforming a certain model to another model for some reasons (consistency, adding platform details, \ldots).  
+When establishing a model-driven solution, \emph{model transformations} of some sort usually play a central and important role.
+Be it for specifying dynamic semantics (like for our memory box) or, more generally, for transforming a certain model to another model to achieve some goal (consistency, adding or abstracting from platform details, \ldots).  
 
-There are many many different \emph{kinds} of model transformations and these two papers give a nice and detailed classification along a set of dimensions: \cite{CH03,Mens_Gorp_2006}. 
-A dimension we shall explore in this chapter is the \emph{source-target relationship} and if the models involved conform to the same metamodel or not.
+There are many, many different \emph{kinds} of model transformations and \cite{CH03,Mens_Gorp_2006} give a nice and detailed classification along a set of different dimensions. 
+Dimensions we shall explore in this chapter include the \emph{source-target relationship} \cite{Mens_Gorp_2006} and if the models involved conform to the same metamodel or not.
 We shall also see how \emph{model-to-text} transformations can be achieved with a nice mixture of \emph{string} and \emph{graph grammars}. 
 
 For the rest of the chapter a model transformation is to be regarded as:
@@ -14,7 +14,7 @@ For the rest of the chapter a model transformation is to be regarded as:
 
 Where $m_{src}$ is the source model which is to be transformed to $m_{trg}$ the target model.
 What we have treated in the tutorial till now were model transformations (SDMs) that manipulated a single model, performing changes directly to the model.
-According to \cite{Mens_Gorp_2006} such transformations are \emph{in-place} as $m_{src}$ is destructively changed into $m_trg$ and \emph{endogenous} because both versions of the model obviously conform to the same metamodel.
+According to \cite{Mens_Gorp_2006} such transformations are \emph{in-place} as $m_{src}$ is destructively changed into $m_{trg}$ and \emph{endogenous} because both versions of the model obviously conform to the same metamodel.
 Although this is the natural case for SDMs, \emph{out-place} transformations that produce a separate $m_{trg}$ and do not modify $m_{src}$ can also be specified with SDMs.
 
 \clearpage
@@ -29,17 +29,17 @@ In-place transformations can usually\footnote{One can always think up crazy exam
 Yet another dimension is if $m_{src}$ and $m_{trg}$ are on the same \emph{abstraction level}.
 Depending on if abstraction levels are traversed or not, transformations are classified as being \emph{vertical} or \emph{horizontal}, respectively. 
 
-This is obviously a bit fuzzy and is best understood with a concrete example. 
+This abstraction-level dimension is obviously a bit fuzzy and is best understood with a concrete example. 
 In this Chapter, we shall complement our memory box with a simple language for \emph{dictionaries}.
 A dictionary is also used to learn new words but is more suitable to be used as a reference, i.e., one already knows most of the words and only specific words are looked-up now and then.
 A memory box, on the other hand, is more geared towards supporting the actual memorization process.
 Ergo?  One could start with a memory box and, when all words have been memorized, transform it to a personalized dictionary for future reference.
 If one notices that too many words have been forgotten (typically after a long break or a lazy spell) a dictionary can be transformed \emph{back} to a memory box.
-We shall see later on in the chapter that this transformation is actually quite interesting, as one could, for example, use the history of cards or their difficulty level (fast cards are very simple) to either annotate entries in a dictionary or pre-place cards appropriately in a memory box. 
+We shall see later on in the chapter that this transformation is actually quite cool as one could, for example, use the history of cards or their difficulty level (fast cards are very simple) to either annotate entries in a dictionary or pre-place cards appropriately in a memory box. 
 
 To make things even more interesting, we shall also establish a textual concrete syntax for our dictionaries and explore how graph transformations can be used, in combination with parser technology and template languages, to implement model-to-text and text-to-model transformations.
 
-\emph{Moca} stands for \emph{Mo}flon \emph{C}ode \emph{A}dapter and refers to the approach we use to integrate string grammars, graph grammars and template languages, how we separate the transformation into different steps, the usage of a generic and simple tree metamodel to consolidate different platforms, and to the framework and tool support that acts as glue to hold all the different parts together.
+\emph{Moca} stands for \emph{Mo}flon \emph{C}ode \emph{A}dapter and refers to (1) the approach we use to integrate string grammars, graph grammars and template languages, (2) how we separate the transformation into different steps, (3) the usage of a generic and simple tree metamodel to consolidate different platforms, and (4) to the framework and tool support that acts as glue to hold all the different parts together.
 Fig.~\ref{fig:moca-overview} gives a ``big picture'' of what we plan to achieve in this Chapter.
 All explanations are integrated right in the figure so take your time and let it sink in.
 We'll be zooming in on bits and pieces in the following sections to make things clearer and more concrete.
