@@ -90,27 +90,96 @@ For each file, the framework searches for a registered parser that is responsibl
 The final step is to prepare some input for the framework:
 
 \begin{enumerate}
-  \item[$\blacktriangleright$] Create the directory structure in \texttt{./instances/in} as depicted in Fig.~\ref{fig:moca-inputdata}.  Create each \texttt{dictionary} file as indicated and enter the contents from Fig.~\ref{fig:moca-inputfiles}.
+  \item[$\blacktriangleright$] Create the directory structure in
+  \texttt{./instances/in} as depicted in Fig.~\ref{fig:moca-inputdata}.  Create
+  each \texttt{dictionary} file as indicated and enter the contents from
+  Table~\ref{moca-inputdata}.
   
   %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=\textwidth]{pics/moca/2TextToMocaTree/inputData}
+  \includegraphics[width=0.6\textwidth]{pics/moca/2TextToMocaTree/inputData}
   \caption{Input directory structure.}
   \label{fig:moca-inputdata}
 \end{center}
-\end{figure}
-  
-  %\usepackage{graphics} is needed for \includegraphics
-\begin{figure}[htp]
-\begin{center}
-  \includegraphics[width=0.4\textwidth]{pics/moca/2TextToMocaTree/inputFiles1}
-  \includegraphics[width=0.4\textwidth]{pics/moca/2TextToMocaTree/inputFiles2}
-  \caption{Input files containing dictionaries.}
-  \label{fig:moca-inputfiles} 
-\end{center}
-\end{figure}
-  
+\end{figure} 
+
+\begin{table}
+\begin{tabular}{p{6cm} p{6cm} }
+\footnotesize
+\textbf{english/numbers1-10.dictionary}
+\begin{verbatim}
+title: "English Numbers 1-10"
+email: "contact@langenscheidt.de"	
+{
+  "null : zero", beginner
+  "eins : one", beginner
+  "zwei : two", beginner
+  "drei : three", beginner
+  "vier : four", beginner
+  "fuenf : five", beginner
+  "sechs : six", beginner
+  "sieben : seven", beginner
+  "acht : eight", beginner
+  "neun : nine", beginner
+  "zehn : ten", beginner 
+}
+\end{verbatim} 
+
+\textbf{french/numbers1-10.dictionary}
+\begin{verbatim}   
+title: "French Numbers 1-10"
+email: "contact@pons.de"	
+{
+  "null : zero", beginner
+  "eins : un/une", beginner
+  "zwei : deux", beginner
+  "drei : trois", beginner
+  "vier : quatre", beginner
+  "fuenf : cinq", beginner
+  "sechs : six", beginner
+  "sieben : sept", beginner
+  "acht : huit", beginner
+  "neun : neuf", beginner
+  "zehn : dix", beginner 
+}
+\end{verbatim}
+&
+
+\footnotesize
+\textbf{french/numbers11-20.dictionary}
+\begin{verbatim}
+title: "French Numbers 11-20"
+email: "contact@pons.de"	
+{
+  "elf : onze", advanced
+  "zwoelf : douze", advanced
+  "dreizehn : treize", advanced
+  "vierzehn : quatorze", advanced
+  "fuenfzehn : quinze", advanced
+  "sechzehn : seize", master
+  "siebzehn : dix-sept", master
+  "achtzehn : dix-huit", master
+  "neunzehn : dix-neuf", master
+  "zwanzig : vingt", master
+}
+
+\end{verbatim}
+\textbf{french/unknown.dictionary}
+\begin{verbatim}
+title: "unknown"
+{
+  "unbekannt", beginner
+}
+\end{verbatim}
+  \\
+\end{tabular}   
+\caption{Input files containing dictionaries.}
+\label{moca-inputdata}
+
+\end{table}   
+
+   
   \item[$\blacktriangleright$] Run \texttt{MocaMain.java} as a normal Java application. If everything works out right, a \texttt{tree.xmi} and an \texttt{out} folder should be created in \texttt{instances}.  Inspect their contents and compare to Fig.~\ref{fig:moca-9-ParseResult1}. The unparsed files are obviously empty as we haven't implemented an \emph{unparser} yet.  We shall get to this later on in the chapter.
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[htp]
@@ -124,7 +193,7 @@ The final step is to prepare some input for the framework:
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[htp]
 \begin{center}
- \includegraphics[width=0.5\textwidth]{pics/moca/2TextToMocaTree/10-ParseResult2}
+ \includegraphics[width=0.7\textwidth]{pics/moca/2TextToMocaTree/10-ParseResult2}
   \caption{MocaTree created by Parser}
   \label{fig:moca-10-ParseResult2}
 \end{center}
