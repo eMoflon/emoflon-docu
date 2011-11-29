@@ -87,27 +87,34 @@ On line 27, the input for the framework is set, meaning that all folders in \tex
 In a nutshell, each folder is taken as a root of a tree and the folder and file structure is reflected as a hierarchy of (children)nodes in the tree.
 For each file, the framework searches for a registered parser that is responsible for the particular file, passes the content on to the parser and plugs in the tree from the parser as a single subtree of the corresponding file node in the overall tree.  Take a look at Fig.~\ref{fig:moca-overview} again and review the parts we have covered.
 
-The final step is to prepare some input for the framework:
-
+The final step is now to prepare some input for the framework:
 \begin{enumerate}
-  \item[$\blacktriangleright$] Create the directory structure in
-  \texttt{./instances/in} as depicted in Fig.~\ref{fig:moca-inputdata}.  Create
-  each \texttt{dictionary} file as indicated and enter the contents from
-  Table~\ref{moca-inputdata}.
-  
+  \item[$\blacktriangleright$] Create the directory structure depicted in Fig.~\ref{fig:moca-inputdata} in \texttt{Dictionary\-Code\-Adapter} and enter the contents from Table~\ref{moca-inputdata} for each of the four \texttt{dictionary} files\footnote{You can just copy\&paste right from the PDF file}.
   %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=0.6\textwidth]{pics/moca/2TextToMocaTree/inputData}
+  \includegraphics[width=0.45\textwidth]{pics/moca/2TextToMocaTree/inputData}
   \caption{Input directory structure.}
   \label{fig:moca-inputdata}
 \end{center}
+\end{figure}
+\vspace{-0.5cm}
+\item[$\blacktriangleright$] After creating all the dictionaries, run \texttt{MocaMain.java} as a normal Java application. If everything works out right, a \texttt{tree.xmi} and an \texttt{out} folder should be created in \texttt{instances}.  Inspect their contents and compare to Fig.~\ref{fig:moca-9-ParseResult1}. The unparsed files are obviously empty as we haven't implemented an \emph{unparser} yet.
+%\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[htp]
+\begin{center}
+ \includegraphics[width=0.45\textwidth]{pics/moca/2TextToMocaTree/9-ParseResult1}
+  \caption{Directory \texttt{instances} after parsing}
+  \label{fig:moca-9-ParseResult1}
+\end{center}
 \end{figure} 
+\end{enumerate}
+\clearpage
 
 \begin{table}
 \begin{tabular}{p{6cm} p{6cm} }
 \footnotesize
-\textbf{english/numbers1-10.dictionary}
+\textbf{english/numbers1-10.dictionary:}
 \begin{verbatim}
 title: "English Numbers 1-10"
 email: "contact@langenscheidt.de"	
@@ -126,7 +133,7 @@ email: "contact@langenscheidt.de"
 }
 \end{verbatim} 
 
-\textbf{french/numbers1-10.dictionary}
+\textbf{french/numbers1-10.dictionary:}
 \begin{verbatim}   
 title: "French Numbers 1-10"
 email: "contact@pons.de"	
@@ -147,7 +154,7 @@ email: "contact@pons.de"
 &
 
 \footnotesize
-\textbf{french/numbers11-20.dictionary}
+\textbf{french/numbers11-20.dictionary:}
 \begin{verbatim}
 title: "French Numbers 11-20"
 email: "contact@pons.de"	
@@ -165,7 +172,7 @@ email: "contact@pons.de"
 }
 
 \end{verbatim}
-\textbf{french/unknown.dictionary}
+\textbf{french/unknown.dictionary:}
 \begin{verbatim}
 title: "unknown"
 {
@@ -179,16 +186,9 @@ title: "unknown"
 
 \end{table}   
 
-   
-  \item[$\blacktriangleright$] Run \texttt{MocaMain.java} as a normal Java application. If everything works out right, a \texttt{tree.xmi} and an \texttt{out} folder should be created in \texttt{instances}.  Inspect their contents and compare to Fig.~\ref{fig:moca-9-ParseResult1}. The unparsed files are obviously empty as we haven't implemented an \emph{unparser} yet.  We shall get to this later on in the chapter.
-%\usepackage{graphics} is needed for \includegraphics
-\begin{figure}[htp]
-\begin{center}
- \includegraphics[width=0.5\textwidth]{pics/moca/2TextToMocaTree/9-ParseResult1}
-  \caption{Directory \texttt{instances} after parsing}
-  \label{fig:moca-9-ParseResult1}
-\end{center}
-\end{figure}
+\clearpage
+
+\begin{enumerate}
   \item[$\blacktriangleright$] Double-click \texttt{tree.xmi}\footnote{Depending on the plugins you have installed, you might have to explicitly choose \texttt{Open With/Sample Reflective Ecore Model Editor}.} and compare the contents to Fig.~\ref{fig:moca-10-ParseResult2}. At this point, you can reflect on the structure of the tree and note the directory structure, file nodes and the subtrees from the parser.
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[htp]
