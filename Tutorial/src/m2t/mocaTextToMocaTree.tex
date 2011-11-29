@@ -1,112 +1,134 @@
+\section{Text-to-Tree Transformation}
 
-%\usepackage{graphics} is needed for \includegraphics
-\begin{figure}[htp]
-\begin{center}
- \includegraphics[width=0.8\textwidth]{pics/moca/2TextToMocaTree/1-AddParserAndUnparserWizard}
-  \caption{Invoking the \texttt{Add Parser/Unparser} wizard} 
-  \label{moca-1-AddParserAndUnparserWizard}
-\end{center}
-\end{figure}
-
-\begin{enumerate}
-\item[$\blacktriangleright$] Right-click on the project
-\texttt{DictionaryCodeAdapter} $>$ eMOFLON $>$ Add Parser/Unparser (Fig
-\ref{moca-1-AddParserAndUnparserWizard})
-\end{enumerate}
-
-%\usepackage{graphics} is needed for \includegraphics
-\begin{figure}[htp]
-\begin{center}
- \includegraphics[width=0.7\textwidth]{pics/moca/2TextToMocaTree/2-AddParser}
-  \caption{Add Parser/Unparser}
-  \label{moca-2-AddParser}
-\end{center}
-\end{figure}
- 
-\begin{enumerate}
-\item[$\blacktriangleright$] Enter ``dictionary'' as file extension. (Fig
-\ref{moca-2-AddParser})
-\end{enumerate}
- 
-%\usepackage{graphics} is needed for \includegraphics
-\begin{figure}[htp]
-\begin{center}
- \includegraphics[width=0.6\textwidth]{pics/moca/2TextToMocaTree/3-WizardResult}
-  \caption{Workspace after wizard finishes}
-  \label{moca-3-WizardResult}
-\end{center}
-\end{figure}
-
-\begin{enumerate}
-\item[$\blacktriangleright$] Add lexer and parser grammars 
-\end{enumerate}
- 
-%\usepackage{graphics} is needed for \includegraphics
-\begin{figure}[htp]
-\begin{center}
- \includegraphics[width=\textwidth]{pics/moca/2TextToMocaTree/4-tokens}
-  \caption{Tokens of the Dictionary DSL}
-  \label{moca-4-Tokens}
-\end{center}
-\end{figure}
+As we shall see in a moment, libraries and shelves correspond to a folder structure while the contents for a single dictionary are specified in a file.
+Figure \ref{fig:moca-4-Tokens} depicts a small sample of the textual syntax used to specify a dictionary.
+On the way to an instance model of our dictionary metamodel, the very first step is to create nice \emph{chunks} of characters.
+This is called \emph{lexing} and is a step that simplifies the actual comprehension of the complete text.
+Interestingly human beings actually comprehend text in a similar manner, one recognizes whole words without ``seeing'' every individual character.
+This is the reason why you can siltl raed tihs sneentce alsomt eforftlsesly.   
+A lexer recognizes these chunks or \emph{tokens} and passes them on as a token stream to the \emph{parser} that does the actual work of recognizing complex hierarchical and recursive structures.
    
+To recognize the tokens as indicated in Fig.~\ref{fig:moca-4-Tokens}, \texttt{ANTLR} can automatically generate a lexer in Java from a compact specification as depicted in Fig.~\ref{fig:moca-6-lexer}.
+This is actually a DSL for lexing and is explained in detail in \cite{ANTLR}.
+If you do not know what EBNF is and have problems understanding the lexer grammar then make sure you at least go through the documentation on \url{www.antlr.org} or read relevant chapters in \cite{ANTLR}.
+
+ 
+%\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[!htbp]
+\begin{center}
+ \includegraphics[width=0.8\textwidth]{pics/moca/2TextToMocaTree/4-tokens}
+  \caption{Identified tokens in a dictionary file.}
+  \label{fig:moca-4-Tokens}
+\end{center}
+\end{figure}
+
+\begin{enumerate}
+\item[$\blacktriangleright$] Edit \texttt{DictionaryLexer.g} so it closely resembles Fig.~\ref{fig:moca-6-lexer}.
+Be careful to avoid any typos and mistakes.  Save and make sure it compiles.  
+\end{enumerate}
+
+%\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[!htbp]
+\begin{center}
+ \includegraphics[width=0.75\textwidth]{pics/moca/2TextToMocaTree/6-lexer}
+  \caption{Lexer grammar}
+  \label{fig:moca-6-lexer}
+\end{center}
+\end{figure}
+
+The next step is to form the stream of tokens from the lexer into a \emph{tree}.
+In this context, a tree is an acyclic, hierarchical, recursive structure as depicted in Fig.~\ref{fig:moca-5-Tree}.
+Depending on what the tree is to be used for, it can be structured very differently with \emph{imaginary} nodes like \texttt{DICTIONARY} or \texttt{ENTRY} that were not present in the textual syntax and are used to give additional structure to the tree. 
+
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[htp]
 \begin{center}
  \includegraphics[width=\textwidth]{pics/moca/2TextToMocaTree/5-tree}
   \caption{MocaTree structure}
-  \label{moca-5-Tree}
-\end{center}
-\end{figure}
-
-%\usepackage{graphics} is needed for \includegraphics
-\begin{figure}[htp]
-\begin{center}
- \includegraphics[width=0.7\textwidth]{pics/moca/2TextToMocaTree/6-lexer}
-  \caption{Lexer grammar}
-  \label{moca-6-lexer}
-\end{center}
-\end{figure}
-
-%\usepackage{graphics} is needed for \includegraphics
-\begin{figure}[htp]
-\begin{center}
- \includegraphics[width=0.9\textwidth]{pics/moca/2TextToMocaTree/7-parser}
-  \caption{Parser grammar}
-  \label{moca-7-parser}
+  \label{fig:moca-5-Tree}
 \end{center}
 \end{figure}
 
 \begin{enumerate}
-\item[$\blacktriangleright$] Run MocaMain
+\item[$\blacktriangleright$] Edit \texttt{DictionaryParser.g} so it closely resembles Fig.~\ref{fig:moca-7-parser}.
+As with the lexer, avoid typos and mistakes and make sure it compiles.
 \end{enumerate}
 
 %\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[!htbp]
+\begin{center}
+ \includegraphics[width=0.9\textwidth]{pics/moca/2TextToMocaTree/7-parser}
+  \caption{Parser grammar}
+  \label{fig:moca-7-parser}
+\end{center}
+\end{figure}
+The parser grammar is quite similar to the lexer grammar, but there are \emph{parser actions} after \texttt{->} to build up the tree.
+Using this simple tree language, one can (1) abstract from tokens like \texttt{\{} or \texttt{\}}, which are just \emph{syntactical noise} and (2) enrich the tree with imaginary nodes like \texttt{ENTRY}, which add explicit structure to the tree.
+Please refer to \cite{ANTLR} and online resources for a detailed explanation of the syntax and semantics of the parser grammar supported by \texttt{ANTLR}. 
+ 
+%\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[htp]
 \begin{center}
- \includegraphics[width=0.8\textwidth]{pics/moca/2TextToMocaTree/8-MocaMain}
+ \includegraphics[width=\textwidth]{pics/moca/2TextToMocaTree/8-MocaMain}
   \caption{Generated main method}
-  \label{moca-8-MocaMain}
+  \label{fig:moca-8-MocaMain}
 \end{center}
 \end{figure}
 
+Before we take our lexer and parser for a spin, open \texttt{MocaMain.java} and inspect it.
+If everything went right it should bear a striking resemblance to Fig.~\ref{fig:moca-8-MocaMain}.
+For the moment we do not need to adjust anything, just note how the parser is added to the Moca framework (line 23) via an adapter (\texttt{Dictionary\-Parser\-Adapter}).
+Go ahead and look at what the adapter exactly does.
+All the code can be adjusted and used to, for example, define which files the parser is to be used for (per default the adapter registers for \texttt{*.dictionary} files).
+The main job of the adapter is to hide \texttt{ANTLR} specifics so the framework remains (parser) technology agnostic.
+If you decide to use a different parser generator or write the parser by hand you would need to implement a corresponding adapter from scratch.
+
+On line 27, the input for the framework is set, meaning that all folders in \texttt{./instances/in} are parsed.
+In a nutshell, each folder is taken as a root of a tree and the folder and file structure is reflected as a hierarchy of (children)nodes in the tree.
+For each file, the framework searches for a registered parser that is responsible for the particular file, passes the content on to the parser and plugs in the tree from the parser as a single subtree of the corresponding file node in the overall tree.  Take a look at Fig.~\ref{fig:moca-overview} again and review the parts we have covered.
+
+The final step is to prepare some input for the framework:
+
+\begin{enumerate}
+  \item[$\blacktriangleright$] Create the directory structure in \texttt{./instances/in} as depicted in Fig.~\ref{fig:moca-inputdata}.  Create each \texttt{dictionary} file as indicated and enter the contents from Fig.~\ref{fig:moca-inputfiles}.
+  
+  %\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=\textwidth]{pics/moca/2TextToMocaTree/inputData}
+  \caption{Input directory structure.}
+  \label{fig:moca-inputdata}
+\end{center}
+\end{figure}
+  
+  %\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.4\textwidth]{pics/moca/2TextToMocaTree/inputFiles1}
+  \includegraphics[width=0.4\textwidth]{pics/moca/2TextToMocaTree/inputFiles2}
+  \caption{Input files containing dictionaries.}
+  \label{fig:moca-inputfiles} 
+\end{center}
+\end{figure}
+  
+  \item[$\blacktriangleright$] Run \texttt{MocaMain.java} as a normal Java application. If everything works out right, a \texttt{tree.xmi} and an \texttt{out} folder should be created in \texttt{instances}.  Inspect their contents and compare to Fig.~\ref{fig:moca-9-ParseResult1}. The unparsed files are obviously empty as we haven't implemented an \emph{unparser} yet.  We shall get to this later on in the chapter.
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[htp]
 \begin{center}
  \includegraphics[width=0.5\textwidth]{pics/moca/2TextToMocaTree/9-ParseResult1}
   \caption{Directory \texttt{instances} after parsing}
-  \label{moca-9-ParseResult1}
+  \label{fig:moca-9-ParseResult1}
 \end{center}
 \end{figure}
- 
-
+  \item[$\blacktriangleright$] Double-click \texttt{tree.xmi}\footnote{Depending on the plugins you have installed, you might have to explicitly choose \texttt{Open With/Sample Reflective Ecore Model Editor}.} and compare the contents to Fig.~\ref{fig:moca-10-ParseResult2}. At this point, you can reflect on the structure of the tree and note the directory structure, file nodes and the subtrees from the parser.
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[htp]
 \begin{center}
  \includegraphics[width=0.5\textwidth]{pics/moca/2TextToMocaTree/10-ParseResult2}
   \caption{MocaTree created by Parser}
-  \label{moca-10-ParseResult2}
+  \label{fig:moca-10-ParseResult2}
 \end{center}
 \end{figure}
+\end{enumerate}
 
-
+If everything worked out then well done!  We now have a nice tree that we can work on with SDMs and transform in a few simple steps to an actual instance of our Dictionary metamodel.
