@@ -42,7 +42,7 @@ The next step is preparing an Eclipse workspace according to our suggested workf
 To differentiate this from other trees (ANTLR parse tree and abstract syntax tree, XML DOM tree, \ldots) we shall refer to it as \texttt{MocaTree} (Fig.~\ref{fig:moca-4-eapContainsMocatreeWithExportFalse}).
 Note that the \texttt{MocaTree} package has a special tagged value \texttt{Moflon::Export} that is set to \texttt{false}\footnote{Tagged values can be viewed in the \texttt{Tagged Values} view in EA (Fig.~\ref{fig:moca-4-eapContainsMocatreeWithExportFalse}).}.
 This ensures that the package is \emph{ignored} when exporting.
-As with all standard metamodels (e.g. Ecore or the SDM metamodel) the \texttt{MocaTre} package in EA should be regarded as read-only and is only required in the EA project so that SMDs can refer to the classes defined in the package.
+As with all standard metamodels (e.g. Ecore or the SDM metamodel) the \texttt{MocaTree} package in EA should be regarded as read-only and is only required in the EA project so that SDMs can refer to the classes defined in the package.
 The corresponding Java code is provided by our Eclipse plugin and is added automatically to the Java build path whenever necessary.
 
 %\usepackage{graphics} is needed for \includegraphics
@@ -98,14 +98,14 @@ This could of course be integrated directly in the corresponding metamodel (\tex
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=0.3\textwidth]{pics/moca/1DictionaryMetaModel/5-DictionaryMM-ProjectBrowser}
+ \includegraphics[width=0.25\textwidth]{pics/moca/1DictionaryMetaModel/5-DictionaryMM-ProjectBrowser}
   \caption{EA workspace before exporting}
   \label{fig:moca-5-DictionaryMM-ProjectBrowser}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] Export as usual and ensure that your Eclipse workspace closely resembles Fig.~\ref{fig:moca-6-ExportToEclipse}.
-Note especially the library nodes (\texttt{Moflon} and \texttt{Moca}).
+Note especially the library nodes (\texttt{Moflon} and \texttt{Moca}) that reference jars for all required dependencies.
 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
