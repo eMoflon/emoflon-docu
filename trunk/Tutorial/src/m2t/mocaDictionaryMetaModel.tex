@@ -116,4 +116,37 @@ Note especially the library nodes (\texttt{Moflon} and \texttt{Moca}).
 \end{center}
 \end{figure}
 
+\item[$\blacktriangleright$] Now right-click on the project \texttt{DictionaryCodeAdapter} and choose ``Add Parser/Unparser'' from the eMoflon context menu (Fig \ref{fig:moca-1-AddParserAndUnparserWizard}).
+
+%\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[htp]
+\begin{center}
+ \includegraphics[width=0.8\textwidth]{pics/moca/2TextToMocaTree/1-AddParserAndUnparserWizard}
+  \caption{Invoking the \texttt{Add Parser/Unparser} wizard} 
+  \label{fig:moca-1-AddParserAndUnparserWizard}
+\end{center}
+\end{figure}
+ 
+\item[$\blacktriangleright$] In the wizard dialogue (Fig \ref{fig:moca-2-AddParser}), enter ``dictionary'' as file extension, and check the boxes \texttt{Create Parser} and \texttt{Create Unparser} with \texttt{ANTLR} chosen as corresponding technology in both cases.  Click \texttt{Finish}. 
+
+%\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[htp]
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{pics/moca/2TextToMocaTree/2-AddParser}
+  \caption{Add Parser/Unparser}
+  \label{fig:moca-2-AddParser}
+\end{center}
+\end{figure}
+
 \end{enumerate}
+
+If everything has been installed and set up properly, parser and unparser stubs should be generated and \texttt{ANTLR} should automatically build the corresponding Java code as depicted in Fig.~\ref{fig:moca-3-WizardResult}. 
+
+%\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[htp]
+\begin{center}
+ \includegraphics[width=0.6\textwidth]{pics/moca/2TextToMocaTree/3-WizardResult}
+  \caption{Workspace after wizard finishes}
+  \label{fig:moca-3-WizardResult}
+\end{center}
+\end{figure}
