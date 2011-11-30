@@ -6,17 +6,16 @@ On the way to an instance model of our dictionary metamodel, the very first step
 This is called \emph{lexing} and is a step that simplifies the actual comprehension of the complete text.
 Interestingly human beings actually comprehend text in a similar manner, one recognizes whole words without ``seeing'' every individual character.
 This is the reason why you can siltl raed tihs sneentce alsomt eforftlsesly.   
-A lexer recognizes these chunks or \emph{tokens} and passes them on as a token stream to the \emph{parser} that does the actual work of recognizing complex hierarchical and recursive structures.
+A lexer recognizes these chunks or \emph{tokens} and passes them on as a token stream to the \emph{parser} that does the actual work of recognizing complex hierarchical and recursive structures.   
    
 To recognize the tokens as indicated in Fig.~\ref{fig:moca-4-Tokens}, \texttt{ANTLR} can automatically generate a lexer in Java from a compact specification as depicted in Fig.~\ref{fig:moca-6-lexer}.
 This is actually a DSL for lexing and is explained in detail in \cite{ANTLR}.
 If you do not know what EBNF is and have problems understanding the lexer grammar then make sure you at least go through the documentation on \url{www.antlr.org} or read relevant chapters in \cite{ANTLR}.
 
- 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=0.8\textwidth]{pics/moca/2TextToMocaTree/4-tokens}
+ \includegraphics[width=0.7\textwidth]{pics/moca/2TextToMocaTree/4-tokens}
   \caption{Identified tokens in a dictionary file.}
   \label{fig:moca-4-Tokens}
 \end{center}
@@ -30,7 +29,7 @@ Be careful to avoid any typos and mistakes.  Save and make sure it compiles.
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=0.75\textwidth]{pics/moca/2TextToMocaTree/6-lexer}
+ \includegraphics[width=0.65\textwidth]{pics/moca/2TextToMocaTree/6-lexer}
   \caption{Lexer grammar}
   \label{fig:moca-6-lexer}
 \end{center}
@@ -71,7 +70,7 @@ Please refer to \cite{ANTLR} and online resources for a detailed explanation of 
 \begin{center}
  \includegraphics[width=\textwidth]{pics/moca/2TextToMocaTree/8-MocaMain}
   \caption{Generated main method}
-  \label{fig:moca-8-MocaMain}
+  \label{fig:moca-8-MocaMain} 
 \end{center}
 \end{figure}
 
@@ -89,27 +88,15 @@ For each file, the framework searches for a registered parser that is responsibl
 
 The final step is now to prepare some input for the framework:
 \begin{enumerate}
-  \item[$\blacktriangleright$] Create the directory structure depicted in Fig.~\ref{fig:moca-inputdata} in \texttt{Dictionary\-Code\-Adapter} and enter the contents from Table~\ref{moca-inputdata} for each of the four \texttt{dictionary} files\footnote{You can just copy\&paste right from the PDF file}.
+  \item[$\blacktriangleright$] Create the directory structure depicted in Fig.~\ref{fig:moca-inputdata} in \texttt{Dictionary\-Code\-Adapter} and enter the contents from Table~\ref{moca-inputdata} for each of the four \texttt{dictionary} files\footnote{You can just copy\&paste right from this PDF file}.
   %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=0.45\textwidth]{pics/moca/2TextToMocaTree/inputData}
+  \includegraphics[width=0.5\textwidth]{pics/moca/2TextToMocaTree/inputData}
   \caption{Input directory structure.}
   \label{fig:moca-inputdata}
 \end{center}
 \end{figure}
-\vspace{-0.5cm}
-\item[$\blacktriangleright$] After creating all the dictionaries, run \texttt{MocaMain.java} as a normal Java application. If everything works out right, a \texttt{tree.xmi} and an \texttt{out} folder should be created in \texttt{instances}.  Inspect their contents and compare to Fig.~\ref{fig:moca-9-ParseResult1}. The unparsed files are obviously empty as we haven't implemented an \emph{unparser} yet.
-%\usepackage{graphics} is needed for \includegraphics
-\begin{figure}[htp]
-\begin{center}
- \includegraphics[width=0.45\textwidth]{pics/moca/2TextToMocaTree/9-ParseResult1}
-  \caption{Directory \texttt{instances} after parsing}
-  \label{fig:moca-9-ParseResult1}
-\end{center}
-\end{figure} 
-\end{enumerate}
-\clearpage
 
 \begin{table}
 \begin{tabular}{p{6cm} p{6cm} }
@@ -186,14 +173,25 @@ title: "unknown"
 
 \end{table}   
 
+\item[$\blacktriangleright$] After creating all the dictionaries, run \texttt{MocaMain.java} as a normal Java application. If everything works out right, a \texttt{tree.xmi} and an \texttt{out} folder should be created in \texttt{instances}.  Inspect their contents and compare to Fig.~\ref{fig:moca-9-ParseResult1}. The unparsed files are obviously empty as we haven't implemented an \emph{unparser} yet.
+\end{enumerate}
+
 \clearpage
+%\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[!htbp]
+\begin{center}
+ \includegraphics[width=0.5\textwidth]{pics/moca/2TextToMocaTree/9-ParseResult1}
+  \caption{Directory \texttt{instances} after parsing}
+  \label{fig:moca-9-ParseResult1}
+\end{center}
+\end{figure} 
 
 \begin{enumerate}
   \item[$\blacktriangleright$] Double-click \texttt{tree.xmi}\footnote{Depending on the plugins you have installed, you might have to explicitly choose \texttt{Open With/Sample Reflective Ecore Model Editor}.} and compare the contents to Fig.~\ref{fig:moca-10-ParseResult2}. At this point, you can reflect on the structure of the tree and note the directory structure, file nodes and the subtrees from the parser.
 %\usepackage{graphics} is needed for \includegraphics
-\begin{figure}[htp]
+\begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=0.7\textwidth]{pics/moca/2TextToMocaTree/10-ParseResult2}
+ \includegraphics[width=0.8\textwidth]{pics/moca/2TextToMocaTree/10-ParseResult2}
   \caption{MocaTree created by Parser}
   \label{fig:moca-10-ParseResult2}
 \end{center}
