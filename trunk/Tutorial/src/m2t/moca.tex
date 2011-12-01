@@ -1,30 +1,29 @@
 \chapter{Model-to-Text with Moca}
 
 When establishing a model-driven solution, \emph{model transformations} usually play a central and important role.
+\marginpar{\emph{A Taxonomy of Model Transformations}}
 Be it for specifying dynamic semantics (like for our memory box) or, more generally, for transforming a certain model to another model to achieve some goal (consistency, adding or abstracting from platform details, \ldots).  
 
 There are many \emph{types} of model transformations and \cite{CH03,Mens_Gorp_2006} give a nice and detailed classification along a set of different dimensions. 
-The dimensions we shall explore in this chapter include if the transformations (1) are \emph{endogenous} or \emph{exogenous}, (2) operate \emph{in-place} or \emph{out-place} and (3) traverse abstraction levels or not.
-These dimensions shall be defined and explained in a moment.
-
-Last but not least, we shall also see how \emph{model-to-text} transformations can be achieved with a nice mixture of \emph{string} and \emph{graph grammars}. 
+\marginpar{\emph{Model-to-Text\\ Transformations}}
+In this chapter, we shall explore some of these dimensions and learn how \emph{model-to-text} transformations can be achieved with a nice mixture of \emph{string grammars} and \emph{graph grammars}. 
 
 For the rest of the chapter a model transformation is to be regarded as:
 \begin{displaymath}
  	\Delta: m_{src} \rightarrow m_{trg}
 \end{displaymath}
 where the source model $m_{src}$ is to be transformed the target model $m_{trg}$.
-What we have treated in the tutorial till now were model transformations (SDMs) that manipulated a single model, performing changes directly to the model.
-According to \cite{Mens_Gorp_2006} such transformations are \emph{in-place} as $m_{src}$ is destructively changed into $m_{trg}$ and \emph{endogenous} because both versions of the model obviously conform to the same metamodel.
-Although this is the natural case for SDMs, \emph{out-place} transformations that produce a separate $m_{trg}$ and do not modify $m_{src}$ can also be specified with SDMs.
 
-\clearpage
+$\Delta$ is \emph{endogenous}, if $m_{src}$ and $m_{trg}$ conform to the same metamodel.
+\marginpar{\emph{Endogenous Model\\ Transformations}}
+All the SDMs we have treated in the tutorial till now (for our memory box) are examples of endogenous transformations.
 
-$\Delta$ is endogenous, if $m_{src}$ and $m_{trg}$ conform to the same metamodel.
-All the SDMs for our memory box are examples of endogenous transformations.
+$\Delta$ operates \emph{in-place}, if $m_{src}$ is destructively transformed to $m_{trg}$.
+\marginpar{\emph{In-Place Model\\ Transformations}}
+The SDMs for our memory box are also examples for in-place transformations as they perform changes directly to a source model, transforming it destructively into the target model.
 
-$\Delta$ is exogenous, if $m_{src}$ and $m_{trg}$ are instances of different metamodels.
-
+$\Delta$ is \emph{exogenous}, if $m_{src}$ and $m_{trg}$ are instances of different metamodels.
+\marginpar{\emph{Exogenous Model\\ Transformations}}
 In this chapter, we shall complement our memory box with a simple language for \emph{dictionaries}.
 A dictionary is also used to learn new words but is more suitable to be used as a reference, i.e., one already knows most of the words and only specific words are looked-up now and then.
 A memory box, on the other hand, is more geared towards supporting the actual memorization process.
@@ -34,24 +33,31 @@ We shall see later on that this transformation is actually quite cool as one cou
 
 The memory box to dictionary transformation and vice-versa are examples of exogenous transformations.
 
-$\Delta$ operates in-place, if $m_{src}$ is destructively transformed to $m_{trg}$.
-In contrast, out-place means $m_{src}$ is left intact and is not changed by the transformation that creates $m_{trg}$.
- 
+$\Delta$ is \emph{out-place} if $m_{src}$ is left intact and is not changed by the transformation that creates $m_{trg}$.
+\marginpar{\emph{Out-Place Model\\ Transformations}}
+The memory box to dictionary transformation and vice-versa are also examples of out-place transformations.
+
+Although endogenous + in-place is the natural case for SDMs (like for our memory box), we shall see in a moment that exogenous and/or out-place transformations can also be specified with SDMs.
+
 \vspace{1.5cm}
  
 To twist your brain a bit here are a few interesting statements:
-\begin{quote}
-Out-place transformations can be endogenous or exogenous.
-\end{quote}  
-\begin{quote}
-In-place transformations can usually\footnote{One can always think up crazy examples right?} only be endogenous.  Exogenous transformations are, consequently, always out-place.  Why? 
-\end{quote}  
+\begin{enumerate}
+\item[$\blacktriangleright$] Out-place transformations can be endogenous or exogenous.
+
+\item[$\blacktriangleright$] In-place transformations can usually\footnote{One can always think up crazy examples right?} only be endogenous.  Exogenous transformations are, consequently, always out-place.  Why? 
+\end{enumerate}  
+
+\vspace{1.5cm}
    
+$\Delta$ is further classified as \emph{horizontal} if $m_{src}$ and $m_{trg}$ are on the same \emph{abstraction level} and \emph{vertical} if they are not. 
+\marginpar{\emph{Horizontal or\\ Vertical?}}
+
+This last abstraction-level dimension is unfortunately a bit fuzzy but in a moment we shall explore and work on 
+\marginpar{\emph{Abstraction Levels}}
+different abstraction levels by establishing a textual concrete syntax for our dictionaries.
+
 \clearpage
-$\Delta$ is further classified as \emph{horizontal} if $m_{src}$ and $m_{trg}$ are on the same abstraction level and \emph{vertical} if they are not. 
-
-
-This last abstraction-level dimension is unfortunately a bit fuzzy but in a moment we shall explore and work on different abstraction levels by establishing a textual concrete syntax for our dictionaries.
 
 In the process we shall learn how graph transformations can be used, in combination with parser generators and template languages, to implement model-to-text and text-to-model transformations that are typically vertical (text is normally on a lower abstraction level than a model).  
 
@@ -59,10 +65,12 @@ Our memory box to dictionary transformation is, on the other hand, probably hori
 
 \vspace{1.5cm}
 
+
 In the following the \emph{Mo}flon \emph{C}ode \emph{A}dapter (\emph{Moca}) framework refers to:
 \begin{enumerate}
  \item the approach we use to integrate string grammars, graph grammars and template languages, 
  \item how we separate the transformation into different modular steps, 
+\marginpar{\emph{What is Moca?}}
  \item the usage of a generic and simple tree to consolidate different platforms, and 
  \item the actual tool support that acts as glue to hold all the different parts together.
 \end{enumerate}
