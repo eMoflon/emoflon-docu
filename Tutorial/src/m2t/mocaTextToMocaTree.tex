@@ -37,7 +37,7 @@ Be careful to avoid any typos and mistakes.  Save and make sure it compiles.
 
 The next step is to form the stream of tokens from the lexer into a \emph{tree}.
 In this context, a tree is an acyclic, hierarchical, recursive structure as depicted in Fig.~\ref{fig:moca-5-Tree}.
-Depending on what the tree is to be used for, it can be structured very differently with \emph{imaginary} nodes like \texttt{DICTIONARY} or \texttt{ENTRY} that were not present in the textual syntax and are used to give additional structure to the tree. 
+Depending on what the tree is to be used for, it can be organized very differently with extra \emph{structural} nodes like \texttt{DICTIONARY} or \texttt{ENTRY} that were not present in the textual syntax and are used to give additional meaning to the tree. 
 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[htp]
@@ -62,7 +62,7 @@ As with the lexer, avoid typos and mistakes and make sure it compiles.
 \end{center}
 \end{figure}
 The parser grammar is quite similar to the lexer grammar, but there are \emph{parser actions} after \texttt{->} to build up the tree.
-Using this simple tree language, one can (1) abstract from tokens like \texttt{\{} or \texttt{\}}, which are just \emph{syntactical noise} and (2) enrich the tree with imaginary nodes like \texttt{ENTRY}, which add explicit structure to the tree.
+Using this simple tree language, one can (1) abstract from tokens like \texttt{\{} or \texttt{\}}, which are just \emph{syntactical noise}\footnote{In this context, content that is irrelevant for our model.} and (2) enrich the tree with imaginary nodes like \texttt{ENTRY}, which add explicit structure to the tree.
 Please refer to \cite{ANTLR} and online resources for a detailed explanation of the syntax and semantics of the parser grammar supported by \texttt{ANTLR}. 
  
 %\usepackage{graphics} is needed for \includegraphics
@@ -83,7 +83,7 @@ The main job of the adapter is to hide \texttt{ANTLR} specifics so the framework
 If you decide to use a different parser generator or write the parser by hand you would need to implement a corresponding adapter from scratch.
 
 On line 27, the input for the framework is set, meaning that all folders in \texttt{./instances/in} are parsed.
-In a nutshell, each folder is taken as a root of a tree and the folder and file structure is reflected as a hierarchy of (children)nodes in the tree.
+In a nutshell, each folder is taken as a root of a tree and the folder and file structure is reflected as a hierarchy of (children) nodes in the tree.
 For each file, the framework searches for a registered parser that is responsible for the particular file, passes the content on to the parser and plugs in the tree from the parser as a single subtree of the corresponding file node in the overall tree.  Take a look at Fig.~\ref{fig:moca-overview} again and review the parts we have covered.
 
 The final step is now to prepare some input for the framework:
@@ -173,7 +173,7 @@ title: "unknown"
 
 \end{table}   
 
-\item[$\blacktriangleright$] After creating all the dictionaries, run \texttt{MocaMain.java} as a normal Java application. If everything works out right, a \texttt{tree.xmi} and an \texttt{out} folder should be created in \texttt{instances}.  Inspect their contents and compare to Fig.~\ref{fig:moca-9-ParseResult1}. The unparsed files are obviously empty as we haven't implemented an \emph{unparser} yet.
+\item[$\blacktriangleright$] After creating all the dictionaries, run \texttt{MocaMain.java} as a normal Java application. If everything works out right, a \texttt{tree.xmi} and an \texttt{out} folder should be created in the \texttt{instances} directory.  Inspect their contents and compare to Fig.~\ref{fig:moca-9-ParseResult1}. The unparsed files are obviously empty as we haven't implemented an \emph{unparser} yet.  Don't be irritated by the fact that an \texttt{out/in} is created, this can all be configured in \texttt{MocaMain} but the default assumes \texttt{in} contains multiple folders -- in our case libraries -- and it is therefore treated as the root of the tree.  One could also unparse directly in \texttt{instances} but the unparsed \texttt{in} would have to be renamed in \texttt{MocaMain}.
 \end{enumerate}
 
 \clearpage
@@ -188,11 +188,15 @@ title: "unknown"
 
 \begin{enumerate}
   \item[$\blacktriangleright$] Double-click \texttt{tree.xmi}\footnote{Depending on the plugins you have installed, you might have to explicitly choose \texttt{Open With/Sample Reflective Ecore Model Editor}.} and compare the contents to Fig.~\ref{fig:moca-10-ParseResult2}. At this point, you can reflect on the structure of the tree and note the directory structure, file nodes and the subtrees from the parser.
+  
+This is an important point to understand; the directory structure is transformed to a corresponding hierarchy of \texttt{Folders} and \texttt{Files}.
+The actual \emph{textual content} of each file is then transformed to a subtree using a registered, suitable parser.
+The resulting subtree from the parser is then plugged into the tree by setting its root as the single child node of a \texttt{File}.
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
  \includegraphics[width=0.8\textwidth]{pics/moca/2TextToMocaTree/10-ParseResult2}
-  \caption{MocaTree created by Parser}
+  \caption{MocaTree created by the framework using our parser}
   \label{fig:moca-10-ParseResult2}
 \end{center}
 \end{figure}
