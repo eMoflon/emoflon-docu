@@ -16,7 +16,7 @@ It's just easier for the tutorial to fit each SDM on a single page!
   \label{fig:moca-DictionaryCodeAdapter}
 \end{center}
 \end{figure}
-\item[$\blacktriangleright$]  The first SDM \texttt{transformFolder:~Folder~$\rightarrow$~Library} is depicted in Fig.~\ref{fig:moca-transformFolder} and creates a corresponding library with shelves for the given folder, delegating the creation of dictionaries to \texttt{transformNode}.
+\item[$\blacktriangleright$]  The first SDM \texttt{transformFolder(Folder)~:Library} (depicted in Fig.~\ref{fig:moca-transformFolder}) creates a corresponding library with shelves for the given folder, delegating the creation of dictionaries to \texttt{transformNode}.
 The SDM uses features that we have treated in previous chapters.
 Note that the exogenous transformation is specified by simply drag \& dropping in elements from \emph{different} metamodels as required!
 All dependencies are automatically added when exporting to Eclipse -- now isn't that as simple as ABC?
@@ -28,8 +28,8 @@ All dependencies are automatically added when exporting to Eclipse -- now isn't 
   \label{fig:moca-transformFolder}
 \end{center}
 \end{figure}
-\item[$\blacktriangleright$] The next SDM, \texttt{transformNode:~Node~$\rightarrow$~Dic\-tion\-ary} (Fig.~\ref{fig:moca-transformNode}) takes a node, representing a dictionary, and builds up a dictionary object adding entries appropriately.
-It further delegates creation of authors to \texttt{transformAuthors}.
+\item[$\blacktriangleright$] The next SDM, \texttt{transformNode(Node)~:Dic\-tion\-ary} (Fig.~\ref{fig:moca-transformNode}) takes a node, representing a dictionary, and builds up a dictionary object, adding entries appropriately.
+It further delegates creation of authors to \texttt{transformAuthor}.
 Note how \emph{indices} are used in the story node \texttt{match entry node} to decide, according to convention (how we built the tree), which node in the tree is to be interpreted as content and which as the level of the entry.
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
@@ -40,7 +40,7 @@ Note how \emph{indices} are used in the story node \texttt{match entry node} to 
 \end{center}
 \end{figure}
 \clearpage
-\item[$\blacktriangleright$] To wrap things up, create the last SDM, \texttt{transformAuthor:~Node, Dictionary $\rightarrow$ ()} as depicted in Fig.~\ref{fig:moca-transformAuthor}.
+\item[$\blacktriangleright$] To wrap things up, create the last SDM, \texttt{trans\-form\-Author(Node)} as depicted in Fig.~\ref{fig:moca-transformAuthor}.
 This SDM checks in \texttt{match author node} if the node with \texttt{index} 1 is \emph{not} an entry.
 Again according to convention, this would be an author node which is optional.
 If no such node exists we do not create an author and simply return.
@@ -56,7 +56,7 @@ This is exactly how we need to handle authors -- cool right?
 \begin{figure}[!htbp]
 \begin{center}
  \includegraphics[width=\textwidth]{pics/moca/3MocaTreeToModel/transformAuthorPrint}
-  \caption{SDM transformAuthor}
+  \caption{Handling Authors}
   \label{fig:moca-transformAuthor}
 \end{center}
 \end{figure}

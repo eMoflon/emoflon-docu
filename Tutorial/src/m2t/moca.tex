@@ -12,15 +12,11 @@ For the rest of the chapter a model transformation is to be regarded as:
 \begin{displaymath}
  	\Delta: m_{src} \rightarrow m_{trg}
 \end{displaymath}
-where the source model $m_{src}$ is to be transformed the target model $m_{trg}$.
+where the source model $m_{src}$ is to be transformed to the target model $m_{trg}$.
 
 $\Delta$ is \emph{endogenous}, if $m_{src}$ and $m_{trg}$ conform to the same metamodel.
 \marginpar{\emph{Endogenous Model\\ Transformations}}
 All the SDMs we have treated in the tutorial till now (for our memory box) are examples of endogenous transformations.
-
-$\Delta$ operates \emph{in-place}, if $m_{src}$ is destructively transformed to $m_{trg}$.
-\marginpar{\emph{In-Place Model\\ Transformations}}
-The SDMs for our memory box are also examples for in-place transformations as they perform changes directly to a source model, transforming it destructively into the target model.
 
 $\Delta$ is \emph{exogenous}, if $m_{src}$ and $m_{trg}$ are instances of different metamodels.
 \marginpar{\emph{Exogenous Model\\ Transformations}}
@@ -32,6 +28,11 @@ If one notices that too many words have been forgotten (typically after a long b
 We shall see later on that this transformation is actually quite cool as one could, for example, use the history of cards or their difficulty level (fast cards are very simple) to either annotate entries in a dictionary or pre-place cards appropriately in a memory box. 
 
 The memory box to dictionary transformation and vice-versa are examples of exogenous transformations.
+
+$\Delta$ operates \emph{in-place}, if $m_{src}$ is destructively transformed to $m_{trg}$.
+\marginpar{\emph{In-Place Model\\ Transformations}}
+The SDMs for our memory box are also examples for in-place transformations as they perform changes directly to a source model, transforming it destructively into the target model.
+
 
 $\Delta$ is \emph{out-place} if $m_{src}$ is left intact and is not changed by the transformation that creates $m_{trg}$.
 \marginpar{\emph{Out-Place Model\\ Transformations}}
