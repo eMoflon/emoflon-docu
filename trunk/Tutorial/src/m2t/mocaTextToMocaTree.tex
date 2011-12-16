@@ -3,7 +3,7 @@
 As we shall see in a moment, libraries and shelves correspond to a folder structure while the contents for a single dictionary are specified in a file.
 Figure \ref{fig:moca-4-Tokens} depicts a small sample of the textual syntax used to specify a dictionary.
 On the way to an instance model of our dictionary metamodel, the very first step is to create nice \emph{chunks} of characters.
-This is called \emph{lexing} and is a step that simplifies the actual comprehension of the complete text.
+This step is called \emph{lexing} and it simplifies the actual comprehension of the complete text.
 Interestingly human beings actually comprehend text in a similar manner, one recognizes whole words without ``seeing'' every individual character.
 This is the reason why you can siltl raed tihs sneentce alsomt eforftlsesly.   
 A lexer recognizes these chunks or \emph{tokens} and passes them on as a token stream to the \emph{parser} that does the actual work of recognizing complex hierarchical and recursive structures.   
@@ -61,8 +61,8 @@ As with the lexer, avoid typos and mistakes and make sure it compiles.
   \label{fig:moca-7-parser}
 \end{center}
 \end{figure}
-The parser grammar is quite similar to the lexer grammar, but there are \emph{parser actions} after \texttt{->} to build up the tree.
-Using this simple tree language, one can (1) abstract from tokens like \texttt{\{} or \texttt{\}}, which are just \emph{syntactical noise}\footnote{In this context, content that is irrelevant for our model.} and (2) enrich the tree with imaginary nodes like \texttt{ENTRY}, which add explicit structure to the tree.
+The parser grammar is quite similar to the lexer grammar, but there are \emph{parser actions} after the \texttt{->} symbol, which build up the tree.
+Using this simple tree language, one can (1) abstract from tokens like \texttt{\{} or \texttt{\}}, which are just \emph{syntactical noise}\footnote{In this context, content that is irrelevant for our model.} and (2) enrich the tree with structural nodes like \texttt{ENTRY}, which add explicit structure to the tree.
 Please refer to \cite{ANTLR} and online resources for a detailed explanation of the syntax and semantics of the parser grammar supported by \texttt{ANTLR}. 
  
 %\usepackage{graphics} is needed for \includegraphics
@@ -78,7 +78,7 @@ Before we take our lexer and parser for a spin, open \texttt{MocaMain.java} and 
 If everything went right it should bear a striking resemblance to Fig.~\ref{fig:moca-8-MocaMain}.
 For the moment we do not need to adjust anything, just note how the parser is added to the Moca framework (line 23) via an adapter (\texttt{Dictionary\-Parser\-Adapter}).
 Go ahead and look at what the adapter exactly does.
-All the code can be adjusted and used to, for example, define which files the parser is to be used for (per default the adapter registers for \texttt{*.dictionary} files).
+All the code can be adjusted and used, for example, to define which files the parser is to be used for (per default the adapter registers for \texttt{*.dictionary} files).
 The main job of the adapter is to hide \texttt{ANTLR} specifics so the framework remains (parser) technology agnostic.
 If you decide to use a different parser generator or write the parser by hand you would need to implement a corresponding adapter from scratch.
 
@@ -173,7 +173,7 @@ title: "unknown"
 
 \end{table}   
 
-\item[$\blacktriangleright$] After creating all the dictionaries, run \texttt{MocaMain.java} as a normal Java application. If everything works out right, a \texttt{tree.xmi} and an \texttt{out} folder should be created in the \texttt{instances} directory.  Inspect their contents and compare to Fig.~\ref{fig:moca-9-ParseResult1}. The unparsed files are obviously empty as we haven't implemented an \emph{unparser} yet.  Don't be irritated by the fact that an \texttt{out/in} is created, this can all be configured in \texttt{MocaMain} but the default assumes \texttt{in} contains multiple folders -- in our case libraries -- and it is therefore treated as the root of the tree.  One could also unparse directly in \texttt{instances} but the unparsed \texttt{in} would have to be renamed in \texttt{MocaMain}.
+\item[$\blacktriangleright$] After creating all the dictionaries, run \texttt{MocaMain.java} as a normal Java application. If everything works out right, a file called \texttt{tree.xmi} and an \texttt{out} folder should be created in the \texttt{instances} directory.  Inspect their contents and compare them to Fig.~\ref{fig:moca-9-ParseResult1}. The unparsed files are obviously empty as we haven't implemented an \emph{unparser} yet.  Don't be irritated by the fact that an \texttt{out/in} is created, this can all be configured in \texttt{MocaMain} but the default assumes \texttt{in} contains multiple folders -- in our case libraries -- and it is therefore treated as the root of the tree.  One could also unparse directly in \texttt{instances} but the unparsed \texttt{in} would have to be renamed in \texttt{MocaMain}.
 \end{enumerate}
 
 \clearpage
