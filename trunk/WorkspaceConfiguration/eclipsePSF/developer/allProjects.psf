@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <psf version="2.0">
 <provider id="org.tigris.subversion.subclipse.core.svnnature">
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/sdmTestSuite/BooleanStatementNodes,BooleanStatementNodes"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/tggTestSuite/CD,CD"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/specifications/CDDS,CDDS"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/tggTestSuite/ClassInheritanceHierarchy,ClassInheritanceHierarchy"/>
@@ -42,6 +43,7 @@
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/MPN/MPNLanguage,MPNLanguage"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/rdbmsModel/RDBMSLanguage,RDBMSLanguage"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/languages/sdm/SDMLanguage,SDMLanguage"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/sdmTestSuite/SDMTestSuite,SDMTestSuite"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/simpleClassToRDBMS/SimpleClass2RDBMS,SimpleClass2RDBMS"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/simpleClass/SimpleClassLanguage,SimpleClassLanguage"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/specifications/SimpleMemoryBoxToDictionary,SimpleMemoryBoxToDictionary"/>
@@ -111,12 +113,6 @@
 <item elementID="=TGGRuntime" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=SDMLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=TGGLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=TGGRuntime" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=TGGLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=SDMLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=TGGRuntime" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=TGGLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=SDMLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1291120342756_9" label="MOFLON2 TestFramework" name="MOFLON2 TestFramework">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MoflonDevToolsFeature" type="4"/>
@@ -129,6 +125,9 @@
 <item elementID="=SimpleUMLMetamodel" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=SimpleRDBMSMetamodel" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1324565077226_18" label="SDMTestSuite" name="SDMTestSuite">
+<item elementID="=BooleanStatementNodes" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1323693586881_15" label="Simplified CDDS" name="Simplified CDDS">
 <item elementID="=ClassInheritanceHierarchy" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=ClassInhHier2DB" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
@@ -136,6 +135,7 @@
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1297108449437_9" label="Specifications" name="Specifications">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MocaLanguages" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/SDMTestSuite" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/SimpleMemoryBoxToDictionary" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/TGGTestsuite" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/CoreLanguages" type="4"/>
