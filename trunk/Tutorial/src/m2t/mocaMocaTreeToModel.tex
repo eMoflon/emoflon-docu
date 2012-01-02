@@ -67,7 +67,8 @@ This is exactly how we need to handle authors -- cool right?
 // Transform tree-to-model
 Transformer transformer = 
   DictionaryCodeAdapterFactory.eINSTANCE.createTransformer();
-Library library = transformer.transformFolder(tree);
+Folder myLibraryFolder = tree.getSubFolder().get(0);  
+Library library = transformer.transformFolder(myLibraryFolder);
   
 // Save model to file
 eMoflonEMFUtil.saveModel(DictionaryLanguagePackage.eINSTANCE, 
