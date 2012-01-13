@@ -7,7 +7,8 @@ Please do not take this as a \emph{best practice}, in fact we actually recommend
 It's just easier for the tutorial to fit each SDM on a single page!
 
 \begin{enumerate}
-  \item[$\blacktriangleright$]  In the code adapter project \texttt{DictionaryCodeAdapter}, create a \texttt{Trans\-for\-mer} class with the methods and reference to the \texttt{Library} class as depicted in Fig.~\ref{fig:moca-DictionaryCodeAdapter}.
+  \item[$\blacktriangleright$]  In the code adapter project
+  \texttt{DictionaryCodeAdapter}, create a \texttt{Trans\-for\-mer} class with the methods and references to the \texttt{Library} class as depicted in Fig.~\ref{fig:moca-DictionaryCodeAdapter}.
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
@@ -57,7 +58,7 @@ If no such node exists we do not create an author and simply return.
 If such a node does exist, a further complication is that the author might already be known in the library.
 In order to avoid multiple, actually identical authors, the author object variable in \texttt{create author} is set to \texttt{optional} and to \texttt{create}.
 \marginpar{\emph{Optional Create}} 
-
+ 
 The semantics of \emph{optional create} is the following:  if a match for the object variable with the specified attribute \emph{constraints} is found, it is used.
 If no match can be found then the object variable is created and the specified attribute assignments are carried out.
 
@@ -72,20 +73,18 @@ This is exactly how we need to handle authors -- cool right?
 \end{figure}
 
 \clearpage
-\item[$\blacktriangleright$] As a final step, open \texttt{MocaMain.java} (Fig.~\ref{fig:moca-8-MocaMain}) and edit lines 32 -- 39 as follows:
+\item[$\blacktriangleright$] As a final step, open \texttt{MocaMain.java}
+(Fig.~\ref{fig:moca-8-MocaMain}) and edit lines 32 -- 36 as follows:
 \begin{verbatim}
-// Perform tree-to-model
+// Perform tree-to-model 
 Transformer transformer = DictionaryCodeAdapterFactory.
-	eINSTANCE.createTransformer();
-transformer.setFileExtension(".dictionary");
+  eINSTANCE.createTransformer();
 transformer.transformFolders(tree);
 
 // save library models
 for (Library library : transformer.getTransformedLibraries())
-{
   eMoflonEMFUtil.saveModel(MocaTreePackage.eINSTANCE, 
   	library, "instances/" + library.getName() + ".xmi"); 
-}
 \end{verbatim}
   
 Open and inspect the library model using the reflective model browser and note especially the cross-tree references between authors and their dictionaries. 

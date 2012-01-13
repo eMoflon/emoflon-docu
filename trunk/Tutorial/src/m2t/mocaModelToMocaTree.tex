@@ -27,9 +27,11 @@
 
 
 \item[$\blacktriangleright$] As a final step, open \texttt{MocaMain.java}
-(Fig.~\ref{fig:moca-8-MocaMain}) and add the following lines:
+(Fig.~\ref{fig:moca-8-MocaMain}) and edit lines 38-39 as follows:
 \begin{verbatim}
-// Perform model-to-tree 
+// Perform model-to-tree
+transformer.setFileExtension(".dictionary");
 Folder out = transformer.transformLibraries();
+MocaTreeSorter.sort(out);
 \end{verbatim}
 \end{enumerate}
