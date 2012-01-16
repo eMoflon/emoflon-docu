@@ -32,7 +32,6 @@ The actual transformation of each dictionary to a file is delegated using a bind
 // Perform model-to-tree transformation
 transformer.setFileExtension(".dictionary");
 Folder out = transformer.transformLibraries();
-MocaTreeSorter.sort(out);
 \end{verbatim}
 The tree \texttt{out} can of course be persisted to file using \texttt{eMoflonUtil.saveModel} if you wish to inspect it before continuing.
 If you did everything right, it should resemble Fig.~\ref{fig:moca-10-ParseResult2} very closely. 
