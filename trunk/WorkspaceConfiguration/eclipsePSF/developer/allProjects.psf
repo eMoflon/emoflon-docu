@@ -19,7 +19,7 @@
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2tstsuite/trunk/EclipseTestSuite,EclipseTestSuite"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/compiler/Ecore2FujabaTransformation,Ecore2FujabaTransformation"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/linkbrowser/trunk/Linkbrowser,Linkbrowser"/>
-<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/LSC/LSCLanguage,LSCLanguage"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/MBSecMon/MBSecMonLanguage,MBSecMonLanguage"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/specifications/LSCtoMPNTransformation,LSCtoMPN"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/LSCToMPN/LSCToMPNTransformation,LSCToMPNTransformation"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/memoryBox/MemoryBoxLanguage,MemoryBoxLanguage"/>
@@ -79,7 +79,7 @@
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1305544177460_11" label="LSCToMPN" name="LSCToMPN">
 <item elementID="=MPNLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=LSCToMPNTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=LSCLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MBSecMonLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1307879441172_12" label="Moca" name="Moca">
 <item elementID="=MocaTree" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
