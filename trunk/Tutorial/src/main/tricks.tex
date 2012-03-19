@@ -1,142 +1,120 @@
-\chapter{Tips and Tricks}
+\chapter{Grokking EA}
 \label{chap:Tips and Tricks}
 
-This chapter handle some of the functions, which provides by Enterprise Architect(EA).
-At the first side they seem to be somehow hidden or easy but these simple functions will help you to deal with EA faster and more enjoable.
+In this chapter, we have collected a few of the most important tips and tricks for working productively with EA.
+You can of course decide to skip over to the next chapter but we really believe that spending the time to grok EA is necessary for a pleasant modelling experience!
 
-\section{How to layout elements}
+\section{How to lay out elements}
+
+Layout is always an important factor when using a visual language.
+A well laid out diagram is easier to understand and by centralizing important elements or clustering related elements, you can actually impart additional information via a well-chosen layout.
 
 \begin{enumerate}
-\item[$\blacktriangleright$]Select a group of elements by drawing a selection box around them all (or select them one by one by holding down \texttt{Ctrl} and clicking on each element).
-
-\item[$\blacktriangleright$]At the right side of last selected element appeared a special Symbol (Fig.~\ref{fig_layout01}).
-Click on this symbol to see different possibilities, which you can use to change the appearance of all selected elements of a group simultaneously.
- 
- \begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/layoutElements/layoutElements1}
+\item[$\blacktriangleright$] To lay out a group of elements select them by drawing a selection box around them (or select them one by one by holding down \texttt{Ctrl} and clicking on each element).
+\begin{figure}[htbp]
+\begin{center} 
+  \includegraphics[width=\textwidth]{pics/tricks/layoutElements/layoutElements1}
   \caption{How to layout elements}  
   \label{fig_layout01}
 \end{center}
 \end{figure}
  
-\end{enumerate}
+\item[$\blacktriangleright$] At the right side of the element that was selected last, a little symbol appears (Fig.~\ref{fig_layout01}).
+Click on the symbol to obtain different options that are applied to all selected elements simultaneously.
+Experiment a bit to find out what effect each option has.
+The last symbol opens a further drop-down menu with standard layout algorithms.
 
-
-Another way to change the element in the Group is to select them and subsequently, right-click on one of the selected elements.  
-Here you can see more functions provided for selected elements, For example ``Align'' (Fig.~\ref{fig_layout02}).
- 
- \begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/layoutElements/layoutElements2}
-  \caption{Another way to layout elements}  
+\begin{figure}[htbp]
+\begin{center}  \includegraphics[width=\textwidth]{pics/tricks/layoutElements/layoutElements2}
+  \caption{Further layout options}  
   \label{fig_layout02} 
 \end{center}
 \end{figure}
 
+\item[$\blacktriangleright$] Richt-clicking one of the selected elements opens a different menu with a further set of layout options (Fig.~\ref{fig_layout02}).
+Especially \texttt{Align Centers} can be pretty useful.
+\end{enumerate}
+  
+\section{Bending lines to your will}
 
-\section{How to bend lines}
+Almost as important as a good layout is getting lines to be just the way you want them to be.
+In EA you can add and remove bending points which can be used to control the appearance of a line.
+
 \begin{enumerate}
-\item[$\blacktriangleright$]By holding down \texttt{Ctrl} and clicking on each line you can create more points helping bending the lines (Fig.~\ref{fig_bendLine01}).
+\item[$\blacktriangleright$]Hold down \texttt{Ctrl} and click on a line to create a bending point (Fig.~\ref{fig_bendLine01}).
+You can now pull and place the bending point as you wish.
  
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/bendLine/bendLine1}
+  \includegraphics[width=0.8\textwidth]{pics/tricks/bendLine/bendLine1}
   \caption{How to bend lines}   
   \label{fig_bendLine01}
 \end{center}
 \end{figure}
 
-\item[$blacktriangleright$] You can go back to the previouse form again just by
-holding down \texttt{Ctrl} and clicking on each points.
+\item[$\blacktriangleright$] You can create as many bending points as you wish, or \emph{remove} them also by holding down \texttt{Ctrl} and clicking on the point to be deleted.
 \end{enumerate}
 
-\section{How deleting in EA works (Del vs. Del + Ctrl) }
-One of the most common mistakes of users is to delete an element just by 
-pressing \texttt{Del}.   
-If you delete an element in a diagram just by clicking
-\texttt{Del} (Fig.~\ref{fig_DelVsCtrlDel01}), you have delete it just from a diagram
-but \emph{not} from \texttt{ProjectBrowser} (Fig.~\ref{fig_DelVsCtrlDel02}).
+\section{Deleting vs. removing elements from diagrams}
+
+A central feature that new users should understand as soon as possible is the way EA handles diagrams.
+A diagram is simply treated as a \emph{view} of the complete ``model'' in EA.
+The complete model can always be browed in a tree view (the package browser) and contains all elements that are exported.
+Diagrams typically do not contain all elements and one usually uses multiple possibly ``redundant" diagrams to show different parts of the model.
+Thinking in this frame is crucial and provides a pragmatic solution to the problem of having huge unmaintainable diagrams.
+A tricky consequence one must get used to is that \emph{removing} an element from a diagram does \emph{not} delete it from the model.
+
+\begin{enumerate}
+\item[$\blacktriangleright$] One of the most common mistakes of new users is to remove an element from a diagram by pressing \texttt{Del} and expecting the element to be deleted from the model.   
+This is however not the case as the element is only removed from the current diagram and is still in the model and thus in the package browser (Fig.~\ref{fig_DelVsCtrlDel01}).
 
 \begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/DelVsCtrlDel/DelVsCtrlDel1}
-  \caption{Deleting a project by clicking Del}  
-  
+\begin{center} 
+\includegraphics[width=0.87\textwidth]{pics/tricks/DelVsCtrlDel/DelVsCtrlDel1}
+  \caption{Removing an element from a diagram via pressing \texttt{Del} does not delete it from the model and it is still present in the package browser}  
     \label{fig_DelVsCtrlDel01}
 \end{center}
 \end{figure}  
 
+\item[$\blacktriangleright$] By pressing \texttt{Ctrl+Del} and confirming (Fig.~\ref{fig_DelVsCtrlDel02}) you can \emph{delete} an element from a diagram \emph{and} completely from the model as well (the element will no longer be in the \texttt{Project Browser}).
+Elements can also be deleted via the context menu in the \texttt{Project Browser} (invoked by right-clicking the element in the \texttt{Project Browser}).
+
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/DelVsCtrlDel/DelVsCtrlDel2}
-  \caption{Deleted element in Project Browser}  
+  \includegraphics[width=0.7\textwidth]{pics/tricks/DelVsCtrlDel/DelVsCtrlDel2.png}
+  \caption{Deleting an element from a diagram and from the model}  
   \label{fig_DelVsCtrlDel02}
-\end{center}
-\end{figure}  
-
-\begin{enumerate}
-
-\item[$blacktriangleright$] By pressing \texttt{Ctrl+Del} you can delete it
-completely from digramm as well as from \texttt{Project Browser}. If you delelte in this way you will see the dialogue
-that asked if you want to delete it from model and diagram (Fig.~\ref{fig_DelVsCtrlDel03}).
-
-
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/DelVsCtrlDel/DelVsCtrlDel3.png}
-  \caption{Deleteing a project completely}  
-  \label{fig_DelVsCtrlDel03}
 \end{center}
 \end{figure}  
 
 \end{enumerate}
 
-\section{Using Moflon::Export to ignore projects when exporting}
-If you have package, that do not to be exported. You can achieve this by
-setting the value of Tagged Values of
-Project (Fig.~\ref{fig_ignoreExportingProject01}).
+\section{Excluding certain projects from the export}
+
+Sometimes it might be necessary to be able to exclude projects from the export (\texttt{Export All to Workspace} option).
+This might be (i) because the project is still work in progress and simply not yet ready to be exported, (ii) because the complete project is present in your Eclipse workspace but has not been modelled completely in EA and you wish to do this gradually on demand (this is currently the recommended strategy as we do not have an import yet), (iii) because the project is not meant to be present in your Eclipse workspace as generated code and is instead provided via a plugin (this is usually the case for standard metamodels like Ecore, UML etc.), or (iv) because the project is rather large and pretty stable, and you do not want to wait each time for an unnecessary export (and you do not wish to click and export the other projects individually).
+
+Whatever the reason, you can achieve this by setting a certain \emph{tagged value} of the project to be ignored:
 
 \begin{enumerate}
-\item[$\blacktriangleright$]Select “Veiw/Tagged Values” from tool bar.
+\item[$\blacktriangleright$]Select ``View/Tagged Values'' from the menu bar (Fig.~\ref{fig_ignoreExportingProject01}).
 \begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/ignoreExportingProject/ignoreExportingProject1}
+\begin{center}  \includegraphics[width=0.55\textwidth]{pics/tricks/ignoreExportingProject/ignoreExportingProject1}
   \caption{view the TaggedValue}  
   \label{fig_ignoreExportingProject01}
 \end{center}
 \end{figure} 
 
-
-\end{enumerate}
-
-
-\begin{enumerate}
-
-\item[$\blacktriangleright$]The default Tagged value is
-true(Fig.~\ref{fig_ignoreExportingProject02}). If you want the project to be 
-ignored during exporting you have to change the value of ``Moflon::Export'' to
-\emph{false} (Fig.~\ref{fig_ignoreExportingProject03}).
-
+\item[$\blacktriangleright$] A tagged value \emph{Moflon::Export} should already be present and be set to \texttt{true} per default (Fig.~\ref{fig_ignoreExportingProject02}). 
+If this is not the case then create it afresh.
+If you want the project to be ignored by the export, change the value of Moflon::Export to \texttt{false} (and conversely back to \texttt{true} to export it again).
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/ignoreExportingProject/ignoreExportingProject2}
-  \caption{Default TaggedValue}  
+\includegraphics[width=0.5\textwidth]{pics/tricks/ignoreExportingProject/ignoreExportingProject2}
+  \caption{Tagged value Moflon::Export is used to ignore projects}  
   \label{fig_ignoreExportingProject02}
 \end{center}
 \end{figure}
-
-
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/ignoreExportingProject/ignoreExportingProject3}
-  \caption{Chaging the TaggedValue}  
-  \label{fig_ignoreExportingProject03}
-\end{center}
-\end{figure}
-
 \end{enumerate}
 
 
