@@ -55,7 +55,7 @@ You can now pull and place the bending point as you wish.
 \item[$\blacktriangleright$] You can create as many bending points as you wish, or \emph{remove} them also by holding down \texttt{Ctrl} and clicking on the point to be deleted.
 \end{enumerate}
 
-\section{Deleting vs. removing elements from diagrams}
+\section{Deleting vs. removing elements from diagrams} 
 
 A central feature that new users should understand as soon as possible is the way EA handles diagrams.
 A diagram is simply treated as a \emph{view} of the complete ``model'' in EA.
@@ -118,239 +118,105 @@ If you want the project to be ignored by the export, change the value of Moflon:
 \end{enumerate}
 
 
-\section{Using Verbose tag to show create and destroy stereotypes} As you have already seen in previous chapters there are different colors in SDMs in 
-order to distinguish between ``create'' and ``destroy''.
+\section{Getting verbose!}
+Although we use colours in SDMs to indicate when an element is to be matched (black), created (green), or destroyed (red), sometimes, especially for a black and white printout, it makes sense to indicate this via explicit stereotypes.
 
 \begin{enumerate}
-\item[$\blacktriangleright$]If you want to have a black white print of diagram 
-you can set the these properties in a \emph{verbal} way. Right–click on the
-diagram and select'' Extensions/extras/Set Moflon::Verbose to
-true''. Now you can see \texttt{<<create>>} and \texttt{<<destroy>>} on the
-links (Fig.~\ref{fig_usingVerbose01}).
+\item[$\blacktriangleright$] 
+Right–click on a diagram and select ''Extensions/extras/Set Moflon::Verbose to
+true'' to enable \texttt{<<create>>} and \texttt{<<destroy>>} stereotypes (Fig.~\ref{fig_usingVerbose01}).
+
+\item[$\blacktriangleright$] You can hide the stereotypes again by selecting
+``Extensions/extras/Set Moflon:: Verbose to
+false'' (Fig.~\ref{fig_usingVerbose01}).
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/usingVerbose/usingVerbose1}
+  \includegraphics[width=0.9\textwidth]{pics/tricks/usingVerbose/usingVerbose1}
   \caption{Verbal change of links}  
   \label{fig_usingVerbose01}
 \end{center}
 \end{figure}
-
-
-\item[$\blacktriangleright$]You can undo this change by selecting
-``Extensions/extras/Set Moflon:: Verbose to
-false'' (Fig.~\ref{fig_usingVerbose02}).
-
- \begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/usingVerbose/usingVerbose2}
-  \caption{Undo Verbal change of a link}  
-  \label{fig_usingVerbose02}
-\end{center}
-\end{figure}
-
 \end{enumerate}
 
 
-\section{Copying object variables with ctrl + drag}
-By holding down \texttt{Ctrl} and dragging the objects, you can copy object
-variables (Fig.~\ref{fig_copy01}).You can see the new copied object in Project
-Browser (Fig.~\ref{fig_copy02}).
+\section{Duplicating elements via drag\&drop}
+By holding down \texttt{Ctrl} and dragging objects in diagrams or in the project browser, you can copy (duplicate) most elements.
+Typically, the appropriate dialogue pops up for the new element (Fig.~\ref{fig_copy01}).
 
-\begin{enumerate}
-\item[$\blacktriangleright$]
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/copy/copy1}
+  \includegraphics[width=0.95\textwidth]{pics/tricks/copy/copy1}
   \caption{Copying objects}  
   \label{fig_copy01}
 \end{center}
 \end{figure}
 
 
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/copy/copy2}
-  \caption{Copied object in Project Browser}  
- 
-  \label{fig_copy02}
-\end{center}
-\end{figure}
-
-\end{enumerate}
-
-
-\section{Searching for Elements}
-The Model Search allows you to quickly navigate and find elements within your
-model.
-
+\section{Seek, and ye shall find \ldots}
+EA has a model search function that can be quite handy for large models with thousands of elements:
 
 \begin{enumerate}
-\item[$\blacktriangleright$]Select ``Model Search Window'' and type the name of
-element you search for (Fig.~\ref{fig_search01}). 
+\item[$\blacktriangleright$]Select ``Model Search Window'' and enter the name of an element you wish to search for (Fig.~\ref{fig_search01}). 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/search/search1}
+  \includegraphics[width=0.7\textwidth]{pics/tricks/search/search1}
   \caption{Model Search Window}  
   \label{fig_search01}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$]It lists each element that meets the search criteria
-you specify within the ``search terms'' and ``search type'' (Fig.~\ref{fig_search02}).
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/search/search2}
-  \caption{Enter search criteria}  
-  \label{fig_search02}
-\end{center}
-\end{figure}
+\item[$\blacktriangleright$]
+All elements that meet the search criteria are listed and you can right-click on each of the items and select ``Find in Diagrams'' or  ``Find in Project Browser'' to locate the elements. 
 
-\item[$\blacktriangleright$]Right-Click on each of the item and selecting ``Find
-in Diagrams'' (Fig.~\ref{fig_search03}). 
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/search/search3}
-  \caption{Finding an element in diagrams}  
-  \label{fig_search03}
-\end{center}
-\end{figure}
-
-\item[$\blacktriangleright$]Right click on each of the item an selecting ``Find in
-Project Browser'' (Fig.~\ref{fig_search04}). 
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/search/search4}
-  \caption{Finding an element in Project Browser}  
-  \label{fig_search04}
-\end{center}
-\end{figure}
-
-\item[$\blacktriangleright$]If you want to see an specified obejct of a diagram
-in the \texttt{Project Browser} , Rightclick on the object and select ``Find/In Project
-Browser'' (Fig.~\ref{fig_search05}). In a similar way you can find the
-corresponding class of object by Rightclick and selecting ``Find/Locate
-Classifier in Project Browser'' (Fig.~\ref{fig_search06}).
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/search/search5}
-  \caption{Following an object from diagram to Projet Browser}  
-  \label{fig_search05}
-\end{center}
-\end{figure}
-
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/search/search6}
-  \caption{Finding the corresponding class of an object in the diagram}  
-  \label{fig_search06}
-\end{center}
-\end{figure}
-
+\item[$\blacktriangleright$]
+In a similar way, you can locate the corresponding class of an object by right clicking and selecting ``Find/Locate Classifier in Project Browser''.
 \end{enumerate}
 
 
-\section{Using multiple EAPs and migrating packages} 
+\section{Working with multiple EAPs} 
+
+Although you can simply copy \& paste single packages between multiple EAPs, packages with dependencies to other packages cannot be copied so easily.
+If you do this via copy \& paste all links will be destroyed!
 
 \begin{enumerate}
-\item[$\blacktriangleright$]If you want to migrate multiple packages between
-multiple EAPs (EA Projects),You can't do it by just copy and
-paste the selected packages (Fig.~\ref{fig_projectMigration00}) from/to EAPs.
-
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/projectMigration/projectMigration0}
-  \caption{Error message}  
-  \label{fig_projectMigration00}
-\end{center}
-\end{figure}
-
-\item[$\blacktriangleright$]In order to migrate multiple packages, you have to
-first export the Whole model(the root node) from one EAP. Right-Click on the root
-and select ``Export Model to XMI...''. In the dialogue that
-pops up (Fig.~\ref{fig_projectMigration01}), enter the name and path of to be
-exported file, choose \texttt{XMI 2.1} as``Export
-type'' (Fig.~\ref{fig_projectMigration02}).
-
+\item[$\blacktriangleright$]
+To migrate multiple packages, you have to first export a \emph{complete} root node (a package on the top-most level in the Project Browser) from the source EAP to XMI.
+In preparation for a transfer of projects, it might, therefore, make sense to prepare a suitable root node with a relevant set of projects to be transferred or copied to another (target) EAP file.
+Right-click the root node you wish to export and select ``Export Model to XMI...'' (Fig.~\ref{fig_projectMigration01}).
+In the dialogue that pops up, enter the name and path of the exported file and choose \texttt{XMI 2.1} as ``Export type''.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/projectMigration/projectMigration1}
-  \caption{Export the Root Model from the first EAP}  
+  \includegraphics[width=0.3\textwidth]{pics/tricks/projectMigration/projectMigration1}
+  \caption{Export the root node from the source EAP}  
   \label{fig_projectMigration01}
 \end{center}
 \end{figure}
 
-
-\item[$\blacktriangleright$]Go to the other EAP, right-click on the Project
-Browser and select ``Import Model from
-XMI...'' (Fig.~\ref{fig_projectMigration03}). In the Dialogue that pops up, enter
-the name and path of to be imported file and click on \texttt{Import} (Fig.~\ref{fig_projectMigration04}).
-
- \begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/projectMigration/projectMigration2}
-  \caption{Specify the Export file properties}  
-  \label{fig_projectMigration02}
-\end{center}
-\end{figure}
-
-\item[$\blacktriangleright$]In the next step you have to confirm importing of
-XMI file(Fig.~\ref{fig_projectMigration05}).
+\item[$\blacktriangleright$]
+Open the target EAP, right-click on the Project Browser and select ``Import Model from XMI...'' (Fig.~\ref{fig_projectMigration03}). 
+In the dialogue that pops up, enter the name and path of the file to be imported and click \texttt{Import}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/projectMigration/projectMigration3}
-  \caption{Import the root node to the second EAP}  
+  \includegraphics[width=0.3\textwidth]{pics/tricks/projectMigration/projectMigration3}
+  \caption{Import the root node into the target EAP}  
   \label{fig_projectMigration03}
 \end{center}
 \end{figure}
-
-\item[$\blacktriangleright$]Finally you have to specify the level of imported
-file in the Project Browser either as Root Model or under selected
-package (Fig.~\ref{fig_projectMigration06}).After Importing you have the whole root with all it's belonging
-packages in the second EAP. Now you can delete the packages which you do not
-need from the Root Model (Fig.~\ref{fig_projectMigration07}).
-
+ 
+\item[$\blacktriangleright$]
+After confirming and starting the import, you have to specify how the model should be imported.
+As our root models are at the root level, choose ``Yes'' in the dialogue depicted in Fig.~\ref{fig_projectMigration06}.
+After the import, you can now delete packages in the root node, which you do not need.
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/projectMigration/projectMigration4}
-  \caption{Specify the Import file properties}  
-  \label{fig_projectMigration04}
-\end{center}
-\end{figure}
-
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/projectMigration/projectMigration5}
-  \caption{Confirm Import}  
-  \label{fig_projectMigration05}
-\end{center}
-\end{figure}
-
-
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/projectMigration/projectMigration6}
-  \caption{Specify the level of imported model}  
+  \includegraphics[width=0.35\textwidth]{pics/tricks/projectMigration/projectMigration6}
+  \caption{Confirm the level of the root node}  
   \label{fig_projectMigration06}
 \end{center}
 \end{figure}
-
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tricks/projectMigration/projectMigration7}
-  \caption{Importing is completed}  
-  \label{fig_projectMigration07}
-\end{center}
-\end{figure}
-
 
 \end{enumerate}
 
