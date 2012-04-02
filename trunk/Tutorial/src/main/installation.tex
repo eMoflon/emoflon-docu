@@ -259,7 +259,7 @@ containing our EA project file  \texttt{Demo.eap}.
 Figure~\ref{fig_fromEAtoEclipse} depicts how the Eclipse working set
 \texttt{Demo} and its contents were generated from the EA model \texttt{Demo}.
 Every model in EA is mapped to a working set in Eclipse with the same name. 
-From every packages in the EA model, an Eclipse project is generated, also with
+From every package in the EA model, an Eclipse project is generated, also with
 the same name.  These projects, however, are of a different
 \emph{nature} than for example metamodel projects or normal Java projects, and
 are called \emph{repository projects}.  A nature is Eclipse lingo for ``project
@@ -285,7 +285,7 @@ such projects as repository projects\footnote{Not to be mixed up with CVS or SVN
 repositories, although the idea of a source code ``container'' is the same
 here.}. A repository can be viewed as an \emph{adapter} that enables building and
 manipulating concrete instances of a specific model via a programming language
-like Java.  This is why we indicate repository projects using a cute
+such as Java.  This is why we indicate repository projects using a cute
 adapter/plug symbol on the project folder.  
 
 Figure~\ref{fig_fromEAtoEclipse} depicts how the class \texttt{Node} in the EA
@@ -308,7 +308,7 @@ merge interface and implementation for simple classes?), this consequent
 separation in interfaces and implementation allows for a clean and relatively
 simple mapping of Ecore to Java, even in tricky cases like multiple inheritance
 (allowed and very common in Ecore models).  A further package \texttt{util}
-contains some auxiliary classes like a factory for creating instances of the
+contains some auxiliary classes such as a factory for creating instances of the
 model.  If this is your first time of seeing generated code, you might be
 shocked at the sheer amount of classes and code generated from our relatively
 simple EA model.  You might be thinking: ``hey - if I did this by hand I
