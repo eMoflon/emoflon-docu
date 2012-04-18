@@ -14,7 +14,7 @@ depicted in Fig.~\ref{fig:sdm_check_start}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{pics/sdmBilder/check/sdm16RAW}
+  \includegraphics[width=\textwidth]{pics/sdmBilder/check/sdm16RAW.pdf}
   \caption{Activity diagram for \texttt{Partition::check}.}  
   \label{fig:sdm_check_start}
 \end{center}
@@ -30,7 +30,7 @@ name of the argument as the name of the object variable
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{pics/sdmBilder/check/sdm17RAW}
+  \includegraphics[width=0.85\textwidth]{pics/sdmBilder/check/sdm17RAW}
   \caption{Add the card to be checked.}  
   \label{fig:sdm_check_addCard}
 \end{center}
@@ -53,10 +53,9 @@ constraint or \emph{operation} to be executed -- in this case an equality check
 (\texttt{==}). Press the button labelled \texttt{Add} and admire your first
 attribute constraint (Fig.~\ref{fig:sdm_check_att_constraint})!
 
-\clearpage
-\begin{figure}[!htbp] 
+\begin{figure}[htbp] 
 \begin{center}
-  \includegraphics[width=0.6\textwidth]{pics/sdmBilder/check/sdm18RAW}
+  \includegraphics[width=0.7\textwidth]{pics/sdmBilder/check/sdm18RAW}
   \caption{Add an attribute constraint with a parameter expression.}  
   \label{fig:sdm_check_att_constraint}
 \end{center}
@@ -82,6 +81,8 @@ for the edge leading to \texttt{promoteCard} and choose \texttt{Success}.
   \label{fig:sdm_check_guard}
 \end{center}
 \end{figure}
+
+\clearpage 
 
 The next feature of our tool we shall learn is a means of coping with large
 patterns.  It might be nice to visualise \emph{small} story patterns directly in
@@ -113,7 +114,7 @@ immediately opened and created in the project browser
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{pics/sdmBilder/check/sdm22RAW}
+  \includegraphics[width=0.8\textwidth]{pics/sdmBilder/check/sdm22RAW}
   \caption{Add an object variable per drag and drop.}  
   \label{fig:sdm_check_bound_card}
 \end{center}
@@ -149,29 +150,27 @@ metamodels\footnote{Drag and drop is also possible in embedded story patterns
 object variable is \emph{completely} contained inside the story node and does
 not stick out over any edge}. 
 
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.7\textwidth]{pics/sdmBilder/check/sdm25}
-  \caption{All object variables for story pattern \texttt{promoteCard}.}  
-  \label{fig:sdm_check_complete_sp}
-\end{center}
-\end{figure}
-
 Let's move on with the current pattern. Remember that we want to promote the
 card.  As a first step drag and drop two further object variables for
 \texttt{this} (the current partition) and the next partition according to
 (Fig.~\ref{fig:sdm_check_complete_sp}).  An important point to note here is
-that \texttt{nextPartition} is visually differentiated from \texttt{this} and
-\texttt{card} by indicating its type, i.e. (\texttt{nextPartition:Partition}). 
-\note{Bound vs. Unbound}
-This is how we differentiate \emph{bound} variables (\texttt{this, card}) from
-\emph{unbound} or \emph{free} variables like \texttt{nextPartition}.  We already
-know that matches for bound variables are completely determined by the current
+that \texttt{this} and \texttt{card} are visually differentiated from
+\texttt{nextPartition} by their bold border lines. This is how we differentiate
+\emph{bound} \note{Bound vs. Unbound} variables (\texttt{this, card}) from
+\emph{unbound} or \emph{free} variables like \texttt{nextPartition}.  We already know that matches for bound variables are completely determined by the current
 context (argument of the method, current ``this" object).  Matches for unbound
 variables on the other hand, have to be determined by the pattern matcher.  Such
 matches are ``found'' by navigating and searching in the current model for
 possible matches that satisfy all specified constraints (e.g. type of the
-variable, links connecting it to other variables and attribute constraints).  
+variable, links connecting it to other variables and attribute constraints). 
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{pics/sdmBilder/check/sdm25.pdf}
+  \caption{All object variables for story pattern \texttt{promoteCard}.}  
+  \label{fig:sdm_check_complete_sp}
+\end{center}
+\end{figure} 
 
 In our case, the next partition has to be determined, by navigating from
 \texttt{this} via the \texttt{next} link in the metamodel.  Make sure the bound
@@ -179,8 +178,6 @@ checkbox for \texttt{nextPartition} is left empty and quick link from
 \texttt{this} to \texttt{nextPartition}, or vice-versa, to create a
 \texttt{next} link variable as indicated in
 Fig.~\ref{fig:sdm_check_link_variable}. 
-
-\clearpage
 
 \begin{figure}[htbp]
 \begin{center}
@@ -194,6 +191,8 @@ If you've done everything right, your story pattern should now closely resemble
 Fig.~\ref{fig:sdm_check_complete_activity_node}.  Take a step back and reflect
 on what the pattern expresses.
 
+\clearpage
+
 \begin{figure}[htbp] 
 \begin{center}
   \includegraphics[width=0.6\textwidth]{pics/sdmBilder/check/sdm30}
@@ -201,8 +200,6 @@ on what the pattern expresses.
   \label{fig:sdm_check_complete_activity_node}
 \end{center}
 \end{figure}
-
-\clearpage
 
 Now repeat the process for the story node \texttt{penalizeCard}: extract the
 story pattern, and create all variables as depicted in
@@ -235,8 +232,6 @@ this, double-click the stop node after \texttt{promoteCard} and choose
 \end{center}
 \end{figure}
 
-\clearpage
-
 \emph{Literal expressions} can be used
 to specify arbitrary text.  This should actually be used only for
 \emph{literals} like 42, ``foo'' or \texttt{true} but can of course be (mis)used
@@ -247,11 +242,13 @@ and should be avoided if possible.
   
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.6\textwidth]{pics/sdmBilder/check/sdm40}
+  \includegraphics[width=0.7\textwidth]{pics/sdmBilder/check/sdm40}
   \caption{Complete SDM for \texttt{Partition::check}.}  
   \label{fig:sdm_check_finish}
 \end{center}
 \end{figure}
+
+\clearpage
 
 Type in \texttt{true} as the value of the expression
 (Fig.~\ref{fig:sdm_check_literal_exp}) and complete the SDM by returning

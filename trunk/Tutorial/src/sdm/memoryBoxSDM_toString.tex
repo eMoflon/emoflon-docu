@@ -21,7 +21,7 @@ in \texttt{ForAllParitions}.  When all cards have been matched,
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{pics/sdmBilder/toString/sdm72}
+  \includegraphics[width=\textwidth]{pics/sdmBilder/toString/sdm72.pdf}
   \caption{Control flow with nested loops.}  
   \label{fig:sdm_tostring_1}
 \end{center}
@@ -48,8 +48,13 @@ point in the control flow.
 
 As we have already used a MethodCallExpression in an attribute constraint
 (Sec.~\ref{sec:sdm_grow}), go ahead and click the \texttt{Method Call
-Expression} tab and invoke the \texttt{printCard} operation on \texttt{helper}
-with the current \texttt{card} as its argument (Fig.~\ref{fig:sdm_tostring_3}).
+Expression} tab and select \texttt{MethodCallExpression} as expression,
+\texttt{helper} as target and \texttt{printCard} as operation
+(Fig.~\ref{fig:sdm_tostring_3}). Under parameters in the same dialog, select
+\texttt{<Card card>} from the drop down list and replace its text by
+\texttt{card} as depicted in Fig.~\ref{fig:sdm_tostring_3} and click
+\texttt{Save}. That way, we pass the object variable \texttt{card} to the method
+\texttt{printCard} as parameter.
 
 Statement nodes should be used to interact with methods that are
 implemented by hand and provide a means of invoking libraries and arbitrary Java
@@ -69,7 +74,7 @@ invoked in an attribute constraint as in Sec.~\ref{sec:sdm_grow}).
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.35\textwidth]{pics/sdmBilder/toString/sdm74}
+  \includegraphics[width=0.4\textwidth]{pics/sdmBilder/toString/sdm74}
   \caption{Specify a \texttt{MethodCallExpression} in the
   \texttt{StatementNode}.}
   \label{fig:sdm_tostring_3}
@@ -82,7 +87,7 @@ returning via a MethodCallExpression in the stop node
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.576\textwidth]{pics/sdmBilder/toString/sdm75}
+  \includegraphics[width=0.55\textwidth]{pics/sdmBilder/toString/sdm75}
   \caption{Using a \texttt{MethodCallExpression} as a return value.}  
   \label{fig:sdm_tostring_4}
 \end{center}
@@ -101,7 +106,7 @@ SDMs.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{pics/sdmBilder/toString/sdm76}
+  \includegraphics[width=\textwidth]{pics/sdmBilder/toString/sdm76}
   \caption{The complete SDM for \texttt{Box::toString}.}  
   \label{fig:sdm_tostring_5}
 \end{center}
