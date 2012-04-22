@@ -42,8 +42,45 @@ and placed to the left above the common toolbox.
 \end{center}
 \end{figure}
 
-Now choose the start node, and note the small black arrow that appears
-(Fig.~\ref{fig:sdm_quicklink}).  Similar to quick linking which we learnt when
+An activity diagram with only a start node is actually not sufficient 
+yet for code generation, but even so, export your metamodels by choosing
+``Extensions/MOFLON::Ecore Addin/Export all to Workspace'' and push F5 on your
+Eclipse project \texttt{Demo} to initiate code generation.
+In Eclipse an error popup occurs as in Fig.~\ref{fig:eclipse_error}, which
+indicates that your \texttt{MemoryBoxLanguage} is invalid. 
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.4\textwidth]{pics/sdmBilder/removeCard/sdm15RAW}
+  \caption{Eclipse error after generating code for incomplete activity}  
+  \label{fig:eclipse_error}
+\end{center}
+\end{figure}
+
+Go back to EA and
+validate your metamodels again by choosing ``Extensions/MOFLON::Ecore
+Addin/Validate All''. You will see a new \texttt{Eclipse Error} in the
+validation output, which hints at the missing \emph{stop node} of
+\texttt{removeCard} activity (Fig~\ref{fig:ea_eclipse_error}). So we know why
+code generation was unsuccessful in Eclipse.
+
+\clearpage
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.6\textwidth]{pics/sdmBilder/removeCard/sdm16RAW}
+  \caption{EA validation output after an Eclipse error}  
+  \label{fig:ea_eclipse_error}
+\end{center}
+\end{figure}
+
+After this \emph{intentionally} created error, you should be aware that our
+validation mechanism supports you also in dynamic parts of your metamodels,
+partly by rule checking directly in EA and partly by communicating with Eclipse
+after code generation process.
+ 
+Now it's time to complete our very first activity. Choose the start node, and
+note the small black arrow that appears (Fig.~\ref{fig:sdm_quicklink}).  Similar to quick linking which we learnt when
 creating our metamodel, a further fundamental gesture in EA is \emph{Quick
 \note{Quick Create}
 Create}. To quick create an element, pull the arrow and click on an empty spot

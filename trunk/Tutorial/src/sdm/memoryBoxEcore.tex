@@ -637,9 +637,8 @@ have any errors.
 	\label{fig:first_validation}
 \end{figure}
 
-Now we will put some small modelling errors (one bad practise and one syntax
-error) into our \texttt{MemoryBoxLanguage} to get familiar with validation and
-quick fix features.
+Now we will put two small modelling errors into our \texttt{MemoryBoxLanguage}
+to get familiar with validation and quick fix features.
 
 Create a new class in the MemoryBoxLanguage diagram by drag\&drop from the
 toolbox. You can keep its name just as \texttt{EClass1}. Let's assume, you
@@ -657,8 +656,8 @@ validation output? (Fig.~\ref{fig:validation_information})
 
 This new \texttt{Information} says that \texttt{EClass1} is not on any diagram, but still
 exists in the model. Pushing the \texttt{Delete} button in your keyboard was
-apperently not the correct way of deleting \texttt{EClass1}. (However, we will
-discuss later how to delete elements in EA correctly.)
+apperently not the proper way of deleting \texttt{EClass1}. (However, we will
+discuss later how to delete elements in EA properly.)
 
 For a quick fix of this problem, double-click the \texttt{Information} in the
 output window. You will see that EA navigates automatically to the
@@ -700,7 +699,7 @@ double click the error message, you will see that the appropriate connector is
 selected in the diagram, but there is no quick fix for this problem (Fig.
 ~\ref{fig:fatal-error}). Of course, you should correct your metamodel manually
 by double clicking the navigable reference end and setting its name back to
-\texttt{previous}. In the end, ensure that your metamodel resembles cloesly
+\texttt{previous}. In the end, ensure that your metamodel resembles closely
 Fig.~\ref{fig:metamodel_complete} again and there should be no more error
 messages before you proceed to further chapters.
 
