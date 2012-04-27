@@ -13,7 +13,7 @@
 	pagecolor=black,% 
 	urlcolor=black}
 \usepackage{amssymb} 
-\usepackage{wasysym}
+\usepackage{wasysym} 
 \usepackage{wrapfig}
  
 \newcommand{\note}[1]{\marginpar{\emph{#1}}}
@@ -51,6 +51,7 @@ Darmstadt, Germany (September 2011)
 \end{small}
 
 
+\setcounter{tocdepth}{1}
 \tableofcontents
 
 % store page counter
@@ -59,20 +60,22 @@ Darmstadt, Germany (September 2011)
 
 \mainmatter
 
-\include{main/introduction}
-\include{main/installation}
-\include{sdm/memoryBoxEcore}
-\include{sdm/memoryBoxSDMIntro}
-\include{sdm/memoryBoxSDM_removeCard}
-\include{sdm/memoryBoxSDM_check}
-\include{sdm/memoryBoxSDM_empty}
-\include{sdm/memoryBoxSDM_invert}
-\include{sdm/memoryBoxSDM_grow}
-\include{sdm/memoryBoxSDM_toString}
-\include{sdm/memoryBoxSDM_checkFastCard} 
-\include{main/tricks} 
-\include{m2t/01-moca}
-\include{main/conclusion}
+\input{main/introduction}
+\input{main/installation}
+\input{sdm/memoryBoxEcore}
+\input{sdm/memoryBoxSDMIntro}
+\input{sdm/memoryBoxSDM_removeCard}
+\input{sdm/memoryBoxSDM_check}
+\input{sdm/memoryBoxSDM_empty}
+\input{sdm/memoryBoxSDM_invert}
+\input{sdm/memoryBoxSDM_grow}
+\input{sdm/memoryBoxSDM_toString}
+\input{sdm/memoryBoxSDM_checkFastCard} 
+\input{main/tricks} 
+\input{m2t/01-moca}
+\input{tgg/intro}
+\input{tgg/whatAretggs} 
+\input{main/conclusion}
 
 % Start appendix
 \begin{appendix}
