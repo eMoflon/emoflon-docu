@@ -1,134 +1,82 @@
-\chapter{Modelling a Memory Box}
+\chapter{Leitner's Learning Box} 
 \label{chap:membox}
 
- The toughest part of learning a new language  is often building up a sufficient
-vocabulary.  This is usually accomplished by repeating a long list of words
-again and again till they stick.  A memory box is a simple but ingenious little
-contraption to support this tedious process of memorisation.  As depicted in
-Fig.~\ref{fig:membox_illustration}, it consists of a series of compartments or
-partitions usually of increasing size.  The content to be memorised is written
-on a series of cards  which are initially placed in the first partition.  All
-cards in the first  partition should be repeated everyday and cards that have
-been successfully  memorised are placed in the next partition.  Cards in all
-other partitions are  only repeated when the corresponding partition is full and
-cards that are  answered correctly are moved one partition forward in the box. 
-Challenging  cards that have been forgotten are treated as brand new cards and
-are always  placed right back into the first partition regardless of how far in
-the box they  had progressed.  These ``rules'' are depicted by the green and red
-arrows in  Fig.~\ref{fig:membox_illustration}. The basic idea is to repeat
-difficult cards as often as necessary  and not to waste time on easy cards which
-are only repeated now and then to keep them in memory.  The  increasing size of
-the partitions represents how words are easily placed in our limited short term
-memory and slowly move in our theoretically unlimited long term memory if
-practised often enough.
+The toughest part of learning a new language  is often building up a sufficient vocabulary.
+This is usually accomplished by repeating a long list of words again and again till they stick.
+A \emph{Leitner's learning box}\footnote{http://en.wikipedia.org/wiki/Leitner\_system} is a simple but ingenious little contraption to support this tedious process of memorization.
+As depicted in Fig.~\ref{fig:membox_illustration}, it consists of a series of compartments or partitions usually of increasing size.  
+The content to be memorized is written on a series of cards  which are initially placed in the first partition.
+All cards in the first  partition should be repeated everyday and cards that have been successfully memorized are placed in the next partition.
+Cards in all other partitions are only repeated when the corresponding partition is full and cards that are  answered correctly are moved one partition forward in the box.  
+Challenging  cards that have been forgotten are treated as brand new cards and are always  placed right back into the first partition regardless of how far in the box they  had progressed.
+These ``rules'' are depicted by the green and red arrows in  Fig.~\ref{fig:membox_illustration}.
+The basic idea is to repeat difficult cards as often as necessary and not to waste time on easy cards which
+are only repeated now and then to keep them in memory.
+The increasing size of the partitions represents how words are easily placed in our limited short term memory and slowly move in our theoretically unlimited long term memory if practised often enough.
  
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.4\textwidth]{pics/installationAndSetup/membox_illustration}
-  \caption[]{Possible \emph{Concrete Syntax} of our Memory Box.}
+  \caption[]{Possible \emph{Concrete Syntax} of a Leitner's Learning Box.}
   \label{fig:membox_illustration}
 \end{center}
 \end{figure}
 
-A memory box is an interesting system, because it consists clearly of a static
-structure (the box, partitions and their sizes, cards with their sides and
-corresponding content) and a set of rules that describe the dynamic aspects 
-(behaviour) of the system.  In the rest of the tutorial we shall build a
-complete memory box from scratch in a model-driven fashion and use it to
-introduce fundamental concepts in metamodelling and MDSD in general.  
+A learning box is an interesting system, because it consists clearly of a static structure (the box, partitions and their sizes, cards with their sides and corresponding content) and a set of rules that describe the dynamic aspects 
+(behaviour) of the system.  
+In the rest of the tutorial we shall build a complete learning box from scratch in a model-driven fashion and use it to introduce fundamental concepts in metamodelling and MDSD in general.  
 
 \section{A Language Definition Problem?}
 
-As in any area of study, metamodelling has its fair share of buzz words used
-by experts to communicate concisely.  Although some concepts might seem quite
-abstract for a beginner, a well defined vocabulary is important so we know
+As in any area of study, metamodelling has its fair share of buzz words used by experts to communicate concisely.  Although some concepts might seem quite abstract for a beginner, a well defined vocabulary is important so we know
 exactly what we are talking about.   
 
-The first step is understanding that metamodelling equates to language
-definition.  This means that the task of building a system like our memory box
-can be viewed as defining a suitable language that can be used to describe the
-system.  This language oriented approach has a lot of advantages including a
-natural support for product lines (individual products are valid members of the
-language) and a clear separation between platform independent and platform
-specific details.      
+The first step is understanding that metamodelling equates to language definition.
+This means that the task of building a system like our learning box can be viewed as defining a suitable language that can be used to describe the system.
+This language oriented approach has a lot of advantages including a natural support for product lines (individual products are valid members of the language) and a clear separation between platform independent and platform specific details.      
 
-So what constitutes a language?  The first question is obviously  how the
-building blocks of your language actually ``look'' like.  Is your language to be
-textual?  Visual?  This is referred to as the \emph{Concrete Syntax} of a
-language and is basically an interface to end users who use the language.  
+So what constitutes a language?  The first question is obviously  how the building blocks of your language actually ``look'' like.  
+Is your language to be textual?  Visual?  This is referred to as the \emph{Concrete Syntax} of a language and is basically an interface to end users who use the language.  
 \marginpar{\emph{Concrete Syntax}}
-In the case of our memory box, Fig.~\ref{fig:membox_illustration} can be viewed
-as a possible concrete syntax.  As we are however building a memory box as a
-software system, our actual concrete syntax  will probably be composed of GUI
-elements like buttons, drop-down menus and text fields.   
+In the case of our learning box, Fig.~\ref{fig:membox_illustration} can be viewed as a possible concrete syntax.
+As we are however building a learning box as a software system, our actual concrete syntax  will probably be composed of GUI elements like buttons, drop-down menus and text fields.   
 
-Irrespective of how a language looks like, members of the language must adhere
-to the same set of ``rules''.  
+Irrespective of how a language looks like, members of the language must adhere to the same set of ``rules''.  
 \marginpar{\emph{Grammar}}
-For a natural language like English, this set of rules is usually called a
-\emph{grammar}.  
-In metamodelling, however, everything is represented as a graph of some kind
-and, although the concept of a  \emph{graph grammar} is also quite well-spread
-and understood, metamodellers  more often use a \emph{type graph} that defines
-what types and relations  constitute a language. 
+For a natural language like English, this set of rules is usually called a \emph{grammar}.  
+In metamodelling, however, everything is represented as a graph of some kind and, although the concept of a  \emph{graph grammar} is also quite well-spread and understood, metamodellers  more often use a \emph{type graph} that defines what types and relations  constitute a language. 
 \marginpar{\emph{Graph Grammar}}
 \marginpar{\emph{Type Graph}}
-A graph that is a member of your language must \emph{conform to} the
-corresponding type graph for the language.  To be more precise, it must be
-possible to type the graph according to the type graph, i.e., the types and
-relations used in the graph must exist in the type graph and not contradict the
-structure defined there.  
-\marginpar{\emph{Abstract Syntax}}
-This way of defining membership to a language has many parallels to the
-class-object relationship in the object-oriented paradigm and should seem very
-familiar for any programmer used to OO.  This type graph is referred to as the
-\emph{Abstract Syntax} of a language. 
+A graph that is a member of your language must \emph{conform to} the corresponding type graph for the language.
+To be more precise, it must be possible to type the graph according to the type graph, i.e., the types and relations used in the graph must exist in the type graph and not contradict the structure defined there.  
+\marginpar{\emph{Abstract Syntax}} 
+This way of defining membership to a language has many parallels to the class-object relationship in the object-oriented paradigm and should seem very familiar for any programmer used to OO.
+This type graph is referred to as the \emph{Abstract Syntax} of a language. 
 
-Very often, one might want to further constrain a language, beyond simple typing
-rules.  
+Very often, one might want to further constrain a language, beyond simple typing rules.  
 \marginpar{\emph{Static Semantics}}  
-This can be accomplished with a further set of rules or constraints that
-members of the language must fulfil in addition to being conform to the type
-graph.
-These further constraints are referred to as the \emph{Static Semantics}
-of a language.    
+This can be accomplished with a further set of rules or constraints that members of the language must fulfil in addition to being conform to the type graph.
+These further constraints are referred to as the \emph{Static Semantics} of a language.    
 
-With these few basic concepts, we can now introduce a further and central
-concept in metamodelling, the \emph{metamodel} (basically a simple class
-diagram). 
+With these few basic concepts, we can now introduce a further and central concept in metamodelling, the \emph{metamodel} (basically a simple class diagram). 
 \marginpar{\emph{Metamodel}}
-A metamodel defines not only the abstract syntax of a language but also some
-basic constraints (a part of the static semantics).  
-Thinking back to our memory box, we could define the types and relations we want
-to allow, e.g.,  a box with partitions, cards, the box contains partitions that
-contain cards. 
-Multiplicities are an example for constraints that are no longer part of the
-abstract syntax and belong to static semantics, but can nonetheless be expressed
-in a metamodel.
-For example, that a card can only be in one partition, or that a partition has
-only one next partition or none.
+A metamodel defines not only the abstract syntax of a language but also some basic constraints (a part of the static semantics).  
+Thinking back to our learning box, we could define the types and relations we want to allow, e.g.,  a box with partitions, cards, the box contains partitions that contain cards. 
+Multiplicities are an example for constraints that are no longer part of the abstract syntax and belong to static semantics, but can nonetheless be expressed in a metamodel.
+For example, that a card can only be in one partition, or that a partition has only one next partition or none.
 \marginpar{\emph{Constraint Language}}  
-More complex constraints that cannot be expressed in a metamodel are usually
-specified using an extra \emph{constraint language} such as OCL (the Object
-Constraint Language).
-This goes beyond this tutorial however and we'll stick to metamodels without
-using an extra constraint language.              
+More complex constraints that cannot be expressed in a metamodel are usually specified using an extra \emph{constraint language} such as OCL (the Object Constraint Language).
+This goes beyond this tutorial however and we'll stick to metamodels without using an extra constraint language.              
 
-$\textbf{A short recap:}$  we have learnt that metamodelling starts with
-defining a suitable language.  
-For the moment, we know that a language comprises a concrete
-syntax (how does the language look like),  an abstract syntax (types and
-relations of the underlying graph structure), and static semantics (further
-constraints that members of the language must fulfil).
-Metamodels are used to define the abstract syntax and a part of the static
-semantics of a language, while \emph{models} are graphs that conform to some
+$\textbf{A short recap:}$  we have learnt that metamodelling starts with defining a suitable language.  
+For the moment, we know that a language comprises a concrete syntax (how does the language look like),  an abstract syntax (types and relations of the underlying graph structure), and static semantics (further constraints that members of the language must fulfil).
+Metamodels are used to define the abstract syntax and a part of the static semantics of a language, while \emph{models} are graphs that conform to some
 \marginpar{\emph{Model}}
-metamodel (can be typed  according to the abstract syntax and adhere to the
-static semantics). 
+metamodel (can be typed  according to the abstract syntax and adhere to the static semantics). 
 
-This tutorial is meant to be be hands-on so enough theory!  Lets
-define, step-by-step, a metamodel for our memory box using our tool eMoflon.  
+This tutorial is meant to be be hands-on so enough theory!  
+Lets define, step-by-step, a metamodel for our learning box using our tool eMoflon.  
   
 \section{Abstract Syntax and Static Semantics}
 \label{sec:abstractSyntax}
@@ -144,7 +92,7 @@ Package} as depicted in Fig.~\ref{fig:new_package}.
 \end{figure} 
 
 In the dialogue that pops up (Fig.~\ref{fig:new_package_name}), choose
-\texttt{Class View}, enter \texttt{Memory\-Box\-Language} as the name of the new
+\texttt{Class View}, enter \texttt{Learning\-Box\-Language} as the name of the new
 package and click \texttt{OK}. 
 
 \begin{figure}[htbp]
@@ -257,7 +205,7 @@ Fig.~\ref{fig:eclass_completed}.
 
 Now create \texttt{Partition} and \texttt{Card} in the same way, till your
 workspace resembles Fig.~\ref{fig:all_eclasses}.  These are the main classes for
-our memory box.
+our learning box.
 
 \begin{figure}[htbp]
 	\centering
@@ -308,7 +256,7 @@ package.
  
 Ecore supports packages that can be used to structure and group classes
 in a metamodel.  In our case, we need  a util class that implements helper
-methods for our memory box.  These methods  will be implemented by hand in Java
+methods for our learning box.  These methods  will be implemented by hand in Java
 and the util class thus represents a kind of  interface or ``facade'' between
 our model and hand-written code.  We shall soon  see how our Eclipse Plugin
 offers extra support if one follows this naming  convention for packages
@@ -327,7 +275,7 @@ Diagram} in the Project Browser (Fig.~\ref{fig:epackage_newelement}).
 
 In the dialogue that pops-up, choose \texttt{Ecore Diagram} and confirm with
 \texttt{OK}.
-In the new diagram, create a new class and enter \texttt{MemoryBoxUtil} as its
+In the new diagram, create a new class and enter \texttt{LearningBoxUtil} as its
 \texttt{name}.  You can switch between diagrams by choosing the tabs at the
 bottom of the screen or by pressing \texttt{alt + } $\Leftarrow$ or
 $\Rightarrow$ (Fig.~\ref{fig:epackage_newdiagram}). 
@@ -471,7 +419,7 @@ Transformations}, we take a holistic approach and advocate integrating the
 transformations directly in the metamodel as operations.
 This fits nicely to the object-oriented paradigm and is quite natural in many
 cases.  In the next few steps we shall define the \emph{signatures} of some
-operations for our memory box.  We will of course use SDMs to \emph{implement}
+operations for our learning box.  We will of course use SDMs to \emph{implement}
 the methods later.
 
 Right-click \texttt{Partition} to invoke the context-menu depicted in
@@ -536,13 +484,13 @@ Fig.~\ref{fig:operation_partition}.
 \clearpage
 
 Add all operations analogously for \texttt{Box}, \texttt{Card}, and
-\texttt{MemoryBoxUtil}, so that your metamodel closely resembles
+\texttt{LearningBoxUtil}, so that your metamodel closely resembles
 Fig.~\ref{fig:metamodel_complete}. 
  
 \begin{figure}[htbp]
 	\centering 
   \includegraphics[width=\textwidth]{pics/memBoxBilder/memBox44} 
-	\caption{Complete metamodel for our memory box.}
+	\caption{Complete metamodel for our learning box.}
 	\label{fig:metamodel_complete}
 \end{figure}
 
@@ -554,9 +502,9 @@ can be set or not. Finally, \texttt{Partition}s contain \texttt{Card}s.
 A \texttt{Box} has a \texttt{name}, and can be extended by calling
 \texttt{grow}. A \texttt{Box} can print out its contents via \texttt{toString}. 
 We'll see later in the tutorial why these two methods need our
-\texttt{MemoryBoxUtil} as a parameter.
+\texttt{LearningBoxUtil} as a parameter.
 
-The main method of the memory box is \texttt{Partition::check} that takes a
+The main method of the learning box is \texttt{Partition::check} that takes a
 \texttt{Card} and the user's guess as an \texttt{EString} and returns
 \texttt{true} or \texttt{false} depending on if the guess was correct or not.
 A \texttt{Partition} can also \texttt{empty} itself of all \texttt{Cards}, or
@@ -576,11 +524,11 @@ source language and this is supported by \texttt{Card} via \texttt{invert}
 (turns the card around).
 
 Now try to export the metamodel for codegeneration in Eclipse.  To do this
-right-click on \texttt{MemoryBoxLanguage} and choose ``Add-In/MOFLON::Ecore
+right-click on \texttt{LearningBoxLanguage} and choose ``Add-In/MOFLON::Ecore
 Addin/Export Selection to Workspace''.  Then switch to your Eclipse work\-space
 and refresh the metamodel workingset.
 
-If you have done everything right, a new project \texttt{MemoryBoxLanguage}
+If you have done everything right, a new project \texttt{LearningBoxLanguage}
 should be created in the \texttt{Demo} working set in your Eclipse workspace.
 If this is not the case please ensure that your metamodel is identical with
 Fig.~\ref{fig:metamodel_complete}.  If you believe everything is correct and
@@ -619,7 +567,7 @@ workbench. (Fig.~\ref{fig:validation_output})
 
 Make your first validation by choosing ``Extensions/MOFLON::Ecore
 Addin/Validate all'' in EA (Fig.~\ref{fig:validation_menu}). If you have done
-everything right while modelling your \texttt{MemoryBoxLanguage} in the last
+everything right while modelling your \texttt{LearningBoxLanguage} in the last
 chapter, the output will resemble Fig.~\ref{fig:first_validation}, which indicates your metamodels don't
 have any errors.
 
@@ -637,10 +585,10 @@ have any errors.
 	\label{fig:first_validation}
 \end{figure}
 
-Now we will put two small modelling errors into our \texttt{MemoryBoxLanguage}
+Now we will put two small modelling errors into our \texttt{LearningBoxLanguage}
 to get familiar with validation and quick fix features.
 
-Create a new class in the MemoryBoxLanguage diagram by drag\&drop from the
+Create a new class in the LearningBoxLanguage diagram by drag\&drop from the
 toolbox. You can keep its name just as \texttt{EClass1}. Let's assume, you
 decided to delete this class. Choose \texttt{EClass1} in the diagram and push the
 \texttt{Delete} button in your keyboard. Can you see that \texttt{EClass1} still
@@ -749,8 +697,8 @@ EMF provides a generic model editor for free that allows us to create and edit
 an arbitrary instance of any metamodel specified with eMoflon. 
 
 Back in Eclipse, navigate to the \texttt{model} folder in your
-\texttt{MemoryBoxLanguage} project.  Double-click the
-\texttt{MemoryBoxLanguage.ecore} model to invoke  the \emph{Ecore model editor}. 
+\texttt{LearningBoxLanguage} project.  Double-click the
+\texttt{LearningBoxLanguage.ecore} model to invoke  the \emph{Ecore model editor}. 
 Expand this tree to view the different classes and packages you modelled with EA
 in Sec.~\ref{sec:abstractSyntax}.
 To create a concrete instance of the metamodel, you must select a class which
@@ -804,5 +752,5 @@ The model can be reloaded via a simple double-click to invoke the generic model
 editor. 
 
 \textsl{That's all for the ``static part" of our metamodel. Let's move on and
-model the dynamic behaviour of our memory box!}
+model the dynamic behaviour of our learning box!}
 
