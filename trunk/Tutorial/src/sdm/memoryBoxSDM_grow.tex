@@ -1,7 +1,7 @@
 \subsection{Growing the box by adding a new partition}
 \label{sec:sdm_grow}	
 	
-In this SDM, we shall specify how our memory box is built up and how the
+In this SDM, we shall specify how our learning box is built up and how the
 contained partitions are connected.  This controls how cards move back and
 forward in the box.  Although very different behaviour can be implemented, we
 shall implement the classical rules as depicted in
@@ -107,8 +107,8 @@ Fig.~\ref{fig:sdm_grow_5}.  As usual, try to export, generate code, inspect the
 method implementation and write a JUnit test.  This time around you also have to
 implement the helper method \texttt{determineNextSize} directly in the
 generated code
-(\texttt{gen/\-MemoryBoxLanguage/\-facade/\-impl/\-MemoryBoxUtilImpl}). Don't
-forget to add \texttt{@generated NOT} to the Java doc comment of the
+(\texttt{gen/\-LearningBoxLanguage/\-facade/\-impl/\-LearningBoxUtilImpl}).
+Don't forget to add \texttt{@generated NOT} to the Java doc comment of the
 method so the code generator preserves your code in future runs.
 
 \begin{figure}[htbp]

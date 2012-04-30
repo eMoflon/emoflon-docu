@@ -1,7 +1,7 @@
 \subsection{Checking a card}
 
 The next method we shall model with SDMs is probably the most important: a
-user decides to try a card in the memory box and looks at the question on the
+user decides to try a card in the learning box and looks at the question on the
 card (\texttt{Card.face}), makes a guess and \emph{checks} to see if the guess
 was correct by comparing with the answer on the back of the card
 (\texttt{Card.back}).  If the guess was correct the card can be \emph{promoted}
@@ -22,7 +22,7 @@ depicted in Fig.~\ref{fig:sdm_check_start}.
  
 To check if the guess was correct, create an object variable that is bound to
 the argument \texttt{card}, representing the card the user has picked from the
-memory box.  Remember that this binding is implicitly specified by choosing the
+learning box.  Remember that this binding is implicitly specified by choosing the
 name of the argument as the name of the object variable
 (Fig.~\ref{fig:sdm_check_addCard}).
 
