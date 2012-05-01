@@ -15,7 +15,7 @@ As this was already in both directions (model$\Leftrightarrow$text) we have prac
 Although SDMs are crazily cool (don't you forget that!), this is rather unsatisfactory.  
 If you take a careful and critical look at the forward (text-to-model) and the backward (model-to-text) transformations, you should be able to notice the following problems.
 \begin{description}
-  \item[Productivity:] We have to implement two transformations that are actually quite similar\ldots ~somehow.  This is not really feel productive.  Wouldn't it be nice to implement maybe the forward transformation and get the backward transformation for free?  Or vice-versa?  Or how about deriving forward \emph{and} backward from the \emph{same} joint specification?
+  \item[Productivity:] We have to implement two transformations that are actually quite similar\ldots ~somehow.  This does not really feel productive.  Wouldn't it be nice to implement maybe the forward transformation and get the backward transformation for free?  Or vice-versa?  Or how about deriving forward \emph{and} backward from a \emph{common} joint specification?
   \item[Maintainability:] Another, maybe even more important point, is that two separate transformations become quite a pain to maintain and keep \emph{consistent}.  If the forward transformation is adjusted two produce a different target structure, the backward transformation must be updated appropriately and vice-versa.  Again it would be great to get this for free. 
 \end{description}
 
