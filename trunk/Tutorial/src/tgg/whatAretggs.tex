@@ -1,13 +1,15 @@
 \section{Triple Graph Grammars in a Nutshell}
 
-Triple graph grammars are a declarative, rule-based technique of specifying the simultaneous evolution of three graphs.
+Triple graph grammars are a declarative, rule-based technique of specifying the simultaneous evolution of three consistently connected graphs.
 If you have read the previous sentence at least three times and are still scratching your head wondering if you need a cup of coffee -- well then welcome to the club\footnote{If not then congrats, stop reading, and go grab some real (academic) papers on TGGs.} ;)
 
 A TGG is basically just a bunch of rules.
 Each rule is actually quite similar to a \emph{Story Pattern} (see Page~\pageref{story-pattern}) and describes with a precondition (LHS) and postcondition (RHS) how a graph structure is to be built-up.
 So what's the difference to SDMs?  
-Well, a TGG rule always describes how a graph \emph{triple} evolves and triples can be interpreted as consisting of a source component, a correspondence component and a target component.
+Well, a TGG rule always describes how a \emph{graph triple} evolves and triples can be interpreted as consisting of a source component, a correspondence component and a target component.
 This means that executing a sequence of TGG rules results in a source graph and a target graph, which are \emph{only} connected via nodes in a correspondence graph.
+Note that the names ``source'' and ``target'' are arbitrarily chosen and do not imply a certain transformation direction.
+Naming the graphs ``left'' and ``right'', ``foo'' and ``bar'', \ldots would also be fine, but some smart guys decided years ago to name it source and target and, hence, we're still following this convention. 
 
 So far so good, but right now you should be asking yourself the following question: What the {\huge heck} does this have to do with bidirectional model transformation?!  \emph{That}, Detective, is the right question. Program terminated\footnote{Memorable quote from \emph{I, Robot}.}.
 \clearpage
@@ -33,7 +35,7 @@ Before we sum up and get our hands dirty on our concrete example, just a few ext
 \begin{itemize}
 \item A lot more can be automatically derived from the consistency relation including inverse rules to \emph{undo} a step in a forward/backward transformation and rules that simply check consistency of an existing triple of source, correspondence and target graphs.
 
-\item Why do we need the correspondence graph?  Hmm\dots~  Thats a hard one ;)  Well, first of all it can be viewed as explicit traceability links which are quite nice to have, i.e., you \emph{see} which element relates to which after a forward/backward transformation.
+\item Why do we need the correspondence graph?  Hmm\dots~  Thats a hard one ;)  Well, first of all it can be viewed as explicit traceability links which are quite nice to have, i.e., you \emph{see} which element relates to which after a forward/backward transformation. No guessing, no heuristics, no interpretation or ambivalence -- the information \emph{is} just there!
 Isn't that nice to have?
 The second reason is a bit more subtle and difficult to explain without a concrete TGG:  The point is mainly that the forward\footnote{Note that the TGGs are symmetric and forward/backward can be interchanged freely.  As it is becoming a pain to always write forward/backward we shall just say forward as from now on.} transformation is \emph{not} injective and cannot be inverted!
 So how can we provide a backward transformation??
@@ -41,6 +43,7 @@ If you paid attention in school, alarm bells should be going off in your head no
 Good point!  When executing the forward transformation we sort of ``cheat'' and remember what target element was chosen if there was a choice (exactly this choice makes the transformation non-injective right?).
 In this way we \emph{bidirectionalize} the transformation on-the-fly by creating correspondence links.
 Got it? great! No?  Then just remember: the correspondence model is cute and for some reasons also important.
+But if you loose it somehow - don't be afraid, because the same TGG specification that has been used to get your forward and backward transformations, can also be used to reconstruct the correspondence model between two existing source and targte models (at least up to a certain degree).
 \end{itemize}
 
 That was quite a lot at once so it might make sense to re-read these sections \emph{after} working on the example.
