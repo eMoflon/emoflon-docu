@@ -1,108 +1,101 @@
-\section{Declaring Correspondences between two Graphs}
+\section{Specifying a TGG Schema}
 
-First, we will create a TGG project, which is the correspondence component
-in the triple graph structure, and declare the \emph{correspondency types}
-between classes from \texttt{LearningBoxLanguage} and
-\texttt{DictionaryLanguage}.
-As hinted above, a \emph{correspondency type} can be considered as a
-traceability link which interrelates the elements from source and target
-components in a bidirectional transformation.
+The first step on the way to a TGG is to model the correspondence component of your triples.
+The correspondence or link metamodel consists of \emph{correspondence types} which connect classes from \texttt{LearningBoxLanguage} and \texttt{DictionaryLanguage}\footnote{If you do not have these metamodels already then refer to Chapters~\ref{chap:membox} and \ref{chap:A-Dictionary-Language}}.
+Remember that a \emph{correspondence type} can be considered as a traceability link which relates the elements from the source and target components.
+Although the correspondence metamodel is actually just a normal metamodel, we use a slightly different concrete syntax to present it and adhere to certain naming conventions.
+\note{TGG Schema}
+The metamodel triple consisting of (relevant parts of) the source metamodel, the correspondence metamodel and (relevant parts of) the target metamodel is called a \emph{TGG schema}. 
 
-In EA, add a new package and enter
-\texttt{Learning\-Box\-To\-Dictionary\-Integration} as its name. Create a
-diagram for the new package and select \texttt{TGGSchema} as diagram type
-(Fig.~\ref{fig:tgg_diagram_type}). This way, we determine our new package as a TGG Project. After choosing \texttt{TGGSchema} as diagram type, a new dialog pops up
-which asks you for the source and target for your TGG project. Choose
-\texttt{Learning\-Box\-Language} as source and \texttt{Dictionary\-Language} as
-target project and click \texttt{OK} (Fig.~\ref{fig:select_source_target}).
+\begin{enumerate}
+\item[$\blacktriangleright$] In EA, add a new package in your model root and enter \texttt{Learning\-Box\-To\-Dictionary\-Integration} as its name. 
+Create a diagram for the new package and select \texttt{TGGSchema} as diagram type (Fig.~\ref{fig:tgg_diagram_type}). The diagram type indicates that the new package is a TGG Project. 
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/tgg1}
-  \caption{Choosing \texttt{TGGSchema} as your diagram type}  
+  \caption{Choose \texttt{TGGSchema} as your diagram type}  
   \label{fig:tgg_diagram_type}
 \end{center}
 \end{figure}
 
+\item[$\blacktriangleright$] After choosing \texttt{TGGSchema} as diagram type, a new dialogue should pop up asking you for the source and target projects of your TGG project. 
+Choose \texttt{Learning\-Box\-Language} as source and \texttt{Dictionary\-Language} as target project and affirm with \texttt{OK} (Fig.~\ref{fig:select_source_target}).
+
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.4\textwidth]{pics/tggBilder/tgg2}
-  \caption{Selecting a source and target project for a TGG project}  
+  \includegraphics[width=0.55\textwidth]{pics/tggBilder/tgg2}
+  \caption{Select source and target projects for the TGG project}  
   \label{fig:select_source_target}
 \end{center}
 \end{figure}
+\end{enumerate}
 
-The structure of your TGG project should resemble
-Fig.~\ref{fig:new_tgg_project}. Please note that a subpackage \texttt{Rules} and an underlying diagram with the same name are
-also generated.
+The structure of your TGG project should now resemble Fig.~\ref{fig:new_tgg_project}.
+Please note that a subpackage \texttt{Rules} and an underlying diagram with the same name are also generated.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.4\textwidth]{pics/tggBilder/tgg3}
-  \caption{The new TGG Project with its generated subpackage \texttt{Rules}}  
+  \includegraphics[width=0.5\textwidth]{pics/tggBilder/tgg3}
+  \caption{Initial structure of a new TGG project}  
   \label{fig:new_tgg_project}
 \end{center}
 \end{figure}
 
-Now, it's time to insert classes from our source and target projects
-into our TGG project and declare our first correspondency between them. The
-classes \texttt{Box} and \texttt{Dictionary}, both being at the top of the composite hierarchy in their own languages,
-should be related to each other for our bidirectional transformation. Drag
-\& drop the class \texttt{Box} in \texttt{Learning\-Box\-Language} from the project 
-browser to the newly created diagram
-\texttt{Learning\-Box\-To\-Dictionary\-Integration}. Please assure that the
-class is pasted \texttt{as simple link} into the diagram as depicted in
-Fig.~\ref{fig:drag_drop_box}. 
+Now it's time to insert classes from our source and target projects into our TGG project and declare our first correspondence type between them.
+The classes \texttt{Box} and \texttt{Dictionary}, both at the top of the composite hierarchy of their respecitve languages, are to be related to each other.
+\begin{enumerate}
+\item[$\blacktriangleright$] Drag \& drop the class \texttt{Box} in \texttt{Learning\-Box\-Language} from the project 
+browser to the newly created TGG schema diagram \texttt{Learning\-Box\-To\-Dictionary\-Integration}.
+Ensure that the class is pasted \texttt{as a simple link} into the diagram as depicted in Fig.~\ref{fig:drag_drop_box}. 
+If the dialog in Fig.~\ref{fig:drag_drop_box} doesn't show up and the element is pasted instead as an instance of the class, hold down \texttt{Ctrl} when dropping to invoke it.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.6\textwidth]{pics/tggBilder/tgg4}
-  \caption{Drag \& Drop \texttt{Box} as simple link} 
+  \includegraphics[width=0.83\textwidth]{pics/tggBilder/tgg4}
+  \caption{Drag \& Drop \texttt{Box} as a simple link into the TGG schema} 
   \label{fig:drag_drop_box}
 \end{center}
 \end{figure}
 
-If the dialog in Fig.~\ref{fig:drag_drop_box} doesn't show up
-and the class is somehow not being pasted as simple link, hold down
-\texttt{Ctrl} and drag \& drop again.
+\item[$\blacktriangleright$] In the same way, drag \& drop the class \texttt{Dictionary} from \texttt{Dictionary\-Language} into the TGG schema. 
+\end{enumerate}
 
-In the same way, drag \& drop the class \texttt{Dictionary} from
-\texttt{Dictionary\-Language} to the diagram. Now, having one class each from
-source and target project, we can create a correspondence type between them.
-Pull a quick link from \texttt{Box} to \texttt{Dictionary} and in the opened menu select \texttt{Create TGG Correspondence Type} as depicted in Fig.~\ref{fig:create_correspondence}.
+With a class from both source and target projects, we can now create a correspondence type between them.
+\begin{enumerate}
+\item[$\blacktriangleright$] Quick link from \texttt{Box} to \texttt{Dictionary} and select \texttt{Create TGG Corres\-pon\-dence Type} as depicted in Fig.~\ref{fig:create_correspondence}.
+\end{enumerate}
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/tgg5}
-  \caption{creating a TGG Correspondence Type} 
+  \caption{Creating a TGG correspondence type} 
   \label{fig:create_correspondence}
 \end{center}
 \end{figure}
 
-A hexagon-shaped \texttt{CorrespondenceType} with the name
-\texttt{BoxToDictionary} will be created. Also the connectors to the source and
-target elements are generated, so that your diagram resembles
-Fig.~\ref{fig:first_correspondence}.
+A hexagon-shaped correspondence type with the name \texttt{BoxToDiction\-ary} and references to the source and target elements should be generated, so that your diagram resembles Fig.~\ref{fig:first_correspondence}.
+You can rename the correspondence type as you wish but please leave the references as they are (multiplicity and naming convention).
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/tgg6}
-  \caption{a TGG Correspondence Type between \texttt{Box} and
-  \texttt{Dictionary}}
+  \caption{Correspondence type between \texttt{Box} and \texttt{Dictionary}}
   \label{fig:first_correspondence}
 \end{center}
 \end{figure}
 
-The last thing to do in this chapter is to declare a further correspondence type
-between \texttt{Card} and \texttt{Entry}. Drag \& drop these classes as simple
-link to your diagram end create a correspondence type using the same concepts.
-The complete TGG Schema diagram is depicted in
-Fig.~\ref{fig:complete_tgg_schema}.
+To complete our TGG schema, declare a further correspondence type between \texttt{Card} and \texttt{Entry}.
+The complete TGG Schema is depicted in Fig.~\ref{fig:complete_tgg_schema}.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/tgg7}
-  \caption{Complete TGG Schema Diagram}
+  \caption{Complete TGG schema for our example}
   \label{fig:complete_tgg_schema}
 \end{center}
 \end{figure}
+
+A TGG schema can be viewed as the metamodel triple to which all created triples must conform.
+In less technical lingo, it gives an abstract view on the relationship or \emph{correspondence} between two metamodels or domains.
+Just by looking at the TGG schema, a domain expert should understand \emph{why} the connected elements are related, irrespective of \emph{how} the relationship is actually established by TGG rules (coming up next).
