@@ -102,7 +102,8 @@ public class eMoflonEMFUtil
          return true;
       } catch (IOException e)
       {
-         logger.error("Unable to save model to " + path);
+         logger.error("Unable to save model to " + path + ". Error:" + e.getMessage());
+         e.printStackTrace();
          return false;
       }
 
