@@ -552,9 +552,7 @@ metamodels, the validation mechanism produces messages in an output window and
 brings the (potential) modelling errors to your attention. In some cases, it
 provides also suggestion for a quick fix.
 
-For making the validation output window visible in EA, choose
-``Extensions/Add-In Windows''. You will see the new output window under the
-workbench. (Fig.~\ref{fig:validation_output})
+For making the validation output window visible in EA, choose ``Extensions/\-Add-In Windows''. You will see the new output window under the workbench. (Fig.~\ref{fig:validation_output})
 
 \clearpage
 
@@ -565,11 +563,8 @@ workbench. (Fig.~\ref{fig:validation_output})
 	\label{fig:validation_output}
 \end{figure}
 
-Make your first validation by choosing ``Extensions/MOFLON::Ecore
-Addin/Validate all'' in EA (Fig.~\ref{fig:validation_menu}). If you have done
-everything right while modelling your \texttt{LearningBoxLanguage} in the last
-chapter, the output will resemble Fig.~\ref{fig:first_validation}, which indicates your metamodels don't
-have any errors.
+Make your first validation by choosing ``Extensions/\-MOFLON::Ecore Addin/\-Validate all'' in EA (Fig.~\ref{fig:validation_menu}). 
+If you have done everything right while modelling your \texttt{LearningBoxLanguage} in the last chapter, the output will resemble Fig.~\ref{fig:first_validation}, which indicates your metamodels don't have any errors.
 
 \begin{figure}[htbp]
 	\centering 
@@ -588,7 +583,7 @@ have any errors.
 Now we will put two small modelling errors into our \texttt{LearningBoxLanguage}
 to get familiar with validation and quick fix features.
 
-Create a new class in the LearningBoxLanguage diagram by drag\&drop from the
+Create a new class in the \texttt{Learning\-Box\-Language} diagram by drag\&drop from the
 toolbox. You can keep its name just as \texttt{EClass1}. Let's assume, you
 decided to delete this class. Choose \texttt{EClass1} in the diagram and push the
 \texttt{Delete} button in your keyboard. Can you see that \texttt{EClass1} still
@@ -605,7 +600,7 @@ validation output? (Fig.~\ref{fig:validation_information})
 This new \texttt{Information} says that \texttt{EClass1} is not on any diagram, but still
 exists in the model. Pushing the \texttt{Delete} button in your keyboard was
 apperently not the proper way of deleting \texttt{EClass1}. (However, we will
-discuss later how to delete elements in EA properly.)
+discuss later in Chapter~\ref{chap:Tips and Tricks} how to delete elements in EA properly.)
 
 For a quick fix of this problem, double-click the \texttt{Information} in the
 output window. You will see that EA navigates automatically to the
@@ -634,20 +629,13 @@ of the class \texttt{Partition} and delete its role name as depicted in Fig.
 	\label{fig:delete-role-name}
 \end{figure}
 
-Immediately after that, you will see a new \texttt{Fatal Error} in the
-validation output which says that a navigable end must have a role name (Fig.
-~\ref{fig:fatal-error}).
-In Ecore, a navigable role end is an \texttt{EReference} and must have a name like any other
-\texttt{ENamedElement}, which is the super type of all basic model elements.
-Omitting the name of an navigable reference end is therefore syntactically not
-correct and consequently the code generation wouldn't be possible, hence the \texttt{Fatal Error}. If you
-double click the error message, you will see that the appropriate connector is
-selected in the diagram, but there is no quick fix for this problem (Fig.
-~\ref{fig:fatal-error}). Of course, you should correct your metamodel manually
-by double clicking the navigable reference end and setting its name back to
-\texttt{previous}. In the end, ensure that your metamodel resembles closely
-Fig.~\ref{fig:metamodel_complete} again and there should be no more error
-messages before you proceed to further chapters.
+Immediately after that, you will see a new \texttt{Fatal Error} in the validation output which says that a navigable end must have a role name (Fig.~\ref{fig:fatal-error}).
+In Ecore, a navigable role end is an \texttt{EReference} and must have a name like any other \texttt{ENamedElement}, which is the super type of all basic model elements.
+Omitting the name of a navigable reference end is therefore syntactically not correct and consequently the code generation wouldn't be possible, hence the \texttt{Fatal Error}. 
+If you double click the error message, you will see that the appropriate connector is  selected in the diagram, but there is no quick fix for this problem (Fig.~\ref{fig:fatal-error}). 
+Of course, you should correct your metamodel manually by double clicking the navigable reference end and setting its name back to
+\texttt{previous}. 
+In the end, ensure that your metamodel resembles closely Fig.~\ref{fig:metamodel_complete} again and there should be no more error messages before you proceed to further chapters.
 
 \begin{figure}[htbp]
 	\centering
@@ -663,20 +651,11 @@ the output window. At last, what each message type would mean is given in the
 following:
 
 \begin{description}
-  \item[Information:]~\\ This is only a hint for the user. Syntactical rules
-  are not violated. Export and code generation would be possible. (e.g. coding
-  conventions, not correctly deleted elements)
-  \item[Warning:]~\\ Code can still be generated with automatic completions and
-  corrections by the code generator. But there might be semantic issues in the
-  metamodel (e.g. omitting the multiplicity at references)
-  \item[Error:]~\\ Export would be possible. But the exported model is not
-  Ecore conform. Loading the ecore model (prestage for the code generation)
-  wouldn't be possible.
-  \item[Fatal Error:]~\\ Neighter the export nor the code generation would be
-  possible, since required informations such as name, classifier of model
-  elements are missing or not correctly set.
-  \item[Eclipse Error:]~\\ Error messages produced by Eclipse after an
-  unsuccessful code generation process.
+  \item[Information:]~\\ This is only a hint for the user. Syntactical rules are not violated. Export and code generation would be possible. (e.g. coding conventions, not correctly deleted elements)
+  \item[Warning:]~\\ Code can still be generated with automatic completions and corrections by the code generator. But there might be semantic issues in the metamodel (e.g. omitting the multiplicity at references)
+  \item[Error:]~\\ Export would be possible. But the exported model is not Ecore conform. Loading the ecore model (prestage for the code generation) wouldn't be possible.
+  \item[Fatal Error:]~\\ Neighter the export nor the code generation would be possible, since required informations such as name, classifier of model elements are missing or not correctly set.
+  \item[Eclipse Error:]~\\ Error messages produced by Eclipse after an unsuccessful code generation process, which will be discussed later in Chapter~\ref{par:validation_in_eclipse}.
 
 \end{description}
 
