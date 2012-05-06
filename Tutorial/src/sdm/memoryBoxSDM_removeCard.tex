@@ -1,12 +1,8 @@
 \subsection{Removing cards from a partition}
 
-Back in EA, open the main diagram (double-click in the project browser) and
-carefully do the following: (1) \emph{Click once} on \texttt{Partition} to
-select it, then (2) \emph{click once} on the method \texttt{removeCard} to
-choose it (Fig.~\ref{fig:sdm_start}). 
+Back in EA, open the main diagram (double-click in the project browser) and carefully do the following: (1) \emph{Click once} on \texttt{Partition} to select it, then (2) \emph{click once} on the method \texttt{removeCard} to choose it (Fig.~\ref{fig:sdm_start}). 
 \note{Create an SDM}
-Now (3), \emph{double-click} on the chosen
-method to indicate that you want to implement it.
+Now (3), \emph{double-click} on the chosen method to indicate that you want to implement it.
 
 \begin{figure}[htp]
 \begin{center}
@@ -16,23 +12,10 @@ method to indicate that you want to implement it.
 \end{center}
 \end{figure}
  
-If you did everything right, a new \emph{activity diagram} should be created
-\note{Activity Diagram}
-with a cute little \emph{start node} labelled with the signature of the method
-\note{Start Node}
-as depicted in Fig.~\ref{fig:sdm_skeleton}.  Inspect your project browser and
-note that an \texttt{SDM\_Container} has been created for the method
-\texttt{removeCard} to contain the diagram.  If you're at any time unhappy with
-an SDM\footnote{As you might have already noticed, we use ``SDM''
-interchangeably to mean our graph transformation language or a concrete
-transformation (a story model) used to implement a method and consisting of
-an activity diagram and a pattern in each story node.  This will all be
-explained in detail.}, you can always delete the appropriate
-container in the project browser and start from scratch, following the steps
-described previously to create a skeleton for a new SDM.  Also note the new
-\note{SDM Toolbox}
-toolbox \texttt{SDM} that has been automatically opened up for the diagram
-and placed to the left above the common toolbox. 
+If you did everything right, a new \emph{activity diagram} should be created \note{Activity Diagram} with a cute little \emph{start node} labelled with the signature of the method \note{Start Node} as depicted in Fig.~\ref{fig:sdm_skeleton}.  Inspect your project browser and note that an \texttt{SDM\_Container} has been created for the method \texttt{removeCard} to contain the diagram.  
+If you're at any time unhappy with an SDM\footnote{As you might have already noticed, we use ``SDM'' interchangeably to mean our graph transformation language or a concrete transformation (a story model) used to implement a method and consisting of an activity diagram and a pattern in each story node.  
+This will all be explained in detail.}, you can always delete the appropriate container in the project browser and start from scratch, following the steps described previously to create a skeleton for a new SDM.  
+Also note the new \note{SDM Toolbox} toolbox \texttt{SDM} that has been automatically opened up for the diagram and placed to the left above the common toolbox. 
 
 \begin{figure}[htp]
 \begin{center}
@@ -42,12 +25,11 @@ and placed to the left above the common toolbox.
 \end{center}
 \end{figure}
 
-An activity diagram with only a start node is actually not sufficient 
-yet for code generation, but even so, export your metamodels by choosing
-``Extensions/MOFLON::Ecore Addin/Export all to Workspace'' and push F5 on your
-Eclipse project \texttt{Demo} to initiate code generation.
-In Eclipse an error popup occurs as in Fig.~\ref{fig:eclipse_error}, which
-indicates that your \texttt{LearningBoxLanguage} is invalid. 
+\subparagraph{Metamodel Validation in Eclipse:}
+\label{par:validation_in_eclipse}
+An activity diagram with only a start node is actually not sufficient yet for code generation. 
+But even so, export your metamodels by choosing ``Extensions/\-MOFLON::Ecore Addin/\-Export all to Workspace'' and push F5 on your Eclipse project \texttt{Demo} to initiate code generation. 
+In Eclipse an error popup occurs as in Fig.~\ref{fig:eclipse_error}.
 
 \begin{figure}[htp]
 \begin{center}
@@ -57,12 +39,22 @@ indicates that your \texttt{LearningBoxLanguage} is invalid.
 \end{center}
 \end{figure}
 
-Go back to EA and
-validate your metamodels again by choosing ``Extensions/MOFLON::Ecore
-Addin/Validate All''. You will see a new \texttt{Eclipse Error} in the
-validation output, which hints at the missing \emph{stop node} of
-\texttt{removeCard} activity (Fig~\ref{fig:ea_eclipse_error}). So we know why
-code generation was unsuccessful in Eclipse.
+
+This error indicates that your \texttt{Learning\-Box\-Language} was invalid and the building process has failed. You can also see that the file \texttt{Learning\-Box\-Language.\-ecore} in the \texttt{model} folder of your project is marked as faulty. To see what was the problem, change to the \texttt{Problems} view in Eclipse (Fig.~\ref{fig:eclipse_problems_view}). 
+\note{Stop Node}
+The problem was that our SDM doesn't have any \emph{stop node} which is essential for the termination of a SDM.
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=\textwidth]{pics/sdmBilder/removeCard/sdm17RAW}
+  \caption{Problems view after Validation in Eclipse}  
+  \label{fig:eclipse_problems_view}
+\end{center}
+\end{figure}
+
+Go back to EA and validate your metamodels again by choosing ``Extensions/MOFLON::Ecore Addin/Validate All''.
+You will see a new \texttt{Eclipse Error} in the validation output, which hints also at the missing stop node of \texttt{removeCard} activity (Fig~\ref{fig:ea_eclipse_error}). 
+
 
 \begin{figure}[htp]
 \begin{center}
@@ -72,11 +64,10 @@ code generation was unsuccessful in Eclipse.
 \end{center}
 \end{figure}
 
-After this \emph{intentionally} created error, you should be aware that our
-validation mechanism supports you also in dynamic parts of your metamodels,
-partly by rule checking directly in EA and partly by communicating with Eclipse
-after code generation process.
- 
+After this \emph{intentionally} created error, you should be aware that our validation mechanism supports you also in dynamic parts of your metamodels, partly by rule checking directly in EA and partly by communicating with Eclipse after code generation process. 
+But please also note that the error message in EA emerged after communication with Eclipse and won't be deleted until the next successful code generation process and a subsequent validation in EA.
+
+
 Now it's time to complete our very first activity. Choose the start node, and
 note the small black arrow that appears (Fig.~\ref{fig:sdm_quicklink}).  Similar to quick linking which we learnt when
 creating our metamodel, a further fundamental gesture in EA is \emph{Quick
@@ -102,7 +93,6 @@ As indicated in Fig.~\ref{fig:sdm_new_activity_node}
 choose \texttt{Append Activity Node} to create an \emph{activity node}.  We
 \note{Activity}
 \note{Activity Node}
-\note{Stop Node}
 \note{Activity Edge}
 shall refer to the whole activity diagram simply as an \emph{activity} that
 always starts with a start node, terminates with a \emph{stop node} and consists
@@ -147,7 +137,7 @@ pattern}.  These story patterns are declarative transformation rules as introduc
 Sec.~\ref{sec:sdm_intro}.  As not all activity nodes can contain story
 \note{Story Node}
 patterns (e.g. start and stop nodes), those that can are called \emph{story
-nodes}. \clearpage
+nodes}. 
 
 
 \begin{figure}[htp]
@@ -164,7 +154,7 @@ depicted in Fig.~\ref{fig:story_pattern}.  Enter
 \texttt{remove\-Card\-From\-Partition} as the name of the story node, check
 \texttt{Create this Object} and click \texttt{OK}.
 
-\begin{figure}[hbp]
+\begin{figure}[htpb]
 \begin{center} 
   \includegraphics[width=0.25\textwidth]{pics/sdmBilder/removeCard/sdm07RAW}
   \caption{Start modelling story pattern in activity node.}  
@@ -196,6 +186,7 @@ To create an object variable that can be assigned to other objects, choose
 \texttt{SDM ObjectVariable} from the toolbox as indicated in
 Fig.~\ref{fig:tool_box} and click \emph{in the} activity node \texttt{removeCardFromPartition} (Fig.~\ref{fig:object_variable_properties}). 
 
+
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{pics/sdmBilder/removeCard/sdm10RAW}
@@ -206,7 +197,8 @@ Fig.~\ref{fig:tool_box} and click \emph{in the} activity node \texttt{removeCard
 
 In the dialogue that pops up, choose \texttt{toBeRemoved} as the name of the
 object variable and \texttt{Card} as its type using the corresponding drop-down
-menus.\clearpage  Because \texttt{toBeRemoved} is a parameter of the method, it
+menus. 
+Because \texttt{toBeRemoved} is a parameter of the method, it
 is offered as a possible name in the drop-down menu and can be directly chosen to prevent
 annoying mistakes due to typing the name of the parameter wrongly.
 
@@ -244,7 +236,7 @@ to the metamodel, there is only one possible link type between a partition and a
 card), and set the \emph{Binding Operator} to \texttt{Destroy}
 (Fig.~\ref{fig:link_variable_properties}). Every object or link variable's
 binding operator can be set to one of \texttt{Check Only, Create,
-Destroy}.\clearpage
+Destroy}.
 
 \begin{figure}[htp] 
 \begin{center}
@@ -282,8 +274,6 @@ provide a clear and type-safe interface to a general purpose language (in our
 case Java) and support a simple \emph{fallback} as soon as things get low-level
 and difficult to express as a pattern.  
 
-The alternative approach would be to
-support arbitrary expressions, for\clearpage
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/sdmBilder/removeCard/sdm14RAW}
@@ -291,7 +281,9 @@ support arbitrary expressions, for\clearpage
   \label{fig:stop_node_return_value}
 \end{center}
 \end{figure}
-example, in a script language like
+
+The alternative approach would be to
+support arbitrary expressions, for example, in a script language like
 JavaScript or in an appropriate DSL\footnote{A DSL is a Domain Specific
 Language: a language designed for a specific task which is usually simpler
 than a general purpose language like Java and more suitable for the exact task.}
@@ -313,10 +305,6 @@ card from the partition.  If the card is \emph{not} contained in the partition,
 the pattern won't match and nothing happens. In both cases the card that was
 passed in is simply returned.
 
-Congratulations!  You have specified your very first SDM.  Don't forget to
-export and generate code in your Eclipse workspace.  Inspect the generated
-implementation for the method and see if you can get a feel for what\clearpage
- 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/sdmBilder/removeCard/sdm15}
@@ -325,10 +313,10 @@ implementation for the method and see if you can get a feel for what\clearpage
 \end{center}
 \end{figure}
 
-
-the generated code does.  Notice all the null checks that are generated
-automatically -- only a very conscientious (and probably slightly paranoid)
-programmer would program so defensively!
+Congratulations!  You have specified your very first SDM.  Don't forget to
+export and generate code in your Eclipse workspace. 
+Inspect the generated implementation for the method and see if you can get a feel for what the generated code does. 
+Notice all the null checks that are generated automatically -- only a very conscientious (and probably slightly paranoid) programmer would program so defensively!
 
 If you're unable to export or generate code successfully, compare your SDM
 carefully with Fig.~\ref{fig:sdm_complete_control_flow} and make sure you
