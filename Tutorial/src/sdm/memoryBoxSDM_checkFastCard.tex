@@ -21,14 +21,24 @@ eclass \texttt{FastCard}.  Quick link to \texttt{Card} and choose
 \end{figure}
 
 Now go to the SDM \texttt{check} in \texttt{Partition} and extend the control
-flow as depicted in Fig.~\ref{fig:sdm_fastcard_2}.  Add new story nodes
+flow as depicted in Fig.~\ref{fig:sdm_fastcard_2}. 
+ 
+Add new story nodes
 \texttt{is fast card?} and \texttt{promote fast card} and drag and drop a bound
-object variable \texttt{fastcard} \emph{of type} \texttt{FastCard} into
-\texttt{is fast card?}.  What we need to do now is decide, based on the dynamic
+object variable \texttt{fastcard} \emph{of type} \texttt{FastCard} into \texttt{is fast card?}.  
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.57\textwidth]{pics/sdmBilder/bindings/fastcard_controlflow}
+  \caption{Extend check to handle fast cards.}  
+  \label{fig:sdm_fastcard_2}
+\end{center}
+\end{figure}
+
+What we need to do now is decide, based on the dynamic
 type\footnote{In a statically typed language like Java, every object has a
 static type (determined at compile time) and a dynamic type (that can only be
 determined at runtime).} of \texttt{card} if we must handle a fast card or not.
-
 This can be expressed in SDMs via \emph{BindingExpressions} or just
 \emph{Bindings}.  A binding can be specified for a \emph{bound} object variable
 \note{Bindings}
@@ -40,27 +50,17 @@ variable is either (1) assigned to \texttt{this}, (2) a parameter of the method,
 or (3) a value determined in a preceding activity node.  Bindings represent a
 fourth possibility of giving a manual binding for an object variable. 
 
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.6\textwidth]{pics/sdmBilder/bindings/fastcard_controlflow}
-  \caption{Extend check to handle fast cards.}  
-  \label{fig:sdm_fastcard_2}
-\end{center}
-\end{figure}
-
 To create a binding for \texttt{fastcard}, choose the \texttt{Binding} tab in
 the \texttt{Object Variable Properties} dialogue
 (Fig.~\ref{fig:sdm_fastcard_3}). 
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.427\textwidth]{pics/sdmBilder/bindings/fastcard_bindingexp.png}
+  \includegraphics[width=0.7\textwidth]{pics/sdmBilder/bindings/fastcard_bindingexp.png}
   \caption{Create a binding for \texttt{fastcard}.}  
   \label{fig:sdm_fastcard_3}
 \end{center}
 \end{figure}
-
-\clearpage
 
 As usual all our expression types can be used for the \texttt{Binding
 Expression}.  Since we already know all the types let's consider what each type
@@ -98,8 +98,6 @@ in Fig.~\ref{fig:sdm_fastcard_4}.
   \label{fig:sdm_fastcard_4}
 \end{center}
 \end{figure}
-
-\clearpage
 
 To complete the SDM, extract the story pattern of \texttt{promote fast card} and
 specify the pattern according to Fig.~\ref{fig:sdm_fastcard_5}.  The fast card
