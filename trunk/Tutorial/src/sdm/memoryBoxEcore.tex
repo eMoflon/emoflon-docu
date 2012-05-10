@@ -112,8 +112,6 @@ Fig.~\ref{fig:new_package_completed}.
 	\label{fig:new_package_completed}
 \end{figure}
 
-\clearpage 
-
 Now click the button \texttt{New Diagram} (Fig.~\ref{fig:diagram}).
 
 \begin{figure}[htbp]
@@ -150,7 +148,6 @@ and it defines types like \texttt{EClass} and \texttt{EReference}, which we will
 be using to specify  our metamodels.
 Other modelling languages include MOF, UML and Kermeta. 
 
-\clearpage
 
 After creating the new diagram, your  \texttt{Project Browser} should now
 resemble Fig.~\ref{fig:diagram_completed}.  Double-click the newly
@@ -175,7 +172,6 @@ diagram (the main window in EA).
 	\label{fig:eclass}
 \end{figure}
 
-\clearpage
 
 In the dialogue that pops-up, enter \texttt{Box} as the name of the class and
 click \texttt{OK} (Fig.~\ref{fig:eclass_properties}).  This dialogue can
@@ -201,7 +197,6 @@ Fig.~\ref{fig:eclass_completed}.
 	\label{fig:eclass_completed}
 \end{figure}
 
-\clearpage
 
 Now create \texttt{Partition} and \texttt{Card} in the same way, till your
 workspace resembles Fig.~\ref{fig:all_eclasses}.  These are the main classes for
@@ -224,7 +219,6 @@ Now choose \texttt{Box}, right-click to call up the context menu and choose
 	\label{fig:attribute}
 \end{figure}
 
-\clearpage
 
 In the dialogue that pops-up, enter \texttt{name} as the name of the attribute,
 choose \texttt{EString} as its type and press \texttt{Save}
@@ -248,7 +242,6 @@ Fig.~\ref{fig:attribute_completed}.
 	\label{fig:attribute_completed}
 \end{figure}
 
-\clearpage
 
 Now choose \texttt{EPackage} from the toolbox and add it to the current diagram
 just like how we added EClasses. Enter \texttt{facade} as the name of the
@@ -282,11 +275,10 @@ $\Rightarrow$ (Fig.~\ref{fig:epackage_newdiagram}).
 
 \begin{figure}[htbp] 
 	\centering
-  \includegraphics[width=0.55\textwidth]{pics/memBoxBilder/memBox20}
+  \includegraphics[width=0.8\textwidth]{pics/memBoxBilder/memBox20}
 	\caption{Main and subdiagrams in EA.}
 	\label{fig:epackage_newdiagram}
-\end{figure}
-\clearpage 
+\end{figure} 
 
 Your workspace should now resemble Fig.~\ref{fig:epackage_completed}.
 Any subpackage like \texttt{facade} can contain diagrams that can be
@@ -312,8 +304,6 @@ choose an element and note the little black arrow in its top-right corner
 	\label{fig:quicklink}
 \end{figure}
 
-\clearpage 
-
 Now click on the black arrow and pull to another element you wish to ``quick
 link" to.  In this case quick link from \texttt{Box} to \texttt{Partition}.  In
 the context-menu that pops-up, choose \texttt{EReference}.
@@ -321,15 +311,14 @@ the context-menu that pops-up, choose \texttt{EReference}.
 
 \begin{figure}[htbp] 
 	\centering
-  \includegraphics[width=0.4\textwidth]{pics/memBoxBilder/memBox24.png}
+  \includegraphics[width=0.5\textwidth]{pics/memBoxBilder/memBox24.png}
 	\caption{Create a reference via Quick Link.}
 	\label{fig:ereference}
 \end{figure}
 
 Double click the reference to invoke a dialogue (Fig.~\ref{fig:ereference_properties}), with which the
 direction of the reference can be set.  The default is \texttt{Source} $\Rightarrow$ \texttt{Target} and must be changed to \texttt{Bi-Directional} for our \texttt{Box}$\Leftrightarrow$\texttt{Partition} connection.
-A \texttt{Name} can also be entered, which is only used for documentation
-purposes and is not relevant for code generation.
+A \texttt{Name} can also be entered, which is only used for documentation purposes and is not relevant for code generation.
 
 \begin{figure}[htbp]
 	\centering
@@ -338,8 +327,6 @@ purposes and is not relevant for code generation.
 	\label{fig:ereference_properties}
 \end{figure}
 	
-\clearpage
-
 In the same dialogue choose \texttt{Source Role} and enter the values in
 Fig.~\ref{fig:reference_ends} to set the properties for the ``source''
 end of the reference (the \texttt{Box} role).  Important is a name for the role
@@ -375,8 +362,6 @@ deleted together with the container.  Non-composite (\texttt{none}) means that
 the current role is not that of a container and the rules for containment do not
 hold (reference is a simple ``pointer'').
 
-\clearpage
-
 If you've done everything right, your workspace should now resemble
 Fig.~\ref{fig:ereference_completed} with a relation between \texttt{Box} and
 \texttt{Partition}.
@@ -405,8 +390,6 @@ Fig.~\ref{fig:metamodel_complete} for a better diagram of the metamodel.}.
 	\caption{All relations in our metamodel.}
 	\label{fig:ereferences_all}  
 \end{figure}
-
-\clearpage
 
 Every system has, in addition to its static structure, certain dynamic aspects
 that describe the system's behaviour and how it evolves over time or reacts to
@@ -442,8 +425,6 @@ Type} as \texttt{void}.  Press \texttt{Save}.
 	\caption{Properties for operation.}
 	\label{fig:operation_properties}
 \end{figure}
-
-\clearpage
 
 In the same dialogue, press \texttt{New} to add further operations and enter the
 values in Fig.~\ref{fig:operation_parameters}.  Parameters can be added by
@@ -481,7 +462,6 @@ Fig.~\ref{fig:operation_partition}.
 	\caption{All operations in \texttt{Partition}.}
 	\label{fig:operation_partition}
 \end{figure}
-\clearpage
 
 Add all operations analogously for \texttt{Box}, \texttt{Card}, and
 \texttt{LearningBoxUtil}, so that your metamodel closely resembles
@@ -511,8 +491,6 @@ A \texttt{Partition} can also \texttt{empty} itself of all \texttt{Cards}, or
 \texttt{remove} a particular \texttt{Card}.  Last but not least, a
 \texttt{Partition} has a \texttt{partitionSize} that can be used to indicate
 that the \texttt{Partition} is full and is ready to be revised.
-
-\clearpage
 
 A \texttt{Card} contains the actual content to be learnt as a question on the
 card's \texttt{face} and the answer on the card's \texttt{back}. A \texttt{Card}
@@ -553,8 +531,6 @@ brings the (potential) modelling errors to your attention. In some cases, it
 provides also suggestion for a quick fix.
 
 For making the validation output window visible in EA, choose ``Extensions/\-Add-In Windows''. You will see the new output window under the workbench. (Fig.~\ref{fig:validation_output})
-
-\clearpage
 
 \begin{figure}[htbp]
 	\centering 

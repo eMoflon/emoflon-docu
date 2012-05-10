@@ -9,7 +9,7 @@ EA is not only affordable but is also quite flexible and can be extended via \em
 \item[$\blacktriangleright$] Download and install EA
 (Fig.~\ref{fig_enterpriseArchitextHomepage})
 \item[] Go to \url{http://www.sparxsystems.com/} to get a free 30 day trial.
-\begin{figure}[!h]
+\begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.7\textwidth]{pics/installationAndSetup/ea_download.png}
 	\caption{Download Enterprise Architect}
@@ -18,9 +18,9 @@ EA is not only affordable but is also quite flexible and can be extended via \em
 
 \item[$\blacktriangleright$] Install our EA-Extension (Fig.~\ref{fig_eaPluginWizard}) to add support for our modelling languages.
 \item[] Download \url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/ea-ecore-addin/ea-ecore-addin.zip}, unpack, and run setup.exe
-\begin{figure}[!h]
+\begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.3\textwidth]{pics/installationAndSetup/eaplugin_install.png}
+  \includegraphics[width=0.4\textwidth]{pics/installationAndSetup/eaplugin_install.png}
 	\caption{Install our extension for EA}
 	\label{fig_eaPluginWizard}
 \end{figure}
@@ -30,7 +30,7 @@ EA is not only affordable but is also quite flexible and can be extended via \em
 \section{Install Our Plugin for Eclipse}
 \begin{enumerate}
 \item[$\blacktriangleright$] Download and install Eclipse for Modeling ``Eclipse Modeling Tools (includes Incubating components)'' (Fig.~\ref{fig_downloadModelingPackage})\footnote{Tested for Eclipse 3.7 (Indigo).} from:\\ \url{http://www.eclipse.org/downloads/packages/}
-\begin{figure}[!h]
+\begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.65\textwidth]{pics/installationAndSetup/eclipse_modelingpackage.png}
 	\caption{Download Eclipse Modeling Tools.}
@@ -48,7 +48,7 @@ EA is not only affordable but is also quite flexible and can be extended via \em
 \item[$\blacktriangleright$] Go to ``Window/Open
 Perspective/Other\ldots''\footnote{A path given as ``foo/bar'' indicates how to
 navigate in a series of menus and submenus.} and choose Moflon
-(Fig.~\ref{fig_eclipse}). \begin{figure}[!h]
+(Fig.~\ref{fig_eclipse}). \begin{figure}[htbp]
 	\centering
   \includegraphics[width=\textwidth]{pics/installationAndSetup/eclipse_firststart.png}
 	\caption{Choose the Moflon Perspective.}
@@ -59,7 +59,7 @@ navigate in a series of menus and submenus.} and choose Moflon
 appeared. Choose ``New Metamodel'' (Fig.~\ref{fig_eclipseNewMetamodel}).
 The button with an ``L" shows you our logfile (important input for us if
 something goes wrong!).
-\begin{figure}[!h]
+\begin{figure}[htbp]
 	\centering
   \includegraphics[width=\textwidth]{pics/installationAndSetup/eclipse_metamodelButton.png}
 	\caption{Eclipse New Metamodel}
@@ -72,14 +72,12 @@ An empty EA project file ``Demo.eap'' will be
 created in a new project with a certain project structure
 according to our conventions\footnote{At the moment, the project contains only the EA project file.}.
 Please do not rename, move or delete anything.
-~\\~\\~\\~\\~\\~\\~\\~\\~\\~\\
-
 
 \item[$\blacktriangleright$] Choose working sets as your top level element in
 the package explorer (Fig.~\ref{fig_eclipseWorkingsets}).
 We work a lot with working sets and use them to structure the workspace in
 Eclipse.
-\begin{figure}[!h]
+\begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.9\textwidth]{pics/installationAndSetup/eclipse_workingsets.png}
 	\caption{Choose Working Sets as Top Level Elements.}
@@ -97,14 +95,12 @@ Please choose ``Ultimate" when starting EA for the first time.
 \item[$\blacktriangleright$] In EA, choose ``Extensions/MOFLON::Ecore Addin/Export
 all to Workspace'' (Fig.~\ref{fig_ea}).  You can of course browse the project
 structure, but please do not rename, move or delete anything yet.
-\begin{figure}[!h]
+\begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.65\textwidth]{pics/installationAndSetup/ea_firststart}
+  \includegraphics[width=0.9\textwidth]{pics/installationAndSetup/ea_firststart}
 	\caption{Export from EA using our extension} 
 	\label{fig_ea} 
 \end{figure}
-
-\newpage
 
 \item[$\blacktriangleright$] Switch back to Eclipse, choose your Metamodel
 project and press F5 to refresh.
@@ -116,7 +112,7 @@ You should be able to monitor the progress in the lower right corner
 Pressing the symbol opens a monitor view that gives more details of the build
 process. You don't need to worry about any of these details, just remember to
 refresh your Eclipse workspace after an export.
-\begin{figure}[!h]
+\begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.55\textwidth]{pics/installationAndSetup/eclipse_building.png}
 	\caption{Automatically building the workspace after a refresh.}
@@ -132,20 +128,18 @@ refresh your Eclipse workspace after an export.
 into Workspace'' (Fig.~\ref{fig_eclipseTestsuiteImport}) and choose the
 Testsuite project that is also in the \texttt{eMoflonTutorial.zip} provided
 with this tutorial. 
-\begin{figure}[!h]
+\begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.55\textwidth]{pics/installationAndSetup/eclipse_testsuitimport.png}
 	\caption{Import our Testsuite as an existing project.}
 	\label{fig_eclipseTestsuiteImport}
-\end{figure}
-
-\newpage 
+\end{figure} 
 
 \item[] At this point, your workspace should resemble
 Fig.~\ref{fig_eclipsepackageexplorer}.
-\begin{figure}[!h]
+\begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.2\textwidth]{pics/installationAndSetup/eclipse_packageexplorer.png}
+  \includegraphics[width=0.4\textwidth]{pics/installationAndSetup/eclipse_packageexplorer.png}
 	\caption{Workspace in Eclipse.}
 	\label{fig_eclipsepackageexplorer}
 \end{figure}
@@ -155,9 +149,9 @@ Fig.~\ref{fig_eclipsepackageexplorer}.
 Congratulations!  If you see a green bar  (Fig.~\ref{fig_eclipsetestsuiterun}),
 then everything has been set-up correctly and you are now ready to start
 metamodelling!
-\begin{figure}[!h]
+\begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.2\textwidth]{pics/installationAndSetup/eclipse_testsuiterun.png}
+  \includegraphics[width=0.5\textwidth]{pics/installationAndSetup/eclipse_testsuiterun.png}
 	\caption{All's well that ends well\ldots}
 	\label{fig_eclipsetestsuiterun}
 \end{figure}
@@ -183,9 +177,9 @@ to our screenshots:
   as the default language for code generation (Fig.~\ref{fig_standardSCEEA}). 
   This setting is very important.
 \end{itemize}
-\newpage
+
 %\usepackage{graphics} is needed for \includegraphics
-\begin{figure}[!h]
+\begin{figure}[htbp]
 \centering
 \begin{minipage}[b]{0.3\textheight}
   \centering
@@ -234,7 +228,7 @@ or choosing ``refresh'' from the context menu.  In our case,
 \texttt{Specifications} should contain a single metamodel project \texttt{Demo}
 containing our EA project file  \texttt{Demo.eap}.
 
-\begin{figure}[!h]
+\begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.8\textwidth]{pics/installationAndSetup/bothexplorers}
 	\caption{From EA to Eclipse}
@@ -331,8 +325,6 @@ implement.  E.g.  \texttt{$\ll$ SDM Container$\gg$ insertNodeAfter SDM} for the
 method  \texttt{insertNodeAfter(Node)} as depicted in
 Fig.~\ref{fig_fromEAtoEclipse}.  We'll spend the rest of the tutorial
 understanding why SDMs are so  {\huge crazily} cool!
-
-\clearpage
  
 To recap all we've discussed, let's consider the complete workflow as depicted
 in Figure~\ref{fig_Overview}. We started with a concise model in EA, simple and
@@ -345,7 +337,7 @@ of abstraction}, we can flesh out the generated repository (5) if necessary, and
 mix as appropriate with hand-written code and libraries.  Our abstract specification of 
 behaviour (methods) in SDM is translated to a series of method calls that form
 the body of the corresponding Java method (6).
-\begin{figure}[!h]
+\begin{figure}[htbp]
 	\centering
   \includegraphics[width=1\textwidth]{pics/installationAndSetup/tafelbild}
 	\caption{Overview}
