@@ -96,7 +96,7 @@ press the \texttt{Save} button for every parameter and \texttt{Add}
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.28\textwidth]{pics/sdmBilder/grow/sdm66}
+  \includegraphics[width=0.25\textwidth]{pics/sdmBilder/grow/sdm66}
   \caption{Invoking a method via a \texttt{MethodCallExpression}.}  
   \label{fig:sdm_grow_4}
 \end{center}
@@ -110,6 +110,7 @@ generated code
 (\texttt{gen/\-LearningBoxLanguage/\-facade/\-impl/\-LearningBoxUtilImpl}).
 Don't forget to add \texttt{@generated NOT} to the Java doc comment of the
 method so the code generator preserves your code in future runs.
+When testing (which you will \emph{of course} do right?), note that you can only grow a ``minimal'' box that has at least a first and last partition, i.e., a box with no partitions at all cannot be grown using our specified SDM. 
 
 \begin{figure}[htbp]
 \begin{center}
