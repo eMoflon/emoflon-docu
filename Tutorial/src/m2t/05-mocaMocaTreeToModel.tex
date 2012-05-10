@@ -39,7 +39,7 @@ All dependencies are automatically added when exporting to Eclipse -- now isn't 
   \label{fig:moca-transformFolder}
 \end{center}
 \end{figure}
-\clearpage
+
 \item[$\blacktriangleright$] The next SDM, \texttt{transformNode(Node)~:Dic\-tion\-ary} (Fig.~\ref{fig:moca-transformNode}) takes a node, representing a dictionary, and builds up a dictionary object, adding entries appropriately.
 It further delegates creation of authors to \texttt{transformAuthor}.\footnote{Note that multiple arguments for a MethodCallExpression \emph{cannot} be entered on a single line and separated, e.g. with a ``,'' but rather have to be chosen in the drop-down menu and entered separately, pressing \texttt{Save} each time.}
 Note how \emph{indices} are used in the story node \texttt{match entry node} to decide, according to convention (how we built the tree), which node in the tree is to be interpreted as content and which as the level of the entry.
@@ -51,7 +51,7 @@ Note how \emph{indices} are used in the story node \texttt{match entry node} to 
   \label{fig:moca-transformNode}
 \end{center}
 \end{figure}
-\clearpage
+
 \item[$\blacktriangleright$] To wrap things up, create the last SDM, \texttt{trans\-form\-Author(Node)} as depicted in Fig.~\ref{fig:moca-transformAuthor}.
 This SDM checks in \texttt{match author node} if the node with \texttt{index} 1 is \emph{not} an entry.
 Again according to convention, this would be an author node which is optional.
@@ -73,7 +73,6 @@ This is exactly how we need to handle authors -- cool right?
 \end{center}
 \end{figure}
 
-%\clearpage
 \item[$\blacktriangleright$] As a final step, open \texttt{MocaMain.java}
 (Fig.~\ref{fig:moca-8-MocaMain}) and edit lines 32 -- 36 as follows:
 \begin{verbatim}
