@@ -1,11 +1,11 @@
-\section{Tree-To-Text Transformation with SDMs}
+\section{Tree-to-Text Transformation with SDMs}
 \label{chap:tree-to-text}
 
 In this last step, we are going to transform our tree to an actual folder structure with files containing text.
 One of the coolest things about ANTLR is that the same parser technology can be used to \emph{unparse} a tree.
 Analogously to parsing text with a lexer and parser grammar to produce a tree, a tree can be unparsed to text using a \emph{tree grammar} and templates.
 \begin{enumerate}
-\item[$\blacktriangleright$] Open \texttt{src/org.moflon.org/dictionary/unparser/Dictionary\-Tree\-Grammar.g} (Fig.~\ref{fig:moca-3-WizardResult}), and edit the contents of the file as depicted in Fig.~\ref{fig:moca-DictionaryTreeGrammar}.
+\item[$\blacktriangleright$] Open \texttt{src/org.moflon.moca.dictionary.unparser/Dictionary\-Tree\-Grammar.g} (Fig.~\ref{fig:moca-3-WizardResult}), and edit the contents of the file as depicted in Fig.~\ref{fig:moca-DictionaryTreeGrammar}.
 A tree grammar is actually very similar to standard EBNF and consists of a set of rules (\texttt{main}, \texttt{entry}) that match a tree fragment (instead of a text fragment) and evaluate a template (instead of building up a tree).
 For further details concerning tree grammars we refer to \cite{ANTLR} and the
 ANTLR website \url{www.antlr.org}.
@@ -19,7 +19,7 @@ ANTLR website \url{www.antlr.org}.
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] In the generated \texttt{src/org.moflon.org/dictionary/unparser/Dic\-tion\-ary\-Unparser\-Adapter.java} (Fig.~\ref{fig:moca-3-WizardResult}) a method for retrieving a group of templates has to be implemented.
+\item[$\blacktriangleright$] In the generated \texttt{src/org.moflon.moca.dictionary.unparser/Dic\-tion\-ary\-Unparser\-Adapter.java} (Fig.~\ref{fig:moca-3-WizardResult}) a method for retrieving a group of templates has to be implemented.
 Figure \ref{fig:moca-DictionaryUnparserAdapter} depicts the generated version showing how to use either a folder containing different template files, or a single file that contains all templates.
 The latter is better for numerous smaller templates, while the former makes sense when the templates contain a lot of static text.
 %\usepackage{graphics} is needed for \includegraphics
