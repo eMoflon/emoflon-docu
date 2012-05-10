@@ -8,7 +8,7 @@ It's just easier for the tutorial to fit each SDM on a single page!
 
 \begin{enumerate}
   \item[$\blacktriangleright$]  In the code adapter project
-  \texttt{DictionaryCodeAdapter}, create a \texttt{Trans\-for\-mer} class with the methods and references to the \texttt{Library} class as depicted in Fig.~\ref{fig:moca-DictionaryCodeAdapter}.
+  \texttt{DictionaryCodeAdapter}, create a \texttt{Trans\-for\-mer} class with the methods and references to the \texttt{Library} class as depicted in Fig.~\ref{fig:moca-DictionaryCodeAdapter}.\footnote{Do not forget to hold \texttt{Ctrl} when dragging the class in and to choose ``as Simple Link'' so that the class itself is added to the diagram and not an instance of it.}
   Some of the methods are for the model-to-text transformation and the corresponding SDMs shall be handled in Chapter~\ref{chap:model-to-tree}.
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
@@ -41,7 +41,7 @@ All dependencies are automatically added when exporting to Eclipse -- now isn't 
 \end{figure}
 \clearpage
 \item[$\blacktriangleright$] The next SDM, \texttt{transformNode(Node)~:Dic\-tion\-ary} (Fig.~\ref{fig:moca-transformNode}) takes a node, representing a dictionary, and builds up a dictionary object, adding entries appropriately.
-It further delegates creation of authors to \texttt{transformAuthor}.
+It further delegates creation of authors to \texttt{transformAuthor}.\footnote{Note that multiple arguments for a MethodCallExpression \emph{cannot} be entered on a single line and separated, e.g. with a ``,'' but rather have to be chosen in the drop-down menu and entered separately, pressing \texttt{Save} each time.}
 Note how \emph{indices} are used in the story node \texttt{match entry node} to decide, according to convention (how we built the tree), which node in the tree is to be interpreted as content and which as the level of the entry.
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
@@ -88,5 +88,15 @@ for (Library library : transformer.getTransformedLibraries())
   	library, "instances/" + library.getName() + ".xmi"); 
 \end{verbatim}
   
+To see the effects of running \texttt{MocaMain.java}, refresh (\texttt{F5}) the Eclipse project to see the newly created \texttt{myLibrary.xmi} (Fig.~\ref{fig:moca-created-libary}).  
 Open and inspect the library model using the reflective model browser and note especially the cross-tree references between authors and their dictionaries. 
 \end{enumerate}
+
+%\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=\textwidth]{pics/moca/3MocaTreeToModel/tree_to_model_filesystem.png}
+  \caption{Created library model}
+  \label{fig:moca-created-libary}
+\end{center}
+\end{figure}
