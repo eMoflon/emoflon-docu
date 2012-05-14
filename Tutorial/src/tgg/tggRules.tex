@@ -138,8 +138,6 @@ Now, we will go deeper in the composite hierarchy of our metamodels and define o
 
 \begin{enumerate}
 \item[$\blacktriangleright$] Open \texttt{Rules} diagram again and create a new TGG Rule and name it \texttt{CardToEntryRule}.
-\item[$\blacktriangleright$] Edit the generated method \texttt{CardToEntryRule} by adding a new parameter \texttt{maxHist} of type \texttt{EInt}. 
-(This parameter will be used later for some attribute manipulation purposes.)
 \end{enumerate}
 
 Your \texttt{Rules} diagram should resemble Fig.~\ref{fig:rules_diagram}.
@@ -158,13 +156,13 @@ That means, in our new rule we will first check the existence of bound objects f
 
 \begin{enumerate}
 \item[$\blacktriangleright$] Double click the newly created \texttt{CardToEntryRule} to open its diagram.
-\item[$\blacktriangleright$] Drag \& drop an instance of \texttt{Box}, name it \texttt{box}, select the checkbox \texttt{Bound} and choose \texttt{Check only} as binding operator (Fig.~\ref{fig:bound_tgg_variable}).
-\item[$\blacktriangleright$] In the same way, drag \& drop bound instances of \texttt{Partition}, \texttt{Dictionary} and \texttt{BoxToDictionary} and pull the appropriate links, so that your rule diagram resembles Fig.~\ref{fig:check_bound_variables}.
+\item[$\blacktriangleright$] Drag \& drop an instance of \texttt{Box}, name it \texttt{box} and choose \texttt{Check only} as binding operator (Fig.~\ref{fig:bound_tgg_variable}).
+\item[$\blacktriangleright$] In the same way, drag \& drop instances of \texttt{Partition}, \texttt{Dictionary} and \texttt{BoxToDictionary} and pull the appropriate links, so that your rule diagram resembles Fig.~\ref{fig:check_bound_variables}.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.6\textwidth]{pics/tggBilder/tggRule/tgg17}
-  \caption{Creating a Bound TGG Variable}  
+  \caption{Creating a Check Only TGG Variable}  
   \label{fig:bound_tgg_variable}
 \end{center}
 \end{figure}
@@ -172,7 +170,7 @@ That means, in our new rule we will first check the existence of bound objects f
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg18}
-  \caption{checking the Bound TGG Variables from other Rule }  
+  \caption{checking the TGG Variables from other Rule }  
   \label{fig:check_bound_variables}
 \end{center}
 \end{figure}
@@ -187,21 +185,73 @@ Now it's time to add our new objects to the graph triple in case of graph patter
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg19}
-  \caption{TGG Rule \texttt{CardToEntryRule} wothour Attribute Manipulations}  
+  \caption{TGG Rule \texttt{CardToEntryRule} without Attribute Manipulations}  
   \label{fig:cardtoentry_1}
 \end{center}
 \end{figure}
 
 \end{enumerate}
 
-TODO: explain constraints\ldots
+The last thing to do for our second TGG rule is to define some attribute constraints for the transformarion between related \texttt{Card} and \texttt{Entry} objects.
+Assuming that the \texttt{content} of an \texttt{Entry} in a \texttt{Dictionary} has the form \texttt{<word>: <meaning>}, while the \texttt{face} of a \texttt{Card} reads \texttt{Question: <word>} and the \texttt{back} reads \texttt{Answer: <meaning>}.
+With our two predefined attribute constraint functions \texttt{addPrefix} and \texttt{concat}, we can do the appropriate prefix additions and string concatenations.
 
-In the end, your complete \texttt{CardToEntry} Rule diagram should resemble Fig.~\ref{fig:cardtoentry_complete}.
+\begin{enumerate}
+\item[$\blacktriangleright$] Darg \& drop a new constraint to your diagram and add the following three lines to it:
+
+\begin{itemize}
+\item[] \texttt{addPrefix(``Question: ``, word, card.face)} 
+\item[] \texttt{addPrefix(``Answer: ``, meaning, card.back)} 
+\item[] \texttt{concat(word, ``: ``, meaning, entry.content)} 
+\end{itemize}
+
+\end{enumerate}
+
+The rule diagram after adding these constraints is depicted in Fig.~\ref{fig:cardtoentry_2}.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg20}
-  \caption{complete TGG Rule \texttt{CardToEntryRule}}  
+  \caption{String Manipulations for \texttt{card} and \texttt{entry}}  
+  \label{fig:cardtoentry_2}
+\end{center}
+\end{figure}
+
+The first attribute constraint of type \texttt{addPrefix} implies that \texttt{card.face} 
+consists of a prefix \texttt{``Question :``} and a remaining part defined as variable \texttt{word}.
+In the second attribute constraint, we use the same analogy for the \texttt{card.back} and define the variable \texttt{meaning}. 
+And the third attribute constraint implies that the \texttt{entry.content} is the concatenation of these two variables with a colon in between.
+These three attribute constraints are reversible (\emph{addPrefix vs. removePrefix} and \emph{concat vs. split}) and apply therefore to both transformation directions. 
+
+The next question is how the dependence between \texttt{entry.\-level} and \texttt{par\-ti\-tion.\-index} looks like.
+For example, a \texttt{Card} in a \texttt{Partition} with \texttt{index = 0} should be transformed to an \texttt{Entry} with level \texttt{beginner} and vice versa.
+This time, we will define our own attribute constraint function which will be implemented later in hand-written Java code for the mapping between \texttt{partition.index} and \texttt{entry.level}. 
+
+\begin{enumerate}
+\item[$\blacktriangleright$]Darg \& drop a further constraint to your diagram and add the following two lines to it:
+
+\begin{itemize}
+\item[] \texttt{indexToLevel[BB,BF,FB]} 
+\item[] \texttt{indexToLevel(partition.index, entry.level)} 
+\end{itemize}
+
+\end{enumerate}
+
+In the end, be sure that your TGG rule resembles Fig.~\ref{fig:cardtoentry_complete} before you proceed to the next chapter.
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg21}
+  \caption{Complete TGG Rule Diagram \texttt{CardToEntry}}  
   \label{fig:cardtoentry_complete}
 \end{center}
 \end{figure}
+
+The new attribute constraint function \texttt{indexToLevel} will provide us a mapping between \texttt{partition.index} and \texttt{entry.level} by hand-written Java code. 
+According to the declaration (first line) of our attribute constraint, we will distinguish between three different cases:
+
+\begin{itemize}
+\item[] \texttt{BB:} both \texttt{partition.index} and \texttt{entry.level} are \emph{bound}
+\item[] \texttt{BF:} \texttt{partition.index} is \emph{bound} and \texttt{entry.level} is \emph{free}
+\item[] \texttt{FB:} \texttt{partition.index} is \emph{free} and \texttt{entry.level} is \emph{bound} 
+\end{itemize}
