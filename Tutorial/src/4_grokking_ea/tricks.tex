@@ -1,0 +1,222 @@
+\chapter{Grokking EA}
+\label{chap:Tips and Tricks}
+
+In this chapter, we have collected a few of the most important tips and tricks for working productively with EA.
+You can of course decide to skip over to the next chapter but we really believe that spending the time to grok EA is necessary for a pleasant modelling experience!
+
+\section{How to lay out elements}
+
+Layout is always an important factor when using a visual language.
+A well laid out diagram is easier to understand and by centralizing important elements or clustering related elements, you can actually impart additional information via a well-chosen layout.
+
+\begin{enumerate}
+\item[$\blacktriangleright$] To lay out a group of elements select them by drawing a selection box around them (or select them one by one by holding down \texttt{Ctrl} and clicking on each element).
+\begin{figure}[htbp]
+\begin{center} 
+  \includegraphics[width=\textwidth]{pics/tricks/layoutElements/layoutElements1}
+  \caption{How to layout elements}  
+  \label{fig_layout01}
+\end{center}
+\end{figure}
+ 
+\item[$\blacktriangleright$] At the right side of the element that was selected last, a little symbol appears (Fig.~\ref{fig_layout01}).
+Click on the symbol to obtain different options that are applied to all selected elements simultaneously.
+Experiment a bit to find out what effect each option has.
+The last symbol opens a further drop-down menu with standard layout algorithms.
+
+\begin{figure}[htbp]
+\begin{center}  \includegraphics[width=\textwidth]{pics/tricks/layoutElements/layoutElements2}
+  \caption{Further layout options}  
+  \label{fig_layout02} 
+\end{center}
+\end{figure}
+
+\item[$\blacktriangleright$] Right-clicking one of the selected elements opens a different menu with a further set of layout options (Fig.~\ref{fig_layout02}).
+Especially \texttt{Align Centers} can be pretty useful.
+\end{enumerate}
+  
+\section{Bending lines to your will}
+
+Almost as important as a good layout is getting lines to be just the way you want them to be.
+In EA you can add and remove bending points which can be used to control the appearance of a line.
+
+\begin{enumerate}
+\item[$\blacktriangleright$]Hold down \texttt{Ctrl} and click on a line to create a bending point (Fig.~\ref{fig_bendLine01}).
+You can now pull and place the bending point as you wish.
+ 
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{pics/tricks/bendLine/bendLine1}
+  \caption{How to bend lines}   
+  \label{fig_bendLine01}
+\end{center}
+\end{figure}
+
+\item[$\blacktriangleright$] You can create as many bending points as you wish, or \emph{remove} them also by holding down \texttt{Ctrl} and clicking on the point to be deleted.
+\end{enumerate}
+
+\section{Deleting vs. removing elements from diagrams} 
+
+A central feature that new users should understand as soon as possible is the way EA handles diagrams.
+A diagram is simply treated as a \emph{view} of the complete ``model'' in EA.
+The complete model can always be browed in a tree view (the package browser) and contains all elements that are exported.
+Diagrams typically do not contain all elements and one usually uses multiple possibly ``redundant" diagrams to show different parts of the model.
+Thinking in this frame is crucial and provides a pragmatic solution to the problem of having huge unmaintainable diagrams.
+A tricky consequence one must get used to is that \emph{removing} an element from a diagram does \emph{not} delete it from the model.
+
+\begin{enumerate}
+\item[$\blacktriangleright$] One of the most common mistakes of new users is to remove an element from a diagram by pressing \texttt{Del} and expecting the element to be deleted from the model.   
+This is however not the case as the element is only removed from the current diagram and is still in the model and thus in the package browser (Fig.~\ref{fig_DelVsCtrlDel01}).
+
+\begin{figure}[htbp]
+\begin{center} 
+\includegraphics[width=0.87\textwidth]{pics/tricks/DelVsCtrlDel/DelVsCtrlDel1}
+  \caption{Removing an element from a diagram via pressing \texttt{Del} does not delete it from the model and it is still present in the package browser}  
+    \label{fig_DelVsCtrlDel01}
+\end{center}
+\end{figure}  
+
+\item[$\blacktriangleright$] By pressing \texttt{Ctrl+Del} and confirming (Fig.~\ref{fig_DelVsCtrlDel02}) you can \emph{delete} an element from a diagram \emph{and} completely from the model as well (the element will no longer be in the \texttt{Project Browser}).
+Elements can also be deleted via the context menu in the \texttt{Project Browser} (invoked by right-clicking the element in the \texttt{Project Browser}).
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{pics/tricks/DelVsCtrlDel/DelVsCtrlDel2.png}
+  \caption{Deleting an element from a diagram and from the model}  
+  \label{fig_DelVsCtrlDel02}
+\end{center}
+\end{figure}  
+
+\end{enumerate}
+
+\section{Excluding certain projects from the export}
+
+Sometimes it might be necessary to be able to exclude projects from the export (\texttt{Export All to Workspace} option).
+This might be (i) because the project is still work in progress and simply not yet ready to be exported, (ii) because the complete project is present in your Eclipse workspace but has not been modelled completely in EA and you wish to do this gradually on demand (this is currently the recommended strategy as we do not have an import yet), (iii) because the project is not meant to be present in your Eclipse workspace as generated code and is instead provided via a plugin (this is usually the case for standard metamodels like Ecore, UML etc.), or (iv) because the project is rather large and pretty stable, and you do not want to wait each time for an unnecessary export (and you do not wish to click and export the other projects individually).
+
+Whatever the reason, you can achieve this by setting a certain \emph{tagged value} of the project to be ignored:
+
+\begin{enumerate}
+\item[$\blacktriangleright$]Select ``View/Tagged Values'' from the menu bar (Fig.~\ref{fig_ignoreExportingProject01}).
+\begin{figure}[htbp]
+\begin{center}  \includegraphics[width=0.55\textwidth]{pics/tricks/ignoreExportingProject/ignoreExportingProject1}
+  \caption{view the TaggedValue}  
+  \label{fig_ignoreExportingProject01}
+\end{center}
+\end{figure} 
+
+\item[$\blacktriangleright$] A tagged value \emph{Moflon::Export} should already be present and be set to \texttt{true} per default (Fig.~\ref{fig_ignoreExportingProject02}). 
+If this is not the case then create it afresh.
+If you want the project to be ignored by the export, change the value of Moflon::Export to \texttt{false} (and conversely back to \texttt{true} to export it again).
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{pics/tricks/ignoreExportingProject/ignoreExportingProject2}
+  \caption{Tagged value Moflon::Export is used to ignore projects}  
+  \label{fig_ignoreExportingProject02}
+\end{center}
+\end{figure}
+\end{enumerate}
+
+
+\section{Getting verbose!}
+Although we use colours in SDMs to indicate when an element is to be matched (black), created (green), or destroyed (red), sometimes, especially for a black and white printout, it makes sense to indicate this via explicit stereotypes.
+
+\begin{enumerate}
+\item[$\blacktriangleright$] 
+Right–click on a diagram and select ''Extensions/extras/Set Moflon::Verbose to
+true'' to enable \texttt{<<create>>} and \texttt{<<destroy>>} stereotypes (Fig.~\ref{fig_usingVerbose01}).
+
+\item[$\blacktriangleright$] You can hide the stereotypes again by selecting
+``Extensions/extras/Set Moflon:: Verbose to
+false'' (Fig.~\ref{fig_usingVerbose01}).
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.9\textwidth]{pics/tricks/usingVerbose/usingVerbose1}
+  \caption{Verbal change of links}  
+  \label{fig_usingVerbose01}
+\end{center}
+\end{figure}
+\end{enumerate}
+
+
+\section{Duplicating elements via drag\&drop}
+By holding down \texttt{Ctrl} and dragging objects in diagrams or in the project browser, you can copy (duplicate) most elements.
+Typically, the appropriate dialogue pops up for the new element (Fig.~\ref{fig_copy01}).
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.95\textwidth]{pics/tricks/copy/copy1}
+  \caption{Copying objects}  
+  \label{fig_copy01}
+\end{center}
+\end{figure}
+
+
+\section{Seek, and ye shall find \ldots}
+EA has a model search function that can be quite handy for large models with thousands of elements:
+
+\begin{enumerate}
+\item[$\blacktriangleright$]Select ``Model Search Window'' and enter the name of an element you wish to search for (Fig.~\ref{fig_search01}). 
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{pics/tricks/search/search1}
+  \caption{Model Search Window}  
+  \label{fig_search01}
+\end{center}
+\end{figure}
+
+\item[$\blacktriangleright$]
+All elements that meet the search criteria are listed and you can right-click on each of the items and select ``Find in Diagrams'' or  ``Find in Project Browser'' to locate the elements. 
+
+\item[$\blacktriangleright$]
+In a similar way, you can locate the corresponding class of an object by right clicking and selecting ``Find/Locate Classifier in Project Browser''.
+\end{enumerate}
+
+
+\section{Working with multiple EAPs} 
+
+Although you can simply copy \& paste single packages between multiple EAPs, packages with dependencies to other packages cannot be copied so easily.
+If you do this via copy \& paste all links will be destroyed!
+
+\begin{enumerate}
+\item[$\blacktriangleright$]
+To migrate multiple packages, you have to first export a \emph{complete} root node (a package on the top-most level in the Project Browser) from the source EAP to XMI.
+In preparation for a transfer of projects, it might, therefore, make sense to prepare a suitable root node with a relevant set of projects to be transferred or copied to another (target) EAP file.
+Right-click the root node you wish to export and select ``Export Model to XMI...'' (Fig.~\ref{fig_projectMigration01}).
+In the dialogue that pops up, enter the name and path of the exported file and choose \texttt{XMI 2.1} as ``Export type''.
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.3\textwidth]{pics/tricks/projectMigration/projectMigration1}
+  \caption{Export the root node from the source EAP}  
+  \label{fig_projectMigration01}
+\end{center}
+\end{figure}
+
+\item[$\blacktriangleright$]
+Open the target EAP, right-click on the Project Browser and select ``Import Model from XMI...'' (Fig.~\ref{fig_projectMigration03}). 
+In the dialogue that pops up, enter the name and path of the file to be imported and click \texttt{Import}.
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.3\textwidth]{pics/tricks/projectMigration/projectMigration3}
+  \caption{Import the root node into the target EAP}  
+  \label{fig_projectMigration03}
+\end{center}
+\end{figure}
+ 
+\item[$\blacktriangleright$]
+After confirming and starting the import, you have to specify how the model should be imported.
+As our root models are at the root level, choose ``Yes'' in the dialogue depicted in Fig.~\ref{fig_projectMigration06}.
+After the import, you can now delete packages in the root node, which you do not need.
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.35\textwidth]{pics/tricks/projectMigration/projectMigration6}
+  \caption{Confirm the level of the root node}  
+  \label{fig_projectMigration06}
+\end{center}
+\end{figure}
+
+\end{enumerate}
+
