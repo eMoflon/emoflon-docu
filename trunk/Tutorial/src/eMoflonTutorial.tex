@@ -23,8 +23,8 @@
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
-\input{main/titlepage}
-  
+\input{1_2_introduction_installation/titlepage}
+    
 \begin{document}   
   
 \frontmatter   
@@ -51,7 +51,7 @@ Darmstadt, Germany (September 2011)
 \end{small}
 
 
-\setcounter{tocdepth}{1}
+%\setcounter{tocdepth}{1}
 \tableofcontents
 
 % store page counter
@@ -59,26 +59,37 @@ Darmstadt, Germany (September 2011)
 \setcounter{romanpages}{\value{page}}
 
 \mainmatter
+ 
+\input{1_2_introduction_installation/introduction}
+\input{1_2_introduction_installation/installation}
 
-\input{main/introduction}
-\input{main/installation}
-\input{sdm/memoryBoxEcore}
-\input{sdm/memoryBoxSDMIntro}
-\input{sdm/memoryBoxSDM_removeCard}
-\input{sdm/memoryBoxSDM_check}
-\input{sdm/memoryBoxSDM_empty}
-\input{sdm/memoryBoxSDM_invert}
-\input{sdm/memoryBoxSDM_grow}
-\input{sdm/memoryBoxSDM_toString}
-\input{sdm/memoryBoxSDM_checkFastCard} 
-\input{main/tricks} 
-\input{m2t/01-moca}
-\input{tgg/intro}
-\input{tgg/whatAretggs} 
-\input{tgg/correspondencyTypes}
-\input{tgg/tggRules}
-\input{tgg/executeTransformation}
-\input{main/conclusion}
+\input{3_leitnersbox_sdm/memoryBoxEcore}
+\input{3_leitnersbox_sdm/memoryBoxSDMIntro}
+\input{3_leitnersbox_sdm/memoryBoxSDM_removeCard}
+\input{3_leitnersbox_sdm/memoryBoxSDM_check}
+\input{3_leitnersbox_sdm/memoryBoxSDM_empty}
+\input{3_leitnersbox_sdm/memoryBoxSDM_invert}
+\input{3_leitnersbox_sdm/memoryBoxSDM_grow}
+\input{3_leitnersbox_sdm/memoryBoxSDM_toString}
+\input{3_leitnersbox_sdm/memoryBoxSDM_checkFastCard}
+ 
+\input{4_grokking_ea/tricks} 
+
+\input{5_dictionary_moca/01-moca}
+\input{5_dictionary_moca/02-antlr}
+\input{5_dictionary_moca/03-mocaDictionaryMetaModel} 
+\input{5_dictionary_moca/04-mocaTextToMocaTree}
+\input{5_dictionary_moca/05-mocaMocaTreeToModel}
+\input{5_dictionary_moca/06-mocaModelToMocaTree}
+\input{5_dictionary_moca/07-mocaMocaTreeToText}
+
+\input{6_box_to_dic_tgg/intro}
+\input{6_box_to_dic_tgg/whatAretggs} 
+\input{6_box_to_dic_tgg/correspondencyTypes}
+\input{6_box_to_dic_tgg/tggRules}
+\input{6_box_to_dic_tgg/executeTransformation}
+
+\input{7_conclusion/conclusion}
 
 % Start appendix
 \newpage
@@ -95,7 +106,7 @@ Darmstadt, Germany (September 2011)
 \bibliography{references} 
 \newpage
 
-\include{main/gpl}
+\include{7_conclusion/gpl}
 \end{appendix}
 
 \end{document}
