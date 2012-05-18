@@ -447,68 +447,78 @@ With eMoflon however, we can also model a large part of the dynamic semantics an
 \section{Validating Your Metamodel}
 \label{sect:instance}
 
-Our EA extension provides you with support for validating your metamodel against Ecore in static structure and later also against SDM language in dynamic structure. 
-After checking the appropriate rules on your metamodels, the validation mechanism produces messages in an output window and brings the (potential) modelling errors to your attention. 
-In some cases, it provides also suggestion for a quick fix.
+Our EA extension provides rudimentary support for validating the static semantics (Ecore) and dynamic semantics (SDM) of metamodels. 
+Validation results are displayed and, in some cases, even ``quick fixes'' to automatically solve the problems are offered. 
+Our validation framework is still work in progress so if you find an error that is not/wrongly detected feel free to send us a brief description.
 
-For making the validation output window visible in EA, choose ``Extensions/\-Add-In Windows''. 
-You will see the new output window under the workbench. (Fig.~\ref{fig:validation_output})
+\begin{enumerate}
+\item[$\blacktriangleright$] To make the validation output window visible in EA, choose ``Extensions/\-Add-In Windows''. 
+This should display a new output window as depicted in Fig.~\ref{fig:validation_output}.
 
 \begin{figure}[htbp]
 	\centering 
   \includegraphics[width=0.8\textwidth]{pics/memBoxBilder/memBox40} 
-	\caption{Making the validation output visible}
+	\caption{Activating the validation output window}
 	\label{fig:validation_output}
 \end{figure}
 
-Make your first validation by choosing ``Extensions/\-MOFLON::Ecore Addin/\-Validate all'' in EA (Fig.~\ref{fig:validation_menu}). 
-If you have done everything right while modelling your \texttt{LearningBoxLanguage} in the last chapter, the output will resemble Fig.~\ref{fig:first_validation}, which indicates your metamodels don't have any errors.
+\item[$\blacktriangleright$] To start the validation choose ``Extensions/\-MOFLON::Ecore Addin/\-Validate all'' in EA (Fig.~\ref{fig:validation_menu}). 
+If you haven't already made any mistakes while modelling your \texttt{LearningBoxLanguage} in the last chapter, the output should resemble Fig.~\ref{fig:first_validation}, indicating that your metamodels are free of errors (at least according to our validation).
 
 \begin{figure}[htbp]
 	\centering 
   \includegraphics[width=0.6\textwidth]{pics/memBoxBilder/memBox41} 
-	\caption{Validating your metamodels}
+	\caption{Starting the validation}
 	\label{fig:validation_menu}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering 
   \includegraphics[width=0.8\textwidth]{pics/memBoxBilder/memBox42} 
-	\caption{Output after your first validation}
+	\caption{Output for an error-free workspace}
 	\label{fig:first_validation}
 \end{figure}
+\end{enumerate}
 
-Now we will put two small modelling errors into our \texttt{LearningBoxLanguage} to get familiar with validation and quick fix features.
 
-Create a new class in the \texttt{Learning\-Box\-Language} diagram by drag\&drop from the toolbox. 
-You can keep its name just as \texttt{EClass1}. Let's assume, you decided to delete this class. 
-Choose \texttt{EClass1} in the diagram and push the \texttt{Delete} button in your keyboard. 
-Can you see that \texttt{EClass1} still exists in the project browser and you have one new \texttt{Information} in the validation output (Fig.~\ref{fig:validation_information})?
+To get familiar with our validation and quick fix features, let's add two small modelling errors in \texttt{LearningBoxLanguage}. 
+
+\begin{enumerate}
+\item[$\blacktriangleright$] Create a new class in the \texttt{Learning\-Box\-Language} diagram. 
+You can retain the default name \texttt{EClass1}.
+Let's assume, you wish to delete this class from your metamodel. 
+\item[$\blacktriangleright$] Select it (\texttt{EClass1}) in the diagram and press the \texttt{Delete} button.
+Note that \texttt{EClass1} still exists in the project browser (and thus in your metamodel) and that you have one new \texttt{Information} message in the validation output (Fig.~\ref{fig:validation_information}).
 
 \begin{figure}[htbp]
 	\centering 
   \includegraphics[width=0.8\textwidth]{pics/memBoxBilder/memBox43} 
-	\caption{Output after deleting EClass1 not correctly}
+	\caption{Output indicating that an element is present in the metamodel, which is not in any diagram and should probably be deleted completely}
 	\label{fig:validation_information}
 \end{figure}
 
-This new \texttt{Information} says that \texttt{EClass1} is not on any diagram, but still exists in the model. 
-Pushing the \texttt{Delete} button in your keyboard was apparently not the proper way of deleting \texttt{EClass1} (However, we will discuss later in Chapter~\ref{chap:Tips and Tricks} how to delete elements in EA properly).
+The message informs you that \texttt{EClass1} is not on any diagram, and as it is still in the model, that this could be a mistake. 
+Just pressing the \texttt{Delete} button is apparently not the proper way of \emph{deleting} \texttt{EClass1} from the metamodel and only removes it from the current diagram.
+Deleting elements properly and other EA specific aspects are discussed in detail in Chapter~\ref{chap:Tips and Tricks}.
 
-For a quick fix of this problem, double-click the \texttt{Information} in the output window. 
-You will see that EA navigates automatically to the corresponding element \texttt{EClass1} in the project browser and a new dialog pops up which suggests to delete the element from the model (Fig.~\ref{fig:quick-fix1}).
-Click OK and \texttt{EClass1} will be deleted correctly from your model. 
-The validation output shows again no error messages.
+
+\item[$\blacktriangleright$] To navigate to the problematic element click once on the information message in the output window.
+EA should navigate automatically to \texttt{EClass1} and highlight it in the project browser. 
+\item[$\blacktriangleright$] To check if there are any quick fixes available, double click the information message to invoke the quick fix dialogue.
+In this case, there is one quick fix which suggests simply deleting the element from the model (Fig.~\ref{fig:quick-fix1}) as this is probably what was intended.
+\item[$\blacktriangleright$] Click \texttt{OK} and \texttt{EClass1} will be deleted correctly from your model. 
+Your metamodel should now be error-free again as indicated by the validation output window.
 
 \begin{figure}[htbp]
 	\centering 
   \includegraphics[width=0.8\textwidth]{pics/memBoxBilder/memBox45} 
-	\caption{Quick fix dialog for the not correctly deleted element}
+	\caption{Quick fix for elements that are not on any diagram}
 	\label{fig:quick-fix1}
 \end{figure}
 
-Now we will do a syntax error that leads to a more critical message than an \texttt{Information}. 
-Double click the navigable reference end \texttt{previous} of the class \texttt{Partition} and delete its role name as depicted in Fig.~\ref{fig:delete-role-name} and click \texttt{OK}.
+\item[$\blacktriangleright$] To make an error that leads to a more critical message than ``information'', 
+double click the navigable reference end \texttt{previous} of the class \texttt{Partition}, and delete its role name as depicted in Fig.~\ref{fig:delete-role-name}. 
+Affirm with \texttt{OK}.
 
 \begin{figure}[htbp]
 	\centering
@@ -517,12 +527,12 @@ Double click the navigable reference end \texttt{previous} of the class \texttt{
 	\label{fig:delete-role-name}
 \end{figure}
 
-Immediately after that, you will see a new \texttt{Fatal Error} in the validation output which says that a navigable end must have a role name (Fig.~\ref{fig:fatal-error}).
-In Ecore, a navigable role end is an \texttt{EReference} and must have a name like any other \texttt{ENamedElement}, which is the super type of all basic model elements.
-Omitting the name of a navigable reference end is therefore syntactically not correct and consequently the code generation wouldn't be possible, hence the \texttt{Fatal Error}. 
-If you double click the error message, you will see that the appropriate connector is  selected in the diagram, but there is no quick fix for this problem (Fig.~\ref{fig:fatal-error}). 
-Of course, you should correct your metamodel manually by double clicking the navigable reference end and setting its name back to \texttt{previous}. 
-In the end, ensure that your metamodel resembles closely Fig.~\ref{fig:metamodel_complete} again and there should be no more error messages before you proceed to further chapters.
+You should now see a new \texttt{Fatal Error} in the validation output, stating that a navigable end \emph{must} have a role name (Fig.~\ref{fig:fatal-error}).
+As navigable references are mapped to data members in a Java class, omitting the name of a navigable reference makes code generation impossible (data members, i.e., class variables must have a name).
+ 
+\item[$\blacktriangleright$] As before, clicking the error message selects the problematic connector in the diagram, and double clicking reveals that there are no quick fixes for this problem (Fig.~\ref{fig:fatal-error}). 
+\item[$\blacktriangleright$] Correct your metamodel manually by setting the name of the navigable reference back to \texttt{previous}. 
+\item[$\blacktriangleright$] Ensure that your metamodel closely resembles Fig.~\ref{fig:metamodel_complete} again, and that there are no error messages before you proceed with the rest of the chapter.
 
 \begin{figure}[htbp]
 	\centering
@@ -530,19 +540,20 @@ In the end, ensure that your metamodel resembles closely Fig.~\ref{fig:metamodel
 	\caption{Fatal Error after deleting a navigable role name}
 	\label{fig:fatal-error}
 \end{figure}
+\end{enumerate}
 
-Be aware that the validation feature will support you through all metamodelling activities both in static and dynamic parts of your metamodel. 
-As you've may noticed, we distinguish between five different types of validation messages in the output window. 
-At last, what each message type would mean is given in the following:
-
+As you've probably already noticed, we distinguish between five different types of validation messages:
 \begin{description}
-  \item[Information:]~\\ This is only a hint for the user. Syntactical rules are not violated. Export and code generation would be possible (e.g. coding conventions, not correctly deleted elements).
-  \item[Warning:]~\\ Code can still be generated with automatic completions and corrections by the code generator. 
-  But there might be semantic issues in the metamodel (e.g. omitting the multiplicity at references)
-  \item[Error:]~\\ Export would be possible. 
-  But the exported model is not Ecore conform. Loading the ecore model (prestage for the code generation) wouldn't be possible.
-  \item[Fatal Error:]~\\ Neighter the export nor the code generation would be possible, since required informations such as name, classifier of model elements are missing or not correctly set.
-  \item[Eclipse Error:]~\\ Error messages produced by Eclipse after an unsuccessful code generation process, which will be discussed later in Chapter~\ref{par:validation_in_eclipse}.
+  \item[Information:]~\\ 
+  This is only a hint for the user and can be safely ignored if you know what you're doing. 
+  Export and code generation should be possible, but certain naming/modelling conventions are violated, or a problematic situation has been detected.
+  \item[Warning:]~\\ Export and code generation is possible, but only with defaults and automatic corrections applied by the code generator. 
+  As this might not be what the user wants, such cases are flagged as warnings (e.g., omitting the multiplicity at references which is automatically set by the code generator to 1).
+  Being as explicit as possible is often better than relying on defaults.
+  \item[Error:]~\\ Although the metamodel can be exported from EA, it is not Ecore conform and code generation will not be possible.
+  \item[Fatal Error:]~\\ The metamodel cannot be exported as required information such as names or classifiers of model elements are incorrectly set or missing.
+  \item[Eclipse Error:]~\\ Error messages produced by our Eclipse plugin after an unsuccessful attempt to generate code.
+   This will be discussed in detail in Sect~\ref{par:validation_in_eclipse}.
 
 \end{description}
 
@@ -551,18 +562,18 @@ At last, what each message type would mean is given in the following:
 
 Before diving into modelling dynamic behaviour, let's have a brief look at how to create a concrete \emph{instance model} of your metamodel in Eclipse.
 In the following, we use \emph{metamodel} and \emph{instance model} to differentiate between models that represent the abstract syntax and static semantics of a domain specific language (metamodel), and models that are expressed \emph{in} such a language (instance models of the metamodel).
-To create an instance model, switch to your Eclipse workspace containing the generated working sets and projects from Sec.~\ref{sec:abstractSyntax}.
+To create an instance model, switch to your Eclipse workspace containing the generated working sets and projects from Sect.~\ref{sec:abstractSyntax}.
 EMF provides a generic model editor for free that allows us to create and edit an arbitrary instance of any metamodel specified with eMoflon. 
 
 Back in Eclipse, navigate to the \texttt{model} folder in your \texttt{LearningBoxLanguage} project.  
 Double-click the \texttt{LearningBoxLanguage.ecore} model to invoke  the \emph{Ecore model editor}. 
-Expand this tree to view the different classes and packages you modelled with EA in Sec.~\ref{sec:abstractSyntax}.
+Expand this tree to view the different classes and packages you modelled with EA in Sect.~\ref{sec:abstractSyntax}.
 To create a concrete instance of the metamodel, you must select a class which will become the root element of the new instance.
 For our example, right-click the class \texttt{Box} and choose \texttt{Create Dynamic Instance\ldots} from the context-menu as depicted in Fig.~\ref{fig:context_menu}. 
 
 \begin{figure}[htbp]
 	\centering 
-  \includegraphics[width=0.53\textwidth]{pics/modelBrowserBilder/createInstance.png} 
+  \includegraphics[width=0.7\textwidth]{pics/modelBrowserBilder/createInstance.png} 
 	\caption{Context menu of Ecore model in Eclipse}
 	\label{fig:context_menu}
 \end{figure}
@@ -574,7 +585,7 @@ Last but not least, enter a name for the instance model (Fig.~\ref{fig:store_dyn
 
 \begin{figure}[htbp]
 	\centering 
-  \includegraphics[width=0.53\textwidth]{pics/modelBrowserBilder/persistDialog.png} 
+  \includegraphics[width=0.6\textwidth]{pics/modelBrowserBilder/persistDialog.png} 
 	\caption{Dialogue for creating a dynamic model instance}
 	\label{fig:store_dynamic_instance}
 \end{figure}
@@ -586,7 +597,7 @@ Note that EMF supports you by respecting your metamodel and reducing the choice 
 
 \begin{figure}[htbp]
 	\centering 
-  \includegraphics[width=0.7\textwidth]{pics/modelBrowserBilder/adjustModel.png} 
+  \includegraphics[width=\textwidth]{pics/modelBrowserBilder/adjustModel.png} 
 	\caption{Context menu for creating model elements}
 	\label{fig:create_instance}
 \end{figure}
