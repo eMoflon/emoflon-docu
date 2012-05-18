@@ -26,7 +26,7 @@ The latter is better for numerous smaller templates, while the former makes sens
 
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=0.87\textwidth]{pics/moca/5MocaTreeToText/UnparserAdapterNotImplemented}
+ \includegraphics[width=\textwidth]{pics/moca/5MocaTreeToText/UnparserAdapterNotImplemented}
   \caption{Unimplemented method getStringTemplateGroup} 
   \label{fig:moca-DictionaryUnparserAdapter}
 \end{center}
@@ -60,16 +60,14 @@ You can easily make changes in the templates and see how it affects the generate
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] To complete the model-to-text transformation, open \texttt{MocaMain.java} (Fig.~\ref{fig:moca-8-MocaMain}) and edit lines 41-42 as follows:
+\item[$\blacktriangleright$] To complete the model-to-text transformation, open \texttt{MocaMain.java} and make sure it closely resembles Fig.~\ref{fig:moca-FinalMocaMain} which shows the complete final version.
+Note especially line 30 that is now uncommented to register our unparser adapter and lines 52-53 that call the framework method \emph{unparse}, which creates a corresponding folder structure for a MocaTree instance and delegates code generation for each file using the registered unparsers.
 \begin{verbatim}
 // Perform tree-to-text
 codeAdapter.unparse("instances", out);
 \end{verbatim}
-This calls the framework method \emph{unparse}, which creates a corresponding folder structure for a MocaTree instance and delegates code generation for each file using the registered unparsers.
-This way different unparsers can be registered for different file types (defined by the unparser adapter's \texttt{canUnparseFile} method) and a whole folder structure containing different files can be generated.
+This way, different unparsers can be registered for different file types (defined by the unparser adapter's \texttt{canUnparseFile} method) and a whole folder structure containing different files can be generated.
 Each parser can either use a single template group file like in our case, or a folder containing separated template files.
-
-As we have always been updating our \texttt{MocaMain.java} file incrementally, Fig.~\ref{fig:moca-FinalMocaMain} shows the complete final version so you can compare before trying out the complete text-to-model and model-to-text round trip.
 
 If you have done everything correctly, you should be able to run \texttt{MocaMain} and obtain similar results as depicted in Fig.~\ref{fig:moca-FinalResults}.
 Note the created model \texttt{myLibrary.xmi} and the \texttt{.dictionary} files in \texttt{/out} that should now contain appropriate text in our DSL.
@@ -79,7 +77,7 @@ Now compare the generated dictionaries to see if your changes are reflected corr
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=\textwidth]{pics/moca/5MocaTreeToText/MocaMainComplete}
+ \includegraphics[width=0.95\textwidth]{pics/moca/5MocaTreeToText/MocaMainComplete}
   \caption{Completed main method for Text-to-Model and Model-to-Text} 
   \label{fig:moca-FinalMocaMain}
 \end{center}
@@ -88,7 +86,7 @@ Now compare the generated dictionaries to see if your changes are reflected corr
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=0.5\textwidth]{pics/moca/5MocaTreeToText/InstancesAfterRoundTrip}
+ \includegraphics[width=0.45\textwidth]{pics/moca/5MocaTreeToText/InstancesAfterRoundTrip}
   \caption{Directory instances after parsing and unparsing.} 
   \label{fig:moca-FinalResults}
 \end{center}

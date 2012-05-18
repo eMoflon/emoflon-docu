@@ -1,16 +1,9 @@
 \subsection{Checking a card}
 
-The next method we shall model with SDMs is probably the most important: a
-user decides to try a card in the learning box and looks at the question on the
-card (\texttt{Card.face}), makes a guess and \emph{checks} to see if the guess
-was correct by comparing with the answer on the back of the card
-(\texttt{Card.back}).  If the guess was correct the card can be \emph{promoted}
-by moving it to the \emph{next} partition, if it was wrong the card is
-\emph{penalised} by moving it to the \emph{previous} partition.
+The next method we shall model with SDMs is probably the most important: a user decides to try a card in the learning box and looks at the question on the card (\texttt{Card.face}), makes a guess and \emph{checks} to see if the guess was correct by comparing with the answer on the back of the card (\texttt{Card.back}).  
+If the guess was correct the card can be \emph{promoted} by moving it to the \emph{next} partition, if it was wrong the card is \emph{penalized} by moving it to the \emph{previous} partition.
 
-As you're almost an SDM wizard already, try, using concepts we have
-already learnt, to create the control flow for \texttt{Partition::check} as
-depicted in Fig.~\ref{fig:sdm_check_start}.
+As you're almost an SDM wizard already, try, using concepts we have already learnt, to create the control flow for \texttt{Partition::check} as depicted in Fig.~\ref{fig:sdm_check_start}.
 
 \begin{figure}[htbp]
 \begin{center}

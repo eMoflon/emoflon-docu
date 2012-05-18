@@ -18,7 +18,7 @@ The actual transformation of each dictionary to a file is delegated using a bind
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] \texttt{transformDictionary(Dictionary)~:File} (Fig.~\ref{fig:moca-transformDictionary}) does the actual work of transforming a dictionary to a file, handling authors as an optional node in the file subtree.
+\item[$\blacktriangleright$] \texttt{transformDictionary(Dictionary)~:File} (Fig.~\ref{fig:moca-transformDictionary})\footnote{Please note that the right-hand side of the attribute assignment in \texttt{dictionaryFile} is a literal expression.} does the actual work of transforming a dictionary to a file, handling authors as an optional node in the file subtree.
   %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
@@ -26,13 +26,13 @@ The actual transformation of each dictionary to a file is delegated using a bind
   \caption{Create a file from a dictionary with an optional author} 
   \label{fig:moca-transformDictionary}
 \end{center}
-\end{figure} 
-\item[$\blacktriangleright$] To invoke the model-to-tree transformation, open \texttt{MocaMain.java} (Fig.~\ref{fig:moca-8-MocaMain}) and edit lines 38-39 as follows:
+\end{figure}
+\item[$\blacktriangleright$] To invoke the model-to-tree transformation, open \texttt{MocaMain.java} (Fig.~\ref{fig:moca-8-MocaMain}) and edit lines 38-39 as follows.
 \begin{verbatim}
 // Perform model-to-tree transformation
 transformer.setFileExtension(".dictionary");
 Folder out = transformer.transformLibraries();
 \end{verbatim}
-The tree \texttt{out} can of course be persisted to file using \texttt{eMoflonUtil.saveModel} if you wish to inspect it before continuing.
+The tree \texttt{out} can of course be persisted to file using \texttt{eMoflonUtil\-.save\-Model} if you wish to inspect it before continuing.
 If you did everything right, it should resemble Fig.~\ref{fig:moca-10-ParseResult2} very closely. 
 \end{enumerate}
