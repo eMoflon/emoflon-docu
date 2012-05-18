@@ -233,7 +233,7 @@ Our approach is to provide a clear and type-safe interface to a general purpose 
 
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=\textwidth]{pics/sdmBilder/removeCard/sdm14RAW}
+  \includegraphics[width=0.95\textwidth]{pics/sdmBilder/removeCard/sdm14RAW}
   \caption{Adding a return value to the stop node.}  
   \label{fig:stop_node_return_value}
 \end{center}
@@ -247,12 +247,13 @@ If you've done everything right, your complete SDM should now look like Fig.~\re
 
 Let's take a step back and review briefly what we have specified:  if \texttt{p.remove\-Card(c)} is invoked for a partition \texttt{p} with a card \texttt{c} as argument, the specified pattern will \emph{match} if the card is contained in the partition.
 After determining a match for all variables, the link between the partition and the card is deleted, effectively ``removing'' the card from the partition.  
+
 If the card is \emph{not} contained in the partition, the pattern won't match and nothing happens. 
 In both cases the card that was passed in is simply returned.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{pics/sdmBilder/removeCard/sdm15}
+  \includegraphics[width=0.95\textwidth]{pics/sdmBilder/removeCard/sdm15}
   \caption{Complete SDM for \texttt{Partition::removeCard}.}  
   \label{fig:sdm_complete_control_flow}
 \end{center}

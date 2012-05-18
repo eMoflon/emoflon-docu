@@ -76,7 +76,8 @@ Please refer to \cite{ANTLR} and online resources for a detailed explanation of 
 
 Before we take our lexer and parser for a spin, open \texttt{MocaMain.java} and inspect it.
 If everything went right it should bear a striking resemblance to Fig.~\ref{fig:moca-8-MocaMain}.
-For the moment we do not need to adjust anything, just note how the parser is added to the Moca framework (line 23) via an adapter (\texttt{Dictionary\-Parser\-Adapter}).
+For the moment, please comment out line 24\footnote{If you forget this the default implementation of the unparser will throw an exception.} as we shall define the unparser, i.e., model-to-text a bit later.
+Do not change anything else and just note how the parser is added to the Moca framework (line 23) via an adapter (\texttt{Dictionary\-Parser\-Adapter}).
 Go ahead and look at what the adapter exactly does.
 All the code can be adjusted and used, for example, to define which files the parser is to be used for (per default the adapter registers for \texttt{*.dictionary} files).
 The main job of the adapter is to hide \texttt{ANTLR} specifics so the framework remains (parser) technology agnostic.
@@ -173,7 +174,12 @@ title: "unknown"
 
 \end{table}   
 
-\item[$\blacktriangleright$] After creating all the dictionaries, run \texttt{MocaMain.java} as a normal Java application. If everything works out right, a file called \texttt{tree.xmi} and an \texttt{out} folder should be created in the \texttt{instances} directory.  Inspect their contents and compare them to Fig.~\ref{fig:moca-9-ParseResult1}. The unparsed files are obviously empty as we haven't implemented an \emph{unparser} yet.  Don't be irritated by the fact that an \texttt{out/in} is created, this can all be configured in \texttt{MocaMain} but the default assumes \texttt{in} contains multiple folders -- in our case libraries -- and it is therefore treated as the root of the tree.  One could also unparse directly in \texttt{instances} but the unparsed \texttt{in} would have to be renamed in \texttt{MocaMain}.
+\item[$\blacktriangleright$] After creating all the dictionaries, run \texttt{MocaMain.java} as a normal Java application. 
+If everything works out right, a file called \texttt{tree.xmi} and an \texttt{out} folder should be created in the \texttt{instances} directory\footnote{You probably have to refresh the \texttt{instances} folder to see the newly created files.}.  
+Inspect their contents and compare them to Fig.~\ref{fig:moca-9-ParseResult1}. 
+The unparsed files are obviously empty as we haven't implemented an \emph{unparser} yet.  
+Don't be irritated by the fact that an \texttt{out/in} is created, this can all be configured in \texttt{MocaMain} but the default assumes \texttt{in} contains multiple folders -- in our case libraries -- and it is therefore treated as the root of the tree.  
+One could also unparse directly in \texttt{instances} but the unparsed \texttt{in} would have to be renamed in \texttt{MocaMain}.
 \end{enumerate}
 
 %\usepackage{graphics} is needed for \includegraphics
