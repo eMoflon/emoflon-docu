@@ -10,7 +10,7 @@ If you have done everything right while modelling your TGGs in EA, code generati
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{pics/tggBilder/transformation/tgg22}
+  \includegraphics[width=0.6\textwidth]{pics/tggBilder/transformation/tgg22}
   \caption{\texttt{LearningBox\-To\-Dictionary\-Integration/gen} after Code Generation}  
   \label{fig:gen_folder}
 \end{center}
@@ -55,7 +55,7 @@ In the next steps, we will instantiate\footnote{If you are not familiar with ins
 \item[$\blacktriangleright$] Set \texttt{eleven : elf} as content and \texttt{advanced} as level of the second \texttt{Entry}.
 \item[$\blacktriangleright$] Save \texttt{Dictionary.xmi}
 
-\begin{figure}
+\begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/transformation/tgg26}
   \caption{Create an Instance of \texttt{DictionaryLanguage}}  
@@ -76,13 +76,13 @@ In the next steps, we will instantiate\footnote{If you are not familiar with ins
 \end{figure} 
 
 
-\item[$\blacktriangleright$] Open \texttt{LearningBox.xmi} in \texttt{instances} folder (Fig~\ref{fig:learningboxxmi}).
+\item[$\blacktriangleright$] Open \texttt{Box.xmi} in \texttt{instances} folder (Fig~\ref{fig:boxxmi}).
 
-\begin{figure}
+\begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/transformation/tgg27}
-  \caption{Generated Source Model \texttt{LearningBox.xmi}}  
-  \label{fig:learningboxxmi}
+  \caption{Generated Source Model \texttt{Box.xmi}}  
+  \label{fig:boxxmi}
 \end{center}
 \end{figure} 
 
@@ -96,7 +96,47 @@ Being aware of the triple graph structure, we recommend you also to have a look 
 
 Congratulations! You have done your first model-to-model transformation with TGGs using our MOFLON tool. 
 That was a \emph{backward} transformation from \texttt{Dictionary\-Language} (target model) to \texttt{Learning\-Box\-Language} (source model). 
-You have used hand-written Java code \texttt{TGGMain} to invoke the generated TGG implementation. 
-But we provide you also with an integration environment, in which you can manipulate the source and target models and check the simultaneous evolution of the graph triple in a visual way.
+Now, you can also edit the source model and transform it \emph{forward}:
 
-(\ldots Use Integrator\ldots) 
+\begin{enumerate}
+\item[$\blacktriangleright$] Open \texttt{Box.xmi} and create different \texttt{Card} objects in the \texttt{Partition}s (for example, a new \texttt{Card} with \texttt{Card.face = ``Question : two''}, \texttt{Card.back = ``Answer : zwei''} in \texttt{Partition 0}). 
+
+\item[$\blacktriangleright$] Adjust \texttt{TGGMain.java} with the code provided in Fig.~\ref{fig:tggmainforward} and run the class again.
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=\textwidth]{pics/tggBilder/transformation/tgg28}
+  \caption{\texttt{TGGMain} for\emph{forward} transformation}  
+  \label{fig:tggmainforward}
+\end{center}
+\end{figure} 
+
+\end{enumerate}
+
+You will see that your newly created \texttt{Card} objects are transformed to \texttt{Entry} objects in \texttt{Dictionary.xmi}.
+That was your first forward transformation using the same generated code!
+
+The last thing we want to show you in this chapter is our integration environment which provides you a visualisation of the graph triple in a model-to-model transformation.
+
+\begin{enumerate}
+\item[$\blacktriangleright$] Do a right click on the correspondence model \texttt{Correspondence\-Model\-.xmi} and choose \texttt{Start Integrator} from the \texttt{eMoflon} context menu (Fig.~\ref{fig:startintegrator}).
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=\textwidth]{pics/tggBilder/transformation/tgg29}
+  \caption{Starting the Integrator}  
+  \label{fig:startintegrator}
+\end{center}
+\end{figure} 
+\end{enumerate}
+
+The eMoflon-Integrator window will be opened which shows you the objects from the source and target model in a treeview and visualises the links between them as depicted in Fig.~\ref{fig:emoflonintegrator}.
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=\textwidth]{pics/tggBilder/transformation/tgg30}
+  \caption{eMoflon Integrator}  
+  \label{fig:emoflonintegrator}
+\end{center}
+\end{figure} 
+
