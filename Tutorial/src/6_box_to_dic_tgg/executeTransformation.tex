@@ -1,39 +1,36 @@
-\section{Executing a Model-To-Model Transformation}
-
-Having specified a correspondence metamodel for our two languages in EA; we will generate code, do some hand-written completions and execute a model-to-model transformation in this chapter.
-
+\section{TGGs in Action}
+In this section, we shall export our TGG, implement our new constraint, and get our integration running!
+ 
 \begin{enumerate}
-\item[$\blacktriangleright$] Export your metamodels by choosing ``\texttt{Extensions/\-MOFLON::\-Ecore Addin\-/Export all to Workspace}'' in EA and push \texttt{F5} on your Eclipse Metamodel project to trigger code generation.
+\item[$\blacktriangleright$] Export your metamodels and TGG by choosing ``\texttt{Extensions/\-MOFLON::\-Ecore Addin\-/Export all to Workspace}'' as usual in EA and refreshing your Eclipse Metamodel project to trigger code generation.
 \end{enumerate}
 
-If you have done everything right while modelling your TGGs in EA, code generation terminates without any error and the structure of the \texttt{gen} folder in \texttt{LearningBox\-To\-Dictionary\-Integration} resembles Fig.~\ref{fig:gen_folder}.
+If you have done everything right, code generation should terminate without any error and the structure of the \texttt{gen} folder in \texttt{LearningBox\-To\-Dictionary\-Integration} should resemble Fig.~\ref{fig:gen_folder}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.6\textwidth]{pics/tggBilder/transformation/tgg22}
-  \caption{\texttt{LearningBox\-To\-Dictionary\-Integration/gen} after Code Generation}  
+  \includegraphics[width=0.75\textwidth]{pics/tggBilder/transformation/tgg22}
+  \caption{Integration project after code generation}  
   \label{fig:gen_folder}
 \end{center}
 \end{figure} 
 
-Due to our missing \texttt{indexToLevel} implementation, the class \texttt{Card\-To\-Entry\-Rule\-Impl} is marked as faulty.
-In order to make our code compile, we will create the needed class by hand:
+The Java compilation error in \texttt{Card\-To\-Entry\-Rule\-Impl} is due to our missing \texttt{indexToLevel} implementation, and just means we have to implement the required class by hand.
 
 \begin{enumerate}
-\item[$\blacktriangleright$] In \texttt{LearningBox\-To\-Dictionary\-Integration/src} create the package \texttt{csp.constraints} and add a new class \texttt{IndexToLevel}.
-\item[$\blacktriangleright$] Implement the class with the code provided in Fig.~\ref{fig:indexToLevel}
+\item[$\blacktriangleright$] In \texttt{LearningBox\-To\-Dictionary\-Integration/src} create the Java package \texttt{csp.constraints} and add a new public class \texttt{IndexToLevel}.
+\item[$\blacktriangleright$] Implement the class with the code provided in Fig.~\ref{fig:indexToLevel}.
+If you take a look at the code it should be pretty clear how the declared adornments are checked and handled appropriately.
+With this class, the generated code should now compile without any further errors.
 \end{enumerate}
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{pics/tggBilder/transformation/tgg23}
-  \caption{\texttt{IndexToLevel} Class implementing our Attribute Constraint}  
+  \includegraphics[height=0.71\textheight]{pics/tggBilder/transformation/tgg23}
+  \caption{Implementation of our attribute constraint}  
   \label{fig:indexToLevel}
 \end{center}
 \end{figure} 
-
-After providing an implementation for our self-defined attribute constraint \texttt{indexToLevel}, the integration project \texttt{LearningBox\-To\-Dictionary\-Integ\-ration} will compile. 
-At this point, we recommend you to inspect the generated code, especially the classes with \texttt{Impl}-suffix, to get a feeling how the generated code performs a transformation.
 
 In the next steps, we will instantiate\footnote{If you are not familiar with instantiating metamodels in Ecore, then refer to Chapter \ref{sect:instance}} one of our languages, transform it to an instance of the other language and watch the simultaneous evolution of the graph triple.
 
