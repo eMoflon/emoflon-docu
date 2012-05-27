@@ -1,15 +1,23 @@
 \section{Specifying a TGG Schema}
 
 The first step on the way to a TGG is to model the correspondence component of your triples.
-The correspondence or link metamodel consists of \emph{correspondence types} which connect classes from \texttt{LearningBoxLanguage} and \texttt{DictionaryLanguage}\footnote{If you do not have these metamodels already then refer to Chapters~\ref{chap:membox} and \ref{chap:A-Dictionary-Language}}.
+The correspondence or link metamodel consists of \emph{correspondence types} which connect classes from the source and target metamodels.
+In our case, our source metamodel is \texttt{LearningBoxLanguage} and target \texttt{DictionaryLanguage}.
 Remember that a \emph{correspondence type} can be considered as a traceability link which relates the elements from the source and target components.
 Although the correspondence metamodel is actually just a normal metamodel, we use a slightly different concrete syntax to present it and adhere to certain naming conventions.
 \note{TGG Schema}
 The metamodel triple consisting of (relevant parts of) the source metamodel, the correspondence metamodel and (relevant parts of) the target metamodel is called a \emph{TGG schema}. 
 
 \begin{enumerate}
-\item[$\blacktriangleright$] In EA, add a new package in your model root and enter \texttt{Learning\-Box\-To\-Dictionary\-Integration} as its name. 
-Create a diagram for the new package and select \texttt{TGGSchema} as diagram type (Fig.~\ref{fig:tgg_diagram_type}). The diagram type indicates that the new package is a TGG Project. 
+\item[$\blacktriangleright$] If you've worked through the tutorial until now, you can import \texttt{Dic\-tion\-ary\-Language} into the EAP file containing \texttt{Learning\-Box\-Language} or vice-versa.
+Important is that \emph{both} metamodels are in the \emph{same} EAP file so we can specify an integration with TGGs.
+How to transfer projects between EAP files is explained in Chapter~\ref{chap:Tips and Tricks}.
+
+\item[$\blacktriangleright$] If you're just joining us for TGGs, or just don't want to go through the trouble of transferring the EA projects, simply import the prepared metamodel project ``For\-Chapter\-On\-TGG/Learning\-Box\-2\-Dic\-tion\-ary" (in the \texttt{eMoflon\-Tutorial.zip} you downloaded with this tutorial) into your Eclipse workspace .
+
+\item[$\blacktriangleright$] Open \texttt{LearningBox2Dictionary.eap} in EA, and add a new package to your model root with \texttt{Learning\-Box\-To\-Dictionary\-Integration} as its name. 
+Create a diagram for the new package and select \texttt{TGGSchema} as diagram type (Fig.~\ref{fig:tgg_diagram_type}). 
+The diagram type indicates that the new package is a TGG Project. 
 
 \begin{figure}[htbp]
 \begin{center}
@@ -43,7 +51,7 @@ Please note that a subpackage \texttt{Rules} and an underlying diagram with the 
 \end{figure}
 
 Now it's time to insert classes from our source and target projects into our TGG project and declare our first correspondence type between them.
-The classes \texttt{Box} and \texttt{Dictionary}, both at the top of the composite hierarchy of their respecitve languages, are to be related to each other.
+The classes \texttt{Box} and \texttt{Dictionary}, both at the top of the composite hierarchy of their respecitve languages, are to be related to each other:
 \begin{enumerate}
 \item[$\blacktriangleright$] Drag \& drop the class \texttt{Box} in \texttt{Learning\-Box\-Language} from the project 
 browser to the newly created TGG schema diagram \texttt{Learning\-Box\-To\-Dictionary\-Integration}.
@@ -74,16 +82,8 @@ With a class from both source and target projects, we can now create a correspon
 \end{center}
 \end{figure}
 
-A hexagon-shaped correspondence type with the name \texttt{BoxToDiction\-ary} and references to the source and target elements should be generated, so that your diagram resembles Fig.~\ref{fig:first_correspondence}.
+A hexagon-shaped correspondence type with the name \texttt{BoxToDiction\-ary} and references to the source and target elements should be generated.
 You can rename the correspondence type as you wish but please leave the references as they are (multiplicity and naming convention).
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=\textwidth]{pics/tggBilder/tggSchema/tgg6}
-  \caption{Correspondence type between \texttt{Box} and \texttt{Dictionary}}
-  \label{fig:first_correspondence}
-\end{center}
-\end{figure}
 
 To complete our TGG schema, declare a further correspondence type between \texttt{Card} and \texttt{Entry}.
 The complete TGG Schema is depicted in Fig.~\ref{fig:complete_tgg_schema}.

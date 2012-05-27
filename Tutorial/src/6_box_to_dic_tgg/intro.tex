@@ -4,14 +4,13 @@
 If you are joining us directly in this chapter and are only interested in bidirectional model transformation with \emph{Triple Graph Grammars} then welcome!
 
 To get eMoflon up and running, however, you should at least work through Chapter~\ref{chap:installation} on installation and set-up.
-We shall try to assume as little as possible in the rest of this chapter and give appropriate references when we use terminology introduced in previous chapters.
+We try to assume as little as possible in the rest of this chapter and give appropriate references when we use terminology introduced in previous chapters.
 
 Up until now in the tutorial, we have gotten to know what a learning box is, we have specified its \emph{abstract syntax} and \emph{static semantics} as a \emph{metamodel} and its \emph{dynamic semantics} with graph transformations (SDMs).
 If the previous sentence could just as well have been in Chinese\footnote{Replace with Greek if you are Chinese.  If you are Chinese but speak fluent Greek then we give up - you get the point anyway right?} for you then please work through Chapter~\ref{chap:membox}.
 
-We have also established a simple textual \emph{concrete syntax} for a dictionary and implemented \emph{model-to-text} and \emph{text-to-model} transformations with a merry mix of string grammars, graph grammars and templates (Chapter~\ref{chap:A-Dictionary-Language}).
+We have also established a simple textual \emph{concrete syntax} for a dictionary and implemented \emph{model-to-text} and \emph{text-to-model} transformations with a merry mix of string grammars, graph transformations and templates (Chapter~\ref{chap:A-Dictionary-Language}).
 As this was already in both directions (model$\Leftrightarrow$text) we have practically seen how to implement a \emph{bidirectional} transformation as two unidirectional transformations using a unidirectional transformation language (SDMs).
-
 Although SDMs are crazily cool (don't you forget that!), this is rather unsatisfactory.  
 If you take a careful and critical look at the forward (text-to-model) and the backward (model-to-text) transformations, you should be able to notice the following problems.
 \begin{description}
@@ -19,7 +18,7 @@ If you take a careful and critical look at the forward (text-to-model) and the b
   \item[Maintainability:] Another, maybe even more important point, is that two separate transformations become quite a pain to maintain and keep \emph{consistent}.  If the forward transformation is adjusted to produce a different target structure, the backward transformation must be updated appropriately and vice-versa.  Again it would be great to get this for free or at least have some support. 
 \end{description}
 
-As we shall see in this chapter, Triple Graph Grammars (TGGs) are a \emph{bidirectional} transformation language that tries to solve these problems.
+As we shall see in this chapter, Triple Graph Grammars (TGGs) are a \emph{bidirectional} transformation language that solves these problems.
 
 After a brief introduction to TGGs, we shall specify a bidirectional transformation between learning boxes and dictionaries.
-This transformation has already been motivated in Chapter~\ref{chap:membox} so lets move on. 
+This transformation has already been motivated and explained in Chapter~\ref{chap:membox}, so lets move on. 
