@@ -9,7 +9,7 @@ If you have done everything right, code generation should terminate without any 
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.75\textwidth]{pics/tggBilder/transformation/tgg22}
+  \includegraphics[width=0.7\textwidth]{pics/tggBilder/transformation/tgg22}
   \caption{Integration project after code generation}  
   \label{fig:gen_folder}
 \end{center}
@@ -32,108 +32,100 @@ With this class, the generated code should now compile without any further error
 \end{center}
 \end{figure} 
 
-In the next steps, we will instantiate\footnote{If you are not familiar with instantiating metamodels in Ecore, then refer to Chapter \ref{sect:instance}} one of our languages, transform it to an instance of the other language and watch the simultaneous evolution of the graph triple.
+In the next few steps, we shall create an instance model\footnote{Refer to Chapter \ref{sect:instance} if you do not know how to do this.} of one of our languages and  transform it to an instance model of the other language according to our TGG, i.e., perform a forward and backward transformation.
+As dictionaries are of a much simple structure, let's start with a backward transformation, i.e., dictionary to learning box:
 
 \begin{enumerate}
-\item[$\blacktriangleright$] Open the \texttt{Dictionary\-Language/model/Dictionary\-Language.ecore} and create a dynamic instance of \texttt{Dictionary}, name it \texttt{Dictionary.xmi} and save it under \texttt{Learning\-Box\-To\-Dictionary\-Integration/instances} (Fig.~\ref{fig:create_instance_dict}).
+\item[$\blacktriangleright$] Open \texttt{Dictionary\-Language/model/Dictionary\-Language.ecore} and create a dynamic instance of \texttt{Dictionary}, and save it under \texttt{Learn\-ing\-Box\-To\-Dictionary\-In\-te\-gra\-tion/in\-stan\-ces/Dic\-tion\-ary.xmi} (Fig.~\ref{fig:create_instance_dict}).
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tggBilder/transformation/tgg24}
-  \caption{Create a Dynamic Instance of \texttt{Dictionary}}  
+  \includegraphics[width=0.7\textwidth]{pics/tggBilder/transformation/tgg24}
+  \caption{Create a dynamic instance of \texttt{Dictionary}}  
   \label{fig:create_instance_dict}
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] Open \texttt{Dictionary.xmi}.
-\item[$\blacktriangleright$] Set \texttt{English Numbers} as \texttt{Dictionary.title}
-\item[$\blacktriangleright$] Create two \texttt{Entry} objects as child of \texttt{Dictionary}
-\item[$\blacktriangleright$] Set \texttt{one : eins} as content and \texttt{beginner} as level of the first \texttt{Entry} (Fig.~\ref{fig:dictionaryxmi}).
-\item[$\blacktriangleright$] Set \texttt{eleven : elf} as content and \texttt{advanced} as level of the second \texttt{Entry}.
-\item[$\blacktriangleright$] Save \texttt{Dictionary.xmi}
+\item[$\blacktriangleright$] Open \texttt{Dictionary.xmi} and set \texttt{Dictionary.title} to \texttt{English Numbers}. 
+\item[$\blacktriangleright$] Create two \texttt{Entry} objects as children of \texttt{Dictionary}: the first entry with \texttt{one : eins} as content and \texttt{beginner} as level, the second with \texttt{eleven : elf} as content and \texttt{advanced} as level (Fig.~\ref{fig:dictionaryxmi}).
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/transformation/tgg26}
-  \caption{Create an Instance of \texttt{DictionaryLanguage}}  
+  \caption{Contents of the dictionary}  
   \label{fig:dictionaryxmi}
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] Create a main class \texttt{TGGMain} under \texttt{LearningBox\-To\-Dictionary\-Integration\-/src} and implement it with the code provided in Fig.~\ref{fig:tggmain}.
-\item[$\blacktriangleright$] Run the class.
-\item[$\blacktriangleright$] Refresh the folder \texttt{LearningBox\-To\-Dictionary\-Integration/\-instances} and check the created source and correspondence models.
+\item[$\blacktriangleright$] Create a main class \texttt{TGGMain} in \texttt{LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/src} and implement it with the code provided in Fig.~\ref{fig:tggmain}.
+\item[$\blacktriangleright$] Run the class and refresh the folder \texttt{LearningBox\-To\-Dictionary\-In\-te\-gra\-tion/\-instances}.
+ Check for the created source and correspondence models and open and inspect \texttt{Box.xmi} (Fig~\ref{fig:boxxmi}).
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/transformation/tgg25}
-  \caption{\texttt{TGGMain} Class to perform a Transformation}  
+  \caption{\texttt{TGGMain} with code to execute a backward transformation}  
   \label{fig:tggmain}
 \end{center}
 \end{figure} 
 
-
-\item[$\blacktriangleright$] Open \texttt{Box.xmi} in \texttt{instances} folder (Fig~\ref{fig:boxxmi}).
-
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{pics/tggBilder/transformation/tgg27}
-  \caption{Generated Source Model \texttt{Box.xmi}}  
+  \includegraphics[width=0.9\textwidth]{pics/tggBilder/transformation/tgg27}
+  \caption{Generated source model \texttt{Box.xmi}}  
   \label{fig:boxxmi}
 \end{center}
 \end{figure} 
 
 \end{enumerate}
 
-You will see that our \texttt{Dictionary} is translated to a \texttt{Box} with the same name (\texttt{English Numbers}) with three underlying \texttt{Par\-ti\-tions}, as we have specified in \texttt{Box\-To\-Dictionary\-Rule}.
-You will also see that the two \texttt{Entry} objects are translatlated to \texttt{Card} objects as specified in \texttt{CartToEntryRule}.
-The \texttt{face} and the \texttt{back} of the \texttt{Card}s are containing a prefix and the information from the \texttt{content} of the corresponding \texttt{Entry}, e.g. \texttt{card.face = ``Question : one''} and \texttt{card.back = ``Answer : eins''}. 
-The \texttt{Partition} \texttt{index}es conform also to the \texttt{Entry level}, f.i. \texttt{0} for \texttt{beginner} and \texttt{1} for \texttt{advanced}.
-Being aware of the triple graph structure, we recommend you also to have a look at the created corresponcence model \texttt{CorrespondenceModel.xmi}.  
+As you can see, our \texttt{Dictionary} has been backward translated to a \texttt{Box} with the same name (\texttt{English Numbers}), containing three \texttt{Par\-ti\-tions}, as specified in \texttt{Box\-To\-Dictionary\-Rule}.
+The two \texttt{Entry} objects have also been translated to \texttt{Card} objects as specified in \texttt{CartToEntryRule}.
+Also note that the \texttt{face} and the \texttt{back} of the \texttt{Card}s are consistent with the \texttt{content} of the corresponding \texttt{Entry}, e.g. \texttt{card.face = ``Question : one''} and \texttt{card.back = ``Answer : eins''}. 
+The indices of the partitions containing the cards are also consistent with the level of the entry, i.e., \texttt{0} for \texttt{beginner}, and \texttt{1} for \texttt{advanced}.
 
-Congratulations! You have done your first model-to-model transformation with TGGs using our MOFLON tool. 
-That was a \emph{backward} transformation from \texttt{Dictionary\-Language} (target model) to \texttt{Learning\-Box\-Language} (source model). 
-Now, you can also edit the source model and transform it \emph{forward}:
+Congratulations! You have successfully performed your first \emph{backward} transformation from \texttt{Dictionary\-Language} (target model) to \texttt{Learn\-ing\-Box\-Lan\-guage} (source model) using TGGs!
+
+To show that the transformation is actually bidirectional, lets edit the created source model and transform it \emph{forward} to a new target model:
 
 \begin{enumerate}
-\item[$\blacktriangleright$] Open \texttt{Box.xmi} and create different \texttt{Card} objects in the \texttt{Partition}s (for example, a new \texttt{Card} with \texttt{Card.face = ``Question : two''}, \texttt{Card.back = ``Answer : zwei''} in \texttt{Partition 0}). 
+\item[$\blacktriangleright$] Open \texttt{Box.xmi} and create some new \texttt{Card} objects in the \texttt{Partition}s (e.g., create a new \texttt{Card} with \texttt{Card.face = ``Question : two''}, \texttt{Card.back = ``Answer : zwei''} in \texttt{Partition 0}). 
 
-\item[$\blacktriangleright$] Adjust \texttt{TGGMain.java} with the code provided in Fig.~\ref{fig:tggmainforward} and run the class again.
+\item[$\blacktriangleright$] Adjust \texttt{TGGMain.java} carefully as shown in Fig.~\ref{fig:tggmainforward} and run the main method again.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/transformation/tgg28}
-  \caption{\texttt{TGGMain} for\emph{forward} transformation}  
+  \caption{\texttt{TGGMain} for a \emph{forward} transformation}  
   \label{fig:tggmainforward}
 \end{center}
 \end{figure} 
 
 \end{enumerate}
 
-You will see that your newly created \texttt{Card} objects are transformed to \texttt{Entry} objects in \texttt{Dictionary.xmi}.
-That was your first forward transformation using the same generated code!
+If you refresh and inspect \texttt{Dictionary.xmi}, you should be able to see that your new \texttt{Card} objects have been transformed to \texttt{Entry} objects in the dictionary.
 
-The last thing we want to show you in this chapter is our integration environment which provides you a visualisation of the graph triple in a model-to-model transformation.
+To end this chapter on TGGs, lets take a look at a nice \emph{visualization} of the created triple of models:
 
 \begin{enumerate}
-\item[$\blacktriangleright$] Do a right click on the correspondence model \texttt{Correspondence\-Model\-.xmi} and choose \texttt{Start Integrator} from the \texttt{eMoflon} context menu (Fig.~\ref{fig:startintegrator}).
+\item[$\blacktriangleright$] Right-click the correspondence model \texttt{Correspondence\-Model\-.xmi} and choose \texttt{Start Integrator} from the \texttt{eMoflon} context menu (Fig.~\ref{fig:startintegrator}).
+\end{enumerate}
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/transformation/tgg29}
-  \caption{Starting the Integrator}  
+  \caption{Starting the integrator}  
   \label{fig:startintegrator}
 \end{center}
 \end{figure} 
-\end{enumerate}
 
-The eMoflon-Integrator window will be opened which shows you the objects from the source and target model in a treeview and visualises the links between them as depicted in Fig.~\ref{fig:emoflonintegrator}.
+The \emph{eMoflon-Integrator} should be opened visualizing the objects from the source and target models in a treeview with the correspondences between objects depicted as actual ``links" (Fig.~\ref{fig:emoflonintegrator}).
+You can implement the \texttt{toString} methods of all classes in the metamodel to improve the visualization.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{pics/tggBilder/transformation/tgg30}
-  \caption{eMoflon Integrator}  
+  \includegraphics[width=0.9\textwidth]{pics/tggBilder/transformation/tgg30}
+  \caption{A visualization of the integration in our integrator}  
   \label{fig:emoflonintegrator}
 \end{center}
 \end{figure} 
-
