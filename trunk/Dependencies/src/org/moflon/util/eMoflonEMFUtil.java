@@ -92,6 +92,9 @@ public class eMoflonEMFUtil
    }
    
    static public boolean saveModel(EObject root, URI path){
+	  if(root == null)
+		  throw new IllegalArgumentException("The model to be saved cannot be null");
+	   
       // Obtain a new resource set
       ResourceSet resourceSet = new ResourceSetImpl();
 
