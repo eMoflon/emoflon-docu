@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -35,6 +36,9 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 public class eMoflonEMFUtil
 {
    private static final Logger logger = Logger.getLogger(eMoflonEMFUtil.class);
+   
+   private static Map<EClassifier, String> clazzNames = new HashMap<EClassifier, String>();
+   
    
    /**
     * Simple utility method to be used for testing. Loads a model from path.
@@ -165,7 +169,12 @@ public class eMoflonEMFUtil
          if (setting.getEStructuralFeature().getName().equals(targetRoleName))
          {
             EClassifier clazz = setting.getEObject().eClass();
-            String clazzName = clazz.getInstanceClass().getPackage().getName() + "." + clazz.getName();
+            String clazzName = clazzNames.get(clazz);
+            
+            if(clazzName == null){
+            	clazzName = clazz.getInstanceClass().getPackage().getName() + "." + clazz.getName();
+            	clazzNames.put(clazz, clazzName);
+            }
 
             if (clazzName.equals(sourceType.getName()))
                returnList.add(setting.getEObject());
