@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -169,20 +170,34 @@ public class eMoflonEMFUtil
          if (setting.getEStructuralFeature().getName().equals(targetRoleName))
          {
             EClassifier clazz = setting.getEObject().eClass();
-            String clazzName = clazzNames.get(clazz);
-            
-            if(clazzName == null){
-            	clazzName = clazz.getInstanceClass().getPackage().getName() + "." + clazz.getName();
-            	clazzNames.put(clazz, clazzName);
-            }
+            String clazzName = getClazzNameWithPackagePrefix(clazz);
 
-            if (clazzName.equals(sourceType.getName()))
+            if (clazzName.equals(sourceType.getName()) || checkInheritance(sourceType, clazz))
                returnList.add(setting.getEObject());
          }
       }
 
       return returnList;
    }
+
+	public static String getClazzNameWithPackagePrefix(EClassifier clazz) {
+		String clazzName = clazzNames.get(clazz);
+
+		if (clazzName == null) {
+			clazzName = clazz.getInstanceClass().getPackage().getName() + "." + clazz.getName();
+			clazzNames.put(clazz, clazzName);
+		}
+		return clazzName;
+	}
+
+	public static boolean checkInheritance(Class superclass, EClassifier subclass) {
+		for (EClass sup : ((EClass)subclass).getEAllSuperTypes()) {
+			String clazzName = getClazzNameWithPackagePrefix(sup);
+			if(clazzName.equals(superclass.getName()))
+				return true;
+		}
+		return false;		
+	}
 
    private static ECrossReferenceAdapter getCRAdapter(EObject target)
    {
