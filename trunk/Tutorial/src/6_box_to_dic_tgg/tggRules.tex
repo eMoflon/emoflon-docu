@@ -215,7 +215,7 @@ For the moment, we are just going to declare and use the attribute constraint, w
 \begin{enumerate}
 \item[$\blacktriangleright$] Add a further constraint to your diagram with the following two lines:
 \begin{quotation}
-\noindent \texttt{indexToLevel[BB,BF,FB]}\\ 
+\noindent \texttt{indexToLevel[BB,BF,FB](Integer, String)}\\ 
 \texttt{indexToLevel(partition.index, entry.level)} 
 \end{quotation}
 \end{enumerate}
@@ -237,9 +237,9 @@ For built-in or \emph{library} constraints such as \emph{eq}, \emph{addPrefix} a
 In many cases, however, a constraint might be very problem-specific, such as our \emph{indexToLevel} constraint, and there might not be any fitting combination of library constraints to express the consistency condition.
 
 In such a case, the new attribute constraint must be declared before its use. 
-In our example the new constraint is declared as \texttt{indexToLevel[BB,BF,FB]}, i.e., a constraint declaration is of the form (in simple EBNF):
+In our example the new constraint is declared as \texttt{indexToLevel[BB,BF,FB] (Integer, String)}, i.e., a constraint declaration is of the form (in simple EBNF):
 \begin{quote}
-\texttt{nameOfConstraint "[" adornment (, adornment)* "]"}
+\texttt{nameOfConstraint "[" adornment (, adornment)* "]" "(" \newline variable type (, variable type)* ")"}
 \end{quote}
 The comma separated list of \emph{adornments} in the declaration specifies the cases for which the constraint can be operationalized.
 Each adornment consists of a \texttt{B} for bound or an \texttt{F} for free, for each argument of the constraint.
