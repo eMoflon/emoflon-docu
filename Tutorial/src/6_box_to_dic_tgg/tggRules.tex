@@ -12,7 +12,7 @@ In other words, we have to state:
 Note that the rules of a TGG only describe the simultaneous \emph{build-up} of the models and do not delete or modify any existing elements, i.e., TGG rules are \emph{monotonic}.
 This might seem surprising at first and you might think this is a terrible restriction.
 The point is that the TGG should only specify a consistency relation and not directly the forward and backward transformations, which are derived automatically. 
-It turns out that deletion is not necessary to do this.
+It turns out that deletion is not necessary on this level to do this, but will of course be used at the right places in the generated transformations. 
 
 \begin{enumerate}
 \item[$\blacktriangleright$] In EA, open the diagram of the \texttt{Rules} package in our TGG project.
@@ -127,6 +127,9 @@ In contrast to the rather simple dictionary, where \texttt{Dictionary} is a dire
 
 \end{enumerate}
 
+If you are in hurry, you may now proceed to Sect.~\ref{sect:TGGs_in_Action} and really transform a box forth and back.
+But please be aware of the fact that your specified TGG will only cope with emtpy boxes and dictionaries so far. Handling additional elements will be added in the following\ldots
+
 We now need a second rule to handle cards in the learning box and entries in the dictionary.
 
 Create a second TGG rule and call it \texttt{CardToEntryRule}.
@@ -220,7 +223,7 @@ For the moment, we are just going to declare and use the attribute constraint, w
 \end{quotation}
 \end{enumerate}
 
-Your now complete TGG rule should now resemble Fig.~\ref{fig:cardtoentry_complete}.
+Your complete TGG rule should now resemble Fig.~\ref{fig:cardtoentry_complete}.
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg21}

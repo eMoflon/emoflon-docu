@@ -83,7 +83,7 @@ With a class from both source and target projects, we can now create a correspon
 \end{figure}
 
 A hexagon-shaped correspondence type with the name \texttt{BoxToDiction\-ary} and references to the source and target elements should be generated.
-You can rename the correspondence type as you wish but please leave the references as they are (multiplicity and naming convention).
+You can rename the correspondence type as you wish but please leave the references as they are (multiplicity and naming conventions are satisfied automatically).
 
 To complete our TGG schema, declare a further correspondence type between \texttt{Card} and \texttt{Entry}.
 The complete TGG Schema is depicted in Fig.~\ref{fig:complete_tgg_schema}.
@@ -99,3 +99,4 @@ The complete TGG Schema is depicted in Fig.~\ref{fig:complete_tgg_schema}.
 A TGG schema can be viewed as the metamodel triple to which all created triples must conform.
 In less technical lingo, it gives an abstract view on the relationship or \emph{correspondence} between two metamodels or domains.
 Just by looking at the TGG schema, a domain expert should understand \emph{why} the connected elements are related, irrespective of \emph{how} the relationship is actually established by TGG rules (coming up next).
+Note that all information such as attributes, methods and references between classes are also visualized within the TGG schema -- just in case you wondered where the bunch of attributes and the composite references suddenly comes from.
