@@ -1,11 +1,12 @@
 \section{TGGs in Action}
+\label{sect:TGGs_in_Action}
 In this section, we shall export our TGG, implement our new constraint, and get our integration running!
  
 \begin{enumerate}
 \item[$\blacktriangleright$] Export your metamodels and TGG by choosing ``\texttt{Extensions/\-MOFLON::\-Ecore Addin\-/Export all to Workspace}'' as usual in EA and refreshing your Eclipse Metamodel project to trigger code generation.
 \end{enumerate}
 
-If you have done everything right, code generation should terminate without any error and the structure of the \texttt{gen} folder in \texttt{LearningBox\-To\-Dictionary\-Integration} should resemble Fig.~\ref{fig:gen_folder}.
+If you have done everything right, code generation (not code compilation!) should terminate without any error and the structure of the \texttt{gen} folder in \texttt{LearningBox\-To\-Dictionary\-Integration} should resemble Fig.~\ref{fig:gen_folder}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -26,7 +27,7 @@ With this class, the generated code should now compile without any further error
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[height=0.71\textheight]{pics/tggBilder/transformation/tgg23}
+  \includegraphics[height=0.64\textheight]{pics/tggBilder/transformation/tgg23}
   \caption{Implementation of our attribute constraint}  
   \label{fig:indexToLevel}
 \end{center}
@@ -129,3 +130,5 @@ You can implement the \texttt{toString} methods of all classes in the metamodel 
   \label{fig:emoflonintegrator}
 \end{center}
 \end{figure} 
+
+That's it from TGGs so far\ldots We hope you enjoyed the short tour through TGGs. We know that especially TGGs and their concept of simultaneous evolution are quite hard to get, but if you have the slight feeling that TGGs could be useful in a domain of yours, then we would be happy -- and if you do or plan to use TGGs for your domain, then we would be in heaven! :)
