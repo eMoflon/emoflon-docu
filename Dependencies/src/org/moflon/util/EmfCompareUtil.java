@@ -65,6 +65,9 @@ public class EmfCompareUtil
    
    private static boolean includeInResult(DiffElement element)
    {
+      if (ignoreMove && element.getKind().equals(DifferenceKind.MOVE))
+         return false;
+      
       if (ignoreAdd && element.getKind().equals(DifferenceKind.ADDITION))
          return false;
 
@@ -72,12 +75,6 @@ public class EmfCompareUtil
          return false;
 
       if (ignoreChange && element.getKind().equals(DifferenceKind.CHANGE))
-         return false;
-
-      if (ignoreMove && element.getKind().equals(DifferenceKind.MOVE))
-         return false;
-
-      if (ignoreDelete && element.getKind().equals(DifferenceKind.DELETION))
          return false;
 
       if (ignoreAttribute && element instanceof AttributeChange)
