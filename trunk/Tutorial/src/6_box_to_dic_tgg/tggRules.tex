@@ -127,10 +127,9 @@ In contrast to the rather simple dictionary, where \texttt{Dictionary} is a dire
 
 \end{enumerate}
 
-If you are in hurry, you may now proceed to Sect.~\ref{sect:TGGs_in_Action} and really transform a box forth and back.
-But please be aware of the fact that your specified TGG will only cope with emtpy boxes and dictionaries so far. Handling additional elements will be added in the following\ldots
-
-We now need a second rule to handle cards in the learning box and entries in the dictionary.
+If you are in hurry, you may already proceed to Sect.~\ref{sect:TGGs_in_Action} and transform a box to a dictionary and vice-versa.
+But please be aware that your specified TGG (with just one rule) will only be able to cope with empty boxes and dictionaries. 
+Handling additional elements (cards in the learning box and entries in the dictionary) requires a second rule \ldots
 
 Create a second TGG rule and call it \texttt{CardToEntryRule}.
 Your \texttt{Rules} diagram should now resemble Fig.~\ref{fig:rules_diagram}.
@@ -143,7 +142,7 @@ Your \texttt{Rules} diagram should now resemble Fig.~\ref{fig:rules_diagram}.
 \end{center}
 \end{figure}
 
-Our second rule can only create cards and entries when a corresponding box and dictionary already exists, and this is expressed by using \emph{context} elements in the rule, i.e., by setting object and link variables to \emph{check only}.
+Our second rule can only create cards and entries when a corresponding box and dictionary already exist, and this is expressed by using \emph{context} elements in the rule, i.e., by setting object and link variables to \emph{check only}.
 
 \begin{enumerate}
 \item[$\blacktriangleright$] Double click the newly created \texttt{CardToEntryRule} to open its diagram.
@@ -215,6 +214,8 @@ We shall implement the following simple rule: a card in a partition with index 0
 This time, we must define our very own attribute constraint to handle this mapping.
 For the moment, we are just going to declare and use the attribute constraint, which will be implemented later in Java.
 
+\clearpage
+
 \begin{enumerate}
 \item[$\blacktriangleright$] Add a further constraint to your diagram with the following two lines:
 \begin{quotation}
@@ -240,9 +241,14 @@ For built-in or \emph{library} constraints such as \emph{eq}, \emph{addPrefix} a
 In many cases, however, a constraint might be very problem-specific, such as our \emph{indexToLevel} constraint, and there might not be any fitting combination of library constraints to express the consistency condition.
 
 In such a case, the new attribute constraint must be declared before its use. 
-In our example the new constraint is declared as \texttt{indexToLevel[BB,BF,FB] (Integer, String)}, i.e., a constraint declaration is of the form (in simple EBNF):
+In our example, the new constraint is declared as:
 \begin{quote}
-\texttt{nameOfConstraint "[" adornment (, adornment)* "]" "(" \newline variable type (, variable type)* ")"}
+ \texttt{indexToLevel[BB,BF,FB] (Integer, String)}
+\end{quote} 
+In simple EBNF, a constraint declaration is of the form:
+\begin{quote}
+\texttt{nameOfConstraint "[" adornment (, adornment)* "]"}\\
+\texttt{"(" variable type (, variable type)* ")"}
 \end{quote}
 The comma separated list of \emph{adornments} in the declaration specifies the cases for which the constraint can be operationalized.
 Each adornment consists of a \texttt{B} for bound or an \texttt{F} for free, for each argument of the constraint.
