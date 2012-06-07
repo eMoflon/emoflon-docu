@@ -146,7 +146,7 @@ Our second rule can only create cards and entries when a corresponding box and d
 
 \begin{enumerate}
 \item[$\blacktriangleright$] Double click the newly created \texttt{CardToEntryRule} to open its diagram.
-\item[$\blacktriangleright$] Create \texttt{box} as an instance of \texttt{Box} choosing \texttt{Check Only} as binding operator (Fig.~\ref{fig:bound_tgg_variable}).
+\item[$\blacktriangleright$] Create \texttt{box} as an instance of \texttt{Box} choosing \texttt{Check Only} as binding operator and check also \texttt{bound} (Fig.~\ref{fig:bound_tgg_variable}).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -156,7 +156,8 @@ Our second rule can only create cards and entries when a corresponding box and d
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] In the same way, create all object variables and appropriate links so that your rule diagram resembles Fig.~\ref{fig:check_bound_variables}.
+\item[$\blacktriangleright$] In the same way, create all object variables and appropriate links so that your rule diagram resembles Fig.~\ref{fig:check_bound_variables}. 
+The \texttt{partition} object shouldn't be bound, as our rule applies to all existing partitions in the \texttt{box}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -194,7 +195,7 @@ Using two predefined attribute constraint \texttt{addPrefix} and \texttt{concat}
 \begin{quotation}
 \noindent \texttt{addPrefix("Question: ", word, card.face)}\\ 
 \texttt{addPrefix("Answer: ", meaning, card.back)}\\
-\texttt{concat(word, "~:~", meaning, entry.content)} 
+\texttt{concat("~:~", word, meaning, entry.content)} 
 \end{quotation}
 
 \end{enumerate}
