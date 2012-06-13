@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.tigris.subversion.subclipse.core.svnnature">
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/specifications/MathExpressions,MathExpressions"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/examples/mathExpressions/MathExpressionsCodeAdapter,MathExpressionsCodeAdapter"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/examples/mathExpressions/MathExpressionsLanguage,MathExpressionsLanguage"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/specifications/TextualTGG,TextualTGG"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/examples/textualTGG/TextualTGGCodeAdapter,TextualTGGCodeAdapter"/>
+</provider>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1316760680569_6" label="MathExpressions" name="MathExpressions">
+<item elementID="=MathExpressionsCodeAdapter" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MathExpressionsLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MathExpressionsCodeAdapter" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MathExpressionsLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1316760819208_8" label="Specifications" name="Specifications">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/TextualTGG" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MathExpressions" type="4"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1316762665805_9" label="TextualTGG" name="TextualTGG">
+<item elementID="=TextualTGGCodeAdapter" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=TextualTGGCodeAdapter" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+</psf>

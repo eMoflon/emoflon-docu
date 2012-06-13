@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.tigris.subversion.subclipse.core.svnnature">
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/compiler/CodeGen2,CodeGen2"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/languages/specifications/CoreLanguages,CoreLanguages"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/languages/tgg/CSPCodeAdapter,CSPCodeAdapter"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/Dependencies,Dependencies"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/Documentation,Documentation"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/compiler/Ecore2FujabaTransformation,Ecore2FujabaTransformation"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/linkbrowser/trunk/Linkbrowser,Linkbrowser"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/Moca,Moca"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/specifications/MocaLanguages,MocaLanguages"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/compiler/MocaToMoflonTransformation,MocaToMoflonTransformation"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/MocaTree,MocaTree"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/ea/trunk/MOFLON2EAEcoreAddin,MOFLON2EAEcoreAddin"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/ea/trunk/MOFLON2EAEcoreAddinInstaller,MOFLON2EAEcoreAddinInstaller"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/ea/trunk/MOFLON2EAEcoreProfiles,MOFLON2EAEcoreProfiles"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/ea/trunk/MOFLON2EAExportImportTest,MOFLON2EAExportImportTest"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonAutoTestPlugin,MoflonAutoTestPlugin"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/languages/specifications/MoflonBackend,MoflonBackend"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonDevToolsFeature,MoflonDevToolsFeature"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonDevToolsUpdateSite,MoflonDevToolsUpdateSite"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonIdeCore,MoflonIdeCore"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonIdeFeature,MoflonIdeFeature"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonIdeUi,MoflonIdeUi"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonIdeUpdateSite,MoflonIdeUpdateSite"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/eclipse/trunk/MoflonTextEditorFramework,MoflonTextEditorFramework"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2tstsuite/trunk/MoflonValidationPlugin,MoflonValidationPlugin"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/languages/sdm/SDMLanguage,SDMLanguage"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/languages/tgg/TGGLanguage,TGGLanguage"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/languages/tgg/TGGRuntime,TGGRuntime"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2tstsuite/trunk/Validation,Validation"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/WorkspaceConfiguration,WorkspaceConfiguration"/>
+</provider>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1334423703273_11" label="Moca" name="Moca">
+<item elementID="=MocaTree" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Moca" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MocaTree" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Moca" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MocaTree" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Moca" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1288082778026_3" label="MOFLON2 Backend" name="MOFLON2 Backend">
+<item elementID="=CodeGen2" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MocaToMoflonTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Ecore2FujabaTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MocaToMoflonTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MocaToMoflonTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MocaToMoflonTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1289914555858_6" label="MOFLON2 Common" name="MOFLON2 Common">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Documentation" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/WorkspaceConfiguration" type="4"/>
+<item elementID="=Dependencies" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.ui.resourceWorkingSetPage" id="1287090804828_1" label="MOFLON2 Frontend - EA Addin Development" name="MOFLON2 Frontend - EA Addin Development">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MOFLON2EAEcoreAddinInstaller" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MOFLON2EAExportImportTest" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MOFLON2EAEcoreAddin" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MOFLON2EAEcoreProfiles" type="4"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1289738775812_5" label="MOFLON2 Frontend - Eclipse IDE" name="MOFLON2 Frontend - Eclipse IDE">
+<item elementID="=MoflonIdeCore" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MoflonIdeFeature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MoflonIdeUpdateSite" type="4"/>
+<item elementID="=MoflonTextEditorFramework" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MoflonIdeUi" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1315672313052_13" label="MOFLON2 Frontend TiE" name="MOFLON2 Frontend TiE">
+<item elementID="=Linkbrowser" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1292409103209_2" label="MOFLON2 Languages" name="MOFLON2 Languages">
+<item elementID="=TGGRuntime" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SDMLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=TGGLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=TGGRuntime" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=CSPCodeAdapter" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=TGGLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SDMLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=TGGRuntime" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=CSPCodeAdapter" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=TGGLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SDMLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=TGGRuntime" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=CSPCodeAdapter" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=TGGLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SDMLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1307879441172_12" label="MOFLON2 Moca" name="MOFLON2 Moca">
+<item elementID="=MocaTree" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Moca" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1291120342756_9" label="MOFLON2 TestFramework" name="MOFLON2 TestFramework">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MoflonDevToolsFeature" type="4"/>
+<item elementID="=MoflonValidationPlugin" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MoflonAutoTestPlugin" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MoflonDevToolsUpdateSite" type="4"/>
+<item elementID="=MoflonValidationPlugin" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MoflonValidationPlugin" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MoflonValidationPlugin" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1297108449437_9" label="Specifications" name="Specifications">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MocaLanguages" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/CoreLanguages" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MoflonBackend" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Validation" type="4"/>
+</workingSets>
+</psf>
