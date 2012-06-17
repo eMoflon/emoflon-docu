@@ -320,6 +320,11 @@ public class eMoflonEMFUtil
    public static void embedSDMInEAnnotation(EObject sdm, EAnnotation eAnnotation)
    {
       ResourceSet resourceSet = new ResourceSetImpl();
+      embedSDMInEAnnotation(sdm, eAnnotation, resourceSet);
+   }
+
+   public static void embedSDMInEAnnotation(EObject sdm, EAnnotation eAnnotation, ResourceSet resourceSet)
+   {
       Resource resource = resourceSet.createResource(URI.createURI(""));
       resource.getContents().add(sdm);
 
