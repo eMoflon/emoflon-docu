@@ -12,15 +12,16 @@ For other SCM and operating systems please consult the official documentation fr
 
 Download and install Slik SVN (mandatory):
 \begin{enumerate}
-  \item[$\blacktriangleright$] x32: {\small \url{http://www.sliksvn.com/pub/Slik-Subversion-1.6.17-win32.msi}}\\\\
+  \item[$\blacktriangleright$] x32: \small{\url{http://www.sliksvn.com/pub/Slik-Subversion-1.6.17-win32.msi}}\\\\
    x64: {\small \url{http://www.sliksvn.com/pub/Slik-Subversion-1.6.17-x64.msi}}
 \end{enumerate}
 
 For public/private key authentication, you also need Tortoise SVN:
  
 \begin{enumerate}
-  \item[$\blacktriangleright$] x32: {\small \url{http://sourceforge.net/projects/tortoisesvn/files/1.6.16/Application/TortoiseSVN-1.6.16.21511-win32-svn-1.6.17.msi/download}}\\\\
-  x64: {\small\url{http://sourceforge.net/projects/tortoisesvn/files/1.6.16/Application/TortoiseSVN-1.6.16.21511-x64-svn-1.6.17.msi/download}}
+  \item[$\blacktriangleright$] x32: {\small \begin{minipage}{.95\textwidth}  \url{http://sourceforge.net/projects/tortoisesvn/files/1.6.16/Application/TortoiseSVN-1.6.16.21511-win32-svn-1.6.17.msi/download}
+    \end{minipage}}\\\\\\
+  x64: {\small\begin{minipage}{.9\textwidth}  \url{http://sourceforge.net/projects/tortoisesvn/files/1.6.16/Application/TortoiseSVN-1.6.16.21511-x64-svn-1.6.17.msi/download}\end{minipage}}
 \end{enumerate}
 
 If you do not want to have your private key password in plain text in an SVN configuration file then also download Pageant:
@@ -66,43 +67,47 @@ The next step is to register an SVN-variable in EA:
   \item[$\blacktriangleright$] Check out the project with the EAP file from the server using Tortoise-SVN or Eclipse/Subclipse. 
   You should now have a \textit{.svn}-folder in the directory where you saved the revision.
   \item[$\blacktriangleright$] Open the EAP file in EA and inspect the model tree. 
-  It should resemble Fig.~\ref{fig:advanced-topics-eaSVN-initial}.
+  It should somehow resemble Fig.~\ref{fig:advanced-topics-eaSVN-initial}.
   Note that this does not mean that an empty project was checked in, but only that packages have to be checked out explicitly.
-\begin{figure}[htbp]
+\begin{figure}[!htbp]
 \begin{center}
-	\includegraphics[height=0.45\textheight]{pics/advancedTopics/eaSVN/DemoLanguages/001.png}
+	\includegraphics[width=0.5\textwidth]{pics/advancedTopics/eaSVN/DemoLanguages/001.png}
 	\caption{Initial state of EAP file}
   	\label{fig:advanced-topics-eaSVN-initial}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] To accomplish this make sure you have defined an SVN variable in EA as described in the previous section. 
-Now invoke the context menu on the topmost element and select ``Package Control/Get Package...''~(Fig.~\ref{fig:advanced-topics-eaSVN-getpackage}).
-\begin{figure}[htbp]
+Now invoke the context menu on the root element and select ``Package Control/Get Package...''~(Fig.~\ref{fig:advanced-topics-eaSVN-getpackage}).
+\begin{figure}[!ht]
 \begin{center}
-	\includegraphics[height=0.4\textheight]{pics/advancedTopics/eaSVN/DemoLanguages/004.png}
+	\includegraphics[width=0.9\textwidth]{pics/advancedTopics/eaSVN/DemoLanguages/004.png}
 	\caption{``Getting'' a package from the repository}
   	\label{fig:advanced-topics-eaSVN-getpackage}
 \end{center}
 \end{figure}
 
- \item[$\blacktriangleright$] Select the \texttt{<package>.xml} with the same name as your topmost package. 
+ \item[$\blacktriangleright$] Select the \texttt{<package>.xml} with the same name as your root element. 
  In our case, \texttt{DemoLanguages.xml} as depicted in Fig.~\ref{fig:advanced-topics-eaSVN-selectxml}.
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[height=0.4\textheight]{pics/advancedTopics/eaSVN/DemoLanguages/005.png}
+\includegraphics[height=0.5\textheight]{pics/advancedTopics/eaSVN/DemoLanguages/005.png}
 	\caption{Choose the correct xml file}
   	\label{fig:advanced-topics-eaSVN-selectxml}
 \end{center}
 \end{figure}
 The key symbol ``8'' beside the folder icon indicates that all packages are under version control and that they are all locked~(Fig.~\ref{fig:advanced-topics-eaSVN-locked}).
 
-\item[$\blacktriangleright$] To retrieve the contents of the projects use the ``Get all latest...'' function. 
-(Fig.~\ref{fig:advanced-topics-eaSVN-getalllatest})
-
+\item[$\blacktriangleright$] To retrieve the contents of the project's subpackages do the following:
+\begin{enumerate}
+\item[1.] \texttt{Check Out} the package you desire (Fig.~\ref{fig:advanced-topics-eaSVN-checkout})
+\item[2.] Select \texttt{Get Package} for the package (Fig.~\ref{fig:advanced-topics-eaSVN-getpackage}) and choose the correct XML file (Fig.~\ref{fig:advanced-topics-eaSVN-selectxml}).
+\item[3.] All data for this package is now retrieved from the XML file and afterwards also available in your EA browser.
+\end{enumerate}
+Repeat steps 1 to 2 for all packages \emph{and} sub-packages (unfortunately also transitively) you wish to work with. The good news is that after having suffered from this initial configuration overhead, only \texttt{Get All Latest} has to be invoked for updating your models. More information about updating and checking in changes can be found in the next section~\ref{sect:appendixB_update_commit}. 
 \begin{figure}[htbp]
 \begin{center}
-	\includegraphics[height=0.35\textheight]{pics/advancedTopics/eaSVN/DemoLanguages/006.png}
+	\includegraphics[width=0.4\textwidth]{pics/advancedTopics/eaSVN/DemoLanguages/006.png}
 	\caption{Locked packages in EAP file}
   	\label{fig:advanced-topics-eaSVN-locked}
 \end{center}
@@ -110,15 +115,23 @@ The key symbol ``8'' beside the folder icon indicates that all packages are unde
 
 \begin{figure}[htbp]
 \begin{center}
-	\includegraphics[height=0.4\textheight]{pics/advancedTopics/eaSVN/DemoLanguages/009.png}
-	\caption{Updating all packages}
-  	\label{fig:advanced-topics-eaSVN-getalllatest}
+	\includegraphics[width=0.9\textwidth]{pics/advancedTopics/eaSVN/checkout.png}
+	\caption{Check out of a package}
+  	\label{fig:advanced-topics-eaSVN-checkout}
+\end{center}
+\end{figure}
+\begin{figure}[htbp]
+\begin{center} 
+	\includegraphics[scale=0.65]{pics/advancedTopics/eaSVN/cont.png}
+	\caption{Placing a package under version control}
+  	\label{fig:advanced-topics-eaSVN-addPackage}
 \end{center}
 \end{figure}
 
 \end{enumerate}
  
 \subsection{Check Out/Check In vs. Put/Get}
+\label{sect:appendixB_update_commit}
 
 \begin{enumerate}
   \item[$\blacktriangleright$] A \texttt{Check Out} retrieves the lock for a model and gives you exclusive access to the package, i.e., no one else can change the model. 
@@ -144,10 +157,10 @@ For a useful file history, always use meaningful commit statements when checking
 A date stamp is created automatically.
 \end{enumerate}
 
-
 \subsection{Placing a package under version control}
 
 \begin{enumerate}
+
 \item[$\blacktriangleright$] If you already have a model in EA and would like to place it under version control, you first have to check it in as usual on the server using your favourite SVN client. 
 If the project is already checked in, the required .svn folder should already be in the folder containing the EAP file.
 
@@ -157,13 +170,5 @@ If the project is already checked in, the required .svn folder should already be
 Enter the path where the XML file for the project should be placed.
 Although this is not enforced in any way, we recommend you create a folder structure that mirrors the package structure in EA (Fig.~\ref{fig:advanced-topics-eaSVN-addPackage}).
 This process has to be repeated for all sub-packages as soon as their super-package has been placed under version control.
-
-\begin{figure}[htbp]
-\begin{center} 
-	\includegraphics[scale=0.65]{pics/advancedTopics/eaSVN/cont.png}
-	\caption{Placing a package under version control}
-  	\label{fig:advanced-topics-eaSVN-addPackage}
-\end{center}
-\end{figure}
-
 \end{enumerate}
+
