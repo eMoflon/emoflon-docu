@@ -43,9 +43,9 @@ After installing all the tools we need, we now have to setup the SSH tunnel:
 The next step is to register an SVN-variable in EA:
 \begin{enumerate}
   \item[$\blacktriangleright$] Open a model, right click on a root folder and select ``Package Control'' and then ``Version Control Settings...'' (Fig.~\ref{fig:advanced-topics-eaSVN-rightclick}).
-  \item[$\blacktriangleright$] In the dialogue, choose a unique ID of your choice (we suggest you use the name of the EAP file) for the settings and activate the "Subversion" radio button below.
-  \item[$\blacktriangleright$] Choose the local path to the folder which contains the EAP file in the "Working Copy Path" text-box.
-  \item[$\blacktriangleright$] The field "Working Station" must point to where you installed Sliksvn, i.e., \texttt{<path to SlikSVN>$\backslash$bin$\backslash$svn.exe")}.  
+  \item[$\blacktriangleright$] In the dialogue, choose a unique ID of your choice (we suggest you use the name of the EAP file) for the settings and activate the ``Subversion'' radio button below.
+  \item[$\blacktriangleright$] Choose the local path to the folder which contains the EAP file in the ``Working Copy Path'' text-box.
+  \item[$\blacktriangleright$] The field ``Working Station'' must point to where you installed Sliksvn, i.e., \texttt{<path to SlikSVN>$\backslash$bin$\backslash$svn.exe")}.  
   Press ``Save'' and close the dialogue.
   If the dialogue closes without an error message, then you can be sure to have configured everything correctly.
 \end{enumerate}
@@ -104,7 +104,9 @@ The key symbol ``8'' beside the folder icon indicates that all packages are unde
 \item[2.] Select \texttt{Get Package} for the package (Fig.~\ref{fig:advanced-topics-eaSVN-getpackage}) and choose the correct XML file (Fig.~\ref{fig:advanced-topics-eaSVN-selectxml}).
 \item[3.] All data for this package is now retrieved from the XML file and afterwards also available in your EA browser.
 \end{enumerate}
-Repeat steps 1 to 2 for all packages \emph{and} sub-packages (unfortunately also transitively) you wish to work with. The good news is that after having suffered from this initial configuration overhead, only \texttt{Get All Latest} has to be invoked for updating your models. More information about updating and checking in changes can be found in the next section~\ref{sect:appendixB_update_commit}. 
+Repeat Steps 1 to 2 for all packages \emph{and} sub-packages (unfortunately also transitively) you wish to work with. 
+The good news is that after this initial configuration overhead, only \texttt{Get All Latest} has to be invoked to update all your models. 
+More information about updating and checking in changes can be found in the next Section~\ref{sect:appendixB_update_commit}. 
 \begin{figure}[htbp]
 \begin{center}
 	\includegraphics[width=0.4\textwidth]{pics/advancedTopics/eaSVN/DemoLanguages/006.png}
