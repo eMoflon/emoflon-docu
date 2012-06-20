@@ -99,7 +99,11 @@ Darmstadt, Germany (September 2011)
 % adjust page numbering 
 \pagenumbering{roman}
 \setcounter{page}{\value{romanpages}}
-\addtocounter{page}{1} 
+\addtocounter{page}{1}
+ 
+\input{8_appendices/advanced_topics}
+\newpage 
+
 \let\originalclearpage=\clearpage
 \def\clearpage{\relax}
 \renewcommand*{\bibname}{}
@@ -107,9 +111,7 @@ Darmstadt, Germany (September 2011)
 \bibliographystyle{plain}  
 \bibliography{references} 
 \newpage
-\include{8_appendices/advanced_topics}
-\newpage 
+
 \include{8_appendices/gpl}
 \end{appendix}
-
 \end{document}
