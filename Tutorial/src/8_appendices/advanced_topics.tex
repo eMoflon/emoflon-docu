@@ -66,6 +66,35 @@ The next step is to register an SVN-variable in EA:
 \begin{enumerate}
   \item[$\blacktriangleright$] Check out the project with the EAP file from the server using Tortoise-SVN or Eclipse/Subclipse. 
   You should now have a \textit{.svn}-folder in the directory where you saved the revision.
+  \item[$\blacktriangleright$] Open the EAP file. Now the further procedure is based on the state of the EAP file. If version control has already been configured before the EAP file was checked in, a dialog such as in Fig.~\ref{fig:advanced-topics-eaSVN-incompleteConf} is shown. In that case, follow the Section \textbf{Variant 1: EAP with VC configuration}, otherwise take a look at Section \textbf{Variant 2: EAP without VC configuration}.
+\end{enumerate}
+
+\subsubsection{Variant 1: EAP with VC configuration}
+\begin{enumerate}
+  \item[$\blacktriangleright$] If the ``Incomplete Configurations'' dialog (Fig.~\ref{fig:advanced-topics-eaSVN-incompleteConf}) has opened, simply click on ``Yes" to open the ``Version Control Settings'' dialog (Fig.~\ref{fig:advanced-topics-eaSVN-setWorkingCopyPath}).
+\begin{figure}[!htbp]
+\begin{center}
+	\includegraphics[width=0.5\textwidth]{pics/advancedTopics/eaSVN/DemoLanguages/011.png}
+	\caption{Initial state of EAP file with defined version control}
+  	\label{fig:advanced-topics-eaSVN-incompleteConf}
+\end{center}
+\end{figure}
+
+   \item[$\blacktriangleright$] To connect the EAP file to the SVN repository, you have to redefine the SVN variable in EA. Therefore, choose the local path to the folder which contains the EAP file in the ``Working Copy Path'' text-box.
+
+\begin{figure}[!htbp]
+\begin{center}
+	\includegraphics[width=0.5\textwidth]{pics/advancedTopics/eaSVN/DemoLanguages/012.png}
+	\caption{Select working copy path in an SVN variable.}
+  	\label{fig:advanced-topics-eaSVN-setWorkingCopyPath}
+\end{center}
+\end{figure}
+\end{enumerate}
+
+
+\subsubsection{Variant 2: EAP without VC configuration}\label{sec:novcConfig}
+
+\begin{enumerate}
   \item[$\blacktriangleright$] Open the EAP file in EA and inspect the model tree. 
   It should somehow resemble Fig.~\ref{fig:advanced-topics-eaSVN-initial}.
   Note that this does not mean that an empty project was checked in, but only that packages have to be checked out explicitly.
