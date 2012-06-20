@@ -10,6 +10,8 @@ This is highly recommended when working in a group and sharing a single EA Proje
 We assume you wish to use (i) Subversion and (ii) Windows.
 For other SCM and operating systems please consult the official documentation from EA.
 
+\subsection{Initial preparation and set-up}
+
 Download and install Slik SVN (mandatory):
 \begin{enumerate}
   \item[$\blacktriangleright$] x32: \small{\url{http://www.sliksvn.com/pub/Slik-Subversion-1.6.17-win32.msi}}\\\\
@@ -22,7 +24,7 @@ For public/private key authentication, you also need Tortoise SVN:
   \item[$\blacktriangleright$] x32: {\small \begin{minipage}{.95\textwidth}  \url{http://sourceforge.net/projects/tortoisesvn/files/1.6.16/Application/TortoiseSVN-1.6.16.21511-win32-svn-1.6.17.msi/download}
     \end{minipage}}\\\\\\
   x64: {\small\begin{minipage}{.9\textwidth}  \url{http://sourceforge.net/projects/tortoisesvn/files/1.6.16/Application/TortoiseSVN-1.6.16.21511-x64-svn-1.6.17.msi/download}\end{minipage}}
-\end{enumerate}
+\end{enumerate} 
 
 If you do not want to have your private key password in plain text in an SVN configuration file then also download Pageant:
 \begin{enumerate}
@@ -39,134 +41,44 @@ After installing all the tools we need, we now have to setup the SSH tunnel:
   \item[$\blacktriangleright$] If you just use direct passwords for authentication then you can leave out the \texttt{-i} option in both cases.
 \end{enumerate}
 
-
-The next step is to register an SVN-variable in EA:
-\begin{enumerate}
-  \item[$\blacktriangleright$] Open a model, right click on a root folder and select ``Package Control'' and then ``Version Control Settings...'' (Fig.~\ref{fig:advanced-topics-eaSVN-rightclick}).
-  \item[$\blacktriangleright$] In the dialogue, choose a unique ID of your choice (we suggest you use the name of the EAP file) for the settings and activate the ``Subversion'' radio button below.
-  \item[$\blacktriangleright$] Choose the local path to the folder which contains the EAP file in the ``Working Copy Path'' text-box.
-  \item[$\blacktriangleright$] The field ``Working Station'' must point to where you installed Sliksvn, i.e., \texttt{<path to SlikSVN>$\backslash$bin$\backslash$svn.exe")}.  
-  Press ``Save'' and close the dialogue.
-  If the dialogue closes without an error message, then you can be sure to have configured everything correctly.
-\end{enumerate}
- 
-%\usepackage{graphics} is needed for \includegraphics
-\begin{figure}[htbp]
-\begin{center}
-	\includegraphics[height=0.45\textheight]{pics/advancedTopics/eaSVN/rightclick.png}\\	
-	\vspace{0.5 cm}
-	\includegraphics[height=0.45\textheight]{pics/advancedTopics/eaSVN/versioncontrol.png}
-	\caption{Register an SVN variable in EA}
-  	\label{fig:advanced-topics-eaSVN-rightclick}
-\end{center}
-\end{figure}
-
-\subsection{How to set-up and work with an EAP file that is already under version control}
+\subsection{How to set-up a version controlled EAP file}
+In the following we assume an EAP file has already been placed under version control \emph{according to our tutorial} and that you wish to check-out this file and work with it.
+If our instructions do not work, the EAP file might have been placed under version control in a different manner.
+If this is the case then please contact whoever checked-in the file and set it up for working with EA and SVN for further instructions.
 
 \begin{enumerate}
-  \item[$\blacktriangleright$] Check out the project with the EAP file from the server using Tortoise-SVN or Eclipse/Subclipse. 
+  \item[$\blacktriangleright$] Check-out the project with the EAP file from the server using Tortoise-SVN or Eclipse/Subclipse (or any SVN client of your choice). 
   You should now have a \textit{.svn}-folder in the directory where you saved the revision.
-  \item[$\blacktriangleright$] Open the EAP file. Now the further procedure is based on the state of the EAP file. If version control has already been configured before the EAP file was checked in, a dialog such as in Fig.~\ref{fig:advanced-topics-eaSVN-incompleteConf} is shown. In that case, follow the Section \textbf{Variant 1: EAP with VC configuration}, otherwise take a look at Section \textbf{Variant 2: EAP without VC configuration}.
-\end{enumerate}
-
-\subsubsection{Variant 1: EAP with VC configuration}
-\begin{enumerate}
-  \item[$\blacktriangleright$] If the ``Incomplete Configurations'' dialog (Fig.~\ref{fig:advanced-topics-eaSVN-incompleteConf}) has opened, simply click on ``Yes" to open the ``Version Control Settings'' dialog (Fig.~\ref{fig:advanced-topics-eaSVN-setWorkingCopyPath}).
+  \item[$\blacktriangleright$] Open the EAP file.
+  If the EAP file is already under version control \emph{and has been set-up correctly}, a dialogue similar to Fig.~\ref{fig:advanced-topics-eaSVN-incompleteConf} should immediately pop-up. 
+  \item[$\blacktriangleright$] Click ``Yes" to open the ``Version Control Settings'' dialogue (Fig.~\ref{fig:advanced-topics-eaSVN-setWorkingCopyPath}).
 \begin{figure}[!htbp]
 \begin{center}
-	\includegraphics[width=0.5\textwidth]{pics/advancedTopics/eaSVN/DemoLanguages/011.png}
-	\caption{Initial state of EAP file with defined version control}
+	\includegraphics[width=0.5\textwidth]{pics/advancedTopics/eaSVN/DemoLanguages/011}
+	\caption{Configure an EAP file which is already under version control}
   	\label{fig:advanced-topics-eaSVN-incompleteConf}
 \end{center}
 \end{figure}
 
-   \item[$\blacktriangleright$] To connect the EAP file to the SVN repository, you have to redefine the SVN variable in EA. Therefore, choose the local path to the folder which contains the EAP file in the ``Working Copy Path'' text-box.
+   \item[$\blacktriangleright$] To work with the EAP file, you now have to \emph{redefine} the SVN variable for the file in your EA workspace. 
+   To accomplish this, choose the local path to the folder which contains the EAP file in the ``Working Copy Path'' text-box, and correct the value in ``Subversion Exe Path'' if necessary (to fit your Slik installation location).
 
 \begin{figure}[!htbp]
 \begin{center}
-	\includegraphics[width=0.5\textwidth]{pics/advancedTopics/eaSVN/DemoLanguages/012.png}
-	\caption{Select working copy path in an SVN variable.}
+	\includegraphics[width=0.5\textwidth]{pics/advancedTopics/eaSVN/DemoLanguages/012}
+	\caption{Update settings as required}
   	\label{fig:advanced-topics-eaSVN-setWorkingCopyPath}
-\end{center}
-\end{figure}
-\end{enumerate}
-
-
-\subsubsection{Variant 2: EAP without VC configuration}\label{sec:novcConfig}
-
-\begin{enumerate}
-  \item[$\blacktriangleright$] Open the EAP file in EA and inspect the model tree. 
-  It should somehow resemble Fig.~\ref{fig:advanced-topics-eaSVN-initial}.
-  Note that this does not mean that an empty project was checked in, but only that packages have to be checked out explicitly.
-\begin{figure}[!htbp]
-\begin{center}
-	\includegraphics[width=0.5\textwidth]{pics/advancedTopics/eaSVN/DemoLanguages/001.png}
-	\caption{Initial state of EAP file}
-  	\label{fig:advanced-topics-eaSVN-initial}
-\end{center}
-\end{figure}
-
-\item[$\blacktriangleright$] To accomplish this make sure you have defined an SVN variable in EA as described in the previous section. 
-Now invoke the context menu on the root element and select ``Package Control/Get Package...''~(Fig.~\ref{fig:advanced-topics-eaSVN-getpackage}).
-\begin{figure}[!ht]
-\begin{center}
-	\includegraphics[width=0.9\textwidth]{pics/advancedTopics/eaSVN/DemoLanguages/004.png}
-	\caption{``Getting'' a package from the repository}
-  	\label{fig:advanced-topics-eaSVN-getpackage}
-\end{center}
-\end{figure}
-
- \item[$\blacktriangleright$] Select the \texttt{<package>.xml} with the same name as your root element. 
- In our case, \texttt{DemoLanguages.xml} as depicted in Fig.~\ref{fig:advanced-topics-eaSVN-selectxml}.
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[height=0.5\textheight]{pics/advancedTopics/eaSVN/DemoLanguages/005.png}
-	\caption{Choose the correct xml file}
-  	\label{fig:advanced-topics-eaSVN-selectxml}
-\end{center}
-\end{figure}
-The key symbol ``8'' beside the folder icon indicates that all packages are under version control and that they are all locked~(Fig.~\ref{fig:advanced-topics-eaSVN-locked}).
-
-\item[$\blacktriangleright$] To retrieve the contents of the project's subpackages do the following:
-\begin{enumerate}
-\item[1.] \texttt{Check Out} the package you desire (Fig.~\ref{fig:advanced-topics-eaSVN-checkout})
-\item[2.] Select \texttt{Get Package} for the package (Fig.~\ref{fig:advanced-topics-eaSVN-getpackage}) and choose the correct XML file (Fig.~\ref{fig:advanced-topics-eaSVN-selectxml}).
-\item[3.] All data for this package is now retrieved from the XML file and afterwards also available in your EA browser.
-\end{enumerate}
-Repeat Steps 1 to 2 for all packages \emph{and} sub-packages (unfortunately also transitively) you wish to work with. 
-The good news is that after this initial configuration overhead, only \texttt{Get All Latest} has to be invoked to update all your models. 
-More information about updating and checking in changes can be found in the next Section~\ref{sect:appendixB_update_commit}. 
-\begin{figure}[htbp]
-\begin{center}
-	\includegraphics[width=0.4\textwidth]{pics/advancedTopics/eaSVN/DemoLanguages/006.png}
-	\caption{Locked packages in EAP file}
-  	\label{fig:advanced-topics-eaSVN-locked}
-\end{center}
-\end{figure}
-
-\begin{figure}[htbp]
-\begin{center}
-	\includegraphics[width=0.9\textwidth]{pics/advancedTopics/eaSVN/checkout.png}
-	\caption{Check out of a package}
-  	\label{fig:advanced-topics-eaSVN-checkout}
-\end{center}
-\end{figure}
-\begin{figure}[htbp]
-\begin{center} 
-	\includegraphics[scale=0.65]{pics/advancedTopics/eaSVN/cont.png}
-	\caption{Placing a package under version control}
-  	\label{fig:advanced-topics-eaSVN-addPackage}
 \end{center}
 \end{figure}
 
 \end{enumerate}
  
-\subsection{Check Out/Check In vs. Put/Get}
+\subsection{Working with a version controlled EAP file}
 \label{sect:appendixB_update_commit}
 
 \begin{enumerate}
-  \item[$\blacktriangleright$] A \texttt{Check Out} retrieves the lock for a model and gives you exclusive access to the package, i.e., no one else can change the model. 
-  Very important, if subpackages are also under version control, they are not affected by checking out the ``super''-package and remain locked.
+  \item[$\blacktriangleright$] A \texttt{Check Out} retrieves the lock for a certain package and gives you exclusive access, i.e., no one else can change the package. 
+  Very important: if subpackages are also under version control, they are not affected by checking out the ``super''-package and remain locked.
   A \texttt{Check Out} also updates the package to the latest version.
 
 \item[$\blacktriangleright$] A \texttt{Check In} commits your work to the server and gives up the lock on the package so others can work on it.
@@ -188,18 +100,53 @@ For a useful file history, always use meaningful commit statements when checking
 A date stamp is created automatically.
 \end{enumerate}
 
-\subsection{Placing a package under version control}
+\subsection{Placing an EAP file under version control}
+\label{sect:appendixB_new_EAP_for_vc}
 
+If you already have an EAP file and would like to place it under version control, you first have to check it in as usual on the server using your favourite SVN client. 
+Once the project is checked in, the required .svn folder should be in the folder containing the EAP file.
+
+The next step is to register an SVN-variable in EA:
 \begin{enumerate}
+  \item[$\blacktriangleright$] Open the EAP file, right click on a root folder and select ``Package Control'' and then ``Version Control Settings...'' (Fig.~\ref{fig:advanced-topics-eaSVN-rightclick}).
 
-\item[$\blacktriangleright$] If you already have a model in EA and would like to place it under version control, you first have to check it in as usual on the server using your favourite SVN client. 
-If the project is already checked in, the required .svn folder should already be in the folder containing the EAP file.
+\begin{figure}[!htbp]
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{pics/advancedTopics/eaSVN/rightclick}
+	\caption{Select version control settings}
+  	\label{fig:advanced-topics-eaSVN-rightclick}
+\end{center} 
+\end{figure}
 
-\item[$\blacktriangleright$] In EA, create your SVN variable as described previously and choose ``Package Control$\backslash$Configure...'' for each package you wish to place under version control. 
+  \item[$\blacktriangleright$] In the dialogue, choose a unique ID of your choice (we suggest you use the name of the EAP file) for the settings and activate the ``Subversion'' radio button below.
+  \item[$\blacktriangleright$] Choose the local path to the folder which contains the EAP file in the ``Working Copy Path'' text-box.
+  \item[$\blacktriangleright$] The field ``Working Station'' must point to where you installed Sliksvn, i.e., \texttt{<path to SlikSVN>$\backslash$bin$\backslash$svn.exe")}.  
+  Press ``Save'' and close the dialogue (Fig.~\ref{fig:advanced-topics-eaSVN-variable}).
+  If the dialogue closes without an error message, then you can be sure to have configured everything correctly.
+ 
+%\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[!htbp]
+\begin{center}
+	\includegraphics[width=0.65\textwidth]{pics/advancedTopics/eaSVN/versioncontrol}
+	\caption{Register an SVN variable in EA}
+  	\label{fig:advanced-topics-eaSVN-variable}
+\end{center}
+\end{figure}
 
-\item[$\blacktriangleright$] In the ensuing dialogue, activate ``Control Package'' and select your SVN variable from the drop-down menu. 
+\item[$\blacktriangleright$] In the EAP file, choose ``Package Control$\backslash$Configure...'' for \emph{each package} you wish to place under version control. 
+
+\item[$\blacktriangleright$] In the ensuing dialogue, activate ``Control Package'' and select your previously defined SVN variable from the drop-down menu. 
 Enter the path where the XML file for the project should be placed.
 Although this is not enforced in any way, we recommend you create a folder structure that mirrors the package structure in EA (Fig.~\ref{fig:advanced-topics-eaSVN-addPackage}).
-This process has to be repeated for all sub-packages as soon as their super-package has been placed under version control.
+This process has to be repeated \emph{for all sub-packages} as soon as their super-package has been placed under version control.
+
+\begin{figure}[!htbp]
+\begin{center} 
+	\includegraphics[width=0.65\textwidth]{pics/advancedTopics/eaSVN/cont}
+	\caption{Placing a package under version control}
+  	\label{fig:advanced-topics-eaSVN-addPackage}
+\end{center}
+\end{figure} 
+
 \end{enumerate}
 
