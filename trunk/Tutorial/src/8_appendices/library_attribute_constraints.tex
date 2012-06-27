@@ -1,0 +1,49 @@
+\chapter{Library attribute constraints}
+\label{chap:libraryConstraints}
+	
+The following list shows all provided library constraints. Concatenation of
+strings is denoted by ``.''. 
+	
+\begin{itemize}
+\item
+\textbf{concat(separator : String, a : String, b : String, c : String)} \\
+Allowed Adornments: BBBB, BBBF, BBFB, BFFB, BFBB \\
+a . separator . b = c 
+\item
+\textbf{addPrefix(prefix : String, a : String, b : String)} \\
+Allowed Adornments: BBB, BBF, BFB, FBB  \\
+prefix . a = b
+\item
+\textbf{addSuffix(a : String, suffix : String, b : String)} \\
+Allowed Adornments: BBB, BBF, BFB, FBB \\
+a . suffix = b 
+\item
+\textbf{add(a : Number, b : Number, c : Number)} \\
+Allowed Adornments: BBB, BBF, BFB, FBB \\
+a + b = c 
+\item
+\textbf{sub(a : Number, b : Number, c : Number)} \\
+Allowed Adornments: BBB, BBF, BFB, FBB \\
+a - b = c 
+\item
+\textbf{multiply(a : Number, b : Number, c : Number)} \\
+Allowed Adornments: BBB, BBF, BFB, FBB \\
+a * b = c 
+\item
+\textbf{divide(a : Number, b : Number, c : Number)} \\
+Allowed Adornments: BBB, BBF, BFB, FBB \\
+a / b = c 
+\item
+\textbf{max(a : Number, b : Number, c : Number)} \\
+Allowed Adornments: BBB, BBF, BFB, FBB \\
+max(a,b) = c
+
+\item
+\textbf{stringToNumber(string : String, number : Number)} \\
+Allowed Adornments: BB, BF, FB \\
+Performs conversion between string and number
+\item
+\textbf{eq(a, b)} \\
+Allowed Adornments: BB, BF, FB \\
+a = b 
+\end{itemize}
