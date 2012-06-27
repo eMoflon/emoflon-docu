@@ -1,49 +1,60 @@
-\chapter{Library attribute constraints}
+\section{Built-in Attribute Constraints for TGGs}
 \label{chap:libraryConstraints}
 	
-The following list shows all provided library constraints. Concatenation of
-strings is denoted by ``.''. 
+Although you can always define your very own collection or library of attribute constraints for your integration, we provide a standard library of built-in attribute constraints that can be used directly.	
 	
-\begin{itemize}
-\item
-\textbf{concat(separator : String, a : String, b : String, c : String)} \\
+The following list documents all provided library constraints. 
+Concatenation of strings is denoted by ``$\cdot$''. 
+	
+\begin{description}
+\item[concat(separator : String, a : String, b : String, c : String)]~\\
+\texttt{
 Allowed Adornments: BBBB, BBBF, BBFB, BFFB, BFBB \\
-a . separator . b = c 
-\item
-\textbf{addPrefix(prefix : String, a : String, b : String)} \\
+Semantics: a $\cdot$ separator $\cdot$ b = c
+} 
+\item[addPrefix(prefix : String, a : String, b : String)]~\\
+\texttt{
 Allowed Adornments: BBB, BBF, BFB, FBB  \\
-prefix . a = b
-\item
-\textbf{addSuffix(a : String, suffix : String, b : String)} \\
+Semantics: prefix $\cdot$ a = b
+}
+\item[addSuffix(a : String, suffix : String, b : String)]~\\
+\texttt{
 Allowed Adornments: BBB, BBF, BFB, FBB \\
-a . suffix = b 
-\item
-\textbf{add(a : Number, b : Number, c : Number)} \\
+Semantics: a $\cdot$ suffix = b 
+}
+\item[add(a : Number, b : Number, c : Number)]~\\
+\texttt{
 Allowed Adornments: BBB, BBF, BFB, FBB \\
-a + b = c 
-\item
-\textbf{sub(a : Number, b : Number, c : Number)} \\
+Semantics: a + b = c
+} 
+\item[sub(a : Number, b : Number, c : Number)]~\\
+\texttt{
 Allowed Adornments: BBB, BBF, BFB, FBB \\
-a - b = c 
-\item
-\textbf{multiply(a : Number, b : Number, c : Number)} \\
+Semantics: a - b = c
+} 
+\item[multiply(a : Number, b : Number, c : Number)]~\\
+\texttt{
 Allowed Adornments: BBB, BBF, BFB, FBB \\
-a * b = c 
-\item
-\textbf{divide(a : Number, b : Number, c : Number)} \\
+Semantics: a * b = c 
+}
+\item[divide(a : Number, b : Number, c : Number)]~\\
+\texttt{
 Allowed Adornments: BBB, BBF, BFB, FBB \\
-a / b = c 
-\item
-\textbf{max(a : Number, b : Number, c : Number)} \\
+Semantics: a / b = c 
+}
+\item[max(a : Number, b : Number, c : Number)]~\\
+\texttt{
 Allowed Adornments: BBB, BBF, BFB, FBB \\
-max(a,b) = c
-
-\item
-\textbf{stringToNumber(string : String, number : Number)} \\
+Semantics: max(a,b) = c
+}
+\item[stringToNumber(string : String, number : Number)]~\\
+\texttt{
 Allowed Adornments: BB, BF, FB \\
-Performs conversion between string and number
-\item
-\textbf{eq(a, b)} \\
+Semantics: string = number.toString()
+}
+\item[eq(a, b)]~\\
+\texttt{
 Allowed Adornments: BB, BF, FB \\
-a = b 
-\end{itemize}
+Semantics: a = b 
+}
+\end{description}
