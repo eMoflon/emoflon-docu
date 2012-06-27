@@ -237,7 +237,9 @@ Your complete TGG rule should now resemble Fig.~\ref{fig:cardtoentry_complete}.
 Just like the patterns describing \emph{structural} correspondence,  attribute constraints can be automatically \emph{operationalized} as required for the concrete transformations (forward, backward).
 Even more interesting, a set of constraints might have to be ordered a bit differently depending on the direction of the transformation, and some constraints might have to be checked for already set attributes, while others must set values appropriately to fulfill the constraint.
 
-For built-in or \emph{library} constraints such as \emph{eq}, \emph{addPrefix} and \emph{concat}, you do not need to worry about these details and can just express what should hold -- everything is handled automatically.
+For built-in or \emph{library} constraints (Appendix
+~\ref{chap:libraryConstraints}) such as \emph{eq}, \emph{addPrefix} and
+\emph{concat}, you do not need to worry about these details and can just express what should hold -- everything is handled automatically.
 
 In many cases, however, a constraint might be very problem-specific, such as our \emph{indexToLevel} constraint, and there might not be any fitting combination of library constraints to express the consistency condition.
 
