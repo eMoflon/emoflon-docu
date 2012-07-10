@@ -146,3 +146,53 @@ This process has to be repeated \emph{for all sub-packages} as soon as their sup
 As from this point, the EAP file should not be checked-in anymore, and all versioning actions should be performed via EA (and not directly with your SVN client).
 \end{enumerate}
 
+\section{Conditional branching and operation results}
+During the development of a model transformation with the SDM-language, one eventually encounters a situation where one needs to chose among two patterns based on the return value of an arbitrary operation invocation.
+Think, for example, of the situation where you have a class \texttt{A} comprising an operation \mbox{\texttt{doSomeCheck(p$_1$,\ldots,p$_n$ :EClass) :EBoolean}}
+which might either encapsulate hand-written java code or be derived from another SDM specification. One possibility to achieve the required branching would lie in assigning the returned value to some dummy attribute (via \emph{attribute assignment}) of
+the object of type \texttt{A} (the one, on which we invoked the method). In an immediately following pattern one could then check, whether the \texttt{A} instance carries the expected result in its dummy variable (via \emph{attribute value expression} and comparison to a boolean literal) and branch as done before by using \emph{success} and \emph{failure} edges.
+
+This detour based on a dummy variable has the drawbacks of polluting the metamodel with helper variables induced by technical shortcomings and of concealing the connection between the conditional branch and its condition. It is why we introduced the option to SDM to branch the control flow based on the result of an operation invocation within a \emph{StatementNode} - but only if the return type of the method is specified to be of type EBoolean (other return types could be converted to an EBolean representation by another helper operation though).
+
+Fig.~\ref{fig:cond_branch_on_op} shows a simplistic metamodel and an usage example for the presented SDM language feature. Fig.~\ref{fig:cond_branch_on_op_code} depicts the relevant code sections after code generation. 
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=1\textwidth]{pics/advancedTopics/branching/SDM_with_branch}
+  \caption{Conditional branching based on result of an operation}
+  \label{fig:cond_branch_on_op}
+\end{center}
+\end{figure}
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{pics/advancedTopics/branching/generated_code}
+  \caption{Generated code}
+  \label{fig:cond_branch_on_op_code}
+\end{center}
+\end{figure}
+
+The key tasks of workflow to get there are as follows:
+
+\begin{enumerate}
+\item[$\blacktriangleright$] Locate the position of the required branch and add a new statement node (cf.~fig.~\ref{fig:cond_statement_node}).
+\item[$\blacktriangleright$] Specify the right method (corresponding to an operation in the metamodel with \texttt{EBoolean} return type) to be invoked (cf.~fig.~\ref{fig:cond_method_call}). 
+\item[$\blacktriangleright$] Add departing \texttt{success} \emph{and} \texttt{failure} edges to the statement node.
+\item[$\blacktriangleright$] The \texttt{success} edge is taken if the method returns \texttt{true}, else the \texttt{failure} edge is taken.
+\end{enumerate}
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{pics/advancedTopics/branching/01_switch_to_statement_node}
+  \caption{Switch from activity node to statement node}
+  \label{fig:cond_statement_node}
+\end{center}
+\end{figure}
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{pics/advancedTopics/branching/02_specify_method_call_expression}
+  \caption{Specify the method call expression}
+  \label{fig:cond_method_call}
+\end{center}
+\end{figure}
