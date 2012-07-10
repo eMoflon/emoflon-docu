@@ -18,6 +18,17 @@
 \usepackage{wrapfig}
 \usepackage{enumerate}
 
+\usepackage{color}
+\definecolor{codelightgray}{rgb}{0.87,0.87,0.87}
+\usepackage{listings}
+\lstset{language=,
+    keywordstyle=\color{blue},
+    basicstyle=\scriptsize\ttfamily,
+    showstringspaces=false,
+    backgroundcolor=\color{codelightgray},
+    morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
+}
+
 \newcommand{\note}[1]{\marginpar{\emph{#1}}}
   
 \setcounter{tocdepth}{3}
