@@ -96,6 +96,11 @@ public class eMoflonEMFUtil
       return saveModel(root, createFileURI(path, false));
    }
    
+   static public boolean saveModel(EObject root, String path, ResourceSet resourceSet)
+   {
+      return saveModel(root, createFileURI(path, false),resourceSet);
+   }
+   
    static public boolean saveModel(EObject root, URI path){
 	  if(root == null)
 		  throw new IllegalArgumentException("The model to be saved cannot be null");
@@ -103,6 +108,10 @@ public class eMoflonEMFUtil
       // Obtain a new resource set
       ResourceSet resourceSet = new ResourceSetImpl();
 
+      return saveModel(root, path, resourceSet);
+   }
+   
+   static public boolean saveModel(EObject root, URI path, ResourceSet resourceSet){
       // Create a resource and add model
       Resource resource = resourceSet.createResource(path);
       resource.getContents().add(root);
