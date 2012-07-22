@@ -25,7 +25,7 @@ import org.apache.log4j.PropertyConfigurator;
 public class MoflonUtil
 {
    public static String getMoflonDefaultURIForProject(String projectName){
-      return "http://www.moflon.org/" + projectName;
+      return "http://www.moflon.org." + projectName;
    }
    
    
