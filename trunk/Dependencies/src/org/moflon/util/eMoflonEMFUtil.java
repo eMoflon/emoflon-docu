@@ -328,8 +328,12 @@ public class eMoflonEMFUtil
 	}
 	
 	public static void addToResourceSet(ResourceSet set, EObject object) {
-		Resource resource = new ResourceImpl();
-		resource.setURI(URI.createURI(object.eClass().getEPackage().getNsURI()));
+	   Resource resource = object.eResource();
+	   if(resource == null){
+	      resource = new ResourceImpl();
+	      resource.setURI(URI.createURI(object.eClass().getEPackage().getNsURI()));
+	   }
+	   
 		resource.getContents().add(object);
 		set.getResources().add(resource);
 	}
