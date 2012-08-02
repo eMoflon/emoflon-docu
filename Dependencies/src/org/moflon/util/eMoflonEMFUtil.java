@@ -385,13 +385,13 @@ public class eMoflonEMFUtil
 		   return null;
 				   
 	   String xmiDoc = details.get(SDM_ANNOTATION_KEY);
-	   Resource r = resourceSet.createResource(URI.createURI(operationName + ".sdm"));
 	   try {
 		   registerXMIFactoryAsDefault();
 		   // try to load the resource - it might be, that the user did not remember to initialize SDMLanguage properly
 		   // the following code thus attempts to load the resource once and tries to dynamically load SDMLanguage on demand
 		   // if this latter step succeeds, then the resource is tried to be loaded again  
 		   try {
+			   Resource r = resourceSet.createResource(URI.createURI(operationName + ".sdm"));
 			   r.load(new ByteArrayInputStream(xmiDoc.getBytes()), null);
 			   try {
 				   result = (EObject) r.getContents().get(0);
@@ -424,7 +424,7 @@ public class eMoflonEMFUtil
 			   }
 		   }		   
 		   // try to load the resource after the SDMLanguagePackage has been (reflectively) initialized (see above)
-		   r = resourceSet.createResource(URI.createURI(operationName + ".sdm"));
+		   Resource r = resourceSet.createResource(URI.createURI(operationName + ".sdm"));
 		   r.load(new ByteArrayInputStream(xmiDoc.getBytes()), null);
 		   try {
 			   result = (EObject) r.getContents().get(0);
