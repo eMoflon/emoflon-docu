@@ -408,7 +408,8 @@ public class eMoflonEMFUtil
 				   Throwable cause = e.getCause();
 				   if (cause instanceof PackageNotFoundException) {
 					   PackageNotFoundException e2 = (PackageNotFoundException) cause;
-					   if (e2.getMessage().contains("http://www.moflon.org/SDMLanguage.activities")) {
+					   final String sdmURI = MoflonUtil.getMoflonDefaultURIForProject("SDMLanguage");
+					   if (e2.getMessage().contains(sdmURI)) {
 						   // now initialize the SDMLanguagePackage properly
 						   // (this is done by java reflection to prevent an explicit dependency from eMoflonEMTUtil to SDMLanguage)
 						   // Warning! Be careful, the following lines depend on the correct naming of SDMLanguage and might break in case of renaming/refactoring. 
