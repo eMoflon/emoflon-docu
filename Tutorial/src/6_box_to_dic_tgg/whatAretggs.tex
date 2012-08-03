@@ -1,6 +1,6 @@
 \section{Triple Graph Grammars in a Nutshell}
 
-Triple graph grammars are a declarative, rule-based technique of specifying the simultaneous evolution of three connected graphs.
+Triple graph grammars~\cite{tgg:schuerr_94,sk2008,Klar2010} are a declarative, rule-based technique of specifying the simultaneous evolution of three connected graphs.
 If you have read the previous sentence at least three times and are still scratching your head wondering if you need a cup of coffee -- welcome to the club\footnote{If not then congrats, stop reading, and go grab some real (academic) papers on TGGs.} ;)
 
 A TGG is basically just a bunch of rules.
@@ -18,13 +18,13 @@ We believe there are two main keys to understanding TGGs:
 \begin{description}
 \item[(1) A TGG defines a consistency relation:]
 	Given a TGG (remember -- just a bunch of rules), you can take a look at a source graph $S$ and a target graph $T$ and say if they are \emph{consistent} with respect to the TGG.
-	How?  You simply check if a triple $S\leftarrow C\rightarrow T$ can be created using the rules of the TGG, which has the source graph $S$ as its source component and the target graph $T$ as its target component, and some correspondence graph $C$ as its correspondence component.
+	How?  You simply check if a triple $S\leftarrow C\rightarrow T$ can be created using the rules of the TGG, which has the source graph $S$ as its source component and the target graph $T$ as its target component, and some correspondence graph $C$ as its correspondence component~\cite{Hermann2011a}.
 	If such a triple can be created then the given source and target graphs are consistent.
 	Let's denote this as $S \Leftrightarrow_{TGG} T$.
 	This consistency relation can already be used to check if a bidirectional transformation, i.e., a pair of forward ($f$) and backward ($b$) transformations are consistent (according to the TGG which can be viewed as a specification of how the transformations are to behave):  $S \Leftrightarrow_{TGG} f(S)$ and $b(T) \Leftrightarrow_{TGG} T$.
 	
 \item[(2) The consistency relation can be operationalized:]
-Now comes the surprising (and extremely cool) part -- a forward \emph{and} backward rule can be derived automatically from every TGG rule!
+Now comes the surprising (and extremely cool) part -- a forward \emph{and} backward rule can be derived automatically from every TGG rule~\cite{Giese2010,Hermann2011a}!
 Just to make sure you got the point:  The description of the simultaneous evolution of the source, correspondence and target graphs is \emph{sufficient} to derive a forward transformation, i.e., given source, determine consistent correspondence and target graphs, and a backward transformation, i.e., given target, determine consistent correspondence and source graphs.
 If you can't imagine why then just accept it as magic for now.
 As these derived rules are actually executed to perform forward and backward transformation, they are called \emph{operational} rules as opposed to the TGG rules, which are called \emph{declarative} rules.
@@ -34,7 +34,7 @@ The derivation process, therefore, is referred to as the \emph{operationalizatio
 \clearpage
 Before we sum up and get our hands dirty on our concrete example, just a few extra points for the interested reader:  
 \begin{itemize}
-\item A lot more can be automatically derived from the consistency relation including inverse rules to \emph{undo} a step in a forward/backward transformation and rules that simply check consistency of an existing triple of source, correspondence and target graphs.
+\item A lot more can be automatically derived from the consistency relation including inverse rules to \emph{undo} a step in a forward/backward transformation~\cite{LAVS_ICGT_2012} and rules that simply check consistency of an existing triple of source, correspondence and target graphs.
 
 \item Why do we need the correspondence graph?  Hmm\dots\, Thats a hard one ;)  Well, first of all it can be viewed as explicit traceability links which are quite nice to have, i.e., you \emph{see} which element relates to which after a forward/backward transformation. 
 No guessing, no heuristics, no interpretation or ambivalence -- the information \emph{is} just there!
