@@ -196,3 +196,32 @@ The key tasks of workflow to get there are as follows:
   \label{fig:cond_method_call}
 \end{center}
 \end{figure}
+
+\section{Preserve files in eMoflon projects}
+In an eMoflon project files in a path with ``\ldots \texttt{.facade.impl.}\ldots'' as part are automatically preserved when calling ``Clean''.
+In some cases, it is necessary to mark additional generated customized files or folders that should not be overwritten when code is generated or clean is performed on the project.
+For this, the following options are available in the eMoflon plugin in Eclipse (Fig.~\ref{fig:preservepath}).
+\begin{itemize}
+\item [$\blacktriangleright$]To add a file or a whole path to the list of paths that should be preserved, right click on the folder or file to open the context menu and chose \texttt{eMoflon} $\rightarrow$ \texttt{Add to preserve path}.
+\item [$\blacktriangleright$]To remove a path that is on the list, choose \texttt{eMoflon} $\rightarrow$ \texttt{Remove from preserve path}.
+\end{itemize}
+What happens when a file or a path is set to be preserved:
+
+The paths are added to the \texttt{PRESERVE\_PATHS} variable in the properties file in the corresponding eMoflon project.
+When a folder is specified, all folders and paths with this path as prefix are preserved.
+The base of the path is the Eclipse workspace.
+An example for a preserve path variable in \texttt{moflon.properties} is:
+ 
+\texttt{PRESERVE\_PATHS=/<ProjectName>/gen/<Path>/<File>;\ldots}
+
+Thereby, the file name is optional.
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{pics/advancedTopics/preservePath/PreservePath}
+  \caption{eMoflon context menu}
+  \label{fig:preservepath}
+\end{center}
+\end{figure}
+
+
