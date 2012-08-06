@@ -13,7 +13,13 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.antlr.gunit.swingui.TestCaseEditController.InputFileEditor;
 import org.apache.log4j.Logger;
+import org.apache.log4j.Priority;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -39,6 +45,11 @@ import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.PackageNotFoundException;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 public class eMoflonEMFUtil
 {
@@ -84,6 +95,40 @@ public class eMoflonEMFUtil
       
       // Return root model element
       return resource.getContents().get(0);
+   }
+   
+   /**
+    * This method not only loads a serialized model but also adds an URIMap-entry, mapping the model's default "nsURI" to the file uri.  
+    * 
+    * @param uri a file uri that points to the serialized model that shall be loaded 
+    * @param resourceSet a given ResourceSet instance that shall be used for resolving type information
+    * @return the root element of the loaded model
+    * @throws IOException if uri does not point to a valid/loadable xmi document
+    * @throws IllegalStateException if something else goes wrong (e.g. xmi document could not be parsed correctly) 
+    */
+   public static EObject loadModelAndAddUriMapping(URI uri, ResourceSet resourceSet) throws IOException {	   
+	   if (uri.isFile()) {
+		   File file = new File(uri.toFileString());
+		   DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		   try {
+			   DocumentBuilder docBuilder = dbf.newDocumentBuilder();
+			   Document doc = docBuilder.parse(file);
+			   doc.getDocumentElement().normalize();
+			   NodeList packageElements = doc.getElementsByTagName("ecore:EPackage");
+			   Node epackageNode = packageElements.item(0);
+			   NamedNodeMap attributes = epackageNode.getAttributes();
+			   Node uriAttribute = attributes.getNamedItem("nsURI");
+			   String nsUriAsString = uriAttribute.getNodeValue();
+			   URI from = URI.createURI(nsUriAsString);
+			   resourceSet.getURIConverter().getURIMap().put(from, uri);
+			   logger.debug(String.format("Adding URI mapping: %1$s -> %2$s", from, uri));
+		   } catch (ParserConfigurationException e) {
+			   throw new IllegalStateException(e);
+		   } catch (SAXException e) {
+			   throw new IllegalStateException(e);
+		   }
+	   }
+	   return loadModel(uri, resourceSet);
    }
 
   /**
