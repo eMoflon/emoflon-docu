@@ -146,20 +146,31 @@ This process has to be repeated \emph{for all sub-packages} as soon as their sup
 As from this point, the EAP file should not be checked-in anymore, and all versioning actions should be performed via EA (and not directly with your SVN client).
 \end{enumerate}
 
-\section{Conditional branching and operation results}
-During the development of a model transformation with the SDM-language, one eventually encounters a situation where one needs to chose among two patterns based on the return value of an arbitrary operation invocation.
-Think, for example, of the situation where you have a class \texttt{A} comprising an operation \mbox{\texttt{doSomeCheck(p$_1$,\ldots,p$_n$ :EClass) :EBoolean}}
-which might either encapsulate hand-written java code or be derived from another SDM specification. One possibility to achieve the required branching would lie in assigning the returned value to some dummy attribute (via \emph{attribute assignment}) of
-the object of type \texttt{A} (the one, on which we invoked the method). In an immediately following pattern one could then check, whether the \texttt{A} instance carries the expected result in its dummy variable (via \emph{attribute value expression} and comparison to a boolean literal) and branch as done before by using \emph{success} and \emph{failure} edges.
+\section{Conditional Branching with StatementNodes}
 
-This detour based on a dummy variable has the drawbacks of polluting the metamodel with helper variables induced by technical shortcomings and of concealing the connection between the conditional branch and its condition. It is why we introduced the option to SDM to branch the control flow based on the result of an operation invocation within a \emph{StatementNode} - but only if the return type of the method is specified to be of type EBoolean (other return types could be converted to an EBolean representation by another helper operation though).
+When working with SDMs, you often need to choose between two different patterns based on the return value of an arbitrary (black box) operation.
+This is like the normal \texttt{Success}/\texttt{Failure} construction, but instead of a pattern being matched or failing, the decision can be implemented with a another SDM or a standard Java method.
+This feature is a further means (besides \texttt{MethodCallExpressions} for attribute values and \texttt{Bindings}) of integrating hand-written Java code in SDMs (and can lead to spaghetti SDMs so please use with caution!). 
 
-Fig.~\ref{fig:cond_branch_on_op} shows a simplistic metamodel and an usage example for the presented SDM language feature. Fig.~\ref{fig:cond_branch_on_op_code} depicts the relevant code sections after code generation. 
+As an example, consider a class \texttt{A} with an operation:
+\begin{quote}
+ \mbox{\texttt{doSomeCheck(p$_1$,\ldots,p$_n$ :EClass) :EBoolean}}
+\end{quote}
+
+This method could be implemented in hand-written Java code or be specified by another SDM specification.
+
+Although dummy boolean attributes \emph{could} be used to achieve the same effect, it is much simpler to branch the control flow based on the result of a \texttt{StatementNode}.
+If the method returns an \texttt{EBoolean}, \texttt{Success} and \texttt{Failure} correspond to \texttt{true} and \texttt{false}, respectively.
+If the method returns anything else, then \texttt{Failure} corresponds to \texttt{null}.
+Void methods \emph{cannot} be used to branch and an exception is thrown during code generation.
+
+Fig.~\ref{fig:cond_branch_on_op} depicts the class \texttt{A} and shows how \texttt{doSomeCheck} is used to branch in an SDM.
+Fig.~\ref{fig:cond_branch_on_op_code} depicts the corresponding generated if/else branch in Java. 
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=1\textwidth]{pics/advancedTopics/branching/SDM_with_branch}
-  \caption{Conditional branching based on result of an operation}
+  \caption{Conditional branching based on the result of an operation}
   \label{fig:cond_branch_on_op}
 \end{center}
 \end{figure}
@@ -167,18 +178,16 @@ Fig.~\ref{fig:cond_branch_on_op} shows a simplistic metamodel and an usage examp
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{pics/advancedTopics/branching/generated_code}
-  \caption{Generated code}
+  \caption{Generated code for branch}
   \label{fig:cond_branch_on_op_code}
 \end{center}
 \end{figure}
 
-The key tasks of workflow to get there are as follows:
-
+Perform the following steps to branch with a \texttt{StatementNode}:
 \begin{enumerate}
-\item[$\blacktriangleright$] Locate the position of the required branch and add a new statement node (cf.~fig.~\ref{fig:cond_statement_node}).
-\item[$\blacktriangleright$] Specify the right method (corresponding to an operation in the metamodel with \texttt{EBoolean} return type) to be invoked (cf.~fig.~\ref{fig:cond_method_call}). 
-\item[$\blacktriangleright$] Add departing \texttt{success} \emph{and} \texttt{failure} edges to the statement node.
-\item[$\blacktriangleright$] The \texttt{success} edge is taken if the method returns \texttt{true}, else the \texttt{failure} edge is taken.
+\item[$\blacktriangleright$] Add a new statement node (cf.~Fig.~\ref{fig:cond_statement_node}) at the appropriate location in your SDM.
+\item[$\blacktriangleright$] Invoke a non-void method (an operation in the metamodel) via a \texttt{MethodCallExpression} (cf.~Fig.~\ref{fig:cond_method_call}). 
+\item[$\blacktriangleright$] Add \texttt{Success} \emph{and} \texttt{Failure} edges to the \texttt{StatementNode} to branch appropriately.
 \end{enumerate}
 
 \begin{figure}[htp]
@@ -197,24 +206,34 @@ The key tasks of workflow to get there are as follows:
 \end{center}
 \end{figure}
 
-\section{Preserve files in eMoflon projects}
-In an eMoflon project files in a path with ``\ldots \texttt{.facade.impl.}\ldots'' as part are automatically preserved when calling ``Clean''.
-In some cases, it is necessary to mark additional generated customized files or folders that should not be overwritten when code is generated or clean is performed on the project.
-For this, the following options are available in the eMoflon plugin in Eclipse (Fig.~\ref{fig:preservepath}).
+\clearpage
+
+\section{Preserving files on Clean}
+
+Although the EMF code generator tries its best to merge hand-written and generated code (and does a pretty good job!), you will still need to \emph{Clean and Build} now and then.
+
+To support this, we have a naming convention to indicate classes with hand-written code (which should not be deleted on a clean):
+\begin{quote}
+All files with ``\ldots \texttt{.facade.impl.}\ldots'' in their path are automatically preserved when cleaning\ldots
+\end{quote}
+
+If you place your helpers in a package named \texttt{*facade*}, therefore, the corresponding \texttt{*impl} files (where you can implement the methods by hand) will be preserved automatically.
+
+In some cases, it might be necessary to mark additional files or folders that do \emph{not} follow this naming convention but should nonetheless be preserved when cleaning.
+
+To do this, we provide the following options (Fig.~\ref{fig:preservepath}):
 \begin{itemize}
-\item [$\blacktriangleright$]To add a file or a whole path to the list of paths that should be preserved, right click on the folder or file to open the context menu and chose \texttt{eMoflon} $\rightarrow$ \texttt{Add to preserve path}.
-\item [$\blacktriangleright$]To remove a path that is on the list, choose \texttt{eMoflon} $\rightarrow$ \texttt{Remove from preserve path}.
+\item [$\blacktriangleright$] To add a file or folder to the list of \emph{preserved paths}, right click on the file or folder to invoke the context menu and choose\\ \mbox{\texttt{eMoflon} $\rightarrow$ \texttt{Add to preserve path}}.
+
+When a folder is specified, \emph{all folders and paths with this path as prefix} are preserved.
+\item [$\blacktriangleright$]To remove a path that is already on the list, choose\\ \mbox{\texttt{eMoflon} $\rightarrow$ \texttt{Remove from preserve path}}.
 \end{itemize}
-What happens when a file or a path is set to be preserved:
 
-The paths are added to the \texttt{PRESERVE\_PATHS} variable in the properties file in the corresponding eMoflon project.
-When a folder is specified, all folders and paths with this path as prefix are preserved.
-The base of the path is the Eclipse workspace.
-An example for a preserve path variable in \texttt{moflon.properties} is:
- 
-\texttt{PRESERVE\_PATHS=/<ProjectName>/gen/<Path>/<File>;\ldots}
+Paths to be preserved are added to the \texttt{PRESERVE\_PATHS} variable in the \texttt{moflon.properties} file of the corresponding eMoflon project.
 
-Thereby, the file name is optional.
+All paths are created relative to the Eclipse workspace, i.e., are of the form: 
+\texttt{/<ProjectName>/gen/<Path>/<File>}.
+\clearpage
 
 \begin{figure}[htp]
 \begin{center}
@@ -223,5 +242,3 @@ Thereby, the file name is optional.
   \label{fig:preservepath}
 \end{center}
 \end{figure}
-
-
