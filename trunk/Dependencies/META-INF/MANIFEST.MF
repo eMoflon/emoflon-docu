@@ -75,6 +75,7 @@ Export-Package: antlr,
  org.apache.log4j.xml,
  org.moflon,
  org.moflon.admin,
+ org.moflon.tracing.sdm,
  org.moflon.util
 Bundle-ClassPath: lib/log4j.jar,
  .,
