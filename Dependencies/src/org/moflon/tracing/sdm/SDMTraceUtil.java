@@ -375,4 +375,14 @@ public class SDMTraceUtil {
 		// TODO
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
+	
+	public static Method getMethod(Class<?> clazz, String methodName, Class<?>... params) {
+		Method result = null;
+		try {
+			result = clazz.getMethod(methodName, params);
+		} catch (NoSuchMethodException e) {
+			// do nothing
+		}
+		return result;
+	}
 }
