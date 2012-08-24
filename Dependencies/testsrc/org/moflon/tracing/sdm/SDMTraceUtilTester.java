@@ -36,6 +36,19 @@ import org.moflon.util.eMoflonEMFUtil;
 
 public class SDMTraceUtilTester {
 
+	private static Method getMethod(Object o, String methodName, Class... paramTypes) {
+		Method m;
+		try {
+			m = o.getClass().getDeclaredMethod(methodName, paramTypes);
+		} catch (NoSuchMethodException e) {
+			throw new RuntimeException(e);
+		} catch (SecurityException e) {
+			throw new RuntimeException(e);
+		}
+		m.setAccessible(true);
+		return m;
+	}
+	
 	@Test(expected=IllegalArgumentException.class)
 	public void test_getTraceContext1() {
 		SDMTraceUtil.getTraceContext(null);
@@ -75,9 +88,10 @@ public class SDMTraceUtilTester {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void test_logOperationEnter2() {
+	public void test_logOperationEnter2() throws NoSuchMethodException, SecurityException {
 		EOperation mockedOperation = mock(EOperation.class);
-		SDMTraceUtil.logOperationEnter(null, getStackTraceElement(), mockedOperation, new Object[]{true});
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(getMethod(this, "test_logOperationEnter2", new Class[]{}));
+		SDMTraceUtil.logOperationEnter(null, stw, mockedOperation, new Object[]{true});
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -88,38 +102,44 @@ public class SDMTraceUtilTester {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void test_logOperationEnter4() {
-		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), getStackTraceElement(), null, new Object[]{true});
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(getMethod(this, "test_logOperationEnter4", new Class[]{}));
+		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), stw, null, new Object[]{true});
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void test_logOperationEnter5() {
 		EOperation mockedOperation = mock(EOperation.class);
-		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), getStackTraceElement(), mockedOperation, null);
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(getMethod(this, "test_logOperationEnter5", new Class[]{}));
+		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), stw, mockedOperation, null);
 	}
 	
 	@Test
 	public void test_logOperationEnter6() {
 		EOperation mockedOperation = mock(EOperation.class);
-		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), getStackTraceElement(), mockedOperation, new Object[]{true});
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(getMethod(this, "test_logOperationEnter6", new Class[]{}));
+		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), stw, mockedOperation, new Object[]{true});
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void test_logOperationEnterB1_nullParams() {
-		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), getStackTraceElement(), null, null, new Object[]{true});
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(getMethod(this, "test_logOperationEnterB1_nullParams", new Class[]{}));
+		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), stw, null, null, new Object[]{true});
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void test_logOperationEnterB2_nullParam1() {
 		EObject mockedEObj = mock(EObject.class);
-		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), getStackTraceElement(), mockedEObj, null, new Object[]{true});
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(getMethod(this, "test_logOperationEnterB2_nullParam1", new Class[]{}));
+		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), stw, mockedEObj, null, new Object[]{true});
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void test_logOperationEnterB3_nullParam2() throws NoSuchMethodException, SecurityException, NullPointerException  {
 		StackTraceElement stackTraceElement = (new Throwable()).getStackTrace()[0];		
 		String currentMethodName = stackTraceElement.getMethodName();
-		Method currentMethod = this.getClass().getDeclaredMethod(currentMethodName);
-		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), getStackTraceElement(), null, currentMethod, new Object[]{true});
+		Method currentMethod = getMethod(this, currentMethodName, new Class[]{});
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(currentMethod);
+		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), stw, null, currentMethod, new Object[]{true});
 	}
 	
 	@Test(expected=IllegalStateException.class)
@@ -134,8 +154,9 @@ public class SDMTraceUtilTester {
 		when(mockedOperation.getName()).thenReturn("foo");
 		StackTraceElement stackTraceElement = (new Throwable()).getStackTrace()[0];		
 		String currentMethodName = stackTraceElement.getMethodName();
-		Method currentMethod = this.getClass().getDeclaredMethod(currentMethodName, new Class<?>[]{});
-		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), getStackTraceElement(), mockedEObj, currentMethod, new Object[]{true});
+		Method currentMethod = getMethod(this, currentMethodName, new Class[]{});
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(currentMethod);
+		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), stw, mockedEObj, currentMethod, new Object[]{true});
 	}
 	
 	@Test
@@ -162,8 +183,9 @@ public class SDMTraceUtilTester {
 		String currentMethodName = stackTraceElement.getMethodName();
 		when(mockedOperation.getName()).thenReturn(currentMethodName);
 		when(mockedOperation2.getName()).thenReturn(currentMethodName);
-		Method currentMethod = this.getClass().getDeclaredMethod(currentMethodName, new Class<?>[]{});
-		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), getStackTraceElement(), mockedEObj, currentMethod, new Object[]{true});
+		Method currentMethod = getMethod(this, currentMethodName, new Class<?>[]{});
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(currentMethod);
+		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), stw, mockedEObj, currentMethod, new Object[]{true});
 	}
 	
 	@Test
@@ -178,13 +200,14 @@ public class SDMTraceUtilTester {
 		StackTraceElement stackTraceElement = (new Throwable()).getStackTrace()[0];		
 		String currentMethodName = stackTraceElement.getMethodName();
 		when(mockedOperation.getName()).thenReturn(currentMethodName);
-		Method currentMethod = this.getClass().getDeclaredMethod(currentMethodName, new Class<?>[]{});
-		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), getStackTraceElement(), mockedEObj, currentMethod, new Object[]{true});
+		Method currentMethod = getMethod(this, currentMethodName, new Class<?>[]{});
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(currentMethod);
+		SDMTraceUtil.logOperationEnter(SDMTraceUtil.getTraceContext("foo"), stw, mockedEObj, currentMethod, new Object[]{true});
 	}
 	
-	private StackTraceElement getStackTraceElement() {
-		return (new Throwable()).getStackTrace()[2]; // use index of 3 to get the first stable stack trace element
-	}
+//	private StackTraceElement getStackTraceElement() {
+//		return (new Throwable()).getStackTrace()[2]; // use index of 3 to get the first stable stack trace element
+//	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void test_logOperationExit1() {
@@ -194,7 +217,8 @@ public class SDMTraceUtilTester {
 	@Test(expected=IllegalArgumentException.class)
 	public void test_logOperationExit2() {
 		EOperation mockedOperation = mock(EOperation.class);
-		SDMTraceUtil.logOperationExit(null, getStackTraceElement(), mockedOperation, true);
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(getMethod(this, "test_logOperationExit2", new Class[]{}));
+		SDMTraceUtil.logOperationExit(null, stw, mockedOperation, true);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -205,19 +229,22 @@ public class SDMTraceUtilTester {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void test_logOperationExit4() {
-		SDMTraceUtil.logOperationExit(SDMTraceUtil.getTraceContext("foo"), getStackTraceElement(), null, true);
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(getMethod(this, "test_logOperationExit4", new Class[]{}));
+		SDMTraceUtil.logOperationExit(SDMTraceUtil.getTraceContext("foo"), stw, null, true);
 	}
 	
 	@Test
 	public void test_logOperationExit5() {
 		EOperation mockedOperation = mock(EOperation.class);
-		SDMTraceUtil.logOperationExit(SDMTraceUtil.getTraceContext("foo"), getStackTraceElement(), mockedOperation, null);
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(getMethod(this, "test_logOperationExit5", new Class[]{}));
+		SDMTraceUtil.logOperationExit(SDMTraceUtil.getTraceContext("foo"), stw, mockedOperation, null);
 	}
 	
 	@Test
 	public void test_logOperationExit6() {
 		EOperation mockedOperation = mock(EOperation.class);
-		SDMTraceUtil.logOperationExit(SDMTraceUtil.getTraceContext("foo"), getStackTraceElement(), mockedOperation, true);
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(getMethod(this, "test_logOperationExit6", new Class[]{}));
+		SDMTraceUtil.logOperationExit(SDMTraceUtil.getTraceContext("foo"), stw, mockedOperation, true);
 	}
 	
 	@Test
@@ -233,12 +260,13 @@ public class SDMTraceUtilTester {
 		String currentMethodName = stackTraceElement.getMethodName();
 		when(mockedOperation.getName()).thenReturn(currentMethodName);
 		when(mockedOperation.getEAnnotations()).thenReturn(null);
-		Method currentMethod = this.getClass().getDeclaredMethod(currentMethodName, new Class<?>[]{});
+		Method currentMethod = getMethod(this, currentMethodName, new Class<?>[]{});
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(currentMethod);
 		SDMTraceUtil.getTraceContext("foo").reset();
 		// test
-		SDMTraceUtil.logPatternEnter(SDMTraceUtil.getTraceContext("foo"), getStackTraceElement(), mockedEObj,  currentMethod, "pattern1");
+		SDMTraceUtil.logPatternEnter(SDMTraceUtil.getTraceContext("foo"), stw, mockedEObj,  currentMethod, "pattern1");
 		// check
-		Map<StackTraceElement, TraceEvent[]> allTraces = SDMTraceUtil.getTraceContext("foo").getAllTraces();
+		Map<StackTraceWrapper, TraceEvent[]> allTraces = SDMTraceUtil.getTraceContext("foo").getAllTraces();
 		assertTrue(!allTraces.values().isEmpty());
 		assertTrue(allTraces.values().size() == 1);
 		assertTrue(allTraces.values().iterator().next()[0] instanceof PatternEnterEvent);		
@@ -258,12 +286,13 @@ public class SDMTraceUtilTester {
 		String currentMethodName = stackTraceElement.getMethodName();
 		when(mockedOperation.getName()).thenReturn(currentMethodName);
 		when(mockedOperation.getEAnnotations()).thenReturn(null);
-		Method currentMethod = this.getClass().getDeclaredMethod(currentMethodName, new Class<?>[]{});
+		Method currentMethod = getMethod(this, currentMethodName, new Class<?>[]{});
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(currentMethod);
 		SDMTraceUtil.getTraceContext("foo").reset();
 		// test
-		SDMTraceUtil.logPatternExit(SDMTraceUtil.getTraceContext("foo"), getStackTraceElement(), mockedEObj,  currentMethod, "pattern1");
+		SDMTraceUtil.logPatternExit(SDMTraceUtil.getTraceContext("foo"), stw, mockedEObj,  currentMethod, "pattern1");
 		// check
-		Map<StackTraceElement, TraceEvent[]> allTraces = SDMTraceUtil.getTraceContext("foo").getAllTraces();
+		Map<StackTraceWrapper, TraceEvent[]> allTraces = SDMTraceUtil.getTraceContext("foo").getAllTraces();
 		assertTrue(!allTraces.values().isEmpty());
 		assertTrue(allTraces.values().size() == 1);
 		assertTrue(allTraces.values().iterator().next()[0] instanceof PatternExitEvent);	
@@ -274,10 +303,11 @@ public class SDMTraceUtilTester {
 		//setup
 		SDMTraceContext traceContext = SDMTraceUtil.getTraceContext("foo");
 		traceContext.reset();
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(getMethod(this, "test_logBindingObjVar", new Class[]{}));
 		// test
-		SDMTraceUtil.logBindObjVar(traceContext, getStackTraceElement(), "someObjVar", EObject.class, null, mock(EObject.class));
+		SDMTraceUtil.logBindObjVar(traceContext, stw, "someObjVar", EObject.class, null, mock(EObject.class));
 		// check
-		Map<StackTraceElement, TraceEvent[]> allTraces = SDMTraceUtil.getTraceContext("foo").getAllTraces();
+		Map<StackTraceWrapper, TraceEvent[]> allTraces = SDMTraceUtil.getTraceContext("foo").getAllTraces();
 		assertTrue(!allTraces.values().isEmpty());
 		assertTrue(allTraces.values().size() == 1);
 		assertTrue(allTraces.values().iterator().next()[0] instanceof BindObjectVarEvent);
@@ -288,10 +318,11 @@ public class SDMTraceUtilTester {
 		//setup
 		SDMTraceContext traceContext = SDMTraceUtil.getTraceContext("foo");
 		traceContext.reset();
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(getMethod(this, "test_logUnbindingObjVar", new Class[]{}));
 		// test
-		SDMTraceUtil.logUnbindObjVar(traceContext, getStackTraceElement(), "someObjVar", EObject.class, mock(EObject.class), null);
+		SDMTraceUtil.logUnbindObjVar(traceContext, stw, "someObjVar", EObject.class, mock(EObject.class), null);
 		// check
-		Map<StackTraceElement, TraceEvent[]> allTraces = SDMTraceUtil.getTraceContext("foo").getAllTraces();
+		Map<StackTraceWrapper, TraceEvent[]> allTraces = SDMTraceUtil.getTraceContext("foo").getAllTraces();
 		assertTrue(!allTraces.values().isEmpty());
 		assertTrue(allTraces.values().size() == 1);
 		assertTrue(allTraces.values().iterator().next()[0] instanceof UnbindObjectVarEvent);
@@ -311,13 +342,14 @@ public class SDMTraceUtilTester {
 		String currentMethodName = stackTraceElement.getMethodName();
 		when(mockedOperation.getName()).thenReturn(currentMethodName);
 		when(mockedOperation.getEAnnotations()).thenReturn(null);
-		Method currentMethod = this.getClass().getDeclaredMethod(currentMethodName, new Class<?>[]{});
+		Method currentMethod = getMethod(this, currentMethodName, new Class<?>[]{});
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(currentMethod);
 		SDMTraceContext traceContext = SDMTraceUtil.getTraceContext("foo");
 		traceContext.reset();
 		// test
-		SDMTraceUtil.logMatchFound(traceContext, getStackTraceElement(), mockedEObj, currentMethod, new Object[]{});
+		SDMTraceUtil.logMatchFound(traceContext, stw, mockedEObj, currentMethod, new Object[]{});
 		// check
-		Map<StackTraceElement, TraceEvent[]> allTraces = SDMTraceUtil.getTraceContext("foo").getAllTraces();
+		Map<StackTraceWrapper, TraceEvent[]> allTraces = SDMTraceUtil.getTraceContext("foo").getAllTraces();
 		assertTrue(!allTraces.values().isEmpty());
 		assertTrue(allTraces.values().size() == 1);
 		assertTrue(allTraces.values().iterator().next()[0] instanceof MatchFoundEvent);
@@ -337,13 +369,14 @@ public class SDMTraceUtilTester {
 		String currentMethodName = stackTraceElement.getMethodName();
 		when(mockedOperation.getName()).thenReturn(currentMethodName);
 		when(mockedOperation.getEAnnotations()).thenReturn(null);
-		Method currentMethod = this.getClass().getDeclaredMethod(currentMethodName, new Class<?>[]{});
+		Method currentMethod = getMethod(this, currentMethodName, new Class<?>[]{});
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(currentMethod);
 		SDMTraceContext traceContext = SDMTraceUtil.getTraceContext("foo");
 		traceContext.reset();
 		// test
-		SDMTraceUtil.logNoMatchFound(traceContext, getStackTraceElement(), mockedEObj, currentMethod, new Object[]{});
+		SDMTraceUtil.logNoMatchFound(traceContext, stw, mockedEObj, currentMethod, new Object[]{});
 		// check
-		Map<StackTraceElement, TraceEvent[]> allTraces = SDMTraceUtil.getTraceContext("foo").getAllTraces();
+		Map<StackTraceWrapper, TraceEvent[]> allTraces = SDMTraceUtil.getTraceContext("foo").getAllTraces();
 		assertTrue(!allTraces.values().isEmpty());
 		assertTrue(allTraces.values().size() == 1);
 		assertTrue(allTraces.values().iterator().next()[0] instanceof NoMatchFoundEvent);

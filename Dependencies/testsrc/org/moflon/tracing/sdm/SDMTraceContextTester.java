@@ -1,5 +1,6 @@
 package org.moflon.tracing.sdm;
 
+import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -32,31 +33,37 @@ public class SDMTraceContextTester {
 		traceContext.reset();
 	}
 	
-	private void addEventsInOtherContext() {
-		StackTraceElement ste = Thread.currentThread().getStackTrace()[2]; // use index of 2 to get the first stable stack trace element 
-		SDMTraceUtil.logOperationEnter(traceContext, ste, op, new Object[]{});
-		SDMTraceUtil.logOperationExit(traceContext, ste, op, null);
+	private void addEventsInOtherContext() throws NoSuchMethodException, SecurityException {
+		Method m = this.getClass().getDeclaredMethod("addEventsInOtherContext", new Class[]{});
+		m.setAccessible(true);
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m);
+		SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[]{});
+		SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
 	}
 	
 	@Test
-	public void test_getTrace() {
-		StackTraceElement ste = Thread.currentThread().getStackTrace()[2]; // use index of 2 to get the first stable stack trace element
-		SDMTraceUtil.logOperationEnter(traceContext, ste, op, new Object[]{});
+	public void test_getTrace() throws NoSuchMethodException, SecurityException {
+		Method m = this.getClass().getDeclaredMethod("test_getTrace", new Class<?>[]{});
+		m.setAccessible(true);
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m);
+		SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[]{});
 		addEventsInOtherContext();
-		SDMTraceUtil.logOperationExit(traceContext, ste, op, null);
+		SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
 		
-		TraceEvent[] trace = traceContext.getTrace(ste);
+		TraceEvent[] trace = traceContext.getTrace(stw);
 		assertNotNull(trace);
 		assertTrue(trace.length > 0);
 		assertTrue(trace.length == 2);
 	}
 	
 	@Test
-	public void test_getFlatTrace() {
-		StackTraceElement ste = Thread.currentThread().getStackTrace()[2]; // use index of 2 to get the first stable stack trace element
-		SDMTraceUtil.logOperationEnter(traceContext, ste, op, new Object[]{});
+	public void test_getFlatTrace() throws NoSuchMethodException, SecurityException {
+		Method m = this.getClass().getDeclaredMethod("test_getTrace", new Class<?>[]{});
+		m.setAccessible(true);
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m);
+		SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[]{});
 		addEventsInOtherContext();
-		SDMTraceUtil.logOperationExit(traceContext, ste, op, null);
+		SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
 		
 		TraceEvent[] trace = traceContext.getFlatTrace();
 		assertNotNull(trace);
@@ -65,13 +72,14 @@ public class SDMTraceContextTester {
 	}
 	
 	@Test
-	public void test_getAllTraces() {
-		StackTraceElement ste = Thread.currentThread().getStackTrace()[2]; // use index of 2 to get the first stable stack trace element
-		SDMTraceUtil.logOperationEnter(traceContext, ste, op, new Object[]{});
+	public void test_getAllTraces() throws NoSuchMethodException, SecurityException {
+		Method m = this.getClass().getMethod("test_getTrace", new Class<?>[]{});
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m);
+		SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[]{});
 		addEventsInOtherContext();
-		SDMTraceUtil.logOperationExit(traceContext, ste, op, null);
+		SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
 		
-		Map<StackTraceElement, TraceEvent[]> allTraces = traceContext.getAllTraces();
+		Map<StackTraceWrapper, TraceEvent[]> allTraces = traceContext.getAllTraces();
 		assertNotNull(allTraces);
 		assertTrue(allTraces.keySet().size() == 2);
 		
