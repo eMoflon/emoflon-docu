@@ -564,4 +564,9 @@ public class SDMTraceUtil {
 		}
 		return result;
 	}
+	
+	public static StackTraceWrapper getStackTraceWrapper(Method m) {
+		StackTraceElement[] fullTrace = (new Throwable()).getStackTrace();
+		return new StackTraceWrapper(m, Arrays.copyOfRange(fullTrace, 2, fullTrace.length));
+	}
 }
