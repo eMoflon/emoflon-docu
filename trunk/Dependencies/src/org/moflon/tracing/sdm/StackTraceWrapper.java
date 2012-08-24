@@ -47,4 +47,16 @@ public class StackTraceWrapper {
 		sb.append(']');
 		return sb.toString();
 	}
+	
+	public boolean isValidStackTrace(StackTraceElement[] stackTrace) {
+		boolean flag = false;
+		for (int i = 0; i < stackTrace.length; i++) {
+			StackTraceElement[] subTrace = Arrays.copyOfRange(stackTrace, i, stackTrace.length);
+			flag = Arrays.equals(callingTrace, subTrace);
+			if (flag)
+				break;
+		}
+		
+		return flag;
+	}
 }
