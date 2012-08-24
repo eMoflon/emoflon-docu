@@ -26,17 +26,34 @@ import org.moflon.tracing.sdm.events.UnbindObjectVarEvent;
 
 public class SDMTraceUtil {	
 	
-	private final static SDMTraceStrategy STRATEGY = new DefaultSDMTraceStrategy();   
+	public final static String DISABLE_TRACING_SYS_PROP = "org.moflon.tracing.sdm.SDMTraceUtil.disableTracing";
+	
+	private final static SDMTraceStrategy DEFAULT_STRATEGY = new DefaultSDMTraceStrategy();   
 			
 	private final static String ALL = "global";
 	private final static HashMap<String, SDMTraceContext> CONTEXTS = new HashMap<String, SDMTraceContext>(4, 0.75f);
 	private final static SDMTraceContext GLOBAL_CONTEXT = new SDMTraceContext();
 	
+	private static boolean disableTracing = false;
+	private static boolean initialized = false;
+	
 	{
 		CONTEXTS.put(ALL, GLOBAL_CONTEXT);
 	}
 	
-	public static SDMTraceContext getTraceContext(String uniqueIdentifier) {
+	private static void init() {
+		if (initialized)
+			return;
+		if (System.getProperties().containsKey(DISABLE_TRACING_SYS_PROP)) {
+			String value = System.getProperty(DISABLE_TRACING_SYS_PROP);
+			boolean parsedBoolean = Boolean.parseBoolean(value);
+			disableTracing = parsedBoolean;
+		}
+		initialized = true;
+	}
+	
+	public static SDMTraceContext getTraceContext(String uniqueIdentifier) {		
+		init();
 		if (uniqueIdentifier == null)
 			throw new IllegalArgumentException("Argument may not be null");
 		SDMTraceContext result = CONTEXTS.get(uniqueIdentifier);
@@ -48,6 +65,10 @@ public class SDMTraceUtil {
 	}
 	
 	public static void logOperationEnter(SDMTraceContext c, StackTraceElement ste, EObject eThis, Method method, Object[] parameterValues) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (eThis == null)
 			throw new IllegalArgumentException("Please provide the correct EObject instance that holds the entered method");
 		
@@ -133,17 +154,25 @@ public class SDMTraceUtil {
 	}
 	
 	protected static void logOperationEnter(SDMTraceContext c, StackTraceElement ste, EOperation op, Object[] parameterValues) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (c == null || ste == null || op == null || parameterValues == null)
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
 			logOperationEnter(GLOBAL_CONTEXT, ste, op, parameterValues);
-			STRATEGY.logOperationEnter(c, ste, op, parameterValues);
+			DEFAULT_STRATEGY.logOperationEnter(c, ste, op, parameterValues);
 		} else {
 			c.traceEvent(ste, new OperationEnterEvent(op, parameterValues));
 		}
 	}	
 	
 	public static void logOperationExit(SDMTraceContext c, StackTraceElement ste, EObject eThis, Method method, Object result) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (eThis == null)
 			throw new IllegalArgumentException("Please provide the correct EObject instance that holds the entered method");
 		
@@ -155,17 +184,25 @@ public class SDMTraceUtil {
 	}
 	
 	protected static void logOperationExit(SDMTraceContext c, StackTraceElement ste, EOperation op, Object result) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (c == null || ste == null || op == null)
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
 			logOperationExit(GLOBAL_CONTEXT, ste, op, result);
-			STRATEGY.logOperationExit(c, ste, op, result);
+			DEFAULT_STRATEGY.logOperationExit(c, ste, op, result);
 		} else {
 			c.traceEvent(ste, new OperationExitEvent(op, result));
 		}
 	}
 	
 	public static void logPatternEnter(SDMTraceContext c, StackTraceElement ste, EObject eThis, Method method, String patternName) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (eThis == null)
 			throw new IllegalArgumentException("Please provide the correct EObject instance that holds the entered method");
 		
@@ -177,17 +214,25 @@ public class SDMTraceUtil {
 	}
 	
 	protected static void logPatternEnter(SDMTraceContext c, StackTraceElement ste, String storyPatternName, EOperation op) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (c == null || ste == null || storyPatternName == null || storyPatternName.length() == 0 || op == null)
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
 			logPatternEnter(GLOBAL_CONTEXT, ste, storyPatternName, op);
-			STRATEGY.logPatternEnter(c, ste, storyPatternName, op);
+			DEFAULT_STRATEGY.logPatternEnter(c, ste, storyPatternName, op);
 		} else {
 			c.traceEvent(ste, new PatternEnterEvent(storyPatternName, op));
 		}
 	}
 	
 	public static void logPatternExit(SDMTraceContext c, StackTraceElement ste, EObject eThis, Method method, String patternName) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (eThis == null)
 			throw new IllegalArgumentException("Please provide the correct EObject instance that holds the entered method");
 		
@@ -199,39 +244,55 @@ public class SDMTraceUtil {
 	}
 	
 	protected static void logPatternExit(SDMTraceContext c, StackTraceElement ste, String storyPatternName, EOperation op) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (c == null || ste == null || storyPatternName == null || storyPatternName.length() == 0 || op == null)
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
 			logPatternExit(GLOBAL_CONTEXT, ste, storyPatternName, op);
-			STRATEGY.logPatternExit(c, ste, storyPatternName, op);
+			DEFAULT_STRATEGY.logPatternExit(c, ste, storyPatternName, op);
 		} else {
 			c.traceEvent(ste, new PatternExitEvent(storyPatternName, op));
 		}
 	}
 	
 	public static void logBindObjVar(SDMTraceContext c, StackTraceElement ste, String objVarName, Class<?> objVarType, Object oldValue, Object newValue) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (c == null || ste == null || objVarName == null || objVarName.length() == 0 || objVarType == null || newValue == null)
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
 			logBindObjVar(GLOBAL_CONTEXT, ste, objVarName, objVarType, oldValue, newValue);
-			STRATEGY.logBindObjVar(c, ste, objVarName, objVarType, oldValue, newValue);
+			DEFAULT_STRATEGY.logBindObjVar(c, ste, objVarName, objVarType, oldValue, newValue);
 		} else {
 			c.traceEvent(ste, new BindObjectVarEvent(objVarName, objVarType, oldValue, newValue));
 		}
 	}
 	
 	public static void logUnbindObjVar(SDMTraceContext c, StackTraceElement ste, String objVarName, Class<?> objVarType, Object oldValue, Object newValue) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (c == null || ste == null || objVarName == null || objVarName.length() == 0 || objVarType == null)
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
 			logUnbindObjVar(GLOBAL_CONTEXT, ste, objVarName, objVarType, oldValue, newValue);
-			STRATEGY.logUnbindObjVar(c, ste, objVarName, objVarType, oldValue, newValue);
+			DEFAULT_STRATEGY.logUnbindObjVar(c, ste, objVarName, objVarType, oldValue, newValue);
 		} else {
 			c.traceEvent(ste, new UnbindObjectVarEvent(objVarName, objVarType, oldValue, newValue));
 		}
 	}
 	
 	public static void logCheckIsomorphicBinding(SDMTraceContext c) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c))
 			logCheckIsomorphicBinding(GLOBAL_CONTEXT);
 		// TODO
@@ -239,6 +300,10 @@ public class SDMTraceUtil {
 	}
 	
 	public static void logSuccessIsomorphicBinding(SDMTraceContext c) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c))
 			logSuccessIsomorphicBinding(GLOBAL_CONTEXT);
 		// TODO
@@ -246,6 +311,10 @@ public class SDMTraceUtil {
 	}
 	
 	public static void logFailedIsomorphicBinding(SDMTraceContext c) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c))
 			logFailedIsomorphicBinding(GLOBAL_CONTEXT);
 		// TODO
@@ -253,6 +322,10 @@ public class SDMTraceUtil {
 	}
 	
 	public static void logCheckLinkExistence(SDMTraceContext c) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c))
 			logCheckLinkExistence(GLOBAL_CONTEXT);
 		// TODO
@@ -260,6 +333,10 @@ public class SDMTraceUtil {
 	}
 	
 	public static void logSuccessLinkExistence(SDMTraceContext c) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c))
 			logSuccessLinkExistence(GLOBAL_CONTEXT);
 		// TODO
@@ -267,6 +344,10 @@ public class SDMTraceUtil {
 	}
 	
 	public static void logFailedLinkExistence(SDMTraceContext c) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c))
 			logFailedLinkExistence(GLOBAL_CONTEXT);
 		// TODO
@@ -274,6 +355,10 @@ public class SDMTraceUtil {
 	}
 	
 	public static void logCheckAttributeConstraint(SDMTraceContext c) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c))
 			logCheckAttributeConstraint(GLOBAL_CONTEXT);
 		// TODO
@@ -281,6 +366,10 @@ public class SDMTraceUtil {
 	}
 	
 	public static void logSuccessAttributeConstraint(SDMTraceContext c) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c))
 			logSuccessAttributeConstraint(GLOBAL_CONTEXT);
 		// TODO
@@ -288,6 +377,10 @@ public class SDMTraceUtil {
 	}
 	
 	public static void logFailedAttributeConstraint(SDMTraceContext c) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c))
 			logFailedAttributeConstraint(GLOBAL_CONTEXT);
 		// TODO
@@ -295,6 +388,10 @@ public class SDMTraceUtil {
 	}
 	
 	public static void logMethodCallExpression(SDMTraceContext c) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c))
 			logMethodCallExpression(GLOBAL_CONTEXT);
 		// TODO
@@ -302,6 +399,10 @@ public class SDMTraceUtil {
 	}
 	
 	public static void logAttributeAssignment(SDMTraceContext c) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c))
 			logAttributeAssignment(GLOBAL_CONTEXT);
 		// TODO
@@ -309,6 +410,10 @@ public class SDMTraceUtil {
 	}
 	
 	public static void logMatchFound(SDMTraceContext c, StackTraceElement ste, EObject eThis, Method method, Object...paramValues) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (eThis == null)
 			throw new IllegalArgumentException("Please provide the correct EObject instance that holds the entered method");
 		
@@ -320,15 +425,23 @@ public class SDMTraceUtil {
 	}
 	
 	protected static void logMatchFound(SDMTraceContext c, StackTraceElement ste, EOperation op, Object... paramValues) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c)) {
 			logMatchFound(GLOBAL_CONTEXT, ste, op, paramValues);
-			STRATEGY.logMatchFound(c, ste, op, paramValues);
+			DEFAULT_STRATEGY.logMatchFound(c, ste, op, paramValues);
 		} else {
 			c.traceEvent(ste, new MatchFoundEvent(op, paramValues));
 		}
 	}
 	
 	public static void logNoMatchFound(SDMTraceContext c, StackTraceElement ste, EObject eThis, Method method, Object...paramValues) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (eThis == null)
 			throw new IllegalArgumentException("Please provide the correct EObject instance that holds the entered method");
 		
@@ -340,15 +453,23 @@ public class SDMTraceUtil {
 	}
 	
 	protected static void logNoMatchFound(SDMTraceContext c, StackTraceElement ste, EOperation op, Object... paramValues) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c)) {
 			logNoMatchFound(GLOBAL_CONTEXT, ste, op, paramValues);
-			STRATEGY.logNoMatchFound(c, ste, op, paramValues);
+			DEFAULT_STRATEGY.logNoMatchFound(c, ste, op, paramValues);
 		} else {
 			c.traceEvent(ste, new NoMatchFoundEvent(op, paramValues));
 		}
 	}
 	
 	public static void logObjCreation(SDMTraceContext c) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c))
 			logObjCreation(GLOBAL_CONTEXT);
 		// TODO
@@ -356,6 +477,10 @@ public class SDMTraceUtil {
 	}
 	
 	public static void logObjDeletion(SDMTraceContext c) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c))
 			logObjDeletion(GLOBAL_CONTEXT);
 		// TODO
@@ -363,6 +488,10 @@ public class SDMTraceUtil {
 	}
 	
 	public static void logLinkCreation(SDMTraceContext c) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c))
 			logLinkCreation(GLOBAL_CONTEXT);
 		// TODO
@@ -370,6 +499,10 @@ public class SDMTraceUtil {
 	}
 	
 	public static void logLinkDeletion(SDMTraceContext c) {
+		init();
+		if (disableTracing)
+			return;
+		
 		if (!GLOBAL_CONTEXT.equals(c))
 			logLinkDeletion(GLOBAL_CONTEXT);
 		// TODO
