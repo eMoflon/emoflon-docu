@@ -64,7 +64,10 @@ public class SDMTraceContext {
 	public TraceEvent[] getTrace(StackTraceElement ste) {
 		if (ste == null)
 			throw new IllegalArgumentException("Parameter may not be null");
-		return data.get(ste).toArray(new TraceEvent[]{});
+		List<TraceEvent> list = data.get(ste);
+		if (list != null)
+			return list.toArray(new TraceEvent[]{});
+		return null;
 	}
 	
 	public void reset() {
