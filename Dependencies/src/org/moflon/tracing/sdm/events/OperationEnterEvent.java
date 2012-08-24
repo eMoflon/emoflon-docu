@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
@@ -50,7 +51,11 @@ public class OperationEnterEvent extends AbstractTraceEvent {
 			sb.append(parametersAndValuesToString(new ArrayList<EParameter>(opParams), new ArrayList(Arrays.asList(params))));
 		}
 		sb.append(") :");
-		sb.append(op.getEType().getName());
+		EClassifier returnType = op.getEType();
+		if (returnType == null)
+			sb.append("void");
+		else 
+			sb.append(returnType.getName());
 		sb.append("\"]");
 		return sb.toString();
 	}

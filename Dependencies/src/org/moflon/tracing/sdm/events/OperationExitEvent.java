@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
@@ -45,7 +46,11 @@ public class OperationExitEvent extends AbstractTraceEvent {
 			sb.append(parametersToString((new ArrayList<EParameter>(opParams))));
 		}
 		sb.append(") :");
-		sb.append(op.getEType().getName());
+		EClassifier returnType = op.getEType();
+		if (returnType == null)
+			sb.append("void");
+		else 
+			sb.append(returnType.getName());
 		sb.append('=');
 		sb.append(result);
 		sb.append(']');
