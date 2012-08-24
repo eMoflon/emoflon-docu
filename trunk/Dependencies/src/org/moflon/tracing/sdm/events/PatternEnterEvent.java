@@ -19,5 +19,5 @@ public class PatternEnterEvent extends AbstractPatternControlFlowEvent {
 	@Override
 	public String getOperationDesctiption() {
 		return OPERATION_DESCRIPTION;
-	}	
+	}
 }

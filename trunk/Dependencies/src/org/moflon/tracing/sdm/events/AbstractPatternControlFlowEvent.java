@@ -1,6 +1,7 @@
 package org.moflon.tracing.sdm.events;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 
@@ -48,7 +49,11 @@ public abstract class AbstractPatternControlFlowEvent extends AbstractTraceEvent
 		if (params != null && params.size() > 0)
 			sb.append("...");
 		sb.append(") :");
-		sb.append(operation.getEType().getName());
+		EClassifier returnType = operation.getEType();
+		if (returnType == null)
+			sb.append("void");
+		else 
+			sb.append(returnType.getName());
 		sb.append("]]");
 		return sb.toString();
 	}
