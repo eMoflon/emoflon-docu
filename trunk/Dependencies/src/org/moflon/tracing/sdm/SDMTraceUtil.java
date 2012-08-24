@@ -66,13 +66,10 @@ public class SDMTraceUtil {
 						STRATS.add((SDMTraceStrategy) newInstance);
 					}
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (InstantiationException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -94,7 +91,7 @@ public class SDMTraceUtil {
 		return result;
 	}
 	
-	public static void logOperationEnter(SDMTraceContext c, StackTraceElement ste, EObject eThis, Method method, Object[] parameterValues) {
+	public static void logOperationEnter(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, Object[] parameterValues) {
 		init();
 		if (disableTracing)
 			return;
@@ -106,7 +103,7 @@ public class SDMTraceUtil {
 			throw new IllegalArgumentException();
 		
 		EOperation selectedOp = findEOperation(eThis, method);
-		logOperationEnter(c, ste, selectedOp, parameterValues);
+		logOperationEnter(c, stw, selectedOp, parameterValues);
 	}
 
 	private static EOperation findEOperation(EObject eThis, Method method) {
@@ -183,24 +180,24 @@ public class SDMTraceUtil {
 		return c1.getCanonicalName().equals(c2.getCanonicalName());		
 	}
 	
-	protected static void logOperationEnter(SDMTraceContext c, StackTraceElement ste, EOperation op, Object[] parameterValues) {
+	protected static void logOperationEnter(SDMTraceContext c, StackTraceWrapper stw, EOperation op, Object[] parameterValues) {
 		init();
 		if (disableTracing)
 			return;
 		
-		if (c == null || ste == null || op == null || parameterValues == null)
+		if (c == null || stw == null || op == null || parameterValues == null)
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
-			logOperationEnter(GLOBAL_CONTEXT, ste, op, parameterValues);
+			logOperationEnter(GLOBAL_CONTEXT, stw, op, parameterValues);
 			for (SDMTraceStrategy strategy : STRATS) {
-				strategy.logOperationEnter(c, ste, op, parameterValues);
+				strategy.logOperationEnter(c, stw, op, parameterValues);
 			}
 		} else {
-			c.traceEvent(ste, new OperationEnterEvent(op, parameterValues));
+			c.traceEvent(stw, new OperationEnterEvent(op, parameterValues));
 		}
 	}	
 	
-	public static void logOperationExit(SDMTraceContext c, StackTraceElement ste, EObject eThis, Method method, Object result) {
+	public static void logOperationExit(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, Object result) {
 		init();
 		if (disableTracing)
 			return;
@@ -212,27 +209,27 @@ public class SDMTraceUtil {
 			throw new IllegalArgumentException();
 		
 		EOperation selectedOp = findEOperation(eThis, method);
-		logOperationExit(c, ste, selectedOp, result);
+		logOperationExit(c, stw, selectedOp, result);
 	}
 	
-	protected static void logOperationExit(SDMTraceContext c, StackTraceElement ste, EOperation op, Object result) {
+	protected static void logOperationExit(SDMTraceContext c, StackTraceWrapper stw, EOperation op, Object result) {
 		init();
 		if (disableTracing)
 			return;
 		
-		if (c == null || ste == null || op == null)
+		if (c == null || stw == null || op == null)
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
-			logOperationExit(GLOBAL_CONTEXT, ste, op, result);
+			logOperationExit(GLOBAL_CONTEXT, stw, op, result);
 			for (SDMTraceStrategy strategy : STRATS) {
-				strategy.logOperationExit(c, ste, op, result);
+				strategy.logOperationExit(c, stw, op, result);
 			}
 		} else {
-			c.traceEvent(ste, new OperationExitEvent(op, result));
+			c.traceEvent(stw, new OperationExitEvent(op, result));
 		}
 	}
 	
-	public static void logPatternEnter(SDMTraceContext c, StackTraceElement ste, EObject eThis, Method method, String patternName) {
+	public static void logPatternEnter(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, String patternName) {
 		init();
 		if (disableTracing)
 			return;
@@ -244,27 +241,27 @@ public class SDMTraceUtil {
 			throw new IllegalArgumentException();
 		
 		EOperation selectedOp = findEOperation(eThis, method);
-		logPatternEnter(c, ste, patternName, selectedOp);
+		logPatternEnter(c, stw, patternName, selectedOp);
 	}
 	
-	protected static void logPatternEnter(SDMTraceContext c, StackTraceElement ste, String storyPatternName, EOperation op) {
+	protected static void logPatternEnter(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op) {
 		init();
 		if (disableTracing)
 			return;
 		
-		if (c == null || ste == null || storyPatternName == null || storyPatternName.length() == 0 || op == null)
+		if (c == null || stw == null || storyPatternName == null || storyPatternName.length() == 0 || op == null)
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
-			logPatternEnter(GLOBAL_CONTEXT, ste, storyPatternName, op);
+			logPatternEnter(GLOBAL_CONTEXT, stw, storyPatternName, op);
 			for (SDMTraceStrategy strategy : STRATS) {
-				strategy.logPatternEnter(c, ste, storyPatternName, op);
+				strategy.logPatternEnter(c, stw, storyPatternName, op);
 			}
 		} else {
-			c.traceEvent(ste, new PatternEnterEvent(storyPatternName, op));
+			c.traceEvent(stw, new PatternEnterEvent(storyPatternName, op));
 		}
 	}
 	
-	public static void logPatternExit(SDMTraceContext c, StackTraceElement ste, EObject eThis, Method method, String patternName) {
+	public static void logPatternExit(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, String patternName) {
 		init();
 		if (disableTracing)
 			return;
@@ -276,57 +273,57 @@ public class SDMTraceUtil {
 			throw new IllegalArgumentException();
 		
 		EOperation selectedOp = findEOperation(eThis, method);
-		logPatternExit(c, ste, patternName, selectedOp);
+		logPatternExit(c, stw, patternName, selectedOp);
 	}
 	
-	protected static void logPatternExit(SDMTraceContext c, StackTraceElement ste, String storyPatternName, EOperation op) {
+	protected static void logPatternExit(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op) {
 		init();
 		if (disableTracing)
 			return;
 		
-		if (c == null || ste == null || storyPatternName == null || storyPatternName.length() == 0 || op == null)
+		if (c == null || stw == null || storyPatternName == null || storyPatternName.length() == 0 || op == null)
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
-			logPatternExit(GLOBAL_CONTEXT, ste, storyPatternName, op);
+			logPatternExit(GLOBAL_CONTEXT, stw, storyPatternName, op);
 			for (SDMTraceStrategy strategy : STRATS) {
-				strategy.logPatternExit(c, ste, storyPatternName, op);
+				strategy.logPatternExit(c, stw, storyPatternName, op);
 			}
 		} else {
-			c.traceEvent(ste, new PatternExitEvent(storyPatternName, op));
+			c.traceEvent(stw, new PatternExitEvent(storyPatternName, op));
 		}
 	}
 	
-	public static void logBindObjVar(SDMTraceContext c, StackTraceElement ste, String objVarName, Class<?> objVarType, Object oldValue, Object newValue) {
+	public static void logBindObjVar(SDMTraceContext c, StackTraceWrapper stw, String objVarName, Class<?> objVarType, Object oldValue, Object newValue) {
 		init();
 		if (disableTracing)
 			return;
 		
-		if (c == null || ste == null || objVarName == null || objVarName.length() == 0 || objVarType == null || newValue == null)
+		if (c == null || stw == null || objVarName == null || objVarName.length() == 0 || objVarType == null || newValue == null)
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
-			logBindObjVar(GLOBAL_CONTEXT, ste, objVarName, objVarType, oldValue, newValue);
+			logBindObjVar(GLOBAL_CONTEXT, stw, objVarName, objVarType, oldValue, newValue);
 			for (SDMTraceStrategy strategy : STRATS) {
-				strategy.logBindObjVar(c, ste, objVarName, objVarType, oldValue, newValue);
+				strategy.logBindObjVar(c, stw, objVarName, objVarType, oldValue, newValue);
 			}
 		} else {
-			c.traceEvent(ste, new BindObjectVarEvent(objVarName, objVarType, oldValue, newValue));
+			c.traceEvent(stw, new BindObjectVarEvent(objVarName, objVarType, oldValue, newValue));
 		}
 	}
 	
-	public static void logUnbindObjVar(SDMTraceContext c, StackTraceElement ste, String objVarName, Class<?> objVarType, Object oldValue, Object newValue) {
+	public static void logUnbindObjVar(SDMTraceContext c, StackTraceWrapper stw, String objVarName, Class<?> objVarType, Object oldValue, Object newValue) {
 		init();
 		if (disableTracing)
 			return;
 		
-		if (c == null || ste == null || objVarName == null || objVarName.length() == 0 || objVarType == null)
+		if (c == null || stw == null || objVarName == null || objVarName.length() == 0 || objVarType == null)
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
-			logUnbindObjVar(GLOBAL_CONTEXT, ste, objVarName, objVarType, oldValue, newValue);
+			logUnbindObjVar(GLOBAL_CONTEXT, stw, objVarName, objVarType, oldValue, newValue);
 			for (SDMTraceStrategy strategy : STRATS) {
-				strategy.logUnbindObjVar(c, ste, objVarName, objVarType, oldValue, newValue);
+				strategy.logUnbindObjVar(c, stw, objVarName, objVarType, oldValue, newValue);
 			}
 		} else {
-			c.traceEvent(ste, new UnbindObjectVarEvent(objVarName, objVarType, oldValue, newValue));
+			c.traceEvent(stw, new UnbindObjectVarEvent(objVarName, objVarType, oldValue, newValue));
 		}
 	}
 	
@@ -451,7 +448,7 @@ public class SDMTraceUtil {
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 	
-	public static void logMatchFound(SDMTraceContext c, StackTraceElement ste, EObject eThis, Method method, Object...paramValues) {
+	public static void logMatchFound(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, Object...paramValues) {
 		init();
 		if (disableTracing)
 			return;
@@ -463,25 +460,25 @@ public class SDMTraceUtil {
 			throw new IllegalArgumentException();
 		
 		EOperation selectedOp = findEOperation(eThis, method);
-		logMatchFound(c, ste, selectedOp, paramValues);
+		logMatchFound(c, stw, selectedOp, paramValues);
 	}
 	
-	protected static void logMatchFound(SDMTraceContext c, StackTraceElement ste, EOperation op, Object... paramValues) {
+	protected static void logMatchFound(SDMTraceContext c, StackTraceWrapper stw, EOperation op, Object... paramValues) {
 		init();
 		if (disableTracing)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
-			logMatchFound(GLOBAL_CONTEXT, ste, op, paramValues);
+			logMatchFound(GLOBAL_CONTEXT, stw, op, paramValues);
 			for (SDMTraceStrategy strategy : STRATS) {
-				strategy.logMatchFound(c, ste, op, paramValues);
+				strategy.logMatchFound(c, stw, op, paramValues);
 			}
 		} else {
-			c.traceEvent(ste, new MatchFoundEvent(op, paramValues));
+			c.traceEvent(stw, new MatchFoundEvent(op, paramValues));
 		}
 	}
 	
-	public static void logNoMatchFound(SDMTraceContext c, StackTraceElement ste, EObject eThis, Method method, Object...paramValues) {
+	public static void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, Object...paramValues) {
 		init();
 		if (disableTracing)
 			return;
@@ -493,21 +490,21 @@ public class SDMTraceUtil {
 			throw new IllegalArgumentException();
 		
 		EOperation selectedOp = findEOperation(eThis, method);
-		logNoMatchFound(c, ste, selectedOp, paramValues);
+		logNoMatchFound(c, stw, selectedOp, paramValues);
 	}
 	
-	protected static void logNoMatchFound(SDMTraceContext c, StackTraceElement ste, EOperation op, Object... paramValues) {
+	protected static void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw, EOperation op, Object... paramValues) {
 		init();
 		if (disableTracing)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
-			logNoMatchFound(GLOBAL_CONTEXT, ste, op, paramValues);
+			logNoMatchFound(GLOBAL_CONTEXT, stw, op, paramValues);
 			for (SDMTraceStrategy strategy : STRATS) {
-				strategy.logNoMatchFound(c, ste, op, paramValues);
+				strategy.logNoMatchFound(c, stw, op, paramValues);
 			}
 		} else {
-			c.traceEvent(ste, new NoMatchFoundEvent(op, paramValues));
+			c.traceEvent(stw, new NoMatchFoundEvent(op, paramValues));
 		}
 	}
 	

@@ -16,51 +16,51 @@ public class LoggingSDMTraceStrategy extends SDMTraceStrategy {
 	Logger log = Logger.getLogger(LoggingSDMTraceStrategy.class);
 	
 	@Override
-	protected void logOperationEnter(SDMTraceContext c, StackTraceElement ste,
+	protected void logOperationEnter(SDMTraceContext c, StackTraceWrapper stw,
 			EOperation op, Object[] parameterValues) {
 		log.debug((new OperationEnterEvent(op, parameterValues)).toString());
 	}
 
 	@Override
-	protected void logOperationExit(SDMTraceContext c, StackTraceElement ste,
+	protected void logOperationExit(SDMTraceContext c, StackTraceWrapper stw,
 			EOperation op, Object result) {
 		log.debug((new OperationExitEvent(op, result)).toString());
 	}
 
 	@Override
-	protected void logPatternEnter(SDMTraceContext c, StackTraceElement ste,
+	protected void logPatternEnter(SDMTraceContext c, StackTraceWrapper stw,
 			String storyPatternName, EOperation op) {
 		log.debug((new PatternEnterEvent(storyPatternName, op)).toString());
 	}
 
 	@Override
-	protected void logPatternExit(SDMTraceContext c, StackTraceElement ste,
+	protected void logPatternExit(SDMTraceContext c, StackTraceWrapper stw,
 			String storyPatternName, EOperation op) {
 		log.debug((new PatternExitEvent(storyPatternName, op)).toString());
 	}
 
 	@Override
-	protected void logBindObjVar(SDMTraceContext c, StackTraceElement ste,
+	protected void logBindObjVar(SDMTraceContext c, StackTraceWrapper stw,
 			String objVarName, Class<?> objVarType, Object oldValue,
 			Object newValue) {
 		log.debug((new BindObjectVarEvent(objVarName, objVarType, oldValue, newValue)).toString());
 	}
 
 	@Override
-	protected void logUnbindObjVar(SDMTraceContext c, StackTraceElement ste,
+	protected void logUnbindObjVar(SDMTraceContext c, StackTraceWrapper stw,
 			String objVarName, Class<?> objVarType, Object oldValue,
 			Object newValue) {
 		log.debug((new UnbindObjectVarEvent(objVarName, objVarType, oldValue, newValue)).toString());		
 	}
 
 	@Override
-	protected void logMatchFound(SDMTraceContext c, StackTraceElement ste,
+	protected void logMatchFound(SDMTraceContext c, StackTraceWrapper stw,
 			EOperation op, Object... paramValues) {
 		log.debug((new MatchFoundEvent(op, paramValues)).toString());
 	}
 
 	@Override
-	protected void logNoMatchFound(SDMTraceContext c, StackTraceElement ste,
+	protected void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw,
 			EOperation op, Object... paramValues) {
 		log.debug((new NoMatchFoundEvent(op, paramValues)).toString());
 	}

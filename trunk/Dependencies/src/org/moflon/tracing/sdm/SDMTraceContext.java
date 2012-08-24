@@ -9,62 +9,51 @@ import org.moflon.tracing.sdm.events.TraceEvent;
 
 public class SDMTraceContext {
 
-	private HashMap<StackTraceElement, List<TraceEvent>> data = new HashMap<StackTraceElement, List<TraceEvent>>();
+	private HashMap<StackTraceWrapper, List<TraceEvent>> data = new HashMap<StackTraceWrapper, List<TraceEvent>>();
 	
 	private List<TraceEvent> allData = new LinkedList<TraceEvent>(); 
 	
 	protected SDMTraceContext() {
 	}
 	
-	protected void traceEvent(StackTraceElement stackElem, TraceEvent e) {
-		if (stackElem == null)
+	protected void traceEvent(StackTraceWrapper stackTraceWrapper, TraceEvent e) {
+		if (stackTraceWrapper == null)
 			throw new IllegalArgumentException("Parameter may not be null");
 		
-		if (!isValidStackTraceElem(stackElem))
+		 if (!isValidStackTraceWrapper(stackTraceWrapper))
 			throw new IllegalArgumentException("Invalid StackTraceElement provided");
 		
-		List<TraceEvent> list = data.get(stackElem);
+		List<TraceEvent> list = data.get(stackTraceWrapper);
 		if (list == null) {
 			list = new LinkedList<TraceEvent>();
-			data.put(stackElem, list);
+			data.put(stackTraceWrapper, list);
 		}
 		list.add(e);
 		
 		allData.add(e);
 	}
 
-	private boolean isValidStackTraceElem(StackTraceElement stackElem) {
-		Map<Thread, StackTraceElement[]> allStackTraces = Thread.getAllStackTraces();		
-		boolean isValidStackElem = false;
-		for (StackTraceElement[] traces : allStackTraces.values()) {
-			for (StackTraceElement curStackElem : traces) {
-				if (stackElem.equals(curStackElem)) {
-					isValidStackElem = true;
-					break;
-				}				
-			}
-			if (isValidStackElem)
-				break;
-		}
-		return isValidStackElem;
+	private boolean isValidStackTraceWrapper(StackTraceWrapper stackTraceWrapper) {
+		StackTraceElement[] stackTrace = (new Throwable()).getStackTrace();
+		return stackTraceWrapper.isValidStackTrace(stackTrace);
 	}
 	
 	public TraceEvent[] getFlatTrace() {
 		return allData.toArray(new TraceEvent[]{});
 	}
 	
-	public Map<StackTraceElement, TraceEvent[]> getAllTraces() {
-		Map<StackTraceElement, TraceEvent[]> result = new HashMap<StackTraceElement, TraceEvent[]>();
-		for (StackTraceElement ste : data.keySet()) {
-			result.put(ste, getTrace(ste));
+	public Map<StackTraceWrapper, TraceEvent[]> getAllTraces() {
+		Map<StackTraceWrapper, TraceEvent[]> result = new HashMap<StackTraceWrapper, TraceEvent[]>();
+		for (StackTraceWrapper stw : data.keySet()) {
+			result.put(stw, getTrace(stw));
 		}
 		return result;
 	}
 	
-	public TraceEvent[] getTrace(StackTraceElement ste) {
-		if (ste == null)
+	public TraceEvent[] getTrace(StackTraceWrapper stw) {
+		if (stw == null)
 			throw new IllegalArgumentException("Parameter may not be null");
-		List<TraceEvent> list = data.get(ste);
+		List<TraceEvent> list = data.get(stw);
 		if (list != null)
 			return list.toArray(new TraceEvent[]{});
 		return null;
