@@ -349,4 +349,12 @@ public class SDMTraceUtilTester {
 		assertTrue(allTraces.values().iterator().next()[0] instanceof NoMatchFoundEvent);
 	}
 	
+	@Test
+	public void test_getStackTraceWrapper() throws NoSuchMethodException, SecurityException {
+		SDMTraceContext traceContext = SDMTraceUtil.getTraceContext("foo");
+		traceContext.reset();
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(this.getClass().getMethod("test_getStackTraceWrapper", new Class[]{}));
+		assertTrue(stw.toString().contains("test_getStackTraceWrapper"));
+		assertTrue(stw.toString().contains("called by"));
+	}
 }
