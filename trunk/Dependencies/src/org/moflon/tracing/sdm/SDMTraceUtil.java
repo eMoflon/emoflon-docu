@@ -1,12 +1,14 @@
 package org.moflon.tracing.sdm;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -27,7 +29,9 @@ import org.moflon.tracing.sdm.events.UnbindObjectVarEvent;
 public class SDMTraceUtil {	
 	
 	public final static String DISABLE_TRACING_SYS_PROP = "org.moflon.tracing.sdm.SDMTraceUtil.disableTracing";
+	public final static String SELECTED_TACING_STRATEGY_SYS_PROP = "org.moflon.tracing.sdm.SDMTraceUtil.tracingStrategies";
 	
+	private final static List<SDMTraceStrategy> STRATS = new ArrayList<SDMTraceStrategy>(1);
 	private final static SDMTraceStrategy DEFAULT_STRATEGY = new DefaultSDMTraceStrategy();   
 			
 	private final static String ALL = "global";
@@ -49,6 +53,32 @@ public class SDMTraceUtil {
 			boolean parsedBoolean = Boolean.parseBoolean(value);
 			disableTracing = parsedBoolean;
 		}
+		if (System.getProperties().containsKey(SELECTED_TACING_STRATEGY_SYS_PROP)) {
+			String value = System.getProperty(SELECTED_TACING_STRATEGY_SYS_PROP);
+			StringTokenizer tokenizer = new StringTokenizer(value, ",");
+			ClassLoader classLoader = SDMTraceUtil.class.getClassLoader();
+			while (tokenizer.hasMoreTokens()) {
+				String nextToken = tokenizer.nextToken().trim();
+				try {
+					Class<?> loadClass = classLoader.loadClass(nextToken);
+					if (SDMTraceStrategy.class.isAssignableFrom(loadClass)) {
+						Object newInstance = loadClass.newInstance();
+						STRATS.add((SDMTraceStrategy) newInstance);
+					}
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		if (STRATS.isEmpty())
+			STRATS.add(DEFAULT_STRATEGY);
 		initialized = true;
 	}
 	
@@ -162,7 +192,9 @@ public class SDMTraceUtil {
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
 			logOperationEnter(GLOBAL_CONTEXT, ste, op, parameterValues);
-			DEFAULT_STRATEGY.logOperationEnter(c, ste, op, parameterValues);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logOperationEnter(c, ste, op, parameterValues);
+			}
 		} else {
 			c.traceEvent(ste, new OperationEnterEvent(op, parameterValues));
 		}
@@ -192,7 +224,9 @@ public class SDMTraceUtil {
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
 			logOperationExit(GLOBAL_CONTEXT, ste, op, result);
-			DEFAULT_STRATEGY.logOperationExit(c, ste, op, result);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logOperationExit(c, ste, op, result);
+			}
 		} else {
 			c.traceEvent(ste, new OperationExitEvent(op, result));
 		}
@@ -222,7 +256,9 @@ public class SDMTraceUtil {
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
 			logPatternEnter(GLOBAL_CONTEXT, ste, storyPatternName, op);
-			DEFAULT_STRATEGY.logPatternEnter(c, ste, storyPatternName, op);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logPatternEnter(c, ste, storyPatternName, op);
+			}
 		} else {
 			c.traceEvent(ste, new PatternEnterEvent(storyPatternName, op));
 		}
@@ -252,7 +288,9 @@ public class SDMTraceUtil {
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
 			logPatternExit(GLOBAL_CONTEXT, ste, storyPatternName, op);
-			DEFAULT_STRATEGY.logPatternExit(c, ste, storyPatternName, op);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logPatternExit(c, ste, storyPatternName, op);
+			}
 		} else {
 			c.traceEvent(ste, new PatternExitEvent(storyPatternName, op));
 		}
@@ -267,7 +305,9 @@ public class SDMTraceUtil {
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
 			logBindObjVar(GLOBAL_CONTEXT, ste, objVarName, objVarType, oldValue, newValue);
-			DEFAULT_STRATEGY.logBindObjVar(c, ste, objVarName, objVarType, oldValue, newValue);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logBindObjVar(c, ste, objVarName, objVarType, oldValue, newValue);
+			}
 		} else {
 			c.traceEvent(ste, new BindObjectVarEvent(objVarName, objVarType, oldValue, newValue));
 		}
@@ -282,7 +322,9 @@ public class SDMTraceUtil {
 			throw new IllegalArgumentException();
 		if (!GLOBAL_CONTEXT.equals(c)) {
 			logUnbindObjVar(GLOBAL_CONTEXT, ste, objVarName, objVarType, oldValue, newValue);
-			DEFAULT_STRATEGY.logUnbindObjVar(c, ste, objVarName, objVarType, oldValue, newValue);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logUnbindObjVar(c, ste, objVarName, objVarType, oldValue, newValue);
+			}
 		} else {
 			c.traceEvent(ste, new UnbindObjectVarEvent(objVarName, objVarType, oldValue, newValue));
 		}
@@ -431,7 +473,9 @@ public class SDMTraceUtil {
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
 			logMatchFound(GLOBAL_CONTEXT, ste, op, paramValues);
-			DEFAULT_STRATEGY.logMatchFound(c, ste, op, paramValues);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logMatchFound(c, ste, op, paramValues);
+			}
 		} else {
 			c.traceEvent(ste, new MatchFoundEvent(op, paramValues));
 		}
@@ -459,7 +503,9 @@ public class SDMTraceUtil {
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
 			logNoMatchFound(GLOBAL_CONTEXT, ste, op, paramValues);
-			DEFAULT_STRATEGY.logNoMatchFound(c, ste, op, paramValues);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logNoMatchFound(c, ste, op, paramValues);
+			}
 		} else {
 			c.traceEvent(ste, new NoMatchFoundEvent(op, paramValues));
 		}
