@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
@@ -22,7 +23,7 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 	private static final String DEFAULT_FILE_NAME = "ea_trace_export.log";
 	
 	private BufferedWriter out = null;
-	private EOperation op = null;
+	private Stack<EOperation> opStack = new Stack<EOperation>();
 	private String storyPattern = null;
 
 	public EAExportFileTraceStrategy() {
@@ -68,7 +69,7 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 			throw new RuntimeException(e);
 		}
 		
-		this.op = op;
+		opStack.push(op);
 	}
 	
 
@@ -76,8 +77,7 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 	@Override
 	protected void logOperationExit(SDMTraceContext c, StackTraceWrapper stw,
 			EOperation op, Object result) {
-		if (this.op != null && this.op.equals(op))
-			this.op = null;
+		opStack.pop();
 		return;
 	}
 
@@ -120,11 +120,11 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 			String objVarName, Class<?> objVarType, Object oldValue,
 			Object newValue) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(getPackageString(this.op));
+		sb.append(getPackageString(opStack.peek()));
 		sb.append(DELIM);
-		sb.append(getClassString(this.op));
+		sb.append(getClassString(opStack.peek()));
 		sb.append(DELIM);
-		sb.append(getEOperationString(this.op.getName()));
+		sb.append(getEOperationString(opStack.peek().getName()));
 		sb.append(DELIM);
 		sb.append(getActivityString());
 		sb.append(DELIM);
@@ -177,18 +177,14 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 			sb.append(packageString);
 			sb.append(DELIM);
 		}
-		sb.append(p.getName());
-		sb.append(':');
-		sb.append("EPackage");
+		sb.append(getEPackageString(p.getName()));
 		return sb.toString();
 	}
 	
 	private static String getClassString(EOperation op) {
 		EClass eContainingClass = op.getEContainingClass();
 		StringBuilder sb = new StringBuilder();
-		sb.append(eContainingClass.getName());
-		sb.append(':');
-		sb.append("EClass");
+		sb.append(getEClassString(eContainingClass.getName()));
 		return sb.toString(); 
 	}
 	
