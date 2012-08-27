@@ -11,6 +11,7 @@ import java.io.UnsupportedEncodingException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import static org.moflon.util.EAInterfaceUriHelper.*;
 
 public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 
@@ -21,6 +22,8 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 	private static final String DEFAULT_FILE_NAME = "ea_trace_export.log";
 	
 	private BufferedWriter out = null;
+	private EOperation op = null;
+	private String storyPattern = null;
 
 	public EAExportFileTraceStrategy() {
 		String fileName = System.getProperty(SDM_EA_EXPORT_FILE_NAME_SYS_PROP);
@@ -53,7 +56,7 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 		sb.append(DELIM);
 		sb.append(getClassString(op));
 		sb.append(DELIM);
-		sb.append(getOperationString(op));
+		sb.append(getEOperationString(op.getName()));
 		sb.append(DELIM);
 		sb.append(getActivityString());
 		sb.append(LINE_SEPARATOR);
@@ -64,6 +67,100 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+		
+		this.op = op;
+	}
+	
+
+
+	@Override
+	protected void logOperationExit(SDMTraceContext c, StackTraceWrapper stw,
+			EOperation op, Object result) {
+		if (this.op != null && this.op.equals(op))
+			this.op = null;
+		return;
+	}
+
+	@Override
+	protected void logPatternEnter(SDMTraceContext c, StackTraceWrapper stw,
+			String storyPatternName, EOperation op) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(getPackageString(op));
+		sb.append(DELIM);
+		sb.append(getClassString(op));
+		sb.append(DELIM);
+		sb.append(getEOperationString(op.getName()));
+		sb.append(DELIM);
+		sb.append(getActivityString());
+		sb.append(DELIM);
+		sb.append(getStoryNodeString(storyPatternName));
+		sb.append(LINE_SEPARATOR);
+		
+		try {
+			out.write(sb.toString());
+			out.flush();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		
+		this.storyPattern = storyPatternName;
+	}
+
+	@Override
+	protected void logPatternExit(SDMTraceContext c, StackTraceWrapper stw,
+			String storyPatternName, EOperation op) {
+		if (this.storyPattern != null && this.storyPattern.equals(storyPatternName))
+			this.storyPattern = null;
+			
+		return;
+	}
+
+	@Override
+	protected void logBindObjVar(SDMTraceContext c, StackTraceWrapper stw,
+			String objVarName, Class<?> objVarType, Object oldValue,
+			Object newValue) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(getPackageString(this.op));
+		sb.append(DELIM);
+		sb.append(getClassString(this.op));
+		sb.append(DELIM);
+		sb.append(getEOperationString(this.op.getName()));
+		sb.append(DELIM);
+		sb.append(getActivityString());
+		sb.append(DELIM);
+		sb.append(getStoryNodeString(this.storyPattern));
+		sb.append(DELIM);
+		sb.append(getObjVarString(objVarName));
+		sb.append(LINE_SEPARATOR);
+		
+		try {
+			out.write(sb.toString());
+			out.flush();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@Override
+	protected void logUnbindObjVar(SDMTraceContext c, StackTraceWrapper stw,
+			String objVarName, Class<?> objVarType, Object oldValue,
+			Object newValue) {
+		// implement maybe...
+		return;
+	}
+
+	@Override
+	protected void logMatchFound(SDMTraceContext c, StackTraceWrapper stw,
+			EOperation op, Object... paramValues) {
+		// implement maybe...
+		return;
+	}
+
+	@Override
+	protected void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw,
+			EOperation op, Object... paramValues) {
+		// implement maybe...
+		return;
 	}
 	
 	private static String getPackageString(EOperation op) {
@@ -95,83 +192,4 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 		return sb.toString(); 
 	}
 	
-	private static String getOperationString(EOperation op) {
-		return op.getName() + ":" + "EOperation";
-	}
-	
-	private static String getActivityString() {
-		return "Activity:Activity";
-	}
-	
-	private static String getStoryPatternString(String storyPatternName) {
-		return (storyPatternName + ":StoryNode");
-	}
-
-	@Override
-	protected void logOperationExit(SDMTraceContext c, StackTraceWrapper stw,
-			EOperation op, Object result) {
-		// do nothing
-		return;
-	}
-
-	@Override
-	protected void logPatternEnter(SDMTraceContext c, StackTraceWrapper stw,
-			String storyPatternName, EOperation op) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(getPackageString(op));
-		sb.append(DELIM);
-		sb.append(getClassString(op));
-		sb.append(DELIM);
-		sb.append(getOperationString(op));
-		sb.append(DELIM);
-		sb.append(getActivityString());
-		sb.append(DELIM);
-		sb.append(getStoryPatternString(storyPatternName));
-		sb.append(LINE_SEPARATOR);
-		
-		try {
-			out.write(sb.toString());
-			out.flush();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@Override
-	protected void logPatternExit(SDMTraceContext c, StackTraceWrapper stw,
-			String storyPatternName, EOperation op) {
-		// do nothing
-		return;
-	}
-
-	@Override
-	protected void logBindObjVar(SDMTraceContext c, StackTraceWrapper stw,
-			String objVarName, Class<?> objVarType, Object oldValue,
-			Object newValue) {
-		// implement maybe...
-		return;
-	}
-
-	@Override
-	protected void logUnbindObjVar(SDMTraceContext c, StackTraceWrapper stw,
-			String objVarName, Class<?> objVarType, Object oldValue,
-			Object newValue) {
-		// implement maybe...
-		return;
-	}
-
-	@Override
-	protected void logMatchFound(SDMTraceContext c, StackTraceWrapper stw,
-			EOperation op, Object... paramValues) {
-		// implement maybe...
-		return;
-	}
-
-	@Override
-	protected void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw,
-			EOperation op, Object... paramValues) {
-		// implement maybe...
-		return;
-	}
-
 }
