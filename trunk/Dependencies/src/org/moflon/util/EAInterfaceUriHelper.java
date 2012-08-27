@@ -9,11 +9,11 @@ public class EAInterfaceUriHelper {
 	   }
 	   
 	   public static String getLinkVarString(String targetName, String sourceName) {
-		   return "source:" + targetName + "_target:" + sourceName + ":LinkVariable";
+		   return ("source:" + targetName + "_target:" + sourceName + ":LinkVariable");
 	   }
 	   
 	   public static String getStoryNodeString(String storyNodeName) {
-		   return storyNodeName + ":StoryNode";
+		   return (storyNodeName + ":StoryNode");
 	   }
 	   
 	   public static String getStopNodeString(String stopNodeName) {
@@ -25,7 +25,7 @@ public class EAInterfaceUriHelper {
 	   }
 	   
 	   public static String getActivityEdgeString(String activityEdgeSourceName, String activityEdgeTargetName) {
-		   return "source:" + activityEdgeSourceName + "_target:" + activityEdgeTargetName + ":ActivityEdge";
+		   return ("source:" + activityEdgeSourceName + "_target:" + activityEdgeTargetName + ":ActivityEdge");
 	   }
 	   
 	   public static String getActivityString() {
