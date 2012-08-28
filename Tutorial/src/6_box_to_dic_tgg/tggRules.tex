@@ -18,7 +18,7 @@ It turns out that deletion is not necessary on this level to do this, but will o
 \item[$\blacktriangleright$] In EA, open the diagram of the \texttt{Rules} package in our TGG project.
 This package was generated automatically when we first created our TGG project and contains all TGG rules.
 
-\item[$\blacktriangleright$] Create a \texttt{Rule} via drag\,\&\,drop from the TGG toolbox and set its name to \texttt{BoxToDictionary} (Fig.~\ref{fig:create_tgg_rule}).
+\item[$\blacktriangleright$] Create a \texttt{Rule} via drag\,\&\,drop from the TGG toolbox and set its name to \texttt{BoxToDictionaryRule} (Fig.~\ref{fig:create_tgg_rule}).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -146,7 +146,7 @@ Our second rule can only create cards and entries when a corresponding box and d
 
 \begin{enumerate}
 \item[$\blacktriangleright$] Double click the newly created \texttt{CardToEntryRule} to open its diagram.
-\item[$\blacktriangleright$] Create \texttt{box} as an instance of \texttt{Box} choosing \texttt{Check Only} as binding operator and check also \texttt{bound} (Fig.~\ref{fig:bound_tgg_variable}).
+\item[$\blacktriangleright$] Create \texttt{box} as an instance of \texttt{Box} choosing \texttt{Check Only} as binding operator (Fig.~\ref{fig:bound_tgg_variable}).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -154,10 +154,9 @@ Our second rule can only create cards and entries when a corresponding box and d
   \caption{Creating a Check Only TGG object variable}  
   \label{fig:bound_tgg_variable}
 \end{center}
-\end{figure}
+\end{figure} 
 
 \item[$\blacktriangleright$] In the same way, create all object variables and appropriate links so that your rule diagram resembles Fig.~\ref{fig:check_bound_variables}. 
-The \texttt{partition} object shouldn't be bound, as our rule applies to all existing partitions in the \texttt{box}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -229,7 +228,7 @@ Your complete TGG rule should now resemble Fig.~\ref{fig:cardtoentry_complete}.
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg21}
-  \caption{\texttt{CardToEntry} with complete attribute manipulation}  
+  \caption{\texttt{CardToEntryRule} with complete attribute manipulation}  
   \label{fig:cardtoentry_complete}
 \end{center}
 \end{figure}
