@@ -47,6 +47,7 @@ public class EAExportFileTraceStrategyTester {
 	
 	@Test
 	public void test_logOperationExit() {
+		strat.logOperationEnter(null, null, op, null);
 		strat.logOperationExit(null, null, op, null);
 	}
 	
