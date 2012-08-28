@@ -347,7 +347,7 @@ public class SDMTraceUtilTester {
 		SDMTraceContext traceContext = SDMTraceUtil.getTraceContext("foo");
 		traceContext.reset();
 		// test
-		SDMTraceUtil.logMatchFound(traceContext, stw, mockedEObj, currentMethod, new Object[]{});
+		SDMTraceUtil.logMatchFound(traceContext, stw, "Some story pattern", mockedEObj, currentMethod, new Object[]{});
 		// check
 		Map<StackTraceWrapper, TraceEvent[]> allTraces = SDMTraceUtil.getTraceContext("foo").getAllTraces();
 		assertTrue(!allTraces.values().isEmpty());
@@ -374,7 +374,7 @@ public class SDMTraceUtilTester {
 		SDMTraceContext traceContext = SDMTraceUtil.getTraceContext("foo");
 		traceContext.reset();
 		// test
-		SDMTraceUtil.logNoMatchFound(traceContext, stw, mockedEObj, currentMethod, new Object[]{});
+		SDMTraceUtil.logNoMatchFound(traceContext, stw, "Some story pattern", mockedEObj, currentMethod, new Object[]{});
 		// check
 		Map<StackTraceWrapper, TraceEvent[]> allTraces = SDMTraceUtil.getTraceContext("foo").getAllTraces();
 		assertTrue(!allTraces.values().isEmpty());
