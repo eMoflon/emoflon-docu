@@ -3,12 +3,15 @@ package org.moflon.tracing.sdm;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EOperation;
 import org.moflon.tracing.sdm.events.BindObjectVarEvent;
+import org.moflon.tracing.sdm.events.CheckIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.FailedIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.MatchFoundEvent;
 import org.moflon.tracing.sdm.events.NoMatchFoundEvent;
 import org.moflon.tracing.sdm.events.OperationEnterEvent;
 import org.moflon.tracing.sdm.events.OperationExitEvent;
 import org.moflon.tracing.sdm.events.PatternEnterEvent;
 import org.moflon.tracing.sdm.events.PatternExitEvent;
+import org.moflon.tracing.sdm.events.SuccessIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.UnbindObjectVarEvent;
 
 public class LoggingSDMTraceStrategy extends SDMTraceStrategy {
@@ -64,5 +67,31 @@ public class LoggingSDMTraceStrategy extends SDMTraceStrategy {
 			EOperation op, Object... paramValues) {
 		log.debug((new NoMatchFoundEvent(op, paramValues)).toString());
 	}
+
+	@Override
+	protected void logCheckIsomorphicBindingEvent(SDMTraceContext c,
+			StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type,
+			Object objVar1Value, String objVar2Name, Class<?> objVar2Type,
+			Object objVar2Value) {
+		log.debug((new CheckIsomorphicBindingEvent(objVar1Name, objVar1Type, objVar1Value, objVar2Name, objVar2Type, objVar2Value)).toString());
+	}
+
+	@Override
+	protected void logSuccessIsomorphicBindingEvent(SDMTraceContext c,
+			StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type,
+			Object objVar1Value, String objVar2Name, Class<?> objVar2Type,
+			Object objVar2Value) {
+		log.debug((new SuccessIsomorphicBindingEvent(objVar1Name, objVar1Type, objVar1Value, objVar2Name, objVar2Type, objVar2Value)).toString());
+	}
+
+	@Override
+	protected void logFailedIsomorphicBinding(SDMTraceContext c,
+			StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type,
+			Object objVar1Value, String objVar2Name, Class<?> objVar2Type,
+			Object objVar2Value) {
+		log.debug((new FailedIsomorphicBindingEvent(objVar1Name, objVar1Type, objVar1Value, objVar2Name, objVar2Type, objVar2Value)).toString());
+	}
+
+
 
 }

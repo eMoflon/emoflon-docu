@@ -2,12 +2,15 @@ package org.moflon.tracing.sdm;
 
 import org.eclipse.emf.ecore.EOperation;
 import org.moflon.tracing.sdm.events.BindObjectVarEvent;
+import org.moflon.tracing.sdm.events.CheckIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.FailedIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.MatchFoundEvent;
 import org.moflon.tracing.sdm.events.NoMatchFoundEvent;
 import org.moflon.tracing.sdm.events.OperationEnterEvent;
 import org.moflon.tracing.sdm.events.OperationExitEvent;
 import org.moflon.tracing.sdm.events.PatternEnterEvent;
 import org.moflon.tracing.sdm.events.PatternExitEvent;
+import org.moflon.tracing.sdm.events.SuccessIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.UnbindObjectVarEvent;
 
 public class DefaultSDMTraceStrategy extends SDMTraceStrategy {
@@ -60,6 +63,30 @@ public class DefaultSDMTraceStrategy extends SDMTraceStrategy {
 	protected void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw,
 			EOperation op, Object... paramValues) {
 		c.traceEvent(stw, new NoMatchFoundEvent(op, paramValues));
+	}
+
+	@Override
+	protected void logCheckIsomorphicBindingEvent(SDMTraceContext c,
+			StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type,
+			Object objVar1Value, String objVar2Name, Class<?> objVar2Type,
+			Object objVar2Value) {
+		c.traceEvent(stw, new CheckIsomorphicBindingEvent(objVar1Name, objVar1Type, objVar1Value, objVar2Name, objVar2Type, objVar2Value));
+	}
+
+	@Override
+	protected void logSuccessIsomorphicBindingEvent(SDMTraceContext c,
+			StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type,
+			Object objVar1Value, String objVar2Name, Class<?> objVar2Type,
+			Object objVar2Value) {
+		c.traceEvent(stw, new SuccessIsomorphicBindingEvent(objVar1Name, objVar1Type, objVar1Value, objVar2Name, objVar2Type, objVar2Value));		
+	}
+
+	@Override
+	protected void logFailedIsomorphicBinding(SDMTraceContext c,
+			StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type,
+			Object objVar1Value, String objVar2Name, Class<?> objVar2Type,
+			Object objVar2Value) {
+		c.traceEvent(stw, new FailedIsomorphicBindingEvent(objVar1Name, objVar1Type, objVar1Value, objVar2Name, objVar2Type, objVar2Value));
 	}
 	
 }
