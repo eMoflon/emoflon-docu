@@ -52,6 +52,11 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 	@Override
 	protected void logOperationEnter(SDMTraceContext c, StackTraceWrapper stw,
 			EOperation op, Object[] parameterValues) {
+		logOperation(op);		
+		opStack.push(op);
+	}
+	
+	private void logOperation(EOperation op) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(getPackageString(op));
 		sb.append(DELIM);
@@ -68,8 +73,6 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		
-		opStack.push(op);
 	}
 	
 
@@ -77,8 +80,8 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 	@Override
 	protected void logOperationExit(SDMTraceContext c, StackTraceWrapper stw,
 			EOperation op, Object result) {
+		logOperation(op);
 		opStack.pop();
-		return;
 	}
 
 	@Override
@@ -109,10 +112,27 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 	@Override
 	protected void logPatternExit(SDMTraceContext c, StackTraceWrapper stw,
 			String storyPatternName, EOperation op) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(getPackageString(op));
+		sb.append(DELIM);
+		sb.append(getClassString(op));
+		sb.append(DELIM);
+		sb.append(getEOperationString(op.getName()));
+		sb.append(DELIM);
+		sb.append(getActivityString());
+		sb.append(DELIM);
+		sb.append(getStoryNodeString(storyPatternName));
+		sb.append(LINE_SEPARATOR);
+		
+		try {
+			out.write(sb.toString());
+			out.flush();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		
 		if (this.storyPattern != null && this.storyPattern.equals(storyPatternName))
 			this.storyPattern = null;
-			
-		return;
 	}
 
 	@Override
