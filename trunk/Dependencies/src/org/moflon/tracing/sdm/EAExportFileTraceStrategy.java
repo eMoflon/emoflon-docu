@@ -188,6 +188,30 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 		return getPackageString(eContainingClass.getEPackage());
 	}
 	
+	@Override
+	protected void logCheckIsomorphicBindingEvent(SDMTraceContext c,
+			StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type,
+			Object objVar1Value, String objVar2Name, Class<?> objVar2Type,
+			Object objVar2Value) {
+		return;
+	}
+	
+	@Override
+	protected void logSuccessIsomorphicBindingEvent(SDMTraceContext c,
+			StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type,
+			Object objVar1Value, String objVar2Name, Class<?> objVar2Type,
+			Object objVar2Value) {
+		return;
+	}
+	
+	@Override
+	protected void logFailedIsomorphicBinding(SDMTraceContext c,
+			StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type,
+			Object objVar1Value, String objVar2Name, Class<?> objVar2Type,
+			Object objVar2Value) {
+		return;
+	}
+	
 	private static String getPackageString(EPackage p) {
 		if (p == null)
 			return null;
