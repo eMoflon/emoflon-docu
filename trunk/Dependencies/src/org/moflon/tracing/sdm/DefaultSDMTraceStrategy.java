@@ -54,15 +54,15 @@ public class DefaultSDMTraceStrategy extends SDMTraceStrategy {
 	}
 
 	@Override
-	protected void logMatchFound(SDMTraceContext c, StackTraceWrapper stw,
+	protected void logMatchFound(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName,
 			EOperation op, Object... paramValues) {
-		c.traceEvent(stw, new MatchFoundEvent(op, paramValues));
+		c.traceEvent(stw, new MatchFoundEvent(storyPatternName, op, paramValues));
 	}
 
 	@Override
-	protected void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw,
+	protected void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName,
 			EOperation op, Object... paramValues) {
-		c.traceEvent(stw, new NoMatchFoundEvent(op, paramValues));
+		c.traceEvent(stw, new NoMatchFoundEvent(storyPatternName, op, paramValues));
 	}
 
 	@Override

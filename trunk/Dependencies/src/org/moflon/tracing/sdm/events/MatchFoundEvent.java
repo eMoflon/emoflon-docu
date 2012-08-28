@@ -4,11 +4,11 @@ import org.eclipse.emf.ecore.EOperation;
 
 public class MatchFoundEvent extends AbstractMatchEvent {
 
-	private final static String OPERATION_NAME = MatchFoundEvent.class.getName();
+	private final static String OPERATION_NAME = MatchFoundEvent.class.getSimpleName();
 	private final static String OPERATION_DESCRIPTION = "";
 	
-	public MatchFoundEvent(EOperation op, Object... paramValues) {
-		super(op, paramValues);
+	public MatchFoundEvent(String storyPatternName, EOperation op, Object... paramValues) {
+		super(storyPatternName, op, paramValues);
 	}
 	
 	@Override

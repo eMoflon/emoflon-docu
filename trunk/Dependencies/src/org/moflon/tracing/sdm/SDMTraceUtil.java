@@ -463,7 +463,7 @@ public class SDMTraceUtil {
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 	
-	public static void logMatchFound(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, Object...paramValues) {
+	public static void logMatchFound(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EObject eThis, Method method, Object...paramValues) {
 		init();
 		if (disableTracing)
 			return;
@@ -475,25 +475,25 @@ public class SDMTraceUtil {
 			throw new IllegalArgumentException();
 		
 		EOperation selectedOp = findEOperation(eThis, method);
-		logMatchFound(c, stw, selectedOp, paramValues);
+		logMatchFound(c, stw, storyPatternName, selectedOp, paramValues);
 	}
 	
-	protected static void logMatchFound(SDMTraceContext c, StackTraceWrapper stw, EOperation op, Object... paramValues) {
+	protected static void logMatchFound(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op, Object... paramValues) {
 		init();
 		if (disableTracing)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
-			logMatchFound(GLOBAL_CONTEXT, stw, op, paramValues);
+			logMatchFound(GLOBAL_CONTEXT, stw, storyPatternName, op, paramValues);
 			for (SDMTraceStrategy strategy : STRATS) {
-				strategy.logMatchFound(c, stw, op, paramValues);
+				strategy.logMatchFound(c, stw, storyPatternName, op, paramValues);
 			}
 		} else {
-			c.traceEvent(stw, new MatchFoundEvent(op, paramValues));
+			c.traceEvent(stw, new MatchFoundEvent(storyPatternName, op, paramValues));
 		}
 	}
 	
-	public static void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, Object...paramValues) {
+	public static void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EObject eThis, Method method, Object...paramValues) {
 		init();
 		if (disableTracing)
 			return;
@@ -505,21 +505,21 @@ public class SDMTraceUtil {
 			throw new IllegalArgumentException();
 		
 		EOperation selectedOp = findEOperation(eThis, method);
-		logNoMatchFound(c, stw, selectedOp, paramValues);
+		logNoMatchFound(c, stw, storyPatternName, selectedOp, paramValues);
 	}
 	
-	protected static void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw, EOperation op, Object... paramValues) {
+	protected static void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op, Object... paramValues) {
 		init();
 		if (disableTracing)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
-			logNoMatchFound(GLOBAL_CONTEXT, stw, op, paramValues);
+			logNoMatchFound(GLOBAL_CONTEXT, stw, storyPatternName, op, paramValues);
 			for (SDMTraceStrategy strategy : STRATS) {
-				strategy.logNoMatchFound(c, stw, op, paramValues);
+				strategy.logNoMatchFound(c, stw, storyPatternName, op, paramValues);
 			}
 		} else {
-			c.traceEvent(stw, new NoMatchFoundEvent(op, paramValues));
+			c.traceEvent(stw, new NoMatchFoundEvent(storyPatternName, op, paramValues));
 		}
 	}
 	

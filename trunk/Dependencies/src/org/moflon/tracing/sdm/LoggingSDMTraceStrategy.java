@@ -57,15 +57,15 @@ public class LoggingSDMTraceStrategy extends SDMTraceStrategy {
 	}
 
 	@Override
-	protected void logMatchFound(SDMTraceContext c, StackTraceWrapper stw,
+	protected void logMatchFound(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName,
 			EOperation op, Object... paramValues) {
-		log.debug((new MatchFoundEvent(op, paramValues)).toString());
+		log.debug((new MatchFoundEvent(storyPatternName, op, paramValues)).toString());
 	}
 
 	@Override
-	protected void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw,
+	protected void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName,
 			EOperation op, Object... paramValues) {
-		log.debug((new NoMatchFoundEvent(op, paramValues)).toString());
+		log.debug((new NoMatchFoundEvent(storyPatternName, op, paramValues)).toString());
 	}
 
 	@Override
