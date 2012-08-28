@@ -29,7 +29,7 @@ public abstract class AbstractBindingEvent extends AbstractTraceEvent {
 		StringBuilder sb = new StringBuilder();
 		sb.append(getOperationName());
 		sb.append('[');
-		sb.append("ObjVar=\")");
+		sb.append("ObjVar=\"");
 		sb.append(objVarName);
 		sb.append(':');
 		sb.append(getSimpleClassName(objVarType));
@@ -37,8 +37,8 @@ public abstract class AbstractBindingEvent extends AbstractTraceEvent {
 		sb.append(oldValue);
 		sb.append("-->");
 		sb.append(newValue);
-		sb.append(")]");
-		return super.toString();
+		sb.append(")\"]");
+		return sb.toString();
 	}
 	
 	private static String getSimpleClassName(Class<?> type) {

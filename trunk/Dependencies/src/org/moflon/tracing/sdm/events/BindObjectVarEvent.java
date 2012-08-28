@@ -2,7 +2,7 @@ package org.moflon.tracing.sdm.events;
 
 public class BindObjectVarEvent extends AbstractBindingEvent {
 
-	private final static String OPERATION_NAME = BindObjectVarEvent.class.getName();
+	private final static String OPERATION_NAME = BindObjectVarEvent.class.getSimpleName();
 	private final static String OPERATION_DESCRIPTION = "";
 	
 	public BindObjectVarEvent(String objVarName, Class<?> objVarType, Object oldValue, Object newValue) {
@@ -18,5 +18,10 @@ public class BindObjectVarEvent extends AbstractBindingEvent {
 	public String getOperationDesctiption() {
 		return OPERATION_DESCRIPTION;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}	
 	
 }
