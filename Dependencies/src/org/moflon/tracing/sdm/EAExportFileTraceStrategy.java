@@ -170,14 +170,14 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 	}
 
 	@Override
-	protected void logMatchFound(SDMTraceContext c, StackTraceWrapper stw,
+	protected void logMatchFound(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName,
 			EOperation op, Object... paramValues) {
 		// implement maybe...
 		return;
 	}
 
 	@Override
-	protected void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw,
+	protected void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName,
 			EOperation op, Object... paramValues) {
 		// implement maybe...
 		return;
