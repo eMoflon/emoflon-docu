@@ -18,12 +18,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.moflon.tracing.sdm.events.BindObjectVarEvent;
+import org.moflon.tracing.sdm.events.CheckIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.FailedIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.MatchFoundEvent;
 import org.moflon.tracing.sdm.events.NoMatchFoundEvent;
 import org.moflon.tracing.sdm.events.OperationEnterEvent;
 import org.moflon.tracing.sdm.events.OperationExitEvent;
 import org.moflon.tracing.sdm.events.PatternEnterEvent;
 import org.moflon.tracing.sdm.events.PatternExitEvent;
+import org.moflon.tracing.sdm.events.SuccessIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.UnbindObjectVarEvent;
 
 public class SDMTraceUtil {	
@@ -327,37 +330,49 @@ public class SDMTraceUtil {
 		}
 	}
 	
-	public static void logCheckIsomorphicBinding(SDMTraceContext c) {
+	public static void logCheckIsomorphicBinding(SDMTraceContext c, StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type, Object objVar1Value, String objVar2Name, Class<?> objVar2Type, Object objVar2Value) {
 		init();
 		if (disableTracing)
 			return;
 		
-		if (!GLOBAL_CONTEXT.equals(c))
-			logCheckIsomorphicBinding(GLOBAL_CONTEXT);
-		// TODO
-		throw new UnsupportedOperationException("Not yet implemented");
+		if (!GLOBAL_CONTEXT.equals(c)) {
+			logCheckIsomorphicBinding(GLOBAL_CONTEXT, stw, objVar1Name, objVar1Type, objVar2Value, objVar2Name, objVar2Type, objVar2Value);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logCheckIsomorphicBindingEvent(c, stw, objVar1Name, objVar1Type, objVar1Value, objVar2Name, objVar2Type, objVar2Value);
+			}
+		} else {
+			c.traceEvent(stw, new CheckIsomorphicBindingEvent(objVar1Name, objVar1Type, objVar1Value, objVar2Name, objVar2Type, objVar2Value));
+		}
 	}
 	
-	public static void logSuccessIsomorphicBinding(SDMTraceContext c) {
+	public static void logSuccessIsomorphicBinding(SDMTraceContext c, StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type, Object objVar1Value, String objVar2Name, Class<?> objVar2Type, Object objVar2Value) {
 		init();
 		if (disableTracing)
 			return;
 		
-		if (!GLOBAL_CONTEXT.equals(c))
-			logSuccessIsomorphicBinding(GLOBAL_CONTEXT);
-		// TODO
-		throw new UnsupportedOperationException("Not yet implemented");
+		if (!GLOBAL_CONTEXT.equals(c)) {
+			logSuccessIsomorphicBinding(GLOBAL_CONTEXT, stw, objVar1Name, objVar1Type, objVar2Value, objVar2Name, objVar2Type, objVar2Value);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logSuccessIsomorphicBindingEvent(c, stw, objVar1Name, objVar1Type, objVar1Value, objVar2Name, objVar2Type, objVar2Value);
+			}
+		} else {
+			c.traceEvent(stw, new SuccessIsomorphicBindingEvent(objVar1Name, objVar1Type, objVar1Value, objVar2Name, objVar2Type, objVar2Value));
+		}
 	}
 	
-	public static void logFailedIsomorphicBinding(SDMTraceContext c) {
+	public static void logFailedIsomorphicBinding(SDMTraceContext c, StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type, Object objVar1Value, String objVar2Name, Class<?> objVar2Type, Object objVar2Value) {
 		init();
 		if (disableTracing)
 			return;
 		
-		if (!GLOBAL_CONTEXT.equals(c))
-			logFailedIsomorphicBinding(GLOBAL_CONTEXT);
-		// TODO
-		throw new UnsupportedOperationException("Not yet implemented");
+		if (!GLOBAL_CONTEXT.equals(c)) {
+			logFailedIsomorphicBinding(GLOBAL_CONTEXT, stw, objVar1Name, objVar1Type, objVar2Value, objVar2Name, objVar2Type, objVar2Value);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logFailedIsomorphicBinding(c, stw, objVar1Name, objVar1Type, objVar1Value, objVar2Name, objVar2Type, objVar2Value);
+			}
+		} else {
+			c.traceEvent(stw, new FailedIsomorphicBindingEvent(objVar1Name, objVar1Type, objVar1Value, objVar2Name, objVar2Type, objVar2Value));
+		}
 	}
 	
 	public static void logCheckLinkExistence(SDMTraceContext c) {
