@@ -93,4 +93,22 @@ public class SDMTraceContextTester {
 		assertTrue(next.length == 2);
 		assertFalse(it.hasNext());
 	}
+	
+	@Test
+	public void test_getPseudoFlatTraceForMethod() throws NoSuchMethodException, SecurityException {
+		Method m1 = this.getClass().getDeclaredMethod("test_getPseudoFlatTraceForMethod", new Class<?>[]{});
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m1);
+		
+		Method m2 = this.getClass().getDeclaredMethod("test_getAllTraces", new Class<?>[]{});
+		
+		SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[]{});
+		addEventsInOtherContext();
+		SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
+		
+		TraceEvent[] pseudoFlatTraceForMethod = traceContext.getPseudoFlatTraceForMethod(m1);
+		assertNotNull(pseudoFlatTraceForMethod);
+		assertTrue(pseudoFlatTraceForMethod.length == 2);
+		
+		pseudoFlatTraceForMethod = traceContext.getPseudoFlatTraceForMethod(m2);
+	}
 }
