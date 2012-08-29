@@ -51,6 +51,15 @@ public class SDMTraceContext {
 		return result;
 	}
 	
+	public Map<StackTraceWrapper, TraceEvent[]> getAllTracesForMethod(Method m) {
+		Map<StackTraceWrapper, TraceEvent[]> result = new HashMap<StackTraceWrapper, TraceEvent[]>();
+		for (StackTraceWrapper stw : data.keySet()) {
+			if (stw.getMethod().equals(m))
+				result.put(stw, getTrace(stw));
+		}
+		return result;
+	}
+	
 	public TraceEvent[] getTrace(StackTraceWrapper stw) {
 		if (stw == null)
 			throw new IllegalArgumentException("Parameter may not be null");
@@ -81,6 +90,8 @@ public class SDMTraceContext {
 		}
 		return result.toArray(new TraceEvent[]{});
 	}
+	
+
 	
 	public void reset() {
 		data.clear();
