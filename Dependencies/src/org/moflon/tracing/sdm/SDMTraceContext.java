@@ -1,5 +1,6 @@
 package org.moflon.tracing.sdm;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -57,6 +58,28 @@ public class SDMTraceContext {
 		if (list != null)
 			return list.toArray(new TraceEvent[]{});
 		return null;
+	}
+	
+	public TraceEvent[] getPseudoFlatTraceForMethod(Method m) {
+		List<TraceEvent> result = new LinkedList<TraceEvent>();
+		List<StackTraceWrapper> relevantSTWs = new LinkedList<StackTraceWrapper>();
+		for (StackTraceWrapper stw : data.keySet()) {
+			if (stw.getMethod().equals(m)) {
+				relevantSTWs.add(stw);
+			}
+		}
+		if (relevantSTWs.isEmpty())
+			return new TraceEvent[]{};
+		for (int i = 0; i < allData.size(); i++) {
+			TraceEvent traceEvent = allData.get(i);
+			for (StackTraceWrapper stw : relevantSTWs) {
+				if (data.get(stw).contains(traceEvent)) {
+					result.add(traceEvent);
+					continue;
+				}
+			}
+		}
+		return result.toArray(new TraceEvent[]{});
 	}
 	
 	public void reset() {
