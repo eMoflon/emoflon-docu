@@ -8,11 +8,11 @@ public class StackTraceWrapper {
 	private final StackTraceElement[] callingTrace;
 	private final Method method;
 	
-	StackTraceWrapper(Method methodName, StackTraceElement[] callingTrace) {
-		if (methodName == null || callingTrace == null || callingTrace.length == 0)
+	StackTraceWrapper(Method method, StackTraceElement[] callingTrace) {
+		if (method == null || callingTrace == null || callingTrace.length == 0)
 			throw new IllegalArgumentException();
 		this.callingTrace = callingTrace;
-		this.method = methodName;
+		this.method = method;
 	}
 
 	public StackTraceElement[] getcallingTrace() {
