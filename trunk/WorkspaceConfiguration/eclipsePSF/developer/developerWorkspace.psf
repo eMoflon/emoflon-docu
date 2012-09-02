@@ -7,11 +7,11 @@
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/Dependencies,Dependencies"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2common/trunk/Documentation,Documentation"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/compiler/Ecore2FujabaTransformation,Ecore2FujabaTransformation"/>
-<project reference="0.9.3,svn+ssh://@scm.gforge.echtzeitsysteme.org/svnroot/linkbrowser/trunk/Linkbrowser,Linkbrowser"/>
-<project reference="0.9.3,svn+ssh://@scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/Moca,Moca"/>
-<project reference="0.9.3,svn+ssh://@scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/specifications/MocaLanguages,MocaLanguages"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/linkbrowser/trunk/Linkbrowser,Linkbrowser"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/Moca,Moca"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/specifications/MocaLanguages,MocaLanguages"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/compiler/MocaToMoflonTransformation,MocaToMoflonTransformation"/>
-<project reference="0.9.3,svn+ssh://@scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/MocaTree,MocaTree"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moca-sandbox/trunk/moca/MocaTree,MocaTree"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/ea/branches/bootstrappedExport/MOFLON2EAEcoreAddin,MOFLON2EAEcoreAddin"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/ea/branches/bootstrappedExport/MOFLON2EAEcoreAddinInstaller,MOFLON2EAEcoreAddinInstaller"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/ea/branches/bootstrappedExport/MOFLON2EAEcoreProfiles,MOFLON2EAEcoreProfiles"/>
