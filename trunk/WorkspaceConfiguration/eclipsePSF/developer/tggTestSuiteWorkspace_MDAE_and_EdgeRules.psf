@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.tigris.subversion.subclipse.core.svnnature">
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/component/ComponentCodeAdapter_EdgeRules,ComponentCodeAdapter_EdgeRules"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/specifications/EdgeRulesTestSuite,EdgeRulesTestSuite"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2lngsuite/trunk/specifications/MDAE,MDAE"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2tstsuite/trunk/TGGTestSuite_1,TGGTestSuite_1"/>
+</provider>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1347348278931_25" label="BlockDiagrams" name="BlockDiagrams">
+<item elementID="=BlockDiagram_EdgeRules" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=BlockDiagramCodeAdapter_EdgeRules" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=BlockDiagram_EdgeRules" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=BlockDiagramCodeAdapter_EdgeRules" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1347348282619_26" label="ComponentCodeAdapter_EdgeRules" name="ComponentCodeAdapter_EdgeRules">
+<item elementID="=ComponentCodeAdapter_EdgeRules" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=ComponentCodeAdapterBindings" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=ComponentLanguage_EdgeRules" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=ComponentCodeAdapter_EdgeRules" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=ComponentLanguage_EdgeRules" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=ComponentCodeAdapterBindings" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1338460404458_19" label="MDAE" name="MDAE">
+<item elementID="=OSCAx" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Ortssicht" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SimaticML" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=OSCAx" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Ortssicht" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=SimaticML" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1334315651819_21" label="MOFLON2 Testsuite" name="MOFLON2 Testsuite">
+<item elementID="=TGGTestSuite_1" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1348747700854_26" label="ProcessLanguage" name="ProcessLanguage">
+<item elementID="=ProcessDefinition" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=ProcessCodeAdapter" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=ProcessDefinition" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=ProcessCodeAdapter" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1297108449437_9" label="Specifications" name="Specifications">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/EdgeRulesTestSuite" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MDAE" type="4"/>
+</workingSets>
+</psf>
