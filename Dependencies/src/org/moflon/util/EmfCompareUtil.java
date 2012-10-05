@@ -1,18 +1,25 @@
 package org.moflon.util;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Set;
 import java.util.Vector;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
 import org.eclipse.emf.compare.diff.metamodel.DifferenceKind;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.diff.service.DiffService;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.match.service.MatchService;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * Collection of useful methods for EMFCompare
@@ -23,19 +30,78 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class EmfCompareUtil
 {
-   // Flags to control comparison
-   public static boolean ignoreMove;
+   /**
+	 * Iterate over the given differences and remove all {@link DiffElement}s which are of the type or subtype as
+	 * specified in <code>diffTypes</code>. If there are empty {@link DiffGroup}s left, they will be erased as well.
+	 * 
+	 * @param diff
+	 *            Differences.
+	 * @param diffTypes
+	 *            The types which shall be removed.
+ * @return 
+	 * @return A list of all removed {@link DiffElement}s.
+	 */
+	public static List<DiffElement> removeDiffElementOfType(DiffModel diff, Set<EClass> diffTypes) {
+		final List<DiffElement> removed = new ArrayList<DiffElement>();
 
-   public static boolean ignoreAdd;
+		// don't ever delete diff groups explicitly
+		if (diffTypes.contains(DiffPackage.Literals.DIFF_GROUP))
+			throw new IllegalArgumentException("DiffGroups are not supported! This would erase all differences!");
 
-   public static boolean ignoreDelete;
+		// collect and iterate over all elements to be removed
+		final List<EObject> diffElementsToRemove = collectTypedElements(diff.getDifferences(), diffTypes, true);
+		for (EObject obj : diffElementsToRemove) {
+			EObject parent = obj.eContainer();
 
-   public static boolean ignoreChange;
+			// remove element and store in result!
+			EcoreUtil.remove(obj);
+			removed.add((DiffElement) obj);
 
-   public static boolean ignoreAttribute;
-
-   public static boolean ignoreReference;
-
+			// if parent is empty group, remove it!
+			while (parent instanceof DiffElement && ((DiffElement) parent).getSubDiffElements().isEmpty()) {
+				final EObject newParent = parent.eContainer();
+				EcoreUtil.remove(parent);
+				parent = newParent;
+			}
+		}
+		return removed;
+	}
+   
+	/**
+	 * Return all elements in a flat list which have the type given in <code>types</code>. The entire model tree is
+	 * searched, i.e. it is a deep search.
+	 * 
+	 * @param elements
+	 *            A set of elements.
+	 * @param types
+	 *            The types which should be returned.
+	 * @param includeSubtypes
+	 *            If <code>true</code>, then also subtypes of the given types are included in the result.
+	 * @return A list of all elements which are of a type that is given in <code>types</code>.
+	 */
+	public static List<EObject> collectTypedElements(final List<? extends EObject> elements, final Set<EClass> types,
+			boolean includeSubtypes) {
+		final List<EObject> result = new ArrayList<EObject>();
+		final Queue<EObject> queue = new LinkedList<EObject>();
+		queue.addAll(elements);
+		while (!queue.isEmpty()) {
+			final EObject element = queue.poll();
+			if (includeSubtypes) {
+				for (EClass eClass : types) {
+					if (eClass.isSuperTypeOf(element.eClass())) {
+						result.add(element);
+						break;
+					}
+				}
+			} else {
+				if (types.contains(element.eClass()))
+					result.add(element);
+			}
+			queue.addAll(element.eContents());
+		}
+		return result;
+	}
+	
    /**
     * Compares actual to expected and returns a list of differences, filtered according to the filter flags.
     * 
@@ -45,7 +111,7 @@ public class EmfCompareUtil
     * @throws IOException
     * @throws InterruptedException
     */
-   public static List<DiffElement> compareAndFilter(EObject actual, EObject expected) throws IOException, InterruptedException
+   public static List<DiffElement> compareAndFilter(EObject actual, EObject expected, boolean ignoreReferenceOrder) throws IOException, InterruptedException
    {
       Vector<DiffElement> filteredDifferences = new Vector<DiffElement>();
 
@@ -54,35 +120,9 @@ public class EmfCompareUtil
       // Use match to derive delta
       DiffModel diff = DiffService.doDiff(match, false);
 
-      // Filter according to flags
-      for (DiffElement difference : diff.getDifferences())
-         if (includeInResult(difference))
-            filteredDifferences.addElement(difference);
+      if(ignoreReferenceOrder)
+    	  removeDiffElementOfType(diff, Collections.singleton(DiffPackage.Literals.REFERENCE_ORDER_CHANGE));
 
-      return filteredDifferences;
-   }
-
-   
-   private static boolean includeInResult(DiffElement element)
-   {
-      if (ignoreMove && element.getKind().equals(DifferenceKind.MOVE))
-         return false;
-      
-      if (ignoreAdd && element.getKind().equals(DifferenceKind.ADDITION))
-         return false;
-
-      if (ignoreDelete && element.getKind().equals(DifferenceKind.DELETION))
-         return false;
-
-      if (ignoreChange && element.getKind().equals(DifferenceKind.CHANGE))
-         return false;
-
-      if (ignoreAttribute && element instanceof AttributeChange)
-         return false;
-
-      if (ignoreReference && element instanceof ReferenceChange)
-         return false;
-
-      return true;
+      return diff.getDifferences();
    }
 }
