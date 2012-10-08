@@ -36,15 +36,15 @@
 <item elementID="=DictionaryLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=MemoryBoxToDoubleLinkedListTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1334315651819_21" label="eMoflon Testsuite" name="eMoflon Testsuite">
+<item elementID="=EclipseTestSuite" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1305544177460_11" label="LSCToMPN" name="LSCToMPN">
 <item elementID="=MPNGenView" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=MBSecMonLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=MPNToMPNGenViewTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=MPNLanguage" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=LSCToMPNTransformation" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-</workingSets>
-<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1334315651819_21" label="MOFLON2 Testsuite" name="MOFLON2 Testsuite">
-<item elementID="=EclipseTestSuite" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSets>
 <workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1346226111961_24" label="MosopoliteLanguages" name="MosopoliteLanguages">
 <item elementID="=mCSPOptimization" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
