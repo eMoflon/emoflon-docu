@@ -2,9 +2,12 @@ package org.moflon;
 
 import java.net.URL;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.core.runtime.Status;
 import org.osgi.framework.BundleContext;
 
 public class Activator extends Plugin
@@ -54,6 +57,12 @@ public class Activator extends Plugin
    {
       plugin = null;
       super.stop(context);
+   }
+
+   public static void throwCoreExceptionAsError(String message, String plugin, Exception lowLevelException) throws CoreException
+   {
+      IStatus status = new Status(IStatus.ERROR, plugin, IStatus.OK, message, lowLevelException);
+      throw new CoreException(status);
    }
 
 }
