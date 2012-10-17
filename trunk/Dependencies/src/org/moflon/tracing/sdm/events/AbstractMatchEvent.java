@@ -2,7 +2,7 @@ package org.moflon.tracing.sdm.events;
 
 import org.eclipse.emf.ecore.EOperation;
 
-public abstract class AbstractMatchEvent extends AbstractTraceEvent {
+public abstract class AbstractMatchEvent extends AbstractTraceEvent implements PatternMatchingTraceEvent {
 
 	private final String storyPatternName;
 	private final EOperation op;
