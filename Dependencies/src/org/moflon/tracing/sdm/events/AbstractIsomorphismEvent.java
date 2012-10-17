@@ -1,6 +1,6 @@
 package org.moflon.tracing.sdm.events;
 
-public abstract class AbstractIsomorphismEvent extends AbstractTraceEvent {
+public abstract class AbstractIsomorphismEvent extends AbstractTraceEvent implements PatternMatchingTraceEvent {
 
 	protected final String objVar1Name;
 	protected final String objVar2Name;

@@ -1,6 +1,6 @@
 package org.moflon.tracing.sdm.events;
 
-public abstract class AbstractBindingEvent extends AbstractTraceEvent {
+public abstract class AbstractBindingEvent extends AbstractTraceEvent implements PatternMatchingTraceEvent {
 
 	private final String objVarName;
 	private final Class<?> objVarType;

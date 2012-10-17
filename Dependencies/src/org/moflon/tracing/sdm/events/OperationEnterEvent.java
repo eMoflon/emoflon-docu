@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 
-public class OperationEnterEvent extends AbstractTraceEvent {
+public class OperationEnterEvent extends AbstractTraceEvent implements ControlFlowTraceEvent {
 
 	private final static String OPERATION_NAME = "OperationEnterEvent";
 	private final static String OPERATION_DESCTIPTION = "Issued when control flow enters an EOperation which was specified via an SDM";

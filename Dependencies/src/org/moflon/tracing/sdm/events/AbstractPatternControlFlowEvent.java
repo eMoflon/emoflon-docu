@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 
 
-public abstract class AbstractPatternControlFlowEvent extends AbstractTraceEvent {
+public abstract class AbstractPatternControlFlowEvent extends AbstractTraceEvent implements ControlFlowTraceEvent {
 
 	private final String storyPatternName;
 	private final EOperation operation;
