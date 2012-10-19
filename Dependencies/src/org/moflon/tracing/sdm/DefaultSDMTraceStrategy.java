@@ -6,6 +6,7 @@ import org.moflon.tracing.sdm.events.CheckIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.FailedIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.MatchFoundEvent;
 import org.moflon.tracing.sdm.events.NoMatchFoundEvent;
+import org.moflon.tracing.sdm.events.NoMoreLinkEndOptionsEvent;
 import org.moflon.tracing.sdm.events.OperationEnterEvent;
 import org.moflon.tracing.sdm.events.OperationExitEvent;
 import org.moflon.tracing.sdm.events.PatternEnterEvent;
@@ -87,6 +88,13 @@ public class DefaultSDMTraceStrategy extends SDMTraceStrategy {
 			Object objVar1Value, String objVar2Name, Class<?> objVar2Type,
 			Object objVar2Value) {
 		c.traceEvent(stw, new FailedIsomorphicBindingEvent(objVar1Name, objVar1Type, objVar1Value, objVar2Name, objVar2Type, objVar2Value));
+	}
+
+	@Override
+	protected void logNoMoreLinkEndOptions(SDMTraceContext c,
+			StackTraceWrapper stw, String linkName, String srcObjName,
+			String trgtObjName) {
+		c.traceEvent(stw, new NoMoreLinkEndOptionsEvent(linkName, srcObjName, trgtObjName));
 	}
 	
 }

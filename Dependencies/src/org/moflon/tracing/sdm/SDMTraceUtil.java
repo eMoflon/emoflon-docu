@@ -22,6 +22,7 @@ import org.moflon.tracing.sdm.events.CheckIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.FailedIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.MatchFoundEvent;
 import org.moflon.tracing.sdm.events.NoMatchFoundEvent;
+import org.moflon.tracing.sdm.events.NoMoreLinkEndOptionsEvent;
 import org.moflon.tracing.sdm.events.OperationEnterEvent;
 import org.moflon.tracing.sdm.events.OperationExitEvent;
 import org.moflon.tracing.sdm.events.PatternEnterEvent;
@@ -565,6 +566,21 @@ public class SDMTraceUtil {
 			logLinkDeletion(GLOBAL_CONTEXT);
 		// TODO
 		throw new UnsupportedOperationException("Not yet implemented");
+	}
+	
+	public static void logNoMoreLinkEndOptions(SDMTraceContext c, StackTraceWrapper stw, String linkName, String srcObjName, String trgtObjName) {
+		init();
+		if (disableTracing)
+			return;
+		
+		if (!GLOBAL_CONTEXT.equals(c)) {
+			logNoMoreLinkEndOptions(GLOBAL_CONTEXT, stw, linkName, srcObjName, trgtObjName);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logNoMoreLinkEndOptions(c, stw, linkName, srcObjName, trgtObjName);
+			}
+		} else {
+			c.traceEvent(stw, new NoMoreLinkEndOptionsEvent(linkName, srcObjName, trgtObjName));
+		}
 	}
 	
 	public static Method getMethod(Class<?> clazz, String methodName, Class<?>... params) {

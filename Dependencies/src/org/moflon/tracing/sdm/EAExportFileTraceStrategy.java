@@ -231,5 +231,13 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 		sb.append(getEClassString(eContainingClass.getName()));
 		return sb.toString(); 
 	}
+
+	@Override
+	protected void logNoMoreLinkEndOptions(SDMTraceContext c,
+			StackTraceWrapper stw, String linkName, String srcObjName,
+			String trgtObjName) {
+		// implement maybe...
+		return;
+	}
 	
 }

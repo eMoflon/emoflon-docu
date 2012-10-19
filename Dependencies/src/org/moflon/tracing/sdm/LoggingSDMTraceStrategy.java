@@ -2,11 +2,13 @@ package org.moflon.tracing.sdm;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EOperation;
+import org.mockito.internal.verification.NoMoreInteractions;
 import org.moflon.tracing.sdm.events.BindObjectVarEvent;
 import org.moflon.tracing.sdm.events.CheckIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.FailedIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.MatchFoundEvent;
 import org.moflon.tracing.sdm.events.NoMatchFoundEvent;
+import org.moflon.tracing.sdm.events.NoMoreLinkEndOptionsEvent;
 import org.moflon.tracing.sdm.events.OperationEnterEvent;
 import org.moflon.tracing.sdm.events.OperationExitEvent;
 import org.moflon.tracing.sdm.events.PatternEnterEvent;
@@ -92,6 +94,11 @@ public class LoggingSDMTraceStrategy extends SDMTraceStrategy {
 		log.debug((new FailedIsomorphicBindingEvent(objVar1Name, objVar1Type, objVar1Value, objVar2Name, objVar2Type, objVar2Value)).toString());
 	}
 
-
+	@Override
+	protected void logNoMoreLinkEndOptions(SDMTraceContext c,
+			StackTraceWrapper stw, String linkName, String srcObjName,
+			String trgtObjName) {
+		log.debug((new NoMoreLinkEndOptionsEvent(linkName, srcObjName, trgtObjName)).toString());
+	}
 
 }
