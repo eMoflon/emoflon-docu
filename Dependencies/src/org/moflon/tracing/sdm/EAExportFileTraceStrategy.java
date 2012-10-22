@@ -239,5 +239,36 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 		// implement maybe...
 		return;
 	}
-	
+
+	@Override
+	protected void logObjectCreation(SDMTraceContext c, StackTraceWrapper stw,
+			String objVarName, Class<?> objVarType, Object newObjectValue) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	protected void logObjectDeletion(SDMTraceContext c, StackTraceWrapper stw,
+			String objVarName, Class<?> objVarType, Object oldObjectValue) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	protected void logLinkCreation(SDMTraceContext c, StackTraceWrapper stw,
+			String sourceNodeName, Class<?> sourceNodeType,
+			Object sourceNodeValue, String sourceRoleName,
+			String targetNodeName, Class<?> targetNodeType,
+			Object targetNodeValue, String targetRoleName) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	protected void logLinkDeletion(SDMTraceContext c, StackTraceWrapper stw,
+			String sourceRoleName, Class<?> sourceNodeType,
+			Object sourceNodeValue, String sourceNodeName,
+			String targetNodeName, Class<?> targetNodeType,
+			Object targetNodeValue, String targetRoleName) {
+		// TODO Auto-generated method stub
+	}
+
+
 }

@@ -6,9 +6,13 @@ import org.mockito.internal.verification.NoMoreInteractions;
 import org.moflon.tracing.sdm.events.BindObjectVarEvent;
 import org.moflon.tracing.sdm.events.CheckIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.FailedIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.LinkCreationEvent;
+import org.moflon.tracing.sdm.events.LinkDeletionEvent;
 import org.moflon.tracing.sdm.events.MatchFoundEvent;
 import org.moflon.tracing.sdm.events.NoMatchFoundEvent;
 import org.moflon.tracing.sdm.events.NoMoreLinkEndOptionsEvent;
+import org.moflon.tracing.sdm.events.ObjectCreationEvent;
+import org.moflon.tracing.sdm.events.ObjectDeletionEvent;
 import org.moflon.tracing.sdm.events.OperationEnterEvent;
 import org.moflon.tracing.sdm.events.OperationExitEvent;
 import org.moflon.tracing.sdm.events.PatternEnterEvent;
@@ -101,4 +105,35 @@ public class LoggingSDMTraceStrategy extends SDMTraceStrategy {
 		log.debug((new NoMoreLinkEndOptionsEvent(linkName, srcObjName, trgtObjName)).toString());
 	}
 
+	@Override
+	protected void logObjectCreation(SDMTraceContext c, StackTraceWrapper stw,
+			String objVarName, Class<?> objVarType, Object newObjectValue) {
+		log.debug((new ObjectCreationEvent(objVarName, objVarType, newObjectValue)).toString());
+	}
+
+	@Override
+	protected void logObjectDeletion(SDMTraceContext c, StackTraceWrapper stw,
+			String objVarName, Class<?> objVarType, Object oldObjectValue) {
+		log.debug((new ObjectDeletionEvent(objVarName, objVarType, oldObjectValue)).toString());
+	}
+
+	
+	@Override
+	protected void logLinkCreation(SDMTraceContext c, StackTraceWrapper stw,
+			String sourceNodeName, Class<?> sourceNodeType,
+			Object sourceNodeValue, String sourceRoleName,
+			String targetNodeName, Class<?> targetNodeType,
+			Object targetNodeValue, String targetRoleName) {
+		log.debug((new LinkCreationEvent(sourceNodeName, sourceNodeType, sourceNodeValue, sourceRoleName, targetNodeName, targetNodeType, targetNodeValue, targetRoleName)).toString());
+	}
+
+	@Override
+	protected void logLinkDeletion(SDMTraceContext c, StackTraceWrapper stw,
+			String sourceNodeName, Class<?> sourceNodeType,
+			Object sourceNodeValue, String sourceRoleName,
+			String targetNodeName, Class<?> targetNodeType,
+			Object targetNodeValue, String targetRoleName) {
+		log.debug((new LinkDeletionEvent(sourceNodeName, sourceNodeType, sourceNodeValue, sourceRoleName, targetNodeName, targetNodeType, targetNodeValue, targetRoleName)).toString());
+	}
+	
 }
