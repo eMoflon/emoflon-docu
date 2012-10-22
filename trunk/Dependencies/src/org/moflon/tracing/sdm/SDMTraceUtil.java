@@ -20,9 +20,13 @@ import org.eclipse.emf.ecore.EParameter;
 import org.moflon.tracing.sdm.events.BindObjectVarEvent;
 import org.moflon.tracing.sdm.events.CheckIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.FailedIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.LinkCreationEvent;
+import org.moflon.tracing.sdm.events.LinkDeletionEvent;
 import org.moflon.tracing.sdm.events.MatchFoundEvent;
 import org.moflon.tracing.sdm.events.NoMatchFoundEvent;
 import org.moflon.tracing.sdm.events.NoMoreLinkEndOptionsEvent;
+import org.moflon.tracing.sdm.events.ObjectCreationEvent;
+import org.moflon.tracing.sdm.events.ObjectDeletionEvent;
 import org.moflon.tracing.sdm.events.OperationEnterEvent;
 import org.moflon.tracing.sdm.events.OperationExitEvent;
 import org.moflon.tracing.sdm.events.PatternEnterEvent;
@@ -524,48 +528,64 @@ public class SDMTraceUtil {
 		}
 	}
 	
-	public static void logObjCreation(SDMTraceContext c) {
+	public static void logObjCreation(SDMTraceContext c, StackTraceWrapper stw, String objVarName, Class<?> objVarType, Object newObjectValue) {
 		init();
 		if (disableTracing)
 			return;
 		
-		if (!GLOBAL_CONTEXT.equals(c))
-			logObjCreation(GLOBAL_CONTEXT);
-		// TODO
-		throw new UnsupportedOperationException("Not yet implemented");
+		if (!GLOBAL_CONTEXT.equals(c)) {
+			logObjCreation(GLOBAL_CONTEXT, stw, objVarName, objVarType, newObjectValue);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logObjectCreation(c, stw, objVarName, objVarType, newObjectValue);
+			}
+		} else {
+			c.traceEvent(stw, new ObjectCreationEvent(objVarName, objVarType, newObjectValue));
+		}
 	}
 	
-	public static void logObjDeletion(SDMTraceContext c) {
+	public static void logObjDeletion(SDMTraceContext c, StackTraceWrapper stw, String objVarName, Class<?> objVarType, Object oldObjectValue) {
 		init();
 		if (disableTracing)
 			return;
 		
-		if (!GLOBAL_CONTEXT.equals(c))
-			logObjDeletion(GLOBAL_CONTEXT);
-		// TODO
-		throw new UnsupportedOperationException("Not yet implemented");
+		if (!GLOBAL_CONTEXT.equals(c)) {
+			logObjDeletion(GLOBAL_CONTEXT, stw, objVarName, objVarType, oldObjectValue);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logObjectDeletion(c, stw, objVarName, objVarType, oldObjectValue);
+			}
+		} else {
+			c.traceEvent(stw, new ObjectDeletionEvent(objVarName, objVarType, oldObjectValue));
+		}
 	}
 	
-	public static void logLinkCreation(SDMTraceContext c) {
+	public static void logLinkCreation(SDMTraceContext c, StackTraceWrapper stw, String sourceNodeName, Class<?> sourceNodeType, Object sourceNodeValue, String sourceRoleName, String targetNodeName, Class<?> targetNodeType, Object targetNodeValue, String targetRoleName) {
 		init();
 		if (disableTracing)
 			return;
 		
-		if (!GLOBAL_CONTEXT.equals(c))
-			logLinkCreation(GLOBAL_CONTEXT);
-		// TODO
-		throw new UnsupportedOperationException("Not yet implemented");
+		if (!GLOBAL_CONTEXT.equals(c)) {
+			logLinkCreation(GLOBAL_CONTEXT, stw, sourceNodeName, sourceNodeType, sourceNodeValue, sourceRoleName, targetNodeName, targetNodeType, targetNodeValue, targetRoleName);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logLinkCreation(c, stw, sourceNodeName, sourceNodeType, sourceNodeValue, sourceRoleName, targetNodeName, targetNodeType, targetNodeValue, targetRoleName);
+			}
+		} else {
+			c.traceEvent(stw, new LinkCreationEvent(sourceNodeName, sourceNodeType, sourceNodeValue, sourceRoleName, targetNodeName, targetNodeType, targetNodeValue, targetRoleName));
+		}
 	}
 	
-	public static void logLinkDeletion(SDMTraceContext c) {
+	public static void logLinkDeletion(SDMTraceContext c, StackTraceWrapper stw, String sourceNodeName, Class<?> sourceNodeType, Object sourceNodeValue, String sourceRoleName, String targetNodeName, Class<?> targetNodeType, Object targetNodeValue, String targetRoleName) {
 		init();
 		if (disableTracing)
 			return;
 		
-		if (!GLOBAL_CONTEXT.equals(c))
-			logLinkDeletion(GLOBAL_CONTEXT);
-		// TODO
-		throw new UnsupportedOperationException("Not yet implemented");
+		if (!GLOBAL_CONTEXT.equals(c)) {
+			logLinkDeletion(GLOBAL_CONTEXT, stw, sourceNodeName, sourceNodeType, sourceNodeValue, sourceRoleName, targetNodeName, targetNodeType, targetNodeValue, targetRoleName);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logLinkDeletion(c, stw, sourceNodeName, sourceNodeType, sourceNodeValue, sourceRoleName, targetNodeName, targetNodeType, targetNodeValue, targetRoleName);
+			}
+		} else {
+			c.traceEvent(stw, new LinkDeletionEvent(sourceNodeName, sourceNodeType, sourceNodeValue, sourceRoleName, targetNodeName, targetNodeType, targetNodeValue, targetRoleName));
+		}
 	}
 	
 	public static void logNoMoreLinkEndOptions(SDMTraceContext c, StackTraceWrapper stw, String linkName, String srcObjName, String trgtObjName) {

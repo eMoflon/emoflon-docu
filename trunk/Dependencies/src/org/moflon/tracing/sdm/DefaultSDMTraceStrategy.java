@@ -4,9 +4,13 @@ import org.eclipse.emf.ecore.EOperation;
 import org.moflon.tracing.sdm.events.BindObjectVarEvent;
 import org.moflon.tracing.sdm.events.CheckIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.FailedIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.LinkCreationEvent;
+import org.moflon.tracing.sdm.events.LinkDeletionEvent;
 import org.moflon.tracing.sdm.events.MatchFoundEvent;
 import org.moflon.tracing.sdm.events.NoMatchFoundEvent;
 import org.moflon.tracing.sdm.events.NoMoreLinkEndOptionsEvent;
+import org.moflon.tracing.sdm.events.ObjectCreationEvent;
+import org.moflon.tracing.sdm.events.ObjectDeletionEvent;
 import org.moflon.tracing.sdm.events.OperationEnterEvent;
 import org.moflon.tracing.sdm.events.OperationExitEvent;
 import org.moflon.tracing.sdm.events.PatternEnterEvent;
@@ -95,6 +99,36 @@ public class DefaultSDMTraceStrategy extends SDMTraceStrategy {
 			StackTraceWrapper stw, String linkName, String srcObjName,
 			String trgtObjName) {
 		c.traceEvent(stw, new NoMoreLinkEndOptionsEvent(linkName, srcObjName, trgtObjName));
+	}
+
+	@Override
+	protected void logObjectCreation(SDMTraceContext c, StackTraceWrapper stw,
+			String objVarName, Class<?> objVarType, Object newObjectValue) {
+		c.traceEvent(stw, new ObjectCreationEvent(objVarName, objVarType, newObjectValue));
+	}
+
+	@Override
+	protected void logObjectDeletion(SDMTraceContext c, StackTraceWrapper stw,
+			String objVarName, Class<?> objVarType, Object oldObjectValue) {
+		c.traceEvent(stw, new ObjectDeletionEvent(objVarName, objVarType, oldObjectValue));
+	}
+
+	@Override
+	protected void logLinkCreation(SDMTraceContext c, StackTraceWrapper stw,
+			String sourceNodeName, Class<?> sourceNodeType,
+			Object sourceNodeValue, String sourceRoleName,
+			String targetNodeName, Class<?> targetNodeType,
+			Object targetNodeValue, String targetRoleName) {
+		c.traceEvent(stw, new LinkCreationEvent(sourceNodeName, sourceNodeType, sourceNodeValue, sourceRoleName, targetNodeName, targetNodeType, targetNodeValue, targetRoleName));
+	}
+
+	@Override
+	protected void logLinkDeletion(SDMTraceContext c, StackTraceWrapper stw,
+			String sourceNodeName, Class<?> sourceNodeType,
+			Object sourceNodeValue, String sourceRoleName,
+			String targetNodeName, Class<?> targetNodeType,
+			Object targetNodeValue, String targetRoleName) {
+		c.traceEvent(stw, new LinkDeletionEvent(sourceNodeName, sourceNodeType, sourceNodeValue, sourceRoleName, targetNodeName, targetNodeType, targetNodeValue, targetRoleName));
 	}
 	
 }

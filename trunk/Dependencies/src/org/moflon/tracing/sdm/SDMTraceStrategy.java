@@ -16,4 +16,8 @@ public abstract class SDMTraceStrategy {
 	protected abstract void logSuccessIsomorphicBindingEvent(SDMTraceContext c, StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type, Object objVar1Value, String objVar2Name, Class<?> objVar2Type, Object objVar2Value);
 	protected abstract void logFailedIsomorphicBinding(SDMTraceContext c, StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type, Object objVar1Value, String objVar2Name, Class<?> objVar2Type, Object objVar2Value);
 	protected abstract void logNoMoreLinkEndOptions(SDMTraceContext c, StackTraceWrapper stw, String linkName, String srcObjName, String trgtObjName);
+	protected abstract void logObjectCreation(SDMTraceContext c, StackTraceWrapper stw,	String objVarName, Class<?> objVarType, Object newObjectValue);
+	protected abstract void logObjectDeletion(SDMTraceContext c, StackTraceWrapper stw,	String objVarName, Class<?> objVarType, Object oldObjectValue);
+	protected abstract void logLinkCreation(SDMTraceContext c, StackTraceWrapper stw, String sourceNodeName, Class<?> sourceNodeType, Object sourceNodeValue, String sourceRoleName, String targetNodeName, Class<?> targetNodeType, Object targetNodeValue, String targetRoleName);
+	protected abstract void logLinkDeletion(SDMTraceContext c, StackTraceWrapper stw, String sourceRoleName, Class<?> sourceNodeType, Object sourceNodeValue, String sourceNodeName, String targetNodeName, Class<?> targetNodeType, Object targetNodeValue, String targetRoleName);
 }
