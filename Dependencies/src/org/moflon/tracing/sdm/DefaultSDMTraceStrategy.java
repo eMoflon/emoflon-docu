@@ -4,6 +4,8 @@ import org.eclipse.emf.ecore.EOperation;
 import org.moflon.tracing.sdm.events.BindObjectVarEvent;
 import org.moflon.tracing.sdm.events.CheckIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.FailedIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.LightweightPatternEnterEvent;
+import org.moflon.tracing.sdm.events.LightweightPatternExitEvent;
 import org.moflon.tracing.sdm.events.LinkCreationEvent;
 import org.moflon.tracing.sdm.events.LinkDeletionEvent;
 import org.moflon.tracing.sdm.events.MatchFoundEvent;
@@ -129,6 +131,20 @@ public class DefaultSDMTraceStrategy extends SDMTraceStrategy {
 			String targetNodeName, Class<?> targetNodeType,
 			Object targetNodeValue, String targetRoleName) {
 		c.traceEvent(stw, new LinkDeletionEvent(sourceNodeName, sourceNodeType, sourceNodeValue, sourceRoleName, targetNodeName, targetNodeType, targetNodeValue, targetRoleName));
+	}
+
+	@Override
+	protected void logLightweightPatternEnter(SDMTraceContext c,
+			StackTraceWrapper stw, String storyPatternName, EOperation op,
+			String uniqueId) {
+		c.traceEvent(stw, new LightweightPatternEnterEvent(storyPatternName, op, uniqueId));
+	}
+
+	@Override
+	protected void logLightweightPatternExit(SDMTraceContext c,
+			StackTraceWrapper stw, String storyPatternName, EOperation op,
+			String uniqueId) {
+		c.traceEvent(stw, new LightweightPatternExitEvent(storyPatternName, op, uniqueId));
 	}
 	
 }

@@ -20,4 +20,6 @@ public abstract class SDMTraceStrategy {
 	protected abstract void logObjectDeletion(SDMTraceContext c, StackTraceWrapper stw,	String objVarName, Class<?> objVarType, Object oldObjectValue);
 	protected abstract void logLinkCreation(SDMTraceContext c, StackTraceWrapper stw, String sourceNodeName, Class<?> sourceNodeType, Object sourceNodeValue, String sourceRoleName, String targetNodeName, Class<?> targetNodeType, Object targetNodeValue, String targetRoleName);
 	protected abstract void logLinkDeletion(SDMTraceContext c, StackTraceWrapper stw, String sourceRoleName, Class<?> sourceNodeType, Object sourceNodeValue, String sourceNodeName, String targetNodeName, Class<?> targetNodeType, Object targetNodeValue, String targetRoleName);
+	protected abstract void logLightweightPatternEnter(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op, String uniqueId);
+	protected abstract void logLightweightPatternExit(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op, String uniqueId);
 }

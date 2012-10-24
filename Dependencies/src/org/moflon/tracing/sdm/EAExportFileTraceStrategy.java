@@ -270,5 +270,18 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	protected void logLightweightPatternEnter(SDMTraceContext c,
+			StackTraceWrapper stw, String storyPatternName, EOperation op,
+			String uniqueId) {
+		// TODO Auto-generated method stub
+	}
 
+	@Override
+	protected void logLightweightPatternExit(SDMTraceContext c,
+			StackTraceWrapper stw, String storyPatternName, EOperation op,
+			String uniqueId) {
+		// TODO Auto-generated method stub
+	}
+	
 }

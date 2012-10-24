@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.EParameter;
 import org.moflon.tracing.sdm.events.BindObjectVarEvent;
 import org.moflon.tracing.sdm.events.CheckIsomorphicBindingEvent;
 import org.moflon.tracing.sdm.events.FailedIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.LightweightPatternEnterEvent;
+import org.moflon.tracing.sdm.events.LightweightPatternExitEvent;
 import org.moflon.tracing.sdm.events.LinkCreationEvent;
 import org.moflon.tracing.sdm.events.LinkDeletionEvent;
 import org.moflon.tracing.sdm.events.MatchFoundEvent;
@@ -269,6 +271,38 @@ public class SDMTraceUtil {
 		}
 	}
 	
+	public static void logLightweightPatternEnter(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, String patternName, String uniqueId) {
+		init();
+		if (disableTracing)
+			return;
+		
+		if (eThis == null)
+			throw new IllegalArgumentException("Please provide the correct EObject instance that holds the entered method");
+		
+		if (method == null)
+			throw new IllegalArgumentException();
+		
+		EOperation selectedOp = findEOperation(eThis, method);
+		logLightweightPatternEnter(c, stw, patternName, selectedOp, uniqueId);
+	}
+	
+	protected static void logLightweightPatternEnter(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op, String uniqueId) {
+		init();
+		if (disableTracing)
+			return;
+		
+		if (c == null || stw == null || storyPatternName == null || storyPatternName.length() == 0 || op == null || uniqueId == null)
+			throw new IllegalArgumentException();
+		if (!GLOBAL_CONTEXT.equals(c)) {
+			logLightweightPatternEnter(GLOBAL_CONTEXT, stw, storyPatternName, op, uniqueId);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logLightweightPatternEnter(c, stw, storyPatternName, op, uniqueId);
+			}
+		} else {
+			c.traceEvent(stw, new LightweightPatternEnterEvent(storyPatternName, op, uniqueId));
+		}
+	}
+	
 	public static void logPatternExit(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, String patternName) {
 		init();
 		if (disableTracing)
@@ -298,6 +332,38 @@ public class SDMTraceUtil {
 			}
 		} else {
 			c.traceEvent(stw, new PatternExitEvent(storyPatternName, op));
+		}
+	}
+	
+	public static void logLightweightPatternExit(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, String patternName, String uniqueId) {
+		init();
+		if (disableTracing)
+			return;
+		
+		if (eThis == null)
+			throw new IllegalArgumentException("Please provide the correct EObject instance that holds the entered method");
+		
+		if (method == null)
+			throw new IllegalArgumentException();
+		
+		EOperation selectedOp = findEOperation(eThis, method);
+		logLightweightPatternExit(c, stw, patternName, selectedOp, uniqueId);
+	}
+	
+	protected static void logLightweightPatternExit(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op, String uniqueId) {
+		init();
+		if (disableTracing)
+			return;
+		
+		if (c == null || stw == null || storyPatternName == null || storyPatternName.length() == 0 || op == null || uniqueId == null)
+			throw new IllegalArgumentException();
+		if (!GLOBAL_CONTEXT.equals(c)) {
+			logLightweightPatternExit(GLOBAL_CONTEXT, stw, storyPatternName, op, uniqueId);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logLightweightPatternExit(c, stw, storyPatternName, op, uniqueId);
+			}
+		} else {
+			c.traceEvent(stw, new LightweightPatternExitEvent(storyPatternName, op, uniqueId));
 		}
 	}
 	
