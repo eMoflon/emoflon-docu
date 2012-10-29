@@ -22,4 +22,9 @@ public abstract class SDMTraceStrategy {
 	protected abstract void logLinkDeletion(SDMTraceContext c, StackTraceWrapper stw, String sourceRoleName, Class<?> sourceNodeType, Object sourceNodeValue, String sourceNodeName, String targetNodeName, Class<?> targetNodeType, Object targetNodeValue, String targetRoleName);
 	protected abstract void logLightweightPatternEnter(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op, String uniqueId);
 	protected abstract void logLightweightPatternExit(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op, String uniqueId);
+	protected abstract void logCommenceOfGraphRewriting(SDMTraceContext c, StackTraceWrapper stw, String patternName);
+	protected abstract void logBeginNACEvaluation(SDMTraceContext c, StackTraceWrapper stw, String patternName);
+	protected abstract void logEndOfNACEvaluation(SDMTraceContext c, StackTraceWrapper stw,	String patternName);
+	protected abstract void logNACNotSatisfied(SDMTraceContext c, StackTraceWrapper stw, String patternName);
+	protected abstract void logNACSatisfied(SDMTraceContext c, StackTraceWrapper stw, String patternName);
 }

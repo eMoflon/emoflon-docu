@@ -3,9 +3,13 @@ package org.moflon.tracing.sdm;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EOperation;
 import org.mockito.internal.verification.NoMoreInteractions;
+import org.moflon.tracing.sdm.events.BeginNACEvaluationEvent;
 import org.moflon.tracing.sdm.events.BindObjectVarEvent;
 import org.moflon.tracing.sdm.events.CheckIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.CommenceOfGraphRewritingEvent;
+import org.moflon.tracing.sdm.events.EndOfNACEvaluationEvent;
 import org.moflon.tracing.sdm.events.FailedIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.FailedNACEvent;
 import org.moflon.tracing.sdm.events.LightweightPatternEnterEvent;
 import org.moflon.tracing.sdm.events.LightweightPatternExitEvent;
 import org.moflon.tracing.sdm.events.LinkCreationEvent;
@@ -20,6 +24,7 @@ import org.moflon.tracing.sdm.events.OperationExitEvent;
 import org.moflon.tracing.sdm.events.PatternEnterEvent;
 import org.moflon.tracing.sdm.events.PatternExitEvent;
 import org.moflon.tracing.sdm.events.SuccessIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.SuccessNACEvent;
 import org.moflon.tracing.sdm.events.UnbindObjectVarEvent;
 
 public class LoggingSDMTraceStrategy extends SDMTraceStrategy {
@@ -150,6 +155,36 @@ public class LoggingSDMTraceStrategy extends SDMTraceStrategy {
 			StackTraceWrapper stw, String storyPatternName, EOperation op,
 			String uniqueId) {
 		log.debug((new LightweightPatternExitEvent(storyPatternName, op, uniqueId)).toString());
+	}
+
+	@Override
+	protected void logCommenceOfGraphRewriting(SDMTraceContext c,
+			StackTraceWrapper stw, String patternName) {
+		log.debug((new CommenceOfGraphRewritingEvent(patternName)).toString());
+	}
+
+	@Override
+	protected void logBeginNACEvaluation(SDMTraceContext c,
+			StackTraceWrapper stw, String patternName) {
+		log.debug((new BeginNACEvaluationEvent(patternName)).toString());
+	}
+
+	@Override
+	protected void logEndOfNACEvaluation(SDMTraceContext c,
+			StackTraceWrapper stw, String patternName) {
+		log.debug((new EndOfNACEvaluationEvent(patternName)).toString());
+	}
+
+	@Override
+	protected void logNACNotSatisfied(SDMTraceContext c, StackTraceWrapper stw,
+			String patternName) {
+		log.debug((new FailedNACEvent(patternName)).toString());
+	}
+
+	@Override
+	protected void logNACSatisfied(SDMTraceContext c, StackTraceWrapper stw,
+			String patternName) {
+		log.debug((new SuccessNACEvent(patternName)).toString());
 	}
 	
 }

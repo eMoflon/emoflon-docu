@@ -17,9 +17,13 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
+import org.moflon.tracing.sdm.events.BeginNACEvaluationEvent;
 import org.moflon.tracing.sdm.events.BindObjectVarEvent;
 import org.moflon.tracing.sdm.events.CheckIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.CommenceOfGraphRewritingEvent;
+import org.moflon.tracing.sdm.events.EndOfNACEvaluationEvent;
 import org.moflon.tracing.sdm.events.FailedIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.FailedNACEvent;
 import org.moflon.tracing.sdm.events.LightweightPatternEnterEvent;
 import org.moflon.tracing.sdm.events.LightweightPatternExitEvent;
 import org.moflon.tracing.sdm.events.LinkCreationEvent;
@@ -34,6 +38,7 @@ import org.moflon.tracing.sdm.events.OperationExitEvent;
 import org.moflon.tracing.sdm.events.PatternEnterEvent;
 import org.moflon.tracing.sdm.events.PatternExitEvent;
 import org.moflon.tracing.sdm.events.SuccessIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.SuccessNACEvent;
 import org.moflon.tracing.sdm.events.UnbindObjectVarEvent;
 
 public class SDMTraceUtil {	
@@ -666,6 +671,81 @@ public class SDMTraceUtil {
 			}
 		} else {
 			c.traceEvent(stw, new NoMoreLinkEndOptionsEvent(linkName, srcObjName, trgtObjName));
+		}
+	}
+	
+	public static void logCommenceOfGraphRewriting(SDMTraceContext c, StackTraceWrapper stw, String patternName) {
+		init();
+		if (disableTracing)
+			return;
+		
+		if (!GLOBAL_CONTEXT.equals(c)) {
+			logCommenceOfGraphRewriting(GLOBAL_CONTEXT, stw, patternName);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logCommenceOfGraphRewriting(c, stw, patternName);
+			}
+		} else {
+			c.traceEvent(stw, new CommenceOfGraphRewritingEvent(patternName));
+		}
+	}
+	
+	public static void logBeginNACEvaluation(SDMTraceContext c, StackTraceWrapper stw, String patternName) {
+		init();
+		if (disableTracing)
+			return;
+		
+		if (!GLOBAL_CONTEXT.equals(c)) {
+			logBeginNACEvaluation(GLOBAL_CONTEXT, stw, patternName);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logBeginNACEvaluation(c, stw, patternName);
+			}
+		} else {
+			c.traceEvent(stw, new BeginNACEvaluationEvent(patternName));
+		}
+	}
+	
+	public static void logEndOfNACEvaluation(SDMTraceContext c, StackTraceWrapper stw, String patternName) {
+		init();
+		if (disableTracing)
+			return;
+		
+		if (!GLOBAL_CONTEXT.equals(c)) {
+			logEndOfNACEvaluation(GLOBAL_CONTEXT, stw, patternName);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logEndOfNACEvaluation(c, stw, patternName);
+			}
+		} else {
+			c.traceEvent(stw, new EndOfNACEvaluationEvent(patternName));
+		}
+	}
+	
+	public static void logNACNotSatisfied(SDMTraceContext c, StackTraceWrapper stw, String patternName) {
+		init();
+		if (disableTracing)
+			return;
+		
+		if (!GLOBAL_CONTEXT.equals(c)) {
+			logNACNotSatisfied(GLOBAL_CONTEXT, stw, patternName);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logNACNotSatisfied(c, stw, patternName);
+			}
+		} else {
+			c.traceEvent(stw, new FailedNACEvent(patternName));
+		}
+	}
+	
+	public static void logNACSatisfied(SDMTraceContext c, StackTraceWrapper stw, String patternName) {
+		init();
+		if (disableTracing)
+			return;
+		
+		if (!GLOBAL_CONTEXT.equals(c)) {
+			logNACSatisfied(GLOBAL_CONTEXT, stw, patternName);
+			for (SDMTraceStrategy strategy : STRATS) {
+				strategy.logNACSatisfied(c, stw, patternName);
+			}
+		} else {
+			c.traceEvent(stw, new SuccessNACEvent(patternName));
 		}
 	}
 	
