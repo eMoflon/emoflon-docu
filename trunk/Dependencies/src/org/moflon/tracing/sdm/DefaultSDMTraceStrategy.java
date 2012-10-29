@@ -1,9 +1,13 @@
 package org.moflon.tracing.sdm;
 
 import org.eclipse.emf.ecore.EOperation;
+import org.moflon.tracing.sdm.events.BeginNACEvaluationEvent;
 import org.moflon.tracing.sdm.events.BindObjectVarEvent;
 import org.moflon.tracing.sdm.events.CheckIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.CommenceOfGraphRewritingEvent;
+import org.moflon.tracing.sdm.events.EndOfNACEvaluationEvent;
 import org.moflon.tracing.sdm.events.FailedIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.FailedNACEvent;
 import org.moflon.tracing.sdm.events.LightweightPatternEnterEvent;
 import org.moflon.tracing.sdm.events.LightweightPatternExitEvent;
 import org.moflon.tracing.sdm.events.LinkCreationEvent;
@@ -18,6 +22,7 @@ import org.moflon.tracing.sdm.events.OperationExitEvent;
 import org.moflon.tracing.sdm.events.PatternEnterEvent;
 import org.moflon.tracing.sdm.events.PatternExitEvent;
 import org.moflon.tracing.sdm.events.SuccessIsomorphicBindingEvent;
+import org.moflon.tracing.sdm.events.SuccessNACEvent;
 import org.moflon.tracing.sdm.events.UnbindObjectVarEvent;
 
 public class DefaultSDMTraceStrategy extends SDMTraceStrategy {
@@ -145,6 +150,36 @@ public class DefaultSDMTraceStrategy extends SDMTraceStrategy {
 			StackTraceWrapper stw, String storyPatternName, EOperation op,
 			String uniqueId) {
 		c.traceEvent(stw, new LightweightPatternExitEvent(storyPatternName, op, uniqueId));
+	}
+
+	@Override
+	protected void logCommenceOfGraphRewriting(SDMTraceContext c,
+			StackTraceWrapper stw, String patternName) {
+		c.traceEvent(stw, new CommenceOfGraphRewritingEvent(patternName));
+	}
+
+	@Override
+	protected void logBeginNACEvaluation(SDMTraceContext c,
+			StackTraceWrapper stw, String patternName) {
+		c.traceEvent(stw, new BeginNACEvaluationEvent(patternName));
+	}
+
+	@Override
+	protected void logEndOfNACEvaluation(SDMTraceContext c,
+			StackTraceWrapper stw, String patternName) {
+		c.traceEvent(stw, new EndOfNACEvaluationEvent(patternName));
+	}
+
+	@Override
+	protected void logNACNotSatisfied(SDMTraceContext c, StackTraceWrapper stw,
+			String patternName) {
+		c.traceEvent(stw, new FailedNACEvent(patternName));
+	}
+
+	@Override
+	protected void logNACSatisfied(SDMTraceContext c, StackTraceWrapper stw,
+			String patternName) {
+		c.traceEvent(stw, new SuccessNACEvent(patternName));
 	}
 	
 }

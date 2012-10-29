@@ -283,5 +283,35 @@ public class EAExportFileTraceStrategy extends SDMTraceStrategy {
 			String uniqueId) {
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	protected void logCommenceOfGraphRewriting(SDMTraceContext c,
+			StackTraceWrapper stw, String patternName) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	protected void logBeginNACEvaluation(SDMTraceContext c,
+			StackTraceWrapper stw, String patternName) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	protected void logEndOfNACEvaluation(SDMTraceContext c,
+			StackTraceWrapper stw, String patternName) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	protected void logNACNotSatisfied(SDMTraceContext c, StackTraceWrapper stw,
+			String patternName) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	protected void logNACSatisfied(SDMTraceContext c, StackTraceWrapper stw,
+			String patternName) {
+		// TODO Auto-generated method stub
+	}
 	
 }
