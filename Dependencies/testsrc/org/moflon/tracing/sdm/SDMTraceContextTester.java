@@ -36,7 +36,8 @@ public class SDMTraceContextTester {
 	private void addEventsInOtherContext() throws NoSuchMethodException, SecurityException {
 		Method m = this.getClass().getDeclaredMethod("addEventsInOtherContext", new Class[]{});
 		m.setAccessible(true);
-		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m);
+		EOperation mockedOperation = mock(EOperation.class);
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m, mockedOperation);
 		SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[]{});
 		SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
 	}
@@ -45,7 +46,8 @@ public class SDMTraceContextTester {
 	public void test_getTrace() throws NoSuchMethodException, SecurityException {
 		Method m = this.getClass().getDeclaredMethod("test_getTrace", new Class<?>[]{});
 		m.setAccessible(true);
-		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m);
+		EOperation mockedOperation = mock(EOperation.class);
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m, mockedOperation);
 		SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[]{});
 		addEventsInOtherContext();
 		SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
@@ -60,7 +62,8 @@ public class SDMTraceContextTester {
 	public void test_getFlatTrace() throws NoSuchMethodException, SecurityException {
 		Method m = this.getClass().getDeclaredMethod("test_getTrace", new Class<?>[]{});
 		m.setAccessible(true);
-		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m);
+		EOperation mockedOperation = mock(EOperation.class);
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m, mockedOperation);
 		SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[]{});
 		addEventsInOtherContext();
 		SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
@@ -74,7 +77,8 @@ public class SDMTraceContextTester {
 	@Test
 	public void test_getAllTraces() throws NoSuchMethodException, SecurityException {
 		Method m = this.getClass().getMethod("test_getTrace", new Class<?>[]{});
-		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m);
+		EOperation mockedOperation = mock(EOperation.class);
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m, mockedOperation);
 		SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[]{});
 		addEventsInOtherContext();
 		SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
@@ -97,7 +101,8 @@ public class SDMTraceContextTester {
 	@Test
 	public void test_getPseudoFlatTraceForMethod() throws NoSuchMethodException, SecurityException {
 		Method m1 = this.getClass().getDeclaredMethod("test_getPseudoFlatTraceForMethod", new Class<?>[]{});
-		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m1);
+		EOperation mockedOperation = mock(EOperation.class);
+		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m1, mockedOperation);
 		
 		Method m2 = this.getClass().getDeclaredMethod("test_getAllTraces", new Class<?>[]{});
 		
