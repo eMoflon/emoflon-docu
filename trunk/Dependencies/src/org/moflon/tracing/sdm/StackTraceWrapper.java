@@ -3,16 +3,20 @@ package org.moflon.tracing.sdm;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
+import org.eclipse.emf.ecore.EOperation;
+
 public class StackTraceWrapper {
 
 	private final StackTraceElement[] callingTrace;
 	private final Method method;
+	private final EOperation operation;
 	
-	StackTraceWrapper(Method method, StackTraceElement[] callingTrace) {
-		if (method == null || callingTrace == null || callingTrace.length == 0)
+	StackTraceWrapper(Method method, EOperation operation, StackTraceElement[] callingTrace) {
+		if (method == null || operation == null || callingTrace == null || callingTrace.length == 0)
 			throw new IllegalArgumentException();
 		this.callingTrace = callingTrace;
 		this.method = method;
+		this.operation = operation;
 	}
 
 	public StackTraceElement[] getcallingTrace() {
@@ -21,6 +25,10 @@ public class StackTraceWrapper {
 
 	public Method getMethod() {
 		return method;
+	}
+	
+	protected EOperation getOperation() {
+		return operation;
 	}
 
 	@Override
