@@ -149,7 +149,27 @@ public class SDMTraceContext {
 		return result.toArray(new TraceEvent[]{});
 	}
 	
-
+	public TraceEvent[] getPseudoFlatTraceForMethod(EOperation op) {
+		List<TraceEvent> result = new LinkedList<TraceEvent>();
+		List<StackTraceWrapper> relevantSTWs = new LinkedList<StackTraceWrapper>();
+		for (StackTraceWrapper stw : data.keySet()) {
+			if (equalEOperations(stw.getOperation(), op)) {
+				relevantSTWs.add(stw);
+			}
+		}
+		if (relevantSTWs.isEmpty())
+			return new TraceEvent[]{};
+		for (int i = 0; i < allData.size(); i++) {
+			TraceEvent traceEvent = allData.get(i);
+			for (StackTraceWrapper stw : relevantSTWs) {
+				if (data.get(stw).contains(traceEvent)) {
+					result.add(traceEvent);
+					continue;
+				}
+			}
+		}
+		return result.toArray(new TraceEvent[]{});
+	}
 	
 	public void reset() {
 		data.clear();
