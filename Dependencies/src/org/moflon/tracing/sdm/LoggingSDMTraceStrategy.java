@@ -2,7 +2,6 @@ package org.moflon.tracing.sdm;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EOperation;
-import org.mockito.internal.verification.NoMoreInteractions;
 import org.moflon.tracing.sdm.events.BeginNACEvaluationEvent;
 import org.moflon.tracing.sdm.events.BindObjectVarEvent;
 import org.moflon.tracing.sdm.events.CheckIsomorphicBindingEvent;
