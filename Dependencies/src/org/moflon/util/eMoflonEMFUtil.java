@@ -17,9 +17,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.antlr.gunit.swingui.TestCaseEditController.InputFileEditor;
 import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -60,6 +58,10 @@ public class eMoflonEMFUtil
    public final static String SDM_SOURCE_KEY = "SDM";
    public final static String SDM_ANNOTATION_KEY = "XMI";
    
+   public static void init(EPackage ePackage){
+      ePackage.getName();
+   }
+   
    /**
     * Simple utility method to be used for testing. Loads a model from path.
     * 
@@ -72,12 +74,22 @@ public class eMoflonEMFUtil
     * 
     * @return Loaded model
     */
-  static public EObject loadModel(EPackage ePackage, String path, ResourceSet resourceSet)
+  public static EObject loadModel(EPackage ePackage, String path, ResourceSet resourceSet)
    {
       initEMF(ePackage);
-
-      return loadModel(createFileURI(path, true), resourceSet);
+      return loadModel(path, resourceSet);
    }
+  
+  public static EObject loadModel(String path)
+  {
+     return loadModel(path, null);
+  }
+  
+  public static EObject loadModel(String path, ResourceSet resourceSet)
+  {
+     return loadModel(createFileURI(path, true), resourceSet);
+  }
+  
    
    public static EObject loadModel(URI uri, ResourceSet resourceSet)
    {
@@ -146,12 +158,17 @@ public class eMoflonEMFUtil
    {
       initEMF(ePackage);
 
-      return saveModel(root, createFileURI(path, false));
+      return saveModel(root, path);
    }
    
    static public boolean saveModel(EObject root, String path, ResourceSet resourceSet)
    {
-      return saveModel(root, createFileURI(path, false),resourceSet);
+      return saveModel(root, createFileURI(path, false), resourceSet);
+   }
+   
+   static public boolean saveModel(EObject root, String path)
+   {
+      return saveModel(root, createFileURI(path, false));
    }
    
    static public boolean saveModel(EObject root, URI path){
