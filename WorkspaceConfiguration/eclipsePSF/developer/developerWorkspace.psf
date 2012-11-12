@@ -29,7 +29,9 @@
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2tstsuite/trunk/MoflonValidationPlugin,MoflonValidationPlugin"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/languages/sdm/SDMLanguage,SDMLanguage"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/languages/specifications/TextToMOSL,TextToMOSL"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/languages/specifications/MOSL,MOSL"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/text/trunk/TextualTGGCodeAdapter,TextualTGGCodeAdapter"/>
+<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/text/trunk/MOSLCodeAdapter,MOSLCodeAdapter"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/languages/tgg/TGGLanguage,TGGLanguage"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2backend/trunk/languages/tgg/TGGRuntime,TGGRuntime"/>
 <project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2tstsuite/trunk/Validation,Validation"/>
@@ -86,5 +88,6 @@
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MoflonBackend" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Validation" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/TextToMOSL" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MOSL" type="4"/>
 </workingSets>
 </psf>
