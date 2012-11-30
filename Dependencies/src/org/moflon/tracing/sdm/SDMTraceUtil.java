@@ -54,15 +54,21 @@ public class SDMTraceUtil {
 	private final static SDMTraceContext GLOBAL_CONTEXT = new SDMTraceContext();
 	
 	private static boolean disableTracing = false;
-	private static boolean initialized = false;
+	private static boolean initialized = false;	
 	
-	{
-		CONTEXTS.put(ALL, GLOBAL_CONTEXT);
+	public static void reset() {
+		CONTEXTS.clear();
+		putGlobalContext();
+	}
+
+	private static void putGlobalContext() {
+		CONTEXTS.put(ALL, GLOBAL_CONTEXT);		
 	}
 	
 	private static void init() {
 		if (initialized)
 			return;
+		CONTEXTS.put(ALL, GLOBAL_CONTEXT);
 		if (System.getProperties().containsKey(DISABLE_TRACING_SYS_PROP)) {
 			String value = System.getProperty(DISABLE_TRACING_SYS_PROP);
 			boolean parsedBoolean = Boolean.parseBoolean(value);
