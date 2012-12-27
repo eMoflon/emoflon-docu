@@ -6,7 +6,7 @@ In EA, open the main diagram (double-click in the project browser) and carefully
 
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=0.95\textwidth]{pics/sdmBilder/removeCard/sdm01RAW}
+  \includegraphics[width=0.4\textwidth]{pics/sdmBilder/removeCard/sdm01RAW}
   \caption{Double-click a method to implement it.}  
   \label{fig:sdm_start}
 \end{center}
@@ -59,10 +59,11 @@ You should now see a new \texttt{Eclipse Error} in the validation output, which 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.6\textwidth]{pics/sdmBilder/removeCard/sdm16RAW}
-  \caption{EA validation output after an Eclipse error}  
+  \caption{EA validation output for a start node without an outgoing edge after an Eclipse error}  
   \label{fig:ea_eclipse_error}
 \end{center}
 \end{figure}
+
 
 Our validation mechanism checks the dynamic semantics (SDMs) of your metamodels, partly by rule checking directly in EA and by communicating with Eclipse after the code generation process. 
 Please note that the corresponding error message in EA only appeared \emph{after} the validation in Eclipse and won't be deleted until the next successful code generation process in Eclipse and a subsequent validation in EA.
@@ -88,7 +89,7 @@ This is basically quick linking to a non-existent element if you wish.
 
 EA notices that there is nothing to quick link to and pops up a small context-sensitive dialogue, not for creating a link as in the case of quick linking, but for creating an element that can be connected to the indicated source element. 
 
-As indicated in Fig.~\ref{fig:sdm_new_activity_node} choose \texttt{Append Activity Node} to create an \emph{activity node}.  
+As indicated in Fig.~\ref{fig:sdm_new_activity_node} choose \texttt{Append StoryNode} to create an \emph{activity node}.  
 We
 \note{Activity}
 \note{Activity Node}
@@ -141,7 +142,7 @@ Enter \texttt{remove\-Card\-From\-Partition} as the name of the story node, chec
 
 \begin{figure}[htpb]
 \begin{center} 
-  \includegraphics[width=0.45\textwidth]{pics/sdmBilder/removeCard/sdm07RAW}
+  \includegraphics[width=0.45\textwidth]{pics/sdmBilder/removeCard/sdm07RAW.png}
   \caption{Start modelling story pattern in activity node.}  
   \label{fig:story_pattern}
 \end{center}
@@ -209,7 +210,7 @@ Every object or link variable's binding operator can be set to one of \texttt{Ch
 
 \begin{figure}[htp] 
 \begin{center} 
- \includegraphics[width=0.6\textwidth]{pics/sdmBilder/removeCard/sdm12RAW}
+ \includegraphics[width=0.6\textwidth]{pics/sdmBilder/removeCard/sdm12RAW.png}
   \caption{Specify properties for created link variable.}  
   \label{fig:link_variable_properties}
 \end{center}
@@ -233,7 +234,7 @@ Our approach is to provide a clear and type-safe interface to a general purpose 
 
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=0.95\textwidth]{pics/sdmBilder/removeCard/sdm14RAW}
+  \includegraphics[width=0.95\textwidth]{pics/sdmBilder/removeCard/sdm14RAW.png}
   \caption{Adding a return value to the stop node.}  
   \label{fig:stop_node_return_value}
 \end{center}
