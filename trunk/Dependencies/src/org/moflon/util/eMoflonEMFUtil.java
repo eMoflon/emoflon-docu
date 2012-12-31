@@ -1,11 +1,7 @@
 package org.moflon.util;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.StringWriter;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -21,27 +17,21 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.PackageNotFoundException;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -52,172 +42,21 @@ import org.xml.sax.SAXException;
 public class eMoflonEMFUtil
 {
    private static final Logger logger = Logger.getLogger(eMoflonEMFUtil.class);
-   
+
    private static Map<EClassifier, String> clazzNames = new HashMap<EClassifier, String>();
-   
-   public final static String SDM_SOURCE_KEY = "SDM";
-   public final static String SDM_ANNOTATION_KEY = "XMI";
-   
-   public static void init(EPackage ePackage){
-      ePackage.getName();
-   }
-   
+
+   /*
+    * 
+    * 
+    * 
+    * Initialization Methods
+    */
+
    /**
-    * Simple utility method to be used for testing. Loads a model from path.
-    * 
-    * @param ePackage
-    *           Package of metamodel (for initialization)
-    * @param path
-    *           Local file path to model to be loaded
-    * @param resourceSet
-    *           Can be null if resources are not connected
-    * 
-    * @return Loaded model
+    * If using EMF from plain Java (e.g. JUnit Tests), invoke to register EMF defaults as necessary. In a plugin
+    * context, this is not necessary. Note that this method is called on demand from {@link #init(EPackage)} and
+    * loading/saving methods.
     */
-  public static EObject loadModel(EPackage ePackage, String path, ResourceSet resourceSet)
-   {
-      initEMF(ePackage);
-      return loadModel(path, resourceSet);
-   }
-  
-  public static EObject loadModel(String path)
-  {
-     return loadModel(path, null);
-  }
-  
-  public static EObject loadModel(String path, ResourceSet resourceSet)
-  {
-     return loadModel(createFileURI(path, true), resourceSet);
-  }
-  
-   
-   public static EObject loadModel(URI uri, ResourceSet resourceSet)
-   {
-      // Obtain a new resource set if necessary
-      if (resourceSet == null)
-         resourceSet = new ResourceSetImpl();
-
-      // Get the resource
-      Resource resource = resourceSet.getResource(uri, true);
-
-      // Add adapter for reverse navigation along unidirectional links
-      ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
-      if(adapter == null)
-         resourceSet.eAdapters().add(new ECrossReferenceAdapter());
-      
-      // Return root model element
-      return resource.getContents().get(0);
-   }
-   
-   /**
-    * This method not only loads a serialized model but also adds an URIMap-entry, mapping the model's default "nsURI" to the file uri.  
-    * 
-    * @param uri a file uri that points to the serialized model that shall be loaded 
-    * @param resourceSet a given ResourceSet instance that shall be used for resolving type information
-    * @return the root element of the loaded model
-    * @throws IOException if uri does not point to a valid/loadable xmi document
-    * @throws IllegalStateException if something else goes wrong (e.g. xmi document could not be parsed correctly) 
-    */
-   public static EObject loadModelAndAddUriMapping(URI uri, ResourceSet resourceSet) throws IOException {	   
-	   if (uri.isFile()) {
-		   File file = new File(uri.toFileString());
-		   DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		   try {
-			   DocumentBuilder docBuilder = dbf.newDocumentBuilder();
-			   Document doc = docBuilder.parse(file);
-			   doc.getDocumentElement().normalize();
-			   NodeList packageElements = doc.getElementsByTagName("ecore:EPackage");
-			   Node epackageNode = packageElements.item(0);
-			   NamedNodeMap attributes = epackageNode.getAttributes();
-			   Node uriAttribute = attributes.getNamedItem("nsURI");
-			   String nsUriAsString = uriAttribute.getNodeValue();
-			   URI from = URI.createURI(nsUriAsString);
-			   resourceSet.getURIConverter().getURIMap().put(from, uri);
-			   logger.debug(String.format("Adding URI mapping: %1$s -> %2$s", from, uri));
-		   } catch (ParserConfigurationException e) {
-			   throw new IllegalStateException(e);
-		   } catch (SAXException e) {
-			   throw new IllegalStateException(e);
-		   }
-	   }
-	   return loadModel(uri, resourceSet);
-   }
-
-  /**
-    * Simple utility method for testing, saves model to file.
-    * 
-    * @param ePackage
-    *           Package of metamodel (for initialization)
-    * @param root
-    *           Model to be saved
-    * @param path
-    *           Local destination for xmi file
-    * @return
-    */
-   static public boolean saveModel(EPackage ePackage, EObject root, String path)
-   {
-      initEMF(ePackage);
-
-      return saveModel(root, path);
-   }
-   
-   static public boolean saveModel(EObject root, String path, ResourceSet resourceSet)
-   {
-      return saveModel(root, createFileURI(path, false), resourceSet);
-   }
-   
-   static public boolean saveModel(EObject root, String path)
-   {
-      return saveModel(root, createFileURI(path, false));
-   }
-   
-   static public boolean saveModel(EObject root, URI path){
-	  if(root == null)
-		  throw new IllegalArgumentException("The model to be saved cannot be null");
-	   
-      // Obtain a new resource set
-      ResourceSet resourceSet = new ResourceSetImpl();
-
-      return saveModel(root, path, resourceSet);
-   }
-   
-   static public boolean saveModel(EObject root, URI path, ResourceSet resourceSet){
-      // Create a resource and add model
-      Resource resource = resourceSet.createResource(path);
-      resource.getContents().add(root);
-
-      // Save model to file
-      try
-      {
-         resource.save(null);
-         return true;
-      } catch (IOException e)
-      {
-         logger.error("Unable to save model to " + path + ". Error:" + e.getMessage());
-         e.printStackTrace();
-         return false;
-      }
-
-   }
-
-  
-   static public URI createFileURI(String path, boolean mustExist)
-   {
-      File filePath = new File(path);
-      if (!filePath.exists() && mustExist)
-         throw new IllegalArgumentException(path + " does not exist.");
-
-      return URI.createFileURI(filePath.getAbsolutePath());
-   }
-
-   static private void initEMF(EPackage ePackage)
-   {
-      // Initialize the model
-      logger.debug("Initializing " + ePackage.getName());
-
-      registerXMIFactoryAsDefault();
-   }
-
    public static void registerXMIFactoryAsDefault()
    {
       // Add XMI factory to registry
@@ -227,7 +66,246 @@ public class eMoflonEMFUtil
    }
 
    /**
-    * This method only works when you registered an appropriate adapter right after loading your model! Further
+    * Use this method to initialize the given EPackage. This is required before loading/saving or working with the
+    * package. In a plugin context, this might be automatically carried out via an appropriate extension point.
+    */
+   public static void init(EPackage metamodel)
+   {
+      registerXMIFactoryAsDefault();
+      metamodel.getName();
+   }
+
+   /* Methods for loading models */
+
+   /**
+    * Use to load a model if its metamodel has been initialized already and there are no dependencies to other models.
+    * 
+    * @param pathToXMIFile
+    *           Absolute or relative path to XMI file.
+    * @return the root element of the loaded model
+    */
+   public static EObject loadModel(String pathToXMIFile)
+   {
+      return loadModelWithDependencies(pathToXMIFile, null);
+   }
+
+   /**
+    * Use to load a model if its metamodel has been initialized already and dependencies to other models are to be
+    * resolved using the supplied resourceSet.
+    * 
+    * @param pathToXMIFile
+    *           Absolute or relative path to XMI file.
+    * @param dependencies
+    *           Contains other models to resolve dependencies.
+    * @return the root element of the loaded model with resolved dependencies.
+    */
+   public static EObject loadModelWithDependencies(String pathToXMIFile, ResourceSet dependencies)
+   {
+      return loadModelWithDependenciesAndCrossReferencer(createFileURI(pathToXMIFile, true), dependencies);
+   }
+
+   /**
+    * Use to load a model and initialize its metamodel
+    * 
+    * @param metamodel
+    *           Metamodel (for initialization)
+    * @param pathToXMIFile
+    *           Absolute or relative path to XMI file
+    * 
+    * @return the root element of the loaded model
+    */
+   public static EObject loadAndInitModel(EPackage metamodel, String pathToXMIFile)
+   {
+      init(metamodel);
+      return loadModelWithDependencies(pathToXMIFile, null);
+   }
+
+   /**
+    * Use to load a model, initialize its metamodel, and resolve dependencies
+    * 
+    * @param metamodel
+    *           Metamodel (for initialization)
+    * @param pathToXMIFile
+    *           Absolute or relative path to XMI file
+    * @param dependencies
+    *           Contains other models to resolve dependencies.
+    * @return the root element of the loaded model
+    */
+   public static EObject loadAndInitModelWithDependencies(EPackage metamodel, String pathToXMIFile, ResourceSet dependencies)
+   {
+      init(metamodel);
+      return loadModelWithDependencies(pathToXMIFile, dependencies);
+   }
+
+   /**
+    * Use this method directly only if you know what you are doing! The corresponding metamodel must be initialized
+    * already. The model is loaded with all dependencies, and a cross reference adapter is added to enable inverse
+    * navigation.
+    * 
+    * @param uriToModelResource
+    *           URI of resource containing model
+    * @param dependencies
+    *           Contains other models to resolve dependencies
+    * @return the root element of the loaded model
+    */
+   public static EObject loadModelWithDependenciesAndCrossReferencer(URI uriToModelResource, ResourceSet dependencies)
+   {
+      // Obtain a new resource set if necessary
+      if (dependencies == null)
+         dependencies = new ResourceSetImpl();
+
+      // Get the resource (load on demand)
+      Resource resource = dependencies.getResource(uriToModelResource, true);
+
+      // Add adapter for reverse navigation along unidirectional links
+      ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(dependencies);
+      if (adapter == null)
+         dependencies.eAdapters().add(new ECrossReferenceAdapter());
+
+      // Return root model element
+      return resource.getContents().get(0);
+   }
+
+   /**
+    * Use this method directly only if you know what you are doing! This method not only loads a model but also adds a
+    * URIMap-entry, mapping the model's default "nsURI" to the URI from loading the resource in the supplied file. The
+    * corresponding metamodel must be initialized already.
+    * 
+    * @param pathToXMIFile
+    *           Absolute or relative path to XMI file
+    * @param dependencies
+    *           Contains other models to resolve dependencies
+    * @return the root element of the loaded model
+    * @throws IOException
+    *            if uri does not point to a valid/loadable xmi document
+    * @throws IllegalStateException
+    *            if something else goes wrong (e.g. xmi document could not be parsed correctly)
+    */
+   public static EObject loadModelAndAddUriMapping(String pathToXMIFile, ResourceSet dependencies) throws IOException
+   {
+
+      File file = new File(pathToXMIFile);
+      URI resourceURI = createFileURI(pathToXMIFile, true);
+
+      try
+      {
+         // Retrieve package URI from XMI file (this must be done before loading!)
+         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+         DocumentBuilder docBuilder = dbf.newDocumentBuilder();
+         Document doc = docBuilder.parse(file);
+         doc.getDocumentElement().normalize();
+         NodeList packageElements = doc.getElementsByTagName("ecore:EPackage");
+         Node epackageNode = packageElements.item(0);
+         NamedNodeMap attributes = epackageNode.getAttributes();
+         Node uriAttribute = attributes.getNamedItem("nsURI");
+         String nsUriAsString = uriAttribute.getNodeValue();
+
+         URI packageURI = URI.createURI(nsUriAsString);
+
+         // Create mapping
+         dependencies.getURIConverter().getURIMap().put(packageURI, resourceURI);
+         logger.debug(String.format("Adding URI mapping: %1$s -> %2$s", packageURI, resourceURI));
+      } catch (ParserConfigurationException e)
+      {
+         throw new IllegalStateException(e);
+      } catch (SAXException e)
+      {
+         throw new IllegalStateException(e);
+      }
+
+      return loadModelWithDependenciesAndCrossReferencer(resourceURI, dependencies);
+   }
+
+   /*
+    * 
+    * 
+    * 
+    * Methods for saving models
+    */
+
+   /**
+    * Use to save a model to the given XMI file path.
+    * 
+    * @param rootElementOfModel
+    * @param pathToXMIFile
+    *           Absolute or relative path to XMI file in which to save the model.
+    */
+   static public void saveModel(EObject rootElementOfModel, String pathToXMIFile)
+   {
+      saveModel(rootElementOfModel, createFileURI(pathToXMIFile, false), new ResourceSetImpl());
+   }
+
+   /**
+    * Use to save a model with dependencies to other models to the given XMI file path.
+    * 
+    * @param rootElementOfModel
+    * @param pathToXMIFile
+    *           Absolute or relative path to XMI file in which to save the model.
+    * @param dependencies
+    *           Contains other models to resolve dependencies.
+    */
+   static public void saveModelWithDependencies(EObject rootElementOfModel, String pathToXMIFile, ResourceSet dependencies)
+   {
+      saveModel(rootElementOfModel, createFileURI(pathToXMIFile, false), dependencies);
+   }
+
+   /**
+    * Use this method directly only if you know what you are doing! Use to save a model with dependencies to the given
+    * resource URI.
+    * 
+    * @param rootElementOfModel
+    * @param uriToModelResource
+    * @param dependencies
+    *           Contains other models to resolve dependencies.
+    */
+   static public void saveModel(EObject rootElementOfModel, URI uriToModelResource, ResourceSet dependencies)
+   {
+      if (rootElementOfModel == null)
+         throw new IllegalArgumentException("The model to be saved cannot be null");
+
+      // Create a resource and add model
+      Resource resource = dependencies.createResource(uriToModelResource);
+      resource.getContents().add(rootElementOfModel);
+
+      // Save model to file
+      try
+      {
+         resource.save(null);
+      } catch (IOException e)
+      {
+         String errorMessage = "Unable to save model to " + uriToModelResource + ". Error:" + e.getMessage();
+         logger.error(errorMessage);
+         e.printStackTrace();
+         throw new IllegalStateException(errorMessage);
+      }
+   }
+
+   /*
+    * 
+    * 
+    * 
+    * EMF Helper Methods
+    */
+
+   /**
+    * Create and return a file URI for the given path.
+    * 
+    * @param pathToXMIFile
+    * @param mustExist
+    *           Set true when loading (the file must exist) and false when saving (file can be newly created).
+    * @return
+    */
+   static public URI createFileURI(String pathToXMIFile, boolean mustExist)
+   {
+      File filePath = new File(pathToXMIFile);
+      if (!filePath.exists() && mustExist)
+         throw new IllegalArgumentException(pathToXMIFile + " does not exist.");
+
+      return URI.createFileURI(filePath.getAbsolutePath());
+   }
+
+   /**
+    * This method only works when you have registered an appropriate adapter right after loading your model! Further
     * documentation can be found here: http://sdqweb.ipd.kit.edu/wiki/EMF_Reverse_Lookup_/
     * _navigating_unidirectional_references_bidirectional
     * 
@@ -259,50 +337,55 @@ public class eMoflonEMFUtil
       return returnList;
    }
 
-	public static String getClazzNameWithPackagePrefix(EClassifier clazz) {
-		String clazzName = clazzNames.get(clazz);
+   public static String getClazzNameWithPackagePrefix(EClassifier clazz)
+   {
+      String clazzName = clazzNames.get(clazz);
 
-		if (clazzName == null) {
-			clazzName = clazz.getInstanceClass().getPackage().getName() + "." + clazz.getName();
-			clazzNames.put(clazz, clazzName);
-		}
-		return clazzName;
-	}
+      if (clazzName == null)
+      {
+         clazzName = clazz.getInstanceClass().getPackage().getName() + "." + clazz.getName();
+         clazzNames.put(clazz, clazzName);
+      }
+      return clazzName;
+   }
 
-	public static boolean checkInheritance(Class superclass, EClassifier subclass) {
-		for (EClass sup : ((EClass)subclass).getEAllSuperTypes()) {
-			String clazzName = getClazzNameWithPackagePrefix(sup);
-			if(clazzName.equals(superclass.getName()))
-				return true;
-		}
-		return false;		
-	}
+   public static boolean checkInheritance(Class superclass, EClassifier subclass)
+   {
+      for (EClass sup : ((EClass) subclass).getEAllSuperTypes())
+      {
+         String clazzName = getClazzNameWithPackagePrefix(sup);
+         if (clazzName.equals(superclass.getName()))
+            return true;
+      }
+      return false;
+   }
 
    private static ECrossReferenceAdapter getCRAdapter(EObject target)
    {
       // Determine context
       Notifier context = null;
-      
+
       EObject root = EcoreUtil.getRootContainer(target, true);
       Resource resource = root.eResource();
-      
+
       if (resource != null)
       {
          ResourceSet resourceSet = resource.getResourceSet();
-         if(resourceSet != null)
+         if (resourceSet != null)
             context = resourceSet;
          else
             context = resource;
-      }else
+      } else
          context = root;
-      
+
       // Retrieve adapter and create+add on demand
       ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(context);
-      if(adapter == null){
+      if (adapter == null)
+      {
          adapter = new ECrossReferenceAdapter();
          context.eAdapters().add(adapter);
       }
-      
+
       return adapter;
    }
 
@@ -333,8 +416,9 @@ public class eMoflonEMFUtil
          ((Collection) source.eGet(reference)).remove(target);
 
    }
-   
-   public static EStructuralFeature getReference(EObject obj, String name){
+
+   public static EStructuralFeature getReference(EObject obj, String name)
+   {
       for (EContentsEList.FeatureIterator featureIterator = (EContentsEList.FeatureIterator) obj.eCrossReferences().iterator(); featureIterator.hasNext();)
       {
          featureIterator.next();
@@ -345,8 +429,9 @@ public class eMoflonEMFUtil
 
       return null;
    }
-   
-   public static EStructuralFeature getContainment(EObject container, String name){
+
+   public static EStructuralFeature getContainment(EObject container, String name)
+   {
       for (EContentsEList.FeatureIterator featureIterator = (EContentsEList.FeatureIterator) container.eContents().iterator(); featureIterator.hasNext();)
       {
          featureIterator.next();
@@ -357,181 +442,51 @@ public class eMoflonEMFUtil
 
       return null;
    }
-   
+
    /**
-    * Calculates the set of all outgoing references of a given EObject. 
+    * Calculates the set of all outgoing references of a given EObject.
+    * 
     * @param object
     * @return set of references
     */
-   public static Set<EStructuralFeature> getAllReferences(EObject object){
-	   EList<EStructuralFeature> references = new BasicEList<EStructuralFeature>();
-	   for (EContentsEList.FeatureIterator featureIterator = (EContentsEList.FeatureIterator) object.eCrossReferences().iterator(); featureIterator.hasNext();)
-	   {
-		   featureIterator.next();
-		   references.add(featureIterator.feature());
-	   }
-	   for (EContentsEList.FeatureIterator featureIterator = (EContentsEList.FeatureIterator) object.eContents().iterator(); featureIterator.hasNext();)
-	   {
-		   featureIterator.next();
-		   references.add(featureIterator.feature());
-	   }
-	   return new HashSet<EStructuralFeature>(references);
+   public static Set<EStructuralFeature> getAllReferences(EObject object)
+   {
+      EList<EStructuralFeature> references = new BasicEList<EStructuralFeature>();
+      for (EContentsEList.FeatureIterator featureIterator = (EContentsEList.FeatureIterator) object.eCrossReferences().iterator(); featureIterator.hasNext();)
+      {
+         featureIterator.next();
+         references.add(featureIterator.feature());
+      }
+      for (EContentsEList.FeatureIterator featureIterator = (EContentsEList.FeatureIterator) object.eContents().iterator(); featureIterator.hasNext();)
+      {
+         featureIterator.next();
+         references.add(featureIterator.feature());
+      }
+      return new HashSet<EStructuralFeature>(references);
    }
 
-	public static String getName(EObject child) {		
-		Object name = "";
-		
-		EStructuralFeature nameFeature = (EStructuralFeature) child.eClass().getEStructuralFeature("name");		
-				
-		if(nameFeature != null)
-			name = child.eGet(nameFeature);
-		
-		return (String) (name instanceof String && !((String) name).equals("") ? name : child.toString());
-	}
-	
-	public static void addToResourceSet(ResourceSet set, EObject object) {
-	   Resource resource = object.eResource();
-	   if(resource == null){
-	      resource = new ResourceImpl();
-	      resource.setURI(URI.createURI(object.eClass().getEPackage().getNsURI()));
-	   }
-	   
-		resource.getContents().add(object);
-		set.getResources().add(resource);
-	}
-	
-   public static void embedSDMInEAnnotation(EObject sdm, EAnnotation eAnnotation)
+   public static String getName(EObject child)
    {
-      ResourceSet resourceSet = new ResourceSetImpl();
-      embedSDMInEAnnotation(sdm, eAnnotation, resourceSet);
+      Object name = "";
+
+      EStructuralFeature nameFeature = (EStructuralFeature) child.eClass().getEStructuralFeature("name");
+
+      if (nameFeature != null)
+         name = child.eGet(nameFeature);
+
+      return (String) (name instanceof String && !((String) name).equals("") ? name : child.toString());
    }
 
-   public static void embedSDMInEAnnotation(EObject sdm, EAnnotation eAnnotation, ResourceSet resourceSet)
+   public static void addToResourceSet(ResourceSet set, EObject object)
    {
-      Resource resource = resourceSet.createResource(URI.createURI(""));
-      resource.getContents().add(sdm);
-
-      StringWriter writer = new StringWriter();
-      OutputStream out = new URIConverter.WriteableOutputStream(writer, "UTF-8");
-      try
+      Resource resource = object.eResource();
+      if (resource == null)
       {
-         resource.save(out, null);
-      } catch (IOException e)
-      {
-         e.printStackTrace();
+         resource = new ResourceImpl();
+         resource.setURI(URI.createURI(object.eClass().getEPackage().getNsURI()));
       }
 
-      eAnnotation.getDetails().put(SDM_ANNOTATION_KEY, writer.toString());
+      resource.getContents().add(object);
+      set.getResources().add(resource);
    }
-   
-   /**
-    * This method extracts the XMI-representation of a SDM form an EAnnotation. It returns the Activity (from SDMLanguage)
-    * as a generic EObject due to technical access restrictions. Callers should cast the result to Activity if needed. 
-    * 
-    * @param annotation The annotation that wraps an XMI document (for key="XMI") which describes an SDM activity/diagram.
-    * @param resourceSet A ResourceSet that contains/describes/references all necessary EMF models (typically e.g. referenced by the SDM transformation + SDM itself)
-    * @param operationName The name of the operation that was implemented with SDM (used to construct a temporary URI). 
-    * @return EObject representation of the Activity (from SDMLanguage) 
-    */
-   private static EObject getActivityFromAnnotation(EAnnotation annotation, ResourceSet resourceSet, String operationName) {
-	   if (resourceSet == null)
-		   throw new IllegalArgumentException("Parameter 'resourceSet' may not be null!");
-	      
-	   EObject result = null;
-	   
-	   if (!SDM_SOURCE_KEY.equals(annotation.getSource()))
-		   return null;
-	   
-	   EMap<String,String> details = annotation.getDetails();
-	   if (details == null)
-		   return null;
-				   
-	   String xmiDoc = details.get(SDM_ANNOTATION_KEY);
-	   try {
-		   registerXMIFactoryAsDefault();
-		   // try to load the resource - it might be, that the user did not remember to initialize SDMLanguage properly
-		   // the following code thus attempts to load the resource once and tries to dynamically load SDMLanguage on demand
-		   // if this latter step succeeds, then the resource is tried to be loaded again  
-		   try {
-			   Resource r = resourceSet.createResource(URI.createURI(operationName + ".sdm"));
-			   r.load(new ByteArrayInputStream(xmiDoc.getBytes()), null);
-			   try {
-				   result = (EObject) r.getContents().get(0);
-			   } catch (Exception e) {
-				   throw new Exception("Unable to retrieve a valid EObject instance from the xmi-document wrapped in the given annotation!", e);
-			   }
-			   if (result == null) {
-				   throw new Exception("Unable to retrieve a valid EObject instance from the xmi-document wrapped in the given annotation!");
-			   } else {
-				   return result;
-			   }
-		   } catch (Exception e) {
-			   if (e instanceof Resource.IOWrappedException) {
-				   Throwable cause = e.getCause();
-				   if (cause instanceof PackageNotFoundException) {
-					   PackageNotFoundException e2 = (PackageNotFoundException) cause;
-					   final String sdmURI = MoflonUtil.getMoflonDefaultURIForProject("SDMLanguage");
-					   if (e2.getMessage().contains(sdmURI)) {
-						   // now initialize the SDMLanguagePackage properly
-						   // (this is done by java reflection to prevent an explicit dependency from eMoflonEMTUtil to SDMLanguage)
-						   // Warning! Be careful, the following lines depend on the correct naming of SDMLanguage and might break in case of renaming/refactoring. 
-						   ClassLoader classLoader = eMoflonEMFUtil.class.getClassLoader();
-						   Class<EPackageImpl> smdLanguagePackageImpl = (Class<EPackageImpl>) classLoader.loadClass("SDMLanguage.impl.SDMLanguagePackageImpl");
-						   Method method = smdLanguagePackageImpl.getMethod("init", (Class<?>[]) null);						   
-						   method.invoke(smdLanguagePackageImpl, (Object[]) null);
-					   }
-				   }
-			   } else {
-				   throw e;
-			   }
-		   }		   
-		   // try to load the resource after the SDMLanguagePackage has been (reflectively) initialized (see above)
-		   Resource r = resourceSet.createResource(URI.createURI(operationName + ".sdm"));
-		   r.load(new ByteArrayInputStream(xmiDoc.getBytes()), null);
-		   try {
-			   result = (EObject) r.getContents().get(0);
-		   } catch (Exception e) {
-			   throw new Exception("Unable to retrieve a valid EObject instance from the xmi-document wrapped in the given annotation!", e);
-		   }
-		   if (result == null) {
-			   throw new Exception("Unable to retrieve a valid EObject instance from the xmi-document wrapped in the given annotation!");
-		   }
-	   } catch (Exception e) {
-		   if (e instanceof Resource.IOWrappedException) {
-			   Throwable cause = e.getCause();
-			   if (cause instanceof PackageNotFoundException) {
-				   PackageNotFoundException e2 = (PackageNotFoundException) cause;
-				   throw new IllegalArgumentException("Error during XMI loading due to missing package information! Remeber that you should ensure that \"SDMLanguage\" is visible and previously initialized before attempting to retrieve an Activity from an eOperation-Annotation.", e);
-			   }
-		   } else { 
-			   throw new IllegalArgumentException("Unable to interpret the given XMI document!", e);
-		   }
-	   }
-	   return result;
-   }
-   
-   /**
-    * Convenience method to retrieve the SDM diagram (as Activity from SDMLanguage) of an operation, whose implementation
-    * was specified by an SDM. 
-    * 
-    * @param op EOperation which carries an Annotation with details.key="XMI" and details.value=<XMI document of SDM specification> 
-    * @param resourceSet A ResourceSet that contains/describes/references all necessary EMF models (typically e.g. referenced by the SDM transformation + SDM itself)
-    * @return EObject representation of the Activity (from SDMLanguage)
-    */   
-   public static EObject getActivityFromEOperation(EOperation op, ResourceSet resourceSet) {
-	   EAnnotation annotation = null;
-	   
-	   for (EAnnotation temp : op.getEAnnotations()) {
-		   if (SDM_SOURCE_KEY.equals(temp.getSource()) && temp.getDetails().keySet().contains(SDM_ANNOTATION_KEY)) {
-			   annotation = temp;
-			   break;
-		   }
-	   }
-	   
-	   if (annotation != null)
-		   return getActivityFromAnnotation(annotation, resourceSet, op.getName());
-	   
-	   return null;
-   }
-
 }
