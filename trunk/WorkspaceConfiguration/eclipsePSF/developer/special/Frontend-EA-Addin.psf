@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<psf version="2.0">
-<provider id="org.tigris.subversion.subclipse.core.svnnature">
-<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/ea/trunk/MOFLON2EAEcoreAddin,MOFLON2EAEcoreAddin"/>
-<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/ea/trunk/MOFLON2EAEcoreAddinInstaller,MOFLON2EAEcoreAddinInstaller"/>
-<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/ea/trunk/MOFLON2EAEcoreProfiles,MOFLON2EAEcoreProfiles"/>
-<project reference="0.9.3,svn+ssh://scm.gforge.echtzeitsysteme.org/svnroot/moflon2frontend/ea/trunk/MOFLON2EAExportImportTest,MOFLON2EAExportImportTest"/>
-</provider>
-</psf>
