@@ -263,6 +263,7 @@ public class eMoflonEMFUtil
       if (rootElementOfModel == null)
          throw new IllegalArgumentException("The model to be saved cannot be null");
 
+      registerXMIFactoryAsDefault();
       // Create a resource and add model
       Resource resource = dependencies.createResource(uriToModelResource);
       resource.getContents().add(rootElementOfModel);
