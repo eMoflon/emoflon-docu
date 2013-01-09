@@ -2,6 +2,7 @@ package org.moflon;
 
 import java.net.URL;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
@@ -14,10 +15,10 @@ public class Activator extends Plugin
 {
 
    public static final String PLUGIN_ID = "org.moflon.dependencies";
-   
+
    // The shared instance
    private static Activator plugin;
-   
+
    // Singleton instance
    public static Activator getDefault()
    {
@@ -44,14 +45,14 @@ public class Activator extends Plugin
          return null;
       }
    }
-   
+
    @Override
    public void start(BundleContext context) throws Exception
    {
       super.start(context);
       plugin = this;
    }
-   
+
    @Override
    public void stop(BundleContext context) throws Exception
    {
@@ -63,6 +64,11 @@ public class Activator extends Plugin
    {
       IStatus status = new Status(IStatus.ERROR, plugin, IStatus.OK, message, lowLevelException);
       throw new CoreException(status);
+   }
+
+   public static String displayExceptionAsString(Exception e)
+   {
+      return "Cause: " + ExceptionUtils.getRootCauseMessage(e) + "\n StackTrace: " + ExceptionUtils.getRootCauseStackTrace(e);
    }
 
 }
