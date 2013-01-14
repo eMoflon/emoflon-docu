@@ -68,7 +68,7 @@ public class Activator extends Plugin
 
    public static String displayExceptionAsString(Exception e)
    {
-      return "Cause: " + ExceptionUtils.getRootCauseMessage(e) + "\n StackTrace: " + ExceptionUtils.getRootCauseStackTrace(e);
+      return "Cause: " + ExceptionUtils.getRootCauseMessage(e) + "\n StackTrace: " + ExceptionUtils.getStackTrace(ExceptionUtils.getRootCause(e));
    }
 
 }
