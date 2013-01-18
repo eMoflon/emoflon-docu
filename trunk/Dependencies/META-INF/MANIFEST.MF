@@ -77,6 +77,7 @@ Export-Package: antlr,
  org.moflon.admin,
  org.moflon.tracing.sdm,
  org.moflon.tracing.sdm.events,
+ org.moflon.sdm.testing.testRequirementCoverage,
  org.moflon.util
 Bundle-ClassPath: lib/log4j.jar,
  .,
