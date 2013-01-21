@@ -1,7 +1,7 @@
 \chapter{Installation}
 \label{chap:installation}
 
-\section{Install Our Extension for Enterprise Architect}
+\section{Install our extension for Enterprise Architect}
 Enterprise Architect (EA) is a modelling tool that supports UML\footnote{Unified Modelling Language} and a host of other modelling languages.
 EA is not only affordable but is also quite flexible and can be extended via \emph{extensions} to support new modelling languages.
 \begin{enumerate}
@@ -25,7 +25,7 @@ Download \url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin
 \end{figure}
 \end{enumerate}
  
-\section{Install Our Plugin for Eclipse}
+\section{Install our plugin for Eclipse}
 \begin{enumerate}
 \item[$\blacktriangleright$] Download and install Eclipse for Modelling ``Eclipse Modeling Tools (includes incubating components)''\footnote{Please note that you \emph{have to} install \emph{Eclipse Modeling Tools} or nothing will work.  Do not choose a different Eclipse package!  Although different versions and constellations might work, eMoflon is currently tested for Eclipse Juno and Java 1.7.} from \url{http://www.eclipse.org/downloads/packages/} (Fig.~\ref{fig_downloadModelingPackage}).
 
@@ -41,14 +41,14 @@ Download \url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin
 \url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/update-site2}
 \end{enumerate}
 
-\section{Get a Simple Demo Running}
+\section{Get a simple demo running}
 
 \begin{enumerate}
-\item[$\blacktriangleright$] Go to ``Window/Open Perspective/Other\ldots''\footnote{A path given as ``foo/bar'' indicates how to navigate in a series of menus and submenus.} and choose Moflon (Fig.~\ref{fig_eclipse}). 
+\item[$\blacktriangleright$] Go to ``Window/Open Perspective/Other\ldots''\footnote{A path given as ``foo/bar'' indicates how to navigate in a series of menus and submenus.} and choose Moflon~(Fig.~\ref{fig_eclipse}). 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=\textwidth]{pics/installationAndSetup/eclipse_firststart.png}
-	\caption{Choose the Moflon Perspective.}
+	\caption{Choose the Moflon perspective.}
 	\label{fig_eclipse}
 \end{figure}
 
@@ -57,7 +57,7 @@ The button with an ``L" shows you our logfile (important input for us if somethi
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=\textwidth]{pics/installationAndSetup/eclipse_metamodelButton.png}
-	\caption{Eclipse New Metamodel}
+	\caption{Eclipse ''New Metamodel''}
 	\label{fig_eclipseNewMetamodel}
 \end{figure}
 
@@ -65,14 +65,17 @@ The button with an ``L" shows you our logfile (important input for us if somethi
 An empty EA project file ``Demo.eap'' will be created in a new project with a certain project structure according to our conventions\footnote{At the moment, the project contains only the EA project file.}.
 Please do not rename, move or delete anything.
 
+\FloatBarrier
 \item[$\blacktriangleright$] Choose working sets as your top level element in the package explorer (Fig.~\ref{fig_eclipseWorkingsets}).
 We work a lot with working sets and use them to structure the workspace in Eclipse.
+
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.9\textwidth]{pics/installationAndSetup/eclipse_workingsets.png}
 	\caption{Choose Working Sets as Top Level Elements.}
 	\label{fig_eclipseWorkingsets}
 \end{figure} 
+
 
 \item[$\blacktriangleright$] Open the newly created project and replace the ``Demo.eap'' file with the Demo.eap that you will find in the \texttt{eMoflonTutorial.zip} file provided together with this tutorial. 
 
@@ -101,7 +104,7 @@ You don't need to worry about any of these details, just remember to refresh you
 \end{figure}
 \end{enumerate}
 
-\section{Validate Your Installation with JUnit}
+\section{Validate your installation with JUnit}
 \label{sec:junit}
 
 \begin{enumerate}
@@ -135,7 +138,7 @@ If anything goes wrong, try refreshing your whole workspace by choosing projects
 Congratulations!  If you see a green bar  (Fig.~\ref{fig_eclipsetestsuiterun}), then everything has been set-up correctly and you are now ready to start metamodelling!
 
 
-\section{Project Structure and Setup}
+\section{Project structure and setup}
 Now that everything is installed and setup properly, let's take a closer look at the different workspaces and our workflow.
 Before we continue, please make a few slight adjustments to EA so you can easily compare your current workspace to our screenshots:
 \begin{itemize} 
@@ -177,13 +180,6 @@ The working set \texttt{Spe\-ci\-fi\-ca\-tions} contains all \emph{metamodel pro
 A metamodel project contains a single EAP (EA project) file and is used to communicate with EA and initiate code generation by simply pressing F5 or choosing ``refresh'' from the context menu.
 In our case, \texttt{Specifications} should contain a single metamodel project \texttt{Demo} containing our EA project file  \texttt{Demo.eap}.
 
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=\textwidth]{pics/installationAndSetup/bothexplorers}
-	\caption{From EA to Eclipse}
-	\label{fig_fromEAtoEclipse}
-\end{figure}
-
 Figure~\ref{fig_fromEAtoEclipse} depicts how the Eclipse working set \texttt{Demo} and its contents were generated from the EA model \texttt{Demo}.
 Every model in EA is mapped to a working set in Eclipse with the same name. 
 From every package in the EA model, an Eclipse project is generated, also with the same name.
@@ -198,6 +194,13 @@ In our concrete example, this is the \texttt{DoubleLinkedListLanguage.ecore} fil
 Go ahead and double-click it to open the file in a simple tree-view editor in Eclipse.  
 If you are really interested in the nitty-gritty details or have a masochistic hang, right-click the file and select ``Open With/Text Editor''. 
 
+\begin{figure}[htbp]
+    \centering
+  \includegraphics[width=\textwidth]{pics/installationAndSetup/bothexplorers}
+    \caption{From EA to Eclipse}
+    \label{fig_fromEAtoEclipse}
+\end{figure}
+
 This Ecore model is used to drive a code generator that maps the model to Java interfaces and classes.  
 The generated Java code that represents the model is often referred to as a \emph{repository} and this is the reason why we refer to such projects as repository projects\footnote{Not to be mixed up with CVS or SVN repositories, although the idea of a source code ``container'' is the same here.}. 
 A repository can be viewed as an \emph{adapter} that enables building and manipulating concrete instances of a specific model via a programming language such as Java.  
@@ -206,9 +209,9 @@ This is why we indicate repository projects using a cute adapter/plug symbol on 
 Figure~\ref{fig_fromEAtoEclipse} depicts how the class \texttt{Node} in the EA model is mapped to the Java interface \texttt{Node}.  
 Double-click \texttt{Node.java} and take a look at the methods declared in the interface.
 These correspond directly to the methods declared in the modelled \texttt{Node} class.  
-Indicated by the source folders \texttt{src} and \texttt{gen}, we advocate a clean separation of hand-written (this should go in \texttt{src}) and generated code (lands automatically in \texttt{gen}).  
-As we shall see later in the tutorial, hand-written code can also be integrated directly in generated classes and, if marked appropriately, merged nicely by the code generator. 
-This is sometimes more elegant for small helper functions but can quickly get problematic especially in combination with source code management systems.
+Indicated by the source folders \texttt{src}, \texttt{injection} and \texttt{gen}, we advocate a clean separation of hand-written (this should go in \texttt{src} and \texttt{injection}) and generated code (lands automatically in \texttt{gen}).  
+As we shall see later in the tutorial, hand-written code can be integrated in generated classes vio Injections. 
+This is sometimes more elegant for small helper functions or necessary for String manipulation for instance.
 
 If you take a careful look at the code structure in \texttt{gen}, you'll find a \texttt{Foo\-Impl.java} for every \texttt{Foo.java}. 
 Indeed, the subpackage \texttt{impl} contains Java classes that implement the interfaces in the parent package.  
@@ -225,22 +228,22 @@ A point to note here is that the mapping to Java is obviously not unique.
 Indeed there exist different standards of how to map a modelling language to a general purpose programming language like Java. 
 We use a mapping defined and implemented by the Eclipse Modelling Framework (EMF) which tends to favour efficiency and simplicity.
 
-Although getting the \emph{details} of mapping the static structure of our models to Java might be extremely difficult, it seems for the most part pretty straight  forward.  
+Although getting the \emph{details} of mapping the static structure of our models to Java might be extremely difficult, it is actually straight forward.  
 A fantastic productivity boost in any case but (yawn) not exactly exciting.
 
 Have you noticed the methods of the \texttt{Node} class in our EA model? 
 Now hold on tight -- each method can be \emph{modelled} completely in EA and the corresponding implementation in Java is generated automatically and placed in \texttt{NodeImpl}.  
-Just in case you didn't get it: The behavioural or dynamic aspects of a system can be completely modelled in an abstract, platform (programming language) independent fashion using a blend of activity  diagrams and a ``graph pattern'' language called Story Driven Modelling (SDM).  
+Just in case you didn't get it: The behavioural or dynamic aspects of a system can be completely modelled in an abstract, platform (programming language) independent fashion using a blend of activity  diagrams and a ``graph pattern'' language called \textit{Story Driven Modelling} (SDM).  
 In our EA project, these ``Stories'', ``Story Models'' or simply ``SDMs'' are  placed in SDM Containers named according to the method they implement.  
-E.g.  \texttt{$\ll$ SDM Container$\gg$ insertNodeAfter SDM} for the method  \texttt{insertNodeAfter(Node)} as depicted in
+E.g.  \texttt{$\guillemotleft$ SDM Container$\guillemotright$ insertNodeAfter SDM} for the method  \texttt{insertNodeAfter(Node)} as depicted in
 Fig.~\ref{fig_fromEAtoEclipse}.  
 We'll spend the rest of the tutorial understanding why SDMs are so  {\huge crazily} cool!
  
 To recap all we've discussed, let's consider the complete workflow as depicted in Figure~\ref{fig_Overview}. 
-We started with a concise model in EA, simple and independent of any platform specific details (1).  
-Our EA model consists not only of static aspects modelled as a class diagram (2), but also of dynamic
-aspects modelled using SDM (3).  After exporting the model and code generation (4), we basically switch from \emph{modelling} to \emph{programming} in a specific general purpose programming language (Java).  
-On this lower \emph{level of abstraction}, we can flesh out the generated repository (5) if necessary, and mix as appropriate with hand-written code and libraries.  Our abstract specification of behaviour (methods) in SDM is translated to a series of method calls that form the body of the corresponding Java method (6).
+We started with a concise model in EA, simple and independent of any platform specific details~(1).  
+Our EA model consists not only of static aspects modelled as a class diagram~(2), but also of dynamic
+aspects modelled using SDM~(3).  After exporting the model and code generation~(4), we basically switch from \emph{modelling} to \emph{programming} in a specific general purpose programming language (Java).  
+On this lower \emph{level of abstraction}, we can flesh out the generated repository~(5) if necessary, and mix as appropriate with hand-written code and libraries.  Our abstract specification of behaviour (methods) in SDM is translated to a series of method calls that form the body of the corresponding Java method~(6).
 
 If you feel a bit lost at the moment please be patient; this first chapter has been a lot about installation and tool support and only aims at giving a very brief glimpse at the big picture of what is actually going on.    
 
@@ -249,7 +252,7 @@ We shall also give clear and simple definitions for the most important metamodel
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=1\textwidth]{pics/installationAndSetup/tafelbild}
+  \includegraphics[width=0.9\textwidth]{pics/installationAndSetup/tafelbild}
 	\caption{Overview}
 	\label{fig_Overview}
 \end{figure}

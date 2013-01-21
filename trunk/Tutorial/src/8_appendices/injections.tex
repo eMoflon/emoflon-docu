@@ -42,14 +42,14 @@ partial class List
         \label{code:list_toFile_impl}
     \end{figure}
 
-To use the Eclipse template, type ''$@$'' and hit ''Ctrl+Shift'' and choose ''Inject method in model''. Functions that are annotated with ''\@ model'' implement methods that are defined in the interface of the model and habe the structure ''@model [signature] $<--$ [code] $-->$ ''.
+To use the Eclipse template, type ''$@$'', hit ''Ctrl+Shift'' and choose ''Inject method in model''. Functions that are annotated with ''\@ model'' implement methods that are defined in the interface of the model and have the structure ''@model [signature] $<--$ [code] $-->$ ''.
 
 You may have noticed that we use an undefined method ''List::toText()'' in the implementation of the ''toFile''. We will now implement this as a private method of List, but since List is only an Interface, we will add it only as a member to the implementation class: Right-click on gen/DoubleLinkedListLanguage/impl/ListImpl.java and choose again ''eMoflon/create Injection for class'', which will create you injection/DoubleLinkedListLanguage/impl/ListImpl.inject. Implement it with the code given in Fig. \ref{code:listImpl_toText_impl}.
 
 
 \begin{figure}[htbp]
         \centering
-        \begin{lstlisting}
+        \begin{lstlisting}[language=Injection]
 import java.io.*;
 
 partial class ListImpl
@@ -74,5 +74,5 @@ partial class ListImpl
         \label{code:listImpl_toText_impl}
     \end{figure}
 
-Note that we begin the implementation with the import of ''java.io.*''. This is necessary since the implementation of ''toFile'' will appear in ListImpl and will need this import. Member functions and fields are injected using the ''@members'' keyword. Everything in the surrounded area will be copied to the end of the ListImpl.java file, which enables you to add member functions and fields at will. You can even expand the interface of List this way, but this is a dirty way and should only be used for backward compatiblity. Note also that you can have several ''@model'' methods in you .inject file, but only one ''@member''.
-The code will appear in ListImpl.java when you now rebuild the project (right-click on ''DoubleLinkedListLanguage'' and choose ''eMoflon/Build and clean'').
+Note that we begin the implementation with the import of ''java.io.*''. This is necessary since the implementation of ''toFile'' will appear in ListImpl and will need this import. Member functions and fields are injected using the ''@members'' keyword. Everything in the surrounded area will be copied to the end of the ListImpl.java file, which enables you to add member functions and fields at will. You can even expand the interface of List this way, but this is a dirty way and should only be used for backward compatibility. Note also that you can have several ''@model'' methods in your .inject file, but only one ''@member''.
+The code will appear in ListImpl.java, when you now rebuild the project (right-click on ''DoubleLinkedListLanguage'' and choose ''eMoflon/Build and clean'').

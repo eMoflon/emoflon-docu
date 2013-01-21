@@ -1,4 +1,4 @@
-\section{Setting up your M2T Workspace}
+\section{Setting up your M2T workspace}
 
 Nowadays, \emph{no one} really writes a complex parser completely by hand.
 Although this is sometimes still necessary\footnote{Some languages are syntactically quite challenging.} most parsers can be whipped up pretty quickly using context-free \emph{string grammars}\footnote{For simple cases, \emph{regular expressions} can also be used.} typically in EBNF\footnote{Extended Backus-Naur Form}.
@@ -114,15 +114,6 @@ Note especially the library nodes (\texttt{Moflon} and \texttt{Moca}) that refer
   \label{fig:moca-6-ExportToEclipse}
 \end{center}
 \end{figure}
-
-%\usepackage{graphics} is needed for \includegraphics
-\begin{figure}[!htbp]
-\begin{center}
- \includegraphics[width=0.72\textwidth]{pics/moca/2TextToMocaTree/0-ConvertToANTLRProject.jpg}
-  \caption{Convert CodeAdapter project to an ANTLR project} 
-  \label{fig:moca-0-ConvertToANTLRProject.jpg}
-\end{center} 
-\end{figure} 
 
 \item[$\blacktriangleright$] Right-click on \texttt{DictionaryCodeAdapter} one more time and choose ``Add Parser/Unparser'', this time from the eMoflon context menu (Fig \ref{fig:moca-1-AddParserAndUnparserWizard}).
 

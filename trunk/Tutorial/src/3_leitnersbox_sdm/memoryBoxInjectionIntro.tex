@@ -14,7 +14,8 @@ There are two ways of adding your code to the generated classes:
 
 \subsection{Add card content to the string representation of your box}
 
-    In order to implement Box::addToStringRep right-click on your class ''Box'' in Eclipse and choose ''eMoflon$\rightarrow$Create injection for class'' (Fig. \ref{fig:injection_create_injection}).
+\begin{enumerate}
+    \item[$\blacktriangleright$] In order to implement \texttt{Box::addToStringRep} right-click on your class \texttt{Box} in Eclipse and choose ''eMoflon$\rightarrow$Create injection for class'' (Fig. \ref{fig:injection_create_injection}).
 
     \begin{figure}[htbp]
         \centering
@@ -23,9 +24,7 @@ There are two ways of adding your code to the generated classes:
         \label{fig:injection_create_injection}
     \end{figure}
 
-    This creates you a new file in the ''injection'' folder of your project with the same packages and name as the class but ''.inject'' as extension (Fig. \ref{fig:injection_created_injection_file}). This file contains the definition of a partial class similar a normal class in Java (Fig. \ref{code:empty_inject_file}). In order to implement Box::addToStringRep, insert the code given in Fig. \ref{code:complete_inject_file} into your injection file. You can use Eclipse templates by entering an ''@'' and pressing ''ctrl+space''.
-
-    Now you can rebuild your project (right-click on ''LearningBoxLanguage'' and choose ''eMoflon $\rightarrow$ Clean and build'') and your code will appear in ''LearningBoxLanguage.impl.BoxImpl'' (Fig. \ref{fig:injected_code_in_boxImpl}). For more information about injections, read appendix \ref{sec:appendix_injections}.
+    This creates you a new file in the ''injection'' folder of your project with the same packages and name as the class but ''.inject'' as extension (Fig. \ref{fig:injection_created_injection_file}). This file contains the definition of a \textit{partial class} similar a normal class in Java (Fig. \ref{code:empty_inject_file}). 
 
     \begin{figure}[htbp]
         \centering
@@ -33,13 +32,15 @@ There are two ways of adding your code to the generated classes:
         \caption{Create a new injection}
         \label{fig:injection_created_injection_file}
     \end{figure}
+    \FloatBarrier
 
     \lstdefinelanguage{Injection}[]{Java}{
         morekeywords={partial, class},
         sensitive=false,
         keywordstyle={\bfseries\color{purple}},
         emph={@model},
-        emphstyle={\color{blue}}
+        emphstyle={\color{blue}},
+        backgroundcolor=\color{white}
     }
 
     \begin{figure}[htbp]
@@ -53,6 +54,9 @@ There are two ways of adding your code to the generated classes:
         \caption{Empty injection}
         \label{code:empty_inject_file}
     \end{figure}
+    \FloatBarrier
+
+    \item[$\blacktriangleright$]In order to implement \texttt{Box::addToStringRep}, insert the code given in Fig. \ref{code:complete_inject_file} into your injection file. You can use Eclipse templates by entering an ''@'' and pressing ''ctrl+space''.
 
     \begin{figure}[htbp]
         \centering
@@ -88,10 +92,16 @@ There are two ways of adding your code to the generated classes:
         \caption{Complete injection}
         \label{code:complete_inject_file}
     \end{figure}
+    \FloatBarrier
+    \item[$\blacktriangleright$] Now you can rebuild your project (right-click on ''LearningBoxLanguage'' and choose ''eMoflon $\rightarrow$ Clean and build'') and your code will appear in ''LearningBoxLanguage.impl.BoxImpl'' (Fig. \ref{fig:injected_code_in_boxImpl}). For more information about injections, read appendix \ref{sec:appendix_injections}.
+
+\end{enumerate}
+
+    
 
     \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.75\textwidth]{pics/injectionBilder/injected_code_in_impl.png}
+        \includegraphics[width=0.7\textwidth]{pics/injectionBilder/injected_code_in_impl.png}
         \caption{Injected code in BoxImpl}
         \label{fig:injected_code_in_boxImpl}
     \end{figure}
