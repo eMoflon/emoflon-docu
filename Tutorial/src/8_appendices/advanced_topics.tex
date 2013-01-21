@@ -4,6 +4,133 @@
 In this chapter, we have tried to collect and document a series of advanced topics related to eMoflon and EA.
 It is kept rather compact and is meant to be used mainly as a reference, to be consulted on demand when you need it.
 
+\section{Advanced search}
+\label{sect:appendix_adv_search}
+
+EA offers an even more advanced search capability when one does not shrink from
+using SQL\footnote{For some detailed insights to the general database schema
+used by EA cf. \\
+\url{http://www.sparxsystems.com.au/downloads/corp/scripts/SQLServer_EASchema.sql}}.
+To use this option, go to the model search dialog (\mbox{Ctrl+Alt+A}). Click on
+the ``Builder'' labeled button and switch to the SQL-tab. Here you can
+literally formulate any query to the underlying database that you can imagine.
+The SQL-editor helps you by offering syntax-highlighting and auto-completion. To
+get you started, here are some basic examples: 
+
+\begin{enumerate}
+\item[$\blacktriangleright$]
+To find all eClasses
+\begin{lstlisting}[frame=single,framerule=0pt]
+SELECT * FROM t_object
+WHERE Object_Type='Class' AND Stereotype='eclass';
+\end{lstlisting}
+
+\item[$\blacktriangleright$]
+To find all associations
+\begin{lstlisting}[frame=single,framerule=0pt]
+SELECT * FROM t_connector
+WHERE Connector_Type='Association';
+\end{lstlisting}
+
+\item[$\blacktriangleright$]
+To find all inheritance relations
+\begin{lstlisting}[frame=single,framerule=0pt]
+SELECT * FROM t_connector
+WHERE Connector_Type='Generalization';
+\end{lstlisting}
+
+\item[$\blacktriangleright$]
+To find all connectors attaching a note to an element 
+\begin{lstlisting}[frame=single,framerule=0pt]
+SELECT * FROM t_connector
+WHERE Connector_Type='NoteLink';
+\end{lstlisting}
+
+\item[$\blacktriangleright$]
+To find all control flow edges (used in SDMs)
+\begin{lstlisting}[frame=single,framerule=0pt]
+SELECT * FROM t_connector
+WHERE Connector_Type='ControlFlow';
+\end{lstlisting}
+
+\item[$\blacktriangleright$]
+To find all associations originating or ending are a class named ``EClass''
+\begin{lstlisting}[frame=single,framerule=0pt]
+SELECT t_object.Name, t_connector.* FROM t_connector,t_object
+WHERE t_connector.Connector_Type='Association'
+  AND (t_connector.Start_Object_ID=t_object.Object_ID
+    OR t_connector.End_Object_ID=t_object.Object_ID)
+  AND t_object.Name='EClass';
+\end{lstlisting}
+
+\item[$\blacktriangleright$]
+To determine all subtypes of ``EClassifier''
+\begin{lstlisting}[frame=single,framerule=0pt]
+SELECT a.Name FROM t_connector,t_object a,t_object b
+WHERE t_connector.Connector_Type='Generalization'
+  AND t_connector.Start_Object_ID=a.Object_ID
+  AND t_connector.End_Object_ID=b.Object_ID
+  AND b.Name = 'EClassifier';
+\end{lstlisting}
+
+\item[$\blacktriangleright$]
+To determine all supertypes of ``EClassifier'' (cf. above)
+\begin{lstlisting}[frame=single,framerule=0pt]
+...
+  AND t_connector.Start_Object_ID=b.Object_ID
+  AND t_connector.End_Object_ID=a.Object_ID
+...
+\end{lstlisting}
+\end{enumerate}
+To run the search, either hit the run button in the upper left corner of the
+editor (it shows a triangular shaped ``play'' pictogram) or punch \texttt{F5} on your keyboard.
+
+\section{Working with multiple EAPs} 
+
+Although you can simply copy \& paste single packages between multiple EAPs, packages with dependencies to other packages cannot be copied so easily.
+If you do this via copy \& paste all links will be destroyed!
+
+\begin{enumerate}
+\item[$\blacktriangleright$]
+To migrate multiple packages, you have to first export a \emph{complete} root node (a package on the top-most level in the Project Browser) from the source EAP to XMI.
+In preparation for a transfer of projects, it might, therefore, make sense to prepare a suitable root node with a relevant set of projects to be transferred or copied to another (target) EAP file.
+Right-click the root node you wish to export and select ``Export Model to XMI...'' (Fig.~\ref{fig_projectMigration01}).
+In the dialogue that pops up, enter the name and path of the exported file and choose \texttt{XMI 2.1} as ``Export type''.
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.3\textwidth]{pics/tricks/projectMigration/projectMigration1}
+  \caption{Export the root node from the source EAP}  
+  \label{fig_projectMigration01}
+\end{center}
+\end{figure}
+
+\item[$\blacktriangleright$]
+Open the target EAP, right-click on the Project Browser and select ``Import Model from XMI...'' (Fig.~\ref{fig_projectMigration03}). 
+In the dialogue that pops up, enter the name and path of the file to be imported and click \texttt{Import}.
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.3\textwidth]{pics/tricks/projectMigration/projectMigration3}
+  \caption{Import the root node into the target EAP}  
+  \label{fig_projectMigration03}
+\end{center}
+\end{figure}
+ 
+\item[$\blacktriangleright$]
+After confirming and starting the import, you have to specify how the model should be imported.
+As our root models are at the root level, choose ``Yes'' in the dialogue depicted in Fig.~\ref{fig_projectMigration06}.
+After the import, you can now delete packages in the root node, which you do not need.
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.35\textwidth]{pics/tricks/projectMigration/projectMigration6}
+  \caption{Confirm the level of the root node}  
+  \label{fig_projectMigration06}
+\end{center}
+\end{figure}
+
+\end{enumerate}
+
 \section{Using Enterprise Architect with Subversion}
 The following steps are required to setup EA for use with subversion.
 This is highly recommended when working in a group and sharing a single EA Project (EAP) file, which is otherwise a huge binary blob.
@@ -146,7 +273,7 @@ This process has to be repeated \emph{for all sub-packages} as soon as their sup
 As from this point, the EAP file should not be checked-in anymore, and all versioning actions should be performed via EA (and not directly with your SVN client).
 \end{enumerate}
 
-\section{Conditional Branching with StatementNodes}
+\section{Conditional branching with StatementNodes}
 
 When working with SDMs, you often need to choose between two different patterns based on the return value of an arbitrary (black box) operation.
 This is like the normal \texttt{Success}/\texttt{Failure} construction, but instead of a pattern being matched or failing, the decision can be implemented with a another SDM or a standard Java method.

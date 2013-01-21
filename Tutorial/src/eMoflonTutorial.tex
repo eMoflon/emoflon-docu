@@ -17,6 +17,8 @@
 \usepackage{wasysym} 
 \usepackage{wrapfig}
 \usepackage{enumerate}
+\usepackage{placeins} % Necessary for \FloatBarrier
+\usepackage{subfig}   % Necessary for subfloat (images next to each other)
 
 \usepackage{color}
 \usepackage[usenames,dvipsnames,svgnames]{xcolor}
@@ -32,7 +34,7 @@
 
 \newcommand{\note}[1]{\marginpar{\emph{#1}}}
 
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{1}
 
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
@@ -47,7 +49,7 @@
 
 \begin{small} 
 Copyright \copyright~2011--2012 Real-Time Systems Lab, TU Darmstadt.
-Anthony Anjorin, Marius Lauder, Daniel T\"ogel, David Marx, Erhan Leblebici, Alexander Schleich, Sven Patzina, Martin Wieber, Lars Patzina and contributors.
+Anthony Anjorin, Marius Lauder, Daniel T\"ogel, David Marx, Erhan Leblebici, Alexander Schleich, Sven Patzina, Martin Wieber, Lars Patzina, Jerome Reinl"ander and contributors.
 All rights reserved.
 
 This document is free; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.

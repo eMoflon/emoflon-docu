@@ -23,12 +23,13 @@ The increasing size of the partitions represents how words are easily placed in 
   \label{fig:membox_illustration}
 \end{center}
 \end{figure}
+\FloatBarrier
 
 A learning box is an interesting system, because it consists clearly of a static structure (the box, partitions and their sizes, cards with their sides and corresponding content) and a set of rules that describe the dynamic aspects
 (behaviour) of the system.
 In the rest of the tutorial we shall build a complete learning box from scratch in a model-driven fashion and use it to introduce fundamental concepts in metamodelling and \emph{Model-Driven Software Development} (MDSD) in general.
 
-\section{A Language Definition Problem?}
+\section{A language definition problem?}
 
 As in any area of study, metamodelling has its fair share of buzz words used by experts to communicate concisely.  Although some concepts might seem quite abstract for a beginner, a well defined vocabulary is important so we know
 exactly what we are talking about.
@@ -79,7 +80,7 @@ metamodel (can be typed  according to the abstract syntax and adhere to the stat
 This tutorial is meant to be be hands-on so enough theory!
 Lets define, step-by-step, a metamodel for our learning box using our tool eMoflon.
 
-\section{Abstract Syntax and Static Semantics}
+\section{Abstract syntax and static semantics}
 \label{sec:abstractSyntax}
 
 \begin{enumerate}
@@ -101,6 +102,7 @@ Lets define, step-by-step, a metamodel for our learning box using our tool eMofl
 	\label{fig:new_package_name}
 \end{figure}
 \end{enumerate}
+\FloatBarrier
 
 In your EA workspace the \texttt{Project Browser} should now look like Fig.~\ref{fig:new_package_completed}.
 \begin{figure}[htbp]
@@ -109,6 +111,7 @@ In your EA workspace the \texttt{Project Browser} should now look like Fig.~\ref
 	\caption{State after creating the new package.}
 	\label{fig:new_package_completed}
 \end{figure}
+\FloatBarrier
 
 \begin{enumerate}
 \item[$\blacktriangleright$] Now click the button \texttt{New Diagram} (Fig.~\ref{fig:diagram}).
@@ -120,6 +123,7 @@ In your EA workspace the \texttt{Project Browser} should now look like Fig.~\ref
 	\caption{Add a diagram.}
 	\label{fig:diagram}
 \end{figure}
+\FloatBarrier
 
 \item[$\blacktriangleright$] In the dialog that pops up (Fig.~\ref{fig:diagram_type}), choose \texttt{Ecore Diagram} and  \texttt{OK}.
 \end{enumerate}
@@ -130,6 +134,7 @@ In your EA workspace the \texttt{Project Browser} should now look like Fig.~\ref
 	\caption{Choose type of diagram.}
 	\label{fig:diagram_type}
 \end{figure}
+\FloatBarrier
 
 In analogy to the ``everything is an object'' principle in the OO paradigm, in metamodelling, everything is a model.
 \marginpar{\emph{Unification}}
@@ -186,7 +191,7 @@ In general, a similar ``properties'' dialogue can be opened in the same fashion 
 \end{figure}
 
 
-\item[$\blacktriangleright$] Now create \texttt{Partition} and \texttt{Card} in the same way, till your workspace resembles Fig.~\ref{fig:all_eclasses}.
+\item[$\blacktriangleright$] Now create \texttt{Partition} and \texttt{Card} in the same way, until your workspace resembles Fig.~\ref{fig:all_eclasses}.
 These are the main classes for our learning box.
 
 \begin{figure}[htbp]
@@ -200,10 +205,11 @@ These are the main classes for our learning box.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.7\textwidth]{pics/memBoxBilder/memBox11.png}
+  \includegraphics[width=0.52\textwidth]{pics/memBoxBilder/memBox11.png}
 	\caption{Context Menu for a class.}
 	\label{fig:attribute}
 \end{figure}
+\FloatBarrier
 
 
 \item[$\blacktriangleright$] In the dialogue that pops-up, enter \texttt{name} as the name of the attribute, choose \texttt{EString} as its type and press \texttt{Save} (Fig.~\ref{fig:attribute_properties}).
@@ -216,60 +222,16 @@ A new attribute for the same class can be added by choosing \texttt{New}.
 	\label{fig:attribute_properties}
 \end{figure}
 
-\item[$\blacktriangleright$] Add attributes to the other classes till your workspace resembles
+\item[$\blacktriangleright$] Add attributes to the other classes until your workspace resembles
 Fig.~\ref{fig:attribute_completed}.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.4\textwidth]{pics/memBoxBilder/memBox14.pdf}
+  \includegraphics[width=0.2\textwidth]{pics/memBoxBilder/memBox14.pdf}
 	\caption{Main classes with attributes.}
 	\label{fig:attribute_completed}
 \end{figure}
-
-% TODO facade rausnehmen
-% \item[$\blacktriangleright$] Now choose \texttt{EPackage} from the toolbox and add it to the current diagram just like how we added EClasses.
-% Enter \texttt{facade} as the name of the package.
-% \end{enumerate}
-
-% Ecore supports packages that can be used to structure and group classes in a metamodel.
-% In our case, we need  a util class that implements helper methods for our learning box.
-% These methods  will be implemented by hand in Java and the util class thus represents a kind of  interface or ``facade'' between
-% our model and hand-written code.
-% We shall soon  see how our Eclipse Plugin offers extra support if one follows this naming  convention for packages containing hand-written code.
-
-% \begin{enumerate}
-% \item[$\blacktriangleright$] To add a class to our new package, first of all create a new diagram in the package by choosing the \texttt{facade} subpackage and selecting \texttt{New Diagram} in the Project Browser (Fig.~\ref{fig:epackage_newelement}).
-
-% \begin{figure}[htbp]
-% 	\centering
-%   \includegraphics[width=0.5\textwidth]{pics/memBoxBilder/memBox19}
-% 	\caption{Add a class to the package.}
-% 	\label{fig:epackage_newelement}
-% \end{figure}
-
-% \item[$\blacktriangleright$] In the dialogue that pops-up, choose \texttt{Ecore Diagram} and confirm with \texttt{OK}.
-% \item[$\blacktriangleright$] In the new diagram, create a new class and enter \texttt{LearningBoxUtil} as its \texttt{name}.
-% You can switch between diagrams by choosing the tabs at the bottom of the screen or by pressing \texttt{alt + } $\Leftarrow$ or $\Rightarrow$ (Fig.~\ref{fig:epackage_newdiagram}).
-
-% \begin{figure}[htbp]
-% 	\centering
-%   \includegraphics[width=0.8\textwidth]{pics/memBoxBilder/memBox20}
-% 	\caption{Main and subdiagrams in EA.}
-% 	\label{fig:epackage_newdiagram}
-% \end{figure}
-
-% Your workspace should now resemble Fig.~\ref{fig:epackage_completed}.
-% Any subpackage like \texttt{facade} can contain diagrams that can be created and added using the Project Browser.
-% In this way an arbitrary nesting of packages and diagrams is possible.
-
-% \begin{figure}[htbp]
-% 	\centering
-%   \includegraphics[width=.8\textwidth]{pics/memBoxBilder/memBox22.png}
-% 	\caption{Workspace after adding package and util class.}
-% 	\label{fig:epackage_completed}
-% \end{figure}
-
-% TODO ende vom facade-kram
+\FloatBarrier
 
 \item[$\blacktriangleright$] A fundamental gesture in EA is \emph{Quick Link}.
 Quick Link is used to create links between elements in a context sensitive manner.
@@ -281,6 +243,7 @@ To use Quick Link, choose an element and note the little black arrow in its top-
 	\caption{Quick Link is a central gesture in EA.}
 	\label{fig:quicklink}
 \end{figure}
+\FloatBarrier
 
 Now click on the black arrow and pull to another element you wish to ``quick link" to.
 In this case quick link from \texttt{Box} to \texttt{Partition}.
@@ -292,6 +255,7 @@ In the context-menu that pops-up, choose \texttt{EReference} (Fig.~\ref{fig:eref
 	\caption{Create a reference via Quick Link.}
 	\label{fig:ereference}
 \end{figure}
+\FloatBarrier
 
 \item[$\blacktriangleright$] Double click the reference to invoke a dialogue (Fig.~\ref{fig:ereference_properties}), with which the direction of the reference can be set.
 The default is \texttt{Source} $\Rightarrow$ \texttt{Target} and must be changed to \texttt{Bi-Directional} for our \texttt{Box}$\Leftrightarrow$\texttt{Partition} connection.
@@ -309,12 +273,13 @@ Important is a name for the role (\texttt{box}), the \texttt{Multiplicity}, \tex
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.8\textwidth]{pics/memBoxBilder/memBox26.png}\\
-  \vspace{0.5cm}
-  \includegraphics[width=0.8\textwidth]{pics/memBoxBilder/memBox27.png}
+  \includegraphics[width=0.6\textwidth]{pics/memBoxBilder/memBox26.png}\\
+  \vspace{0.2cm}
+  \includegraphics[width=0.6\textwidth]{pics/memBoxBilder/memBox27.png}
 	\caption{Enter properties for source and target of reference.}
 	\label{fig:reference_ends}
 \end{figure}
+\FloatBarrier
 \end{enumerate}
 
 Navigable ends are mapped to class attributes with getters and setters in Java and therefore \emph{must} have a specified name and  multiplicity for successful code generation.
@@ -332,10 +297,11 @@ If you've done everything right, your workspace should now resemble Fig.~\ref{fi
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.4\textwidth]{pics/memBoxBilder/memBox28.pdf}
+  \includegraphics[width=0.33\textwidth]{pics/memBoxBilder/memBox28.pdf}
 	\caption{\texttt{Box} contains \texttt{Partition}s.}
 	\label{fig:ereference_completed}
 \end{figure}
+\FloatBarrier
 
 \begin{enumerate}
 \item[$\blacktriangleright$] Create a bidirectional reference\footnote{To be precise, \emph{all} references in Ecore are actually unidirectional.
@@ -349,6 +315,7 @@ We however believe it is simpler to handle these pairs as single references and 
 	\label{fig:ereferences_all}
 \end{figure}
 \end{enumerate}
+\FloatBarrier
 
 Every system has, in addition to its static structure, certain dynamic aspects that describe the system's behaviour and how it evolves over time or reacts to external stimulus.
 \marginpar{\emph{Dynamic Semantics}}
@@ -367,24 +334,27 @@ We will of course use SDMs to \emph{implement} the methods later.
 	\caption{Add an operation.}
 	\label{fig:add_operation}
 \end{figure}
+\FloatBarrier
 
 \item[$\blacktriangleright$] In the dialogue that pops-up (Fig.~\ref{fig:operation_properties}), enter \texttt{empty} as the \texttt{Name} of the operation, leave the \texttt{Return Type} as \texttt{void}.  Press \texttt{Save}.
 
 \begin{figure}[htbp]
 	\centering
-  	\includegraphics[width=0.9\textwidth]{pics/memBoxBilder/memBox37.png}
+  	\includegraphics[width=0.7\textwidth]{pics/memBoxBilder/memBox37.png}
 	\caption{Properties for operation.}
 	\label{fig:operation_properties}
 \end{figure}
+\FloatBarrier
 
 \item[$\blacktriangleright$] In the same dialogue, press \texttt{New} to add further operations and enter the values in Fig.~\ref{fig:operation_parameters}.  Parameters can be added by pressing \texttt{Edit} and entering the name and choosing the type of each parameter in a separate dialogue.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.8\textwidth]{pics/memBoxBilder/memBox38.png}
+  \includegraphics[width=0.6\textwidth]{pics/memBoxBilder/memBox38.png}
 	\caption{Parameters and Return Type.}
 	\label{fig:operation_parameters}
 \end{figure}
+\FloatBarrier
 
 \item[$\blacktriangleright$] Repeat the process for the values in Fig.~\ref{fig:operation_partition}.
 The \texttt{Return Type} can be chosen via the drop-down menu for primitives (e.g. \texttt{EBoolean}), or via the \texttt{\ldots} button (indicated in Fig.~\ref{fig:operation_parameters}) for types in the metamodel (e.g. \texttt{Card}).
@@ -409,8 +379,8 @@ Add all operations analogously for \texttt{Box} and \texttt{Card}, so that your 
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.4\textwidth]{pics/memBoxBilder/memBox44}
-	\caption{Complete metamodel for our learning box.}
+  \includegraphics[width=0.35\textwidth]{pics/memBoxBilder/memBox44}
+	\caption[Complete metamodel for our learning box.]{Complete metamodel for our learning box. (Note that the parameters are not displayed by default and are only shown here for you to have the same names as the tutorial)}
 	\label{fig:metamodel_complete}
 \end{figure}
 
@@ -445,10 +415,10 @@ If you have done everything right, a new project \texttt{LearningBoxLanguage} sh
 If this is not the case please ensure that your metamodel is identical with Fig.~\ref{fig:metamodel_complete}.
 If you believe everything is correct and things still don't work then feel free to contact us at \href{mailto:contact@moflon.org}{contact@moflon.org}.
 If code is generated successfully, take a look at all the stuff that has been generated under \texttt{/gen}, especially the default  implementation for all methods that just throws an  \texttt{OperationNotSupported} exception.
-We shall see later in the tutorial  that the EMF codegenerator actually supports merging hand-written implementations of methods with generated code.
+We shall see later in the tutorial that the EMF codegenerator actually supports injecting hand-written implementations of methods into generated methods and classes.
 With eMoflon however, we can also model a large part of the dynamic semantics and only need to implement small helper methods for e.g. string manipulation by hand.
 
-\section{Validating Your Metamodel}
+\section{Validating your metamodel}
 \label{sect:validating}
 
 
@@ -458,17 +428,18 @@ Our validation framework is still work in progress so if you find an error that 
 
 \begin{enumerate}
 \item[$\blacktriangleright$] To make the validation output window visible in EA, choose ``Extensions/\-Add-In Windows''.
-This should display a new output window as depicted in Fig.~\ref{fig:validation_output}.
+This should display a new output window as depicted in Fig.~\ref{fig:validation_output}. This control panel also contains shortcuts for all the functionality available via the extensions file menu and many users actually prefer this.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.8\textwidth]{pics/memBoxBilder/memBox40}
+  \includegraphics[width=0.6\textwidth]{pics/memBoxBilder/memBox40}
 	\caption{Activating the validation output window}
 	\label{fig:validation_output}
 \end{figure}
+\FloatBarrier
 
 \item[$\blacktriangleright$] To start the validation choose ``Extensions/\-MOFLON::Ecore Addin/\-Validate all'' in EA (Fig.~\ref{fig:validation_menu}).
-If you haven't already made any mistakes while modelling your \texttt{LearningBoxLanguage} in the last chapter, the output should resemble Fig.~\ref{fig:first_validation}, indicating that your metamodels are free of errors (at least according to our validation).
+If you haven't already made any mistakes while modelling your \texttt{LearningBoxLanguage} in the last chapter, the output should resemble Fig.~\ref{fig:validation_output}, indicating that your metamodels are free of errors (at least according to our validation).
 
 \begin{figure}[htbp]
 	\centering
@@ -476,13 +447,7 @@ If you haven't already made any mistakes while modelling your \texttt{LearningBo
 	\caption{Starting the validation}
 	\label{fig:validation_menu}
 \end{figure}
-
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.8\textwidth]{pics/memBoxBilder/memBox42}
-	\caption{Output for an error-free workspace}
-	\label{fig:first_validation}
-\end{figure}
+\FloatBarrier
 \end{enumerate}
 
 
@@ -497,7 +462,7 @@ Note that \texttt{EClass1} still exists in the project browser (and thus in your
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.8\textwidth]{pics/memBoxBilder/memBox43}
+  \includegraphics[width=0.7\textwidth]{pics/memBoxBilder/memBox43}
 	\caption{Output indicating that an element is present in the metamodel, which is not in any diagram and should probably be deleted completely}
 	\label{fig:validation_information}
 \end{figure}
@@ -516,24 +481,25 @@ Your metamodel should now be error-free again as indicated by the validation out
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.6\textwidth]{pics/memBoxBilder/memBox45}
+  \includegraphics[width=0.55\textwidth]{pics/memBoxBilder/memBox45}
 	\caption{Quick fix for elements that are not on any diagram}
 	\label{fig:quick-fix1}
 \end{figure}
+\FloatBarrier
 
 \item[$\blacktriangleright$] To make an error that leads to a more critical message than ``information'',
 double click the navigable reference end \texttt{previous} of the class \texttt{Partition}, and delete its role name as depicted in Fig.~\ref{fig:delete-role-name}.
 Affirm with \texttt{OK}.
 
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.8\textwidth]{pics/memBoxBilder/memBox46}
-	\caption{Deleting a navigable role name of a reference}
-	\label{fig:delete-role-name}
-\end{figure}
-
 You should now see a new \texttt{Fatal Error} in the validation output, stating that a navigable end \emph{must} have a role name (Fig.~\ref{fig:fatal-error}).
 As navigable references are mapped to data members in a Java class, omitting the name of a navigable reference makes code generation impossible (data members, i.e., class variables must have a name).
+
+\begin{figure}[htbp]
+    \centering
+  \includegraphics[width=0.8\textwidth]{pics/memBoxBilder/memBox46}
+    \caption{Deleting a navigable role name of a reference}
+    \label{fig:delete-role-name}
+\end{figure}
 
 \item[$\blacktriangleright$] As before, clicking the error message selects the problematic connector in the diagram, and double clicking reveals that there are no quick fixes for this problem (Fig.~\ref{fig:fatal-error}).
 \item[$\blacktriangleright$] Correct your metamodel manually by setting the name of the navigable reference back to \texttt{previous}.
@@ -610,5 +576,5 @@ Note that EMF supports you by respecting your metamodel and reducing the choice 
 You can save your model as an XMI file by pressing \texttt{Ctrl+S}.
 The model can be reloaded via a simple double-click to invoke the generic model editor.
 
-\textsl{That's all for the ``static part" of our metamodel. Let's move on and model the dynamic behaviour of our learning box!}
+That's all for the ``static part" of our metamodel. Let's move on and model the dynamic behaviour of our learning box!
 
