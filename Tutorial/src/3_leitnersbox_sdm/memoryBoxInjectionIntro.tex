@@ -15,11 +15,11 @@ There are two ways of adding your code to the generated classes:
 \subsection{Add card content to the string representation of your box}
 
 \begin{enumerate}
-    \item[$\blacktriangleright$] In order to implement \texttt{Box::addToStringRep} right-click on your class \texttt{Box} in Eclipse and choose ''eMoflon$\rightarrow$Create injection for class'' (Fig. \ref{fig:injection_create_injection}).
+    \item[$\blacktriangleright$] In order to implement \texttt{Box::addToStringRep} right-click on your class \texttt{Box} in Eclipse and choose ``eMoflon$\rightarrow$Create injection for class'' (Fig.~\ref{fig:injection_create_injection}).
 
     \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.8\textwidth]{pics/injectionBilder/create_injection_context_menu.png}
+        \includegraphics[width=\textwidth]{pics/injectionBilder/create_injection_context_menu.png}
         \caption{Create a new injection}
         \label{fig:injection_create_injection}
     \end{figure}
@@ -28,7 +28,7 @@ There are two ways of adding your code to the generated classes:
 
     \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.4\textwidth]{pics/injectionBilder/newly_created_injection_file.png}
+        \includegraphics[width=0.6\textwidth]{pics/injectionBilder/newly_created_injection_file.png}
         \caption{Create a new injection}
         \label{fig:injection_created_injection_file}
     \end{figure}
@@ -63,11 +63,8 @@ There are two ways of adding your code to the generated classes:
         \begin{lstlisting}[language=Injection]
             partial class Box
             {
-
                 @model addToStringRep(Card card) <--
-
                     StringBuilder sb = new StringBuilder();
-
                     if (stringRep == null)
                     {
                         sb.append("BoxContent: [");
@@ -77,16 +74,12 @@ There are two ways of adding your code to the generated classes:
                         sb.append(stringRep);
                         sb.append(", [");
                     }
-
                     sb.append(card.getFace());
                     sb.append(", ");
                     sb.append(card.getBack());
                     sb.append("]");
-
                     stringRep = sb.toString();
-
                 -->
-
             }
         \end{lstlisting}
         \caption{Complete injection}
@@ -101,7 +94,7 @@ There are two ways of adding your code to the generated classes:
 
     \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.7\textwidth]{pics/injectionBilder/injected_code_in_impl.png}
+        \includegraphics[width=\textwidth]{pics/injectionBilder/injected_code_in_impl.png}
         \caption{Injected code in BoxImpl}
         \label{fig:injected_code_in_boxImpl}
     \end{figure}

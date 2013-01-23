@@ -88,7 +88,7 @@ Lets define, step-by-step, a metamodel for our learning box using our tool eMofl
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.5\textwidth]{pics/memBoxBilder/memBox01.png}
+  \includegraphics[width=0.7\textwidth]{pics/memBoxBilder/memBox01.png}
 	\caption{Add a new package to \texttt{Demo}.}
 	\label{fig:new_package}
 \end{figure}
@@ -97,7 +97,7 @@ Lets define, step-by-step, a metamodel for our learning box using our tool eMofl
 
 \begin{figure}[htbp]
 	\centering
-    \includegraphics[width=0.3\textwidth]{pics/memBoxBilder/memBox02.png}
+    \includegraphics[width=0.33\textwidth]{pics/memBoxBilder/memBox02.png}
 	\caption{Enter the name of the new package.}
 	\label{fig:new_package_name}
 \end{figure}
@@ -107,7 +107,7 @@ Lets define, step-by-step, a metamodel for our learning box using our tool eMofl
 In your EA workspace the \texttt{Project Browser} should now look like Fig.~\ref{fig:new_package_completed}.
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.5\textwidth]{pics/memBoxBilder/memBox03.png}
+  \includegraphics[width=0.53\textwidth]{pics/memBoxBilder/memBox03.png}
 	\caption{State after creating the new package.}
 	\label{fig:new_package_completed}
 \end{figure}
@@ -116,14 +116,14 @@ In your EA workspace the \texttt{Project Browser} should now look like Fig.~\ref
 \begin{enumerate}
 \item[$\blacktriangleright$] Now click the button \texttt{New Diagram} (Fig.~\ref{fig:diagram}).
 
-
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.7\textwidth]{pics/memBoxBilder/memBox04.png}
+  \includegraphics[width=0.72\textwidth]{pics/memBoxBilder/memBox04.png}
 	\caption{Add a diagram.}
 	\label{fig:diagram}
 \end{figure}
 \FloatBarrier
+\clearpage
 
 \item[$\blacktriangleright$] In the dialog that pops up (Fig.~\ref{fig:diagram_type}), choose \texttt{Ecore Diagram} and  \texttt{OK}.
 \end{enumerate}
@@ -154,7 +154,7 @@ After creating the new diagram, your  \texttt{Project Browser} should now resemb
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.7\textwidth]{pics/memBoxBilder/memBox06.png}
+  \includegraphics[width=0.5\textwidth]{pics/memBoxBilder/memBox06.png}
 	\caption{State after creating diagram.}
 	\label{fig:diagram_completed}
 \end{figure}
@@ -322,6 +322,7 @@ Every system has, in addition to its static structure, certain dynamic aspects t
 In a language, these rules that govern the dynamic behaviour of a system are referred to collectively as the \emph{Dynamic Semantics} of the language.
 Although these rules can be defined as a set of separate \emph{Model Transformations}, we take a holistic approach and advocate integrating the transformations directly in the metamodel as operations.
 This fits nicely to the object-oriented paradigm and is quite natural in many cases.
+
 In the next few steps we shall define the \emph{signatures} of some operations for our learning box.
 We will of course use SDMs to \emph{implement} the methods later.
 
@@ -379,8 +380,8 @@ Add all operations analogously for \texttt{Box} and \texttt{Card}, so that your 
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.35\textwidth]{pics/memBoxBilder/memBox44}
-	\caption[Complete metamodel for our learning box.]{Complete metamodel for our learning box. (Note that the parameters are not displayed by default and are only shown here for you to have the same names as the tutorial)}
+  \includegraphics[width=0.6\textwidth]{pics/memBoxBilder/memBox44}
+	\caption[Complete metamodel for our learning box.]{Complete metamodel for our learning box (note that names of method parameters are not displayed by default in EA but are shown here for presentation purposes).}
 	\label{fig:metamodel_complete}
 \end{figure}
 
@@ -393,6 +394,7 @@ A \texttt{Box} has a \texttt{name}, and can be extended by calling \texttt{grow}
 A \texttt{Box} can print out its contents via \texttt{toString}.
 
 The main method of the learning box is \texttt{Partition::check} that takes a \texttt{Card} and the user's guess as an \texttt{EString} and returns \texttt{true} or \texttt{false} depending on if the guess was correct or not.
+
 A \texttt{Partition} can also \texttt{empty} itself of all \texttt{Cards}, or \texttt{remove} a particular \texttt{Card}.
 Last but not least, a \texttt{Partition} has a \texttt{partitionSize} that can be used to indicate that the \texttt{Partition} is full and is ready to be revised.
 
@@ -496,13 +498,14 @@ As navigable references are mapped to data members in a Java class, omitting the
 
 \begin{figure}[htbp]
     \centering
-  \includegraphics[width=0.8\textwidth]{pics/memBoxBilder/memBox46}
+  \includegraphics[width=0.85\textwidth]{pics/memBoxBilder/memBox46}
     \caption{Deleting a navigable role name of a reference}
     \label{fig:delete-role-name}
 \end{figure}
 
 \item[$\blacktriangleright$] As before, clicking the error message selects the problematic connector in the diagram, and double clicking reveals that there are no quick fixes for this problem (Fig.~\ref{fig:fatal-error}).
 \item[$\blacktriangleright$] Correct your metamodel manually by setting the name of the navigable reference back to \texttt{previous}.
+\clearpage
 \item[$\blacktriangleright$] Ensure that your metamodel closely resembles Fig.~\ref{fig:metamodel_complete} again, and that there are no error messages before you proceed with the rest of the chapter.
 
 \begin{figure}[htbp]
@@ -524,7 +527,8 @@ As you've probably already noticed, we distinguish between five different types 
   \item[Error:]~\\ Although the metamodel can be exported from EA, it is not Ecore conform and code generation will not be possible.
   \item[Fatal Error:]~\\ The metamodel cannot be exported as required information such as names or classifiers of model elements are incorrectly set or missing.
   \item[Eclipse Error:]~\\ Error messages produced by our Eclipse plugin after an unsuccessful attempt to generate code.
-   This will be discussed in detail in Sect~\ref{par:validation_in_eclipse}.
+  This is currently not actively used.
+   %This will be discussed in detail in Sect~\ref{par:validation_in_eclipse}.
 
 \end{description}
 
@@ -568,7 +572,7 @@ Note that EMF supports you by respecting your metamodel and reducing the choice 
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=\textwidth]{pics/modelBrowserBilder/adjustModel.png}
+  \includegraphics[width=0.95\textwidth]{pics/modelBrowserBilder/adjustModel.png}
 	\caption{Context menu for creating model elements}
 	\label{fig:create_instance}
 \end{figure}

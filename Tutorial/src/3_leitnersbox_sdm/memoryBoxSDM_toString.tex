@@ -21,7 +21,7 @@ in \texttt{ForAllParitions}.  When all cards have been matched,
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{pics/sdmBilder/toString/sdm72.pdf}
+  \includegraphics[width=0.8\textwidth]{pics/sdmBilder/toString/sdm72.pdf}
   \caption{Control flow with nested loops.}  
   \label{fig:sdm_tostring_1}
 \end{center}
@@ -40,7 +40,7 @@ point in the control flow.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.9\textwidth]{pics/sdmBilder/toString/sdm73.png}
+  \includegraphics[width=0.8\textwidth]{pics/sdmBilder/toString/sdm73.png}
   \caption{Invoking a method in a \texttt{StatementNode}.}  
   \label{fig:sdm_tostring_2}
 \end{center}
@@ -85,11 +85,13 @@ To complete the SDM, return the final string representation of the box via an \t
    \centering
       \subfloat[Specify a \texttt{MethodCallExpression} in the \texttt{StatementNode}.]{
         \includegraphics[width=0.4\textwidth]{pics/sdmBilder/toString/sdm74.png}
+        \label{fig:sdm_tostring_3}
       }\qquad
       \subfloat[Using a \texttt{AttributeValueExpression} as a return value.]{
         \includegraphics[width=0.45\textwidth]{pics/sdmBilder/toString/sdm75.png}
         \label{fig:sdm_tostring_4}
       }
+\caption{}
 \end{figure}
 \FloatBarrier
 
@@ -112,14 +114,14 @@ MethodCallExpressions that provide a type safe\footnote{Apart from the literal
 expressions used for specifying argument values.} means of invoking methods from
 SDMs.
 
-As usual, export, generate code, inspect the generated method implementations
-and write some tests. Before learning how to implement and integrate helper methods such as addToStringRep with generated code, let's first of all learn how to use inheritance and type down casting in Ecore/SDM.
-
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{pics/sdmBilder/toString/sdm76.pdf}
+  \includegraphics[width=0.77\textwidth]{pics/sdmBilder/toString/sdm76.pdf}
   \caption{The complete SDM for \texttt{Box::toString}.}  
   \label{fig:sdm_tostring_5}
 \end{center}
 \end{figure}
 \FloatBarrier
+
+As usual, export, generate code, inspect the generated method implementations
+and write some tests. Before learning how to implement and integrate helper methods such as addToStringRep with generated code, let's first of all learn how to use inheritance and type down casting in Ecore/SDM.

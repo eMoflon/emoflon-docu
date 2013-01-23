@@ -25,54 +25,56 @@ Also note the new \note{SDM Toolbox} toolbox \texttt{SDM} that has been automati
 \end{center}
 \end{figure}
 
-\subparagraph{Metamodel Validation in Eclipse:}
-\label{par:validation_in_eclipse}
-An activity diagram consisting of only a start node is actually not yet sufficient for any reasonable code generation. 
-Nonetheless, export by choosing ``Extensions/\-MOFLON::Ecore Addin/\-Export all to Workspace'' and refresh your Eclipse project to invoke code generation. 
-In Eclipse, an error dialogue should pop-up as depicted in Fig.~\ref{fig:eclipse_error}.
+% \subparagraph{Metamodel Validation in Eclipse:}
+% \label{par:validation_in_eclipse}
+% An activity diagram consisting of only a start node is actually not yet sufficient for any reasonable code generation. 
+% Nonetheless, export by choosing ``Extensions/\-MOFLON::Ecore Addin/\-Export all to Workspace'' and refresh your Eclipse project to invoke code generation. 
+% In Eclipse, an error dialogue should pop-up as depicted in Fig.~\ref{fig:eclipse_error}.
+% 
+% \begin{figure}[htp]
+% \begin{center}
+%   \includegraphics[width=0.4\textwidth]{pics/sdmBilder/removeCard/sdm15RAW}
+%   \caption{Eclipse error after generating code for invalid activity}  
+%   \label{fig:eclipse_error}
+% \end{center}
+% \end{figure}
+% 
+% This error indicates that your \texttt{Learning\-Box\-Language} was invalid and that the code generation process has failed. 
+% You can also see that the file \texttt{Learning\-Box\-Language.\-ecore} in the \texttt{model} folder of your project is marked as being faulty.
+% To see what the problem was, check the \texttt{Problems} view in Eclipse (Fig.~\ref{fig:eclipse_problems_view}), 
+% \note{Stop Node}
+% which should contain a message that an SDM must have at least one \emph{stop node} for successful code generation.
+% 
+% \begin{figure}[htp]
+% \begin{center}
+%   \includegraphics[width=\textwidth]{pics/sdmBilder/removeCard/sdm17RAW}
+%   \caption{Problems view after validation in Eclipse}  
+%   \label{fig:eclipse_problems_view}
+% \end{center}
+% \end{figure}
 
-\begin{figure}[htp]
-\begin{center}
-  \includegraphics[width=0.4\textwidth]{pics/sdmBilder/removeCard/sdm15RAW}
-  \caption{Eclipse error after generating code for invalid activity}  
-  \label{fig:eclipse_error}
-\end{center}
-\end{figure}
-
-This error indicates that your \texttt{Learning\-Box\-Language} was invalid and that the code generation process has failed. 
-You can also see that the file \texttt{Learning\-Box\-Language.\-ecore} in the \texttt{model} folder of your project is marked as being faulty.
-To see what the problem was, check the \texttt{Problems} view in Eclipse (Fig.~\ref{fig:eclipse_problems_view}), 
-\note{Stop Node}
-which should contain a message that an SDM must have at least one \emph{stop node} for successful code generation.
-
-\begin{figure}[htp]
-\begin{center}
-  \includegraphics[width=\textwidth]{pics/sdmBilder/removeCard/sdm17RAW}
-  \caption{Problems view after validation in Eclipse}  
-  \label{fig:eclipse_problems_view}
-\end{center}
-\end{figure}
-
-Switch back to EA and validate your metamodels again by choosing ``Extensions/MOFLON::Ecore Addin/Validate All''.
-You should now see a new \texttt{Eclipse Error} in the validation output, which displays the validation results from Eclipse concerning the missing stop node of the \texttt{removeCard} activity (Fig~\ref{fig:ea_eclipse_error}). 
-
-\begin{figure}[htp]
-\begin{center}
-  \includegraphics[width=0.6\textwidth]{pics/sdmBilder/removeCard/sdm16RAW}
-  \caption{EA validation output for a start node without an outgoing edge after an Eclipse error}  
-  \label{fig:ea_eclipse_error}
-\end{center}
-\end{figure}
-
-
-Our validation mechanism checks the dynamic semantics (SDMs) of your metamodels, partly by rule checking directly in EA and by communicating with Eclipse after the code generation process. 
-Please note that the corresponding error message in EA only appeared \emph{after} the validation in Eclipse and won't be deleted until the next successful code generation process in Eclipse and a subsequent validation in EA.
-
-This means that to get rid of the error message in EA, you must (1) correct the error by completing the activity as described below, (2) export from EA, (3) successfully generate code in Eclipse and (4) validate again in EA after code generation in Eclipse.\\
-\noindent\rule[-1ex]{0.5\textwidth}{0.5pt}\\
+% Switch back to EA and validate your metamodels again by choosing ``Extensions/MOFLON::Ecore Addin/Validate All''.
+% You should now see a new \texttt{Eclipse Error} in the validation output, which displays the validation results from Eclipse concerning the missing stop node of the \texttt{removeCard} activity (Fig~\ref{fig:ea_eclipse_error}). 
+% 
+% \begin{figure}[htp]
+% \begin{center}
+%   \includegraphics[width=0.6\textwidth]{pics/sdmBilder/removeCard/sdm16RAW}
+%   \caption{EA validation output for a start node without an outgoing edge after an Eclipse error}  
+%   \label{fig:ea_eclipse_error}
+% \end{center}
+% \end{figure}
+% 
+% 
+% Our validation mechanism checks the dynamic semantics (SDMs) of your metamodels, partly by rule checking directly in EA and by communicating with Eclipse after the code generation process. 
+% Please note that the corresponding error message in EA only appeared \emph{after} the validation in Eclipse and won't be deleted until the next successful code generation process in Eclipse and a subsequent validation in EA.
+% 
+% This means that to get rid of the error message in EA, you must (1) correct the error by completing the activity as described below, (2) export from EA, (3) successfully generate code in Eclipse and (4) validate again in EA after code generation in Eclipse.\\
+% \noindent\rule[-1ex]{0.5\textwidth}{0.5pt}\\
 
 Now it's time to complete our very first activity. 
 Choose the start node, and note the small black arrow that appears (Fig.~\ref{fig:sdm_quicklink}).  
+
+\clearpage
 Similar to quick linking which we learnt when creating our metamodel, a further fundamental gesture in EA is \emph{Quick
 \note{Quick Create} 
 Create}. 
@@ -109,7 +111,7 @@ Complete the activity by quick creating a stop node as depicted in Fig.~\ref{fig
 
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{pics/sdmBilder/removeCard/sdm05RAW}
+  \includegraphics[width=\textwidth]{pics/sdmBilder/removeCard/sdm05RAW}
   \caption{Complete activity with a stop node.}  
   \label{fig:sdm_stop_node}
 \end{center}
@@ -190,7 +192,7 @@ Please note that the assignment or \emph{binding} is in both cases implicit and 
 
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=0.6\textwidth]{pics/sdmBilder/removeCard/sdm11RAW}
+  \includegraphics[width=0.55\textwidth]{pics/sdmBilder/removeCard/sdm11RAW}
   \caption{Create a link variable.}   
   \label{fig:link_variable}
 \end{center}
@@ -254,7 +256,7 @@ In both cases the card that was passed in is simply returned.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.6\textwidth]{pics/sdmBilder/removeCard/sdm15}
+  \includegraphics[width=0.7\textwidth]{pics/sdmBilder/removeCard/sdm15}
   \caption{Complete SDM for \texttt{Partition::removeCard}.}  
   \label{fig:sdm_complete_control_flow}
 \end{center}
