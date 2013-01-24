@@ -294,7 +294,7 @@ Void methods \emph{cannot} be used to branch and an exception is thrown during c
 Fig.~\ref{fig:cond_branch_on_op} depicts the class \texttt{A} and shows how \texttt{doSomeCheck} is used to branch in an SDM.
 Fig.~\ref{fig:cond_branch_on_op_code} depicts the corresponding generated if/else branch in Java. 
 
-\begin{figure}[htp]
+\begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=1\textwidth]{pics/advancedTopics/branching/SDM_with_branch}
   \caption{Conditional branching based on the result of an operation}
@@ -302,7 +302,7 @@ Fig.~\ref{fig:cond_branch_on_op_code} depicts the corresponding generated if/els
 \end{center}
 \end{figure}
 
-\begin{figure}[htp]
+\begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{pics/advancedTopics/branching/generated_code}
   \caption{Generated code for branch}
@@ -317,7 +317,7 @@ Perform the following steps to branch with a \texttt{StatementNode}:
 \item[$\blacktriangleright$] Add \texttt{Success} \emph{and} \texttt{Failure} edges to the \texttt{StatementNode} to branch appropriately.
 \end{enumerate}
 
-\begin{figure}[htp]
+\begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{pics/advancedTopics/branching/01_switch_to_statement_node}
   \caption{Switch from activity node to statement node}
@@ -325,47 +325,11 @@ Perform the following steps to branch with a \texttt{StatementNode}:
 \end{center}
 \end{figure}
 
-\begin{figure}[htp]
+\begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{pics/advancedTopics/branching/02_specify_method_call_expression}
   \caption{Specify the method call expression}
   \label{fig:cond_method_call}
 \end{center}
 \end{figure}
-
 \clearpage
-
-\section{Preserving files on Clean}
-
-Although the EMF code generator tries its best to merge hand-written and generated code (and does a pretty good job!), you will still need to \emph{Clean and Build} now and then.
-
-To support this, we have a naming convention to indicate classes with hand-written code (which should not be deleted on a clean):
-\begin{quote}
-All files with ``\ldots \texttt{.facade.impl.}\ldots'' in their path are automatically preserved when cleaning\ldots
-\end{quote}
-
-If you place your helpers in a package named \texttt{*facade*}, therefore, the corresponding \texttt{*impl} files (where you can implement the methods by hand) will be preserved automatically.
-
-In some cases, it might be necessary to mark additional files or folders that do \emph{not} follow this naming convention but should nonetheless be preserved when cleaning.
-
-To do this, we provide the following options (Fig.~\ref{fig:preservepath}):
-\begin{itemize}
-\item [$\blacktriangleright$] To add a file or folder to the list of \emph{preserved paths}, right click on the file or folder to invoke the context menu and choose\\ \mbox{\texttt{eMoflon} $\rightarrow$ \texttt{Add to preserve path}}.
-
-When a folder is specified, \emph{all folders and paths with this path as prefix} are preserved.
-\item [$\blacktriangleright$]To remove a path that is already on the list, choose\\ \mbox{\texttt{eMoflon} $\rightarrow$ \texttt{Remove from preserve path}}.
-\end{itemize}
-
-Paths to be preserved are added to the \texttt{PRESERVE\_PATHS} variable in the \texttt{moflon.properties} file of the corresponding eMoflon project.
-
-All paths are created relative to the Eclipse workspace, i.e., are of the form: 
-\texttt{/<ProjectName>/gen/<Path>/<File>}.
-\clearpage
-
-\begin{figure}[htp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/advancedTopics/preservePath/PreservePath}
-  \caption{eMoflon context menu}
-  \label{fig:preservepath}
-\end{center}
-\end{figure}

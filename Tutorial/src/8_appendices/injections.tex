@@ -1,55 +1,67 @@
 \section{Injections}
 \label{sec:appendix_injections}
 
-This chapter will show all options provided by injections. For a short introduction how to implement methods of the model, refer to chapter \ref{sec:intro_injections}.
+This chapter describes some extra options when using our injections to integrate handwritten code with generated code. 
+This complements the short introduction in Chapter~\ref{sec:intro_injections}.
 
-In order to demonstrate injections we will provide functionality for saving our DoubleLinkedList to a file. Begin with an empty workspace, create a new metamodel ''Demo'' and replace the Demo.eap with the file from our .zip file. Now open Demo.eap and change the ''Default Language for Code Generation'' (Tools $\rightarrow$ Options $\rightarrow$ Source Code Engineering) to ''Ecore''. Add a method ''void toFile(EString path)'' to List (Fig. \ref{fig:append_inj_diagram}) and export the project to Eclipse.
+As an example, we shall provide functionality for saving our \textsf{DoubleLinkedList} to a file.
 
+\begin{enumerate}
+  \item[$\blacktriangleright$] Begin with an empty workspace, create a new metamodel \textsf{Demo} and replace the \textsf{Demo.eap} with the file from our .zip file (in the folder containing this tutorial). 
+  \item[$\blacktriangleright$] Now open \textsf{Demo.eap} and change the ``Default Language for Code Generation'' (Tools $\rightarrow$ Options $\rightarrow$ Source Code Engineering) to \textsf{Ecore}. 
+  \item[$\blacktriangleright$] Add the method \textsf{void toFile(EString path)} to the class \textsf{List} (Fig.~\ref{fig:append_inj_diagram}) and export the project to your Eclipse workspace.
+\end{enumerate}
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.4\textwidth]{pics/advancedTopics/injections/ea_diagram}
-  \caption{Diagram of the DoubleLinkedList.}
+  \includegraphics[width=0.5\textwidth]{pics/advancedTopics/injections/ea_diagram}
+  \caption{Add a new method \textsf{toFile} to the class \textsf{List}}
   \label{fig:append_inj_diagram}
 \end{center}
 \end{figure}
 
-To implement the ''toFile'' method, right-click gen/DoubleLinkedListLanguage/List.java in the generated project and choose ''eMoflon/create Injection for class'', which will generate the file injection/DoubleLinkedListLanguage/List.inject. Insert the code given in Fig. \ref{code:list_toFile_impl} to the file.
-
-    \begin{figure}[htbp]
-        \centering
-        \begin{lstlisting}[language=Injection]
-partial class List
-{
-
-    @model toFile(String path) <--
-
-        try{
-
-            FileWriter fstream = new FileWriter(path);
-            BufferedWriter out = new BufferedWriter(fstream);
-            out.write(this.toText());
-
-            out.close();
-        }catch (Exception e){
-            System.err.println(e.toString);
-        }
-
-    -->
-
-}
-        \end{lstlisting}
-        \caption{Implementation of List::toFile(String)}
-        \label{code:list_toFile_impl}
-    \end{figure}
-
-To use the Eclipse template, type ''$@$'', hit ''Ctrl+Shift'' and choose ''Inject method in model''. Functions that are annotated with ''\@ model'' implement methods that are defined in the interface of the model and have the structure ''@model [signature] $<--$ [code] $-->$ ''.
-
-You may have noticed that we use an undefined method ''List::toText()'' in the implementation of the ''toFile''. We will now implement this as a private method of List, but since List is only an Interface, we will add it only as a member to the implementation class: Right-click on gen/DoubleLinkedListLanguage/impl/ListImpl.java and choose again ''eMoflon/create Injection for class'', which will create you injection/DoubleLinkedListLanguage/impl/ListImpl.inject. Implement it with the code given in Fig. \ref{code:listImpl_toText_impl}.
-
-
+\begin{enumerate}
+  \item[$\blacktriangleright$] To implement the \textsf{toFile} method, right-click \textsf{gen/Double\-Linked\-List\-Language/\-List.java} in the generated Eclipse project and choose ``eMoflon/create Injection for class'', which will generate the file \textsf{injection/DoubleLinkedListLanguage/List.inject}.
+	Insert the code depicted in Fig.~\ref{code:list_toFile_impl} into this file.
+  \item[$\blacktriangleright$] To make use of some basic templates for code completion, type ``$@$'', press ``Ctrl+Shift'' and choose (in this case) ``Inject method in model''. 
+  Functions that are annotated with \texttt{@model} implement methods that are defined in the interface of the model, i.e., are explicitly modelled as operations in EA, and have the structure:\\ 
+  \texttt{@model [signature] <-- [code] -->}.
+\end{enumerate}
 \begin{figure}[htbp]
-        \centering
-        \begin{lstlisting}[language=Injection]
+\centering
+	\begin{lstlisting}[language=Injection]
+	partial class List
+	{
+    	@model toFile(String path) <--
+
+        	try{
+            	FileWriter fstream = new FileWriter(path);
+            	BufferedWriter out = new BufferedWriter(fstream);
+            	out.write(this.toText());
+
+            	out.close();
+        	}catch (Exception e){
+            	System.err.println(e.toString);
+        	}
+
+    	-->
+	}
+\end{lstlisting}
+\caption{Injection for \textsf{List::toFile(String)}}
+\label{code:list_toFile_impl}
+\end{figure}
+
+You may have noticed that we use an undefined method \textsf{List::toText()} in the implementation of the \textsf{toFile} method. 
+We will now inject this as a private method in the implementation class \textsf{ListImpl.java}.
+
+\begin{enumerate}
+  \item[$\blacktriangleright$] Right-click \textsf{gen/DoubleLinkedListLanguage/impl/ListImpl.java} and choose ``eMoflon/create Injection for class'' to create \textsf{injection/DoubleLinkedListLanguage/impl/ListImpl.inject}.
+  Implement the private method \textsf{toText()} with the code depicted in Fig.~\ref{code:listImpl_toText_impl}.  
+  \item[$\blacktriangleright$] When you now rebuild the project (right-click on \textsf{DoubleLinkedListLanguage} and choose ``eMoflon/Build and Clean''), this code will be injected into \textsf{ListImpl.java}. 
+\end{enumerate}
+ 
+\begin{figure}[htbp]
+\centering
+\begin{lstlisting}[language=Injection]
 import java.io.*;
 
 partial class ListImpl
@@ -69,10 +81,14 @@ partial class ListImpl
 
     -->
 }
-        \end{lstlisting}
-        \caption{Implementation of ListImpl.inject}
-        \label{code:listImpl_toText_impl}
-    \end{figure}
+\end{lstlisting}
+\caption{Injection for \textsf{toText()} in \textsf{ListImpl.java}}
+\label{code:listImpl_toText_impl}
+\end{figure}
 
-Note that we begin the implementation with the import of ''java.io.*''. This is necessary since the implementation of ''toFile'' will appear in ListImpl and will need this import. Member functions and fields are injected using the ''@members'' keyword. Everything in the surrounded area will be copied to the end of the ListImpl.java file, which enables you to add member functions and fields at will. You can even expand the interface of List this way, but this is a dirty way and should only be used for backward compatibility. Note also that you can have several ''@model'' methods in your .inject file, but only one ''@member''.
-The code will appear in ListImpl.java, when you now rebuild the project (right-click on ''DoubleLinkedListLanguage'' and choose ''eMoflon/Build and clean'').
+In this way, member functions and fields that were \emph{not} modelled in EA can be injected using the \texttt{@members} keyword. 
+Everything between \texttt{<--  -->} is copied into the end of the generated \textsf{ListImpl.java} file without any restrictions at all.
+Note how imports can also be injected (as done here for \textsf{java.io.*}). 
+
+Although it is possible to inject members in the interface file (i.e., \textsf{List.java} in this example), this is considered dirty and should be used very sparingly (if possible never). 
+You can have several \texttt{@model} injections in your \textsf{.inject} file, but only a single \texttt{@member} scope.
