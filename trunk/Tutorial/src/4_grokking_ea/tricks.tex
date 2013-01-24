@@ -13,7 +13,7 @@ A well laid out diagram is easier to understand and by centralizing important el
 \item[$\blacktriangleright$] To lay out a group of elements select them by drawing a selection box around them (or select them one by one by holding down \texttt{Ctrl} and clicking on each element).
 \begin{figure}[htbp]
 \begin{center} 
-  \includegraphics[width=\textwidth]{pics/tricks/layoutElements/layoutElements1}
+  \includegraphics[width=0.85\textwidth]{pics/tricks/layoutElements/layoutElements1}
   \caption{How to layout elements}  
   \label{fig_layout01}
 \end{center}
@@ -25,7 +25,8 @@ Experiment a bit to find out what effect each option has.
 The last symbol opens a further drop-down menu with standard layout algorithms.
 
 \begin{figure}[htbp]
-\begin{center}  \includegraphics[width=\textwidth]{pics/tricks/layoutElements/layoutElements2}
+\begin{center}  
+  \includegraphics[width=0.85\textwidth]{pics/tricks/layoutElements/layoutElements2}
   \caption{Further layout options}  
   \label{fig_layout02} 
 \end{center}
@@ -93,7 +94,6 @@ Elements can also be deleted via the context menu in the \texttt{Project Browser
 
 Sometimes it might be necessary to be able to exclude projects from the export (\texttt{Export All to Workspace} option).
 This might be (i) because the project is still work in progress and simply not yet ready to be exported, (ii) because the complete project is present in your Eclipse workspace but has not been modelled completely in EA and you wish to do this gradually on demand (this is currently the recommended strategy as we do not have an import yet), (iii) because the project is not meant to be present in your Eclipse workspace as generated code and is instead provided via a plugin (this is usually the case for standard metamodels like Ecore, UML etc.), or (iv) because the project is rather large and pretty stable, and you do not want to wait each time for an unnecessary export (and you do not wish to click and export the other projects individually).
-
 Whatever the reason, you can achieve this by setting a certain \emph{tagged value} of the project to be ignored:
 
 \begin{enumerate}
@@ -160,7 +160,7 @@ EA has a model search function that can be quite handy for large models with tho
 \item[$\blacktriangleright$]Select ``Model Search Window'' and enter the name of an element you wish to search for (Fig.~\ref{fig_search01}). 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{pics/tricks/search/search1}
+  \includegraphics[width=0.63\textwidth]{pics/tricks/search/search1}
   \caption{Model Search Window}  
   \label{fig_search01}
 \end{center}
@@ -173,5 +173,5 @@ All elements that meet the search criteria are listed and you can right-click on
 In a similar way, you can locate the corresponding class of an object by right clicking and selecting ``Find/Locate Classifier in Project Browser''.
 \end{enumerate}
 
-For a even more powerful search method, read appendix \ref{sect:appendix_adv_search}.
+For more flexible search functionality, see appendix \ref{sect:appendix_adv_search}.
 
