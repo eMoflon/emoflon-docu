@@ -7,15 +7,13 @@ It is kept rather compact and is meant to be used mainly as a reference, to be c
 \section{Advanced search}
 \label{sect:appendix_adv_search}
 
-EA offers an even more advanced search capability when one does not shrink from
-using SQL\footnote{For some detailed insights to the general database schema
+EA offers an even more advanced search capability using SQL\footnote{For some detailed insights to the general database schema
 used by EA cf. \\
 \url{http://www.sparxsystems.com.au/downloads/corp/scripts/SQLServer_EASchema.sql}}.
-To use this option, go to the model search dialog (\mbox{Ctrl+Alt+A}). Click on
-the ``Builder'' labeled button and switch to the SQL-tab. Here you can
-literally formulate any query to the underlying database that you can imagine.
-The SQL-editor helps you by offering syntax-highlighting and auto-completion. To
-get you started, here are some basic examples: 
+To make use of this option, go to the model search dialog (\mbox{Ctrl+Alt+A}). Click on
+the ``Builder'' button and switch to the SQL-tab. Here you can
+formulate any query on the underlying database.
+The SQL-editor helps you with syntax-highlighting and auto-completion. Here are some basic examples:
 
 \begin{enumerate}
 \item[$\blacktriangleright$]
@@ -40,7 +38,7 @@ WHERE Connector_Type='Generalization';
 \end{lstlisting}
 
 \item[$\blacktriangleright$]
-To find all connectors attaching a note to an element 
+To find all connectors attaching a note to an element
 \begin{lstlisting}[frame=single,framerule=0pt]
 SELECT * FROM t_connector
 WHERE Connector_Type='NoteLink';
@@ -54,7 +52,7 @@ WHERE Connector_Type='ControlFlow';
 \end{lstlisting}
 
 \item[$\blacktriangleright$]
-To find all associations originating or ending are a class named ``EClass''
+To find all associations connected to a class named ``EClass''
 \begin{lstlisting}[frame=single,framerule=0pt]
 SELECT t_object.Name, t_connector.* FROM t_connector,t_object
 WHERE t_connector.Connector_Type='Association'
@@ -85,7 +83,7 @@ To determine all supertypes of ``EClassifier'' (cf. above)
 To run the search, either hit the run button in the upper left corner of the
 editor (it shows a triangular shaped ``play'' pictogram) or punch \texttt{F5} on your keyboard.
 
-\section{Working with multiple EAPs} 
+\section{Working with multiple EAPs}
 
 Although you can simply copy \& paste single packages between multiple EAPs, packages with dependencies to other packages cannot be copied so easily.
 If you do this via copy \& paste all links will be destroyed!
@@ -100,23 +98,23 @@ In the dialogue that pops up, enter the name and path of the exported file and c
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.3\textwidth]{pics/tricks/projectMigration/projectMigration1}
-  \caption{Export the root node from the source EAP}  
+  \caption{Export the root node from the source EAP}
   \label{fig_projectMigration01}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$]
-Open the target EAP, right-click on the Project Browser and select ``Import Model from XMI...'' (Fig.~\ref{fig_projectMigration03}). 
+Open the target EAP, right-click on the Project Browser and select ``Import Model from XMI...'' (Fig.~\ref{fig_projectMigration03}).
 In the dialogue that pops up, enter the name and path of the file to be imported and click \texttt{Import}.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.3\textwidth]{pics/tricks/projectMigration/projectMigration3}
-  \caption{Import the root node into the target EAP}  
+  \caption{Import the root node into the target EAP}
   \label{fig_projectMigration03}
 \end{center}
 \end{figure}
- 
+
 \item[$\blacktriangleright$]
 After confirming and starting the import, you have to specify how the model should be imported.
 As our root models are at the root level, choose ``Yes'' in the dialogue depicted in Fig.~\ref{fig_projectMigration06}.
@@ -124,7 +122,7 @@ After the import, you can now delete packages in the root node, which you do not
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.35\textwidth]{pics/tricks/projectMigration/projectMigration6}
-  \caption{Confirm the level of the root node}  
+  \caption{Confirm the level of the root node}
   \label{fig_projectMigration06}
 \end{center}
 \end{figure}
@@ -146,20 +144,20 @@ Download and install Slik SVN (mandatory):
 \end{enumerate}
 
 For public/private key authentication, you also need Tortoise SVN:
- 
+
 \begin{enumerate}
   \item[$\blacktriangleright$] x32: {\small \begin{minipage}{.95\textwidth}  \url{http://sourceforge.net/projects/tortoisesvn/files/1.7.9/Application/TortoiseSVN-1.7.9.23248-win32-svn-1.7.6.msi/download}
     \end{minipage}}\\\\\\
   x64: {\small\begin{minipage}{.9\textwidth}  \url{http://downloads.sourceforge.net/project/tortoisesvn/1.7.9/Application/TortoiseSVN-1.7.9.23248-x64-svn-1.7.6.msi/download}\end{minipage}}
-\end{enumerate} 
+\end{enumerate}
 
 If you do not want to have your private key password in plain text in an SVN configuration file then also download Pageant:
 \begin{enumerate}
-  \item[$\blacktriangleright$] {\small \url{http://the.earth.li/~sgtatham/putty/latest/x86/pageant.exe}}  
+  \item[$\blacktriangleright$] {\small \url{http://the.earth.li/~sgtatham/putty/latest/x86/pageant.exe}}
 \end{enumerate}
 
 After installing all the tools we need, we now have to setup the SSH tunnel:
-   
+
 \begin{enumerate}
   \item[$\blacktriangleright$] Locate the file \texttt{\%APPDATA\%$\backslash$Subversion$\backslash$config} and open it with your favourite editor. Locate the \texttt{[tunnels]} section.
   \item[$\blacktriangleright$] If you do not want to install Pageant and do not mind entering your password in plain text enter the following command:\\
@@ -174,10 +172,10 @@ If our instructions do not work, the EAP file might have been placed under versi
 If this is the case then please contact whoever checked-in the file and set it up for working with EA and SVN for further instructions.
 
 \begin{enumerate}
-  \item[$\blacktriangleright$] Check-out the project with the EAP file from the server using Tortoise-SVN or Eclipse/Subclipse (or any SVN client of your choice). 
+  \item[$\blacktriangleright$] Check-out the project with the EAP file from the server using Tortoise-SVN or Eclipse/Subclipse (or any SVN client of your choice).
   You should now have a \textit{.svn}-folder in the directory where you saved the revision.
   \item[$\blacktriangleright$] Open the EAP file.
-  If the EAP file is already under version control \emph{and has been set-up correctly}, a dialogue similar to Fig.~\ref{fig:advanced-topics-eaSVN-incompleteConf} should immediately pop-up. 
+  If the EAP file is already under version control \emph{and has been set-up correctly}, a dialogue similar to Fig.~\ref{fig:advanced-topics-eaSVN-incompleteConf} should immediately pop-up.
   \item[$\blacktriangleright$] Click ``Yes" to open the ``Version Control Settings'' dialogue (Fig.~\ref{fig:advanced-topics-eaSVN-setWorkingCopyPath}).
 \begin{figure}[!htbp]
 \begin{center}
@@ -187,7 +185,7 @@ If this is the case then please contact whoever checked-in the file and set it u
 \end{center}
 \end{figure}
 
-   \item[$\blacktriangleright$] To work with the EAP file, you now have to \emph{redefine} the SVN variable for the file in your EA workspace. 
+   \item[$\blacktriangleright$] To work with the EAP file, you now have to \emph{redefine} the SVN variable for the file in your EA workspace.
    To accomplish this, choose the local path to the folder which contains the EAP file in the ``Working Copy Path'' text-box, and correct the value in ``Subversion Exe Path'' if necessary (to fit your Slik installation location).
 
 \begin{figure}[!htbp]
@@ -199,12 +197,12 @@ If this is the case then please contact whoever checked-in the file and set it u
 \end{figure}
 
 \end{enumerate}
- 
+
 \subsection{Working with a version controlled EAP file}
 \label{sect:appendixB_update_commit}
 
 \begin{enumerate}
-  \item[$\blacktriangleright$] A \texttt{Check Out} retrieves the lock for a certain package and gives you exclusive access, i.e., no one else can change the package. 
+  \item[$\blacktriangleright$] A \texttt{Check Out} retrieves the lock for a certain package and gives you exclusive access, i.e., no one else can change the package.
   Very important: if subpackages are also under version control, they are not affected by checking out the ``super''-package and remain locked.
   A \texttt{Check Out} also updates the package to the latest version.
 
@@ -214,23 +212,23 @@ If you do not want to commit your changes, you can just use \texttt{Undo Check O
 \item[$\blacktriangleright$]  The corresponding \texttt{..Branch} options perform the actions for the current package and all subpackages.
 Please note, this has nothing to do with ``branching'' in normal SVN lingo.
 
-\item[$\blacktriangleright$] \texttt{Get Latest/Get All Latest} retrieves the latest version of the selected package / all packages. 
+\item[$\blacktriangleright$] \texttt{Get Latest/Get All Latest} retrieves the latest version of the selected package / all packages.
 This is basically an update but does not retrieve the lock for any package.
 
 \item[$\blacktriangleright$] Conversely, \texttt{Put Latest} saves all your changes without giving up any locks.
 
-\item[$\blacktriangleright$] \texttt{Compare with controlled version} can be used to review incoming changes. 
-Green elements will be added, red will be deleted. 
+\item[$\blacktriangleright$] \texttt{Compare with controlled version} can be used to review incoming changes.
+Green elements will be added, red will be deleted.
 
-\item[$\blacktriangleright$] \texttt{File History} gives you a summary of all commits made while you were lying on the beach. 
-For a useful file history, always use meaningful commit statements when checking in! 
+\item[$\blacktriangleright$] \texttt{File History} gives you a summary of all commits made while you were lying on the beach.
+For a useful file history, always use meaningful commit statements when checking in!
 A date stamp is created automatically.
 \end{enumerate}
 
 \subsection{Placing an EAP file under version control}
 \label{sect:appendixB_new_EAP_for_vc}
 
-If you already have an EAP file and would like to place it under version control, you first have to check it in as usual on the server using your favourite SVN client. 
+If you already have an EAP file and would like to place it under version control, you first have to check it in as usual on the server using your favourite SVN client.
 Once the project is checked in, the required .svn folder should be in the folder containing the EAP file.
 The next step is to register an SVN-variable in EA:
 \begin{enumerate}
@@ -240,11 +238,11 @@ The next step is to register an SVN-variable in EA:
  	\includegraphics[width=0.7\textwidth]{pics/advancedTopics/eaSVN/rightclick}
 	\caption{Select version control settings}
   	\label{fig:advanced-topics-eaSVN-rightclick}
-\end{center} 
+\end{center}
 \end{figure}
   \item[$\blacktriangleright$] In the dialogue, choose a unique ID of your choice (we suggest you use the name of the EAP file) for the settings and activate the ``Subversion'' radio button below.
   \item[$\blacktriangleright$] Choose the local path to the folder which contains the EAP file in the ``Working Copy Path'' text-box.
-  \item[$\blacktriangleright$] The field ``Working Station'' must point to where you installed Sliksvn, i.e., \texttt{<path to SlikSVN>$\backslash$bin$\backslash$svn.exe")}.  
+  \item[$\blacktriangleright$] The field ``Working Station'' must point to where you installed Sliksvn, i.e., \texttt{<path to SlikSVN>$\backslash$bin$\backslash$svn.exe")}.
   Press ``Save'' and close the dialogue (Fig.~\ref{fig:advanced-topics-eaSVN-variable}).
   If the dialogue closes without an error message, then you can be sure to have configured everything correctly.
 %\usepackage{graphics} is needed for \includegraphics
@@ -255,21 +253,21 @@ The next step is to register an SVN-variable in EA:
   	\label{fig:advanced-topics-eaSVN-variable}
 \end{center}
 \end{figure}
-\item[$\blacktriangleright$] In the EAP file, choose ``Package Control$\backslash$Configure...'' for \emph{each package} you wish to place under version control. 
+\item[$\blacktriangleright$] In the EAP file, choose ``Package Control$\backslash$Configure...'' for \emph{each package} you wish to place under version control.
 
-\item[$\blacktriangleright$] In the ensuing dialogue, activate ``Control Package'' and select your previously defined SVN variable from the drop-down menu. 
+\item[$\blacktriangleright$] In the ensuing dialogue, activate ``Control Package'' and select your previously defined SVN variable from the drop-down menu.
 Enter the path where the XML file for the project should be placed.
 Although this is not enforced in any way, we recommend you create a folder structure that mirrors the package structure in EA (Fig.~\ref{fig:advanced-topics-eaSVN-addPackage}).
 This process has to be repeated \emph{for all sub-packages} as soon as their super-package has been placed under version control.
 \begin{figure}[!htbp]
-\begin{center} 
+\begin{center}
 	\includegraphics[width=0.6\textwidth]{pics/advancedTopics/eaSVN/cont}
 	\caption{Placing a package under version control}
   	\label{fig:advanced-topics-eaSVN-addPackage}
 \end{center}
-\end{figure} 
+\end{figure}
 
-\item[$\blacktriangleright$] As a final step, check-in the current state of the EAP file directly with your SVN client. 
+\item[$\blacktriangleright$] As a final step, check-in the current state of the EAP file directly with your SVN client.
 As from this point, the EAP file should not be checked-in anymore, and all versioning actions should be performed via EA (and not directly with your SVN client).
 \end{enumerate}
 
@@ -277,7 +275,7 @@ As from this point, the EAP file should not be checked-in anymore, and all versi
 
 When working with SDMs, you often need to choose between two different patterns based on the return value of an arbitrary (black box) operation.
 This is like the normal \texttt{Success}/\texttt{Failure} construction, but instead of a pattern being matched or failing, the decision can be implemented with a another SDM or a standard Java method.
-This feature is a further means (besides \texttt{MethodCallExpressions} for attribute values and \texttt{Bindings}) of integrating hand-written Java code in SDMs (and can lead to spaghetti SDMs so please use with caution!). 
+This feature is a further means (besides \texttt{MethodCallExpressions} for attribute values and \texttt{Bindings}) of integrating hand-written Java code in SDMs (and can lead to spaghetti SDMs so please use with caution!).
 
 As an example, consider a class \texttt{A} with an operation:
 \begin{quote}
@@ -292,9 +290,9 @@ If the method returns anything else, then \texttt{Failure} corresponds to \textt
 Void methods \emph{cannot} be used to branch and an exception is thrown during code generation.
 
 Fig.~\ref{fig:cond_branch_on_op} depicts the class \texttt{A} and shows how \texttt{doSomeCheck} is used to branch in an SDM.
-Fig.~\ref{fig:cond_branch_on_op_code} depicts the corresponding generated if/else branch in Java. 
+Fig.~\ref{fig:cond_branch_on_op_code} depicts the corresponding generated if/else branch in Java.
 
-\begin{figure}[htbp]
+\begin{figure}[htp]
 \begin{center}
   \includegraphics[width=1\textwidth]{pics/advancedTopics/branching/SDM_with_branch}
   \caption{Conditional branching based on the result of an operation}
@@ -302,7 +300,7 @@ Fig.~\ref{fig:cond_branch_on_op_code} depicts the corresponding generated if/els
 \end{center}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{pics/advancedTopics/branching/generated_code}
   \caption{Generated code for branch}
@@ -313,11 +311,11 @@ Fig.~\ref{fig:cond_branch_on_op_code} depicts the corresponding generated if/els
 Perform the following steps to branch with a \texttt{StatementNode}:
 \begin{enumerate}
 \item[$\blacktriangleright$] Add a new statement node (cf.~Fig.~\ref{fig:cond_statement_node}) at the appropriate location in your SDM.
-\item[$\blacktriangleright$] Invoke a non-void method (an operation in the metamodel) via a \texttt{MethodCallExpression} (cf.~Fig.~\ref{fig:cond_method_call}). 
+\item[$\blacktriangleright$] Invoke a non-void method (an operation in the metamodel) via a \texttt{MethodCallExpression} (cf.~Fig.~\ref{fig:cond_method_call}).
 \item[$\blacktriangleright$] Add \texttt{Success} \emph{and} \texttt{Failure} edges to the \texttt{StatementNode} to branch appropriately.
 \end{enumerate}
 
-\begin{figure}[htbp]
+\begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{pics/advancedTopics/branching/01_switch_to_statement_node}
   \caption{Switch from activity node to statement node}
@@ -325,11 +323,47 @@ Perform the following steps to branch with a \texttt{StatementNode}:
 \end{center}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{pics/advancedTopics/branching/02_specify_method_call_expression}
   \caption{Specify the method call expression}
   \label{fig:cond_method_call}
 \end{center}
 \end{figure}
+
 \clearpage
+
+% \section{Preserving files on Clean}
+
+% Although the EMF code generator tries its best to merge hand-written and generated code (and does a pretty good job!), you will still need to \emph{Clean and Build} now and then.
+
+% To support this, we have a naming convention to indicate classes with hand-written code (which should not be deleted on a clean):
+% \begin{quote}
+% All files with ``\ldots \texttt{.facade.impl.}\ldots'' in their path are automatically preserved when cleaning\ldots
+% \end{quote}
+
+% If you place your helpers in a package named \texttt{*facade*}, therefore, the corresponding \texttt{*impl} files (where you can implement the methods by hand) will be preserved automatically.
+
+% In some cases, it might be necessary to mark additional files or folders that do \emph{not} follow this naming convention but should nonetheless be preserved when cleaning.
+
+% To do this, we provide the following options (Fig.~\ref{fig:preservepath}):
+% \begin{itemize}
+% \item [$\blacktriangleright$] To add a file or folder to the list of \emph{preserved paths}, right click on the file or folder to invoke the context menu and choose\\ \mbox{\texttt{eMoflon} $\rightarrow$ \texttt{Add to preserve path}}.
+
+% When a folder is specified, \emph{all folders and paths with this path as prefix} are preserved.
+% \item [$\blacktriangleright$]To remove a path that is already on the list, choose\\ \mbox{\texttt{eMoflon} $\rightarrow$ \texttt{Remove from preserve path}}.
+% \end{itemize}
+
+% Paths to be preserved are added to the \texttt{PRESERVE\_PATHS} variable in the \texttt{moflon.properties} file of the corresponding eMoflon project.
+
+% All paths are created relative to the Eclipse workspace, i.e., are of the form:
+% \texttt{/<ProjectName>/gen/<Path>/<File>}.
+% \clearpage
+
+% \begin{figure}[htp]
+% \begin{center}
+%   \includegraphics[width=0.5\textwidth]{pics/advancedTopics/preservePath/PreservePath}
+%   \caption{eMoflon context menu}
+%   \label{fig:preservepath}
+% \end{center}
+% \end{figure}
