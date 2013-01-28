@@ -83,8 +83,8 @@ transformer.transformFolders(tree);
 
 // Save library models
 for (Library library : transformer.getTransformedLibraries())
-  eMoflonEMFUtil.saveModel(MocaTreePackage.eINSTANCE, 
-  	library, "instances/" + library.getName() + ".xmi"); 
+  eMoflonEMFUtil.saveModel(library, 
+    "instances/" + library.getName() + ".xmi"); 
 \end{verbatim}
   
 To see the effects of running \texttt{MocaMain.java}, refresh (\texttt{F5}) the Eclipse project to see the newly created \texttt{myLibrary.xmi} (Fig.~\ref{fig:moca-created-libary}).  

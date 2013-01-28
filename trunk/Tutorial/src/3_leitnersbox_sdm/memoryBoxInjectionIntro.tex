@@ -1,18 +1,9 @@
 \section{Injections}
 \label{sec:intro_injections}
 
-You may now wonder how you are supposed to solve certain other problems like string manipulation. In this chapter you will learn how to implement methods that you cannot express as SDMs by adding handwritten code to classes, which are created from your model.
+In this chapter you will learn how to implement methods that you cannot express as SDMs by adding handwritten code to classes created from your model.
 
-Injections are the preferred way to do this by creating partial classes in a small DSL. This approach is inspired by the partial classes in C\# and leads to a clean separation of generated and handwritten code.
-
-There are two ways of adding your code to the generated classes:
-
-\begin{enumerate}
-    \item Add code to functions that already exist in the model. This might be necessary, if you can define the header of the function in your model, but the body is too complex to express it as a SDM.
-    \item Add own functions and member variables to a class, e.g. to structure your code in private methods.
-\end{enumerate}
-
-\subsection{Add card content to the string representation of your box}
+Injections are inspired by the partial classes in C\#, our preferred way of doing this and a clean separation of generated from handwritten code.
 
 \begin{enumerate}
     \item[$\blacktriangleright$] In order to implement \texttt{Box::addToStringRep} right-click on your class \texttt{Box} in Eclipse and choose ``eMoflon$\rightarrow$Create injection for class'' (Fig.~\ref{fig:injection_create_injection}).
@@ -24,7 +15,7 @@ There are two ways of adding your code to the generated classes:
         \label{fig:injection_create_injection}
     \end{figure}
 
-    This creates you a new file in the ''injection'' folder of your project with the same packages and name as the class but ''.inject'' as extension (Fig. \ref{fig:injection_created_injection_file}). This file contains the definition of a \textit{partial class} similar a normal class in Java (Fig. \ref{code:empty_inject_file}). 
+    This creates a new file in the \texttt{injection} folder of your project with the same packages and name as the Java class but with ``.inject'' as extension (Fig. \ref{fig:injection_created_injection_file}). This file contains the definition of a \textit{partial class} (Fig. \ref{code:empty_inject_file}). 
 
     \begin{figure}[htbp]
         \centering
@@ -51,12 +42,12 @@ There are two ways of adding your code to the generated classes:
 
             }
         \end{lstlisting}
-        \caption{Empty injection}
+        \caption{Empty injection file}
         \label{code:empty_inject_file}
     \end{figure}
     \FloatBarrier
 
-    \item[$\blacktriangleright$]In order to implement \texttt{Box::addToStringRep}, insert the code given in Fig. \ref{code:complete_inject_file} into your injection file. You can use Eclipse templates by entering an ''@'' and pressing ''ctrl+space''.
+    \item[$\blacktriangleright$]Now copy and paste the code in Fig. \ref{code:complete_inject_file} into your injection file.
 
     \begin{figure}[htbp]
         \centering
@@ -82,11 +73,11 @@ There are two ways of adding your code to the generated classes:
                 -->
             }
         \end{lstlisting}
-        \caption{Complete injection}
+        \caption{Implementation of helper method as an injection}
         \label{code:complete_inject_file}
     \end{figure}
     \FloatBarrier
-    \item[$\blacktriangleright$] Now you can rebuild your project (right-click on ''LearningBoxLanguage'' and choose ''eMoflon $\rightarrow$ Clean and build'') and your code will appear in ''LearningBoxLanguage.impl.BoxImpl'' (Fig. \ref{fig:injected_code_in_boxImpl}). For more information about injections, read appendix \ref{sec:appendix_injections}.
+    \item[$\blacktriangleright$] Rebuild your project (eMoflon $\rightarrow$ Clean and build) and this code will be injected in \texttt{LearningBoxLanguage.impl.BoxImpl.java} (Fig. \ref{fig:injected_code_in_boxImpl}). For more information on injections, read \ref{sec:appendix_injections}.
 
 \end{enumerate}
 
@@ -95,6 +86,6 @@ There are two ways of adding your code to the generated classes:
     \begin{figure}[htbp]
         \centering
         \includegraphics[width=\textwidth]{pics/injectionBilder/injected_code_in_impl.png}
-        \caption{Injected code in BoxImpl}
+        \caption{Injected code in BoxImpl after code generation}
         \label{fig:injected_code_in_boxImpl}
     \end{figure}
