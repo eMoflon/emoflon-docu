@@ -82,7 +82,7 @@ Note that arbitrary many different dictionaries, irrespective of their shelves, 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=0.9\textwidth]{pics/moca/1DictionaryMetaModel/DictionaryLanguage}
+ \includegraphics[width=\textwidth]{pics/moca/1DictionaryMetaModel/DictionaryLanguage}
   \caption{Dictionary Metamodel}
   \label{fig:moca-5-DictionaryMM}
 \end{center}
@@ -92,7 +92,7 @@ Note that arbitrary many different dictionaries, irrespective of their shelves, 
 
 According to our conventions and workflow, a \emph{code adapter} is a package that contains the tree-to-model transformation logic.
 This could of course be integrated directly in the corresponding metamodel (\texttt{Dic\-tion\-ary\-Language} in our case), but a separation makes sense as there could be \emph{different} code adapters for the \emph{same} language.
-
+\clearpage
 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
@@ -104,7 +104,7 @@ This could of course be integrated directly in the corresponding metamodel (\tex
 \end{figure}
 
 \item[$\blacktriangleright$] Export as usual and ensure that your Eclipse workspace closely resembles Fig.~\ref{fig:moca-6-ExportToEclipse}.
-Note especially the library nodes (\texttt{Moflon} and \texttt{Moca}) that reference jars for all required dependencies. (If your \texttt{DictionaryCodeAdapter} is not exported or you receive an error message while exporting it, you can add an empty diagram to it)
+Note especially the library nodes (\texttt{Moflon} and \texttt{Moca}) that reference jars for all required dependencies. (If your \texttt{Dictionary\-Code\-Adapter} is not exported or you receive an error message while exporting it, you can add an empty diagram to it)
 
 %\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[!htbp]
