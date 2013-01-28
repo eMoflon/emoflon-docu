@@ -3,10 +3,10 @@
 
 In this chapter you will learn how to implement methods that you cannot express as SDMs by adding handwritten code to classes created from your model.
 
-Injections are inspired by the partial classes in C\#, our preferred way of doing this and a clean separation of generated from handwritten code.
+Injections are inspired by partial classes in C\#, and are our preferred way of providing a clean separation of generated from handwritten code.
 
 \begin{enumerate}
-    \item[$\blacktriangleright$] In order to implement \texttt{Box::addToStringRep} right-click on your class \texttt{Box} in Eclipse and choose ``eMoflon$\rightarrow$Create injection for class'' (Fig.~\ref{fig:injection_create_injection}).
+    \item[$\blacktriangleright$] To implement \texttt{Box::addToStringRep}, right-click on the class \texttt{Box.java} in Eclipse and choose ``eMoflon$\rightarrow$Create injection for class'' (Fig.~\ref{fig:injection_create_injection}).
 
     \begin{figure}[htbp]
         \centering
@@ -15,11 +15,11 @@ Injections are inspired by the partial classes in C\#, our preferred way of doin
         \label{fig:injection_create_injection}
     \end{figure}
 
-    This creates a new file in the \texttt{injection} folder of your project with the same packages and name as the Java class but with ``.inject'' as extension (Fig. \ref{fig:injection_created_injection_file}). This file contains the definition of a \textit{partial class} (Fig. \ref{code:empty_inject_file}). 
+    This creates a new file in the \texttt{injection} folder of your project with the same packages and name as the Java class but with ``.inject'' as extension (Fig. \ref{fig:injection_created_injection_file}). This file contains the definition of a \textit{partial class}~(Fig.~\ref{code:empty_inject_file}). 
 
     \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.6\textwidth]{pics/injectionBilder/newly_created_injection_file.png}
+        \includegraphics[width=0.54\textwidth]{pics/injectionBilder/newly_created_injection_file.png}
         \caption{Create a new injection}
         \label{fig:injection_created_injection_file}
     \end{figure}
@@ -39,7 +39,7 @@ Injections are inspired by the partial classes in C\#, our preferred way of doin
         \begin{lstlisting}[language=Injection]
             partial class Box
             {
-
+            
             }
         \end{lstlisting}
         \caption{Empty injection file}
@@ -47,6 +47,7 @@ Injections are inspired by the partial classes in C\#, our preferred way of doin
     \end{figure}
     \FloatBarrier
 
+	\clearpage
     \item[$\blacktriangleright$]Now copy and paste the code in Fig. \ref{code:complete_inject_file} into your injection file.
 
     \begin{figure}[htbp]
