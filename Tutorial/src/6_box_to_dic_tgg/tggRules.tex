@@ -6,13 +6,13 @@ A TGG rule is quite similar to an SDM storypattern\footnote{If you are not famil
 In other words, we have to state:
 \begin{itemize}
   \item What pattern must be matched, i.e, under which conditions can the rule be applied (this is the precondition).
-  \item The objects and links to be created when the rule is applied to a match (this is deduced from the postcondition). 
+  \item The objects and links to be created when the rule is applied to a match (this is deduced from the postcondition).
 \end{itemize}
 
 Note that the rules of a TGG only describe the simultaneous \emph{build-up} of the models and do not delete or modify any existing elements, i.e., TGG rules are \emph{monotonic}.
 This might seem surprising at first and you might think this is a terrible restriction.
-The point is that the TGG should only specify a consistency relation and not directly the forward and backward transformations, which are derived automatically. 
-It turns out that deletion is not necessary on this level to do this, but will of course be used at the right places in the generated transformations. 
+The point is that the TGG should only specify a consistency relation and not directly the forward and backward transformations, which are derived automatically.
+It turns out that deletion is not necessary on this level to do this, but will of course be used at the right places in the generated transformations.
 
 \begin{enumerate}
 \item[$\blacktriangleright$] In EA, open the diagram of the \texttt{Rules} package in our TGG project.
@@ -23,7 +23,7 @@ This package was generated automatically when we first created our TGG project a
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg8}
-  \caption{Creating a TGG rule}  
+  \caption{Creating a TGG rule}
   \label{fig:create_tgg_rule}
 \end{center}
 \end{figure}
@@ -35,7 +35,7 @@ As depicted in Fig.~\ref{fig:first_tgg_rule}, the newly created rule has a metho
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.35\textwidth]{pics/tggBilder/tggRule/tgg9}
-  \caption{Our first TGG rule}  
+  \caption{Our first TGG rule}
   \label{fig:first_tgg_rule}
 \end{center}
 \end{figure}
@@ -49,139 +49,117 @@ Choose \texttt{Create} as binding operator (Fig.~\ref{fig:create_tgg_object}).
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg10}
-  \caption{Creating an object variable in a TGG rule}  
+  \caption{Creating an object variable in a TGG rule}
   \label{fig:create_tgg_object}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] In the same way, create \texttt{dictionary} as an instance of \texttt{Dictionary}.
 
-\item[$\blacktriangleright$] Also create \texttt{boxToDictionary} as an instance of the correspondence type \texttt{BoxToDictionary}, this time per drag\,\&\,drop from the TGG project.
-
-Create links to \texttt{box} as source and \texttt{dictionary} as target objects, so that your diagram closely resembles Fig.~\ref{fig:first_rule_diagram}.
+\item[$\blacktriangleright$] Also create \texttt{boxToDictionary} as an instance of the correspondence type \texttt{BoxToDictionary}, by using Quick-Link between \texttt{box} and \texttt{dictionary} and choosing ``Create TGG Correspondence Link'' (Fig. \ref{fig:create_tgg_correspondence_link}).
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg11}
-  \caption{TGG rule after creating and connecting all object variables}  
-  \label{fig:first_rule_diagram}
+  \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/create_tgg_correspondence_link.png}
+  \caption{Creating a TGG correspondence link via Quick-Link}
+  \label{fig:create_tgg_correspondence_link}
 \end{center}
 \end{figure}
+\FloatBarrier
+
 \end{enumerate}
 
 Our current rule creates a box, a dictionary, and an appropriate correspondence all at the same time.
 
-But how about the \texttt{name} of the box and the \texttt{title} of the dictionary? 
+But how about the \texttt{name} of the box and the \texttt{title} of the dictionary?
 \note{Attribute Constraints}
 We use \emph{attribute constraints} in TGG rules to provide a bidirectional and high-level solution for attribute manipulation.
 In this case we need a constraint which ensures that \texttt{box.name} and \texttt{dictionary.title} are set to the same value.
 
 \begin{enumerate}
-\item[$\blacktriangleright$] To create such a constraint, drag\,\&\,drop a \emph{constraint} from the \texttt{Common Toolbox} (Fig.~\ref{fig:common_toolbox}).
+  \item[$\blacktriangleright$] To create such a constraint, drag\,\&\,drop a \emph{TGG Constraint} from the \texttt{TGGRuleTolboxPage} (Fig.~\ref{fig:common_toolbox}).
 
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.25\textwidth]{pics/tggBilder/tggRule/tgg12}
-  \caption{Constraint from the Common Toolbox in EA}  
-  \label{fig:common_toolbox}
-\end{center}
-\end{figure}
+  \begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{pics/tggBilder/tggRule/tgg12}
+    \caption{Constraint from the Toolbox in EA}
+    \label{fig:common_toolbox}
+  \end{center}
+  \end{figure}
 
-\item[$\blacktriangleright$] Double click the constraint element to open it, and enter \texttt{eq(box.name, dictionary.title)} as depicted in Fig.~\ref{fig:first_tgg_constraint}. 
-Affirm with \texttt{OK}.
+  \item[$\blacktriangleright$] Double click the constraint element to open it, choose ``eq'' under ``Constraints'', enter the values depicted in
+  Fig.~\ref{fig:first_tgg_constraint} and add the constraint.
+  Affirm with \texttt{OK}.
 
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.7\textwidth]{pics/tggBilder/tggRule/tgg13}
-  \caption{Creating a Constraint in EA}  
-  \label{fig:first_tgg_constraint}
-\end{center}
-\end{figure}
+  \begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{pics/tggBilder/tggRule/tgg13.png}
+    \caption{Creating a Constraint in EA}
+    \label{fig:first_tgg_constraint}
+  \end{center}
+  \end{figure}
 
-\item[$\blacktriangleright$] Quick-link a \texttt{Dependency} from the constraint to the involved object variables, \texttt{box} and \texttt{dictionary}. 
-The rule should now resemble Fig.~\ref{fig:tgg_rule_with_constraint}. 
+  \item[$\blacktriangleright$] Quick-link a \texttt{Dependency} from the
+  constraint to the involved object variables, \texttt{box} and \texttt{dictionary}.
+  The rule should now resemble Fig.~\ref{fig:tgg_rule_with_constraint}.
 
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg14}
-  \caption{A TGG Rule with a Constraint}  
-  \label{fig:tgg_rule_with_constraint}
-\end{center}
-\end{figure}
+  \begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg14}
+    \caption{A TGG Rule with a Constraint}
+    \label{fig:tgg_rule_with_constraint}
+    \end{center}
+  \end{figure}
 
-\end{enumerate} 
+\end{enumerate}
 
 To complete our first TGG rule, we still need to create the initial structure of a learning box.
 In contrast to the rather simple dictionary, where \texttt{Dictionary} is a direct container for \texttt{Entry} objects, we have to create a number of connected \texttt{Partitions} that hold the \texttt{Cards} in the learning box.
 
 \begin{enumerate}
-\item[$\blacktriangleright$] Create three \texttt{Partition} object variables with all appropriate links, so that your TGG rule diagram closely resembles Fig.~\ref{fig:boxtodictionaryrule_complete}.
+  \item[$\blacktriangleright$] Create three \texttt{Partition} object variables with all appropriate links, so that your TGG rule diagram closely resembles Fig.~\ref{fig:boxtodictionaryrule_complete}.
 
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg15}
-  \caption{Complete TGG rule diagram for \texttt{BoxToDictionaryRule}}  
-  \label{fig:boxtodictionaryrule_complete}
-\end{center}
-\end{figure}
+  \begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg15}
+    \caption{Complete TGG rule diagram for \texttt{BoxToDictionaryRule}}
+    \label{fig:boxtodictionaryrule_complete}
+  \end{center}
+  \end{figure}
 
 \end{enumerate}
 
 If you are in hurry, you may already proceed to Sect.~\ref{sect:TGGs_in_Action} and transform a box to a dictionary and vice-versa.
-But please be aware that your specified TGG (with just one rule) will only be able to cope with empty boxes and dictionaries. 
+But please be aware that your specified TGG (with just one rule) will only be able to cope with empty boxes and dictionaries.
 Handling additional elements (cards in the learning box and entries in the dictionary) requires a second rule \ldots
 
-Create a second TGG rule and call it \texttt{CardToEntryRule}.
-Your \texttt{Rules} diagram should now resemble Fig.~\ref{fig:rules_diagram}.
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg16}
-  \caption{The \texttt{Rules} diagram after creating two TGG Rules}  
-  \label{fig:rules_diagram}
-\end{center}
-\end{figure}
-
-Our second rule can only create cards and entries when a corresponding box and dictionary already exist, and this is expressed by using \emph{context} elements in the rule, i.e., by setting object and link variables to \emph{check only}.
+To create the second rule, we will introduce another method. Note that both methods generate the same results and the following one is only a shortcut.
 
 \begin{enumerate}
-\item[$\blacktriangleright$] Double click the newly created \texttt{CardToEntryRule} to open its diagram.
-\item[$\blacktriangleright$] Create \texttt{box} as an instance of \texttt{Box} choosing \texttt{Check Only} as binding operator (Fig.~\ref{fig:bound_tgg_variable}).
+  \item[$\blacktriangleright$] Select \texttt{box}, \texttt{boxToDictionary}, \texttt{dictionary} and \texttt{partition0} in \texttt{BoxToDictionaryRule}.
+  \item[$\blacktriangleright$] Choose ``Derive'' in the ``eMoflon TGG Functions'' section of the add-in window as depicted in Fig. \ref{fig:derive_from_tgg_rule} (if you cannot see this window, make sure ``Extensions $\rightarrow$ Add-In Window'' is activated) and enter ``CardToEntryRule'' as the name in the dialog that shows up. This will generate a new rule which already contains the elements it is derived from.
 
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.6\textwidth]{pics/tggBilder/tggRule/tgg17}
-  \caption{Creating a Check Only TGG object variable}  
-  \label{fig:bound_tgg_variable}
-\end{center}
-\end{figure} 
+  \begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{pics/tggBilder/tggRule/derive_tgg_rule.png}
+    \caption{Derive from an existing TGG rule}
+    \label{fig:derive_from_tgg_rule}
+  \end{center}
+  \end{figure}
+  \FloatBarrier
 
-\item[$\blacktriangleright$] In the same way, create all object variables and appropriate links so that your rule diagram resembles Fig.~\ref{fig:check_bound_variables}. 
+  \item[$\blacktriangleright$] Add instances of \texttt{Card} and \texttt{Entry} to the rule and add links until the diagram closely resembles Fig. \ref{fig:cardtoentry_1}.
 
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg18}
-  \caption{checking the TGG Variables from other Rule }  
-  \label{fig:check_bound_variables}
-\end{center}
-\end{figure}
+  \begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg19}
+    \caption{\texttt{CardToEntryRule} without attribute manipulation}
+    \label{fig:cardtoentry_1}
+  \end{center}
+  \end{figure}
 
 \end{enumerate}
 
-After specifying the \emph{context} of our rule, we can now create some new elements.
-
-\begin{enumerate}
-\item[$\blacktriangleright$] Complete your TGG Rule by creating a \texttt{Card}, an \texttt{Entry} and a \texttt{CardToEntry} correspondence, all set to \texttt{Create}, so that your TGG rule resembles Fig.~\ref{fig:cardtoentry_1}.
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg19}
-  \caption{\texttt{CardToEntryRule} without attribute manipulation}  
-  \label{fig:cardtoentry_1}
-\end{center}
-\end{figure}
-
-\end{enumerate}
 
 As a final step, we now have to specify how attributes are to be handled via appropriate attribute constraints.
 
@@ -192,9 +170,9 @@ Using two predefined attribute constraint \texttt{addPrefix} and \texttt{concat}
 \begin{enumerate}
 \item[$\blacktriangleright$] Add a new constraint to your diagram with the following three lines:
 \begin{quotation}
-\noindent \texttt{addPrefix("Question: ", word, card.face)}\\ 
+\noindent \texttt{addPrefix("Question: ", word, card.face)}\\
 \texttt{addPrefix("Answer: ", meaning, card.back)}\\
-\texttt{concat("~:~", word, meaning, entry.content)} 
+\texttt{concat("~:~", word, meaning, entry.content)}
 \end{quotation}
 
 \end{enumerate}
@@ -204,31 +182,42 @@ After connecting appropriatly, your rule should now resemble Fig.~\ref{fig:cardt
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg20}
-  \caption{Attribute manipulation for \texttt{card} and \texttt{entry}}  
+  \caption{Attribute manipulation for \texttt{card} and \texttt{entry}}
   \label{fig:cardtoentry_2}
 \end{center}
 \end{figure}
+\FloatBarrier
 
 Finally, we have to specify how the partition, into which the newly created card is to be placed, must be chosen.
 We shall implement the following simple rule: a card in a partition with index 0/1/2 corresponds to an \texttt{Entry} of level beginner/advanced/master.
 This time, we must define our very own attribute constraint to handle this mapping.
 For the moment, we are just going to declare and use the attribute constraint, which will be implemented later in Java.
 
-\clearpage
 
 \begin{enumerate}
-\item[$\blacktriangleright$] Add a further constraint to your diagram with the following two lines:
+\item[$\blacktriangleright$] Add a further constraint to your diagram, but this time do not choose a predefined constraint but click ``Add'' below the dropdown menu and enter the values given in Fig. \ref{fig:create_new_constraint}.
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.55\textwidth]{pics/tggBilder/tggRule/create_new_constraint}
+  \caption{Create a user defined constraint.}
+  \label{fig:create_new_constraint}
+\end{center}
+\end{figure}
+\FloatBarrier
+
+\item[$\blacktriangleright$] After saving this new constraint, choose it and enter the given values:
+
 \begin{quotation}
-\noindent \texttt{indexToLevel[BB,BF,FB](Integer, String)}\\ 
-\texttt{indexToLevel(partition.index, entry.level)} 
+\texttt{indexToLevel(partition.index, entry.level)}
 \end{quotation}
 \end{enumerate}
 
-Your complete TGG rule should now resemble Fig.~\ref{fig:cardtoentry_complete}.
+After defining the dependencies of the constraint, your complete TGG rule should resemble Fig.~\ref{fig:cardtoentry_complete}.
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg21}
-  \caption{\texttt{CardToEntryRule} with complete attribute manipulation}  
+  \caption{\texttt{CardToEntryRule} with complete attribute manipulation}
   \label{fig:cardtoentry_complete}
 \end{center}
 \end{figure}
@@ -242,24 +231,16 @@ For built-in or \emph{library} constraints (Appendix
 
 In many cases, however, a constraint might be very problem-specific, such as our \emph{indexToLevel} constraint, and there might not be any fitting combination of library constraints to express the consistency condition.
 
-In such a case, the new attribute constraint must be declared before its use. 
-In our example, the new constraint is declared as:
-\begin{quote}
- \texttt{indexToLevel[BB,BF,FB] (Integer, String)}
-\end{quote} 
-In simple EBNF, a constraint declaration is of the form:
-\begin{quote}
-\texttt{nameOfConstraint "[" adornment (, adornment)* "]"}\\
-\texttt{"(" variable type (, variable type)* ")"}
-\end{quote}
-The comma separated list of \emph{adornments} in the declaration specifies the cases for which the constraint can be operationalized.
+In such a case, the new attribute constraint must be declared before its use.
+
+The list of \emph{adornments} in the declaration specifies the cases for which the constraint can be operationalized.
 Each adornment consists of a \texttt{B} for bound or an \texttt{F} for free, for each argument of the constraint.
 This is much simpler than its sounds so lets take a look at our example:
 \begin{description}
 \item[BB] means that the \texttt{partition.index} and \texttt{entry.level} can both be \emph{bound}, i.e., already have assigned values.
-In this case, the \emph{operation} (the operationalized constraint) must check if the assigned values are correct. 
+In this case, the \emph{operation} (the operationalized constraint) must check if the assigned values are correct.
 \item[BF] means that \texttt{partition.index} is \emph{bound} and \texttt{entry.level} is \emph{free}, i.e., the operation must determine and assign the correct value to \texttt{entry.level} using \texttt{partition.index}.
-\item[FB] means that \texttt{partition.index} is \emph{free} and \texttt{entry.level} is \emph{bound}, i.e., the operation must determine and assign the correct value to \texttt{parti\-tion.in\-dex} using \texttt{entry.level}. 
+\item[FB] means that \texttt{partition.index} is \emph{free} and \texttt{entry.level} is \emph{bound}, i.e., the operation must determine and assign the correct value to \texttt{parti\-tion.in\-dex} using \texttt{entry.level}.
 \end{description}
 
 Note that we decide not to support \textbf{FF} as we would have to generate a consistent pair of index and level.
