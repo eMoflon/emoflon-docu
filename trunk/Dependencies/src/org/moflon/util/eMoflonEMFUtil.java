@@ -150,6 +150,8 @@ public class eMoflonEMFUtil
     */
    public static EObject loadModelWithDependenciesAndCrossReferencer(URI uriToModelResource, ResourceSet dependencies)
    {
+	  registerXMIFactoryAsDefault(); 
+	   
       // Obtain a new resource set if necessary
       if (dependencies == null)
          dependencies = new ResourceSetImpl();
