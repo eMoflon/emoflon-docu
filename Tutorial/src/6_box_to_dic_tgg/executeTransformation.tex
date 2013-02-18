@@ -59,6 +59,16 @@ public class IndexToLevel extends ConstraintImpl {
       setSatisfied(levels.get(indexBB).equals(level));
       break;
     case "BF":
+     int indexFB = var_0.getValue().intValue();
+      if (indexFB < 0 || indexFB > 2) {
+        setSatisfied(false);
+      } else {
+        var_1.setValue(levels.get(indexFB));
+        var_1.setBound(true);
+        setSatisfied(true);
+      }
+      break;
+    case "FB":
       String levelBF = var_1.getValue();
       int indexBF = levels.indexOf(levelBF);
       if (indexBF == -1) {
@@ -66,16 +76,6 @@ public class IndexToLevel extends ConstraintImpl {
       } else {
         var_0.setValue(indexBF);
         var_0.setBound(true);
-        setSatisfied(true);
-      }
-      break;
-    case "FB":
-      int indexFB = var_0.getValue().intValue();
-      if (indexFB < 0 || indexFB > 2) {
-        setSatisfied(false);
-      } else {
-        var_1.setValue(levels.get(indexFB));
-        var_1.setBound(true);
         setSatisfied(true);
       }
       break;
