@@ -114,9 +114,33 @@ As dictionaries are of a much simple structure, let's start with a backward tran
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Run the automatically created main class \texttt{TGGMain} in \texttt{LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/src} and refresh the folder \texttt{LearningBox\-To\-Dictionary\-In\-te\-gra\-tion/\-instances}.
-\item[$\blacktriangleright$] This will generate you two files you need for debugging: \texttt{corr\_BWD.xmi} and \texttt{protocol.BWD.xmi}.
-Right-click on the \texttt{corr\_BWD.xmi} and choose ``eMoflon $\rightarrow$ Start Integrator'', which opens you the window depicted in Fig.~\ref{fig:integrator_start}.
+\item[$\blacktriangleright$] Run the automatically created main class \texttt{TGGMain} in \texttt{LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/src} and refresh the folder \texttt{LearningBox\-To\-Dictionary\-In\-te\-gra\-tion/\-instances}. Note that you receive a red output ``Unable to load instances/source.xmi, instances/source.xmi does not exist.'', but this is no problem since we did not intend to do a forward transformation and the backward transformation will be made anyways.
+\item[$\blacktriangleright$] Make a copy of \texttt{target.xmi\_BWD.xmi} and rename it to \texttt{source.xmi} (the original file is needed for debugging).
+
+\end{enumerate}
+
+As you can see, our \texttt{Dictionary} has been backward translated to a \texttt{Box} with the same name (\texttt{English Numbers}), containing three \texttt{Par\-ti\-tions}, as specified in \texttt{Box\-To\-Dictionary\-Rule}.
+The two \texttt{Entry} objects have also been translated to \texttt{Card} objects as specified in \texttt{CartToEntryRule}.
+Also note that the \texttt{face} and the \texttt{back} of the \texttt{Card}s are consistent with the \texttt{content} of the corresponding \texttt{Entry}, e.g. \texttt{card.face = ``Question : one''} and \texttt{card.back = ``Answer : eins''}.
+The indices of the partitions containing the cards are also consistent with the level of the entry, i.e., \texttt{0} for \texttt{beginner}, and \texttt{1} for \texttt{advanced} (do net let the names of the partitions confuse you: they are named after their size, not their index).
+
+Congratulations! You have successfully performed your first \emph{backward} transformation from \texttt{Dictionary\-Language} (target model) to \texttt{Learn\-ing\-Box\-Lan\-guage} (source model) using TGGs!
+
+To show that the transformation is actually bidirectional, lets edit the created source model and transform it \emph{forward} to a new target model:
+
+\begin{enumerate}
+\item[$\blacktriangleright$] Open \texttt{source.xmi} and create some new \texttt{Card} objects in the \texttt{Partition}s (e.g., create a new \texttt{Card} with \texttt{Card.face = ``Question : two''}, \texttt{Card.back = ``Answer : zwei''} in \texttt{Partition 0}).
+
+\item[$\blacktriangleright$] Run the \texttt{TGGMain.java} again and inspect the \texttt{target.xmi}. You will see changes to our \texttt{source.xmi} transformed to changes on our \texttt{target.xmi}.
+
+\end{enumerate}
+
+To end this chapter on TGGs, lets take a look at a nice \emph{visualization} of the created triple of models:
+
+\begin{enumerate}
+
+
+\item[$\blacktriangleright$] Right-click on \texttt{corr\_BWD.xmi} and choose ``eMoflon $\rightarrow$ Start Integrator'', which opens you the window depicted in Fig.~\ref{fig:integrator_start}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -126,8 +150,7 @@ Right-click on the \texttt{corr\_BWD.xmi} and choose ``eMoflon $\rightarrow$ Sta
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Drag and drop \texttt{protocol\_BWD.xmi} into the integrator window. You will now see the controls explained in the lower part of the window (Fig.~\ref{fig:integrator_after_protocol}). Note that this chapter will only cover the very basic commands and refer to the appendix (not done yet) for further information (e.g. about breakpoints).
- % Check for the created source and correspondence models and open and inspect \texttt{Box.xmi} (Fig~\ref{fig:boxxmi}).
+\item[$\blacktriangleright$] Drag and drop \texttt{protocol\_BWD.xmi} into the integrator window. You will now see the controls explained in the lower part of the window (Fig.~\ref{fig:integrator_after_protocol}). Note that this chapter will only cover the very basic commands and refer to the appendix \ref{sec:app_integrator} for further information (e.g. about breakpoints).
 
 \begin{figure}[htbp]
 \begin{center}

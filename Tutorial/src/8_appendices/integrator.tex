@@ -1,0 +1,56 @@
+\section{Using the integrator with breakpoints}
+\label{sec:app_integrator}
+You can set breakpoints for the integrator in order to stop when a specific rule is called. 
+
+\begin{enumerate}
+	\item[$\blacktriangleright$] Import the file \texttt{after\_chapter\_6.zip} into a workspace.
+	\item[$\blacktriangleright$] Create a class \texttt{org.moflon.tie.Breakpoint} in your \texttt{src} folder of the \texttt{LearningBoxToDictionaryIntegration} project.
+	\item[$\blacktriangleright$] Implement it with the code given in Fig. \ref{fig:breakpoint_impl}.
+
+
+\begin{figure}[htbp]
+\begin{center}
+\begin{lstlisting}[language=Java,backgroundcolor=\color{white}, keywordstyle={\bfseries\color{purple}}]
+package org.moflon.tie;
+
+import org.moflon.integrator.IntegratorObserver;
+import org.moflon.integrator.builder.IntegratorObservable;
+
+import TGGLanguage.algorithm.protocol.AppropriateCandidate;
+import TGGLanguage.algorithm.protocol.Candidate;
+import TGGLanguage.algorithm.protocol.CandidateProtocol;
+import TGGLanguage.algorithm.protocol.TranslationStep;
+
+public class Breakpoint extends IntegratorObserver {
+
+  @Override
+  public void update(IntegratorObservable o, TranslationStep arg) {
+    if(arg instanceof CandidateProtocol)
+      for(Candidate c : ((CandidateProtocol) arg).getCandidates())
+        if(c instanceof AppropriateCandidate &&
+            c.getRule().matches("BoxToDictionaryRule"))
+          o.stop(this, "BoxToDictionaryRule reached");
+  }
+
+}
+
+\end{lstlisting}
+  \caption{Implementation of Breakpoint}
+  \label{fig:breakpoint_impl}
+\end{center}
+\end{figure}
+\FloatBarrier
+
+	\item[$\blacktriangleright$] Replace line 25 in \texttt{StartIntegrator.java} (same package) with the following code to register the breakpoint:
+
+\begin{lstlisting}[language=Java,backgroundcolor=\color{white}, keywordstyle={\bfseries\color{purple}}]
+IntegratorObservable integrator = IntegratorApp.startIntegrator(args);
+integrator.addObserver(new Breakpoint());
+\end{lstlisting}
+
+	\item[$\blacktriangleright$] Start the integrator of \texttt{corr\_BWD.xmi} using the protocol \texttt{protocol\_BWD.xmi}.
+	\item[$\blacktriangleright$] Press \texttt{Ctrl+Shift+Alt+Right} to jump to your breakpoint at the first appearance of the \texttt{BoxToDictionaryRule}.
+
+\end{enumerate}
+
+
