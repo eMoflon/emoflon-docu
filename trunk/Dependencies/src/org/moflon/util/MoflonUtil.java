@@ -24,6 +24,13 @@ import org.apache.log4j.PropertyConfigurator;
  */
 public class MoflonUtil
 {
+   public static final String MEMBERS_END = "// [user code injected with eMoflon] -->";
+   public static final String MEMBERS_BEGIN = "// <-- [user code injected with eMoflon]";
+   public static final String IMPORT_END = "// [user defined imports] -->";
+   public static final String IMPORT_BEGIN = "// <-- [user defined imports]";
+   public static final String MODEL_COMMENT = "// [user code injected with eMoflon]";
+   
+   
    public static String getMoflonDefaultURIForProject(String projectName){
       return "http://www.moflon.org." + projectName;
    }
