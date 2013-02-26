@@ -3,8 +3,8 @@
 You can set breakpoints for the integrator in order to stop when a specific rule is called. 
 
 \begin{enumerate}
-	\item[$\blacktriangleright$] Import the file \texttt{after\_chapter\_6.zip} into a workspace.
-	\item[$\blacktriangleright$] Create a class \texttt{org.moflon.tie.Breakpoint} in your \texttt{src} folder of the \texttt{LearningBoxToDictionaryIntegration} project.
+	\item[$\blacktriangleright$] Import the file \texttt{after\_chapter\_6.zip} into your workspace.
+	\item[$\blacktriangleright$] Create a class, e.g., \texttt{org/moflon/tie/Breakpoint} in your \texttt{src} folder of the \texttt{LearningBoxToDictionaryIntegration} project.
 	\item[$\blacktriangleright$] Implement it with the code given in Fig. \ref{fig:breakpoint_impl}.
 
 
@@ -35,7 +35,7 @@ public class Breakpoint extends IntegratorObserver {
 }
 
 \end{lstlisting}
-  \caption{Implementation of Breakpoint}
+  \caption{Implementation of a breakpoint}
   \label{fig:breakpoint_impl}
 \end{center}
 \end{figure}
@@ -48,8 +48,9 @@ IntegratorObservable integrator = IntegratorApp.startIntegrator(args);
 integrator.addObserver(new Breakpoint());
 \end{lstlisting}
 
-	\item[$\blacktriangleright$] Start the integrator of \texttt{corr\_BWD.xmi} using the protocol \texttt{protocol\_BWD.xmi}.
-	\item[$\blacktriangleright$] Press \texttt{Ctrl+Shift+Alt+Right} to jump to your breakpoint at the first appearance of the \texttt{BoxToDictionaryRule}.
+	\item[$\blacktriangleright$] Start the integrator for \texttt{corr\_BWD.xmi} and \texttt{protocol\_BWD.xmi}.
+	\item[$\blacktriangleright$] Press \texttt{Ctrl+Shift+Alt+Right} to jump to your breakpoint.
+	This should be the first application of \texttt{BoxToDictionaryRule}.
 
 \end{enumerate}
 
