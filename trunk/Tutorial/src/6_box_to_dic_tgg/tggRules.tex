@@ -131,24 +131,30 @@ In contrast to the rather simple dictionary, where \texttt{Dictionary} is a dire
 
 If you are in hurry, you may already proceed to Sect.~\ref{sect:TGGs_in_Action} and transform a box to a dictionary and vice-versa.
 But please be aware that your specified TGG (with just one rule) will only be able to cope with empty boxes and dictionaries.
-Handling additional elements (cards in the learning box and entries in the dictionary) requires a second rule \ldots
+Handling additional elements (cards in the learning box and entries in the dictionary) requires a second rule.
 
-To create the second rule, we will introduce another method. Note that both methods generate the same results and the following one is only a shortcut.
+To create the second rule, we can use a cool feature provided by the editor to derive new rules from existing
+rules:
 
 \begin{enumerate}
-  \item[$\blacktriangleright$] Select \texttt{box}, \texttt{boxToDictionary}, \texttt{dictionary} and \texttt{partition0} in \texttt{BoxToDictionaryRule}.
-  \item[$\blacktriangleright$] Choose ``Derive'' in the ``eMoflon TGG Functions'' section of the add-in window as depicted in Fig. \ref{fig:derive_from_tgg_rule} (if you cannot see this window, make sure ``Extensions $\rightarrow$ Add-In Window'' is activated) and enter ``CardToEntryRule'' as the name in the dialog that shows up. This will generate a new rule which already contains the elements it is derived from.
+  \item[$\blacktriangleright$] Select \texttt{box}, \texttt{boxToDictionary}, \texttt{dictionary} and \texttt{partition0} in \texttt{Box\-To\-Dictionary\-Rule}.
+  \item[$\blacktriangleright$] Choose ``Derive'' in the ``eMoflon TGG Functions'' section of the add-in window 
+  as depicted in Fig. \ref{fig:derive_from_tgg_rule} (if you cannot see this window, make 
+  sure ``Extensions $\rightarrow$ Add-In Window'' is activated) and enter ``CardToEntryRule'' as the 
+  name in the dialog that pops up. 
+  This will derive a new TGG rule that already contains the chosen elements as context.
 
   \begin{figure}[htbp]
   \begin{center}
-    \includegraphics[width=0.6\textwidth]{pics/tggBilder/tggRule/derive_tgg_rule.png}
+    \includegraphics[width=0.65\textwidth]{pics/tggBilder/tggRule/derive_tgg_rule.png}
     \caption{Derive from an existing TGG rule}
     \label{fig:derive_from_tgg_rule}
   \end{center}
   \end{figure}
   \FloatBarrier
 
-  \item[$\blacktriangleright$] Add instances of \texttt{Card} and \texttt{Entry} to the rule and add links until the diagram closely resembles Fig. \ref{fig:cardtoentry_1}.
+  \item[$\blacktriangleright$] Add instances of \texttt{Card} and \texttt{Entry} to the rule and required links 
+  until the diagram closely resembles Fig. \ref{fig:cardtoentry_1}.
 
   \begin{figure}[htbp]
   \begin{center}
@@ -163,7 +169,7 @@ To create the second rule, we will introduce another method. Note that both meth
 
 As a final step, we now have to specify how attributes are to be handled via appropriate attribute constraints.
 
-The \texttt{content} of an \texttt{Entry} in a \texttt{Dictionary} is to be of the form \texttt{<word> : <meaning>}, while the \texttt{face} of a \texttt{Card} must read \texttt{Question: <word>}, and the \texttt{back} \texttt{Answer: <meaning>}.
+The \texttt{content} of an \texttt{Entry} in a \texttt{Dictionary} is to be of the form \texttt{<word> : <meaning>}, while the \texttt{face} of a \texttt{Card} must read \texttt{Question: <word>}, and the \texttt{back} of the Card \texttt{Answer: <meaning>}.
 
 Using two predefined attribute constraint \texttt{addPrefix} and \texttt{concat}, we can specify this as a set of constraints:
 
@@ -177,7 +183,7 @@ Using two predefined attribute constraint \texttt{addPrefix} and \texttt{concat}
 
 \end{enumerate}
 
-After connecting appropriatly, your rule should now resemble Fig.~\ref{fig:cardtoentry_2}.
+After connecting appropriately, your rule should now resemble Fig.~\ref{fig:cardtoentry_2}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -199,7 +205,7 @@ For the moment, we are just going to declare and use the attribute constraint, w
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.55\textwidth]{pics/tggBilder/tggRule/create_new_constraint}
+  \includegraphics[width=0.75\textwidth]{pics/tggBilder/tggRule/create_new_constraint}
   \caption{Create a user defined constraint.}
   \label{fig:create_new_constraint}
 \end{center}
@@ -216,7 +222,7 @@ For the moment, we are just going to declare and use the attribute constraint, w
 After defining the dependencies of the constraint, your complete TGG rule should resemble Fig.~\ref{fig:cardtoentry_complete}.
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{pics/tggBilder/tggRule/tgg21}
+  \includegraphics[width=0.8\textwidth]{pics/tggBilder/tggRule/tgg21}
   \caption{\texttt{CardToEntryRule} with complete attribute manipulation}
   \label{fig:cardtoentry_complete}
 \end{center}
@@ -225,9 +231,9 @@ After defining the dependencies of the constraint, your complete TGG rule should
 Just like the patterns describing \emph{structural} correspondence,  attribute constraints can be automatically \emph{operationalized} as required for the concrete transformations (forward, backward).
 Even more interesting, a set of constraints might have to be ordered a bit differently depending on the direction of the transformation, and some constraints might have to be checked for already set attributes, while others must set values appropriately to fulfill the constraint.
 
-For built-in or \emph{library} constraints (Appendix
-~\ref{chap:libraryConstraints}) such as \emph{eq}, \emph{addPrefix} and
-\emph{concat}, you do not need to worry about these details and can just express what should hold -- everything is handled automatically.
+For built-in or \emph{library} constraints such as \emph{eq}, \emph{addPrefix} and
+\emph{concat}, you do not need to worry about these details and can just express what should hold -- 
+everything else is handled automatically.
 
 In many cases, however, a constraint might be very problem-specific, such as our \emph{indexToLevel} constraint, and there might not be any fitting combination of library constraints to express the consistency condition.
 

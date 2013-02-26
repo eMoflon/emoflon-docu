@@ -331,7 +331,7 @@ We will of course use SDMs to \emph{implement} the methods later.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.7\textwidth]{pics/memBoxBilder/memBox35.png}
+  \includegraphics[width=0.65\textwidth]{pics/memBoxBilder/memBox35.png}
 	\caption{Add an operation.}
 	\label{fig:add_operation}
 \end{figure}
@@ -385,7 +385,6 @@ Add all operations analogously for \texttt{Box} and \texttt{Card}, so that your 
 	\label{fig:metamodel_complete}
 \end{figure}
 
-% TODO geaenderte Funktionen (von util weg) beschreiben, util rausnehmen
 Lets take a step back and review our metamodel.
 We have modelled a \texttt{Box} that contains arbitrary many \texttt{Partition}s.
 A \texttt{Partition} in the \texttt{Box} has a \texttt{next} and \texttt{previous} \texttt{Partition} that can be set or not. Finally, \texttt{Partition}s contain \texttt{Card}s.
@@ -402,11 +401,9 @@ A \texttt{Card} contains the actual content to be learnt as a question on the ca
 A \texttt{Card} also maintains a \texttt{partition\-History} which can be used to keep track of how often a \texttt{Card} has been answered correctly/wrongly.
 This might indicate how difficult the \texttt{Card} is for a specific user.
 When learning a language, it makes sense to be able to swap the target and source language and this is supported by \texttt{Card} via \texttt{invert} (turns the card around).
-% TODO ende von beschreibung
 
 Now try to export the metamodel for code generation in Eclipse (if problems occur during the following steps, we recommend to read section \ref{sect:validating}. This might help you to find your mistakes).
 
-% TODO verweis auf validierung?
 \begin{enumerate}
 \item[$\blacktriangleright$] To do this right-click on \texttt{LearningBoxLanguage} and choose ``Extensions/MOFLON::Ecore Addin/Export Selection to Workspace''.
 Then switch to your Eclipse work\-space and refresh the metamodel workingset.
@@ -417,7 +414,7 @@ If you have done everything right, a new project \texttt{LearningBoxLanguage} sh
 If this is not the case please ensure that your metamodel is identical with Fig.~\ref{fig:metamodel_complete}.
 If you believe everything is correct and things still don't work then feel free to contact us at \href{mailto:contact@moflon.org}{contact@moflon.org}.
 If code is generated successfully, take a look at all the stuff that has been generated under \texttt{/gen}, especially the default  implementation for all methods that just throws an  \texttt{OperationNotSupported} exception.
-We shall see later in the tutorial that the EMF codegenerator actually supports injecting hand-written implementations of methods into generated methods and classes.
+We shall see later in the tutorial that the EMF code generator actually supports injecting hand-written implementations of methods into generated methods and classes.
 With eMoflon however, we can also model a large part of the dynamic semantics and only need to implement small helper methods for e.g. string manipulation by hand.
 
 \section{Validating your metamodel}

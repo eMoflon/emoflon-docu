@@ -3,7 +3,7 @@
 In this section, we shall export our TGG, implement our new constraint, and get our integration running!
 
 \begin{enumerate}
-\item[$\blacktriangleright$] Export your metamodels and TGG by choosing ``\texttt{Extensions/\-MOFLON::\-Ecore Addin\-/Export all to Workspace}'' as usual in EA and refreshing your Eclipse Metamodel project to trigger code generation.
+\item[$\blacktriangleright$] Export your metamodels and TGG by choosing ``\texttt{Extensions/\-MOFLON::\-Ecore Addin\-/Export all to Workspace}'' as usual in EA and refres your Eclipse Metamodel project to trigger code generation.
 \end{enumerate}
 
 If you have done everything right, code generation and compilation should terminate without any error and the structure of the \texttt{gen} folder in \texttt{LearningBox\-To\-Dictionary\-Integration} should resemble Fig.~\ref{fig:gen_folder}.
@@ -16,17 +16,8 @@ If you have done everything right, code generation and compilation should termin
 \end{center}
 \end{figure}
 
-% The Java compilation error in \texttt{Card\-To\-Entry\-Rule\-Impl} is due to our missing \texttt{indexToLevel} implementation, and just means we have to implement the required class by hand.
-
-% \begin{enumerate}
-% \item[$\blacktriangleright$] In \texttt{LearningBox\-To\-Dictionary\-Integration/src} create the Java package \texttt{csp.constraints} and add a new public class \texttt{IndexToLevel}.
-% \item[$\blacktriangleright$] Implement the class with the code provided in Fig.~\ref{fig:indexToLevel}.
-% If you take a look at the code it should be pretty clear how the declared adornments are checked and handled appropriately.
-% With this class, the generated code should now compile without any further errors.
-% \end{enumerate}
-
 \begin{enumerate}
-  \item[$\blacktriangleright$] To implement our own constraint \texttt{IndexToLevel} open the file \texttt{csp.IndexToLevel.java} in the \texttt{src} folder of \texttt{LearningBoxToDictionaryIntegration}.
+  \item[$\blacktriangleright$] To implement our constraint \texttt{IndexToLevel}, locate and open the file \texttt{csp/IndexToLevel.java} in the \texttt{src} folder of \texttt{Learning\-Box\-To\-Dictionary\-Integration}.
   \item[$\blacktriangleright$] Insert the code provided in Fig.~\ref{fig:indexToLevel}
 
 \end{enumerate}
@@ -114,131 +105,75 @@ As dictionaries are of a much simple structure, let's start with a backward tran
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Run the automatically created main class \texttt{TGGMain} in \texttt{LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/src} and refresh the folder \texttt{LearningBox\-To\-Dictionary\-In\-te\-gra\-tion/\-instances}. Note that you receive a red output ``Unable to load instances/source.xmi, instances/source.xmi does not exist.'', but this is no problem since we did not intend to do a forward transformation and the backward transformation will be made anyways.
-\item[$\blacktriangleright$] Make a copy of \texttt{target.xmi\_BWD.xmi} and rename it to \texttt{source.xmi} (the original file is needed for debugging).
+\item[$\blacktriangleright$] Run the automatically created main class \texttt{TGGMain} in \texttt{LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/src} and refresh the folder \texttt{LearningBox\-To\-Dictionary\-In\-te\-gra\-tion/\-instances}. 
 
+Note the error message ``Unable to load instances/source.xmi, instances/source.xmi does not exist.'' in the console.
+This is because no source file was found for the forward transformation.
+We'll fix that in a moment.
 \end{enumerate}
 
 As you can see, our \texttt{Dictionary} has been backward translated to a \texttt{Box} with the same name (\texttt{English Numbers}), containing three \texttt{Par\-ti\-tions}, as specified in \texttt{Box\-To\-Dictionary\-Rule}.
 The two \texttt{Entry} objects have also been translated to \texttt{Card} objects as specified in \texttt{CartToEntryRule}.
 Also note that the \texttt{face} and the \texttt{back} of the \texttt{Card}s are consistent with the \texttt{content} of the corresponding \texttt{Entry}, e.g. \texttt{card.face = ``Question : one''} and \texttt{card.back = ``Answer : eins''}.
-The indices of the partitions containing the cards are also consistent with the level of the entry, i.e., \texttt{0} for \texttt{beginner}, and \texttt{1} for \texttt{advanced} (do net let the names of the partitions confuse you: they are named after their size, not their index).
+The indices of the partitions containing the cards are also consistent with the level of the entry, i.e., \texttt{0} for \texttt{beginner}, and \texttt{1} for \texttt{advanced} 
+(do not let the names of the partitions in the view confuse you: they are labelled using their size (all 0), and not their index, double-click the partitions to see the values of \emph{all} their attributes in the property window).
 
 Congratulations! You have successfully performed your first \emph{backward} transformation from \texttt{Dictionary\-Language} (target model) to \texttt{Learn\-ing\-Box\-Lan\-guage} (source model) using TGGs!
 
 To show that the transformation is actually bidirectional, lets edit the created source model and transform it \emph{forward} to a new target model:
 
 \begin{enumerate}
+\item[$\blacktriangleright$] Make a copy of \texttt{target.xmi\_BWD.xmi} (the result of the backward transformation)
+and rename it to \texttt{source.xmi}.
+  
 \item[$\blacktriangleright$] Open \texttt{source.xmi} and create some new \texttt{Card} objects in the \texttt{Partition}s (e.g., create a new \texttt{Card} with \texttt{Card.face = ``Question : two''}, \texttt{Card.back = ``Answer : zwei''} in \texttt{Partition 0}).
 
-\item[$\blacktriangleright$] Run the \texttt{TGGMain.java} again and inspect the \texttt{target.xmi}. You will see changes to our \texttt{source.xmi} transformed to changes on our \texttt{target.xmi}.
+\item[$\blacktriangleright$] Run the \texttt{TGGMain.java} again and inspect the 
+created target model \texttt{source.xmi\_FWD.xmi} (result of the forward transformation). 
 
 \end{enumerate}
 
-To end this chapter on TGGs, lets take a look at a nice \emph{visualization} of the created triple of models:
+To end this chapter on TGGs, lets take a look at a \emph{visualization} of the created triple of models:
 
 \begin{enumerate}
 
 
-\item[$\blacktriangleright$] Right-click on \texttt{corr\_BWD.xmi} and choose ``eMoflon $\rightarrow$ Start Integrator'', which opens you the window depicted in Fig.~\ref{fig:integrator_start}.
+\item[$\blacktriangleright$] Right-click on \texttt{corr\_BWD.xmi} and choose ``eMoflon $\rightarrow$ Start Integrator'', which opens the window depicted in Fig.~\ref{fig:integrator_start}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tggBilder/transformation/integrator_start_view}
+  \includegraphics[width=0.7\textwidth]{pics/tggBilder/transformation/integrator_start_view}
   \caption{Default view of the integrator}
   \label{fig:integrator_start}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Drag and drop \texttt{protocol\_BWD.xmi} into the integrator window. You will now see the controls explained in the lower part of the window (Fig.~\ref{fig:integrator_after_protocol}). Note that this chapter will only cover the very basic commands and refer to the appendix \ref{sec:app_integrator} for further information (e.g. about breakpoints).
+\item[$\blacktriangleright$] Drag and drop \texttt{protocol\_BWD.xmi} into the integrator window. 
+You will now see the controls explained in the lower part of the window 
+(Fig.~\ref{fig:integrator_after_protocol}). 
+Note that this chapter will only cover the very basic commands so please refer to 
+Appendix \ref{sec:app_integrator} for further information (e.g. about setting breakpoints).
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{pics/tggBilder/transformation/integrator_after_protocol_insertion.png}
+  \includegraphics[width=0.7\textwidth]{pics/tggBilder/transformation/integrator_after_protocol_insertion.png}
   \caption{Integrator after protocol insertion.}
   \label{fig:integrator_after_protocol}
 \end{center}
-\end{figure}
+\end{figure} 
 \FloatBarrier
 
-\item[$\blacktriangleright$] The integrator works as an debugger which receives the protocol of the transformation. This enables you to use \texttt{Alt+Right} to navigate forwards through the transformation process and \texttt{Alt+Left} to go backwards. Now go through the transformation.
-You will notice that some elements are highlighted with a color. Those are the elements that are currently processed.
-
+\item[$\blacktriangleright$] The integrator works as an ``offline'' debugger which works on the protocol 
+(trace) of the transformation. 
+You can use \texttt{Alt+Right} to navigate forwards through the transformation process and \texttt{Alt+Left} 
+to go backwards. 
+When you step through the transformation, you will notice that some elements are highlighted with colours. 
+These are the elements that are currently being processed and the colours have the following meaning:
 \begin{description}
   \item[Blue] The element is now about to be processed (is being ``looked at'').
-  \item[Yellow] The element cannot be transformed right now and is queued for later transformation (e.g. when it first tries to transform a Entry to a Card when there is no Box with partitions to put the Card into).
+  \item[Yellow] The element cannot be transformed right now and has been queued for later transformation 
+  (e.g., when transforming an Entry to a Card, the Box with partitions to put the 
+  Card into must be translated first).
   \item[Green] The object has just been created.
 \end{description}
-
-% \begin{figure}[htbp]
-% \begin{center}
-%   \includegraphics[width=\textwidth]{pics/tggBilder/transformation/tgg25}
-%   \caption{\texttt{TGGMain} with code to execute a backward transformation}
-%   \label{fig:tggmain}
-% \end{center}
-% \end{figure}
-
-% \begin{figure}[htbp]
-% \begin{center}
-%   \includegraphics[width=0.9\textwidth]{pics/tggBilder/transformation/tgg27}
-%   \caption{Generated source model \texttt{Box.xmi}}
-%   \label{fig:boxxmi}
-% \end{center}
-% \end{figure}
-
 \end{enumerate}
-
-% As you can see, our \texttt{Dictionary} has been backward translated to a \texttt{Box} with the same name (\texttt{English Numbers}), containing three \texttt{Par\-ti\-tions}, as specified in \texttt{Box\-To\-Dictionary\-Rule}.
-% The two \texttt{Entry} objects have also been translated to \texttt{Card} objects as specified in \texttt{CartToEntryRule}.
-% Also note that the \texttt{face} and the \texttt{back} of the \texttt{Card}s are consistent with the \texttt{content} of the corresponding \texttt{Entry}, e.g. \texttt{card.face = ``Question : one''} and \texttt{card.back = ``Answer : eins''}.
-% The indices of the partitions containing the cards are also consistent with the level of the entry, i.e., \texttt{0} for \texttt{beginner}, and \texttt{1} for \texttt{advanced}.
-
-% Congratulations! You have successfully performed your first \emph{backward} transformation from \texttt{Dictionary\-Language} (target model) to \texttt{Learn\-ing\-Box\-Lan\-guage} (source model) using TGGs!
-
-% To show that the transformation is actually bidirectional, lets edit the created source model and transform it \emph{forward} to a new target model:
-
-% \begin{enumerate}
-% \item[$\blacktriangleright$] Open \texttt{Box.xmi} and create some new \texttt{Card} objects in the \texttt{Partition}s (e.g., create a new \texttt{Card} with \texttt{Card.face = ``Question : two''}, \texttt{Card.back = ``Answer : zwei''} in \texttt{Partition 0}).
-
-% \item[$\blacktriangleright$] Adjust \texttt{TGGMain.java} carefully as shown in Fig.~\ref{fig:tggmainforward} and run the main method again.
-
-% \begin{figure}[htbp]
-% \begin{center}
-%   \includegraphics[width=\textwidth]{pics/tggBilder/transformation/tgg28}
-%   \caption{\texttt{TGGMain} for a \emph{forward} transformation}
-%   \label{fig:tggmainforward}
-% \end{center}
-% \end{figure}
-
-% \end{enumerate}
-
-% If you refresh and inspect \texttt{Dictionary.xmi}, you should be able to see that your new \texttt{Card} objects have been transformed to \texttt{Entry} objects in the dictionary.
-
-% To end this chapter on TGGs, lets take a look at a nice \emph{visualization} of the created triple of models:
-
-% \begin{enumerate}
-% \item[$\blacktriangleright$] Right-click the correspondence model \texttt{Correspondence\-Model\-.xmi} and choose \texttt{Start Integrator} from the \texttt{eMoflon} context menu (Fig.~\ref{fig:startintegrator}).
-% \end{enumerate}
-
-% \begin{figure}[htbp]
-% \begin{center}
-%   \includegraphics[width=\textwidth]{pics/tggBilder/transformation/tgg29}
-%   \caption{Starting the integrator}
-%   \label{fig:startintegrator}
-% \end{center}
-% \end{figure}
-
-% The \emph{eMoflon-Integrator} should be opened visualizing the objects from the source and target models in a treeview with the correspondences between objects depicted as actual ``links" (Fig.~\ref{fig:emoflonintegrator}).
-% You can implement the \texttt{toString} methods of all classes in the metamodel to improve the visualization.
-
-% \begin{figure}[htbp]
-% \begin{center}
-%   \includegraphics[width=0.9\textwidth]{pics/tggBilder/transformation/tgg30}
-%   \caption{A visualization of the integration in our integrator}
-%   \label{fig:emoflonintegrator}
-% \end{center}
-% \end{figure}
-
-% That's it for TGGs for now\ldots
-% We hope you enjoyed the short journey!
-% Getting used to thinking in TGGs and describing a simultaneous evolution takes some time and patience, but if you feel TGGs could be useful in your domain, then we would be happy to support you as much as we can :)
