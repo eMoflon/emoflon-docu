@@ -5,7 +5,9 @@ import java.io.FileFilter;
 import java.io.IOException;
 import java.net.JarURLConnection;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -14,6 +16,9 @@ import org.apache.log4j.DailyRollingFileAppender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 import org.apache.log4j.PropertyConfigurator;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EcorePackage;
 
 /**
  * A collection of useful helper methods.
@@ -129,4 +134,52 @@ public class MoflonUtil
          }
       }
    }
+   
+   /**
+	 * Derive the java data type of a given Ecore data type. 
+	 * All numerical data types (e.g. byte, int etc.) are converted to the Java class "Number".
+	 * 
+	 * @param eCoreType the name of the Ecore data type class (e.g. EString)
+	 * @return the name of the java type class (e.g. String)
+	 */
+	public static String eCoreTypeToJavaType(String eCoreType, boolean numericalToNumber) throws IllegalArgumentException 
+	{
+		String javaType = "";
+		List<String> primitiveNumberTypes = Arrays.asList(new String[] {
+				"byte", "short", "int", "long", "float", "double" });
+	   
+		// Derive the java data type from the Ecore class name 
+		try {
+			javaType = EcorePackage.eINSTANCE.getEClassifier(eCoreType).getInstanceClass().getSimpleName();
+		} catch (Exception e) {
+			System.err.println("Can not derive java data type from the given Ecore data type = " + eCoreType);
+			
+			javaType = eCoreType;
+		}
+	 
+		// Convert all numerical data types to Number
+		if(numericalToNumber)
+			if (primitiveNumberTypes.contains(javaType))
+				javaType = "Number";
+		   
+		return javaType;
+	}
+	
+	/**
+	 * Determine fully qualified name of given eclassifier by iterating through package hierarchy.
+	 * @param eClass
+	 * @return
+	 */
+	public static String getFQN(EClassifier eClass) {
+		String fqn = eClass.getName();
+
+		ENamedElement e = eClass;
+
+		while (e.eContainer() != null) {
+			e = (ENamedElement) e.eContainer();
+			fqn = e.getName() + "." + fqn;
+		}
+
+		return fqn;
+	}
 }
