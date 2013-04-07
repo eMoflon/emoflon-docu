@@ -6,7 +6,39 @@ In this chapter you will learn how to implement methods that you cannot express 
 Injections are inspired by partial classes in C\#, and are our preferred way of providing a clean separation of generated from handwritten code.
 
 \begin{enumerate}
-    \item[$\blacktriangleright$] To implement \texttt{Box::addToStringRep}, right-click on the class \texttt{Box.java} in Eclipse and choose ``eMoflon$\rightarrow$Create injection for class'' (Fig.~\ref{fig:injection_create_injection}).
+    \item[$\blacktriangleright$] Open \texttt{gen/LearningBoxLanguage/impl/BoxImpl.java} and implement \texttt{addToStringRep(Card)} it with the code given in Fig. \ref{fig:addToStringRep_impl}. The comment is necessary to indicate that this code is written by the user and needs to be extracted into our injection file.
+
+    \begin{figure}[htbp]
+        \centering
+        \begin{lstlisting}[language=Java, keywordstyle={\bfseries\color{purple}}, backgroundcolor=\color{white}]
+    public void addToStringRep(Card card) {
+        // [user code injected with eMoflon]
+        StringBuilder sb = new StringBuilder();
+
+        if (stringRep == null)
+        {
+            sb.append("BoxContent: [");
+
+        }
+        else
+        {
+            sb.append(stringRep);
+            sb.append(", [");
+        }
+
+        sb.append(card.getFace());
+        sb.append(", ");
+        sb.append(card.getBack());
+        sb.append("]");
+
+        stringRep = sb.toString();
+    }
+        \end{lstlisting}
+        \caption{Implementation of \texttt{addToStringRep}}
+        \label{fig:addToStringRep_impl}
+    \end{figure}
+
+    \item[$\blacktriangleright$] Right-click on the class \texttt{BoxImpl.java} in Eclipse and choose ``eMoflon$\rightarrow$Create injection for class'' (Fig.~\ref{fig:injection_create_injection}).
 
     \begin{figure}[htbp]
         \centering
@@ -15,7 +47,7 @@ Injections are inspired by partial classes in C\#, and are our preferred way of 
         \label{fig:injection_create_injection}
     \end{figure}
 
-    This creates a new file in the \texttt{injection} folder of your project with the same packages and name as the Java class but with ``.inject'' as extension (Fig. \ref{fig:injection_created_injection_file}). This file contains the definition of a \textit{partial class}~(Fig.~\ref{code:empty_inject_file}). 
+    This creates a new file in the \texttt{injection} folder of your project with the same packages and name as the Java class but with ``.inject'' as extension (Fig. \ref{fig:injection_created_injection_file}). This file contains the definition of a \textit{partial class}~(Fig.~\ref{code:generated_inject_file}) and the implementation of our model methods, that are not defined via SDMs.
 
     \begin{figure}[htbp]
         \centering
@@ -37,42 +69,82 @@ Injections are inspired by partial classes in C\#, and are our preferred way of 
     \begin{figure}[htbp]
         \centering
         \begin{lstlisting}[language=Injection]
-            partial class Box
-            {
-            
-            }
+    partial class BoxImpl {
+
+        @model determineNextSize () <--
+
+
+                // TODO: implement this method here but do not remove the injection marker
+                throw new UnsupportedOperationException();
+        -->
+
+        @model addToStringRep (Card card) <--
+
+                StringBuilder sb = new StringBuilder();
+
+                if (stringRep == null)
+                {
+                    sb.append("BoxContent: [");
+
+                }
+                else
+                {
+                    sb.append(stringRep);
+                    sb.append(", [");
+                }
+
+                sb.append(card.getFace());
+                sb.append(", ");
+                sb.append(card.getBack());
+                sb.append("]");
+
+                stringRep = sb.toString();
+        -->
+
+    }
         \end{lstlisting}
-        \caption{Empty injection file}
-        \label{code:empty_inject_file}
+        \caption{Generated injection file}
+        \label{code:generated_inject_file}
     \end{figure}
     \FloatBarrier
 
 	\clearpage
-    \item[$\blacktriangleright$]Now copy and paste the code in Fig. \ref{code:complete_inject_file} into your injection file.
+    \item[$\blacktriangleright$] You can also implement your model methods directly with the injection file, but it recommended implementing the Java file and generating the injection from it. Now complete the injection with the code given in Fig. \ref{code:complete_inject_file} (just for demonstration).
 
     \begin{figure}[htbp]
         \centering
         \begin{lstlisting}[language=Injection]
-            partial class Box
+partial class BoxImpl {
+
+    @model determineNextSize () <--
+
+            return getContainedPartition().size() * 10;
+    -->
+
+    @model addToStringRep (Card card) <--
+
+            StringBuilder sb = new StringBuilder();
+
+            if (stringRep == null)
             {
-                @model addToStringRep(Card card) <--
-                    StringBuilder sb = new StringBuilder();
-                    if (stringRep == null)
-                    {
-                        sb.append("BoxContent: [");
-                    }
-                    else
-                    {
-                        sb.append(stringRep);
-                        sb.append(", [");
-                    }
-                    sb.append(card.getFace());
-                    sb.append(", ");
-                    sb.append(card.getBack());
-                    sb.append("]");
-                    stringRep = sb.toString();
-                -->
+                sb.append("BoxContent: [");
+
             }
+            else
+            {
+                sb.append(stringRep);
+                sb.append(", [");
+            }
+
+            sb.append(card.getFace());
+            sb.append(", ");
+            sb.append(card.getBack());
+            sb.append("]");
+
+            stringRep = sb.toString();
+    -->
+
+}
         \end{lstlisting}
         \caption{Implementation of helper method as an injection}
         \label{code:complete_inject_file}
@@ -82,7 +154,7 @@ Injections are inspired by partial classes in C\#, and are our preferred way of 
 
 \end{enumerate}
 
-    
+
 
     \begin{figure}[htbp]
         \centering
