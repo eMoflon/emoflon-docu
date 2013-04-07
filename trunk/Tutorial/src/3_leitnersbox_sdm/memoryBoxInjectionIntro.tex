@@ -6,7 +6,8 @@ In this chapter you will learn how to implement methods that you cannot express 
 Injections are inspired by partial classes in C\#, and are our preferred way of providing a clean separation of generated from handwritten code.
 
 \begin{enumerate}
-    \item[$\blacktriangleright$] Open \texttt{gen/LearningBoxLanguage/impl/BoxImpl.java} and implement \texttt{addToStringRep(Card)} it with the code given in Fig. \ref{fig:addToStringRep_impl}. The comment is necessary to indicate that this code is written by the user and needs to be extracted into our injection file.
+    \item[$\blacktriangleright$] Open \texttt{gen/LearningBoxLanguage/impl/BoxImpl.java} and implement \texttt{addToStringRep(Card)} with the code given in Fig. \ref{fig:addToStringRep_impl}. 
+    Do not remove the comment, which is necessary to indicate that this code is written by the user and needs to be extracted into our injection file.
 
     \begin{figure}[htbp]
         \centering
@@ -38,7 +39,7 @@ Injections are inspired by partial classes in C\#, and are our preferred way of 
         \label{fig:addToStringRep_impl}
     \end{figure}
 
-    \item[$\blacktriangleright$] Right-click on the class \texttt{BoxImpl.java} in Eclipse and choose ``eMoflon$\rightarrow$Create injection for class'' (Fig.~\ref{fig:injection_create_injection}).
+    \item[$\blacktriangleright$] Right-click on the class \texttt{BoxImpl.java} in Eclipse and choose ``eMoflon $\rightarrow$ Create injection for class'' (Fig.~\ref{fig:injection_create_injection}).
 
     \begin{figure}[htbp]
         \centering
@@ -47,7 +48,7 @@ Injections are inspired by partial classes in C\#, and are our preferred way of 
         \label{fig:injection_create_injection}
     \end{figure}
 
-    This creates a new file in the \texttt{injection} folder of your project with the same packages and name as the Java class but with ``.inject'' as extension (Fig. \ref{fig:injection_created_injection_file}). This file contains the definition of a \textit{partial class}~(Fig.~\ref{code:generated_inject_file}) and the implementation of our model methods, that are not defined via SDMs.
+    This creates a new file in the \texttt{injection} folder of your project with the same packages and name as the Java class but with ``.inject'' as extension (Fig. \ref{fig:injection_created_injection_file}). This file contains the definition of a \textit{partial class}~(Fig.~\ref{code:generated_inject_file}) and the implementation of the method that was not specified with SDMs.
 
     \begin{figure}[htbp]
         \centering
@@ -72,14 +73,12 @@ Injections are inspired by partial classes in C\#, and are our preferred way of 
     partial class BoxImpl {
 
         @model determineNextSize () <--
-
-
-                // TODO: implement this method here but do not remove the injection marker
+                // TODO: implement this method here but do not 
+                // remove the injection marker
                 throw new UnsupportedOperationException();
         -->
 
         @model addToStringRep (Card card) <--
-
                 StringBuilder sb = new StringBuilder();
 
                 if (stringRep == null)
@@ -109,7 +108,10 @@ Injections are inspired by partial classes in C\#, and are our preferred way of 
     \FloatBarrier
 
 	\clearpage
-    \item[$\blacktriangleright$] You can also implement your model methods directly with the injection file, but it recommended implementing the Java file and generating the injection from it. Now complete the injection with the code given in Fig. \ref{code:complete_inject_file} (just for demonstration).
+    \item[$\blacktriangleright$] You now have the choice of implementing your methods directly in the injection file, or in the corresponding Java file and generating the injection from it.
+    We recommend the latter as you can use the usual support from the Java editor.
+    Just don't forget to update the injection before re-generating code! 
+    Now complete the injection with the code given in Fig. \ref{code:complete_inject_file}.
 
     \begin{figure}[htbp]
         \centering
@@ -158,7 +160,7 @@ partial class BoxImpl {
 
     \begin{figure}[htbp]
         \centering
-        \includegraphics[width=\textwidth]{pics/injectionBilder/injected_code_in_impl.png}
+        \includegraphics[angle=90,height=0.8\textheight]{pics/injectionBilder/injected_code_in_impl.png}
         \caption{Injected code in BoxImpl after code generation}
         \label{fig:injected_code_in_boxImpl}
     \end{figure}
