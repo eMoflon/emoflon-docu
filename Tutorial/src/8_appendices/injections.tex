@@ -41,10 +41,12 @@ As an example, we shall provide functionality for saving our \textsf{DoubleLinke
 \label{code:list_toFile_impl_code}
 \end{figure}
 
-  \item[$\blacktriangleright$] Right-click \textsf{gen/Double\-Linked\-List\-Language/\-impl/\-ListImpl.java} in the generated Eclipse project and choose ``eMoflon/create Injection for class'', which will generate the file \textsf{injection/DoubleLinkedListLanguage/impl/ListImpl.inject}.
-	It will contain the code given in Fig.~\ref{code:list_toFile_impl_inj}.
-  \item[$\blacktriangleright$] Now rebuild your project (right-click on \texttt{DoubleLinkedListLanguage} and choose ``eMoflon/Build (and clean)''). This will rebuild your project (obviously), inject the code that we just wrote into \textsf{ListImpl.java} and also generate some comments in your code.
-  \item[$\blacktriangleright$] You will find two comments just below the imports. To generate imports in our injection and get rid of those ``...cannot be resolved'' errors, insert imports between the comments as depicted in Fig. \ref{code:imports_toFile}.
+  \item[$\blacktriangleright$] Right-click \textsf{gen/Double\-Linked\-List\-Language/\-impl/\-ListImpl.java} in the generated Eclipse project and choose ``eMoflon/create Injection for class'' to generate the file \textsf{injection/DoubleLinkedListLanguage/\-impl/List\-Impl\-.in\-ject} or update it if it already exists.
+	It will contain an injection for the code given in Fig.~\ref{code:list_toFile_impl_code}.
+  \item[$\blacktriangleright$] Now rebuild your project (right-click on \texttt{DoubleLinkedListLanguage} and choose ``eMoflon/Build (and clean)''). 
+  This will rebuild your project and inject the code that we just wrote into \textsf{ListImpl.java}. 
+  \item[$\blacktriangleright$] You will now find two additional comments just below the imports in the file. 
+  To generate imports in our injection and get rid of those ``...cannot be resolved'' errors, insert the required imports between the comments as depicted in Fig. \ref{code:imports_toFile}.
 \begin{figure}[htbp]
 \centering
   \begin{lstlisting}[language=Java, keywordstyle={\bfseries\color{purple}}, backgroundcolor=\color{white}]
@@ -56,9 +58,9 @@ import java.io.*;
 \label{code:imports_toFile}
 \end{figure}
 
-  \item[$\blacktriangleright$] Now choose ``eMoflon/create Injection for class'' again for \textsf{ListImpl.java} and the imports will appear in the injection file.
+  \item[$\blacktriangleright$] Now choose ``eMoflon/create Injection for class'' again for \textsf{ListImpl.java} to update the injection file and add the imports.
 
-  \item[$\blacktriangleright$] To implement the missing \texttt{toText} method, insert the code between the comments at the very end of the file as depicted in Fig. \ref{code:toText_impl}
+  \item[$\blacktriangleright$] To implement the missing \texttt{toText} method as a \emph{member}, insert the code between the comments at the very end of the file as depicted in Fig. \ref{code:toText_impl}
 
 \begin{figure}[htbp]
 \centering
@@ -82,10 +84,9 @@ private String toText(){
 
 In this way, member functions and fields that were \emph{not} modelled in EA can be injected using the \texttt{@members} keyword. 
 Everything between \texttt{<--  -->} is copied into the end of the generated \textsf{ListImpl.java} file without any restrictions at all.
-Note how imports can also be injected (as done here for \textsf{java.io.*}). 
 
-Although it is possible to inject members in the interface file (i.e., \textsf{List.java} in this example), this is considered dirty and should be used very sparingly (if possible never).
+Although it is possible to also inject members in the interface file (i.e., \textsf{List.java} in this example), this is considered dirty and should be used very sparingly (if possible never).
 
-If you ever forget what comments you need to insert imports or members code into you injection file, you can always generate an empy injection and rebuild the project. This way, the comments will always be generated.
+If you ever forget what comments are required to insert imports or code for members, you can always generate an empty injection and rebuild the project to generate the required comments.
 
 \clearpage
