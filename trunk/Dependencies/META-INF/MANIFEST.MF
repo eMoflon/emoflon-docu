@@ -87,7 +87,7 @@ Bundle-ClassPath: lib/log4j.jar,
  lib/commons-io-2.0-sources.jar,
  lib/commons-lang3-3.0-beta-sources.jar,
  lib/antlr-3.3-complete.jar
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
  org.eclipse.jdt.core,
  org.eclipse.core.runtime;bundle-version="3.5.0",
