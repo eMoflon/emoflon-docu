@@ -278,8 +278,7 @@ public class eMoflonEMFUtil
       {
          String errorMessage = "Unable to save model to " + uriToModelResource + ". Error:" + e.getMessage();
          logger.error(errorMessage);
-         e.printStackTrace();
-         throw new IllegalStateException(errorMessage);
+         throw new IllegalStateException(errorMessage, e);
       }
    }
 
