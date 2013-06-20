@@ -161,8 +161,13 @@ public class eMoflonEMFUtil
 
       // Add adapter for reverse navigation along unidirectional links
       ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(dependencies);
-      if (adapter == null)
-         dependencies.eAdapters().add(new ECrossReferenceAdapter());
+      if (adapter == null){
+         try {         
+            dependencies.eAdapters().add(new ECrossReferenceAdapter());
+         } catch(Exception e){
+            e.printStackTrace();
+         }
+      }
 
       // Return root model element
       return resource.getContents().get(0);
