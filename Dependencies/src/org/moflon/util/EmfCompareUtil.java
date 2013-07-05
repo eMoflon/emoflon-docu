@@ -7,13 +7,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
-import java.util.Vector;
-import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
+
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
-import org.eclipse.emf.compare.diff.metamodel.DifferenceKind;
-import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.diff.service.DiffService;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.match.service.MatchService;
@@ -111,10 +109,8 @@ public class EmfCompareUtil
     * @throws IOException
     * @throws InterruptedException
     */
-   public static List<DiffElement> compareAndFilter(EObject actual, EObject expected, boolean ignoreReferenceOrder) throws IOException, InterruptedException
+   public static List<DiffElement> compareAndFilter(EObject actual, EObject expected, boolean ignoreReferenceOrder) throws InterruptedException
    {
-      Vector<DiffElement> filteredDifferences = new Vector<DiffElement>();
-
       // Attempt to match elements that have only changed
       MatchModel match = MatchService.doMatch(actual, expected, Collections.<String, Object> emptyMap());
       // Use match to derive delta
