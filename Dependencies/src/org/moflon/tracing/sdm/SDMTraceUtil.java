@@ -1,5 +1,6 @@
 package org.moflon.tracing.sdm;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +13,7 @@ import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
@@ -83,8 +85,16 @@ public class SDMTraceUtil {
 				try {
 					Class<?> loadClass = classLoader.loadClass(nextToken);
 					if (SDMTraceStrategy.class.isAssignableFrom(loadClass)) {
-						Object newInstance = loadClass.newInstance();
-						STRATS.add((SDMTraceStrategy) newInstance);
+						Object instance = null;
+						try {
+							Method singletonGetterMethod = loadClass.getMethod("getInstance");
+							instance = singletonGetterMethod.invoke((Object) null, (Object[])null);
+						} catch (NoSuchMethodException e) {
+							instance = loadClass.newInstance();
+						} catch (SecurityException | IllegalArgumentException | InvocationTargetException e) {
+							throw new RuntimeException(e);
+						}
+						STRATS.add((SDMTraceStrategy) instance);						
 					}
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
@@ -180,9 +190,9 @@ public class SDMTraceUtil {
 							continue;
 						}
 					} else if (nPa.getEType() instanceof EClass) {
-						EClass clazz = (EClass) nPa.getEType();
-						Class<? extends EClass> methodPaFromEOperation = clazz.getClass();
-						if (!isCompatible(methodPaFromEOperation, methodPa)) {
+						EClassifier eType = nPa.getEType();
+						String instanceClassName = eType.getInstanceClassName();
+						if (!methodPa.getCanonicalName().equals(instanceClassName)) {
 							flag = false;
 							continue;
 						}
