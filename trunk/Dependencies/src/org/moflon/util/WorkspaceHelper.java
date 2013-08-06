@@ -80,6 +80,8 @@ public class WorkspaceHelper
    public static final String TIE_CONTAINER = "org.moflon.tie.TIE_CONTAINER";
 
    public static final String MOSL_CONTAINER = "org.moflon.ide.MOSL";
+   
+   public static final String REPOSITORY_NATURE_ID = "org.moflon.ide.ui.runtime.natures.RepositoryNature";
 
    /**
     * Checks if given name is a valid name for a new project in the current workspace.
