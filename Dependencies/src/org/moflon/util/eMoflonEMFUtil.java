@@ -150,8 +150,8 @@ public class eMoflonEMFUtil
     */
    public static EObject loadModelWithDependenciesAndCrossReferencer(URI uriToModelResource, ResourceSet dependencies)
    {
-	  registerXMIFactoryAsDefault(); 
-	   
+      registerXMIFactoryAsDefault();
+
       // Obtain a new resource set if necessary
       if (dependencies == null)
          dependencies = new ResourceSetImpl();
@@ -161,10 +161,13 @@ public class eMoflonEMFUtil
 
       // Add adapter for reverse navigation along unidirectional links
       ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(dependencies);
-      if (adapter == null){
-         try {         
+      if (adapter == null)
+      {
+         try
+         {
             dependencies.eAdapters().add(new ECrossReferenceAdapter());
-         } catch(Exception e){
+         } catch (Exception e)
+         {
             e.printStackTrace();
          }
       }
@@ -196,7 +199,8 @@ public class eMoflonEMFUtil
 
       try
       {
-         // Retrieve package URI from XMI file (this must be done before loading!)
+         // Retrieve package URI from XMI file (this must be done before
+         // loading!)
          DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
          DocumentBuilder docBuilder = dbf.newDocumentBuilder();
          Document doc = docBuilder.parse(file);
@@ -322,13 +326,12 @@ public class eMoflonEMFUtil
     *           the type of the opposite objects you are looking for
     * @return a collection of all opposite objects
     */
-   public static Collection<?> getOppositeReference(EObject target, @SuppressWarnings("rawtypes") Class sourceType, String targetRoleName)
+   public static Collection<?> getOppositeReference(EObject target, @SuppressWarnings("rawtypes")
+   Class sourceType, String targetRoleName)
    {
-      ECrossReferenceAdapter adapter = getCRAdapter(target);
+      Collection<Setting> settings = getInverseReferences(target);
 
       Collection<EObject> returnList = new ArrayList<EObject>();
-
-      Collection<Setting> settings = adapter.getInverseReferences(target, true);
       for (Setting setting : settings)
       {
          if (setting.getEStructuralFeature().getName().equals(targetRoleName))
@@ -342,6 +345,14 @@ public class eMoflonEMFUtil
       }
 
       return returnList;
+   }
+
+   public static Collection<Setting> getInverseReferences(EObject target)
+   {
+      ECrossReferenceAdapter adapter = getCRAdapter(target);
+
+      Collection<Setting> settings = adapter.getInverseReferences(target, true);
+      return settings;
    }
 
    public static String getClazzNameWithPackagePrefix(EClassifier clazz)
