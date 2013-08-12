@@ -105,7 +105,9 @@ public class EmfCompareUtil
     * 
     * @param actual
     * @param expected
-    * @return List of filtered differences
+    * 
+    * @return <b>Unmodifiable</b> list of filtered differences.
+    * 
     * @throws IOException
     * @throws InterruptedException
     */
