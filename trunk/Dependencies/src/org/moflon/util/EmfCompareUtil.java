@@ -77,7 +77,7 @@ public class EmfCompareUtil
 	 *            If <code>true</code>, then also subtypes of the given types are included in the result.
 	 * @return A list of all elements which are of a type that is given in <code>types</code>.
 	 */
-	public static List<EObject> collectTypedElements(final List<? extends EObject> elements, final Set<EClass> types,
+	private static List<EObject> collectTypedElements(final List<? extends EObject> elements, final Set<EClass> types,
 			boolean includeSubtypes) {
 		final List<EObject> result = new ArrayList<EObject>();
 		final Queue<EObject> queue = new LinkedList<EObject>();
@@ -111,14 +111,32 @@ public class EmfCompareUtil
     */
    public static List<DiffElement> compareAndFilter(EObject actual, EObject expected, boolean ignoreReferenceOrder) throws InterruptedException
    {
+      DiffModel diff = createDiffModel(actual, expected, ignoreReferenceOrder);
+      return diff.getDifferences();
+   }
+   
+   
+   /**
+    * Compares actual to expected and returns an instance of DiffModel, filtered according to the filter flag.
+    * 
+    * @param actual An EObject.
+    * @param expected The reference EObject to which "actual" gets compared to.
+    * @param ignoreReferenceOrder Flag that controls whether changes to the order of references should be considered a difference. 
+    * 
+    * @return The DiffModel instance.
+    * 
+    * @throws InterruptedException
+    */
+   public static DiffModel createDiffModel(EObject actual, EObject expected, boolean ignoreReferenceOrder) throws InterruptedException
+   {
       // Attempt to match elements that have only changed
       MatchModel match = MatchService.doMatch(actual, expected, Collections.<String, Object> emptyMap());
       // Use match to derive delta
       DiffModel diff = DiffService.doDiff(match, false);
 
-      if(ignoreReferenceOrder)
-    	  removeDiffElementOfType(diff, Collections.singleton(DiffPackage.Literals.REFERENCE_ORDER_CHANGE));
-
-      return diff.getDifferences();
+      if (ignoreReferenceOrder)
+         removeDiffElementOfType(diff, Collections.singleton(DiffPackage.Literals.REFERENCE_ORDER_CHANGE));
+      
+      return diff;
    }
 }
