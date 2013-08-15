@@ -335,32 +335,41 @@ public class eMoflonEMFUtil
       Collection<EObject> returnList = new ArrayList<EObject>();
       for (Setting setting : settings)
       {
-         if (setting.getEStructuralFeature().getName().equals(targetRoleName))
-         {
-            EClassifier clazz = setting.getEObject().eClass();
-            String clazzName = getClazzNameWithPackagePrefix(clazz);
-
-            if (clazzName.equals(sourceType.getName()) || checkInheritance(sourceType, clazz))
-               returnList.add(setting.getEObject());
-         }
+         EObject candidate = getCandidateObject(sourceType, targetRoleName, setting);
+         if(candidate != null)
+            returnList.add(candidate);
+      }
+      
+      EObject eContainer = target.eContainer();
+      if (eContainer != null)
+      {
+        Setting setting = (((InternalEObject)eContainer).eSetting(target.eContainmentFeature()));
+        EObject candidate = getCandidateObject(sourceType, targetRoleName, setting);
+        if(candidate != null)
+           returnList.add(candidate);
       }
 
       return returnList;
    }
 
-   public static Collection<Setting> getInverseReferences(EObject target)
+   private static EObject getCandidateObject(Class sourceType, String targetRoleName, Setting setting)
    {
-      ECrossReferenceAdapter adapter = getCRAdapter(target);
-
-      Collection<Setting> result = new ArrayList<>(adapter.getNonNavigableInverseReferences(target, true));
-      
-      EObject eContainer = target.eContainer();
-      if (eContainer != null)
+      if (setting.getEStructuralFeature().getName().equals(targetRoleName))
       {
-        result.add(((InternalEObject)eContainer).eSetting(target.eContainmentFeature()));
+         EClassifier clazz = setting.getEObject().eClass();
+         String clazzName = getClazzNameWithPackagePrefix(clazz);
+
+         if (clazzName.equals(sourceType.getName()) || checkInheritance(sourceType, clazz))
+            return setting.getEObject();
       }
       
-      return result;
+      return null;
+   }
+
+   private static Collection<Setting> getInverseReferences(EObject target)
+   {
+      ECrossReferenceAdapter adapter = getCRAdapter(target);
+      return adapter.getNonNavigableInverseReferences(target, true);
    }
 
    public static String getClazzNameWithPackagePrefix(EClassifier clazz)
@@ -418,6 +427,26 @@ public class eMoflonEMFUtil
    public static void remove(EObject object)
    {
       EcoreUtil.delete(object, true);
+   }
+   
+   /*
+    * This method is thought to be a more efficient way to delete objects from a model than remove(EObject)
+    */
+   public static void unsetAllReferences(EObject object){
+      for (EStructuralFeature feature : getAllReferences(object))
+      {
+         object.eUnset(feature);
+      }
+      for (Setting setting : getInverseReferences(object))
+      {
+         EStructuralFeature feature = setting.getEStructuralFeature();
+         removeOppositeReference(setting.getEObject(), object, feature.getName());
+      }
+      
+      if(object.eContainer() != null){
+         removeOppositeReference(object.eContainer(), object, object.eContainmentFeature().getName());
+      }
+      
    }
 
    @SuppressWarnings({ "unchecked", "rawtypes" })
