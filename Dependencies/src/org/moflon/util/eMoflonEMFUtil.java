@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -351,8 +352,15 @@ public class eMoflonEMFUtil
    {
       ECrossReferenceAdapter adapter = getCRAdapter(target);
 
-      Collection<Setting> settings = adapter.getInverseReferences(target, true);
-      return settings;
+      Collection<Setting> result = new ArrayList<>(adapter.getNonNavigableInverseReferences(target, true));
+      
+      EObject eContainer = target.eContainer();
+      if (eContainer != null)
+      {
+        result.add(((InternalEObject)eContainer).eSetting(target.eContainmentFeature()));
+      }
+      
+      return result;
    }
 
    public static String getClazzNameWithPackagePrefix(EClassifier clazz)
