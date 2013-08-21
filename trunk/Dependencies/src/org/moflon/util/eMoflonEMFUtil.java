@@ -331,14 +331,14 @@ public class eMoflonEMFUtil
     *           the target of this reference
     * @param sourceType
     *           the type of the opposite objects you are looking for
-    * @return a collection of all opposite objects
+    * @return a list of all opposite objects
     */
-   public static Collection<?> getOppositeReference(EObject target, @SuppressWarnings("rawtypes")
+   public static List<?> getOppositeReference(EObject target, @SuppressWarnings("rawtypes")
    Class sourceType, String targetRoleName)
    {
       Collection<Setting> settings = getInverseReferences(target);
 
-      Collection<EObject> returnList = new ArrayList<EObject>();
+      List<EObject> returnList = new ArrayList<EObject>();
       for (Setting setting : settings)
       {
          EObject candidate = getCandidateObject(sourceType, targetRoleName, setting);
