@@ -181,5 +181,12 @@ public class DefaultSDMTraceStrategy extends SDMTraceStrategy {
 			String patternName) {
 		c.traceEvent(stw, new SuccessNACEvent(patternName));
 	}
+
+	@Override
+	protected void initializeStrategy()
+	{
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

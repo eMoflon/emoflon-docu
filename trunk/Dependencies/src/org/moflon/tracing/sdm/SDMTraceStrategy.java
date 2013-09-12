@@ -27,4 +27,5 @@ public abstract class SDMTraceStrategy {
 	protected abstract void logEndOfNACEvaluation(SDMTraceContext c, StackTraceWrapper stw,	String patternName);
 	protected abstract void logNACNotSatisfied(SDMTraceContext c, StackTraceWrapper stw, String patternName);
 	protected abstract void logNACSatisfied(SDMTraceContext c, StackTraceWrapper stw, String patternName);
+	protected abstract void initializeStrategy();
 }

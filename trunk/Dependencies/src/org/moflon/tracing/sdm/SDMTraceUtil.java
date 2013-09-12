@@ -49,7 +49,7 @@ public class SDMTraceUtil {
 	public final static String SELECTED_TACING_STRATEGY_SYS_PROP = "org.moflon.tracing.sdm.SDMTraceUtil.tracingStrategies";
 	
 	private final static List<SDMTraceStrategy> STRATS = new ArrayList<SDMTraceStrategy>(1);
-	private final static SDMTraceStrategy DEFAULT_STRATEGY = new DefaultSDMTraceStrategy();   
+	private final static SDMTraceStrategy DEFAULT_STRATEGY = EADebuggingSocketTraceStrategy.getInstance();  
 			
 	private final static String ALL = "global";
 	private final static HashMap<String, SDMTraceContext> CONTEXTS = new HashMap<String, SDMTraceContext>(4, 0.75f);
@@ -112,6 +112,12 @@ public class SDMTraceUtil {
 	
 	public static SDMTraceContext getTraceContext(String uniqueIdentifier) {		
 		init();
+		
+		for(SDMTraceStrategy strategy : STRATS)
+		{
+			strategy.initializeStrategy();
+		}
+		
 		if (uniqueIdentifier == null)
 			throw new IllegalArgumentException("Argument may not be null");
 		SDMTraceContext result = CONTEXTS.get(uniqueIdentifier);
