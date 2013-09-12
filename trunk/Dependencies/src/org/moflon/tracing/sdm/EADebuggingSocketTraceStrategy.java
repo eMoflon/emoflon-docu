@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.moflon.tracing.sdm.AbstractEaTraceStrategy;
 import org.moflon.tracing.sdm.SDMTraceContext;
 import org.moflon.tracing.sdm.StackTraceWrapper;
-import org.moflon.tracing.sdm.msgs.CloseEapFileMsg;
 import org.moflon.tracing.sdm.msgs.SetupDebuggingSessionMsg;
 import org.moflon.tracing.sdm.msgs.TeardownDebuggingSessionMsg;
 import org.moflon.tracing.sdm.states.Connected;
@@ -85,30 +84,10 @@ public class EADebuggingSocketTraceStrategy extends AbstractEaTraceStrategy
 		return instance;
 	}
 
-	public void closeEapFile()
-	{
-		if (state instanceof Sending)
-		{
-			CloseEapFileMsg msg = new CloseEapFileMsg();
-			out.println(msg.toString());
-			try
-			{
-				String response = in.readLine();
-				if (response.equals(msg.toString()))
-				{
-					state = state.nextState(msg);
-				}
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-		}
-	}
 
 	public void teardownDebuggingSession()
 	{
-		if (state instanceof Connected)
+		if (state instanceof Sending)
 		{
 			TeardownDebuggingSessionMsg msg = new TeardownDebuggingSessionMsg();
 			out.println(msg.toString());
