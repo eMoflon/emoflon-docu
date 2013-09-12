@@ -36,5 +36,12 @@ public class EAExportFileTraceStrategy extends AbstractEaTraceStrategy {
 			throw new RuntimeException(e);
 		}
 	}
+
+	@Override
+	protected void initializeStrategy()
+	{
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

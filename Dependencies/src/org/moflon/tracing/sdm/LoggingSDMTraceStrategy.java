@@ -185,5 +185,12 @@ public class LoggingSDMTraceStrategy extends SDMTraceStrategy {
 			String patternName) {
 		log.debug((new SuccessNACEvent(patternName)).toString());
 	}
+
+	@Override
+	protected void initializeStrategy()
+	{
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
