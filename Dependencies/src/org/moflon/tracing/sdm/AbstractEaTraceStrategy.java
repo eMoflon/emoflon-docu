@@ -11,9 +11,11 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Stack;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
 
 public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 {
@@ -46,6 +48,7 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 		sb.append(getClassString(op));
 		sb.append(DELIM);
 		sb.append(getEOperationString(op.getName()));
+		sb.append(getEParameterString(op.getEParameters()));
 		sb.append(DELIM);
 		sb.append(getActivityString());
 		sb.append(LINE_SEPARATOR);
@@ -59,6 +62,22 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 		{
 			throw new RuntimeException(e);
 		}
+	}
+
+	private Object getEParameterString(EList<EParameter> eParameters)
+	{
+		String eParamString = "(";
+		for(EParameter eParam : eParameters)
+		{
+			eParamString += eParam.getName() + ":" + eParam.getEType().getName() + ",";
+		}
+		if(eParameters.size() > 0 )
+		{
+			eParamString = eParamString.substring(0,eParamString.length() - 1);
+		}
+		eParamString += ")";
+		return eParamString;
+		
 	}
 
 	@Override
@@ -77,6 +96,7 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 		sb.append(getClassString(op));
 		sb.append(DELIM);
 		sb.append(getEOperationString(op.getName()));
+		sb.append(getEParameterString(op.getEParameters()));		
 		sb.append(DELIM);
 		sb.append(getActivityString());
 		sb.append(DELIM);
@@ -105,6 +125,7 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 		sb.append(getClassString(op));
 		sb.append(DELIM);
 		sb.append(getEOperationString(op.getName()));
+		sb.append(getEParameterString(op.getEParameters()));
 		sb.append(DELIM);
 		sb.append(getActivityString());
 		sb.append(DELIM);
@@ -135,6 +156,7 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 		sb.append(getClassString(opStack.peek()));
 		sb.append(DELIM);
 		sb.append(getEOperationString(opStack.peek().getName()));
+		sb.append(getEParameterString(opStack.peek().getEParameters()));		
 		sb.append(DELIM);
 		sb.append(getActivityString());
 		sb.append(DELIM);

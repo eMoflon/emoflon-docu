@@ -36,6 +36,8 @@ public class EAInterfaceUriHelper {
 		   return (eOperationName + ":EOperation");
 	   }
 	   
+	   
+	   
 	   public static String getEClassString(String eClassName) {
 		   return (eClassName + ":EClass");
 	   }
