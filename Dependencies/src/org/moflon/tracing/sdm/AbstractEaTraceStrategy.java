@@ -6,6 +6,8 @@ import static org.moflon.util.EAInterfaceUriHelper.getEOperationString;
 import static org.moflon.util.EAInterfaceUriHelper.getEPackageString;
 import static org.moflon.util.EAInterfaceUriHelper.getObjVarString;
 import static org.moflon.util.EAInterfaceUriHelper.getStoryNodeString;
+import static org.moflon.util.EAInterfaceUriHelper.getEParameterString;
+import static org.moflon.util.EAInterfaceUriHelper.getLinkVarString;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -16,6 +18,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
+
+import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
 
 public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 {
@@ -40,46 +44,6 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 		opStack.push(op);
 	}
 
-	private void logOperation(EOperation op)
-	{
-		StringBuilder sb = new StringBuilder();
-		sb.append(getPackageString(op));
-		sb.append(DELIM);
-		sb.append(getClassString(op));
-		sb.append(DELIM);
-		sb.append(getEOperationString(op.getName()));
-		sb.append(getEParameterString(op.getEParameters()));
-		sb.append(DELIM);
-		sb.append(getActivityString());
-		sb.append(LINE_SEPARATOR);
-
-		try
-		{
-			out.write(sb.toString());
-			out.flush();
-		}
-		catch (IOException e)
-		{
-			throw new RuntimeException(e);
-		}
-	}
-
-	private Object getEParameterString(EList<EParameter> eParameters)
-	{
-		String eParamString = "(";
-		for(EParameter eParam : eParameters)
-		{
-			eParamString += eParam.getName() + ":" + eParam.getEType().getName() + ",";
-		}
-		if(eParameters.size() > 0 )
-		{
-			eParamString = eParamString.substring(0,eParamString.length() - 1);
-		}
-		eParamString += ")";
-		return eParamString;
-		
-	}
-
 	@Override
 	protected void logOperationExit(SDMTraceContext c, StackTraceWrapper stw, EOperation op, Object result)
 	{
@@ -90,57 +54,14 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 	@Override
 	protected void logPatternEnter(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op)
 	{
-		StringBuilder sb = new StringBuilder();
-		sb.append(getPackageString(op));
-		sb.append(DELIM);
-		sb.append(getClassString(op));
-		sb.append(DELIM);
-		sb.append(getEOperationString(op.getName()));
-		sb.append(getEParameterString(op.getEParameters()));		
-		sb.append(DELIM);
-		sb.append(getActivityString());
-		sb.append(DELIM);
-		sb.append(getStoryNodeString(storyPatternName));
-		sb.append(LINE_SEPARATOR);
-
-		try
-		{
-			out.write(sb.toString());
-			out.flush();
-		}
-		catch (IOException e)
-		{
-			throw new RuntimeException(e);
-		}
-
+		logStoryPattern(storyPatternName, op);
 		this.storyPattern = storyPatternName;
 	}
 
 	@Override
 	protected void logPatternExit(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op)
 	{
-		StringBuilder sb = new StringBuilder();
-		sb.append(getPackageString(op));
-		sb.append(DELIM);
-		sb.append(getClassString(op));
-		sb.append(DELIM);
-		sb.append(getEOperationString(op.getName()));
-		sb.append(getEParameterString(op.getEParameters()));
-		sb.append(DELIM);
-		sb.append(getActivityString());
-		sb.append(DELIM);
-		sb.append(getStoryNodeString(storyPatternName));
-		sb.append(LINE_SEPARATOR);
-
-		try
-		{
-			out.write(sb.toString());
-			out.flush();
-		}
-		catch (IOException e)
-		{
-			throw new RuntimeException(e);
-		}
+		logStoryPattern(storyPatternName, op);
 
 		if (this.storyPattern != null && this.storyPattern.equals(storyPatternName))
 			this.storyPattern = null;
@@ -150,37 +71,14 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 	protected void logBindObjVar(SDMTraceContext c, StackTraceWrapper stw, String objVarName, Class<?> objVarType, Object oldValue,
 			Object newValue)
 	{
-		StringBuilder sb = new StringBuilder();
-		sb.append(getPackageString(opStack.peek()));
-		sb.append(DELIM);
-		sb.append(getClassString(opStack.peek()));
-		sb.append(DELIM);
-		sb.append(getEOperationString(opStack.peek().getName()));
-		sb.append(getEParameterString(opStack.peek().getEParameters()));		
-		sb.append(DELIM);
-		sb.append(getActivityString());
-		sb.append(DELIM);
-		sb.append(getStoryNodeString(this.storyPattern));
-		sb.append(DELIM);
-		sb.append(getObjVarString(objVarName));
-		sb.append(LINE_SEPARATOR);
-
-		try
-		{
-			out.write(sb.toString());
-			out.flush();
-		}
-		catch (IOException e)
-		{
-			throw new RuntimeException(e);
-		}
+		logObjectVariable(objVarName, storyPattern, opStack.peek());
 	}
 
 	@Override
 	protected void logUnbindObjVar(SDMTraceContext c, StackTraceWrapper stw, String objVarName, Class<?> objVarType, Object oldValue,
 			Object newValue)
 	{
-		// implement maybe...
+		logObjectVariable(objVarName, storyPattern, opStack.peek());
 		return;
 	}
 
@@ -198,11 +96,7 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 		return;
 	}
 
-	private static String getPackageString(EOperation op)
-	{
-		EClass eContainingClass = op.getEContainingClass();
-		return getPackageString(eContainingClass.getEPackage());
-	}
+	
 
 	@Override
 	protected void logCheckIsomorphicBindingEvent(SDMTraceContext c, StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type,
@@ -225,29 +119,6 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 		return;
 	}
 
-	private static String getPackageString(EPackage p)
-	{
-		if (p == null)
-			return null;
-		StringBuilder sb = new StringBuilder();
-		String packageString = getPackageString(p.getESuperPackage());
-		if (packageString != null)
-		{
-			sb.append(packageString);
-			sb.append(DELIM);
-		}
-		sb.append(getEPackageString(p.getName()));
-		return sb.toString();
-	}
-
-	private static String getClassString(EOperation op)
-	{
-		EClass eContainingClass = op.getEContainingClass();
-		StringBuilder sb = new StringBuilder();
-		sb.append(getEClassString(eContainingClass.getName()));
-		return sb.toString();
-	}
-
 	@Override
 	protected void logNoMoreLinkEndOptions(SDMTraceContext c, StackTraceWrapper stw, String linkName, String srcObjName, String trgtObjName)
 	{
@@ -258,13 +129,13 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 	@Override
 	protected void logObjectCreation(SDMTraceContext c, StackTraceWrapper stw, String objVarName, Class<?> objVarType, Object newObjectValue)
 	{
-		// TODO Auto-generated method stub
+		logObjectVariable(objVarName, storyPattern, opStack.peek());
 	}
 
 	@Override
 	protected void logObjectDeletion(SDMTraceContext c, StackTraceWrapper stw, String objVarName, Class<?> objVarType, Object oldObjectValue)
 	{
-		// TODO Auto-generated method stub
+		logObjectVariable(objVarName, storyPattern, opStack.peek());
 	}
 
 	@Override
@@ -272,15 +143,17 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 			Object sourceNodeValue, String sourceRoleName, String targetNodeName, Class<?> targetNodeType, Object targetNodeValue,
 			String targetRoleName)
 	{
-		// TODO Auto-generated method stub
+		logLinkVariable(sourceNodeName, targetNodeName);
 	}
+
+	
 
 	@Override
 	protected void logLinkDeletion(SDMTraceContext c, StackTraceWrapper stw, String sourceRoleName, Class<?> sourceNodeType,
 			Object sourceNodeValue, String sourceNodeName, String targetNodeName, Class<?> targetNodeType, Object targetNodeValue,
 			String targetRoleName)
 	{
-		// TODO Auto-generated method stub
+		logLinkVariable(sourceNodeName, targetNodeName);
 	}
 
 	@Override
@@ -325,5 +198,134 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 	protected void logNACSatisfied(SDMTraceContext c, StackTraceWrapper stw, String patternName)
 	{
 		// TODO Auto-generated method stub
+	}
+
+	private static String getPackageString(EPackage p)
+	{
+		if (p == null)
+			return null;
+		StringBuilder sb = new StringBuilder();
+		String packageString = getPackageString(p.getESuperPackage());
+		if (packageString != null)
+		{
+			sb.append(packageString);
+			sb.append(DELIM);
+		}
+		sb.append(getEPackageString(p.getName()));
+		return sb.toString();
+	}
+
+	private static String getClassString(EOperation op)
+	{
+		EClass eContainingClass = op.getEContainingClass();
+		StringBuilder sb = new StringBuilder();
+		sb.append(getEClassString(eContainingClass.getName()));
+		return sb.toString();
+	}
+
+	private String getFullClassString(EOperation op)
+	{
+		return getPackageString(op) + DELIM + getClassString(op);
+	}
+
+	private static String getPackageString(EOperation op)
+	{
+		EClass eContainingClass = op.getEContainingClass();
+		return getPackageString(eContainingClass.getEPackage());
+	}
+	
+	private String getFullEOperationString(EOperation op)
+	{
+		return getFullClassString(op) + DELIM + getEOperationString(op.getName()) + getEParameterString(op.getEParameters());
+	}
+
+	private String getFullActivityString(EOperation op)
+	{
+		return getFullEOperationString(op) + DELIM + getActivityString();
+	}
+
+	private String getFullStoryPatternString(EOperation op, String storyPatternName)
+	{
+		return getFullActivityString(op) + DELIM + getStoryNodeString(storyPatternName);
+	}
+
+	private String getFullObjectVariableString(EOperation op, String storyPatternName, String objectVariableName)
+	{
+		return getFullStoryPatternString(op, storyPatternName) + DELIM + getObjVarString(objectVariableName);
+	}
+	
+	private String getFullLinkVariableString(EOperation op, String storyPatternName, String lvSrc, String lvTrg)
+	{
+		return getFullStoryPatternString(op, storyPatternName) + DELIM + getLinkVarString(lvTrg, lvSrc);
+	}
+	
+	private void logLinkVariable(String sourceNodeName, String targetNodeName)
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append(getFullLinkVariableString(opStack.peek(),this.storyPattern, sourceNodeName, targetNodeName));
+		sb.append(LINE_SEPARATOR);
+
+		try
+		{
+			out.write(sb.toString());
+			out.flush();
+		}
+		catch (IOException e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+
+	
+	
+	private void logOperation(EOperation op)
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append(getFullActivityString(op));		
+		sb.append(LINE_SEPARATOR);
+
+		try
+		{
+			out.write(sb.toString());
+			out.flush();
+		}
+		catch (IOException e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+
+	private void logObjectVariable(String objVarName, String storyPatternName, EOperation op)
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append(getFullObjectVariableString(op, storyPatternName, objVarName));
+		sb.append(LINE_SEPARATOR);
+
+		try
+		{
+			out.write(sb.toString());
+			out.flush();
+		}
+		catch (IOException e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+
+	private void logStoryPattern(String storyPatternName, EOperation op)
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append(getFullStoryPatternString(op, storyPatternName));
+		sb.append(LINE_SEPARATOR);
+
+		try
+		{
+			out.write(sb.toString());
+			out.flush();
+		}
+		catch (IOException e)
+		{
+			throw new RuntimeException(e);
+		}
 	}
 }
