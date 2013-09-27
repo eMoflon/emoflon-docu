@@ -40,8 +40,6 @@ public class EAExportFileTraceStrategy extends AbstractEaTraceStrategy {
 	@Override
 	protected void initializeStrategy()
 	{
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

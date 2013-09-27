@@ -189,8 +189,6 @@ public class LoggingSDMTraceStrategy extends SDMTraceStrategy {
 	@Override
 	protected void initializeStrategy()
 	{
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
