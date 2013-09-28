@@ -72,18 +72,6 @@ public class eMoflonEMFUtil
       m.put("*", new XMIResourceFactoryImpl());
    }
 
-   public static final void installCrossReferencers(ResourceSet resourceSet) {
-      // Add adapter for reverse navigation along unidirectional links
-      ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
-      if (adapter == null) {
-         try {
-            resourceSet.eAdapters().add(new ECrossReferenceAdapter());
-         } catch (Exception e) {
-            e.printStackTrace();
-         }
-      }
-   }
-   
    /**
     * Use this method to initialize the given EPackage. This is required before loading/saving or working with the
     * package. In a plugin context, this might be automatically carried out via an appropriate extension point.
