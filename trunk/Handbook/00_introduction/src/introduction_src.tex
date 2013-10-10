@@ -1,0 +1,81 @@
+\documentclass[11pt, a4paper,twoside]{book}
+% -------------------------------------------------------------------------------------------------------
+% THIS DOCUMENT IS CURRENTLY BEING REFACTORED
+%	Copy the contents of this file and paste into each part's main source file. This will ensure uniformity and ease of use. 
+%	Be sure to also copy the 'Common' folder, as it contains the title image and source file. Below are the only things you need to modify:
+%	> variable 'partTitle' on line 54; This changes the title page label
+%	> variable 'versionNum' on line 55; Modify if the part has been updated
+%	> content input filename on line 77; Currently, it is set to 'content.tex' in the src file; be sure to suffix the context name
+% -------------------------------------------------------------------------------------------------------
+\pagestyle{myheadings}
+
+
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage[colorlinks,hyperindex,plainpages=false,breaklinks]{hyperref}
+
+\hypersetup{colorlinks=true,% 
+	linkcolor=black,%
+	citecolor=red,%
+	filecolor=blue,% 
+	menucolor=black,% 
+	pagecolor=black,%
+	urlcolor=black}
+
+\usepackage{amssymb}
+\usepackage{wasysym} 
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{placeins} % Necessary for \FloatBarrier
+\usepackage{subfig}   % Necessary for subfloat (images next to each other)
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames]{xcolor}
+\definecolor{codelightgray}{rgb}{0.87,0.87,0.87}
+\usepackage{listings}
+
+\lstset{language=,
+    keywordstyle=\color{blue},
+    basicstyle=\scriptsize\ttfamily,
+    showstringspaces=false,
+    backgroundcolor=\color{codelightgray},
+    morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
+}
+
+\newcommand{\note}[1]{\marginpar{\emph{#1}}}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt} 
+\setlength{\parskip}{0.3cm}
+
+
+% This should be the same for each part; Modify only the name and version number
+\def\partTitle{Part 0: Introduction to eMoflon}
+\def\versionNumber{3.4}
+\input{../common/titlepage}
+
+
+% ----------------------------------------------------------------------------------------------------------------------------------
+\begin{document}
+
+\frontmatter 
+
+\maketitle
+
+% Copyright notice
+\input{../common/copyright}
+\newpage
+
+% store page counter
+\newcounter{romanpages}
+\setcounter{romanpages}{\value{page}}
+
+ % ----------------------------------------------------------------------------------------------------------------------------------
+ \mainmatter
+
+\input{introduction_content}
+
+% See if this will work FRIDAY
+%\input{../../commonFiles/document}
+
+\end{document}
