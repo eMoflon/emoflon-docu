@@ -1,19 +1,26 @@
-% FORMAT THIS
-{ \Huge Part I: Installing Stuff! }
-% Main Task with this file: make sure all figures have worthwhile names
+{\bf \huge Part I:}
 
-% This should be numbered as 'section 1.1' (since its reffering to the current workbook, not overall package)
-% To keep reference to the entire handbook package, have the Part titles all at the top of the pages?
+\vspace{0.5cm}
+
+{\bf \Huge Installation \& Setup }
+
+\vspace{0.5cm}
+eMoflon can be used two unique ways - Visually or textually. Neither are better than the other, it all comes down to your personal preference. That's right - YOU run the show here.
+That however, means that you'll need to keep track of what section you're in. If the diagrams and screenshots don't match your screen, you might be following the wrong instructions.
+
+In the following part, visual installations require an external modeling tool. If you're intending on working only with text, feel free to skip ahead to Step \ref{stepTwo}. 
+
 \section{Install our extension for Enterprise Architect}
-Enterprise Architect (EA) is a modelling tool that supports UML\footnote{Unified Modelling Language} and a host of other modelling languages.
-EA is not only affordable but is also quite flexible and can be extended via \emph{extensions} to support new modelling languages.
+\label{stepOne}
+Enterprise Architect (EA) is a visual modelling tool that supports UML\footnote{Unified Modelling Language} and a host of other modelling languages.
+EA is not only affordable but also quite flexible and can be extended via \emph{extensions} to support new modelling languages.
 \begin{enumerate}
   
 \item[$\blacktriangleright$] Download EA for Windows from \url{http://www.sparxsystems.com/} to get a free 30 day trial and follow installation instructions (Fig.~\ref{fig_enterpriseArchitextHomepage}).
 
 \begin{figure}[htbp]
 	\centering
-  	\includegraphics[width=0.77\textwidth]{../installation_images/ea_download.png}
+  	\includegraphics[width=0.77\textwidth]{ea_download}
 	\caption{Download Enterprise Architect}
 	\label{fig_enterpriseArchitextHomepage}
 \end{figure} 
@@ -23,19 +30,20 @@ Download \url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.55\textwidth]{../installation_images/eaplugin_install.png}
+  \includegraphics[width=0.55\textwidth]{eaplugin_install}
 	\caption{Install our extension for EA}
 	\label{fig_eaPluginWizard}
 \end{figure}
 \end{enumerate}
  
 \section{Install our plugin for Eclipse}
+\label{stepTwo}
 \begin{enumerate}
-\item[$\blacktriangleright$] Download and install Eclipse for Modelling ``Eclipse Modeling Tools (includes incubating components)''\footnote{Please note that you \emph{have to} install \emph{Eclipse Modeling Tools} or nothing will work.  Do not choose a different Eclipse package!  Although different versions and constellations might work, eMoflon is currently tested for Eclipse Juno and Java 1.7.} from \url{http://www.eclipse.org/downloads/packages/} (Fig.~\ref{fig_downloadModelingPackage}).
+\item[$\blacktriangleright$] Download and install Eclipse for Modelling ``Eclipse Modeling Tools (includes incubating components)''\footnote{Please note that you \emph{have to} install \emph{Eclipse Modeling Tools}, from the Juno download packages, or nothing will work.  Do not choose a different Eclipse package!  Although different versions and {\bf constellations} might work, eMoflon is currently tested for Eclipse Juno and Java 1.7.} from \url{http://www.eclipse.org/downloads/packages/} (Fig.~\ref{fig_downloadModelingPackage}).
 
 \begin{figure}[htbp]
 	\centering
-  	\includegraphics[width=0.86\textwidth]{../installation_images/eclipse_modelingpackage.png}
+  	\includegraphics[width=0.86\textwidth]{eclipse_modelingpackage}
 	\caption{Download Eclipse Modeling Tools.}
 	\label{fig_downloadModelingPackage}
 \end{figure}
@@ -46,12 +54,20 @@ Download \url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin
 \end{enumerate}
 
 \section{Get a simple demo running}
+\label{stepThree}
+% Should this be put in the summary?
+In the next few steps, you'll start to notice some variations between the tasks for the Visual and Text demos.
+Unique instructions will be indicated with ?? %{\bf V} 
+for Visual, and ?? %{\bf T} 
+for textual.
+For the entire tutorial, we will continue to present each beside one another so that you can compare the 
+differences and, more often, the similarities. We hope this will lead to a better understanding of both eMoflon and modeling.
 
 \begin{enumerate}
-\item[$\blacktriangleright$] Go to ``Window/Open Perspective/Other\ldots''\footnote{A path given as ``foo/bar'' indicates how to navigate in a series of menus and submenus.} and choose Moflon~(Fig.~\ref{fig_eclipse}). 
+\item[$\blacktriangleright$] Within Eclipse, go to ``Window/Open Perspective/Other\ldots''\footnote{A path given as ``foo/bar'' indicates how to navigate in a series of menus and submenus.} and choose Moflon~(Fig.~\ref{fig_eclipse}). 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=\textwidth]{../installation_images/eclipse_firststart.png}
+  \includegraphics[width=\textwidth]{eclipse_firststart}
 	\caption{Choose the Moflon perspective.}
 	\label{fig_eclipse}
 \end{figure}
@@ -60,13 +76,14 @@ Download \url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin
 The button with an ``L" shows you our logfile (important input for us if something goes wrong!).
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=\textwidth]{../installation_images/eclipse_metamodelButton.png}
+  \includegraphics[width=\textwidth]{eclipse_metamodelButton}
 	\caption{Eclipse ''New Metamodel''}
 	\label{fig_eclipseNewMetamodel}
 \end{figure}
 
 \item[$\blacktriangleright$] Enter ``Demo'' as the name of the new metamodel project and confirm. 
-An empty EA project file ``Demo.eap'' will be created in a new project with a certain project structure according to our conventions\footnote{At the moment, the project contains only the EA project file.}.
+{\bf An empty EA project file ``Demo.eap'' will be created in a new project with a certain project structure according to our conventions\footnote{At the moment, the project contains only the EA project file.}.}
+% Even if you're only using text, 
 Please do not rename, move or delete anything.
 
 \FloatBarrier
@@ -75,11 +92,10 @@ We work a lot with working sets and use them to structure the workspace in Eclip
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.9\textwidth]{../installation_images/eclipse_workingsets.png}
+  \includegraphics[width=0.9\textwidth]{eclipse_workingsets}
 	\caption{Choose Working Sets as Top Level Elements.}
 	\label{fig_eclipseWorkingsets}
 \end{figure} 
-
 
 \item[$\blacktriangleright$] Open the newly created project and replace the ``Demo.eap'' file with the Demo.eap that you will find in the \texttt{eMoflonTutorial.zip} file provided together with this tutorial. 
 
@@ -90,7 +106,7 @@ Please choose ``Ultimate" when starting EA for the first time.
 You can of course browse the project structure, but please do not rename, move or delete anything yet.
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.9\textwidth]{../installation_images/ea_firststart.png}
+  \includegraphics[width=0.9\textwidth]{ea_firststart}
 	\caption{Export from EA using our extension} 
 	\label{fig_ea} 
 \end{figure}
@@ -102,10 +118,18 @@ Pressing the symbol opens a monitor view that gives more details of the build pr
 You don't need to worry about any of these details, just remember to refresh your Eclipse workspace after an export.
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.55\textwidth]{../installation_images/eclipse_building.png}
+  \includegraphics[width=0.55\textwidth]{eclipse_building}
 	\caption{Automatically building the workspace after a refresh.}
 	\label{fig_eclipsebuilding}
 \end{figure}
+
+\item[{\bf V}] So, to sum up. This is Visual.
+\item[{\bf T}] This will indicate a textual explaination. I don't really have any just yet, so this will have to do.
+\item[$\rhd$] We could also use this
+\item[$\lhd$] and this - a bit more elegant
+\item[$\RHD$] Oh, there's this one too
+\item[$\LHD$] but at first glance you might get confused
+
 \end{enumerate}
 
 \section{Validate your installation with JUnit}
@@ -115,7 +139,7 @@ You don't need to worry about any of these details, just remember to refresh you
 \item[$\blacktriangleright$] Go to ``File/Import/General/Existing Projects into Workspace'' (Fig.~\ref{fig_eclipseTestsuiteImport}) and choose the Testsuite project that is also in the \texttt{eMoflonTutorial.zip} provided with this tutorial. 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.55\textwidth]{../installation_images/eclipse_testsuitimport.png}
+  \includegraphics[width=0.55\textwidth]{eclipse_testsuitimport}
 	\caption{Import our Testsuite as an existing project.}
 	\label{fig_eclipseTestsuiteImport}
 \end{figure} 
@@ -123,7 +147,7 @@ You don't need to worry about any of these details, just remember to refresh you
 \item[] At this point, your workspace should resemble Fig.~\ref{fig_eclipsepackageexplorer}.
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.4\textwidth]{../installation_images/eclipse_packageexplorer.png}
+  \includegraphics[width=0.4\textwidth]{eclipse_packageexplorer}
 	\caption{Workspace in Eclipse.}
 	\label{fig_eclipsepackageexplorer}
 \end{figure}
@@ -133,7 +157,7 @@ If anything goes wrong, try refreshing your whole workspace by choosing projects
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.5\textwidth]{../installation_images/eclipse_testsuiterun.png}
+  \includegraphics[width=0.5\textwidth]{eclipse_testsuiterun}
 	\caption{All's well that ends well\ldots}
 	\label{fig_eclipsetestsuiterun}
 \end{figure}
@@ -151,7 +175,7 @@ Before we continue, please make a few slight adjustments to EA so you can easily
 This is advisable but you're of course free to choose your own colour schema.
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth]{../installation_images/standardColours}
+  \includegraphics[width=0.8\textwidth]{standardColours}
   \caption{Our choice of standard colours for diagrams in EA.}
   \label{fig_standardColoursEA}
 \end{figure}
@@ -159,7 +183,7 @@ This is advisable but you're of course free to choose your own colour schema.
 \item[$\blacktriangleright$] In the same dialogue, select ``Diagram/Appearance'' and reflect the settings in Fig.~\ref{fig_standardAppearanceEA}.
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth]{../installation_images/standardAppearance}
+  \includegraphics[width=0.8\textwidth]{standardAppearance}
   \caption{Our choice of the standard appearance for model elements.}
   \label{fig_standardAppearanceEA}
 \end{figure}
@@ -169,7 +193,7 @@ Again this is just a suggestion and not mandatory.
 This setting is very important.
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\textwidth]{../installation_images/standardCodeEngineering}
+  \includegraphics[width=0.8\textwidth]{standardCodeEngineering}
   \caption{Make sure you set the standard language to Ecore.}
   \label{fig_standardSCEEA}
 \end{figure}
@@ -200,7 +224,7 @@ If you are really interested in the nitty-gritty details or have a masochistic h
 
 \begin{figure}[htbp]
     \centering
-  \includegraphics[width=\textwidth]{../installation_images/bothexplorers}
+  \includegraphics[width=\textwidth]{bothexplorers}
     \caption{From EA to Eclipse}
     \label{fig_fromEAtoEclipse}
 \end{figure}
@@ -256,7 +280,7 @@ We shall also give clear and simple definitions for the most important metamodel
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.9\textwidth]{../installation_images/tafelbild}
+  \includegraphics[width=0.9\textwidth]{tafelbild}
 	\caption{Overview}
 	\label{fig_Overview}
 \end{figure}
