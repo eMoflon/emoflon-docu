@@ -1,27 +1,18 @@
-\documentclass[11pt, a4paper,twoside]{book}
+\documentclass[11pt, a4paper]{book}
 % -------------------------------------------------------------------------------------------------------
 % THIS DOCUMENT IS CURRENTLY BEING REFACTORED
 %	Copy the contents of this file and paste into each part's main source file. This will ensure uniformity and ease of use. 
 %	Be sure to also copy the 'Common' folder, as it contains the title image and source file. Below are the only things you need to modify:
-%	> variable 'partTitle' on line 54; This changes the title page label
-%	> variable 'versionNum' on line 55; Modify if the part has been updated
-%	> content input filename on line 77; Currently, it is set to 'content.tex' in the src file; be sure to suffix the context name
+%	> variable 'partTitle' on line 53; This changes the title page label
+%	> variable 'versionNum' on line 54; Modify if the part has been updated
+%	> This section has no preface
+%	> content input filename on line 78; Currently, it is set to 'content.tex' in the src file; be sure to suffix the context name
 % -------------------------------------------------------------------------------------------------------
 \pagestyle{myheadings}
-
 
 \usepackage[english]{babel}
 \usepackage{graphicx}
 \usepackage[colorlinks,hyperindex,plainpages=false,breaklinks]{hyperref}
-
-\hypersetup{colorlinks=true,% 
-	linkcolor=black,%
-	citecolor=red,%
-	filecolor=blue,% 
-	menucolor=black,% 
-	pagecolor=black,%
-	urlcolor=black}
-
 \usepackage{amssymb}
 \usepackage{wasysym} 
 \usepackage{wrapfig}
@@ -30,9 +21,19 @@
 \usepackage{subfig}   % Necessary for subfloat (images next to each other)
 \usepackage{color}
 \usepackage[usenames,dvipsnames,svgnames]{xcolor}
-\definecolor{codelightgray}{rgb}{0.87,0.87,0.87}
 \usepackage{listings}
+\usepackage{fancyhdr}
 
+\definecolor{codelightgray}{rgb}{0.87,0.87,0.87}
+
+\hypersetup{colorlinks=true,% 
+	linkcolor=black,%
+	citecolor=red,%
+	filecolor=blue,% 
+	menucolor=black,% 
+	pagecolor=black,%
+	urlcolor=black}
+	
 \lstset{language=,
     keywordstyle=\color{blue},
     basicstyle=\scriptsize\ttfamily,
@@ -48,10 +49,12 @@
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
-
-% This should be the same for each part; Modify only the name and version number
-\def\partTitle{Part 0: Introduction to eMoflon}
-\def\versionNumber{3.4}
+\graphicspath{{../common/}{../introduction_images/}}
+ 
+ 
+% EDIT ME BASED ON CURRENT PART
+\def\partTitle{Part 0: Introduction}
+\def\versionNumber{3.4} 
 \input{../common/titlepage}
 
 
@@ -60,6 +63,7 @@
 
 \frontmatter 
 
+% Title Page
 \maketitle
 
 % Copyright notice
@@ -73,9 +77,7 @@
  % ----------------------------------------------------------------------------------------------------------------------------------
  \mainmatter
 
+% Main content for this part
 \input{introduction_content}
-
-% See if this will work FRIDAY
-%\input{../../commonFiles/document}
 
 \end{document}
