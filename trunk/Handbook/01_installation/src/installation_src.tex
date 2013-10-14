@@ -1,14 +1,12 @@
 \documentclass[11pt, a4paper]{book}
-% -------------------------------------------------------------------------------------------------------
-% THIS DOCUMENT IS CURRENTLY BEING REFACTORED
-%	Copy the contents of this file and paste into each part's main source file. This will ensure uniformity and ease of use. 
-%	Be sure to also copy the 'Common' folder, as it contains the title image and source file. Below are the only things you need to modify:
-%	> variable 'partTitle' on line 53; This changes the title page label
-%	> variable 'versionNum' on line 54; Modify if the part has been updated
-%	> The preface/summary file, line 77
-%	> Content input filename on line 84;
-% -------------------------------------------------------------------------------------------------------
-%\pagestyle{myheadings}
+% -----------------------------------------------------------------------------------
+% For every instance of this template, change the following:
+%	> Title Page information starting at line 57;
+%	> Summary of Part on line 113
+%	> Input file on line 122;
+%	> Reference file on line 125;
+%	> Glossary file on line 128;
+% -----------------------------------------------------------------------------------
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
@@ -25,7 +23,7 @@
 \usepackage{color}
 \usepackage[usenames,dvipsnames,svgnames]{xcolor}
 \usepackage{listings}
-
+\usepackage{fancyhdr}
 
 \definecolor{codelightgray}{rgb}{0.87,0.87,0.87}
 
@@ -54,22 +52,54 @@
 
 \graphicspath{{../../00_introduction/common/}{../installation_images/}}
  
-% This should be the same for each part; Modify only the name and version number
+% Remove section numbers 0.1, 0.2 ..
+\renewcommand{\thesection}{\arabic{section}} 
+ 
+% --- Title Page Information
 \def\partTitle{Part I: Installation \& Set-up}
 \def\versionNumber{3.4}
 \input{../../00_introduction/common/titlepage}
 
-% -- Setting the colored headings. Right(Visual) = Red; Left(Text) = Yellow/Orange--------------------------------------------------
-% Maybe do this command, but define them differently?
-\renewcommand{\headrulewidth}{1pt}
-\renewcommand{\headrule}{{\color{red}%
-\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
-% ----------------------------------------------------------------------------------------------------------------------------------
- 
+% --- HEADER FUNCTIONS --------------------------------------------------------------
+
+% default
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[OR]{\thepage}
+\fancyhead[EL]{\thepage}
+
+% General Header for when instructions overlap
+\newcommand{\genHeader}{
+	\fancyhead[OR]{\thepage}
+	\fancyhead[EL]{\thepage}
+	\renewcommand{\headrulewidth}{1.5pt}
+ 	\renewcommand{\headrule}{\hbox to\headwidth{%
+  		\color{gray}\leaders\hrule height \headrulewidth\hfill}}
+}
+
+% Visual instructions only, Red header, Odd (left) pages
+\newcommand{\visHeader}{
+	\fancyhead[OR]{\thepage}
+	\fancyhead[EL]{\thepage}
+	\renewcommand{\headrulewidth}{1.5pt}
+	\renewcommand{\headrule}{\hbox to\headwidth{%
+  		\color{red}\leaders\hrule height \headrulewidth\hfill}}
+}
+
+% Text instructions only, Blue header, Even (righ) pages
+\newcommand{\texHeader}{
+	\fancyhead[OR]{\thepage}
+	\fancyhead[EL]{\thepage}
+	\renewcommand{\headrulewidth}{1.5pt}
+	\renewcommand{\headrule}{\hbox to\headwidth{%
+  		\color{blue}\leaders\hrule height \headrulewidth\hfill}}
+}
+% -------------------------------------------------------------------------------------
+
 \begin{document}
 
 \frontmatter 
- 
+
+% Title Page
 \maketitle
 
 % Copyright notice
@@ -86,11 +116,9 @@
 \newcounter{romanpages}
 \setcounter{romanpages}{\value{page}}
 
+\mainmatter
 
- % ----------------------------------------------------------------------------------------------------------------------------------
- \mainmatter
-
-% Main content matter for this part
+% Main content for this Part
 \input{installation_content}
 
 % References?
@@ -98,6 +126,5 @@
 
 % Glossary?
 %
-
 
 \end{document}
