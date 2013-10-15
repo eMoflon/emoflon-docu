@@ -9,7 +9,7 @@
 
 \genHeader
 
-We start with a common step! Unfortunately, it's only a small step, so we apologize for the white space. This is done throughout the entire tutorial to make the distinction between the two methods of eMoflon crystal clear. We would hate to see you confused. After these pages, be sure to check you're reading the right steps.
+We start with a common step. Unfortunately, it's only a small step, so we do apologize for the white space. This is done throughout the entire tutorial to make the distinction between the two eMoflon syntaxes clearer than crystal. In the future, keep an eye out small notes that tell you if and where you can skip ahead to if you don't feel like flipping through white pages.
 
 \section{Install our plugin for Eclipse}
 \label{stepTwo}
@@ -69,51 +69,24 @@ Download \url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin
 
 % -----------------------------------------------------------------------------------------------------------------------------------
 % ---------VISUAL -------------------------------------------------------------------------------------------------------------------
-
+\visHeader
 
 
 \section{Get a simple demo running} % Start Visual (red)
 \label{stepThree}
 
-In the next steps, you'll start to notice the variations between the tasks for the visual and textual versions of eMoflon.
-Visual instructions are marked at the top with a red header, and will only be found on the odd, left-hand pages. 
-Text descriptions will be marked with blue, and only be found on the even, right-hand pages.
-For the entire tutorial, we will continue to present each beside one another so that you can compare the 
-differences and, more often, the similarities. This will lead to a better understanding of both eMoflon and modeling.
-
-% -----------------------------------------------------------------------------------------------------------------------------------
-% ---------VISUAL -------------------------------------------------------------------------------------------------------------------
-\visHeader
-
 \begin{enumerate}
-\item[$\blacktriangleright$] Within Eclipse, go to ``Window/Open Perspective/Other\ldots''\footnote{A path given as ``foo/bar'' indicates how to navigate in a series of menus and submenus.} and choose Moflon~(Fig.~\ref{fig_eclipse}). 
-
-\item[$\blacktriangleright$] In the toolbar a new action set should have appeared. Choose ``New Metamodel'' (Fig.~\ref{fig_eclipseNewMetamodel}).
-The button with an ``L" shows you our logfile (important input for us if something goes wrong!).
- 
-\item[$\blacktriangleright$] Enter ``Demo'' as the name of the new metamodel project and confirm. 
-{\bf An empty EA project file ``Demo.eap'' will be created in a new project with a certain project structure according to our conventions\footnote{At the moment, the project contains only the EA project file.}.}
-
-% ----- TEXT------------------------------------------------------------------------------------------------------------------------
-\clearpage
-%	Clear page prints out all images so far, and starts this new page with no formatting. May produce undesired effects - revert back to \newpage
-\texHeader
-\mbox{}
-\clearpage
-
-
-% -----------------------------------------------------------------------------------------------------------------------------------
-% ---------VISUAL -------------------------------------------------------------------------------------------------------------------
-\visHeader
+\item[$\blacktriangleright$] In Eclipse, go to ``Window/Open Perspective/Other\ldots''\footnote{A path given as ``foo/bar'' indicates how to navigate in a series of menus and submenus.} and choose Moflon~(Fig.~\ref{fig_eclipse}).
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=\textwidth]{eclipse_firststart}
 	\caption{Choose the Moflon perspective.}
 	\label{fig_eclipse}
-\end{figure}
+\end{figure} 
 
-\vspace{1cm}
+\item[$\blacktriangleright$] In the toolbar, a new action set should have appeared. Choose ``New Metamodel'' (Fig.~\ref{fig_eclipseNewMetamodel}).
+The button with an ``L" shows you our logfile (important input for us if something goes wrong!).
 
 \begin{figure}[htbp]
 	\centering
@@ -121,31 +94,38 @@ The button with an ``L" shows you our logfile (important input for us if somethi
 	\caption{Eclipse ''New Metamodel''}
 	\label{fig_eclipseNewMetamodel}
 \end{figure}
+ 
+\item[$\blacktriangleright$] Name the project 'Demo' and select 'Visual (Enterprise Architect)' . Make sure that the 'Add Demo Specification' is checked off. Press finish, and notice the Demo.eap file in your project explorer. This is the EA file you'll be testing and modelling your program with.
 
-\vspace{1cm}
-Even if you're not intending on using EA, please do not rename, move or delete anything.
-
-\FloatBarrier
-\item[$\blacktriangleright$] Choose working sets as your top level element in the package explorer (Fig.~\ref{fig_eclipseWorkingsets}).
-We work a lot with working sets and use them to structure the workspace in Eclipse.
-
-\item[$\blacktriangleright$] Open the newly created project and replace the ``Demo.eap'' file with the Demo.eap that you will find in the \texttt{eMoflonTutorial.zip} file provided together with this tutorial.
-
-\item[$\blacktriangleright$] Double click ``Demo.eap'' to start EA.
-Please choose ``Ultimate" when starting EA for the first time.
+Please do not rename, move, or delete anything.
 
 % ----- TEXT------------------------------------------------------------------------------------------------------------------------
 \clearpage
+%	Clear page prints out all images so far, and starts this new page with no formatting. May produce undesired effects - revert back to \newpage?
 \texHeader
 \mbox{}
-\pagebreak
+\clearpage
+
 
 % -----------------------------------------------------------------------------------------------------------------------------------
 % ---------VISUAL -------------------------------------------------------------------------------------------------------------------
 \visHeader
-  
+
+
+\vspace{1cm}
+
+
+
+\vspace{1cm}
+
+
+\FloatBarrier
+\item[$\blacktriangleright$] Press the small arrow in the package explorer, and choose working sets as your top level element (Fig.~\ref{fig_eclipseWorkingsets}). We work a lot with working sets, and use them to structure the workspace in Eclipse.
+
+\item[$\blacktriangleright$] Double click ``Demo.eap'' to start EA, and choose ``Ultimate" when starting EA for the first time.
+
 \item[$\blacktriangleright$] In EA, choose ``Extensions/MOFLON::Ecore Addin/Export\- all\- to\- Workspace'' (Fig.~\ref{fig_ea}).
-You can of course browse the project structure, but please do not rename, move or delete anything yet.
+You can of course browse the project structure, but please do not rename, move, or delete anything yet.
 
 \begin{figure}[htbp]
 	\centering
@@ -153,10 +133,8 @@ You can of course browse the project structure, but please do not rename, move o
 	\caption{Export from EA using our extension} 
 	\label{fig_ea} 
 \end{figure}
-
-
-\visHeader
-\item[$\blacktriangleright$] Switch back to Eclipse, choose your Metamodel project and press F5 to refresh.
+  
+\item[$\blacktriangleright$] Switch back to Eclipse, choose your Metamodel project, and press F5 to refresh.
 The export from EA places all required files in a hidden folder in the project, and refreshing triggers a build process that invokes our code generators automatically.
 You should be able to monitor the progress in the lower right corner (Fig.~\ref{fig_eclipsebuilding}).  
 Pressing the symbol opens a monitor view that gives more details of the build process. 
@@ -184,6 +162,8 @@ You don't need to worry about any of these details, just remember to refresh you
 
 \section{Validate your installation with JUnit}
 \label{sec:junit}
+
+Did you notice the headings changed? If you did, awesome! If not, we must emphasize viewing this handbook in a 'double paged' format to make changes clear.
 
 \begin{enumerate}
 \item[$\blacktriangleright$] Go to ``File/Import/General/Existing Projects into Workspace'' (Fig.~\ref{fig_eclipseTestsuiteImport}) and choose the Testsuite project that is also in the \texttt{eMoflonTutorial.zip} provided with this tutorial. 
@@ -264,6 +244,7 @@ Now switch to your \emph{Eclipse workspace} and note the two nodes named \texttt
 The working set \texttt{Spe\-ci\-fi\-ca\-tions} contains all \emph{metamodel projects} in a  workspace.
 
 \% VISUAL
+
 A metamodel project contains a single EAP (EA project) file and is used to communicate with EA and initiate code generation by simply pressing F5 or choosing ``refresh'' from the context menu.
 In our case, \texttt{Specifications} should contain a single metamodel project \texttt{Demo} containing our EA project file  \texttt{Demo.eap}.
 
