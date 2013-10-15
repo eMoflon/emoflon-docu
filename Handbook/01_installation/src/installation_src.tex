@@ -62,10 +62,13 @@
 
 % --- HEADER FUNCTIONS --------------------------------------------------------------
 
-% default
-\renewcommand{\headrulewidth}{0pt}
-\fancyhead[OR]{\thepage}
-\fancyhead[EL]{\thepage}
+
+% Default plain header; turn off all lines and colors
+\newcommand{\noHeader}{
+	\fancyhead[OR]{\thepage}
+	\fancyhead[EL]{\thepage}
+	\renewcommand{\headrulewidth}{0pt}
+}
 
 % General Header for when instructions overlap
 \newcommand{\genHeader}{
@@ -85,7 +88,7 @@
   		\color{red}\leaders\hrule height \headrulewidth\hfill}}
 }
 
-% Text instructions only, Blue header, Even (righ) pages
+% Text instructions only, Blue header, Even (right) pages
 \newcommand{\texHeader}{
 	\fancyhead[OR]{\thepage}
 	\fancyhead[EL]{\thepage}
@@ -93,12 +96,13 @@
 	\renewcommand{\headrule}{\hbox to\headwidth{%
   		\color{blue}\leaders\hrule height \headrulewidth\hfill}}
 }
-% -------------------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------------------
 
 \begin{document}
 
 \frontmatter 
-
+\noHeader
 % Title Page
 \maketitle
 

@@ -1,3 +1,4 @@
+% Custom Heading; Change ??
 {\bf \huge Part I:}
 
 \vspace{0.5cm}
@@ -5,10 +6,31 @@
 {\bf \Huge Installation \& Setup }
 
 \vspace{0.5cm}
-EMoflon can be used two unique ways - Visually or textually. Neither are better than the other, it all comes down to your personal preference. That's right, YOU run the show here!
-That however, means that you'll need to keep track of what section you're in. If the diagrams and screenshots don't match your screen, you might be following the wrong instructions.
 
-In the following part, visual installations require an external modeling tool. If you're intending on working only with text, feel free to skip ahead to Step \ref{stepTwo}. 
+\genHeader
+
+We start with a common step! Unfortunately, it's only a small step, so we apologize for the white space. This is done throughout the entire tutorial to make the distinction between the two methods of eMoflon crystal clear. We would hate to see you confused. After these pages, be sure to check you're reading the right steps.
+
+\section{Install our plugin for Eclipse}
+\label{stepTwo}
+\begin{enumerate}
+\item[$\blacktriangleright$] Download and install Eclipse for Modelling ``Eclipse Modeling Tools (includes incubating components)''\footnote{Please note that you \emph{have to} install \emph{Eclipse Modeling Tools}, from the Juno download packages, or nothing will work.  Do not choose a different Eclipse package!  Although different versions and {\bf constellations} might work, eMoflon is currently tested for Eclipse Juno and Java 1.7.} from \url{http://www.eclipse.org/downloads/packages/} (Fig.~\ref{fig_downloadModelingPackage}).
+
+\begin{figure}[htbp]
+	\centering
+  	\includegraphics[width=0.86\textwidth]{eclipse_modelingpackage}
+	\caption{Download Eclipse Modeling Tools.}
+	\label{fig_downloadModelingPackage}
+\end{figure}
+
+\item[$\blacktriangleright$] Install our Eclipse Plugin from the following update site\footnote{For a detailed tutorial on how to install Eclipse and Eclipse Plugins please refer to \url{http://www.vogella.de/articles/Eclipse/article.html}} 
+\footnote{Please note: Calculating requirements and dependencies when installing the plugin might take quite a while depending on your internet connection.}:
+\url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/update-site2}
+
+\end{enumerate}
+
+\newpage
+\visHeader
 
 \section{Install our extension for Enterprise Architect}
 \label{stepOne}
@@ -36,32 +58,28 @@ Download \url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin
 \end{figure}
 \end{enumerate}
  
-\section{Install our plugin for Eclipse}
-\label{stepTwo}
-\begin{enumerate}
-\item[$\blacktriangleright$] Download and install Eclipse for Modelling ``Eclipse Modeling Tools (includes incubating components)''\footnote{Please note that you \emph{have to} install \emph{Eclipse Modeling Tools}, from the Juno download packages, or nothing will work.  Do not choose a different Eclipse package!  Although different versions and {\bf constellations} might work, eMoflon is currently tested for Eclipse Juno and Java 1.7.} from \url{http://www.eclipse.org/downloads/packages/} (Fig.~\ref{fig_downloadModelingPackage}).
 
-\begin{figure}[htbp]
-	\centering
-  	\includegraphics[width=0.86\textwidth]{eclipse_modelingpackage}
-	\caption{Download Eclipse Modeling Tools.}
-	\label{fig_downloadModelingPackage}
-\end{figure}
+% ----- TEXT------------------------------------------------------------------------------------------------------------------------
+\clearpage
+%	Clear page prints out all images so far, and starts this new page with no formatting. May produce undesired effects - revert back to \newpage
+\texHeader
+\mbox{}
+\clearpage
 
-\item[$\blacktriangleright$] Install our Eclipse Plugin from the following update site\footnote{For a detailed tutorial on how to install Eclipse and Eclipse Plugins please refer to \url{http://www.vogella.de/articles/Eclipse/article.html}} 
-\footnote{Please note: Calculating requirements and dependencies when installing the plugin might take quite a while depending on your internet connection.}:
-\url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/update-site2}
 
-\end{enumerate}
+% -----------------------------------------------------------------------------------------------------------------------------------
+% ---------VISUAL -------------------------------------------------------------------------------------------------------------------
+
+
 
 \section{Get a simple demo running} % Start Visual (red)
 \label{stepThree}
 
-In the next few steps, you'll start to notice the variations between the tasks for the Visual and Text demos.
-Visual instructions are marked with a red header above, and will only be found on the odd, left pages while Text descriptions will be marked with blue, and
-only be found on the even, right pages.
+In the next steps, you'll start to notice the variations between the tasks for the visual and textual versions of eMoflon.
+Visual instructions are marked at the top with a red header, and will only be found on the odd, left-hand pages. 
+Text descriptions will be marked with blue, and only be found on the even, right-hand pages.
 For the entire tutorial, we will continue to present each beside one another so that you can compare the 
-differences and, more often, the similarities. We hope this will lead to a better understanding of both eMoflon and modeling.
+differences and, more often, the similarities. This will lead to a better understanding of both eMoflon and modeling.
 
 % -----------------------------------------------------------------------------------------------------------------------------------
 % ---------VISUAL -------------------------------------------------------------------------------------------------------------------
@@ -77,10 +95,11 @@ The button with an ``L" shows you our logfile (important input for us if somethi
 {\bf An empty EA project file ``Demo.eap'' will be created in a new project with a certain project structure according to our conventions\footnote{At the moment, the project contains only the EA project file.}.}
 
 % ----- TEXT------------------------------------------------------------------------------------------------------------------------
-\newpage
+\clearpage
+%	Clear page prints out all images so far, and starts this new page with no formatting. May produce undesired effects - revert back to \newpage
 \texHeader
-Text explanation goes here
-\pagebreak
+\mbox{}
+\clearpage
 
 
 % -----------------------------------------------------------------------------------------------------------------------------------
@@ -116,9 +135,9 @@ We work a lot with working sets and use them to structure the workspace in Eclip
 Please choose ``Ultimate" when starting EA for the first time.
 
 % ----- TEXT------------------------------------------------------------------------------------------------------------------------
-\newpage
+\clearpage
 \texHeader
-Text explanation goes here
+\mbox{}
 \pagebreak
 
 % -----------------------------------------------------------------------------------------------------------------------------------
@@ -150,22 +169,24 @@ You don't need to worry about any of these details, just remember to refresh you
 \end{figure}
 
 \end{enumerate}
+% ----- TEXT------------------------------------------------------------------------------------------------------------------------
+\clearpage
+\texHeader
+\mbox{}
+\pagebreak
+
+
+% -----------------------------------------------------------------------------------------------------------------------------------
+% --------- GENERAL  ----------------------------------------------------------------------------------------------------------------
+% -----------------------------------------------------------------------------------------------------------------------------------
+\pagebreak
+\genHeader
 
 \section{Validate your installation with JUnit}
 \label{sec:junit}
 
 \begin{enumerate}
 \item[$\blacktriangleright$] Go to ``File/Import/General/Existing Projects into Workspace'' (Fig.~\ref{fig_eclipseTestsuiteImport}) and choose the Testsuite project that is also in the \texttt{eMoflonTutorial.zip} provided with this tutorial. 
-
-% ----- TEXT------------------------------------------------------------------------------------------------------------------------
-\newpage
-\texHeader
-Text explanation goes here
-\pagebreak
-
-% -----------------------------------------------------------------------------------------------------------------------------------
-% ---------VISUAL -------------------------------------------------------------------------------------------------------------------
-\visHeader
 
 \begin{figure}[htbp]
 	\centering
@@ -186,7 +207,17 @@ Congratulations!  If you see a green bar  (Fig.~\ref{fig_eclipsetestsuiterun}), 
 
 \end{enumerate}
 
+\newpage
+\mbox{}
+\newpage
+
+
+\emph{This entire section needs to be rewritten! Right now, it's all in reference to the Visual stuff - is there anything in common with text? If so, we need to have a
+'Just EA' section, and then talk about the eclipse interface. (Put the 'JustEA' behind the common text?)}
+
 \section{Project structure and setup}
+\% VISUAL
+
 Now that everything is installed and setup properly, let's take a closer look at the different workspaces and our workflow.
 Before we continue, please make a few slight adjustments to EA so you can easily compare your current workspace to our screenshots:
 \begin{enumerate} 
@@ -199,15 +230,7 @@ Again, this is just a suggestion and not mandatory.
 
 \item[$\blacktriangleright$] Last but not least, and still in the same dialogue, select ``Source Code Engineering'' and be sure to choose ``Ecore'' as the default language for code generation (Fig.~\ref{fig_standardSCEEA}). This setting is very important.
 
-% ----- TEXT------------------------------------------------------------------------------------------------------------------------
-\newpage
-\texHeader
-Text explanation goes here.
-\pagebreak
-
-% -----------------------------------------------------------------------------------------------------------------------------------
-% ---------VISUAL -------------------------------------------------------------------------------------------------------------------
-\visHeader
+\end{enumerate}
 
 \begin{figure}[htbp]
 	\centering
@@ -216,25 +239,12 @@ Text explanation goes here.
 	\label{fig_eclipsepackageexplorer}
 \end{figure}
 
-% Had to force position to the bottom of the page.
-\begin{figure}[b!]
+\begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.5\textwidth]{eclipse_testsuiterun}
 	\caption{All's well that ends well\ldots}
 	\label{fig_eclipsetestsuiterun}
 \end{figure}
-
-
-% ----- TEXT------------------------------------------------------------------------------------------------------------------------
-\newpage
-\texHeader
-Text explanation goes here.
-\pagebreak
-
-% -----------------------------------------------------------------------------------------------------------------------------------
-% ---------VISUAL -------------------------------------------------------------------------------------------------------------------
-\visHeader
-
 
 \begin{figure}[htbp]
   \centering
@@ -248,20 +258,14 @@ In your EA ``workspace'', actually referred to as an \emph{EA project}\footnote{
 In our case, \texttt{Demo}  consists of a single package \texttt{DoubleLinkedListLanguage}.
 An EA project can however consist of numerous models that in turn group  numerous packages.
 
+\% VISUAL \& TEXTUAL
+
 Now switch to your \emph{Eclipse workspace} and note the two nodes named \texttt{Spe\-ci\-fi\-ca\-tions} and \texttt{Demo}.  These nodes, used to group related \emph{Eclipse projects} in an Eclipse workspace, are called \emph{working sets}.
 The working set \texttt{Spe\-ci\-fi\-ca\-tions} contains all \emph{metamodel projects} in a  workspace.
+
+\% VISUAL
 A metamodel project contains a single EAP (EA project) file and is used to communicate with EA and initiate code generation by simply pressing F5 or choosing ``refresh'' from the context menu.
 In our case, \texttt{Specifications} should contain a single metamodel project \texttt{Demo} containing our EA project file  \texttt{Demo.eap}.
-
-% ----- TEXT------------------------------------------------------------------------------------------------------------------------
-\newpage
-\texHeader
-Text explanation goes here.
-\pagebreak
-
-% -----------------------------------------------------------------------------------------------------------------------------------
-% ---------VISUAL -------------------------------------------------------------------------------------------------------------------
-\visHeader
 
 \begin{figure}[htbp]
   \centering
@@ -270,30 +274,27 @@ Text explanation goes here.
   \label{fig_standardAppearanceEA}
 \end{figure}
 
+\% VISUAL
 
 Figure~\ref{fig_fromEAtoEclipse} depicts how the Eclipse working set \texttt{Demo} and its contents were generated from the EA model \texttt{Demo}.
 Every model in EA is mapped to a working set in Eclipse with the same name. 
 From every package in the EA model, an Eclipse project is generated, also with the same name.
+
+\% VISUAL \& TEXTUAL?
+
 These projects, however, are of a different \emph{nature} than for example metamodel projects or normal Java projects, and are called \emph{repository projects}.  
 A nature is Eclipse lingo for ``project type'' and is visually indicated by a corresponding nature icon on the project folder.
 Our  metamodel projects sport a spanking little class diagram symbol. 
 Repository projects are generated automatically  with a certain project structure according to our conventions.  
 The  \texttt{model} subfolder is probably most important, and contains an  \emph{Ecore model}.  
 Ecore is a metamodelling language that provides building  blocks like \emph{classes} and \emph{references} for defining the  static structure (concepts and relations between concepts) of a system.  
+
+\% VISUAL
+
 The  export function of our EA plugin generates a valid Ecore model from the  corresponding EA model and persists it as an XML file in the \texttt{model}  subfolder.  
 In our concrete example, this is the \texttt{DoubleLinkedListLanguage.ecore} file.  
 Go ahead and double-click it to open the file in a simple tree-view editor in Eclipse.  
 If you are really interested in the nitty-gritty details or have a masochistic hang, right-click the file and select ``Open With/Text Editor''. 
-
-% ----- TEXT------------------------------------------------------------------------------------------------------------------------
-\newpage
-\texHeader
-Text explanation goes here.
-\pagebreak
-
-% -----------------------------------------------------------------------------------------------------------------------------------
-% ---------VISUAL -------------------------------------------------------------------------------------------------------------------
-\visHeader
 
 \begin{figure}[htbp]
   \centering
@@ -302,28 +303,21 @@ Text explanation goes here.
   \label{fig_standardSCEEA}
 \end{figure}
 
+\% VISUAL \& TEXTUAL
 
 This Ecore model is used to drive a code generator that maps the model to Java interfaces and classes.  
 The generated Java code that represents the model is often referred to as a \emph{repository} and this is the reason why we refer to such projects as repository projects\footnote{Not to be mixed up with CVS or SVN repositories, although the idea of a source code ``container'' is the same here.}. 
 A repository can be viewed as an \emph{adapter} that enables building and manipulating concrete instances of a specific model via a programming language such as Java.  
 This is why we indicate repository projects using a cute adapter/plug symbol on the project folder.  
 
-Figure~\ref{fig_fromEAtoEclipse} depicts how the class \texttt{Node} in the EA model is mapped to the Java interface \texttt{Node}.  
+\% VISUAL
+
+Figure~\ref{fig_fromEAtoEclipse} also depicts how the class \texttt{Node} in the EA model is mapped to the Java interface \texttt{Node}.  
 Double-click \texttt{Node.java} and take a look at the methods declared in the interface.
 These correspond directly to the methods declared in the modelled \texttt{Node} class.  
 Indicated by the source folders \texttt{src}, \texttt{injection} and \texttt{gen}, we advocate a clean separation of hand-written (this should go in \texttt{src} and \texttt{injection}) and generated code (lands automatically in \texttt{gen}).  
 As we shall see later in the tutorial, hand-written code can be integrated in generated classes vio Injections. 
 This is sometimes more elegant for small helper functions or necessary for String manipulation for instance.
-
-% ----- TEXT------------------------------------------------------------------------------------------------------------------------
-\newpage
-\texHeader
-Text explanation goes here.
-\pagebreak
-
-% -----------------------------------------------------------------------------------------------------------------------------------
-% ---------VISUAL -------------------------------------------------------------------------------------------------------------------
-\visHeader
 
 \begin{figure}[htbp]
     \centering
@@ -332,27 +326,21 @@ Text explanation goes here.
     \label{fig_fromEAtoEclipse}
 \end{figure}
 
+\% VISUAL \& TEXUAL? ({ \small explains Gen, i'm assuming this is still in eclipse })
 
 If you take a careful look at the code structure in \texttt{gen}, you'll find a \texttt{Foo\-Impl.java} for every \texttt{Foo.java}. 
 Indeed, the subpackage \texttt{impl} contains Java classes that implement the interfaces in the parent package.  
 Although this might strike you as unnecessary (why not merge interface and implementation for simple classes?), this consequent separation in interfaces and implementation allows for a clean and relatively simple mapping of Ecore to Java, even in tricky cases like multiple inheritance (allowed and very common in Ecore models).  
 A further package \texttt{util} contains some auxiliary classes such as a factory for creating instances of the model.  
+
+\% VISUAL ({ \small but it still explains the amount of code\ldots? }) \& TEXUAL?
+
 If this is your first time of seeing generated code, you might be shocked at the sheer amount of classes and code generated from our relatively simple EA model.  
 You might be thinking: ``hey - if I did this by hand I wouldn't need half of all this stuff!''.  
 Well you're right and you're wrong -- the point is that an automatic mapping to Java via a code generator scales quite well.
 This means for simple, trivial examples (like our double linked list), it might be possible to come up with a leaner and simpler Java representation.  
 For complex, large models with lots of mean pitfalls, however, this becomes a daunting task.  
 The code generator provides you with years and years of experience of professional programmers who have thought up clever ways of handling multiple inheritance, an efficient event mechanism, reflection, consistency between bidirectionally linked objects and much more.
-
-% ----- TEXT------------------------------------------------------------------------------------------------------------------------
-\newpage
-\texHeader
-Text explanation goes here.
-\pagebreak
-
-% -----------------------------------------------------------------------------------------------------------------------------------
-% ---------VISUAL -------------------------------------------------------------------------------------------------------------------
-\visHeader
 
 A point to note here is that the mapping to Java is obviously not unique. 
 Indeed there exist different standards of how to map a modelling language to a general purpose programming language like Java. 
@@ -361,6 +349,9 @@ We use a mapping defined and implemented by the Eclipse Modelling Framework (EMF
 
 Although getting the \emph{details} of mapping the static structure of our models to Java might be extremely difficult, it is actually straight forward.  
 A fantastic productivity boost in any case but (yawn) not exactly exciting.
+
+
+\% VISUAL
 
 Have you noticed the methods of the \texttt{Node} class in our EA model? 
 Now hold on tight -- each method can be \emph{modelled} completely in EA and the corresponding implementation in Java is generated automatically and placed in \texttt{NodeImpl}.  
@@ -376,21 +367,6 @@ Our EA model consists not only of static aspects modelled as a class diagram~(2)
 aspects modelled using SDM~(3).  After exporting the model and code generation~(4), we basically switch from \emph{modelling} to \emph{programming} in a specific general purpose programming language (Java).  
 On this lower \emph{level of abstraction}, we can flesh out the generated repository~(5) if necessary, and mix as appropriate with hand-written code and libraries.  Our abstract specification of behaviour (methods) in SDM is translated to a series of method calls that form the body of the corresponding Java method~(6).
 
-% ----- TEXT------------------------------------------------------------------------------------------------------------------------
-\newpage
-\texHeader
-Text explanation goes here.
-\pagebreak
-
-% -----------------------------------------------------------------------------------------------------------------------------------
-% ---------VISUAL -------------------------------------------------------------------------------------------------------------------
-\visHeader
-
-If you feel a bit lost at the moment please be patient; this first chapter has been a lot about installation and tool support and only aims at giving a very brief glimpse at the big picture of what is actually going on.    
-
-In the following chapter, we shall go step-by-step through a hands-on example and cover the core features of Ecore (static structure) and SDM (behaviour). 
-We shall also give clear and simple definitions for the most important metamodelling and graph transformation concepts, always referring to the concrete example and providing lots of references for further reading.
-
 \vspace{1cm}
 
 \begin{figure}[htbp]
@@ -400,4 +376,17 @@ We shall also give clear and simple definitions for the most important metamodel
 	\label{fig_Overview}
 \end{figure}
 
-\end{enumerate}
+
+% ---- END OF PART I  -----------------------------------------------------------------------------------------------------------------
+\newpage
+\noHeader
+
+End of Handbook Part I
+
+If you feel a bit lost at the moment, don't worry! Be patient - This first chapter has been a lot about installation and tool support, and only aims at giving a very brief glimpse at the big picture of what is actually going on.    
+
+If you enjoyed this section and wish to get started on the key features of eMoflon, Check out Part II! There we will go step-by-step through a hands-on example and cover the core features of Ecore (static structure). %and SDM (behaviour).
+We shall also introduce clear and simple definitions for the most important metamodelling and graph transformation concepts, always referring to the concrete example and providing ample references for further reading.
+If you're already familiar with the tool however, feel free to pick and choose chapters that are interesting to you. Check out Story Driven Modeling (SDMs) in Part III, or Triple Graph Transformations in Part IV. 
+
+Cheers!
