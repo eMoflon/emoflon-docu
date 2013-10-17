@@ -16,6 +16,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>.tex</name>
+			<type>1</type>
+			<location>C:/Program Files (x86)/MiKTeX 2.9/tex/latex/tools/.tex</location>
+		</link>
+		<link>
 			<name>src/.tex</name>
 			<type>1</type>
 			<location>C:/Program Files (x86)/MiKTeX 2.9/tex/latex/tools/.tex</location>

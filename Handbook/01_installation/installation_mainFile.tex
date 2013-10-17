@@ -50,7 +50,10 @@
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
-\graphicspath{{../../00_introduction/common/}{../installation_images/}}
+
+% --- Add Path to find all relevant files; avoids having to type in full path
+% \graphicspath{{../../00_introduction/common/}{../installation_images/}}
+\graphicspath{{../00_introduction/common/}{installation_images/}{03_simpleDemo/03_sectionImages/}}
  
 % Remove section numbers 0.1, 0.2 ..
 \renewcommand{\thesection}{\arabic{section}} 
@@ -58,11 +61,9 @@
 % --- Title Page Information
 \def\partTitle{Part I: Installation \& Set-up}
 \def\versionNumber{3.4}
-\input{../../00_introduction/common/titlepage}
+\input{../00_introduction/common/titlepage}
 
 % --- HEADER FUNCTIONS --------------------------------------------------------------
-
-
 % Default plain header; turn off all lines and colors
 \newcommand{\noHeader}{
 	\fancyhead[OR]{\thepage}
@@ -97,6 +98,20 @@
   		\color{ProcessBlue}\leaders\hrule height \headrulewidth\hfill}}
 }
 
+% --- File Split functions -----------------------------------------------------------
+
+% % % % Move me up top
+% \usepackage{catchfilebetweentags}
+% 
+% \newcommand{\loadVisual}[1]{
+% 	\ExecuteMetaData[installation_vis_content]{#1}
+% }
+% 
+% \newcommand{\loadTextual}[1]{
+%   	\ExecuteMetaData[installation_tex_content]{#1}
+%  }
+
+
 % ------------------------------------------------------------------------------------
 
 \begin{document}
@@ -107,7 +122,7 @@
 \maketitle
 
 % Copyright notice
-\input{../../00_introduction/common/copyright}
+\input{../00_introduction/common/copyright}
 \newpage
 
 % TOC
@@ -123,7 +138,8 @@
 \mainmatter
 
 % Main content for this Part
-\input{installation_content}
+\input{installation_source}
+% \input{installation_source} 
 
 % References?
 %

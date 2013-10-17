@@ -1,19 +1,16 @@
-% Custom Heading; Change ??
-{\bf \huge Part I:}
 
-\vspace{0.5cm}
+{\bf \huge Part I:}
+\vspace{0.7cm}
 
 {\bf \Huge Installation \& Setup }
-
 \vspace{0.5cm}
-
 \genHeader
 
-We start with a common step. Unfortunately, it's only a small step, so we do apologize for the white space. This is done throughout the entire tutorial to make the distinction between the two eMoflon syntaxes clearer than crystal. In the future, keep an eye out small notes that tell you if and where you can skip ahead to if you don't feel like flipping through white pages.
+We start with a common step. Unfortunately, it's only a small step, so we do apologize for the white space. This is done throughout the entire tutorial to make the distinction between the two eMoflon syntaxes clearer than crystal. In the future, keep an eye out small notes that tell you if and where you can skip ahead if you don't feel like flipping through white pages.
 
 \section{Install our plugin for Eclipse}
-\label{stepTwo}
-\begin{enumerate}
+ 
+\begin{itemize}
 \item[$\blacktriangleright$] Download and install Eclipse for Modelling ``Eclipse Modeling Tools (includes incubating components)''\footnote{Please note that you \emph{have to} install \emph{Eclipse Modeling Tools}, from the Juno download packages, or nothing will work.  Do not choose a different Eclipse package!  Although different versions and {\bf constellations} might work, eMoflon is currently tested for Eclipse Juno and Java 1.7.} from \url{http://www.eclipse.org/downloads/packages/} (Fig.~\ref{fig_downloadModelingPackage}).
 
 \begin{figure}[htbp]
@@ -27,137 +24,16 @@ We start with a common step. Unfortunately, it's only a small step, so we do apo
 \footnote{Please note: Calculating requirements and dependencies when installing the plugin might take quite a while depending on your internet connection.}:
 \url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/update-site2}
 
-\end{enumerate}
+\end{itemize}
+
+
+\input{02_EAExtension/EAExtensionSrc}
+
+
+\input{03_simpleDemo/simpleDemoSrc}
+
 
 \newpage
-\visHeader
-
-\section{Install our extension for Enterprise Architect}
-\label{stepOne}
-Enterprise Architect (EA) is a visual modelling tool that supports UML\footnote{Unified Modelling Language} and a host of other modelling languages.
-EA is not only affordable but also quite flexible and can be extended via \emph{extensions} to support new modelling languages.
-\begin{enumerate}
-  
-\item[$\blacktriangleright$] Download EA for Windows from \url{http://www.sparxsystems.com/} to get a free 30 day trial and follow installation instructions (Fig.~\ref{fig_enterpriseArchitextHomepage}).
-
-\begin{figure}[htbp]
-	\centering
-  	\includegraphics[width=0.77\textwidth]{ea_download}
-	\caption{Download Enterprise Architect}
-	\label{fig_enterpriseArchitextHomepage}
-\end{figure} 
-
-\item[$\blacktriangleright$] Install our EA-Extension (Fig.~\ref{fig_eaPluginWizard}) to add support for our modelling languages.
-Download \url{http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/ea-ecore-addin/ea-ecore-addin.zip}, unpack, and run \texttt{setup.exe}.
-
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.55\textwidth]{eaplugin_install}
-	\caption{Install our extension for EA}
-	\label{fig_eaPluginWizard}
-\end{figure}
-\end{enumerate}
- 
-
-% ----- TEXT------------------------------------------------------------------------------------------------------------------------
-\clearpage
-%	Clear page prints out all images so far, and starts this new page with no formatting. May produce undesired effects - revert back to \newpage
-\texHeader
-\mbox{}
-\clearpage
-
-
-% -----------------------------------------------------------------------------------------------------------------------------------
-% ---------VISUAL -------------------------------------------------------------------------------------------------------------------
-\visHeader
-
-
-\section{Get a simple demo running} % Start Visual (red)
-\label{stepThree}
-
-\begin{enumerate}
-\item[$\blacktriangleright$] In Eclipse, go to ``Window/Open Perspective/Other\ldots''\footnote{A path given as ``foo/bar'' indicates how to navigate in a series of menus and submenus.} and choose Moflon~(Fig.~\ref{fig_eclipse}).
-
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=\textwidth]{eclipse_firststart}
-	\caption{Choose the Moflon perspective.}
-	\label{fig_eclipse}
-\end{figure} 
-
-\item[$\blacktriangleright$] In the toolbar, a new action set should have appeared. Choose ``New Metamodel'' (Fig.~\ref{fig_eclipseNewMetamodel}).
-The button with an ``L" shows you our logfile (important input for us if something goes wrong!).
-
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=\textwidth]{eclipse_metamodelButton}
-	\caption{Eclipse ''New Metamodel''}
-	\label{fig_eclipseNewMetamodel}
-\end{figure}
- 
-\item[$\blacktriangleright$] Name the project 'Demo' and select 'Visual (Enterprise Architect)' . Make sure that the 'Add Demo Specification' is checked off. Press finish, and notice the Demo.eap file in your project explorer. This is the EA file you'll be testing and modelling your program with.
-
-Please do not rename, move, or delete anything.
-
-% ----- TEXT------------------------------------------------------------------------------------------------------------------------
-\clearpage
-%	Clear page prints out all images so far, and starts this new page with no formatting. May produce undesired effects - revert back to \newpage?
-\texHeader
-\mbox{}
-\clearpage
-
-
-% -----------------------------------------------------------------------------------------------------------------------------------
-% ---------VISUAL -------------------------------------------------------------------------------------------------------------------
-\visHeader
-
-
-\vspace{1cm}
-
-
-
-\vspace{1cm}
-
-
-\FloatBarrier
-\item[$\blacktriangleright$] Press the small arrow in the package explorer, and choose working sets as your top level element (Fig.~\ref{fig_eclipseWorkingsets}). We work a lot with working sets, and use them to structure the workspace in Eclipse.
-
-\item[$\blacktriangleright$] Double click ``Demo.eap'' to start EA, and choose ``Ultimate" when starting EA for the first time.
-
-\item[$\blacktriangleright$] In EA, choose ``Extensions/MOFLON::Ecore Addin/Export\- all\- to\- Workspace'' (Fig.~\ref{fig_ea}).
-You can of course browse the project structure, but please do not rename, move, or delete anything yet.
-
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.9\textwidth]{ea_firststart}
-	\caption{Export from EA using our extension} 
-	\label{fig_ea} 
-\end{figure}
-  
-\item[$\blacktriangleright$] Switch back to Eclipse, choose your Metamodel project, and press F5 to refresh.
-The export from EA places all required files in a hidden folder in the project, and refreshing triggers a build process that invokes our code generators automatically.
-You should be able to monitor the progress in the lower right corner (Fig.~\ref{fig_eclipsebuilding}).  
-Pressing the symbol opens a monitor view that gives more details of the build process. 
-You don't need to worry about any of these details, just remember to refresh your Eclipse workspace after an export.
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.55\textwidth]{eclipse_building}
-	\caption{Automatically building the workspace after a refresh.}
-	\label{fig_eclipsebuilding}
-\end{figure}
-
-\end{enumerate}
-% ----- TEXT------------------------------------------------------------------------------------------------------------------------
-\clearpage
-\texHeader
-\mbox{}
-\pagebreak
-
-
-% -----------------------------------------------------------------------------------------------------------------------------------
-% --------- GENERAL  ----------------------------------------------------------------------------------------------------------------
-% -----------------------------------------------------------------------------------------------------------------------------------
-\pagebreak
 \genHeader
 
 \section{Validate your installation with JUnit}
@@ -165,28 +41,43 @@ You don't need to worry about any of these details, just remember to refresh you
 
 Did you notice the headings changed? If you did, awesome! If not, we must emphasize viewing this handbook in a 'double paged' format to make changes clear.
 
-\begin{enumerate}
-\item[$\blacktriangleright$] Go to ``File/Import/General/Existing Projects into Workspace'' (Fig.~\ref{fig_eclipseTestsuiteImport}) and choose the Testsuite project that is also in the \texttt{eMoflonTutorial.zip} provided with this tutorial. 
+\begin{itemize}
+% BEING CHANGED? .. we're adding a button, 'Build JUnit Test' and then 'Test Set up Now' (don't refer to .zip file)  
+% \item[$\blacktriangleright$] Go to ``File/Import/General/Existing Projects into Workspace'' (Fig.~\ref{fig_eclipseTestsuiteImport}) and choose the Testsuite project that is also in the \texttt{eMoflonTutorial.zip} provided with this tutorial. 
 
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.55\textwidth]{eclipse_testsuitimport}
-	\caption{Import our Testsuite as an existing project.}
-	\label{fig_eclipseTestsuiteImport}
-\end{figure} 
+\item[$\blacktriangleright$] Open the ?? Dialouge and select ``Build JUnit Test'' and then ``Test Set up Now ''. If anything goes wrong, try refreshing your 
+whole workspace by choosing projects and pressing \texttt{F5} or right-clicking and selecting ``Refresh''.
 
-
-\item[] At this point, your workspace should resemble Fig.~\ref{fig_eclipsepackageexplorer}.
-
-
-\item[$\blacktriangleright$] Right-click on the Testsuite project and select ``Run as/JUnit Test''.
-If anything goes wrong, try refreshing your whole workspace by choosing projects and pressing \texttt{F5} or right-clicking and selecting ``Refresh''.
+% POSSIBLY OLD FILE - we're no longer importing the test project?
+% \begin{figure}[htbp]
+% 	\centering
+%   \includegraphics[width=0.55\textwidth]{eclipse_testsuitimport}
+% 	\caption{Import our Testsuite as an existing project.}
+% 	\label{fig_eclipseTestsuiteImport}
+% \end{figure} 
+% 
+% 
+% \item[] At this point, your workspace should resemble Fig.~\ref{fig_eclipsepackageexplorer}.
+% 
+% 
+% \item[$\blacktriangleright$] Right-click on the Testsuite project and select ``Run as/JUnit Test''.
+% If anything goes wrong, try refreshing your whole workspace by choosing projects and pressing \texttt{F5} or right-clicking and selecting ``Refresh''.
 
 
 Congratulations!  If you see a green bar  (Fig.~\ref{fig_eclipsetestsuiterun}), then everything has been set-up correctly and you are now ready to start metamodelling!
 
-\end{enumerate}
 
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=0.5\textwidth]{eclipse_testsuiterun}
+	\caption{All's well that ends well\ldots}
+	\label{fig_eclipsetestsuiterun}
+\end{figure}
+
+
+\end{itemize}
+
+% --- Temporary white space since the following section needs to be edited
 \newpage
 \mbox{}
 \newpage
@@ -200,7 +91,7 @@ Congratulations!  If you see a green bar  (Fig.~\ref{fig_eclipsetestsuiterun}), 
 
 Now that everything is installed and setup properly, let's take a closer look at the different workspaces and our workflow.
 Before we continue, please make a few slight adjustments to EA so you can easily compare your current workspace to our screenshots:
-\begin{enumerate} 
+\begin{itemize}
 
 \item[$\blacktriangleright$] Select ``Tools/Options/Standard Colors'' in EA, and set your colours to reflect Fig.~\ref{fig_standardColoursEA}.
 This is advisable but you're of course free to choose your own colour schema.
@@ -210,21 +101,14 @@ Again, this is just a suggestion and not mandatory.
 
 \item[$\blacktriangleright$] Last but not least, and still in the same dialogue, select ``Source Code Engineering'' and be sure to choose ``Ecore'' as the default language for code generation (Fig.~\ref{fig_standardSCEEA}). This setting is very important.
 
-\end{enumerate}
+\end{itemize}
 
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.4\textwidth]{eclipse_packageexplorer}
-	\caption{Workspace in Eclipse.}
-	\label{fig_eclipsepackageexplorer}
-\end{figure}
-
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.5\textwidth]{eclipse_testsuiterun}
-	\caption{All's well that ends well\ldots}
-	\label{fig_eclipsetestsuiterun}
-\end{figure}
+% \begin{figure}[htbp]
+% 	\centering
+%   \includegraphics[width=0.4\textwidth]{eclipse_packageexplorer}
+% 	\caption{Workspace in Eclipse.}
+% 	\label{fig_eclipsepackageexplorer}
+% \end{figure}
 
 \begin{figure}[htbp]
   \centering
@@ -364,9 +248,10 @@ On this lower \emph{level of abstraction}, we can flesh out the generated reposi
 
 End of Handbook Part I
 
-If you feel a bit lost at the moment, don't worry! Be patient - This first chapter has been a lot about installation and tool support, and only aims at giving a very brief glimpse at the big picture of what is actually going on.    
+If you feel a bit lost at the moment, don't worry! Be patient - This first chapter has been a lot about installation and tool support, and only aims at giving a very brief glimpse at the big picture of what is actually going on.  
 
-If you enjoyed this section and wish to get started on the key features of eMoflon, Check out Part II! There we will go step-by-step through a hands-on example and cover the core features of Ecore (static structure). %and SDM (behaviour).
+If you enjoyed this section and wish to get started on the key features of eMoflon, Check out Part II! There we will go step-by-step through a hands-on example and cover the core features of Ecore (static structure). %and SDM  (behaviour).
+
 We shall also introduce clear and simple definitions for the most important metamodelling and graph transformation concepts, always referring to the concrete example and providing ample references for further reading.
 If you're already familiar with the tool however, feel free to pick and choose chapters that are interesting to you. Check out Story Driven Modeling (SDMs) in Part III, or Triple Graph Transformations in Part IV. 
 
