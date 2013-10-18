@@ -1,0 +1,28 @@
+\newpage
+\visHeader
+
+This means for simple, trivial examples (like our double linked list), it might be possible to come up with a leaner and simpler Java representation.  
+For complex, large models with lots of mean pitfalls, however, this becomes a daunting task.  
+The code generator provides you with years and years of experience of professional programmers who have thought up clever ways of handling multiple inheritance, an efficient event mechanism, reflection, consistency between bidirectionally linked objects and much more.
+
+A point to note here is that the mapping to Java is obviously not unique. 
+Indeed there exist different standards of how to map a modelling language to a general purpose programming language like Java. 
+
+We use a mapping defined and implemented by the Eclipse Modelling Framework (EMF) which tends to favour efficiency and simplicity.
+
+Although getting the \emph{details} of mapping the static structure of our models to Java might be extremely difficult, it is actually straight forward.  
+A fantastic productivity boost in any case but (yawn) not exactly exciting.
+
+Have you noticed the methods of the \texttt{Node} class in our EA model? 
+Now hold on tight -- each method can be \emph{modelled} completely in EA and the corresponding implementation in Java is generated automatically and placed in \texttt{NodeImpl}.  
+Just in case you didn't get it: The behavioural or dynamic aspects of a system can be completely modelled in an abstract, platform (programming language) independent fashion using a blend of activity  diagrams and a ``graph pattern'' language called \textit{Story Driven Modelling} (SDM).  
+In our EA project, these ``Stories'', ``Story Models'' or simply ``SDMs'' are  placed in SDM Containers named according to the method they implement.  
+E.g.  \texttt{$\guillemotleft$SDM Container$\guillemotright$ insertNodeAfter SDM} for the method  \texttt{insertNodeAfter(Node)} as depicted in
+Fig.~\ref{fig_fromEAtoEclipse}.  
+We'll spend the rest of the tutorial understanding why SDMs are so  {\huge crazily} cool!
+ 
+To recap all we've discussed, let's consider the complete workflow as depicted in Figure~\ref{fig_Overview}. 
+We started with a concise model in EA, simple and independent of any platform specific details~(1).  
+Our EA model consists not only of static aspects modelled as a class diagram~(2), but also of dynamic
+aspects modelled using SDM~(3).  After exporting the model and code generation~(4), we basically switch from \emph{modelling} to \emph{programming} in a specific general purpose programming language (Java).  
+On this lower \emph{level of abstraction}, we can flesh out the generated repository~(5) if necessary, and mix as appropriate with hand-written code and libraries.  Our abstract specification of behaviour (methods) in SDM is translated to a series of method calls that form the body of the corresponding Java method~(6).
