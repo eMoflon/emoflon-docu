@@ -1,11 +1,11 @@
 \documentclass[11pt, a4paper]{book}
 % -----------------------------------------------------------------------------------
 % For every instance of this template, change the following:
-%	> Title Page information starting at line 57;
-%	> Summary of Part on line 113
-%	> Input file on line 122;
-%	> Reference file on line 125;
-%	> Glossary file on line 128;
+%	> Title Page information starting at line 59;
+%	> Summary of Part on line 116;
+%	> Input file on line 125;
+%	> Reference file (if applicable) on line 127;
+%	> Glossary file (if applicable) on line 130;
 % -----------------------------------------------------------------------------------
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -23,7 +23,6 @@
 \usepackage{color}
 \usepackage[usenames,dvipsnames,svgnames]{xcolor}
 \usepackage{listings}
-\usepackage{fancyhdr}
 
 \definecolor{codelightgray}{rgb}{0.87,0.87,0.87}
 
@@ -50,15 +49,13 @@
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
-
-% --- Add Path to find all relevant files; avoids having to type in full path
-% \graphicspath{{../../00_introduction/common/}{../installation_images/}}
-\graphicspath{{../00_introduction/common/}{installation_images/}{03_simpleDemo/03_sectionImages/}}
+\graphicspath{{../00_introduction/common/}{01_installEclipse/01_images/}{02_EAExtension/02_images/}{03_simpleDemo/03_images/}
+{04_validateJUnit/04_images/}{05_projectStructure/05_images/}}
  
 % Remove section numbers 0.1, 0.2 ..
 \renewcommand{\thesection}{\arabic{section}} 
  
-% --- Title Page Information
+% --- Title Page Information --------------------------------------------------------
 \def\partTitle{Part I: Installation \& Set-up}
 \def\versionNumber{3.4}
 \input{../00_introduction/common/titlepage}
@@ -98,26 +95,13 @@
   		\color{ProcessBlue}\leaders\hrule height \headrulewidth\hfill}}
 }
 
-% --- File Split functions -----------------------------------------------------------
-
-% % % % Move me up top
-% \usepackage{catchfilebetweentags}
-% 
-% \newcommand{\loadVisual}[1]{
-% 	\ExecuteMetaData[installation_vis_content]{#1}
-% }
-% 
-% \newcommand{\loadTextual}[1]{
-%   	\ExecuteMetaData[installation_tex_content]{#1}
-%  }
-
-
-% ------------------------------------------------------------------------------------
+% ---------------------------------------------------------------------------------
 
 \begin{document}
 
 \frontmatter 
 \noHeader
+
 % Title Page
 \maketitle
 
@@ -139,7 +123,9 @@
 
 % Main content for this Part
 \input{installation_source}
-% \input{installation_source} 
+
+% Conclusion to forward users onto other parts
+\input{installation_conclusion}
 
 % References?
 %

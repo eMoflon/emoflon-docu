@@ -1,16 +1,41 @@
 \newpage
-\visHeader
+\genHeader
 
-\section{Get a simple demo running}
+\section{Load a Simple Demo}
+% The first two instructions are the same for both; below is common space
 
-\input{03_simpleDemo/VisualSources/visPage01}
+\begin{itemize}
+\item[$\blacktriangleright$] Open up Eclipse with a clean, fresh workspace. Go to ``Window/Open Perspective/Other\ldots'' \footnote{A path given as ``foo/bar'' indicates how to navigate in a series of menus and submenus.} and choose eMoflon~(Fig.~\ref{fig_eclipse}).
 
-\input{03_simpleDemo/TextSources/texPage01}
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=\textwidth]{eclipse_firststart}
+	\caption{Choose the eMoflon perspective.}
+	\label{fig_eclipse}
+\end{figure} 
 
-\input{03_simpleDemo/VisualSources/visPage02}
+\item[$\blacktriangleright$] At either the far right or center of the toolbar, a new action set should have appeared. Choose ``New Metamodel'' (Fig.~\ref{fig_eclipseNewMetamodelButton}).
+\footnote{The button with an `L' shows you our logfile (important input for us if something goes wrong!). You remember our email address, right?}
 
-\input{03_simpleDemo/TextSources/texPage02}
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=\textwidth]{eclipse_newMetamodelButton}
+	\caption{Eclipse ''New Metamodel''}
+	\label{fig_eclipseNewMetamodelButton}
+\end{figure}
 
-\input{03_simpleDemo/VisualSources/visPage03}
+\item[$\blacktriangleright$] A new dialog box should appear. This is the place where you officially decide which eMoflon syntax you'd like to use (Fig.~\ref{fig_chooseSyntax}). There's no advantage to using one over the other; the decision is purely preferential. With visual, you'll be using Eclipse alongside the EA program you just installed. You'll use EA to build several kinds of diagrams, then refresh and run the program using eclipse. With textual (MOSL), you'll be editing and running the project entirely within the Eclipse IDE. No matter which syntax you choose however, name your project ``Demo'' and make sure the `Add Demo Specification' button is checked off. This will build all the files and tests required to ensure you've set up the program correctly.  
 
-\input{03_simpleDemo/TextSources/texPage03}
+\vspace{1cm}
+
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=\textwidth]{eclipse_newMetamodelDialog}
+	\caption{Choose your syntax}
+	\label{fig_chooseSyntax}
+\end{figure} 
+\end{itemize}
+
+\input{03_simpleDemo/visSources/visPage01}
+
+\input{03_simpleDemo/texSources/texPage01}
