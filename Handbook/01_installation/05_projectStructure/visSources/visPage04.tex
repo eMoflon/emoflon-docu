@@ -8,18 +8,16 @@
     \label{fig_fromEAtoEclipse}
 \end{figure}
 
-Figure~\ref{fig_fromEAtoEclipse} also depicts how the class \texttt{Node} in the EA model is mapped to the Java interface \texttt{Node}.  
-Double-click \texttt{Node.java} and take a look at the methods declared in the interface.
-These correspond directly to the methods declared in the modelled \texttt{Node} class.  
-Indicated by the source folders \texttt{src}, \texttt{injection} and \texttt{gen}, we advocate a clean separation of hand-written (this should go in \texttt{src} and \texttt{injection}) and generated code (lands automatically in \texttt{gen}).  
-As we shall see later in the tutorial, hand-written code can be integrated in generated classes vio Injections. 
-This is sometimes more elegant for small helper functions or necessary for String manipulation for instance.
-
-If you take a careful look at the code structure in \texttt{gen}, you'll find a \texttt{Foo\-Impl.java} for every \texttt{Foo.java}. 
-Indeed, the subpackage \texttt{impl} contains Java classes that implement the interfaces in the parent package.  
-Although this might strike you as unnecessary (why not merge interface and implementation for simple classes?), this consequent separation in interfaces and implementation allows for a clean and relatively simple mapping of Ecore to Java, even in tricky cases like multiple inheritance (allowed and very common in Ecore models).  
-A further package \texttt{util} contains some auxiliary classes such as a factory for creating instances of the model.  
-
-If this is your first time of seeing generated code, you might be shocked at the sheer amount of classes and code generated from our relatively simple EA model.  
-You might be thinking: ``hey - if I did this by hand I wouldn't need half of all this stuff!''.  
-Well you're right and you're wrong -- the point is that an automatic mapping to Java via a code generator scales quite well.
+Have you noticed the methods of the \texttt{Node} class in our EA model? 
+Now hold on tight -- each method can be \emph{modelled} completely in EA and the corresponding implementation in Java is generated automatically and placed in \texttt{NodeImpl}.  
+Just in case you didn't get it: The behavioural or dynamic aspects of a system can be completely modelled in an abstract, platform (programming language) independent fashion using a blend of activity  diagrams and a ``graph pattern'' language called \textit{Story Driven Modelling} (SDM).  
+In our EA project, these ``Stories'', ``Story Models'' or simply ``SDMs'' are  placed in SDM Containers named according to the method they implement.  
+E.g.  \texttt{$\guillemotleft$SDM Container$\guillemotright$ insertNodeAfter SDM} for the method  \texttt{insertNodeAfter(Node)} as depicted in
+Fig.~\ref{fig_fromEAtoEclipse}.  
+We'll spend the rest of the tutorial understanding why SDMs are so  {\huge crazily} cool!
+ 
+To recap all we've discussed, let's consider the complete workflow as depicted in Figure~\ref{fig_Overview}. 
+We started with a concise model in EA, simple and independent of any platform specific details~(1).  
+Our EA model consists not only of static aspects modelled as a class diagram~(2), but also of dynamic
+aspects modelled using SDM~(3).  After exporting the model and code generation~(4), we basically switch from \emph{modelling} to \emph{programming} in a specific general purpose programming language (Java).  
+On this lower \emph{level of abstraction}, we can flesh out the generated repository~(5) if necessary, and mix as appropriate with hand-written code and libraries.  Our abstract specification of behaviour (methods) in SDM is translated to a series of method calls that form the body of the corresponding Java method~(6).
