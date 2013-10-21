@@ -8,19 +8,19 @@
     \label{fig_standardSCEEA}
  \end{figure}
 
+% Repository projects are generated automatically ..
 with a certain project structure according to our conventions.  
 The  \texttt{model} subfolder is probably most important, and contains an  \emph{Ecore model}.  
 Ecore is a metamodelling language that provides building  blocks like \emph{classes} and \emph{references} for defining the  static structure (concepts and relations between concepts) of a system.  
-
-
 
 The  export function of our EA plugin generates a valid Ecore model from the  corresponding EA model and persists it as an XML file in the \texttt{model}  subfolder.  
 In our concrete example, this is the \texttt{DoubleLinkedListLanguage.ecore} file.  
 Go ahead and double-click it to open the file in a simple tree-view editor in Eclipse.  
 If you are really interested in the nitty-gritty details or have a masochistic hang, right-click the file and select ``Open With/Text Editor''.
 
-
-This Ecore model is used to drive a code generator that maps the model to Java interfaces and classes.  
-The generated Java code that represents the model is often referred to as a \emph{repository} and this is the reason why we refer to such projects as repository projects\footnote{Not to be mixed up with CVS or SVN repositories, although the idea of a source code ``container'' is the same here.}. 
-A repository can be viewed as an \emph{adapter} that enables building and manipulating concrete instances of a specific model via a programming language such as Java.  
-This is why we indicate repository projects using a cute adapter/plug symbol on the project folder.  
+Figure~\ref{fig_fromEAtoEclipse} also depicts how the class \texttt{Node} in the EA model is mapped to the Java interface \texttt{Node}.  
+Double-click \texttt{Node.java} and take a look at the methods declared in the interface.
+These correspond directly to the methods declared in the modelled \texttt{Node} class.  
+Indicated by the source folders \texttt{src}, \texttt{injection} and \texttt{gen}, we advocate a clean separation of hand-written (this should go in \texttt{src} and \texttt{injection}) and generated code (lands automatically in \texttt{gen}).  
+As we shall see later in the tutorial, hand-written code can be integrated in generated classes vio Injections. 
+This is sometimes more elegant for small helper functions or necessary for String manipulation for instance.
