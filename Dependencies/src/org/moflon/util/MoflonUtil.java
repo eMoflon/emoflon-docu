@@ -13,6 +13,7 @@ import java.util.jar.JarFile;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.DailyRollingFileAppender;
+import org.apache.log4j.FileAppender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 import org.apache.log4j.PropertyConfigurator;
@@ -38,49 +39,6 @@ public class MoflonUtil
    
    public static String getMoflonDefaultURIForProject(String projectName){
       return "http://www.moflon.org." + projectName;
-   }
-   
-   
-   /**
-    * Set up logging globally
-    * 
-    * @param configFile
-    *           URL to log4j property configuration file
-    * @param logFile
-    *           Absolute path to log file
-    * @return false if unable to setup and configure logging
-    */
-   public static boolean configureLogging(URL configFile, String logFile)
-   {
-      try
-      {
-         Logger root = Logger.getRootLogger();
-         String configurationStatus = "";
-         if (configFile != null)
-         {
-            // Configure system using config
-            PropertyConfigurator.configure(configFile);
-            configurationStatus = "Log4j successfully configured using " + configFile;
-         } else
-         {
-            configurationStatus = "Set up logging without config file!";
-         }
-
-         // Set format and scheme for output in logfile
-         PatternLayout layout = new PatternLayout("%d %5p [%c{2}::%L] - %m%n");
-         DailyRollingFileAppender fileAppender;
-         fileAppender = new DailyRollingFileAppender(layout, logFile, "'.'yyyy-MM-dd");
-         root.addAppender(fileAppender);
-
-         // Indicate success
-         root.info(configurationStatus);
-         root.info("Logging to: " + logFile + "\n\n");
-         return true;
-      } catch (Exception e)
-      {
-         e.printStackTrace();
-         return false;
-      }
    }
 
    /**
