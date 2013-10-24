@@ -42,8 +42,8 @@
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
-\graphicspath{{../00_introduction/common/}{01_installEclipse/01_images/}{02_EAExtension/02_images/}{03_simpleDemo/03_images/}
-{04_validateJUnit/04_images/}{05_projectStructure/05_images/}}
+\graphicspath{{../../00_introduction/common/}{../01_installEclipse/01_images/}{../02_EAExtension/02_images/}{../03_simpleDemo/03_images/}
+{../04_validateJUnit/04_images/}{../05_projectStructure/05_images/}}
  
 % Remove section numbers 0.1, 0.2 ..
 \renewcommand{\thesection}{\arabic{section}} 
@@ -57,39 +57,37 @@
 % Default plain header; turn off all lines and colors
 \newcommand{\noHeader}{
 	% NOTE: since this is the first header, we effectively 'turn on' the page numbers. They don't need to be re-declared in each heading.
- 	\fancyhead[OR]{\thepage}
-	\fancyhead[OL]{}
- 	\fancyhead[EL]{\thepage}
-	\fancyhead[ER]{}
+ 	\fancyhead[OL]{\thepage}
+	\fancyhead[OR]{}
+ 	\fancyhead[ER]{\thepage}
+	\fancyhead[EL]{}
 	\renewcommand{\headrulewidth}{0pt}
 }
 
 % General Header for when instructions overlap
 \newcommand{\genHeader}{
-	\fancyhead[OL]{}
-	\fancyhead[ER]{}
+	\fancyhead[OR]{}
+	\fancyhead[EL]{}
 	\renewcommand{\headrulewidth}{1.5pt}
  	\renewcommand{\headrule}{\hbox to\headwidth{%
   		\color{Black}\leaders\hrule height \headrulewidth\hfill}}
 }
 
-% Visual instructions only, Red header, Odd (left) pages
 \newcommand{\visHeader}{
-	\fancyhead[OL]{\color{RedOrange}\tiny \bf VISUAL}
+	\fancyhead[EL, OR]{\color{RedOrange}\tiny \bf VISUAL}
 	\renewcommand{\headrulewidth}{1.5pt}
 	\renewcommand{\headrule}{\hbox to\headwidth{%
   		\color{RedOrange}\leaders\hrule height \headrulewidth\hfill}}
 }
 
-% Text instructions only, Blue header, Even (right) pages
 \newcommand{\texHeader}{
-	\fancyhead[ER]{\color{ProcessBlue}\tiny \bf TEXTUAL}
+	\fancyhead[EL, OR]{\color{Blue}\tiny \bf TEXTUAL}
 	\renewcommand{\headrulewidth}{1.5pt}
 	\renewcommand{\headrule}{\hbox to\headwidth{%
   		\color{ProcessBlue}\leaders\hrule height \headrulewidth\hfill}}
 }
 
-% ---------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------
 
 \begin{document}
 
@@ -103,11 +101,8 @@
 \input{../../00_introduction/common/copyright}
 \let\cleardoublepage\clearpage
 
-% TOC
+% TOC; somehow separate the visual and textual so they can both set up on the this page?
 \tableofcontents
-
-% Preface/Summary of section
-\include{installation_summary}
 
 % Store page counter
 \newcounter{romanpages}
