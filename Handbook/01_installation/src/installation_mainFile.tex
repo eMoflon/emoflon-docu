@@ -1,13 +1,5 @@
 \documentclass[11pt, a4paper]{book}
-% -----------------------------------------------------------------------------------
-% For every instance of this template, change the following:
-%	> Title Page information starting at line 59;
-%	> Summary of Part on line 117;
-%	> Input file on line 127;
-%	> Conclusion on line 129;
-%	> Reference file (if applicable) on line 132;
-%	> Glossary file (if applicable) on line 135;
-% -----------------------------------------------------------------------------------
+
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
@@ -50,16 +42,16 @@
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
-%EDIT
-\graphicspath{{../00_introduction/common/}} %{sectionFolder/sectionImages}
+\graphicspath{{../00_introduction/common/}{01_installEclipse/01_images/}{02_EAExtension/02_images/}{03_simpleDemo/03_images/}
+{04_validateJUnit/04_images/}{05_projectStructure/05_images/}}
  
 % Remove section numbers 0.1, 0.2 ..
 \renewcommand{\thesection}{\arabic{section}} 
  
 % --- Title Page Information --------------------------------------------------------
-\def\partTitle{Part III: Leitner's Learning Box}
-\def\versionNumber{3.4}
-\input{../00_introduction/common/titlepage}
+\def\partTitle{Part I: Installation \& Set-up}
+\def\versionNumber{0.2}
+\input{../../00_introduction/common/titlepage}
 
 % --- HEADER FUNCTIONS --------------------------------------------------------------
 % Default plain header; turn off all lines and colors
@@ -97,8 +89,6 @@
   		\color{ProcessBlue}\leaders\hrule height \headrulewidth\hfill}}
 }
 
-% Package for glossary linking
-\usepackage{hyperref}
 % ---------------------------------------------------------------------------------
 
 \begin{document}
@@ -106,18 +96,18 @@
 \frontmatter 
 \noHeader
 
-% Title Page
-\maketitle
+% Title Page without blank
+{\let\newpage\relax\maketitle}
 
 % Copyright notice
-\input{../00_introduction/common/copyright}
-\newpage
+\input{../../00_introduction/common/copyright}
+\let\cleardoublepage\clearpage
 
 % TOC
 \tableofcontents
 
 % Preface/Summary of section
-\include{learningBox_summary}
+\include{installation_summary}
 
 % Store page counter
 \newcounter{romanpages}
@@ -126,15 +116,15 @@
 \mainmatter
 
 % Main content for this Part
-\include{learningBox_source}
+\input{installation_source}
 
 % Conclusion to forward users onto other parts
-% \input{installation_conclusion}
+\input{installation_conclusion}
 
 % References?
 %
 
 % Glossary?
-\include{learningBox_glossary}
+%
 
 \end{document}
