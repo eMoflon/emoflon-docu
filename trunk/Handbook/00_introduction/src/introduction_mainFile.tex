@@ -1,12 +1,6 @@
 \documentclass[11pt, a4paper]{book}
 % -------------------------------------------------------------------------------------------------------
-% THIS DOCUMENT IS CURRENTLY BEING REFACTORED
-%	Copy the contents of this file and paste into each part's main source file. This will ensure uniformity and ease of use. 
-%	Be sure to also copy the 'Common' folder, as it contains the title image and source file. Below are the only things you need to modify:
-%	> variable 'partTitle' on line 53; This changes the title page label
-%	> variable 'versionNum' on line 54; Modify if the part has been updated
-%	> This section has no preface
-%	> content input filename on line 78; Currently, it is set to 'content.tex' in the src file; be sure to suffix the context name
+% Template for each handbook part can be found at 01_installation/installation_mainFile
 % -------------------------------------------------------------------------------------------------------
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -56,7 +50,7 @@
  
 % EDIT ME BASED ON CURRENT PART
 \def\partTitle{Part 0: Introduction}
-\def\versionNumber{0.2} 
+\def\versionNumber{0.3} 
 \input{../common/titlepage}
 
 
@@ -79,25 +73,25 @@
   		\color{Black}\leaders\hrule height \headrulewidth\hfill}}
 }
 
-
 % ----------------------------------------------------------------------------------------------------------------------------------
 \begin{document}
 
-\frontmatter 
+\frontmatter
 \noHeader
 
-% Title Page
-\maketitle
+% Title Page without blank
+{\let\newpage\relax\maketitle}
 
 % Copyright notice
 \input{../common/copyright}
+\let\cleardoublepage\clearpage
 
 % store page counter
 \newcounter{romanpages}
 \setcounter{romanpages}{\value{page}}
 
  % ----------------------------------------------------------------------------------------------------------------------------------
- \mainmatter
+\mainmatter
 
 % Main content for this part
 \input{introduction_source}
