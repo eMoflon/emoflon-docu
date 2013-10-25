@@ -670,7 +670,7 @@ public class eMoflonEMFUtil
       return success;
    }
 
-   public static void addToResourceSet(ResourceSet set, EObject object)
+   public static Resource addToResourceSet(ResourceSet set, EObject object)
    {
       Resource resource = object.eResource();
       if (resource == null)
@@ -681,6 +681,8 @@ public class eMoflonEMFUtil
 
       resource.getContents().add(object);
       set.getResources().add(resource);
+      
+      return resource;
    }
 
    public static List shuffle(List in)
