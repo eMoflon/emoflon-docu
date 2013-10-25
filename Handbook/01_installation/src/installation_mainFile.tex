@@ -50,7 +50,7 @@
  
 % --- Title Page Information --------------------------------------------------------
 \def\partTitle{Part I: Installation \& Set-up}
-\def\versionNumber{0.2}
+\def\versionNumber{1.2}
 \input{../../00_introduction/common/titlepage}
 
 % --- HEADER FUNCTIONS --------------------------------------------------------------
@@ -71,6 +71,7 @@
 	\renewcommand{\headrulewidth}{1.5pt}
  	\renewcommand{\headrule}{\hbox to\headwidth{%
   		\color{Black}\leaders\hrule height \headrulewidth\hfill}}
+  	\fancyfoot{}
 }
 
 \newcommand{\visHeader}{
@@ -78,13 +79,15 @@
 	\renewcommand{\headrulewidth}{1.5pt}
 	\renewcommand{\headrule}{\hbox to\headwidth{%
   		\color{RedOrange}\leaders\hrule height \headrulewidth\hfill}}
+  	\fancyfoot{}
 }
 
 \newcommand{\texHeader}{
-	\fancyhead[EL, OR]{\color{Blue}\tiny \bf TEXTUAL}
+	\fancyhead[EL, OR]{\color{TealBlue}\tiny \bf TEXTUAL}
 	\renewcommand{\headrulewidth}{1.5pt}
 	\renewcommand{\headrule}{\hbox to\headwidth{%
   		\color{ProcessBlue}\leaders\hrule height \headrulewidth\hfill}}
+  	\fancyfoot{}
 }
 
 % --------------------------------------------------------------------------------------
