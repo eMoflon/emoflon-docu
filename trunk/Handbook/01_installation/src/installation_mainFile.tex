@@ -37,19 +37,25 @@
 
 \newcommand{\note}[1]{\marginpar{\emph{#1}}}
 
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{3}
 
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
-\graphicspath{{../../00_introduction/common/}{../01_installEclipse/01_images/}{../02_EAExtension/02_images/}{../03_simpleDemo/03_images/}
-{../04_validateJUnit/04_images/}{../05_projectStructure/05_images/}}
+\graphicspath{%
+{../../00_introduction/common/}%
+{../1_installation/}{../1_installation/installPlugin/images/}{../1_installation/installEA/images/}%
+{../2_simpleDemo/2_images/}{../2_simpleDemo/EADemo/images/}%{../2_simpleDemo/eclipseDemo/images/}%
+{../3_validate/images/}%
+{../4_projectSetup/modelingWithEA/images/}{../4_projectSetup/eclipseMOSL/images/}%
+{../5_codeGeneration/images/}%
+}
  
 % Remove section numbers 0.1, 0.2 ..
 \renewcommand{\thesection}{\arabic{section}} 
  
 % --- Title Page Information --------------------------------------------------------
-\def\partTitle{Part I: Installation \& Set-up}
+\def\partTitle{Part I: Installation and Setup}
 \def\versionNumber{1.2}
 \input{../../00_introduction/common/titlepage}
 
@@ -104,7 +110,6 @@
 \input{../../00_introduction/common/copyright}
 \let\cleardoublepage\clearpage
 
-% TOC; somehow separate the visual and textual so they can both set up on the this page?
 \tableofcontents
 
 % Store page counter
