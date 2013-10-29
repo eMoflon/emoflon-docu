@@ -1,0 +1,58 @@
+
+\section{A language definition problem?}
+
+As in any area of study, metamodelling has its fair share of buzz words used by experts to communicate concisely.  Although some concepts might seem quite abstract for a beginner, a well defined vocabulary is important so we know
+exactly what we are talking about.
+
+The first step is understanding that metamodelling equates to language definition.
+This means that the task of building a system like our learning box can be viewed as defining a suitable language that can be used to describe the system.
+This language oriented approach has a lot of advantages including a natural support for product lines (individual products are valid members of the language) and a clear separation between platform independent and platform specific details.
+
+So what constitutes a language?  The first question is obviously  how the building blocks of your language actually ``look'' like.
+Is your language to be textual?  Visual?  This is referred to as the %line break for eay glossary testing 
+\emph{Concrete Syntax} 
+of a language and is basically an interface to end users who use the language.
+\marginpar{\emph{Concrete Syntax}}
+In the case of our learning box, Fig.~\ref{fig:membox_illustration} can be viewed as a possible concrete syntax.
+As we are however building a learning box as a software system, our actual concrete syntax  will probably be composed of GUI elements like buttons, drop-down menus and text fields.
+
+Irrespective of how a language looks like, members of the language must adhere to the same set of ``rules''.
+\marginpar{\emph{Grammar}}
+For a natural language like English, this set of rules is usually called a \emph{grammar}.
+In metamodelling, however, everything is represented as a graph of some kind and, although the concept of a  \emph{graph grammar} is also quite well-spread and understood, metamodellers  more often use a \emph{type graph} that defines what types and relations  constitute a language.
+\marginpar{\emph{Graph Grammar}}
+\marginpar{\emph{Type Graph}}
+A graph that is a member of your language must \emph{conform to} the corresponding type graph for the language.
+To be more precise, it must be possible to type the graph according to the type graph, i.e., the types and relations used in the graph must exist in the type graph and not contradict the structure defined there.
+\marginpar{\emph{Abstract Syntax}}
+This way of defining membership to a language has many parallels to the class-object relationship in the object-oriented paradigm and should seem very familiar for any programmer used to OO.
+This type graph is referred to as the \emph{Abstract Syntax} of a language.
+
+Very often, one might want to further constrain a language, beyond simple typing rules.
+\marginpar{\emph{Static Semantics}}
+This can be accomplished with a further set of rules or constraints that members of the language must fulfil in addition to being conform to the type graph.
+These further constraints are referred to as the \emph{Static Semantics} of a language.
+
+With these few basic concepts, we can now introduce a further and central concept in metamodelling, the \emph{metamodel} (basically a simple class diagram).
+\marginpar{\emph{Metamodel}}
+A metamodel defines not only the abstract syntax of a language but also some basic constraints (a part of the static semantics).
+Thinking back to our learning box, we could define the types and relations we want to allow, e.g.,  a box with partitions, cards, the box contains partitions that contain cards.
+Multiplicities are an example for constraints that are no longer part of the abstract syntax and belong to static semantics, but can nonetheless be expressed in a metamodel.
+For example, that a card can only be in one partition, or that a partition has only one next partition or none.
+\marginpar{\emph{Constraint Language}}
+More complex constraints that cannot be expressed in a metamodel are usually specified using an extra \emph{constraint language} such as OCL (the Object Constraint Language).
+This goes beyond this tutorial however and we'll stick to metamodels without using an extra constraint language.
+
+$\textbf{A short recap:}$  we have learnt that metamodelling starts with defining a suitable language.
+For the moment, we know that a language comprises a concrete syntax (how does the language look like),  an abstract syntax (types and relations of the underlying graph structure), and static semantics (further constraints that members of the language must fulfil).
+Metamodels are used to define the abstract syntax and a part of the static semantics of a language, while \emph{models} are graphs that conform to some
+\marginpar{\emph{Model}}
+metamodel (can be typed  according to the abstract syntax and adhere to the static semantics).
+
+This tutorial is meant to be hands-on so enough theory!
+Lets define, step-by-step, a metamodel for our learning box using our tool eMoflon.
+
+\textbf{Include image here to fill up white space? Or chunk text more?}
+
+\fancyfoot[R]{ $\triangleright$ \hyperlink{static vis}{Next Visual Task}  \\ 
+$\triangleright$ \hyperlink{static tex}{Next Textual Step} }
