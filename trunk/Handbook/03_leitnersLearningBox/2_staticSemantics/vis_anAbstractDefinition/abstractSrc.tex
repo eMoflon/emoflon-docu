@@ -1,9 +1,11 @@
 % No New page; first instance
 \visHeader
 \subsection[An Abstract Definition (Visual)]{An Abstract Definition; Modeling with \mbox{Enterprise Architect}}
+\label{sec:staticAbstract}
 
+% Rewrite assuming user has not worked through chapter one!
 \begin{enumerate}
-\item[$\blacktriangleright$] \hypertarget{static vis}{Switch} to EA, choose \texttt{Demo} and click on the button \texttt{Add a Package} as depicted in Fig.~\ref{fig:new_package}.
+\item[$\blacktriangleright$] \hypertarget{static vis}{Switch} Make sure Eclipse is open in the same workspace as Part I. If you're just starting, start a New metamodel project. From either, open Enterprise Architect (EA) with the \texttt{Demo.eap} file. In EA, select \texttt{Demo} and click on the button \texttt{Add a Package} as depicted in Fig.~\ref{fig:new_package}.
 
 \begin{figure}[htbp]
 	\centering
@@ -245,6 +247,8 @@ We however believe it is simpler to handle these pairs as single references and 
 \end{enumerate}
 \FloatBarrier
 
+All of your program attributes and references have now been set up. To see how this would appear in eMoflon's textual syntax, check out figure~\ref{fig:allReferences} and \ref{fig:partitionReferences} from section~\ref{sec:staticConcrete} 
+
 Every system has, in addition to its static structure, certain dynamic aspects that describe the system's behaviour and how it evolves over time or reacts to external stimulus.
 \marginpar{\emph{Dynamic Semantics}}
 In a language, these rules that govern the dynamic behaviour of a system are referred to collectively as the \emph{Dynamic Semantics} of the language.
@@ -314,6 +318,7 @@ Add all operations analogously for \texttt{Box} and \texttt{Card}, so that your 
 	\label{fig:metamodel_complete}
 \end{figure}
 
+
 Lets take a step back and review our metamodel.
 We have modelled a \texttt{Box} that contains arbitrary many \texttt{Partition}s.
 A \texttt{Partition} in the \texttt{Box} has a \texttt{next} and \texttt{previous} \texttt{Partition} that can be set or not. Finally, \texttt{Partition}s contain \texttt{Card}s.
@@ -323,7 +328,7 @@ A \texttt{Box} can print out its contents via \texttt{toString}.
 
 The main method of the learning box is \texttt{Partition::check} that takes a \texttt{Card} and the user's guess as an \texttt{EString} and returns \texttt{true} or \texttt{false} depending on if the guess was correct or not.
 
-\pagebreak
+\pagebreak 
 
 A \texttt{Partition} can also \texttt{empty} itself of all \texttt{Cards}, or \texttt{remove} a particular \texttt{Card}.
 Last but not least, a \texttt{Partition} has a \texttt{partitionSize} that can be used to indicate that the \texttt{Partition} is full and is ready to be revised.
@@ -332,6 +337,8 @@ A \texttt{Card} contains the actual content to be learnt as a question on the ca
 A \texttt{Card} also maintains a \texttt{partition\-History} which can be used to keep track of how often a \texttt{Card} has been answered correctly/wrongly.
 This might indicate how difficult the \texttt{Card} is for a specific user.
 When learning a language, it makes sense to be able to swap the target and source language and this is supported by \texttt{Card} via \texttt{invert} (turns the card around).
+
+To see how this complete metamodel is depicted using the textual syntax, check out figure~\ref{fig:workspaceMethods} from section~\ref{sec:staticConcrete}
 
 Now try to export the metamodel for code generation in Eclipse (if problems occur during the following steps, we recommend reading \texttt{Part VI: Micellaneous}. This might help you to find your mistakes).
 
