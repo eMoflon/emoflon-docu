@@ -15,7 +15,6 @@ If you work through it and, for some reason, do \emph{not} have a resounding \mb
 
 \begin{figure}[htp]
 \begin{center}
-	% RENAME THIS IMAGE ??
 	\includegraphics[height=0.45\textheight]{../introduction_images/i-rule}
 	\caption{How you should feel when you're done.}
 	\label{i-rule}
@@ -36,13 +35,18 @@ eMoflon is a tool for building tools.  If you wish a "meta" tool.  This means if
 
 {\bf \large Why should I be interested?}
 
-To build a tool, you typically need a way for users to communicate with it, i.e., you must establish a suitable \emph{language} for specifying input and output to and from the tool.  You also need a central data structure to represent the "state" of the tool.  This data structure or \emph{model} is usually manipulated and apprioprately \emph{transformed} in some useful manner by the tool.  Many tools also \emph{generate} something useful from their internal models.  To achieve these goals you can use \emph{metamodelling} to define your language (your \emph{meta}model), \emph{graph transformations} to transform your models, and parsing/code generation techniques to produce something useful from your models. All this and much more is supported by eMoflon.
+To build a tool, you typically need a way for users to communicate with it, i.e., you must establish a suitable \emph{language} for specifying input and output to and from the tool.  You also need a central data structure to represent the "state" of the tool.  This data structure or \emph{model} is usually manipulated and apprioprately \emph{transformed} in some useful manner by the tool.  Many tools also \emph{generate} something useful from their internal models. To achieve these goals you can use \emph{metamodelling} to define your language (your \emph{meta}model), \emph{graph transformations} to transform your models, and parsing/code generation techniques to produce something useful from your models. All this and much more is supported by eMoflon. Examine figure~\ref{fig:transModel} for a brief visual depiction of these features.
 
-% Include diagram here to help explain eMoflon's purpose & features; Todo: Build on MacMini !
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=0.75\textwidth]{transformationModelDiagram}
+	\caption{eMoflon supports a central data structure formed from a language (metamodel), graph transformations to transform each model, and code parsing to produce useful items.}
+	\label{fig:transModel}
+\end{figure}
 
 {\bf \large What does this handbook cover?}
 
-We've described below each of the 6 parts that make up this handbook. You can work through them sequentially and become an \emph{official}\footnote{Certificate not guaranteed} eMoflon master or, depending on your interests, you can decide what you'd like to read and what you'd like to skip. We provide all the necessary materials (ie: a cheat package) so you can jump right in without having to complete the previous parts. For those of you interested in further details and the mature formalism of graph transformations, we give relevant references throughout the handbook.
+On the next few pages, we've described each of the 6 parts that make up this handbook. You can work through them sequentially and become an \emph{official}\footnote{Certificate not guaranteed} eMoflon master or, depending on your interests, you can decide what you'd like to read and what you'd like to skip. We provide all the necessary materials (ie: a cheat package) so you can jump right in without having to complete the previous parts. For those of you interested in further details and the mature formalism of graph transformations, we give relevant references throughout the handbook.
 
 \pagebreak
 
@@ -54,7 +58,7 @@ This part can be considered \emph{mandatory} only if you are new to eMoflon, but
 It's kept as minimal as possible, and should only take a few minutes.
 
 \item[Part II: Ecore] takes you step-by-step through a more realistic example that showcases many of the features we currently support.
-Working through this part should serve as a basic introduction to model-driven engineering, and we reccomend you work through this part especially if you're new to metamodeling (using Ecore/the Eclipse Modeling Framework (EMF)).
+Working through this part should serve as a basic introduction to model-driven engineering, and we especially recommend you work through this part if you're new to metamodeling (using Ecore/the Eclipse Modeling Framework (EMF)).
 
 % UPDATE and fill in once data comes in (testing/checking)
 {\small Approximate time to complete: min }
