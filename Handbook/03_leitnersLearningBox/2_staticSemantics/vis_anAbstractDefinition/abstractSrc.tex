@@ -1,11 +1,14 @@
 % No New page; first instance
 \visHeader
-\subsection[An Abstract Definition (Visual)]{An Abstract Definition; Modeling with \mbox{Enterprise Architect}}
+\subsection[The visual language definition: Modeling with Diagrams]{The visual language definition; Modeling with \mbox{Enterprise Architect}}
 \label{sec:staticAbstract}
 
-% Rewrite assuming user has not worked through chapter one!
 \begin{enumerate}
-\item[$\blacktriangleright$] \hypertarget{static vis}{Switch} Make sure Eclipse is open in the same workspace as Part I. If you're just starting, start a New metamodel project. From either, open Enterprise Architect (EA) with the \texttt{Demo.eap} file. In EA, select \texttt{Demo} and click on the button \texttt{Add a Package} as depicted in Fig.~\ref{fig:new_package}.
+\item[$\blacktriangleright$] \hypertarget{static vis}{LINKED WORD} Open a new project/name it this/double click the .eap file /(note: if you've completed part one, you can complete this section by opening the 'demo' eap file, and working from the demo project root in EA. the following steps are exactly the same, but do be aware that the screenshots may not exactly match. You won't have THIS project root, since it's pre-included in the demo files you previously downloaded.)
+
+{\bf TO DO rewrite/screenshot this entire section again, with the user starting from scratch. NOTE: keep all old files and pictures in case tony doesn't like doing this way. I prefer having the users start from scratch because it is how they would begin their own program.}
+
+\item[$\blacktriangleright$] Open Enterprise Architect (EA) by double-clicking the \texttt{Demo.eap} file it generates. In EA, select \texttt{Demo} and click on the button \texttt{Add a Package} as depicted in Fig.~\ref{fig:new_package}.
 
 \begin{figure}[htbp]
 	\centering
@@ -53,7 +56,13 @@ In your EA workspace the \texttt{Project Browser} should now look like Fig.~\ref
 \item[$\blacktriangleright$] In the dialog that pops up (Fig.~\ref{fig:diagram_type}), choose \texttt{eMoflon Ecore Diagrams} and \texttt{OK}.
 \end{enumerate}
 
-\vspace{1cm}
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=0.8\textwidth]{EA_chooseDiagramType}
+	\caption{Choose type of diagram.}
+	\label{fig:diagram_type}
+\end{figure}
+\FloatBarrier
 
 In analogy to the ``everything is an object'' principle in the OO paradigm, in metamodelling, everything is a model. \marginpar{\emph{Unification}}
 This principle is called \emph{Unification} and has a lot of advantages. If everything is a model, a metamodel that defines (at least a part of) a language must be a model itself.
@@ -63,14 +72,6 @@ This principle is called \emph{Unification} and has a lot of advantages. If ever
 This means that it conforms to some \emph{meta-metamodel} which defines a \emph{(meta)modelling language} or \emph{meta-language}.
 For metamodelling with eMoflon, we support \emph{Ecore} as a modelling language and it defines types like \texttt{EClass} and \texttt{EReference}, which we will be using to specify  our metamodels.
 Other modelling languages include MOF, UML and Kermeta.
-
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.8\textwidth]{EA_chooseDiagramType}
-	\caption{Choose type of diagram.}
-	\label{fig:diagram_type}
-\end{figure}
-\FloatBarrier
 
 After creating the new diagram, your  \texttt{Project Browser} should now resemble Fig.~\ref{fig:diagram_completed}.
 
@@ -146,7 +147,7 @@ A new attribute for the same class can be added by choosing \texttt{New}.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.75\textwidth]{EA_addingAttributes}
+  \includegraphics[width=0.6\textwidth]{EA_addingAttributes}
 	\caption{Adding attributes to a class.}
 	\label{fig:attribute_properties}
 \end{figure}
@@ -158,11 +159,13 @@ Fig.~\ref{fig:attribute_completed}.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.25\textwidth]{EA_allAttributes}
+  \includegraphics[width=0.23\textwidth]{EA_allAttributes}
 	\caption{Main classes with attributes.}
 	\label{fig:attribute_completed}
 \end{figure}
 \FloatBarrier
+
+\pagebreak
 
 \item[$\blacktriangleright$] A fundamental gesture in EA is \emph{Quick Link}.
 Quick Link is used to create links between elements in a context sensitive manner.
@@ -201,11 +204,13 @@ Here you can change the reference direction\footnote{this is particuluary useful
 % Do BOX (target) first..
 \item[$\blacktriangleright$] In the same dialogue choose \texttt{Target Role} and enter the values in Fig.~\ref{fig:reference_ends} to set the properties for the ``target'' end of the reference (the \texttt{Box} role). As you can see, the default target is set to the class you linked \emph{from}, and the default source is the class you linked \emph{to}. If you decided to ignore the instructions, and went from \texttt{Partition} to \texttt{Box}, the only difference between the references are the titles - The following information will still be the same! In this window, it's important not to forget to check and modify the \texttt{Role}, \texttt{Multiplicity}, \texttt{Aggregation} and \texttt{Navigability} settings for the source.  Repeat the process for the \texttt{Source Role}.
 
+\vspace{0.5cm}
+
 \begin{figure}[htbp]
 	\centering
-	  \includegraphics[width=0.8\textwidth]{EA_assocPropsTarget}\\
+	  \includegraphics[width=0.73\textwidth]{EA_assocPropsTarget}\\
   \vspace{0.5cm}
-    \includegraphics[width=0.8\textwidth]{EA_assocPropsSource}
+    \includegraphics[width=0.73\textwidth]{EA_assocPropsSource}
 	\caption{Enter properties for target and source of reference.}
 	\label{fig:reference_ends}
 \end{figure}
@@ -262,7 +267,7 @@ We will use SDMs in a later handbook to \emph{implement} these methods.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.55\textwidth]{EA_contextAddOperation}
+  \includegraphics[width=0.7\textwidth]{EA_contextAddOperation}
 	\caption{Add an operation.}
 	\label{fig:add_operation}
 \end{figure}
@@ -272,7 +277,7 @@ We will use SDMs in a later handbook to \emph{implement} these methods.
 
 \begin{figure}[htbp]
 	\centering
-  	\includegraphics[width=0.6\textwidth]{EA_operationEmpty}
+  	\includegraphics[width=0.5\textwidth]{EA_operationEmpty}
 	\caption{Properties for operation.}
 	\label{fig:operation_properties}
 \end{figure}
@@ -282,7 +287,7 @@ We will use SDMs in a later handbook to \emph{implement} these methods.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.85\textwidth]{EA_operationRemoveCard}
+  \includegraphics[width=0.5\textwidth]{EA_operationRemoveCard}
 	\caption{Parameters and Return Type.}
 	\label{fig:operation_parameters}
 \end{figure}
@@ -292,13 +297,13 @@ We will use SDMs in a later handbook to \emph{implement} these methods.
 Notice that the \texttt{Return Type} can be chosen via the drop-down menu for primitives (e.g. \texttt{EBoolean}), or via the `\texttt{\ldots}' button (indicated in Fig.~\ref{fig:operation_parameters}) for types you've established in the metamodel (e.g. \texttt{Card}).
 \end{enumerate}
 
+\pagebreak
+
 \vspace{-.5cm}
 \begin{quote}
 $\textbf{Please note:}$ Non-primitive types \emph{must} be chosen via the `\texttt{\ldots}' button. It allows you to browse for the corresponding elements in your project. Unfortunately, just typing them won't work!
 \end{quote}
-\vspace{-.5cm}
 
-\pagebreak
 
 \begin{figure}[htbp]
 	\centering
@@ -326,9 +331,9 @@ A \texttt{Partition} in the \texttt{Box} has a \texttt{next} and \texttt{previou
 A \texttt{Box} has a \texttt{name}, and can be extended by calling \texttt{grow}.
 A \texttt{Box} can print out its contents via \texttt{toString}.
 
-The main method of the learning box is \texttt{Partition::check} that takes a \texttt{Card} and the user's guess as an \texttt{EString} and returns \texttt{true} or \texttt{false} depending on if the guess was correct or not.
-
 \pagebreak 
+
+The main method of the learning box is \texttt{Partition::check} that takes a \texttt{Card} and the user's guess as an \texttt{EString} and returns \texttt{true} or \texttt{false} depending on if the guess was correct or not.
 
 A \texttt{Partition} can also \texttt{empty} itself of all \texttt{Cards}, or \texttt{remove} a particular \texttt{Card}.
 Last but not least, a \texttt{Partition} has a \texttt{partitionSize} that can be used to indicate that the \texttt{Partition} is full and is ready to be revised.
