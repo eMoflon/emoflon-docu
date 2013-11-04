@@ -1,0 +1,22 @@
+\newpage
+\genHeader
+\subsection{Reviewing your metamodel}
+
+\hypertarget{static review}{Before moving on, lets take a step back and review our metamodel.}
+We have modelled a \texttt{Box} that can contain an arbitrary amount of \texttt{Partition}s.
+A \texttt{Partition} in the \texttt{Box} has a \texttt{next} and \texttt{previous} \texttt{Partition} that can or not be set. Finally, \texttt{Partition}s contain \texttt{Card}s.
+
+A \texttt{Box} has a \texttt{name}, and can be extended by calling \texttt{grow}.
+A \texttt{Box} can print out its contents via the \texttt{toString} method.
+
+The main method of the learning box is \texttt{Partition::check} that takes a \texttt{Card} and the user's guess as an \texttt{EString} and returns \texttt{true} or \texttt{false} depending on if the guess was correct or not.
+
+A \texttt{Partition} can also \texttt{empty} itself of all \texttt{Cards}, or \texttt{remove} a particular \texttt{Card}.
+Last but not least, a \texttt{Partition} has a \texttt{partitionSize} that can be used to indicate that the \texttt{Partition} is full and is ready to be revised.
+
+A \texttt{Card} contains the actual content to be learnt as a question on the card's \texttt{face} and the answer on the card's \texttt{back}.
+A \texttt{Card} also maintains a \texttt{partition\-History} which can be used to keep track of how often a \texttt{Card} has been answered correctly/wrongly.
+This might indicate how difficult the \texttt{Card} is for a specific user.
+When learning a language, it makes sense to be able to swap the target and source language and this is supported by \texttt{Card} via \texttt{invert} (turns the card around).
+
+\fancyfoot[R]{ $\triangleright$ \hyperlink{validation vis}{Next visual task} \\ $\triangleright$ \hyperlink{validation tex}{Next textual step} }
