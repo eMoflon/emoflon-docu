@@ -3,7 +3,7 @@
 
 {\bf \Large 2 \hspace{0.5cm}Static semantics}
 
-\subsection{The textual language definition; Modeling with MOSL}
+\subsection{The textual language definition: Modeling with MOSL}
 \label{sec:staticConcrete}
 
 \begin{itemize}
@@ -146,9 +146,7 @@
 \end{figure}
 
 
-\item[$\blacktriangleright$] Congratulations! You've \emph{almost} completeley modeled Leitner's Learning Box using a concrete, textual syntax! To see how this looks in visually in a class diagram, check out figure~\ref{fig:metamodel_complete} from section~\ref{sec:staticAbstract}.
-
-\item[$\blacktriangleright$] Let's review our model so far. We have modeled a \texttt{Box} which that can hold an unknown number of \texttt{Partitions}, who can in turn, store an unknown number of \texttt{Card}s. A \texttt{Partition} is identified by its' \texttt{index} value and can, but does not \emph{need} to, have a previous and next \texttt{Partition}. Finally, each card has a front, back, and unique history that the user (you!) can review to see that card's successes and failures. A card can belong to exclusively one partition at a time.
+Congratulations! You've \emph{almost} completeley modeled Leitner's Learning Box using a concrete, textual syntax! To see how this looks in visually in a class diagram, check out figure~\ref{fig:metamodel_complete} from section~\ref{sec:staticAbstract}.
 
 \item[$\blacktriangleright$]The very last thing we need to do now is conduct a build and generate the required \texttt{.genmodel} and \texttt{.ecore} files. Beside the \texttt{New Metamodel} button on the toolbar, you'll notice that there is a circular arrow button that offers to ``Build (without cleaning).'' %explain this here?
 
@@ -165,7 +163,7 @@
 
 \item[$\blacktriangleright$] Finally, you can see that your two metamodels have been created and placed in the \texttt{model} folder. Together, they form everything the EMF needs to generate your program. In fact, if you like, instead of viewing your \texttt{.ecore} model in a tree diagram, you can request eclipse to build a visual diagram with its built-in visual modeler! Right click on \texttt{LearningBoxLanguage.ecore} and select ''Initilalize Ecore Diagram File.''
 
-\fancyfoot[R]{ $\triangleright$ \hyperlink{validation tex}{Next step} }
+\fancyfoot[R]{ $\triangleright$ \hyperlink{static review}{Next step} }
 
 \item[$\blacktriangleright$] You're all done! We encourage you to review section~\ref{sec:staticAbstract} and observe how this same project is crafted using visual tools. Compare the differences between modeling the three classes in a separate, abstract program and exporting to eclipse in order to build them, versus modeling and building all within eclipse. Which do you find easier to work with?
 
