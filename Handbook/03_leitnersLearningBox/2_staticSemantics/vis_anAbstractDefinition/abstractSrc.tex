@@ -77,13 +77,6 @@
 	\label{fig:diagram_type}
 \end{figure}
 \FloatBarrier
-We keep using this `model' word, so lets have a quick review of what it means, and why we're using it. In analogy to the ``everything is an object'' principle in the Object Oriented (OO) paradigm, in metamodelling, everything is a model! \marginpar{\emph{Unification}} This principle is called \emph{Unification} and has many advantages. If everything is a model, a metamodel that defines (at least a part of) a language must be a model itself.
-\marginpar{\emph{Meta-metamodel}}
-\marginpar{\emph{Meta-Language}}
-\marginpar{\emph{Modelling Language}}
-This means that it conforms to some \emph{meta-metamodel} which in turn defines a \emph{(meta)modelling language} or \emph{meta-language}.
-For metamodelling with eMoflon, we support \emph{Ecore} as a modelling language and it defines types like \texttt{EClass} and \texttt{EReference}, which we will be using to specify  our metamodels.
-Alternate modelling languages include MOF, UML and Kermeta.
 
 \begin{itemize}
  
@@ -97,14 +90,10 @@ Alternate modelling languages include MOF, UML and Kermeta.
 \end{figure}
 
 
-
 \item[$\blacktriangleright$] Double-click the newly created diagram to ensure that it is open.
 
 
-\item[$\blacktriangleright$] To the left of the workbench in EA, a \emph{Toolbox} should have appeared\footnote{If not, choose ``Diagram/Diagram Toolbox'' to show the current toolbox.} containing the types available in Ecore for metamodelling (Fig.~\ref{fig:eclass}).
-Click on \texttt{EClass}, then click in the open diagram. Alternatively, you can `drag-and-drop' the small Eclass icon into the diagram window.
-
-\vspace{1cm}
+\item[$\blacktriangleright$] To the left of the workbench in EA, a \emph{Toolbox} should have appeared\footnote{If not, choose ``Diagram/Diagram Toolbox'' to show the current toolbox.} containing the types available in Ecore for metamodelling (Fig.~\ref{fig:eclass}). Click on \texttt{EClass}, then click in the open diagram. Alternatively, you can `drag-and-drop' the small Eclass icon into the diagram window.
 
 \begin{figure}[htbp]
 	\centering
@@ -113,7 +102,6 @@ Click on \texttt{EClass}, then click in the open diagram. Alternatively, you can
 	\label{fig:eclass}
 \end{figure}
 
-\vspace{1cm}
 
 
 \item[$\blacktriangleright$] In the dialogue that pops-up, enter \texttt{Box} as the name of the class and click \texttt{OK} (Fig.~\ref{fig:eclass_properties}).
@@ -127,6 +115,9 @@ In general, a similar ``properties'' dialogue can be opened in the same fashion 
 	\label{fig:eclass_properties}
 \end{figure}
 
+\vfill
+\pagebreak
+
 \item[$\blacktriangleright$] After creating \texttt{Box}, your EA workspace should resemble figure~\ref{fig:eclass_completed}.
 
 \begin{figure}[htbp]
@@ -135,10 +126,6 @@ In general, a similar ``properties'' dialogue can be opened in the same fashion 
 	\caption{State after creating \texttt{Box}.}
 	\label{fig:eclass_completed}
 \end{figure}
-
-\vfill
-\pagebreak
-
 
 \item[$\blacktriangleright$] Now create \texttt{Partition} and \texttt{Card} the same way, until your workspace resembles figure~\ref{fig:all_eclasses}.
 These are the main models for our learning box.
@@ -152,7 +139,8 @@ These are the main models for our learning box.
 	\label{fig:all_eclasses}
 \end{figure}
 
-\vspace{1cm}
+\vfill
+\pagebreak
 
 \item[$\blacktriangleright$] Now choose \texttt{Box}, right-click to call up the context menu and choose ``Features \& Properties/Attributes..'' (Fig.~\ref{fig:attribute}).
 
@@ -177,6 +165,7 @@ These are the main models for our learning box.
 	\label{fig:attribute_properties}
 \end{figure}
 
+\pagebreak
 
 \item[$\blacktriangleright$] Add attributes to all other classes until your workspace resembles figure~\ref{fig:attribute_completed}.
 
@@ -188,7 +177,6 @@ These are the main models for our learning box.
 \end{figure}
 \FloatBarrier
 
-\pagebreak
 
 \item[$\blacktriangleright$] A fundamental gesture in EA is \emph{Quick Link}.
 Quick Link is used to create links between elements in a context-sensitive manner.
@@ -201,6 +189,8 @@ To use Quick Link, choose an element and note the little black arrow in its top-
 	\label{fig:quicklink}
 \end{figure}
 \FloatBarrier
+
+\pagebreak
 
 Click on this black arrow and `pull' to another element you wish to link to.
 To start, quick link from \texttt{Box} to \texttt{Partition}.
@@ -224,7 +214,7 @@ Here you can change the reference direction\footnote{this is particuluary useful
 \begin{figure}[htbp]
 	\centering
 	  \includegraphics[width=0.73\textwidth]{EA_assocPropsTarget}\\
-  \vspace{0.5cm}
+  \vspace{1cm}
     \includegraphics[width=0.73\textwidth]{EA_assocPropsSource}
 	\caption{Enter properties for target and source of reference.}
 	\label{fig:reference_ends}

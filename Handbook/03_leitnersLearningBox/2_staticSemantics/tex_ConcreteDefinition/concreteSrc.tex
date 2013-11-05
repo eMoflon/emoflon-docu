@@ -17,12 +17,6 @@
 	\label{fig:new_project}
 \end{figure}
 
-% Since both sections are talking about the same thing, shoud we write a paragraph and define them both at the same time?
-\item[$\blacktriangleright$] Following 
-\marginpar{\emph{Meta-metamodel}} the same ``everything is an object'' princicple that's been established in the Object-oriented Paradigm, in metamodeling, everything is a model! This
-\marginpar{\emph{Modelling language}}  includes those that define even small parts of languages - they too must be models. This means the metamodel(s) conform to some \emph{meta-metamodel}, 
-\marginpar{\emph{meta-language}}which then defines a \emph{(meta)modelling language}\footnote{Other modelling languages include MOF, UML, and Kermeta.} or \emph{meta-language}. All of this together is called \emph{unification}\marginpar{\emph{Unification}}, the bringing together of two or more things so they become a single unit - your program! When metamodeling with eMoflon, we support \emph{Ecore} as the modeling language which define the \emph{EClass} and \emph{EReference} types.
-
 \item[$\blacktriangleright$] Expand the project as deep as it goes. Your Package explorer may look different than ours, displayed in figure~\ref{fig:expanded_folders}, depending on whether you completed the Demo in Part I. In an effort to keep things clear as possible, we have removed them from our workspaces, but recommend keeping them for future reference.
 
 \begin{figure}[htbp]
@@ -39,7 +33,7 @@
 
 \item[$\blacktriangleright$] Right click on \texttt{LearningBoxLanguage} and create your first eclass model by going to ``New/EClass.'' Name it \texttt{Box}.
 
-\item[$\blacktriangleright$] The class editor should have automatically appeared. Currently, it's empty; Lets add the first two EAttributes of our program, \texttt{name} and \texttt{stringRep}. Both are \texttt{EString} types (fig~\ref{fig:boxDeclaration}).
+\item[$\blacktriangleright$] The class editor should have automatically appeared. Currently, it's empty; Lets add the first two EAttributes of our program, \texttt{name} and \texttt{stringRep}. Both are \texttt{EString} types (fig.~\ref{fig:boxDeclaration}).
 
 \begin{figure}[htbp]
 	\centering
@@ -106,7 +100,7 @@
 
 \item[$\blacktriangleright$] You're almost done setting up the static structure of your model! The last thing we need to do is to make the program \emph{do} something. After all, what good is a program that only stores attributes and references?
 
-\item[$\blacktriangleright$] In a language, the rules that describe a system's behavior and how it evolves over time, or reacts to external stimulus, are collectively referred to as \emph{Dynamic Semantics}. Although these could be defined as a separate set of \emph{model transformations}, we take a holistic approach and advocate integrating these transformations directly in the metamodel as operations. This falls within the OO Paradigm, and is quite natural in may ways.
+\item[$\blacktriangleright$] In a language, the rules that describe a system's behavior and how it evolves over time, or reacts to external stimulus, are collectively referred to as \emph{Dynamic Semantics}\marginpar{\emph{Dynamic Semantics}}. Although these could be defined as a separate set of \emph{model transformations}, we take a holistic approach and advocate integrating these transformations directly in the metamodel as operations. This falls within the OO Paradigm, and is quite natural in may ways.
 
 \item[$\blacktriangleright$] Lets start to set up our these operations by declaring their \emph{signatures}, starting with the \texttt{Partition} class. We want a partition to be able to do three things: check the answer on a \texttt{card} with a guess and return a true/false value, remove a specific card, or empty itself of all cards to reset. 
 
