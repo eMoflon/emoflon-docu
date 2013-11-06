@@ -9,14 +9,13 @@ A \texttt{Partition} in the \texttt{Box} has a \texttt{next} and \texttt{previou
 A \texttt{Box} has a \texttt{name}, and can be extended by calling \texttt{grow}.
 A \texttt{Box} can print out its contents via the \texttt{toString} method.
 
-The main method of the learning box is \texttt{Partition::check} that takes a \texttt{Card} and the user's guess as an \texttt{EString} and returns \texttt{true} or \texttt{false} depending on if the guess was correct or not.
+The main method of the learning box is \texttt{Partition::check}, which takes a \texttt{Card} and the user's \texttt{EString} guess, and returns a \texttt{true} or \texttt{false} value.
 
-A \texttt{Partition} can also \texttt{empty} itself of all \texttt{Cards}, or \texttt{remove} a particular \texttt{Card}.
-Last but not least, a \texttt{Partition} has a \texttt{partitionSize} that can be used to indicate that the \texttt{Partition} is full and is ready to be revised.
+A \texttt{Partition} can also \texttt{remove} a specific \texttt{Card}, or empty itself of all  existing \texttt{Cards}. Last but not least, a \texttt{Partition} has a \texttt{partitionSize} to indicate how many cards it currently has. Too many cards in the first partition could indicate that not enough time has been dedicated to learning the terms. Too many near the end could show that the vocabulary set is too easy, and probably mastered.
 
-A \texttt{Card} contains the actual content to be learnt as a question on the card's \texttt{face} and the answer on the card's \texttt{back}.
-A \texttt{Card} also maintains a \texttt{partition\-History} which can be used to keep track of how often a \texttt{Card} has been answered correctly/wrongly.
-This might indicate how difficult the \texttt{Card} is for a specific user.
+A \texttt{Card} contains the actual content to be learned as a question on the card's \texttt{face} and the answer on the card's \texttt{back}.
+A \texttt{Card}s also maintain \texttt{partition\-History}, which can be used to keep track of how often a \texttt{Card} has been answered incorrectly.
+This may indicate how difficult the \texttt{Card} is for a specific user, and remind them to spend more time on that set.
 When learning a language, it makes sense to be able to swap the target and source language and this is supported by \texttt{Card} via \texttt{invert} (turns the card around).
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{validation vis}{Next visual task} \\ $\triangleright$ \hyperlink{validation tex}{Next textual step} }

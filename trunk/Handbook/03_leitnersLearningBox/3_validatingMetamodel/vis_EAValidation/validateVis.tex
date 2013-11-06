@@ -7,7 +7,7 @@ Our validation framework is still work in progress so if you find an error that 
 
 \begin{enumerate}
 \item[$\blacktriangleright$] To make the validation output window visible in EA, choose ``Extensions/\-Add-In Windows''.
-This should display a new output window as depicted in Fig.~\ref{fig:validation_output}. This control panel also contains shortcuts for all the functionality available via the extensions file menu and many users actually prefer this.
+This should display a new output window as depicted in figure~\ref{fig:validation_output}. This control panel also contains shortcuts for all the functionality available via the extensions file menu. Many users prefer this, and so we hope you'll find it useful.
 
 \begin{figure}[htbp]
 	\centering
@@ -18,7 +18,7 @@ This should display a new output window as depicted in Fig.~\ref{fig:validation_
 \FloatBarrier
 
 \item[$\blacktriangleright$] To start the validation choose ``Extensions/\-MOFLON::Ecore Addin/\-Validate all'' in EA (Fig.~\ref{fig:validation_menu}).
-If you haven't already made any mistakes while modelling your \texttt{LearningBoxLanguage} in the last chapter, the output should resemble Fig.~\ref{fig:validation_output}, indicating that your metamodels are free of errors.
+If you haven't made any mistakes while modelling your \texttt{LearningBoxLanguage} in the previous sections, the output should resemble figure~\ref{fig:validation_output}, indicating that your metamodels are free of errors.
 
 \begin{figure}[htbp]
 	\centering
@@ -38,7 +38,7 @@ You can retain the default name \texttt{EClass1}.
 Let's assume, you wish to delete this class from your metamodel.
 
 \item[$\blacktriangleright$] Select it (\texttt{EClass1}) in the diagram and press the \texttt{Delete} button.
-Note that \texttt{EClass1} still exists in the project browser (and thus in your metamodel) and that you have one new \texttt{Information} message in the validation output (Fig.~\ref{fig:validation_information}).
+Note that \texttt{EClass1} still exists in the project browser (and thus in your metamodel). You should have one new \texttt{Information} message in the validation output (Fig.~\ref{fig:validation_information}).
 
 \begin{figure}[htbp]
 	\centering
@@ -50,15 +50,15 @@ Note that \texttt{EClass1} still exists in the project browser (and thus in your
 \pagebreak
 
 The message informs you that \texttt{EClass1} is not on any diagram, and seeing as it is still in the model, that this could be a mistake.
-Just pressing the \texttt{Delete} button is not the proper way of \emph{deleting} \texttt{EClass1} from the metamodel. It only removes it from the current diagram!
+Just pressing the \texttt{Delete} button is not the proper way of removing \texttt{EClass1} from the metamodel. It only removes it from the current diagram!
 Deleting elements properly and other EA specific aspects are discussed in detail in \texttt{Part VI: Micellaneous}.
 
 
 \item[$\blacktriangleright$] To navigate to the problematic element click once on the information message in the output window.
 EA should navigate automatically to \texttt{EClass1} and highlight it in the project browser.
 
-\item[$\blacktriangleright$] To check if there are any quick fixes available, double click the information message to invoke the quick fix dialogue.
-In this case, there is one quick fix which suggests simply deleting the element from the model (Fig.~\ref{fig:quick-fix1}) as this is probably what was intended.
+\item[$\blacktriangleright$] To check to see if there are any quick fixes available, double click the information message to invoke the ``QuickFix'' dialogue.
+In this case, there is one quick fix which suggests to simply delete the element from the model (Fig.~\ref{fig:quick-fix1}) as this is probably what was intended.
 
 \begin{figure}[htbp]
 	\centering
@@ -86,7 +86,7 @@ Affirm with \texttt{OK}.
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.6\textwidth]{EA_quickFixFatal}
-	\caption{Fatal Error after deleting a navigable role name}
+	\caption{Fatal error after deleting a navigable role name}
 	\label{fig:fatal-error}
 \end{figure}
 

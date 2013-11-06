@@ -85,7 +85,7 @@
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.6\textwidth]{ea_afterDiagramState}
-	\caption{State after creating diagram.}
+	\caption{State after creating diagram}
 	\label{fig:diagram_completed}
 \end{figure}
 
@@ -93,25 +93,25 @@
 \item[$\blacktriangleright$] Double-click the newly created diagram to ensure that it is open.
 
 
-\item[$\blacktriangleright$] To the left of the workbench in EA, a \emph{Toolbox} should have appeared\footnote{If not, choose ``Diagram/Diagram Toolbox'' to show the current toolbox.} containing the types available in Ecore for metamodelling (Fig.~\ref{fig:eclass}). Click on \texttt{EClass}, then click in the open diagram. Alternatively, you can `drag-and-drop' the small Eclass icon into the diagram window.
+\item[$\blacktriangleright$] To the left of the workbench in EA, a \emph{Toolbox} containing the types available in Ecore for metamodelling should have appeared\footnote{If not, choose ``Diagram/Diagram Toolbox'' to show the current toolbox.}(Fig.~\ref{fig:eclass}). Click on \texttt{EClass}, then click in the open diagram. Alternatively, you can `drag-and-drop' the small eclass icon into the diagram window.
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.7\textwidth]{EA_createEClass}
-	\caption{Create an EClass.}
+	\caption{Create an EClass}
 	\label{fig:eclass}
 \end{figure}
 
 
 
 \item[$\blacktriangleright$] In the dialogue that pops-up, enter \texttt{Box} as the name of the class and click \texttt{OK} (Fig.~\ref{fig:eclass_properties}).
-This dialogue can always be invoked by double-clicking the class and contains many other properties we'll look into later in the handbook.
+This dialogue can always be invoked by double-clicking the class, and contains many other properties we'll look into later in the handbook.
 In general, a similar ``properties'' dialogue can be opened in the same fashion for almost every element in EA.
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.6\textwidth]{EA_propertiesEClass}
-	\caption{Enter properties of EClass.}
+	\caption{Enter properties of EClass}
 	\label{fig:eclass_properties}
 \end{figure}
 
@@ -123,7 +123,7 @@ In general, a similar ``properties'' dialogue can be opened in the same fashion 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=1\textwidth]{ea_afterBoxCreation}
-	\caption{State after creating \texttt{Box}.}
+	\caption{State after creating \texttt{Box}}
 	\label{fig:eclass_completed}
 \end{figure}
 
@@ -135,7 +135,7 @@ These are the main models for our learning box.
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=1\textwidth]{EA_createPartitionCard}
-	\caption{All classes for our metamodel.}
+	\caption{All classes for our metamodel}
 	\label{fig:all_eclasses}
 \end{figure}
 
@@ -147,7 +147,7 @@ These are the main models for our learning box.
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.6\textwidth]{EA_contextAddAttribute}
-	\caption{Context Menu for a class.}
+	\caption{Context Menu for a class}
 	\label{fig:attribute}
 \end{figure}
 \FloatBarrier
@@ -161,7 +161,7 @@ These are the main models for our learning box.
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.6\textwidth]{EA_addingAttributes}
-	\caption{Adding attributes to a class.}
+	\caption{Adding attributes to a class}
 	\label{fig:attribute_properties}
 \end{figure}
 
@@ -172,7 +172,7 @@ These are the main models for our learning box.
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.25\textwidth]{EA_allAttributes}
-	\caption{Main classes with attributes.}
+	\caption{Main classes with attributes}
 	\label{fig:attribute_completed}
 \end{figure}
 \FloatBarrier
@@ -185,7 +185,7 @@ To use Quick Link, choose an element and note the little black arrow in its top-
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.4\textwidth]{EA_quickLink}
-	\caption{Quick Link is a central gesture in EA.}
+	\caption{Quick Link is a central gesture in EA}
 	\label{fig:quicklink}
 \end{figure}
 \FloatBarrier
@@ -199,13 +199,13 @@ In the context-menu that pops up, choose \texttt{Create Bidirectional EReference
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.5\textwidth]{EA_ereferenceBidirectional}
-	\caption{Create a reference via Quick Link.}
+	\caption{Create a reference via Quick Link}
 	\label{fig:ereference}
 \end{figure}
 \FloatBarrier
 
 \item[$\blacktriangleright$] Double click the reference to invoke a dialogue.
-Here you can change the reference direction\footnote{this is particuluary useful if you accidentally click one of the other options while creating the quick link and wish to change it, or if you went backwards from partition to box.} and enter a name. The name will only be used for documentation purpose as it is not relvant for code generation.
+Here you can change the reference direction\footnote{this is particuluary useful if you accidentally click one of the other options while creating the quick link and wish to change it, or if you went backwards from partition to box.} and enter a name. The name will only be used for documentation purposes as it is not relevant for code generation.
 
 \item[$\blacktriangleright$] In the same dialogue, choose \texttt{Target Role} and enter the values in figure~\ref{fig:reference_ends} to set the properties for the ``target'' end of the reference (the \texttt{Box} role). As you can see, the default target is set to the class you linked \emph{from}, and the default source is the class you linked \emph{to}. If you decided to ignore the instructions, and went from \texttt{Partition} to \texttt{Box}, the only difference between the references are the titles - the following information will still be the same! In this window, it's important not to forget to check and modify the \texttt{Role}, \texttt{Navigability}, \texttt{Multiplicity}, and \texttt{Aggregation} settings for the target.  Repeat the process for the \texttt{Source Role}.
 
@@ -216,7 +216,7 @@ Here you can change the reference direction\footnote{this is particuluary useful
 	  \includegraphics[width=0.73\textwidth]{EA_assocPropsTarget}\\
   \vspace{1cm}
     \includegraphics[width=0.73\textwidth]{EA_assocPropsSource}
-	\caption{Enter properties for target and source of reference.}
+	\caption{Enter properties for target and source of reference}
 	\label{fig:reference_ends}
 \end{figure}
 \FloatBarrier
@@ -240,7 +240,7 @@ Non-composite (\texttt{none}) means that the current role is not that of a conta
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.3\textwidth]{EA_relationBoxPartition}
-	\caption{\texttt{Box} contains \texttt{Partition}s.}
+	\caption{\texttt{Box} contains \texttt{Partition}s}
 	\label{fig:ereference_completed}
 \end{figure}
 \FloatBarrier
@@ -253,7 +253,7 @@ We however believe it is simpler to handle these pairs as single references and 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.5\textwidth]{EA_relationsAll}
-	\caption{All relations in our metamodel.}
+	\caption{All relations in our metamodel}
 	\label{fig:ereferences_all}
 \end{figure}
 \end{enumerate}
@@ -267,17 +267,16 @@ All of your program attributes and references have now been set up. To see how t
 In addition to its static structure, every system has certain dynamic aspects that describe the system's behaviour and how it reacts to external stimulus or evolves over time.
 \marginpar{\emph{Dynamic Semantics}}
 In a language, these rules that govern the dynamic behaviour of a system are referred to collectively as the \emph{Dynamic Semantics} of the language.
-Although these rules can be defined as a set of separate \emph{Model Transformations}, we take a holistic approach and advocate integrating the transformations directly in the metamodel as operations.
-This fits nicely to the OO paradigm, and is quite natural in many cases.
+Although these rules can be defined as a set of separate \emph{Model Transformations}, we take a holistic approach and advocate integrating the transformations directly in the metamodel as operations. This naturally fits quite nicely into the OO paradigm.
 
-In the next few steps we shall define the \emph{signatures} of some operations for our learning box. We will use SDMs in the next handbook (Part III) to \emph{implement} these methods.
+In the next few steps we shall define the \emph{signatures} of some operations for our learning box. We will use SDMs in Part III of the handbook to \emph{implement} these methods.
 \begin{enumerate}
 \item[$\blacktriangleright$] Right-click \texttt{Partition} to invoke the context-menu depicted in figure~\ref{fig:add_operation} and choose ``Features \& Properties/Operations..''.
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.7\textwidth]{EA_contextAddOperation}
-	\caption{Add an operation.}
+	\caption{Add an operation}
 	\label{fig:add_operation}
 \end{figure}
 \FloatBarrier
@@ -287,7 +286,7 @@ In the next few steps we shall define the \emph{signatures} of some operations f
 \begin{figure}[htbp]
 	\centering
   	\includegraphics[width=0.5\textwidth]{EA_operationEmpty}
-	\caption{Properties for operation.}
+	\caption{Properties for operation}
 	\label{fig:operation_properties}
 \end{figure}
 \FloatBarrier
@@ -297,7 +296,7 @@ In the next few steps we shall define the \emph{signatures} of some operations f
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.9\textwidth]{EA_operationRemoveCard}
-	\caption{Parameters and Return Type.}
+	\caption{Parameters and Return Type}
 	\label{fig:operation_parameters}
 \end{figure}
 \FloatBarrier
@@ -311,14 +310,14 @@ Notice that the \texttt{Return Type} can be chosen via the drop-down menu for pr
 
 \vspace{-.5cm}
 \begin{quote}
-$\textbf{Please note:}$ Non-primitive types \emph{must} be chosen via the `\texttt{\ldots}' button. It allows you to browse for the corresponding elements in your project. Unfortunately, just typing them won't work!
+$\textbf{Please note:}$ Non-primitive types \emph{must} be chosen via the `\texttt{\ldots}' button. It allows you to browse for the corresponding elements in your project. Just typing them won't work!
 \end{quote}
 
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.9\textwidth]{EA_operationCheck}
-	\caption{All operations in \texttt{Partition}.}
+	\caption{All operations in \texttt{Partition}}
 	\label{fig:operation_partition}
 \end{figure}
 
@@ -329,13 +328,13 @@ Add all operations analogously for \texttt{Box} and \texttt{Card}, so that your 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.7\textwidth]{EA_metamodelComplete.png}
-	\caption[Complete metamodel for our learning box.]{Complete metamodel for our learning box. \emph{\small Please note that names of parameters may not be displayed by default in EA.}}
+	\caption[Complete metamodel for our learning box.]{Complete metamodel for our learning box \\ \emph{\small Please note that names of parameters may not be displayed by default in EA.}}
 	\label{fig:metamodel_complete}
 \end{figure}
 
 \pagebreak
 
-To see how this complete metamodel is represented in the textual syntax, check out figure~\ref{fig:workspaceMethods} from section~\ref{sec:staticConcrete}.
+To see how this complete metamodel is represented in the textual syntax, review figure~\ref{fig:workspaceMethods} in section~\ref{sec:staticConcrete}.
 
 \begin{enumerate}
 \item[$\blacktriangleright$] To finish, try to export the metamodel for code generation in Eclipse~\footnote{if problems occur during the following steps, we recommend reading \texttt{Part VI: Micellaneous}. This might help you to find your mistakes}. Right-click on \texttt{LearningBoxLanguage} and choose ``Extensions/MOFLON::Ecore Addin/Export Selection to Workspace''.
@@ -343,13 +342,13 @@ Then switch to your Eclipse work\-space and refresh the metamodel workingset. Al
 \end{enumerate}
 
 
-If you have done everything right, a new project \texttt{LearningBoxLanguage} should be created in the \texttt{Demo} working set within your Eclipse workspace.
+If you've done everything correctly, a new project \texttt{LearningBoxLanguage} should be created in the \texttt{Demo} working set within your eclipse workspace.
 If this is not the case, please ensure that your metamodel is identical with figure~\ref{fig:metamodel_complete}.
 
-If you believe everything is correct and things still don't work, then feel free to contact us at \href{mailto:contact@moflon.org}{contact@moflon.org}.
+If you believe everything is correct and things still don't work, feel free to contact us at \href{mailto:contact@moflon.org}{contact@moflon.org}.
 
 If code is generated successfully, take a look at all the stuff that's been generated under \texttt{/gen}. Especially look at the the default implementation for all methods who throw an  \texttt{OperationNotSupported} exception.
 We shall see later in the handbook that the Eclipse Modeling Foundation's (EMF) code generator actually supports injecting hand-written implementations of methods into generated methods and classes.
-With eMoflon however, we can also model a large part of the dynamic semantics, and only need to implement small helper methods (e.g. string manipulation) by hand.
+With eMoflon however, we can also model a large part of the dynamic semantics, and only need to implement small helper methods, such as string manipulation by hand.
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{static review}{Next task} }

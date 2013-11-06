@@ -5,10 +5,10 @@
 
 \subsection{ The MOSL Builder (Textual)}
 
-\hypertarget{validation tex}{} Our MOSL language is accompanied with its own builder that proves support for validating the static semantics of your ecore metamodel. Integrated with the Eclipse IDE, if there's an error in your files when you save, an error message will appear in the console. Lets try a to make an error, just to confirm it works.
+\hypertarget{validation tex}{} Our MOSL language is accompanied with its own builder that proves support for validating the static semantics of your metamodel. Integrated with the Eclipse IDE, if there's an error in your files when you save, a message will appear in the console. Lets try to make an error, just to confirm it works.
 
-Go to your \texttt{Partition} class and change the parameter type from \texttt{Card} to \texttt{card}. Press save. An error should immediately load to inform you of your terrible mistake. Change your file back to the way it was, and the message shouldn't return.
+Go to your \texttt{Partition} class and change the parameter type from \texttt{Card} to \texttt{card}. Press save. An error should immediately appear to inform you of your terrible mistake. Change your file back to the way it was, and the message should disappear.
 
-Now, what would happen if you were to delete a reference? Can we make a more serious error appear? Go to any class, delete any reference, and press save. Nothing happens! As we mentioned earlier in the handbook, MOSL updates both classes and objects involved in any form of association. You won't ever have a 'hanging' link, or an issue where a link is defined in one place, but not the other. 
+Now, what would happen if you were to delete a reference? Can we make a more serious error appear? Go to any class, delete any reference, and press save. Nothing happens! As we mentioned earlier in the handbook, MOSL updates both classes and objects involved in any association. You won't ever have a 'hanging' link, or an issue where a link is defined in one place, but not another. 
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{creatingInstance common}{Next step} }
