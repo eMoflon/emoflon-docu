@@ -23,31 +23,32 @@ If you work through it and, for some reason, do \emph{not} have a resounding \mb
 \break
  
 
-To enjoy the experience, you should be fairly comfortable with Java or a comparable object-oriented language, and know how to perform basic tasks in Eclipse.  Although we assume this, we give references to help bring you up to speed as necessary. Last but not least, basic knowledge of common UML notation would be helpful.
+To enjoy the experience, you should be fairly comfortable with Java or a comparable object-oriented language, and know how to perform basic tasks in eclipse.  Although we assume this, we give references to help bring you up to speed as necessary. Last but not least, basic knowledge of common UML notation would be helpful.
 
 Our goal is to give a \emph{hands-on} introduction to metamodelling and graph transformations using our tool \emph{eMoflon}. The idea is to \emph{learn by doing} and all concepts are introduced while working on a concrete example. The language and style used throughout is intentionally relaxed and non-academic.
 
 
 {\bf \large So, what is eMoflon?}
 
-eMoflon is a tool for building tools.  If you wish a "meta" tool.  This means if you're interested in building \emph{domain specific} tools for end users, then eMoflon could be pretty useful for you.
+eMoflon is a tool for building tools. If you wish, a ``meta" tool.  This means that if you're interested in building \emph{domain specific} tools for end users, then eMoflon could be pretty useful for you.
 
 
 {\bf \large Why should I be interested?}
 
-To build a tool, you typically need a way for users to communicate with it, i.e., you must establish a suitable \emph{language} for specifying input and output to and from the tool.  You also need a central data structure to represent the "state" of the tool.  This data structure or \emph{model} is usually manipulated and apprioprately \emph{transformed} in some useful manner by the tool.  Many tools also \emph{generate} something useful from their internal models. To achieve these goals you can use \emph{metamodelling} to define your language (your \emph{meta}model), \emph{graph transformations} to transform your models, and parsing/code generation techniques to produce something useful from your models. All this and much more is supported by eMoflon. Examine figure~\ref{fig:transModel} for a brief visual depiction of these features.
+To build a tool, you typically need a way for users to communicate with it, i.e., you must establish a suitable \emph{language} for specifying input and output to and from the tool.  You also need a central data structure to represent the ``state" of the tool.  This data structure or \emph{model} is usually manipulated and appropriately \emph{transformed} in some useful manner by the tool.  Many tools also \emph{generate} something useful from their internal models. To achieve these goals you can use \emph{metamodelling} to define your language (your \emph{meta}model), \emph{graph transformations} to transform your models, and parsing/code generation techniques to produce something useful from your models. All this and much more is supported by eMoflon. Examine figure~\ref{fig:transModel} for a brief visual depiction of these features.
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.75\textwidth]{transformationModelDiagram}
-	\caption{eMoflon supports a central data structure formed from a language (metamodel), graph transformations to transform each model, and code parsing to produce useful items.}
+	\caption{eMoflon supports metamodeling to define your language, transformations to change your models, and parsing to produce useful items}
 	\label{fig:transModel}
 \end{figure}
 
 {\bf \large What does this handbook cover?}
 
-On the next few pages, we've described each of the 6 parts that make up this handbook. You can work through them sequentially and become an \emph{official}\footnote{Certificate not guaranteed} eMoflon master or, depending on your interests, you can decide what you'd like to read and what you'd like to skip. We provide all the necessary materials (ie: a cheat package) so you can jump right in without having to complete the previous parts. For those of you interested in further details and the mature formalism of graph transformations, we give relevant references throughout the handbook.
+On the next page, we've described each of the 6 parts that make up this handbook. You can work through them sequentially and become an \emph{official}\footnote{Certificate not guaranteed} eMoflon master or, depending on your interests, you can decide what you'd like to read and what you'd like to skip. We provide all the necessary materials (ie: a cheat package) so you can jump right in without having to complete the previous parts. For those of you interested in further details and the mature formalism of graph transformations, we give relevant references throughout the handbook.
 
+\vfill
 \pagebreak
 
 \begin{description}
@@ -60,14 +61,13 @@ It's kept as minimal as possible, and should only take a few minutes.
 \item[Part II: Ecore] takes you step-by-step through a more realistic example that showcases many of the features we currently support.
 Working through this part should serve as a basic introduction to model-driven engineering, and we especially recommend you work through this part if you're new to metamodeling (using Ecore/the Eclipse Modeling Framework (EMF)).
 
-% UPDATE and fill in once data comes in (testing/checking)
-{\small Approximate time to complete: min }
+{\small Approximate time to complete (min): 60 }
 
 \item[Part III: Story Digrams] introduces unidirectional model transformation via programmed graph transformation using Story Driven Modeling (SDM).
 
 {\small Approximate time to complete: min }
 
-\item[Part IV: TGGs] introduces bidirectional model transformation with Triole Graph Grammars (TGGs).
+\item[Part IV: TGGs] introduces bidirectional model transformation with Triple Graph Grammars (TGGs).
 
 {\small Approximate time to complete: min }
 
@@ -81,6 +81,4 @@ Working through this part should serve as a basic introduction to model-driven e
 
 \end{description}
 
-Well, that's it -- download Part I, grab a coffee, and enjoy the ride!
-
-% Include some sort of coffee graphic?
+Well, that's it! Download Part I, grab a coffee, and enjoy the ride!

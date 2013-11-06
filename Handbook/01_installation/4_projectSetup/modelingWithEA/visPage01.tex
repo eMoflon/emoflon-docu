@@ -13,7 +13,7 @@ This is advisable but you are, of course, free to choose your own colour schema.
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.8\textwidth]{standardColours}
-  \caption{Our choice of standard colours for diagrams in EA.}
+  \caption{Our choice of standard colours for diagrams in EA}
   \label{fig_standardColoursEA}
 \end{figure}
 
@@ -46,13 +46,12 @@ Now switch back to your \emph{Eclipse workspace} and note the two nodes named \t
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{eclipse_packageExplorer}
-    \caption{Eclipse: Project Structure}
+    \caption{Project structure}
     \label{fig_eclipsePS}
  \end{figure}
 
 These nodes, used to group related \emph{Eclipse projects} in an Eclipse workspace, are called \emph{working sets}. The working set \texttt{Spe\-ci\-fi\-ca\-tions} contains all \emph{metamodel projects} in a  workspace. Your metamodel project contains a single EAP (EA project) file and is used to communicate with EA and initiate code generation by simply pressing F5 or choosing ``refresh'' from the context menu.
 In our case, \texttt{Specifications} should contain a single metamodel project \texttt{Demo} containing our EA project file  \texttt{Demo.eap}.
-% \% end common
  
 Figure~\ref{fig_fromEAtoEclipse} depicts how the Eclipse working set \texttt{Demo} and its contents were generated from the EA model \texttt{Demo}. Every model in EA is mapped to a working set in Eclipse with the same name. From every package in the EA model, an Eclipse project is generated, also with the same name. 
 
@@ -78,16 +77,16 @@ Ecore is a metamodelling language that provides building  blocks like \emph{clas
 	\label{fig_modelSubfolder}
 \end{figure}
 
-The  export function of our EA plugin generates a valid Ecore model from the  corresponding EA model and persists it as an XML file in the \texttt{model}  subfolder.  
+The  export function of our EA plugin generates a valid Ecore model from the  corresponding EA model, and persists it as an XML file in the \texttt{model}  subfolder.  
 In our concrete example, this is the \texttt{DoubleLinkedListLanguage.ecore} file.  
 Go ahead and double-click it to open the file in a simple tree-view editor in Eclipse.  
 If you are really interested in the nitty-gritty details or have a masochistic hang, right-click the file and select ``Open With/Text Editor''.
 
-Looking back to Figure~\ref{fig_fromEAtoEclipse}, realize that it also depicts how the class \texttt{Node} in the EA model is mapped to the Java interface \texttt{Node}.  
+Looking back to figure~\ref{fig_fromEAtoEclipse}, realize that it also depicts how the class \texttt{Node} in the EA model is mapped to the Java interface \texttt{Node}.  
 Double-click \texttt{Node.java} and take a look at the methods declared in the interface. These correspond directly to the methods declared in the modelled \texttt{Node} class.  
 
-As indicated by the source folders \texttt{src}, \texttt{injection} and \texttt{gen}, we advocate a clean separation of hand-written (this should go in \texttt{src} and \texttt{injection}) and generated code (lands automatically in \texttt{gen}).  
-As we shall see later in the handbook, hand-written code can be integrated in generated classes vio Injections. 
+As indicated by the source folders \texttt{src}, \texttt{injection}, and \texttt{gen}, we advocate a clean separation of hand-written (should be placed in \texttt{src} and \texttt{injection}) and generated code (automatically in \texttt{gen}).  
+As we shall see later in the handbook, hand-written code can be integrated in generated classes via \emph{Injections}. 
 This is sometimes more elegant for small helper functions or necessary for String manipulation for instance.
 
 Have you noticed the methods of the \texttt{Node} class in our EA model? 
