@@ -20,7 +20,8 @@ This is advisable but you are, of course, free to choose your own colour schema.
 \item[$\blacktriangleright$] In the same dialogue, select ``Diagram/Appearance'' and reflect the settings in Fig.~\ref{fig_standardAppearanceEA}.
 Again, this is just a suggestion and not mandatory.
 
-\item[$\blacktriangleright$] Last but not least, and still in the same dialogue, select ``Source Code Engineering'' and be sure to choose ``Ecore'' as the default language for code generation (Fig.~\ref{fig_standardSCEEA}). This setting \emph{is} mandatory, and very important.
+\item[$\blacktriangleright$] Last but not least, and still in the same dialogue, select ``Source Code Engineering'' and be sure to choose ``Ecore'' as the
+default language for code generation (Fig.~\ref{fig_standardSCEEA}). This setting \emph{is} mandatory, and very important.
 \end{itemize}
 
 \begin{figure}[htbp]
@@ -37,11 +38,13 @@ Again, this is just a suggestion and not mandatory.
     \label{fig_standardSCEEA}
  \end{figure}
  
-In your EA ``workspace'' (actually referred to as an \emph{EA project}\footnote{Words are set in italics when they represent concepts that are introduced or defined  in the corresponding paragraph for the first time.}), take a careful  look at the project browser:  The root node \texttt{Demo}\footnote{Words set  in a \texttt{mono-space font} refer to things that you should find in a tool,  dialogue, figure or code.} is called a \emph{model} in EA lingo, and is used as a  container to group a set of related \emph{packages}. 
-In our case, \texttt{Demo}  consists of a single package \texttt{DoubleLinkedListLanguage}.
-An EA project however, can consist of numerous models that in turn, group numerous packages.
+In your EA ``workspace'' (actually referred to as an \emph{EA project}\footnote{Words are set in italics when they represent concepts that are introduced or
+defined  in the corresponding paragraph for the first time.}), take a careful  look at the project browser:  The root node \texttt{Demo}\footnote{Words set  in
+a \texttt{mono-space font} refer to things that you should find in a tool,  dialogue, figure or code.} is called a \emph{model} in EA lingo, and is used as a
+container to group a set of related \emph{packages}. In our case, \texttt{Demo}  consists of a single package \texttt{DoubleLinkedListLanguage}. An EA project
+however, can consist of numerous models that in turn, group numerous packages.
 
-Now switch back to your \emph{Eclipse workspace} and note the two nodes named \texttt{Spe\-ci\-fi\-ca\-tions} and \texttt{Demo} (Fig. ~\ref{fig_eclipsePS}).  
+Now switch back to your \emph{Eclipse workspace} and note the two nodes named \texttt{Spe\-ci\-fi\-ca\-tions} and \texttt{Demo} (Fig. ~\ref{fig_eclipsePS}).
 
 \begin{figure}[htbp]
     \centering
@@ -50,10 +53,13 @@ Now switch back to your \emph{Eclipse workspace} and note the two nodes named \t
     \label{fig_eclipsePS}
  \end{figure}
 
-These nodes, used to group related \emph{Eclipse projects} in an Eclipse workspace, are called \emph{working sets}. The working set \texttt{Spe\-ci\-fi\-ca\-tions} contains all \emph{metamodel projects} in a  workspace. Your metamodel project contains a single EAP (EA project) file and is used to communicate with EA and initiate code generation by simply pressing F5 or choosing ``refresh'' from the context menu.
+These nodes, used to group related \emph{Eclipse projects} in an Eclipse workspace, are called \emph{working sets}. The working set
+\texttt{Spe\-ci\-fi\-ca\-tions} contains all \emph{metamodel projects} in a  workspace. Your metamodel project contains a single EAP (EA project) file and is
+used to communicate with EA and initiate code generation by simply pressing F5 or choosing ``refresh'' from the context menu.
 In our case, \texttt{Specifications} should contain a single metamodel project \texttt{Demo} containing our EA project file  \texttt{Demo.eap}.
  
-Figure~\ref{fig_fromEAtoEclipse} depicts how the Eclipse working set \texttt{Demo} and its contents were generated from the EA model \texttt{Demo}. Every model in EA is mapped to a working set in Eclipse with the same name. From every package in the EA model, an Eclipse project is generated, also with the same name. 
+Figure~\ref{fig_fromEAtoEclipse} depicts how the Eclipse working set \texttt{Demo} and its contents were generated from the EA model \texttt{Demo}. Every model
+in EA is mapped to a working set in Eclipse with the same name. From every package in the EA model, an Eclipse project is generated, also with the same name.
 
 \begin{figure}[htbp]
     \centering
@@ -62,13 +68,15 @@ Figure~\ref{fig_fromEAtoEclipse} depicts how the Eclipse working set \texttt{Dem
     \label{fig_fromEAtoEclipse}
 \end{figure}
 
-These projects, however, are of a different \emph{nature} than, for example metamodel, projects or normal Java projects. These are called \emph{repository projects}.  
-A nature is Eclipse lingo for ``project type'' and is visually indicated by a corresponding nature icon on the project folder.
-Our metamodel projects sport a neat little class diagram symbol. 
-Repository projects are generated automatically with a certain project structure according to our conventions.  
+These projects, however, are of a different \emph{nature} than, for example metamodel, projects or normal Java projects. These are called \emph{repository
+projects}. A nature is Eclipse lingo for ``project type'' and is visually indicated by a corresponding nature icon on the project folder.
+Our metamodel projects sport a neat little class diagram symbol. Repository projects are generated automatically with a certain project structure according to
+our conventions.
 
-The  \texttt{model} subfolder is probably most important, as it contains an  \emph{Ecore model} (Fig ~\ref{fig_modelSubfolder}).  
-Ecore is a metamodelling language that provides building  blocks like \emph{classes} and \emph{references} for defining the  static structure (concepts and relations between concepts) of a system. This folder also contains a \emph{Genmodel}, the second metamodel that is required by the Eclipse Modeling Framework (EMF) to generate the correct Java files.
+The  \texttt{model} subfolder is probably most important, as it contains an  \emph{Ecore model} (Fig ~\ref{fig_modelSubfolder}). Ecore is a metamodelling
+language that provides building  blocks like \emph{classes} and \emph{references} for defining the  static structure (concepts and relations between concepts)
+of a system. This folder also contains a \emph{Genmodel}, the second metamodel that is required by the Eclipse Modeling Framework (EMF) to generate the correct
+Java files.
 
 \begin{figure}[htbp]
 	\centering
@@ -77,32 +85,36 @@ Ecore is a metamodelling language that provides building  blocks like \emph{clas
 	\label{fig_modelSubfolder}
 \end{figure}
 
-The  export function of our EA plugin generates a valid Ecore model from the  corresponding EA model, and persists it as an XML file in the \texttt{model}  subfolder.  
-In our concrete example, this is the \texttt{DoubleLinkedListLanguage.ecore} file.  
-Go ahead and double-click it to open the file in a simple tree-view editor in Eclipse.  
-If you are really interested in the nitty-gritty details or have a masochistic hang, right-click the file and select ``Open With/Text Editor''.
+The  export function of our EA plugin generates a valid Ecore model from the  corresponding EA model, and persists it as an XML file in the \texttt{model}
+subfolder. In our concrete example, this is the \texttt{DoubleLinkedListLanguage.ecore} file. Go ahead and double-click it to open the file in a simple
+tree-view editor in Eclipse. If you are really interested in the nitty-gritty details or have a masochistic hang, right-click the file and select ``Open
+With/Text Editor''.
 
-Looking back to figure~\ref{fig_fromEAtoEclipse}, realize that it also depicts how the class \texttt{Node} in the EA model is mapped to the Java interface \texttt{Node}.  
-Double-click \texttt{Node.java} and take a look at the methods declared in the interface. These correspond directly to the methods declared in the modelled \texttt{Node} class.  
+Looking back to figure~\ref{fig_fromEAtoEclipse}, realize that it also depicts how the class \texttt{Node} in the EA model is mapped to the Java interface
+\texttt{Node}. Double-click \texttt{Node.java} and take a look at the methods declared in the interface. These correspond directly to the methods declared in
+the modelled \texttt{Node} class.
 
-As indicated by the source folders \texttt{src}, \texttt{injection}, and \texttt{gen}, we advocate a clean separation of hand-written (should be placed in \texttt{src} and \texttt{injection}) and generated code (automatically in \texttt{gen}).  
-As we shall see later in the handbook, hand-written code can be integrated in generated classes via \emph{Injections}. 
+As indicated by the source folders \texttt{src}, \texttt{injection}, and \texttt{gen}, we advocate a clean separation of hand-written (should be placed in
+\texttt{src} and \texttt{injection}) and generated code (automatically in \texttt{gen}). As we shall see later in the handbook, hand-written code can be
+integrated in generated classes via \emph{Injections}.
 This is sometimes more elegant for small helper functions or necessary for String manipulation for instance.
 
-Have you noticed the methods of the \texttt{Node} class in our EA model? 
-Now hold on tight -- each method can be \emph{modelled} completely in EA and the corresponding implementation in Java is generated automatically by the EMF and placed in \texttt{NodeImpl}.  
-Just in case you didn't get it: The behavioural or dynamic aspects of a system can be completely modelled in an abstract, platform (programming language) independent fashion using a blend of activity  diagrams and a ``graph pattern'' language called \textit{Story Driven Modelling} (SDM).  
+Have you noticed the methods of the \texttt{Node} class in our EA model?  Now hold on tight -- each method can be \emph{modelled} completely in EA and the
+corresponding implementation in Java is generated automatically by the EMF and placed in \texttt{NodeImpl}.
+Just in case you didn't get it: The behavioural or dynamic aspects of a system can be completely modelled in an abstract, platform (programming language)
+independent fashion using a blend of activity  diagrams and a ``graph pattern'' language called \textit{Story Driven Modelling} (SDM).
 
-In our EA project, these ``Stories'', ``Story Models'' or simply ``SDMs'' are  placed in SDM Containers named according to the method they implement.  
+In our EA project, these ``Stories'', ``Story Models'' or simply ``SDMs'' are  placed in SDM Containers named according to the method they implement.
 E.g.  \texttt{$\guillemotleft$SDM Container$\guillemotright$ insertNodeAfter SDM} for the method  \texttt{insertNodeAfter(Node)} as depicted in
-Fig.~\ref{fig_fromEAtoEclipse}.  
-We'll dedicate handbook Part III to understanding why SDMs are so  {\huge crazily} cool!
+Fig.~\ref{fig_fromEAtoEclipse}.  We'll dedicate handbook Part III to understanding why SDMs are so  {\huge crazily} cool!
  
-To recap all we've discussed, let's consider the complete workflow as depicted in Figure~\ref{fig_Overview}. 
-We started with a concise model in EA, simple and independent of any platform specific details~(1).  
-Our EA model consists not only of static aspects modelled as a class diagram~(2), but also of dynamic
-aspects modelled using SDM~(3).  After exporting the model and code generation~(4), we basically switch from \emph{modelling} to \emph{programming} in a specific general purpose programming language (Java).  
-On this lower \emph{level of abstraction}, we can flesh out the generated repository~(5) if necessary, and mix as appropriate with hand-written code and libraries.  Our abstract specification of behaviour (methods) in SDM is translated to a series of method calls that form the body of the corresponding Java method~(6).
+To recap all we've discussed, let's consider the complete workflow as depicted in Figure~\ref{fig_Overview}.
+We started with a concise model in EA, simple and independent of any platform specific details~(1).  Our EA model consists not only of static aspects modelled
+as a class diagram~(2), but also of dynamic aspects modelled using SDM~(3).  After exporting the model and code generation~(4), we basically switch from
+\emph{modelling} to \emph{programming} in a specific general purpose programming language (Java).
+On this lower \emph{level of abstraction}, we can flesh out the generated repository~(5) if necessary, and mix as appropriate with hand-written code and
+libraries.  Our abstract specification of behaviour (methods) in SDM is translated to a series of method calls that form the body of the corresponding Java
+method~(6).
 
 \fancyfoot[R]{  $\triangleright$ \hyperlink{codeGen common}{Next task} }
 

@@ -8,7 +8,8 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] \hypertarget{static tex}{Begin a} new metamodel project from eclipse by navigating to the \texttt{New Metamodel} button on the toolbar. In the dialog that appears, enter \texttt{LeitnersLearningBox} as the project name, and select \texttt{Textual (MOSL)}  (fig.~\ref{fig:new_project}).
+\item[$\blacktriangleright$] \hypertarget{static tex}{Begin a} new metamodel project from eclipse by navigating to the \texttt{New Metamodel} button on the
+toolbar. In the dialog that appears, enter \texttt{LeitnersLearningBox} as the project name, and select \texttt{Textual (MOSL)}  (fig.~\ref{fig:new_project}).
 
 \begin{figure}[htbp]
 	\centering
@@ -17,7 +18,9 @@
 	\label{fig:new_project}
 \end{figure}
 
-\item[$\blacktriangleright$] Expand the project as deep as it goes. Your Package explorer may look different than ours (Fig.~\ref{fig:expanded_folders}) depending on whether or not you completed the Demo in Part I. In an effort to keep things clear as possible, we have removed them from our workspaces, but recommend keeping them for future reference.
+\item[$\blacktriangleright$] Expand the project as deep as it goes. Your Package explorer may look different than ours (Fig.~\ref{fig:expanded_folders})
+depending on whether or not you completed the Demo in Part I. In an effort to keep things clear as possible, we have removed them from our workspaces, but
+recommend keeping them for future reference.
 
 \begin{figure}[htbp]
 	\centering
@@ -26,14 +29,18 @@
 	\label{fig:expanded_folders}
 \end{figure} 
 
-\item[$\blacktriangleright$] You can see two folders, \texttt{.temp}, and \texttt{MOSL}, and one subfolder, \texttt{MyWorkingSet}, inside the \texttt{Specifications} node\footnote{for detailed review on the explorer structre, look over Part I}. We're most insterested in \texttt{MyWorkingSet}, which stores the collection of files and  \emph{unifies} everything we need for Leitner's Box. 
+\item[$\blacktriangleright$] You can see two folders, \texttt{.temp}, and \texttt{MOSL}, and one subfolder, \texttt{MyWorkingSet}, inside the
+\texttt{Specifications} node\footnote{for detailed review on the explorer structre, look over Part I}. We're most insterested in \texttt{MyWorkingSet}, which
+stores the collection of files and  \emph{unifies} everything we need for Leitner's Box.
 
-\item[$\blacktriangleright$] Right click on your current workspace folder, \texttt{MyWorkingSet}, and create a new subfolder. Name it \texttt{LearningBoxLanguage}. This is now the container for all your modelling files!
+\item[$\blacktriangleright$] Right click on your current workspace folder, \texttt{MyWorkingSet}, and create a new subfolder. Name it
+\texttt{LearningBoxLanguage}. This is now the container for all your modelling files!
 
 
 \item[$\blacktriangleright$] Right click on \texttt{LearningBoxLanguage} and create your first eclass model by going to ``New/EClass.'' Name it \texttt{Box}.
 
-\item[$\blacktriangleright$] The class editor should have automatically appeared. Currently, it's empty; Lets add the first two EAttributes of our program, \texttt{name} and \texttt{stringRep}. Both are \texttt{EString} types (fig.~\ref{fig:boxDeclaration}).
+\item[$\blacktriangleright$] The class editor should have automatically appeared. Currently, it's empty; Lets add the first two EAttributes of our program,
+\texttt{name} and \texttt{stringRep}. Both are \texttt{EString} types (fig.~\ref{fig:boxDeclaration}).
 
 \begin{figure}[htbp]
 	\centering
@@ -42,9 +49,9 @@
 	\label{fig:boxDeclaration}
 \end{figure} 
 
-\item[$\blacktriangleright$] Create two more classes in your model the same way, \texttt{Partition} and \texttt{Card}. 
+\item[$\blacktriangleright$] Create two more classes in your model the same way, \texttt{Partition} and \texttt{Card}.
 
-\item[$\blacktriangleright$] In \texttt{Partition}, add two \texttt{EInt} datatypes, \texttt{index} and \texttt{partitionSize}. 
+\item[$\blacktriangleright$] In \texttt{Partition}, add two \texttt{EInt} datatypes, \texttt{index} and \texttt{partitionSize}.
 
 \item[$\blacktriangleright$] In \texttt{Card}, create three \texttt{EString}s, \texttt{back}, \texttt{face} , and \texttt{partitionHistory}.
 
@@ -57,9 +64,11 @@
 	\label{fig:workspaceClassAttributes}
 \end{figure} 
 
-\item[$\blacktriangleright$] Now, lets add some references. MOSL supports two reference types - a \emph{contained reference} and a \emph{simple reference}. Both automatically update the other element involved in the reference automatically, which means you only have to declare a direction once.
+\item[$\blacktriangleright$] Now, lets add some references. MOSL supports two reference types - a \emph{contained reference} and a \emph{simple reference}. Both
+automatically update the other element involved in the reference automatically, which means you only have to declare a direction once.
 
-\item[$\blacktriangleright$] Activate the \texttt{Card} editor and add a simple reference named \texttt{cardContainer} with a multiplicity of zero to one, of type \texttt{Partition} (fig.~\ref{fig:cardReference}). This means that a single card can belong to a maximum of 1 partition.
+\item[$\blacktriangleright$] Activate the \texttt{Card} editor and add a simple reference named \texttt{cardContainer} with a multiplicity of zero to one, of
+type \texttt{Partition} (fig.~\ref{fig:cardReference}). This means that a single card can belong to a maximum of 1 partition.
 
 \begin{figure}[htbp]
 	\centering
@@ -68,11 +77,17 @@
 	\label{fig:cardReference}
 \end{figure} 
 
-\item[$\blacktriangleright$] Now add a \emph{container reference} to \texttt{Partition}. Name it \texttt{card}, and allow it to hold an unlimited amount of cards.
+\item[$\blacktriangleright$] Now add a \emph{container reference} to \texttt{Partition}. Name it \texttt{card}, and allow it to hold an unlimited amount of
+cards.
 
-\item[$\blacktriangleright$] Congratulations, you have just built your first \emph{Bidirectional EReference}! In essence, you have now set up a relation that allows a potentially infinite amount of item \texttt{card} to be stored in a cardContainer (partition), and restricts that \texttt{containedCard} to only \emph{one} partition.
+\item[$\blacktriangleright$] Congratulations, you have just built your first \emph{Bidirectional EReference}! In essence, you have now set up a relation that
+allows a potentially infinite amount of item \texttt{card} to be stored in a cardContainer (partition), and restricts that \texttt{containedCard} to only
+\emph{one} partition.
 
-\item[$\blacktriangleright$] Now, lets create another bidirectional reference between \texttt{Partition} and \texttt{Box}. If you think about it, it's really not all that different than the relation between \texttt{Partition} and \texttt{Card}. In fact, it's not different at all! A \texttt{Box} should be able to hold an unlimited amount of partitions, but a \texttt{Partition} should only be allowed to belong to zero or one boxes. Name the two new relations \texttt{containedPartition}, and \texttt{box}. 
+\item[$\blacktriangleright$] Now, lets create another bidirectional reference between \texttt{Partition} and \texttt{Box}. If you think about it, it's really
+not all that different than the relation between \texttt{Partition} and \texttt{Card}. In fact, it's not different at all! A \texttt{Box} should be able to hold
+an unlimited amount of partitions, but a \texttt{Partition} should only be allowed to belong to zero or one boxes. Name the two new relations
+\texttt{containedPartition}, and \texttt{box}.
 
 \item[$\blacktriangleright$] Your classes should now closely resemble figure~\ref{fig:allReferences}.
 
@@ -85,7 +100,9 @@
 \end{figure} 
 
 
-\item[$\blacktriangleright$] The next step is to set up two relations between \texttt{Partition} and itself, so it can shift between the previous and next partition in the box. Create two new simple references, named \texttt{previous}, and \texttt{next}. Allow them to have a maximum of 1 link each. If you've done everything correctly, your \texttt{Partition} class should now resemble figure~\ref{fig:partitionReferences}.
+\item[$\blacktriangleright$] The next step is to set up two relations between \texttt{Partition} and itself, so it can shift between the previous and next
+partition in the box. Create two new simple references, named \texttt{previous}, and \texttt{next}. Allow them to have a maximum of 1 link each. If you've done
+everything correctly, your \texttt{Partition} class should now resemble figure~\ref{fig:partitionReferences}.
 
 \begin{figure}[htbp]
 	\centering
@@ -94,19 +111,29 @@
 	\label{fig:partitionReferences}
 \end{figure} 
 
-\item[$\blacktriangleright$] All of our references are now set up! To see how all of this is depicted visually, check out figure~\ref{fig:ereferences_all} in section~\ref{sec:staticAbstract}.
+\item[$\blacktriangleright$] All of our references are now set up! To see how all of this is depicted visually, check out figure~\ref{fig:ereferences_all} in
+section~\ref{sec:staticAbstract}.
 
 \pagebreak
 
-\item[$\blacktriangleright$] We're nearing the end of our model creation! One of the last things we need to do is to make the program \emph{do} something. After all, what good is a program that only stores attributes and references?
+\item[$\blacktriangleright$] We're nearing the end of our model creation! One of the last things we need to do is to make the program \emph{do} something. After
+all, what good is a program that only stores attributes and references?
 
-\item[$\blacktriangleright$] In a language, the rules that describe a system's behavior - how it evolves over time or reacts to external stimulus - are collectively referred to as \emph{Dynamic Semantics}\marginpar{\emph{Dynamic Semantics}}. Although these could be defined as a separate set of \emph{model transformations}, we take a holistic approach and advocate integrating these transformations directly in the metamodel as operations. This naturally falls within the OO paradigm in many ways.
+\item[$\blacktriangleright$] In a language, the rules that describe a system's behavior - how it evolves over time or reacts to external stimulus - are
+collectively referred to as \emph{Dynamic Semantics}\marginpar{\emph{Dynamic Semantics}}. Although these could be defined as a separate set of \emph{model
+transformations}, we take a holistic approach and advocate integrating these transformations directly in the metamodel as operations. This naturally falls
+within the OO paradigm in many ways.
 
-\item[$\blacktriangleright$] Lets start to set up our these operations by declaring their \emph{signatures}, starting with the \texttt{Partition} class. We want a partition to be able to do three things: compare the answer on a \texttt{card} with a guess and return a true/false value, remove a specific card, or empty itself of all cards to reset. 
+\item[$\blacktriangleright$] Lets start to set up our these operations by declaring their \emph{signatures}, starting with the \texttt{Partition} class. We want
+a partition to be able to do three things: compare the answer on a \texttt{card} with a guess and return a true/false value, remove a specific card, or empty
+itself of all cards to reset.
 
-\item[$\blacktriangleright$] Start with the \texttt{empty} method - it won't need any parameters, and it doesn't need to return anything. Declare this via a \texttt{empty():void} command\footnote{If you're having difficulty remembering the syntax for MOSL, feel free to review \mbox{\texttt{Part I}}} .
+\item[$\blacktriangleright$] Start with the \texttt{empty} method - it won't need any parameters, and it doesn't need to return anything. Declare this via a
+\texttt{empty():void} command\footnote{If you're having difficulty remembering the syntax for MOSL, feel free to review \mbox{\texttt{Part I}}} .
 
-\item[$\blacktriangleright$] Create two more functions for \texttt{Partition} the same way. We'll need a \texttt{removeCard} method that accepts and returns a \texttt{Card}, as well as a EBoolean \texttt{check} method that accepts a \texttt{Card} and an \texttt{EString} guess. Your partition class should now resemble figure~\ref{fig:partitionMethods}.
+\item[$\blacktriangleright$] Create two more functions for \texttt{Partition} the same way. We'll need a \texttt{removeCard} method that accepts and returns a
+\texttt{Card}, as well as a EBoolean \texttt{check} method that accepts a \texttt{Card} and an \texttt{EString} guess. Your partition class should now resemble
+figure~\ref{fig:partitionMethods}.
 
 \begin{figure}[htbp]
 	\centering
@@ -115,7 +142,8 @@
 	\label{fig:partitionMethods}
 \end{figure}
 
-\item[$\blacktriangleright$] What needs to be done in the \texttt{Card} class? Well, in order to check the card, we'll need to be able to look at the flip side. We'll also need to print whatever is on the current side. Create two void functions, \texttt{invert} and \texttt{printCard}.
+\item[$\blacktriangleright$] What needs to be done in the \texttt{Card} class? Well, in order to check the card, we'll need to be able to look at the flip side.
+We'll also need to print whatever is on the current side. Create two void functions, \texttt{invert} and \texttt{printCard}.
 
 \vfill
 \pagebreak
@@ -141,12 +169,15 @@
 \end{figure}
 
 
-Congratulations! You've \emph{almost} completeley modeled Leitner's Learning Box using a concrete, textual syntax! To see how this looks in visually in a class diagram, check out figure~\ref{fig:metamodel_complete} from section~\ref{sec:staticAbstract}.
+Congratulations! You've \emph{almost} completeley modeled Leitner's Learning Box using a concrete, textual syntax! To see how this looks in visually in a class
+diagram, check out figure~\ref{fig:metamodel_complete} from section~\ref{sec:staticAbstract}.
 
-\item[$\blacktriangleright$]The very last thing we need to do is conduct a build and generate the required \texttt{.genmodel} and \texttt{.ecore} files. Beside the \texttt{New Metamodel} button on the toolbar, you'll notice that there is a circular arrow button that offers to ``Build (without cleaning).''   %explain this here?
-Press it, and wait for the package explorer to refresh.
+\item[$\blacktriangleright$]The very last thing we need to do is conduct a build and generate the required \texttt{.genmodel} and \texttt{.ecore} files. Beside
+the \texttt{New Metamodel} button on the toolbar, you'll notice that there is a circular arrow button that offers to ``Build (without cleaning).''   %explain
+this here? Press it, and wait for the package explorer to refresh.
 
-\item[$\blacktriangleright$] If you've done everything correctly, a new \texttt{MyWorkingSet} node should have appeared, and your entire expanded explorer should resemble figure~\ref{fig:builtModel}.
+\item[$\blacktriangleright$] If you've done everything correctly, a new \texttt{MyWorkingSet} node should have appeared, and your entire expanded explorer
+should resemble figure~\ref{fig:builtModel}.
 
 \begin{figure}[htbp]
 	\centering
@@ -155,12 +186,20 @@ Press it, and wait for the package explorer to refresh.
 	\label{fig:builtModel}
 \end{figure}
 
-\item[$\blacktriangleright$] Examine the generated files in \texttt{gen} folder, especially the default implementation for all methods that just throw an \texttt{OperationNotSupported} exception. We shall see in later parts of this handbook that the EMF code generator actually supports injecting hand-written implementation of methods into generated methods and classes. With eMoflon however, we can model a large part of the dynamic semantics with ease, and only need to implement small helper methods (such as those for string manipulation) by hand.
+\item[$\blacktriangleright$] Examine the generated files in \texttt{gen} folder, especially the default implementation for all methods that just throw an
+\texttt{OperationNotSupported} exception. We shall see in later parts of this handbook that the EMF code generator actually supports injecting hand-written
+implementation of methods into generated methods and classes. With eMoflon however, we can model a large part of the dynamic semantics with ease, and only need
+to implement small helper methods (such as those for string manipulation) by hand.
 
-\item[$\blacktriangleright$] Finally, you can see that your two metamodels have been created and placed in the \texttt{model} folder. Together, they form everything the EMF needs to generate your program. If you like, instead of viewing your \texttt{.ecore} model in a tree diagram, you can request eclipse to build a visual diagram with its built-in visual modeler! Right click on \texttt{LearningBoxLanguage.ecore} and select ''Initilalize Ecore Diagram File.''
+\item[$\blacktriangleright$] Finally, you can see that your two metamodels have been created and placed in the \texttt{model} folder. Together, they form
+everything the EMF needs to generate your program. If you like, instead of viewing your \texttt{.ecore} model in a tree diagram, you can request eclipse to
+build a visual diagram with its built-in visual modeler! Right click on \texttt{LearningBoxLanguage.ecore} and select ''Initilalize Ecore Diagram File.''
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{static review}{Next step} }
 
-\item[$\blacktriangleright$] You're all done! We encourage you to review the identical program construction using eMoflon's visual tools in section~\ref{sec:staticAbstract}, and observe how this same project is crafted using diagrams. Compare the differences between modeling the three classes in a separate, abstract program and exporting to eclipse in order to build them, versus modeling and building all within eclipse. Which do you find easier to work with?
+\item[$\blacktriangleright$] You're all done! We encourage you to review the identical program construction using eMoflon's visual tools in
+section~\ref{sec:staticAbstract}, and observe how this same project is crafted using diagrams. Compare the differences between modeling the three classes in a
+separate, abstract program and exporting to eclipse in order to build them, versus modeling and building all within eclipse. Which do you find easier to work
+with?
 
 \end{itemize}
