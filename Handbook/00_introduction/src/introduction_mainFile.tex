@@ -48,15 +48,14 @@
 \graphicspath{{../common/}{../introduction_images/}}
  
  
-% EDIT ME BASED ON CURRENT PART
+% --- Title Page Information ----------------------------------------------------------------------------------------------------------------------------------
 \def\partTitle{Part 0: Introduction}
 \def\versionNumber{0.4} 
 \input{../common/titlepage}
 
-
-% Default plain header; turn off all lines and colors
+% --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
+% Default plain header; turn off all lines and colors; turn on page numbers for all
 \newcommand{\noHeader}{
-	% NOTE: since this is the first header, we effectively 'turn on' the page numbers. They don't need to be re-declared in each heading.
  	\fancyhead[OR]{\thepage}
 	\fancyhead[OL]{}
  	\fancyhead[EL]{\thepage}
@@ -64,7 +63,7 @@
 	\renewcommand{\headrulewidth}{0pt}
 }
 
-% General Header for instructions that apply to both Visual & Textual syntaxes
+% Common instruction Header; Black
 \newcommand{\genHeader}{
 	\fancyhead[OL]{}
 	\fancyhead[ER]{}
@@ -72,14 +71,14 @@
  	\renewcommand{\headrule}{\hbox to\headwidth{%
   		\color{Black}\leaders\hrule height \headrulewidth\hfill}}
 }
+% -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-% ----------------------------------------------------------------------------------------------------------------------------------
 \begin{document}
 
 \frontmatter
 \noHeader
 
-% Title Page without blank
+% Title Page without following blank page
 {\let\newpage\relax\maketitle}
 
 % Copyright notice
@@ -90,7 +89,6 @@
 \newcounter{romanpages}
 \setcounter{romanpages}{\value{page}}
 
- % ----------------------------------------------------------------------------------------------------------------------------------
 \mainmatter
 
 % Main content for this part

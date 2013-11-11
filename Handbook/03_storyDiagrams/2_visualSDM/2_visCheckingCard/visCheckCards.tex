@@ -1,4 +1,3 @@
-\newpage
 \subsection{Checking a card}
 
 The next method we shall model with SDMs is probably the most important: a user decides to try a card in the learning box and looks at the question on the card
@@ -11,7 +10,7 @@ Fig.~\ref{fig:sdm_check_start}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{sdm16RAW.pdf}
+  \includegraphics[width=0.7\textwidth]{ea_activityCheck.pdf}
   \caption{Activity diagram for \texttt{Partition::check}.}
   \label{fig:sdm_check_start}
 \end{center}
@@ -23,7 +22,7 @@ learning box. Remember that this binding is implicitly specified by choosing the
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{sdm17RAW}
+  \includegraphics[width=0.7\textwidth]{ea_addCheckCard}
   \caption{Add the card to be checked.}
   \label{fig:sdm_check_addCard}
 \end{center}
@@ -40,7 +39,7 @@ first attribute constraint (Fig.~\ref{fig:sdm_check_att_constraint})!
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{sdm18RAW}
+  \includegraphics[width=0.8\textwidth]{ea_addAttributeConstraint}
   \caption{Add an attribute constraint with a parameter expression.}
   \label{fig:sdm_check_att_constraint}
 \end{center}
@@ -56,7 +55,7 @@ Choose \texttt{Failure}, repeat the process for the edge leading to \texttt{prom
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.75\textwidth]{sdm19}
+  \includegraphics[width=0.75\textwidth]{ea_addTransitionGuard}
   \caption{Add a transition with a guard.}
   \label{fig:sdm_check_guard}
 \end{center}
@@ -71,7 +70,7 @@ diagrams and recommend this for most cases (unless the pattern is really concise
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.75\textwidth]{sdm21}
+  \includegraphics[width=0.75\textwidth]{ea_extractStoryPattern}
   \caption{Extract a story pattern for more space and a better overview.}
   \label{fig:sdm_check_extract_storypattern}
 \end{center}
@@ -83,7 +82,7 @@ browser (Fig.~\ref{fig:sdm_new_sub_diagram}).
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.75\textwidth]{sdm_new_storypattern_diagram.png}
+  \includegraphics[width=0.75\textwidth]{sdm_new_storypattern_diagram}
   \caption{A new sub diagram is created automatically.}
   \label{fig:sdm_new_sub_diagram}
 \end{center}
@@ -112,7 +111,7 @@ After creating the object, you will be asked to set the object variable properti
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{sdm23.png}
+  \includegraphics[width=0.5\textwidth]{ea_addBoundCard}
   \caption{Object variable properties of the new card.}
   \label{fig:sdm_new_card_properties}
 \end{center}
@@ -136,7 +135,7 @@ constraints).
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{sdm25.pdf}
+  \includegraphics[width=0.8\textwidth]{ea_objVarsCheck.pdf}
   \caption{All object variables for story pattern \texttt{promoteCard}.}
   \label{fig:sdm_check_complete_sp}
 \end{center}
@@ -148,7 +147,7 @@ variable as indicated in Fig.~\ref{fig:sdm_check_link_variable}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.85\textwidth]{sdm26}
+  \includegraphics[width=0.85\textwidth]{ea_addLinkVar}
   \caption{Create a link variable.}
   \label{fig:sdm_check_link_variable}
 \end{center}
@@ -159,7 +158,7 @@ on what the pattern expresses.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{sdm30}
+  \includegraphics[width=0.8\textwidth]{ea_completeActivityPromote.pdf}
   \caption{Complete story pattern for activity node \texttt{promoteCard}.}
   \label{fig:sdm_check_complete_activity_node}
 \end{center}
@@ -172,7 +171,7 @@ instead of \texttt{next}.  Just like before, \texttt{previousPartition} is unbou
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{sdm38}
+  \includegraphics[width=0.8\textwidth]{ea_completeActivityPenalize.pdf}
   \caption{Story pattern for activity node \texttt{penalizeCard}.}
   \label{fig:sdm_check_complete_penalize}
 \end{center}
@@ -184,7 +183,7 @@ To complete our SDM, we need to signalise, as a return value, if the guess was c
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.6\textwidth]{sdm39}
+  \includegraphics[width=0.6\textwidth]{ea_addStopReturn}
   \caption{Add a return value with a literal expression.}
   \label{fig:sdm_check_literal_exp}
 \end{center}
@@ -196,7 +195,7 @@ This is obviously sort of dirty\footnote{It defeats, for example, any attempt to
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{sdm40}
+  \includegraphics[width=0.8\textwidth]{ea_completeActivityCheck.pdf}
   \caption{Complete SDM for \texttt{Partition::check}.}
   \label{fig:sdm_check_finish}
 \end{center}

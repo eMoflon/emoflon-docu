@@ -28,7 +28,7 @@
 	pagecolor=black,%
 	urlcolor=black
 }
-	
+
 \lstset{language=,
     keywordstyle=\color{blue},
     basicstyle=\scriptsize\ttfamily,
@@ -46,6 +46,7 @@
 
 \graphicspath{%
 {../../00_introduction/common/}%
+{../../02_leitnersLearningBox/}%
 {../1_transformationsExplained/teImages/}%
 {../2_visualSDM/1_visRemovingCard/vrcImages/}{../2_visualSDM/2_visCheckingCard/vccImages/}{../2_visualSDM/3_visEmptyingCards/vecImages/}%
 {../2_visualSDM/4_visTurningCard/vtsImages/}{../2_visualSDM/5_visGrowBox/vgbImages/}{../2_visualSDM/6_visStringRep/vsrImages/}%
@@ -55,22 +56,21 @@
 % Remove section numbers 0.1, 0.2 ..
 \renewcommand{\thesection}{\arabic{section}} 
 
-% --- Title Page Information --------------------------------------------------------
+% --- Title Page Information ----------------------------------------------------------------------------------------------------------------------------------
 \def\partTitle{Part III: Story Driven Modeling}
-\def\versionNumber{0.1}
+\def\versionNumber{0.2}
 \input{../../00_introduction/common/titlepage}
 
-% --- HEADER FUNCTIONS --------------------------------------------------------------
-% Default plain header; turn off all lines and colors
+% --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
+% Default plain header; turn off all lines and colors; turn on page numbers for all
 \newcommand{\noHeader}{
 	\fancyfoot{}
-	% NOTE: since this is the first header, we effectively 'turn on' the page numbers. They don't need to be re-declared in each heading.
  	\fancyhead[R]{\thepage}
 	\fancyhead[L]{}
 	\renewcommand{\headrulewidth}{0pt}
 }
 
-% Common Header, Black
+% Common instruction Header; Black
 \newcommand{\genHeader}{
 	\fancyfoot{}
 	\fancyhead[L]{}
@@ -79,7 +79,7 @@
   		\color{Black}\leaders\hrule height \headrulewidth\hfill}}
 }
 
-% Visual instructions only, Red header
+% Visual instructions; Red header
 \newcommand{\visHeader}{
 	\fancyfoot{}
 	\fancyhead[L]{\color{RedOrange}\tiny \bf VISUAL}
@@ -88,7 +88,7 @@
   		\color{RedOrange}\leaders\hrule height \headrulewidth\hfill}}
 }
 
-% Text instructions only, Blue header
+% Text instructions; Blue header
 \newcommand{\texHeader}{
 	\fancyfoot{}
 	\fancyhead[L]{\color{ProcessBlue}\tiny \bf TEXTUAL}
@@ -96,15 +96,14 @@
 	\renewcommand{\headrule}{\hbox to\headwidth{%
   		\color{ProcessBlue}\leaders\hrule height \headrulewidth\hfill}}
 }
-
-% ---------------------------------------------------------------------------------
+% -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 \begin{document}
 
 \frontmatter 
 \noHeader
 
-% Title Page without blank
+% Title Page without following blank page
 {\let\newpage\relax\maketitle}
 
 % Copyright notice
