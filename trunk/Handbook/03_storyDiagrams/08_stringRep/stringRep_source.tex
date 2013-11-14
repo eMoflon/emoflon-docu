@@ -1,0 +1,26 @@
+\newpage
+\section{String representations}
+\genHeader
+\hypertarget{sec:stringRep}{}
+
+With the next SDM, we shall create a string representation for a complete learning box. To accomplish this, we have to iterate through every card, in every
+partition. This means we'll need to create an inner loop nested within an outer loop (Fig.).
+
+% \begin{figure}[htbp]
+% 	\centering
+%   \includegraphics[width=0.7\textwidth]{ea_activateAddInWindow}
+% 	\caption{Activating the validation output window}
+% 	\label{fig:goal_stringRep}
+% \end{figure}
+% \FloatBarrier
+
+In addition, we'll need to make another method call! To start this process, the system will call \texttt{toString()} on the box. Following the control flow, 
+the cards will eventually be passed to the second method, \texttt{addToStringRep(card)} which will extract the information, and add to to an ever-growing
+string attribute.
+
+\begin{center} {$\triangleright$ \hyperlink{stringRep vis}{Visual}}%
+\\ \vspace{0.5cm} {$\triangleright$ \hyperlink{stringRep tex}{Textual} }\end{center} 
+
+\input{../08_stringRep/visStringRep}
+
+\input{../08_stringRep/texStringRep}

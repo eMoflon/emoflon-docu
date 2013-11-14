@@ -1,0 +1,29 @@
+\clearpage
+\subsection{Visual; Conditional Branching with Statement Nodes}
+\visHeader
+\hypertarget{conBran vis}{}
+
+Perform the following steps to branch with a \texttt{StatementNode}:
+\begin{enumerate}
+\item[$\blacktriangleright$] Add a new statement node (cf.~Fig.~\ref{fig:cond_statement_node}) at the appropriate location in your SDM.
+\item[$\blacktriangleright$] Invoke a non-void method (an operation in the metamodel) via a \texttt{MethodCallExpression} (cf.~Fig.~\ref{fig:cond_method_call}).
+\item[$\blacktriangleright$] Add \texttt{Success} \emph{and} \texttt{Failure} edges to the \texttt{StatementNode} to branch appropriately.
+\end{enumerate}
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{01_switch_to_statement_node}
+  \caption{Switch from activity node to statement node}
+  \label{fig:cond_statement_node}
+\end{center}
+\end{figure}
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{02_specify_method_call_expression}
+  \caption{Specify the method call expression}
+  \label{fig:cond_method_call}
+\end{center}
+\end{figure}
+
+\clearpage
