@@ -3,8 +3,9 @@
 \genHeader
 \hypertarget{sec:stringRep}{}
 
-With the next SDM, we shall create a string representation for a complete learning box. To accomplish this, we have to iterate through every card, in every
-partition. This means we'll need to create an inner loop nested within an outer loop (Fig.).
+In the next SDM we shall create a string representation for all the contents in a single learning box. To accomplish this, we will have to iterate through 
+every card, in every partition. This means we'll need to create an inner loop nested within an outer loop (Fig.), otherwise known as a \emph{for each} loop.
+Further still, we'll need another \emph{for each} loop to add the contents of each card to the \texttt{stringRep}.
 
 % \begin{figure}[htbp]
 % 	\centering
@@ -14,13 +15,26 @@ partition. This means we'll need to create an inner loop nested within an outer 
 % \end{figure}
 % \FloatBarrier
 
-In addition, we'll need to make another method call! To start this process, the system will call \texttt{toString()} on the box. Following the control flow, 
-the cards will eventually be passed to the second method, \texttt{addToStringRep(card)} which will extract the information, and add to to an ever-growing
-string attribute.
+SDMs support arbitrary nesting of \emph{for each} story nodes via special guards. In \hyperlink{emptyPartition vis}{section 5.1} we used the \texttt{[end]} edge
+guard to terminate a loop. Now we'll use a new guard, the \texttt{[each time]}\note{[each time]} guard, to indicate control flow that is \emph{nested} in
+the \emph{for each} story node and executed for each match.
 
-\begin{center} {$\triangleright$ \hyperlink{stringRep vis}{Visual}}%
-\\ \vspace{0.5cm} {$\triangleright$ \hyperlink{stringRep tex}{Textual} }\end{center} 
+% Explain a bit better?
+The first \emph{for each} loop will match all partitions, where each partition is used \texttt{[each time]} to match all the cards.  When 
+all cards have been matched, the second loop \texttt{[end]}s, and returns to the outer loop.
 
+The second \emph{for each} will need to print the contents of every card to the string. If you review your metamodel, we declared the \texttt{addToStringRep()}
+method. To invoke this, we'll create another \texttt{MethodCallExpression}, similar to how we did in \hyperlink{sec:growBox}{section 5}.
+
+\vspace{0.5cm}
+\begin{itemize}
+\item[$\blacktriangleright$] Click on a link below to begin this SDM.
+\end{itemize}
+
+\begin{center} {$\triangleright$ \hyperlink{stringRep vis}{String Representations: The visual syntax}}%
+\\ \vspace{0.5cm}
+{$\triangleright$ \hyperlink{stringRep tex}{String Representations: The textual syntax}}\end{center} 
+ 
 \input{../08_stringRep/visStringRep}
 
 \input{../08_stringRep/texStringRep}
