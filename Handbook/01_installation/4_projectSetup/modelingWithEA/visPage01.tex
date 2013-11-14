@@ -44,7 +44,7 @@ a \texttt{mono-space font} refer to things that you should find in a tool,  dial
 container to group a set of related \emph{packages}. In our case, \texttt{Demo}  consists of a single package \texttt{DoubleLinkedListLanguage}. An EA project
 however, can consist of numerous models that in turn, group numerous packages.
 
-Now switch back to your \emph{Eclipse workspace} and note the two nodes named \texttt{Spe\-ci\-fi\-ca\-tions} and \texttt{Demo} (Fig. ~\ref{fig_eclipsePS}).
+Now switch back to your \emph{Eclipse workspace} and note the two nodes named \texttt{Spe\-ci\-fi\-ca\-tions} and \texttt{Demo} (Fig.~\ref{fig_eclipsePS}).
 
 \begin{figure}[htbp]
     \centering
@@ -90,7 +90,7 @@ subfolder. In our concrete example, this is the \texttt{DoubleLinkedListLanguage
 tree-view editor in Eclipse. If you are really interested in the nitty-gritty details or have a masochistic hang, right-click the file and select ``Open
 With/Text Editor''.
 
-Looking back to figure~\ref{fig_fromEAtoEclipse}, realize that it also depicts how the class \texttt{Node} in the EA model is mapped to the Java interface
+Looking back to Fig.~\ref{fig_fromEAtoEclipse}, realize that it also depicts how the class \texttt{Node} in the EA model is mapped to the Java interface
 \texttt{Node}. Double-click \texttt{Node.java} and take a look at the methods declared in the interface. These correspond directly to the methods declared in
 the modelled \texttt{Node} class.
 
@@ -104,11 +104,11 @@ corresponding implementation in Java is generated automatically by the EMF and p
 Just in case you didn't get it: The behavioural or dynamic aspects of a system can be completely modelled in an abstract, platform (programming language)
 independent fashion using a blend of activity  diagrams and a ``graph pattern'' language called \textit{Story Driven Modelling} (SDM).
 
-In our EA project, these ``Stories'', ``Story Models'' or simply ``SDMs'' are  placed in SDM Containers named according to the method they implement.
+In our EA project, these ``Stories'', ``Story Models'' or simply \emph{SDM}s are  placed in SDM Containers named according to the method they implement.
 E.g.  \texttt{$\guillemotleft$SDM Container$\guillemotright$ insertNodeAfter SDM} for the method  \texttt{insertNodeAfter(Node)} as depicted in
-Fig.~\ref{fig_fromEAtoEclipse}.  We'll dedicate handbook Part III to understanding why SDMs are so  {\huge crazily} cool!
+Fig.~\ref{fig_fromEAtoEclipse}.  We'll dedicate Part III of the handbook to understanding why SDMs are so  {\huge crazily} cool!
  
-To recap all we've discussed, let's consider the complete workflow as depicted in Figure~\ref{fig_Overview}.
+To recap all we've discussed, let's consider the complete workflow as depicted in Fig.~\ref{fig_Overview}.
 We started with a concise model in EA, simple and independent of any platform specific details~(1).  Our EA model consists not only of static aspects modelled
 as a class diagram~(2), but also of dynamic aspects modelled using SDM~(3).  After exporting the model and code generation~(4), we basically switch from
 \emph{modelling} to \emph{programming} in a specific general purpose programming language (Java).

@@ -46,7 +46,7 @@ container functions are used exclusively for control flow. Don't forget the \tex
 
 Given that the activities are never directly implemented, just where are these pattern defined? And why are they somewhere else?
 
-After many long discussions, it was decided that patterns must follow a strict, predictable path. Inspect figure~\ref{fig_modelSpecification} again, and observe
+After many long discussions, it was decided that patterns must follow a strict, predictable path. Inspect Fig.~\ref{fig_modelSpecification} again, and observe
 the locations where the patterns are stored. You'll notice that there is a folder for the ``Node'' eclass, and a subfolder for each method. There's no folder
 for ``List'' purely because it never calls a pattern. It is imperative in the future that every pattern created follows this
 `\texttt{\_pattern}/Class/Method/patternName.pattern' path - it is required by the MOSL builder for successful generation.
@@ -62,7 +62,7 @@ the \texttt{deleteNode} pattern (Fig ~\ref{fig_patternDeleteNode}).
 \end{figure}
 
 You can see that a creation reference is made from \texttt{next} to \texttt{previous}, but the matching creation reference for \texttt{previous} to
-\texttt{next} is not. It's simply not needed! MOSL takes care of these links automatically. you never leave anything 'hanging.'
+\texttt{next} is not. It's simply not needed! MOSL takes care of these links automatically - you'll never have a dangling edge.
 
 This update works for destruction calls as well. You can see that there is a destroy command on \texttt{@this}. It gets rid of the node, but it doesn't do
 anything about the previous and next references defined on it. That's because when the node is removed, everything attached to it will be cleaned and updated.
