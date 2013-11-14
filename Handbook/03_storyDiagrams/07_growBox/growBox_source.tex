@@ -1,0 +1,59 @@
+\newpage
+\section{Growing the box}
+\genHeader
+\hypertarget{sec:growBox}{}
+
+% I'm not so sure I like this.
+In this SDM, we shall specify how our learning box is built up by examining how the contained partitions are connected together, and how cards are able to
+move back and forth in the box. While different behaviors can be implemented, we will use the classical rules as depicted in Fig.~\ref{fig:membox_depiction}.
+
+No matter what, we know that our box will always be able to define a \texttt{first} and \texttt{last} partition. As explained in
+\hyperlink{sec:emptyPartition}{section 5}, the current story pattern will determine these partitions non-deterministically.
+
+SDMs provide a declarative means of identifying the first and last partition via \emph{Negative Application Conditions}, also simply referred to as
+\mbox{NACs}\footnote{Pronounced $\backslash 'nak \backslash$}\note{\mbox{NACs}}. \mbox{NAC}s express structures that are forbidden before or after applying a
+rule. In this SDM, the \mbox{NAC} will be a negative partition element that should \emph{not} be present in a valid pattern match. In the theory of algebraic
+graph transformations \cite{EEPT06}, \mbox{NACs} can be complex graphs that are much more general and powerful but in our implementation\footnote{To be more
+precise CodeGen2 from Fujaba.}, however, we only support single negative elements (object or link variables).
+
+To create an appropriate \mbox{NAC} that that constrains the possible matches for \texttt{lastPartitionInBox} to \emph{exactly} the last partition in the box,
+we'll need to create a new object variable, \texttt{nextPartition}, and link it to the last. It can then be completed by connecting it to both \texttt{Box} and
+\texttt{firstPartitionInBox}. Overall, the NAC will be able to be interpreted as follows:
+The first/last partitions in the box are arbitrary partitions in the box with no previous/next partitions defined. The valid matches are made unique and thus
+deterministic by construction. In other words, if you \emph{grow} the box via this method, there will always be exactly one first and one last partition.
+
+% INCORRECT IMAGE - no link between first/last
+\begin{figure}[htbp]
+ 	\centering
+  \includegraphics[width=0.9\textwidth]{growBox.pdf}
+	\caption{Some link actions in Box::Grow}
+	\label{fig:goal_grow}
+\end{figure}
+\FloatBarrier
+
+Of course, it's not just a matter of NACs or how to link/insert a new partition into the box. We still need to figure how \emph{many} partitions to add! Since
+the new size must be calculated depending on the rest of the partitions currently in the box (partitions usually get bigger) we'll need to call the
+\texttt{determineNextSize()} method that we previously declared\footnote{Inspect your model, and review Part II, section \#} in the same class. Of course, we 
+won't need to implement this until the end.
+% Image? show the new boxes and new links to one another (given the size.. )?
+
+Whoo, that was a lot of reading! To summarize our task, we will first create a basic control flow between the \texttt{Box}, and the first and the last
+partitions which were determined at random by \emph{pattern matching}. We will then need to create some NACs as rules to insert new partitions, and then 
+finally determine the new size.
+
+Don't worry if you're a bit confused by all this theory (especially that part about \mbox{NAC}s). Once implemented, it should make more sense.
+% If not, the interested reader can always refer to.. 
+
+\vspace{0.5cm}
+\begin{itemize}
+\item[$\blacktriangleright$] As always, click on a link below to begin.
+\end{itemize}
+
+\begin{center} {$\triangleright$ \hyperlink{growBox vis}{Growing a Box: The visual syntax}}%
+\\ \vspace{0.5cm}
+ {$\triangleright$ \hyperlink{growBox vis}{Growing a Box: The textual syntax}}\end{center} 
+
+
+\input{../07_growBox/visGrowBox}
+
+\input{../07_growBox/texGrowBox}

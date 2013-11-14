@@ -1,82 +1,79 @@
 \newpage
-\section{Glossary of Terms}
-\vspace{0.5cm}
+\phantomsection
+\addcontentsline{toc}{section}{Glossary}
 
-% Do I want to make this fully interactive? (ie, for every emphasis, link to the word? (they'll be listed alphabetically))
+\vspace{1cm}
+{\Huge \bf Glossary}
+\vspace{1cm}
+
 \begin{description}
 
 \item[\bf Activity]
-A story diagram structure for one method.
+Container elements that describe the behavior and structure for one method.
 
 \item[\bf Activity Edge]
-Connect elements such as activity and stop nodes within an \emph{activity} as a part of control flow.
+A directed connection between elements (such as activity and stop nodes) within an \emph{activity} as a part of control flow.
 
 \item[\bf Activity Node]
 Describe and contain actions that manipulate the states of objects; Defined within method implementations.
 
 \item[\bf Assignments]
-Used in context to set attributes; It's an attribute constraint specified by \texttt{:=}
+Used in context to set attributes; An attribute constraint specified by \texttt{:=}.
 
 \item[\bf Assertion]
-\texttt{==, >, <, \ldots}; Comparisons that return a true/false value.
+Statements that return either positive or negative value (ie: \texttt{==, >, <, \ldots}).
 
 \item[\bf Attribute Constraint]
 A non-structural contraint that must be satisfied for a story pattern to match.
 
-\item[\bf Bindings]
-Can be specified for a bound object variable, and represents the final case where the object can be marked as being bound; Represent the fourth 
+\item[\bf Binding (state)]
+Can be set for an object variable, and represents the final case where the object can be marked as being \emph{bound}; Represent the fourth 
 possibility of giving manual bindings for an object variable.
 
 \item[\bf Binding operator]
-Definition
-
-\item[\bf Binding State]
-Definition 
+Every object or \emph{link variable} can be set to \texttt{Check Only, Create, Destroy.}
 
 \item[\bf Binding Semantics]
-Definition
+Used to create appropriate \emph{NAC}s or objects.
 
 \item[\bf Bound vs Unbound]
-Bound variables are completley determined by the current context, whereas unbound variable matches have yet to be determined by the \emph{pattern matcher}.
+Bound variables are completley determined by the current context, whereas unbound (free) variable matches have yet to be determined by the \emph{pattern matcher}.
 
 \item[\bf Dangling Edges]
-Definition
+Edges that would not have either an target or source after use. They immediately make graphs invalid.
 
-\item[\bf Drag \& Drop (Visual)]
-Definition
+\item[\bf EA]
+Enterprise Architect; The Visual modeling program used with our tool.
 
-\item[\bf Edge Guards (Visual)]
-Definition
+\item[\bf Edge Guards]
+Define an if/else construct or another condition that must be satisfied before the process can reach the target node;
 
 \item[\bf \emph{For each} Story Node]
 Performs the specified action for every match of its story pattern.
 
-\item[\bf Guard Type (Visual)]
-Definition
-
 \item[\bf Link Variable]
-Definition 
+Act as unbound placeholders in a pattern; \emph{Binding operators} can be used to determine their purpose.
 
 \item[\bf Literal Expression]
-Used to specify arbitrary text, although it should really only be used for literals.
+Can express any arbitrary text, though an effort should be made to use only for constants (literals).
 
 \item[\bf MethodCallExpression]
-Helper function to call a method defined in another class of your current Enterprise Architect Project.
+Helper method that calls another method defined in a different class of your current \emph{EA} Project.
 
-\item[\bf Negative Application Condition (NACs)]
-Represent a negative element that should not be present in any valid match.
+\item[\bf NAC]
+Negative Application Condition; Represents a negative element that should not be present in any valid match.
 
 \item[\bf Object Variable]
-Place holders for actual objects in the current model.
+Free place holders for actual objects in the current model.
 
 \item[\bf ObjectVariableExpression]
 Refer to other object variables from preceding story nodes.
 
-\item[\bf Parameter Expression (Visual)]
-Used to refer to one of the parameters in the current method.
+\item[\bf Parameter Expression]
+Used to refer to the passed in method parameter.
 
 \item[\bf Pattern Matching]
-Process in which actual objects in the current model are assigned to the object variables in the pattern according to the indicated type.
+A rule applied to objects in a model (a typed graph) by finding an occurrence (a match). 
 
 \item[\bf Statement Nodes]
 Used to invoke a method from a class in any package within the current Enterprise Architect Project via a \emph{MethodCallExpression}. Guarantees method
@@ -90,6 +87,6 @@ A single graph transformation embedded in an \emph{activity node}.
 
 \item[\bf Unification]
 % As copied from Part II
-Definition 
-
+An extension of the Object Oriented ``Everything is a object'' principle, where everything is classified as a \emph{model}, even the metamodel which defines
+other models.
 \end{description}

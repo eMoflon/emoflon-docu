@@ -16,7 +16,6 @@
 \usepackage{color}
 \usepackage[usenames,dvipsnames,svgnames]{xcolor}
 \usepackage{listings}
-\usepackage{tocbibind}
 
 \definecolor{codelightgray}{rgb}{0.87,0.87,0.87}
 
@@ -39,18 +38,25 @@
 
 \newcommand{\note}[1]{\marginpar{\emph{#1}}}
 
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{1}
 
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
 \graphicspath{%
-{../../00_introduction/common/}%
-{../../02_leitnersLearningBox/}%
-{../1_transformationsExplained/teImages/}%
-{../2_visualSDM/1_visRemovingCard/vrcImages/}{../2_visualSDM/2_visCheckingCard/vccImages/}{../2_visualSDM/3_visEmptyingCards/vecImages/}%
-{../2_visualSDM/4_visTurningCard/vtsImages/}{../2_visualSDM/5_visGrowBox/vgbImages/}{../2_visualSDM/6_visStringRep/vsrImages/}%
-{../2_visualSDM/7_visFastCard/vfcImages/}{../2_visualSDM/8_visConditionalBranching/vcbImages/}{../2_visualSDM/9_visInjections/viImages/}%
+{../../00_introduction/common/}% eMoflon image for the title page
+{../../02_leitnersLearningBox/}% memory box illustration for review section
+{../01_LeitnersBoxReviewed/lbrImages/}%
+{../02_transformationsExplained/teImages/}%
+{../03_removeCard/}{../03_removeCard/visRemImages/}{../03_removeCard/texRemImages/}%
+{../04_checkCard/}{../04_checkCard/visCheImages/}{../04_checkCard/texCheImages/}%
+{../05_emptyPartition/}{../05_emptyPartition/visEPImages/}{../05_emptyPartition/texEPImages/}%
+{../06_invertCard/}{../06_invertCard/visICImages/}{../06_invertCard/texICImages/}%
+{../07_growBox/}{../07_growBox/visGBImages/}{../07_growBox/texGBImages/}%
+{../08_stringRep/}{../08_stringRep/visSRImages/}{../08_stringRep/texSRImages/}%
+{../09_fastCards/}{../09_fastCards/visFCImages/}{../09_fastCards/texFCImages/}%
+{../10_conditionalBranching/}{../10_conditionalBranching/visCBImages/}{../10_conditionalBranching/texCBImages/}%
+{../11_injections/}{../11_injections/visIImages/}{../11_injections/texIImages/}%
 }
 
 % Remove section numbers 0.1, 0.2 ..
@@ -58,7 +64,7 @@
 
 % --- Title Page Information ----------------------------------------------------------------------------------------------------------------------------------
 \def\partTitle{Part III: Story Driven Modeling}
-\def\versionNumber{0.2}
+\def\versionNumber{1.2}
 \input{../../00_introduction/common/titlepage}
 
 % --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
@@ -125,15 +131,16 @@
 % Conclusion to forward users onto other parts
 \input{storyDiagrams_conclusion}
 
+% Glossary of Terms
+\input{storyDiagrams_glossary}
+
 % -- References
 \newpage \genHeader
-\nocite{*}
+\phantomsection
+\addcontentsline{toc}{section}{References}
 \renewcommand*{\bibname}{References}
 \bibliographystyle{plain}  
-\bibliography{storyDiagrams_references}
+\bibliography{../../06_miscellaneous/src/references}
 
-
-% Glossary?
-% \include{learningBox_glossary}
 
 \end{document}

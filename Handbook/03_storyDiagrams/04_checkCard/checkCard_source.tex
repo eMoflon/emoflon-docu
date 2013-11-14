@@ -1,0 +1,44 @@
+\newpage
+\section{Checking a card}
+\genHeader
+\hypertarget{sec:checkCard}{}
+
+The next method we shall model with SDMs is probably the most important! A user decides to test themselves on a card in the learning box. They look at the
+\texttt{front}, make a guess as to what's on the \texttt{back}, and \emph{checks} to see if their guess was correct (Fig.~\ref{fig:goal_check})! If the guess
+was correct, the card can be \emph{promoted} by moving it to the \emph{next} partition. If the guess was wrong, the card is \emph{penalized} by being moved
+very first partition in the box.
+
+\begin{figure}[htbp]
+ 	\centering
+   \includegraphics[width=0.7\textwidth]{checkCard_main.pdf}
+ 	\caption{Checking a card with a guess}
+ 	\label{fig:goal_check}
+\end{figure}
+\FloatBarrier
+
+As you can see, the guess itself just a simple assertion. The resulting actions however must be implemented as patterns since they manipulate data in three
+unique elements (Fig.~\ref{fig:patterns_check}).
+
+\begin{figure}[htbp]
+ 	\centering
+   \includegraphics[width=0.5\textwidth]{checkCard_promote.pdf}
+   \\ \vspace{1cm}
+    \includegraphics[width=0.5\textwidth]{checkCard_penalize.pdf}
+ 	\caption{Patterns to move a card}
+ 	\label{fig:patterns_check}
+\end{figure}
+\FloatBarrier
+
+\vspace{0.5cm}
+\begin{itemize}
+\item[$\blacktriangleright$] Select one of the links below to begin this pattern.
+\end{itemize}
+
+\begin{center} {$\triangleright$ \hyperlink{checkCard vis}{Checking a Card: The visual syntax}}%
+\\ \vspace{0.5cm}
+{$\triangleright$ \hyperlink{checkCard tex}{Checking a Card: The textual syntax} }\end{center} 
+
+
+\input{../04_checkCard/visCheckCard}
+
+\input{../04_checkCard/texCheckCard}
