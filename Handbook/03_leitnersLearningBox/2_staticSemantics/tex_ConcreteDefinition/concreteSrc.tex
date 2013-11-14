@@ -1,15 +1,13 @@
 \newpage
 \texHeader
-
 {\bf \Large 2 \hspace{0.5cm}Static semantics}
-
 \subsection{The textual language definition: Modeling with MOSL}
-\label{sec:staticConcrete}
+\hypertarget{sec:static tex}{}
 
 \begin{itemize}
 
 \item[$\blacktriangleright$] \hypertarget{static tex}{Begin a} new metamodel project from eclipse by navigating to the \texttt{New Metamodel} button on the
-toolbar. In the dialog that appears, enter \texttt{LeitnersLearningBox} as the project name, and select \texttt{Textual (MOSL)}  (fig.~\ref{fig:new_project}).
+toolbar. In the dialog that appears, enter \texttt{LeitnersLearningBox} as the project name, and select \texttt{Textual (MOSL)}  (Fig.~\ref{fig:new_project}).
 
 \begin{figure}[htbp]
 	\centering
@@ -40,7 +38,7 @@ stores the collection of files and  \emph{unifies} everything we need for Leitne
 \item[$\blacktriangleright$] Right click on \texttt{LearningBoxLanguage} and create your first eclass model by going to ``New/EClass.'' Name it \texttt{Box}.
 
 \item[$\blacktriangleright$] The class editor should have automatically appeared. Currently, it's empty; Lets add the first two EAttributes of our program,
-\texttt{name} and \texttt{stringRep}. Both are \texttt{EString} types (fig.~\ref{fig:boxDeclaration}).
+\texttt{name} and \texttt{stringRep}. Both are \texttt{EString} types (Fig.~\ref{fig:boxDeclaration}).
 
 \begin{figure}[htbp]
 	\centering
@@ -55,7 +53,7 @@ stores the collection of files and  \emph{unifies} everything we need for Leitne
 
 \item[$\blacktriangleright$] In \texttt{Card}, create three \texttt{EString}s, \texttt{back}, \texttt{face} , and \texttt{partitionHistory}.
 
-\item[$\blacktriangleright$] If you've done everything correctly, the key areas of your workspace should now resemble figure~\ref{fig:workspaceClassAttributes}.
+\item[$\blacktriangleright$] If you've done everything correctly, the key areas of your workspace should now resemble Fig.~\ref{fig:workspaceClassAttributes}.
 
 \begin{figure}[htbp]
 	\centering
@@ -68,7 +66,7 @@ stores the collection of files and  \emph{unifies} everything we need for Leitne
 automatically update the other element involved in the reference automatically, which means you only have to declare a direction once.
 
 \item[$\blacktriangleright$] Activate the \texttt{Card} editor and add a simple reference named \texttt{cardContainer} with a multiplicity of zero to one, of
-type \texttt{Partition} (fig.~\ref{fig:cardReference}). This means that a single card can belong to a maximum of 1 partition.
+type \texttt{Partition} (Fig.~\ref{fig:cardReference}). This means that a single card can belong to a maximum of 1 partition.
 
 \begin{figure}[htbp]
 	\centering
@@ -89,7 +87,7 @@ not all that different than the relation between \texttt{Partition} and \texttt{
 an unlimited amount of partitions, but a \texttt{Partition} should only be allowed to belong to zero or one boxes. Name the two new relations
 \texttt{containedPartition}, and \texttt{box}.
 
-\item[$\blacktriangleright$] Your classes should now closely resemble figure~\ref{fig:allReferences}.
+\item[$\blacktriangleright$] Your classes should now closely resemble Fig.~\ref{fig:allReferences}.
 
 
 \begin{figure}[htbp]
@@ -102,7 +100,7 @@ an unlimited amount of partitions, but a \texttt{Partition} should only be allow
 
 \item[$\blacktriangleright$] The next step is to set up two relations between \texttt{Partition} and itself, so it can shift between the previous and next
 partition in the box. Create two new simple references, named \texttt{previous}, and \texttt{next}. Allow them to have a maximum of 1 link each. If you've done
-everything correctly, your \texttt{Partition} class should now resemble figure~\ref{fig:partitionReferences}.
+everything correctly, your \texttt{Partition} class should now resemble Fig.~\ref{fig:partitionReferences}.
 
 \begin{figure}[htbp]
 	\centering
@@ -111,8 +109,8 @@ everything correctly, your \texttt{Partition} class should now resemble figure~\
 	\label{fig:partitionReferences}
 \end{figure} 
 
-\item[$\blacktriangleright$] All of our references are now set up! To see how all of this is depicted visually, check out figure~\ref{fig:ereferences_all} in
-section~\ref{sec:staticAbstract}.
+\item[$\blacktriangleright$] All of our references are now set up! To see how all of this is depicted visually, check out Fig.~\ref{fig:ereferences_all} in
+\hyperlink{sec:static vis}{section 2.1}.
 
 \pagebreak
 
@@ -133,7 +131,7 @@ itself of all cards to reset.
 
 \item[$\blacktriangleright$] Create two more functions for \texttt{Partition} the same way. We'll need a \texttt{removeCard} method that accepts and returns a
 \texttt{Card}, as well as a EBoolean \texttt{check} method that accepts a \texttt{Card} and an \texttt{EString} guess. Your partition class should now resemble
-figure~\ref{fig:partitionMethods}.
+Fig.~\ref{fig:partitionMethods}.
 
 \begin{figure}[htbp]
 	\centering
@@ -170,19 +168,19 @@ We'll also need to print whatever is on the current side. Create two void functi
 
 
 Congratulations! You've \emph{almost} completeley modeled Leitner's Learning Box using a concrete, textual syntax! To see how this looks in visually in a class
-diagram, check out figure~\ref{fig:metamodel_complete} from section~\ref{sec:staticAbstract}.
+diagram, check out Fig.~\ref{fig:metamodel_complete} from \hyperlink{sec:static vis}{section 2.1}.
 
 \item[$\blacktriangleright$]The very last thing we need to do is conduct a build and generate the required \texttt{.genmodel} and \texttt{.ecore} files. Beside
 the \texttt{New Metamodel} button on the toolbar, you'll notice that there is a circular arrow button that offers to ``Build (without cleaning).''   %explain
 this here? Press it, and wait for the package explorer to refresh.
 
 \item[$\blacktriangleright$] If you've done everything correctly, a new \texttt{MyWorkingSet} node should have appeared, and your entire expanded explorer
-should resemble figure~\ref{fig:builtModel}.
+should resemble Fig.~\ref{fig:builtModel}.
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.5\textwidth]{eclipse_finalPackageExplorer}
-	\caption{Final static semantics project structure}
+	\caption{Final project structure of our Static Semantics}
 	\label{fig:builtModel}
 \end{figure}
 
@@ -198,7 +196,7 @@ build a visual diagram with its built-in visual modeler! Right click on \texttt{
 \fancyfoot[R]{ $\triangleright$ \hyperlink{static review}{Next step} }
 
 \item[$\blacktriangleright$] You're all done! We encourage you to review the identical program construction using eMoflon's visual tools in
-section~\ref{sec:staticAbstract}, and observe how this same project is crafted using diagrams. Compare the differences between modeling the three classes in a
+\hyperlink{sec:static vis}{section 2.1}, and observe how this same project is crafted using diagrams. Compare the differences between modeling the three classes in a
 separate, abstract program and exporting to eclipse in order to build them, versus modeling and building all within eclipse. Which do you find easier to work
 with?
 

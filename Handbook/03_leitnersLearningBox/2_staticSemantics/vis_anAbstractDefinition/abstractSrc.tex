@@ -1,13 +1,13 @@
 % No New page; first instance
 \visHeader
 \subsection[The visual language definition: Modeling with Diagrams]{The visual language definition; Modeling with \mbox{Enterprise Architect}}
-\label{sec:staticAbstract}
+\hypertarget{sec:static vis}{}
 
 \vspace{0.5cm}
 
 \hypertarget{static vis}{You can begin modeling Leitner's Box in one of two ways} - You can build the diagrams in the same workspace as the Part I demo by
 opening the old \texttt{`demo.eap'} file, or you can start afresh by going to ``New Metamodel Project,'' choosing to start a new visual project without a demo
-(Fig.~\ref{fig:new_visModel}), and opening that \texttt{.eap} file. This handbook has assumed you prefer the latter, which is reflected only in the screenshots.
+(Fig.~\ref{fig:new_visModel}), and opening that \texttt{.eap} file. This handbook has assumed you prefer the latter, which is reflected in the screenshots.
 If you use the previous files, please note that the steps are exactly the same, but our package explorers may not match exactly. Keep a sharp eye out for
 footnotes which explain the few differences.
 
@@ -17,6 +17,7 @@ footnotes which explain the few differences.
 	\caption{Starting a new visual project}
 	\label{fig:new_visModel}
 \end{figure}
+
 \begin{itemize}
 
 \item[$\blacktriangleright$] From EA, select your working set and click on the \texttt{Add a Package} button (Fig.~\ref{fig:new_package}).
@@ -41,7 +42,7 @@ as the name of the new package and click \texttt{OK}.
 
 
 \vspace{0.5cm}
-\item[$\blacktriangleright$] Your \texttt{Project Browser} should now resemble figure~\ref{fig:new_package_completed}.
+\item[$\blacktriangleright$] Your \texttt{Project Browser} should now resemble Fig.~\ref{fig:new_package_completed}.
 
 \begin{figure}[htbp]
 	\centering
@@ -83,7 +84,7 @@ as the name of the new package and click \texttt{OK}.
 
 \begin{itemize}
  
-\item[$\blacktriangleright$] After creating the new diagram, your  \texttt{Project Browser} should now resemble figure~\ref{fig:diagram_completed}.
+\item[$\blacktriangleright$] After creating the new diagram, your  \texttt{Project Browser} should now resemble Fig.~\ref{fig:diagram_completed}.
 
 \begin{figure}[htbp]
 	\centering
@@ -123,7 +124,7 @@ In general, a similar ``properties'' dialogue can be opened in the same fashion 
 \vfill
 \pagebreak
 
-\item[$\blacktriangleright$] After creating \texttt{Box}, your EA workspace should resemble figure~\ref{fig:eclass_completed}.
+\item[$\blacktriangleright$] After creating \texttt{Box}, your EA workspace should resemble Fig.~\ref{fig:eclass_completed}.
 
 \begin{figure}[htbp]
 	\centering
@@ -132,7 +133,7 @@ In general, a similar ``properties'' dialogue can be opened in the same fashion 
 	\label{fig:eclass_completed}
 \end{figure}
 
-\item[$\blacktriangleright$] Now create \texttt{Partition} and \texttt{Card} the same way, until your workspace resembles figure~\ref{fig:all_eclasses}.
+\item[$\blacktriangleright$] Now create \texttt{Partition} and \texttt{Card} the same way, until your workspace resembles Fig.~\ref{fig:all_eclasses}.
 These are the main models for our learning box.
 
 \vspace{1cm}
@@ -174,7 +175,7 @@ These are the main models for our learning box.
 
 \pagebreak
 
-\item[$\blacktriangleright$] Add attributes to all other classes until your workspace resembles figure~\ref{fig:attribute_completed}.
+\item[$\blacktriangleright$] Add attributes to all other classes until your workspace resembles Fig.~\ref{fig:attribute_completed}.
 
 \begin{figure}[htbp]
 	\centering
@@ -213,7 +214,7 @@ that pops up, choose \texttt{Create Bidirectional EReference} (Fig.~\ref{fig:ere
 if you accidentally click one of the other options while creating the quick link and wish to change it, or if you went backwards from partition to box.} and
 enter a name. The name will only be used for documentation purposes as it is not relevant for code generation.
 
-\item[$\blacktriangleright$] In the same dialogue, choose \texttt{Target Role} and enter the values in figure~\ref{fig:reference_ends} to set the properties for
+\item[$\blacktriangleright$] In the same dialogue, choose \texttt{Target Role} and enter the values in Fig.~\ref{fig:reference_ends} to set the properties for
 the ``target'' end of the reference (the \texttt{Box} role). As you can see, the default target is set to the class you linked \emph{from}, and the default
 source is the class you linked \emph{to}. If you decided to ignore the instructions, and went from \texttt{Partition} to \texttt{Box}, the only difference
 between the references are the titles - the following information will still be the same! In this window, it's important not to forget to check and modify the
@@ -277,7 +278,7 @@ deciphering the role names and other details in this screenshot, please forward 
 \FloatBarrier
 
 All of your program attributes and references have now been set up. To see how this would appear in eMoflon's textual syntax, check out
-figure~\ref{fig:allReferences} and \ref{fig:partitionReferences} in section~\ref{sec:staticConcrete}!
+figures~\ref{fig:allReferences} and \ref{fig:partitionReferences} in \hypertarget{sec:static tex}{section 2.2}!
 
 \vfill
 \pagebreak
@@ -292,7 +293,7 @@ In the next few steps we shall define the \emph{signatures} of some operations f
 \emph{implement} these methods.
 
 \begin{enumerate}
-\item[$\blacktriangleright$] Right-click \texttt{Partition} to invoke the context-menu depicted in figure~\ref{fig:add_operation} and choose ``Features \&
+\item[$\blacktriangleright$] Right-click \texttt{Partition} to invoke the context-menu depicted in Fig.~\ref{fig:add_operation} and choose ``Features \&
 Properties/Operations..''.
 
 \begin{figure}[htbp]
@@ -314,7 +315,7 @@ leave the \texttt{Return Type} as \texttt{void}, and press \texttt{Save}.
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] In the same dialogue, press \texttt{New} to add further operations and enter the values in figure~\ref{fig:operation_parameters}. 
+\item[$\blacktriangleright$] In the same dialogue, press \texttt{New} to add further operations and enter the values in Fig.~\ref{fig:operation_parameters}. 
 Parameters can be added by pressing \texttt{Edit}\footnote{You must save the operation before this option will become active.} and entering the name and
 choosing the type of each parameter in a separate dialogue.
 
@@ -351,7 +352,7 @@ your project. Just typing them won't work!
 If you've done everything right, your dialogue should now contain three methods: \texttt{check}, \texttt{empty}, and \texttt{removeCard}, each with
 corresponding parameters and return types as in Fig.~\ref{fig:operation_partition}.
 
-Add all operations analogously for \texttt{Box} and \texttt{Card}, so that your metamodel closely resembles figure~\ref{fig:metamodel_complete}.
+Add all operations analogously for \texttt{Box} and \texttt{Card}, so that your metamodel closely resembles Fig.~\ref{fig:metamodel_complete}.
 
 \begin{figure}[htbp]
 	\centering
@@ -362,7 +363,7 @@ Add all operations analogously for \texttt{Box} and \texttt{Card}, so that your 
 
 \pagebreak
 
-To see how this complete metamodel is represented in the textual syntax, review figure~\ref{fig:workspaceMethods} in section~\ref{sec:staticConcrete}.
+To see how this complete metamodel is represented in the textual syntax, review Fig.~\ref{fig:workspaceMethods} in \hypertarget{sec:static tex}{section 2.2}.
 
 \begin{enumerate}
 \item[$\blacktriangleright$] To finish, try to export the metamodel for code generation in Eclipse~\footnote{if problems occur during the following steps, we
@@ -373,7 +374,7 @@ you can activate eMoflon's add-in window by going to ``Extensions/Add-in Windows
 
 
 If you've done everything correctly, a new project \texttt{LearningBoxLanguage} should be created in the \texttt{Demo} working set within your eclipse
-workspace. If this is not the case, please ensure that your metamodel is identical with figure~\ref{fig:metamodel_complete}.
+workspace. If this is not the case, please ensure that your metamodel is identical with Fig.~\ref{fig:metamodel_complete}.
 
 If you believe everything is correct and things still don't work, feel free to contact us at \href{mailto:contact@moflon.org}{contact@moflon.org}.
 
