@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
-import org.eclipse.emf.compare.diff.metamodel.DiffElement;
-import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
-import org.eclipse.emf.compare.diff.metamodel.DiffModel;
-import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
-import org.eclipse.emf.compare.diff.service.DiffService;
-import org.eclipse.emf.compare.match.metamodel.MatchModel;
-import org.eclipse.emf.compare.match.service.MatchService;
+//import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+//import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
+//import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+//import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
+//import org.eclipse.emf.compare.diff.service.DiffService;
+//import org.eclipse.emf.compare.match.metamodel.MatchModel;
+//import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -39,31 +39,31 @@ public class EmfCompareUtil
  * @return 
 	 * @return A list of all removed {@link DiffElement}s.
 	 */
-	public static List<DiffElement> removeDiffElementOfType(DiffModel diff, Set<EClass> diffTypes) {
-		final List<DiffElement> removed = new ArrayList<DiffElement>();
-
-		// don't ever delete diff groups explicitly
-		if (diffTypes.contains(DiffPackage.Literals.DIFF_GROUP))
-			throw new IllegalArgumentException("DiffGroups are not supported! This would erase all differences!");
-
-		// collect and iterate over all elements to be removed
-		final List<EObject> diffElementsToRemove = collectTypedElements(diff.getDifferences(), diffTypes, true);
-		for (EObject obj : diffElementsToRemove) {
-			EObject parent = obj.eContainer();
-
-			// remove element and store in result!
-			EcoreUtil.remove(obj);
-			removed.add((DiffElement) obj);
-
-			// if parent is empty group, remove it!
-			while (parent instanceof DiffElement && ((DiffElement) parent).getSubDiffElements().isEmpty()) {
-				final EObject newParent = parent.eContainer();
-				EcoreUtil.remove(parent);
-				parent = newParent;
-			}
-		}
-		return removed;
-	}
+//	public static List<DiffElement> removeDiffElementOfType(DiffModel diff, Set<EClass> diffTypes) {
+//		final List<DiffElement> removed = new ArrayList<DiffElement>();
+//
+//		// don't ever delete diff groups explicitly
+//		if (diffTypes.contains(DiffPackage.Literals.DIFF_GROUP))
+//			throw new IllegalArgumentException("DiffGroups are not supported! This would erase all differences!");
+//
+//		// collect and iterate over all elements to be removed
+//		final List<EObject> diffElementsToRemove = collectTypedElements(diff.getDifferences(), diffTypes, true);
+//		for (EObject obj : diffElementsToRemove) {
+//			EObject parent = obj.eContainer();
+//
+//			// remove element and store in result!
+//			EcoreUtil.remove(obj);
+//			removed.add((DiffElement) obj);
+//
+//			// if parent is empty group, remove it!
+//			while (parent instanceof DiffElement && ((DiffElement) parent).getSubDiffElements().isEmpty()) {
+//				final EObject newParent = parent.eContainer();
+//				EcoreUtil.remove(parent);
+//				parent = newParent;
+//			}
+//		}
+//		return removed;
+//	}
    
 	/**
 	 * Return all elements in a flat list which have the type given in <code>types</code>. The entire model tree is
@@ -111,11 +111,11 @@ public class EmfCompareUtil
     * @throws IOException
     * @throws InterruptedException
     */
-   public static List<DiffElement> compareAndFilter(EObject actual, EObject expected, boolean ignoreReferenceOrder) throws InterruptedException
-   {
-      DiffModel diff = createDiffModel(actual, expected, ignoreReferenceOrder);
-      return diff.getDifferences();
-   }
+//   public static List<DiffElement> compareAndFilter(EObject actual, EObject expected, boolean ignoreReferenceOrder) throws InterruptedException
+//   {
+//      DiffModel diff = createDiffModel(actual, expected, ignoreReferenceOrder);
+//      return diff.getDifferences();
+//   }
    
    
    /**
@@ -129,16 +129,16 @@ public class EmfCompareUtil
     * 
     * @throws InterruptedException
     */
-   public static DiffModel createDiffModel(EObject actual, EObject expected, boolean ignoreReferenceOrder) throws InterruptedException
-   {
-      // Attempt to match elements that have only changed
-      MatchModel match = MatchService.doMatch(actual, expected, Collections.<String, Object> emptyMap());
-      // Use match to derive delta
-      DiffModel diff = DiffService.doDiff(match, false);
-
-      if (ignoreReferenceOrder)
-         removeDiffElementOfType(diff, Collections.singleton(DiffPackage.Literals.REFERENCE_ORDER_CHANGE));
-      
-      return diff;
-   }
+//   public static DiffModel createDiffModel(EObject actual, EObject expected, boolean ignoreReferenceOrder) throws InterruptedException
+//   {
+//      // Attempt to match elements that have only changed
+//      MatchModel match = MatchService.doMatch(actual, expected, Collections.<String, Object> emptyMap());
+//      // Use match to derive delta
+//      DiffModel diff = DiffService.doDiff(match, false);
+//
+//      if (ignoreReferenceOrder)
+//         removeDiffElementOfType(diff, Collections.singleton(DiffPackage.Literals.REFERENCE_ORDER_CHANGE));
+//      
+//      return diff;
+//   }
 }
