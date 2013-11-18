@@ -1,0 +1,71 @@
+\newpage
+\texHeader
+
+\subsection{Your MOSL workspace}
+
+\hypertarget{projectStructure tex}{}
+As you now know, eMoflon is a plug-in for Eclipse. More precisely, eMoflon requires the Eclipse Modeling Framework (EMF) in order to work. EMF uses two separate
+models, Genmodel and Ecore, for code generation. The Genmodel contains boring information about code generation such as path, file prefixes, and other
+information. We are more interested in the Ecore model, which we specify with MOSL.
+
+When you switched the project explorer from \texttt{Projects} to \texttt{Top Level Elements}, you noticed that a few extra nodes were displayed in the project
+browser. Each node you see has different criteria for grouping related Eclipse Projects together, which makes them your project \emph{working sets}.
+
+The \texttt{Specifications} working set contains all \emph{metamodel projects} in a workspace (Fig. ~\ref{fig_modelSpecification}). This means that for every
+new metamodel you create in your current workspace, all of the relevant files will be placed here.
+
+ \begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{eclipse_Specification}
+  \caption{Specification working set}
+  \label{fig_modelSpecification}
+\end{figure}
+  
+Let's have a look at the two \emph{eclass} files. While you can usually combine several short class declarations in a single file in some languages (like Java),
+keep them when using MOSL separated. It'll all make sense in a moment when we discuss \emph{patterns}.
+
+%\nxtPage{\thepage}
+
+Inspect the \texttt{List} eclass, and you'll see it has a just one \emph{EAttribute}. EAttributes are defined by their name, followed by a colon symbol and
+type. This class also has one type of \emph{EReference}, a \emph{container reference}. This is represented by the diamond operator in front of an arrow. Switch
+to the \texttt{Node} eclass and you can observe the second reference type, a \emph{simple~reference}. It's represented by a plain arrow. EReference names are
+immediately followed by their multiplicity and then, just like an attribute, a colon and their datatype.
+
+Let's go back to looking at the code. In the \texttt{Node} class (Fig.~\ref{fig_patternDeleteNode}), a few methods have been declared. You can see that each
+function is remarkably small. In fact, the only thing the functions are doing are invoking patterns. These patterns represent structural changes, and their
+container functions are used exclusively for control flow (ie., sequences, branches, and loops.).
+
+ \begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.6\textwidth]{eclipse_eclassNode}
+  \caption{The \texttt{Node} eclass {\bf update (comments)}}
+  \label{fig_eclassNode}
+\end{figure}
+
+% See how it looks.. may have to remove
+%\nxtPage{\thepage}
+
+After many long discussions, it was decided that patterns should always be implemented in separate files. Inspect Fig.~\ref{fig_modelSpecification} again, and
+observe the locations where the patterns are placed. You'll notice that there is a folder for the ``Node'' eclass, and a subfolder for each method. There's no
+folder for ``List'' because it never calls a pattern.
+
+Check out the \texttt{deleteNode} pattern (Fig ~\ref{fig_patternDeleteNode}).
+
+ \begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.6\textwidth]{eclipse_patternDeleteNode}
+  \caption{Eclipse: The deleteNode Pattern}
+  \label{fig_patternDeleteNode}
+\end{figure}
+
+You can see that there is a destroy command on \texttt{@this}. It gets rid of the node, but it doesn't do anything about the previous and next references
+defined on it. That's because when the node is removed, everything attached to it will be cleaned and updated. The final command reconnects the next and
+previous nodes. All details will be discussed in later parts.
+ 
+So that's a quick overview of the MOSL language but again, how to we generate code from all of this?
+
+%\fancyfoot[R]{  $\triangleright$ \hyperlink{codeGen common}{Next} }
+
+First, eMoflon does not do perform compelete code generation on every change. To improve performance, only the parser is invoked when you save files. This means
+that to generate code for the project, you need to invoke the \texttt{Build (and clean)} command from the eMoflon context menu after right clicking your
+metamodel project.

@@ -1,5 +1,5 @@
 \newpage
-\subsection{Visual; String Representation}
+\subsection{Box::toString() - The visual syntax}
 \visHeader
 \hypertarget{stringRep vis}{}
 
@@ -13,8 +13,6 @@ we already used the \texttt{[end]} edge guard to terminate a loop and, as depict
 create the new \emph{[each time]} guards. Note that \texttt{partition} in \texttt{ForAllCards} is bound  and thus refers to the assigned value determined in
 \texttt{ForAllParitions}.
 
-\vspace{0.5cm}
-
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{ea_nestedControl.pdf}
@@ -23,7 +21,6 @@ create the new \emph{[each time]} guards. Note that \texttt{partition} in \textt
 \end{center}
 \end{figure}
 
-\clearpage
 
 \item[$\blacktriangleright$] To actually do something sensible with each card, double-click the empty activity node that is taken each time a card is matched and invoke the \texttt{Edit
 ActivityNode} dialogue. Now choose \texttt{addToStringRep} as the name, and \texttt{StatementNode} as the type of the activity node
@@ -38,17 +35,18 @@ MethodCallExpression. This way, the method invocation is represented as an activ
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] As we have already used a MethodCallExpression in an attribute constraint (\hyperlink{sec:growBox}{Sec. 5}), go ahead and click the
-\texttt{Method Call Expression} tab and select \texttt{MethodCallExpression} as expression, \texttt{this} as target, \texttt{addToStringRep} as operation and
-\texttt{card} as value of the parameter. That way, we pass the object variable \texttt{card} to the method
-\texttt{addToStringRep} as parameter.
+\item[$\blacktriangleright$] As we have already used a MethodCallExpression in an attribute constraint\footnote{see \hyperlink{sec:growBox}{ec. 5}}, go ahead
+and click the \texttt{Method Call Statement} tab and select \texttt{MethodCallExpression} as expression, \texttt{this} as object, \texttt{addToStringRep} as
+operation and \texttt{card} as value of the parameter. That way, we pass the object variable \texttt{card} to the method \texttt{addToStringRep} as parameter.
+
+\end{itemize}
 
 Statement nodes should be used to interact with methods that are implemented by hand and provide a means of invoking libraries and arbitrary Java code from
 SDMs. Please note that we do not differentiate at this point between methods that are implemented via an SDM or by hand and thus, statement nodes can of course
 be used to invoke other SDMs via a MethodCallExpression. Most importantly, this enables \emph{recursion} as the current SDM can be invoked on \texttt{this} with
 appropriate new arguments.
 
-A final point to note is that the return value of the method is ignored -- statement nodes are therefore best used for void methods that either have appropriate
+A final point to note is that the return value of the method is ignored -- statement nodes are therefore best used for void methods that have appropriate
 side effects (e.g. manipulate their arguments). We shall learn in a few pages how to invoke methods with non-primitive return values (if a method returns a
 primitive then it can be invoked in an attribute constraint as in \hyperlink{sec:growBox}{Sec. 5}). % Double check w/original!
 
@@ -61,11 +59,8 @@ primitive then it can be invoked in an attribute constraint as in \hyperlink{sec
 % \end{center}
 % \end{figure}
 
-\item[$\blacktriangleright$] To complete the SDM, return the final string representation of the box via an \texttt{AttributeValueExpression} in the stop node
-(Fig.~\ref{fig:sdm_tostring_4}).
 
-
-\begin{figure}[ht]
+\begin{figure}[htbp]
    \centering
       \subfloat[Specify a \texttt{MethodCallExpression} in the \texttt{StatementNode}]{
         \includegraphics[width=0.4\textwidth]{sdm74}
@@ -78,6 +73,12 @@ primitive then it can be invoked in an attribute constraint as in \hyperlink{sec
 \end{figure}
 \FloatBarrier
 
+\begin{itemize}
+\item[$\blacktriangleright$] To complete the SDM, return the final string representation of the box via an \texttt{AttributeValueExpression} in the stop node
+(Fig.~\ref{fig:sdm_tostring_4}).
+\end{itemize}
+
+
 % \begin{figure}[htbp]
 % \begin{center}
 %   \includegraphics[width=0.5\textwidth]{pics/sdmBilder/toString/sdm75.png}
@@ -87,7 +88,7 @@ primitive then it can be invoked in an attribute constraint as in \hyperlink{sec
 % \end{figure}
 
 Take some time to compare and reflect on the complete SDM as depicted in Fig.~\ref{fig:sdm_tostring_5}.  The idea was to abstract from the actual text
-representation of the box and model the necessary traversal of the data structure. The helper methods \texttt{addToStringRep}could, for example, build up a
+representation of the box and model the necessary traversal of the data structure. The helper methods \texttt{addToStringRep} could, for example, build up a
 string buffer and update this string representation. While modelling this SDM, we have seen that for each story nodes can be nested, and have learnt two new
 uses of MethodCallExpressions that provide a type safe\footnote{Apart from the literal expressions used for specifying argument values.} means of invoking
 methods from SDMs.
@@ -101,4 +102,3 @@ methods from SDMs.
 \end{figure}
 \FloatBarrier
 
-\end{itemize}

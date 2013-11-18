@@ -3,9 +3,9 @@
 \section{Removing a card}
 \hypertarget{sec:remCard}{}
 
-To get started with SDM's, we'll start with a straightforward method. The goal of this method is to remove a card from its current partition
-(Fig.~\ref{fig:goal_removeCard}). This method could be invoked to promote it to the next partition, to send it back to the very first partition, or to empty a
-partition of every card. We won't worry about those next steps right now though, only on somehow deleting the link between the card and the partition.
+Since we're just getting started with SDM's, we'll begin with a straightforward diagram. The goal of this SDM is to remove a single card from its current
+partition (Fig.~\ref{fig:goal_removeCard}). 
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 	\centering
@@ -15,10 +15,11 @@ partition of every card. We won't worry about those next steps right now though,
 \end{figure}
 \FloatBarrier
 
+\vspace{0.5cm}
+
 According to the signature of the method \texttt{removeCard}, we should return the card that has been deleted. Although this might strike you as slightly odd,
 considering that we already passed in this exact card as an argument, it still makes sense as it allows for chaining method calls:
 \begin{quote}\texttt{aPartition.removeCard(aCard).invert()}\end{quote}
-
 
 \vspace{0.5cm}
 \begin{itemize}

@@ -9,15 +9,18 @@ For very simple cards (i.e: words in different language that are similar), it mi
 partition. Such \emph{fast} cards should somehow be marked and handled differently! If a fast card is gotten right once, it should be immediately moved to the
 last partition in the box. This way the card is reviewed once, and is tested only once more before finally being removed from the box (Fig.).
 
-% \begin{figure}[htbp]
-% 	\centering
-%   \includegraphics[width=0.7\textwidth]{ea_activateAddInWindow}
-% 	\caption{Activating the validation output window}
-% 	\label{fig:goal_fastCard}
-% \end{figure}
-% \FloatBarrier
+It makes sense that a \texttt{fastCard} is simply inherited from \texttt{Card}. It has the exact same structure as a standard card, it just has an extra marker
+to show it gets moved differently (Fig.~\ref{fig:goal_fastCard}). This means we can extend our \texttt{check} SDM to get the result we desire!
 
-It makes sense that a \texttt{fastCard} is simply inherited from \texttt{Card}. 
+\begin{figure}[htbp]
+	\centering
+    \includegraphics[width=0.7\textwidth]{goal_fastCard}
+	\caption{Checking a fast card against a guess}
+	\label{fig:goal_fastCard}
+\end{figure}
+\FloatBarrier
+
+% Describe HOW we would extend it here? (they might be TOTALLY different for each, and so they NEED to be explained differently).
 
 \vspace{0.5cm}
 \begin{itemize}

@@ -12,19 +12,21 @@
 This handbook has been engineered to be \emph{fun}.
 
 If you work through it and, for some reason, do \emph{not} have a resounding \mbox{``I-Rule''} feeling afterwards, please send us an email and tell us how to
-improve it at \href{mailto:contact@moflon.org}{contact@moflon.org}
+improve it at \href{mailto:contact@moflon.org}{contact@moflon.org} .
+
+%%\nxtPage{\thepage}
 
 \begin{figure}[htp]
 \begin{center}
 	\includegraphics[height=0.45\textheight]{../introduction_images/i-rule}
-	\caption{How you should feel when you're done.}
+	\caption{How you should feel when you're done}
 	\label{i-rule}
 \end{center}
 \end{figure}
 \break
  
 
-To enjoy the experience, you should be fairly comfortable with Java or a comparable object-oriented language, and know how to perform basic tasks in eclipse. 
+To enjoy the experience, you should be fairly comfortable with Java or a comparable object-oriented language, and know how to perform basic tasks in Eclipse. 
 Although we assume this, we give references to help bring you up to speed as necessary. Last but not least, basic knowledge of common UML notation would be
 helpful.
 
@@ -42,56 +44,77 @@ then eMoflon could be pretty useful for you.
 
 To build a tool, you typically need a way for users to communicate with it, i.e., you must establish a suitable \emph{language} for specifying input and output
 to and from the tool.  You also need a central data structure to represent the ``state" of the tool.  This data structure or \emph{model} is usually manipulated
-and appropriately \emph{transformed} in some useful manner by the tool.  Many tools also \emph{generate} something useful from their internal models. To achieve
-these goals you can use \emph{metamodelling} to define your language (your \emph{meta}model), \emph{graph transformations} to transform your models, and
-parsing/code generation techniques to produce something useful from your models. All this and much more is supported by eMoflon. Examine
-Fig.~\ref{fig:transModel} for a brief visual depiction of these features.
-
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.75\textwidth]{transformationModelDiagram}
-	\caption{eMoflon supports metamodeling to define your language, transformations to change your models, and parsing to produce useful items}
-	\label{fig:transModel}
-\end{figure}
+and appropriately \emph{transformed} in some useful manner by the tool.  Many tools also \emph{generate} something useful from their internal models and keep
+them synchronised with other models in different tools. To achieve these goals you can use \emph{metamodelling} to define your language (your \emph{meta}model),
+\emph{graph transformations} to transform your models, and parsing/code generation techniques to produce something useful from your models. All this and much
+more is supported by eMoflon. Take a look at Fig.~\ref{fig:transModel} to see how all these tasks fit together.
 
 {\bf \large What does this handbook cover?}
 
-On the next page, we've described each of the 6 parts that make up this handbook. You can work through them sequentially and become an
-\emph{official}\footnote{Certificate not guaranteed} eMoflon master or, depending on your interests, you can decide what you'd like to read and what you'd like
-to skip. We provide all the necessary materials (ie: a cheat package) so you can jump right in without having to complete the previous parts. For those of you
-interested in further details and the mature formalism of graph transformations, we give relevant references throughout the handbook.
+%\nxtPage{\thepage}
 
-\vfill \pagebreak
+On the last page, we've described each of the 6 parts that make up this handbook. You can work through them sequentially and become an
+\emph{official}\footnote{Certificate not guaranteed} eMoflon master or, depending on your interests, decide what you'd like to read and what to skip. We provide
+all the necessary materials (ie., a cheat package) so you can jump right in without having to complete the previous parts. For those of you interested in further
+details and the mature formalism of graph transformations, we give relevant references throughout the handbook.
 
+\vfill \newpage
+
+\vspace*{2cm}
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=0.9\textwidth]{eMoflonDiagram.pdf}
+	\caption{Building a tool requires language specification (metamodelling), transformations, synchronization, parsing, and code generation}
+	\label{fig:transModel}
+\end{figure}
 \begin{description}
 
-\item[Part I: Installation and Set Up] provides a very simple example and a few JUnit tests to test the installation and configuration of eMoflon. We also explain the general workflow and the different workspaces involved.
+%\nxtPage{\thepage}
+\pagebreak
+
+% Remove previous 'next' link from footer
+\fancyfoot{}
+
+\item[Part I: Installation and Set Up] provides a very simple example and a few JUnit tests to test the installation and configuration of eMoflon. We also
+explain the general workflow and the different workspaces involved.
 
 This part can be considered \emph{mandatory} only if you are new to eMoflon, but we recommend working through it anyway.
 It's kept as minimal as possible, and should only take a few minutes.
 
+{\small File download: \href{http://www.moflon.org/ }{http://www.moflon.org/}}
+
 \item[Part II: Ecore] takes you step-by-step through a more realistic example that showcases many of the features we currently support.
-Working through this part should serve as a basic introduction to model-driven engineering, and we especially recommend you work through this part if you're new
-to metamodeling (using Ecore/the Eclipse Modeling Framework (EMF)).
+Working through this part should serve as a basic introduction to model-driven engineering, and is especially recommended if you're new to metamodeling (using
+Ecore/the Eclipse Modeling Framework (EMF)).
 
-{\small Approximate time to complete (min): 60 }
+{\small Approximate time to complete: 1h
+ 
+File download: \href{http://www.moflon.org/ }{http://www.moflon.org/}}
 
-\item[Part III: Story Digrams] introduces unidirectional model transformation via programmed graph transformation using Story Driven Modeling (SDM).
+\item[Part III: Story Driven Modeling (SDM)] introduces \emph{unidirectional} model transformation via programmed graph transformation using Story Diagrams.
 
-{\small Approximate time to complete: min }
+{\small Approximate time to complete: min 
 
-\item[Part IV: TGGs] introduces bidirectional model transformation with Triple Graph Grammars (TGGs).
+File download: \href{http://www.moflon.org/ }{http://www.moflon.org/}}
 
-{\small Approximate time to complete: min }
+\item[Part IV: TGGs] introduces \emph{bidirectional} model transformation with Triple Graph Grammars (TGGs).
+
+{\small Approximate time to complete: min 
+
+File download: \href{http://www.moflon.org/ }{http://www.moflon.org/}}
 
 \item[Part V: Model-To-Text Transformations] shows how standard parsing and code generation technology can be combined with story diagrams and TGGs.
 
-{\small Approximate time to complete: min }
+{\small Approximate time to complete: min 
 
-\item[Part VI: Miscellaenous] contains a collection of tips and tricks to keep on hand while using eMoflon. They can be used as references to help avoid common
-mistakes and increase productivity. If you're in a hurry, this part can be skipped and consulted on demand.
+File download: \href{http://www.moflon.org/ }{http://www.moflon.org/}}
 
-{\small Approximate time to complete: min }
+\item[Part VI: Miscellaneous] contains a collection of tips and tricks to keep on hand while using eMoflon. This can be used as a reference to help avoid common
+mistakes and increase productivity. If you're in a hurry, this part can be skipped and consulted only on demand.
+
+{\small Approximate time to complete: min 
+
+File download: \href{http://www.moflon.org/ }{http://www.moflon.org/}}
 
 \end{description}
 
