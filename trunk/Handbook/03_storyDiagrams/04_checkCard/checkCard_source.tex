@@ -3,10 +3,10 @@
 \genHeader
 \hypertarget{sec:checkCard}{}
 
-The next method we shall model with SDMs is probably the most important! A user decides to test themselves on a card in the learning box. They look at the
-\texttt{front}, make a guess as to what's on the \texttt{back}, and \emph{checks} to see if their guess was correct (Fig.~\ref{fig:goal_check})! If the guess
-was correct, the card can be \emph{promoted} by moving it to the \emph{next} partition. If the guess was wrong, the card is \emph{penalized} by being moved
-very first partition in the box.
+The next method we shall model with SDMs is probably the most important! When user decides to test themselves on a card in the learning box, this is the method
+that will be invoked! The user can see the contents on the \texttt{front} of the card, and so they'll make a guess as to what's on the \texttt{back}, and
+\emph{check} to see if their guess was correct (Fig.~\ref{fig:goal_check}). If true, the card can be \emph{promoted} by moving it to the \emph{next} partition.
+If false, the card is \emph{penalized} by being sent to very first partition in the box.
 
 \begin{figure}[htbp]
  	\centering
@@ -16,8 +16,8 @@ very first partition in the box.
 \end{figure}
 \FloatBarrier
 
-As you can see, the guess itself just a simple assertion. The resulting actions however must be implemented as patterns since they manipulate data in three
-unique elements (Fig.~\ref{fig:patterns_check}).
+As you can see, checking the guess is simple assertion. The actual movement however, must be implemented as patterns since they manipulate data.
+Fig.~\ref{fig:patterns_check} briefly shows the intended creation and deletion links that each of these patterns must make.
 
 \begin{figure}[htbp]
  	\centering
@@ -29,13 +29,11 @@ unique elements (Fig.~\ref{fig:patterns_check}).
 \end{figure}
 \FloatBarrier
 
-\vspace{0.5cm}
 \begin{itemize}
 \item[$\blacktriangleright$] Select one of the links below to begin this pattern.
 \end{itemize}
 
-\begin{center} {$\triangleright$ \hyperlink{checkCard vis}{Checking a Card: The visual syntax}}%
-\\ \vspace{0.5cm}
+\begin{center} {$\triangleright$ \hyperlink{checkCard vis}{Checking a Card: The visual syntax}}\\%
 {$\triangleright$ \hyperlink{checkCard tex}{Checking a Card: The textual syntax} }\end{center} 
 
 

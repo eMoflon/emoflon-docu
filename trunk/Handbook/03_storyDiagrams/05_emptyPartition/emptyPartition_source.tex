@@ -3,9 +3,9 @@
 \genHeader
 \hypertarget{sec:emptyPartition}{}
 
-The next SDM we'll build should \emph{empty} a partition of all its cards by removing every card within it. To do this, we obviously need a construct for
-repeating the action for all cards in the partition (Fig.~\ref{fig:goal_empty}). In SDM, this is \note{For Each} accomplished via a \emph{For Each} story node.
-A \emph{for each} story node performs the specified actions for \emph{every} match in its pattern.
+This next SDM should \emph{empty} a partition of all its cards by removing every card within it. Since we can assume that there is more than one card in the
+partition\footnote{If there was only one, we would just invoke \texttt{removeCard}.}, we obviously need some construct for repeatedly deleting each card in the
+partition an unknown number of times (Fig.~\ref{fig:goal_empty}). 
 
 \vspace{0.5cm}
 
@@ -18,6 +18,28 @@ A \emph{for each} story node performs the specified actions for \emph{every} mat
 \FloatBarrier
 
 \vspace{0.5cm}
+
+In SDM, this \note{For Each} construct is accomplished via a \emph{for each} story node. A
+\emph{for each} story node performs the specified actions for \emph{every} match in its pattern. That means for every \texttt{Card} the pattern finds, it'll
+peform an action set.
+
+This construct however, gives us two very interesting points to dicuss. Firstly, how would the pattern be interpreted if the node was a normal story node, not a
+\emph{for each}?
+
+The pattern would specify that \emph{a} card should be matched and deleted from the current partition - that's it. The \emph{exact} card is not specified,
+meaning that the actual choice of the card is \emph{non-deterministic} or random, and it is only done once. This randomness is a common property of both graph
+transformations and pattern matching, and it's something that takes time getting used to.  In general, there are no guarantees concerning the choice and
+order of valid matches. The \emph{for each} node ensures that \emph{all} cards will be matched and deleted.
+
+Our second point is determining if we actually need to destroy the link between \texttt{this} and \texttt{card}. Would the pattern be interpreted differently if we
+destroyed \texttt{card} and left the link?
+
+The answer is no, the pattern would yield the same result, regardless of if the link is explicitly destroyed!  \note{Dangling Edges}This is due to the
+transformation engine eMoflon uses\footnote{CodeGen2, a part of Fujaba \url{http://www.fujaba.de/}}. It ensures that there are never any \emph{dangling edges}
+in a model. Since deleting just the \texttt{card} would result in a `dangling edge' attached to \texttt{this}, that link is deleted as well. Explicitly
+destroying the link is therefore a matter of taste, so \ldots why not be as explicit as possible?
+
+\vspace{1cm}
 \begin{itemize}
 \item[$\blacktriangleright$] Select a link below to begin this SDM.
 \end{itemize}

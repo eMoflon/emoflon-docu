@@ -1,22 +1,24 @@
 \newpage
-\subsection{Checking a card (Visual)}
+\subsection{Partition::check(Card, EString) - The visual syntax}
 \visHeader
 \hypertarget{checkCard vis}{}
 
-As you're almost an SDM wizard already, try, using concepts we have already learnt, to create the control flow for \texttt{Partition::check} as depicted in
-figure~\ref{fig:sdm_check_start}.
+\begin{itemize}
+
+\item[$\blacktriangleright$] Since you're nearly a SDM wizard already, try using concepts we have already learnt to create the control flow for
+\texttt{Partition::check} as depicted in Fig.~\ref{fig:sdm_check_start}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{ea_activityCheck.pdf}
+  \includegraphics[width=1\textwidth]{ea_activityCheck.pdf}
   \caption{Activity diagram for \texttt{Partition::check}}
   \label{fig:sdm_check_start}
 \end{center}
 \end{figure}
 
-To check if the guess was correct, create an object variable that is bound to the argument \texttt{card}, representing the card the user has picked from the
-learning box. Remember that this binding is implicitly specified by choosing the name of the argument as the name of the object variable 
-(Fig.~\ref{fig:sdm_check_addCard}).
+\item[$\blacktriangleright$] To check if the guess was correct, create an object variable that is bound to the argument \texttt{card}. This will
+representing the card the user has picked from the learning box. Remember that this binding is implicitly defined by choosing the name of the argument as the
+name of the object variable (Fig.~\ref{fig:sdm_check_addCard}).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -26,30 +28,25 @@ learning box. Remember that this binding is implicitly specified by choosing the
 \end{center}
 \end{figure}
 
-Now that we have the card to be checked, we need to compare the user's guess to\note{Attribute Constraint} the actual answer on the back of the card. To do this
-we need to specify an \emph{Attribute Constraint}. An attribute constraint is a non-structural condition that must be satisfied for a story pattern to match,
-and can be specified by choosing the \texttt{Attribute Constraint} tab as depicted in figure~\ref{fig:sdm_check_att_constraint}. In this dialogue, choose the
-attribute to be used in formulating the constraint (\texttt{back}), and the type of \texttt{Expression} used to express it. As we shall compare the
-back of the card with the user's guess, passed in as a parameter, we need a \texttt{ParameterExpression} to refer to this value.
-In the previous section, we already used parameter expressions to specify the return value in a stop node. Now choose the parameter (\texttt{guessed}) and the
-type of constraint or \emph{operation} to be executed -- in this case an equality check (\texttt{==}). Press the button labelled \texttt{Add} and admire your
-first attribute constraint (Fig.~\ref{fig:sdm_check_att_constraint})!
+% Will this attribute constraint also be defined for textual??
+\item[$\blacktriangleright$] Now that we have the card to be checked, we need to compare the user's guess to\note{Attribute Constraint} the actual answer on the
+back of the card. To do this we need to specify an \emph{Attribute Constraint}. An attribute constraint is a non-structural condition that must be satisfied for
+a story pattern to match, and can be specified by choosing the \texttt{Attribute Constraint} tab as depicted in Fig.~\ref{fig:sdm_check_att_constraint}. In this
+dialogue, choose the attribute to be used in formulating the constraint (\texttt{back}), and the type of \texttt{Expression} used to express it. As we shall
+compare the back of the card with the user's guess (passed in as a parameter), we'll need to use a \texttt{ParameterExpression} again to refer to this value.
 
+\item[$\blacktriangleright$] In the previous section, we used a \emph{ParameterExpression} to specify the return value in a stop node. Now, choose the parameter
+(\texttt{guessed}), and the type of constraint or \emph{operation} to be executed. In this case, it's an equality check (\texttt{==}). Press the button labelled
+\texttt{Add} and admire your first attribute constraint (Fig.~\ref{fig:sdm_check_att_constraint}).
+
+% Update this screenshot
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{ea_addAttributeConstraint}
-  \caption{Add an attribute constraint with a parameter expression}
-  \label{fig:sdm_check_att_constraint}
+  \caption{Add an attribute constraint with a parameter expression {\bf UPDATE}}
+  \label{fig:sdm_check_att_constraint }
 \end{center}
 \end{figure}
-
-Let's get back to the control flow for a bit.  We need to specify that the card is to be penalised if the guess was wrong (the story node
-\texttt{Check\-If\-Guess\-Is\-Correct} did not match) and to be promoted if it was correct (a match could be found, i.e., all constraints/conditions both
-\note{Edge Guards} structural and non-structural could be fulfilled). Such an if/else construct is specified in SDMs via \emph{Edge Guards}. To add a guard to
-the edge leading from \texttt{Check\-If\-Guess\-Is\-Correct} to \texttt{penalize\-Card}, double click the edge and choose the \emph{Guard Type}
-in the dialogue (Fig.~\ref{fig:sdm_check_guard}).
-
-Choose \texttt{Failure}, repeat the process for the edge leading to \texttt{promoteCard} and choose \texttt{Success}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -59,12 +56,27 @@ Choose \texttt{Failure}, repeat the process for the edge leading to \texttt{prom
 \end{center}
 \end{figure}
 
+Let's return to the control flow.  We need to explicitly specify that the card is to be penalised if the guess was wrong (the story node
+\texttt{Check\-If\-Guess\-Is\-Correct} did not match) and to be promoted if it was correct (a match could be found, i.e., all constraints/conditions both
+\note{Edge Guards} structural and non-structural could be fulfilled). Such an if/else construct is specified in SDMs via \emph{Edge Guards}.
 
-The next feature of our tool we shall learn is a means of coping with large patterns. It might be nice to visualise \emph{small} story patterns directly in
-their story nodes, but for large patterns or complex surrounding control flow, such diagrams would get very cumbersome and unwieldy pretty quickly.  This is
-indeed a popular argument against visual languages and it might already have crossed your mind (``this is cute, but it'll \emph{never} scale!''). With the right
-tools and concepts however, even huge diagrams can be mastered. We\note{Extracting Patterns} support \emph{extracting} story patterns to their own extra
-diagrams and recommend this for most cases (unless the pattern is really concise and only contains about 2-3 object variables).
+\item[$\blacktriangleright$] To add a guard to the edge leading from \texttt{Check\-If\-Guess\-Is\-Correct} to \texttt{penalize\-Card}, double click the edge
+and set the \emph{Guard Type} in the dialogue (Fig.~\ref{fig:sdm_check_guard}).
+
+\item[$\blacktriangleright$] Choose \texttt{Failure}, and repeat the process for the edge leading to \texttt{promoteCard} by selecting \texttt{Success}.
+
+\pagebreak
+
+The next feature of eMoflon that we shall learn about is a means of coping with large patterns\footnote{You thought I was going to say 'coping with our coffee
+addiction', weren't you?}. It might be nice to visualise \emph{small} story patterns directly in their story nodes, but for large patterns or complex
+surrounding control flow, such diagrams would get extremely cumbersome and unwieldy very quickly!  This is indeed a popular argument against visual languages and
+it might already have crossed your mind (``this is cute, but it'll \emph{never} scale!''). With the right tools and concepts however, even huge diagrams can be
+mastered. We\note{Extracting Patterns} support \emph{extracting} story patterns to their own extra diagrams, and recommend this for most cases (unless the
+pattern is really concise and only contains 2 or 3 object variables).
+
+\item[$\blacktriangleright$] To extract an empty or already partially modelled story pattern, just double-click the corresponding story node
+(\texttt{promoteCard}) and choose \texttt{Extract Story Pattern} (Fig.~\ref{fig:sdm_check_extract_storypattern}). Note the new diagram that is immediately
+opened and created in the project browser (Fig.~\ref{fig:sdm_new_sub_diagram}).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -74,10 +86,6 @@ diagrams and recommend this for most cases (unless the pattern is really concise
 \end{center}
 \end{figure}
 
-To extract an empty or already partially modelled story pattern, just double-click the corresponding story node (\texttt{promoteCard}) and choose
-\texttt{Extract Story Pattern} (Fig.~\ref{fig:sdm_check_extract_storypattern}). Note the new diagram that is immediately opened and created in the project
-browser (Fig.~\ref{fig:sdm_new_sub_diagram}).
-
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.75\textwidth]{sdm_new_storypattern_diagram}
@@ -86,26 +94,30 @@ browser (Fig.~\ref{fig:sdm_new_sub_diagram}).
 \end{center}
 \end{figure}
 
+\item[$\blacktriangleright$] Another EA gesture you should take advantage of is a good ol' \emph{Drag and Drop} action from the project
+browser\footnote{Remember the other two gestures we have learnt: Quick Link and Quick Create.}. We can use this as an alternative to the SDM toolbox. To create
+an object variable, simply drag and drop the class \texttt{Card} from the project browser and into the extracted story pattern diagram
+(Fig.~\ref{fig:sdm_check_bound_card}).
+
+% UPDATE THIS SCREENSHOT
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{sdm22RAW}
-  \caption{Add an object variable per drag and drop}
+  \caption{Add an object variable per drag and drop {\bf UPDATE}}
   \label{fig:sdm_check_bound_card}
 \end{center}
 \end{figure}
 
-Yet another EA gesture is a good old \emph{Drag and Drop} action from the project browser\footnote{Remember the other two gestures we have learnt:
-Quick Link and Quick Create.}, which we use as an alternative to the SDM toolbox. To create an object variable, simply drag and drop the class \texttt{Card}
-from the project browser and into the extracted story pattern diagram (Fig.~\ref{fig:sdm_check_bound_card}).  A dialogue should pop-up asking if you want to (1)
-create a simple link (referring to \texttt{Card} as a class) or (2) create an Object (as an instance of \texttt{Card}), or (3), if you want to create a
-subclass. In our case we want to create an object(variable) and so (2) is nearest in meaning. As this \texttt{Paste Element} dialogue is a bit annoying, EA 
-allows you to choose a default for \emph{all} drag and drop gestures. Go ahead and check \texttt{All Drag and Drop} so that option (2) is used next time as the
-default.  Furthermore, you should also check \texttt{Only show this dialog when Ctrl+Mouse drag is used}, so that the default is used \emph{without} popping up
-this dialogue for confirmation. Don't worry, if you ever need options (1) and (3), for example when metamodelling, you  just need to hold \texttt{Ctrl} when
-dragging to invoke the dialogue and change  the settings to suit the current modelling activity.
+A dialogue should pop-up asking if you want to (1) create a simple link (referring to \texttt{Card} as a class), (2) create an Object (as an instance of
+\texttt{Card}), or (3) if you want to create a subclass. In our case we want to create an object(variable) and so (2) is the best choice. Since this
+\texttt{Paste Element} dialogue is a bit annoying, EA allows you to choose a default for \emph{all} drag and drop gestures.
 
-After creating the object, you will be asked to set the object variable properties. Set its \texttt{Name} to ''card'' and its \texttt{Binding State} to
-''Bound'' (Fig.~\ref{fig:sdm_new_card_properties}).
+\item[$\blacktriangleright$] Go ahead and check \texttt{All Drag and Drop} so option (2) is used next time by default. You should also check \texttt{Only show
+this dialog when Ctrl+Mouse drag is used}, so that the default is used \emph{without} popping up a confirmation dialogue. Don't worry, if you ever need options
+(1) and (3), you  just need to hold \texttt{Ctrl} when dragging to invoke the dialogue and change the settings.
+
+\item[$\blacktriangleright$] After creating the object, you will be asked to set the object variable properties. Set its \texttt{Name} to ``card'' and its
+\texttt{Binding State} to ''Bound'' (Fig.~\ref{fig:sdm_new_card_properties}).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -115,21 +127,14 @@ After creating the object, you will be asked to set the object variable properti
 \end{center}
 \end{figure}
 
-The main advantage of drag and drop is that the \texttt{Object Variable Pro\-per\-ties} dialogue that now pops-up should have the type of the object variable
-pre-configured. Choosing the type in the project browser and dragging it in is for most people a more natural gesture than choosing the type from a long
-drop-down menu and can really be a great time saver for large metamodels\footnote{Drag and drop is also possible in embedded story patterns (still visualised in
+The main advantage of drag and drop is that the \texttt{Object Variable Pro\-per\-ties} dialogue that pops-up should have the type of the object variable
+pre-configured. Choosing the type in the project browser and dragging it in is (for most people) a more natural gesture than choosing the type from a long
+drop-down menu. It can really be a great time saver for large metamodels\footnote{Drag and drop is also possible in embedded story patterns (still visualised in
 their story nodes).  You must ensure however, that the object variable is \emph{completely} contained inside the story node and does not stick out over any
 edge}.
 
-Let's move on with the current pattern. Remember that we want to promote the card. As a first step drag and drop two further object variables for \texttt{this}
-(the current partition) and the next partition according to (Fig.~\ref{fig:sdm_check_complete_sp}). An important point to note here is that \texttt{this} and
-\texttt{card} are visually differentiated from \texttt{nextPartition} by their bold border lines.
-This is how we differentiate \emph{bound} \note{Bound vs. Unbound} variables (\texttt{this, card}) from \emph{unbound} or \emph{free} variables like
-\texttt{nextPartition}. We already know that matches for bound variables are completely determined by the current context (argument of the method, current
-``this" object).
-Matches for unbound variables on the other hand, have to be determined by the pattern matcher. Such matches are ``found'' by navigating and searching in the
-current model for possible matches that satisfy all specified constraints (e.g. type of the variable, links connecting it to other variables and attribute
-constraints).
+\item[$\blacktriangleright$] Let's move on with the current pattern. Remember that we want to promote the card. As a first step, drag and drop two further
+object variables for \texttt{this} (the current partition), and the \texttt{nextPartition}, as depicted in Fig.~\ref{fig:sdm_check_complete_sp}. 
 
 \begin{figure}[htbp]
 \begin{center}
@@ -139,9 +144,15 @@ constraints).
 \end{center}
 \end{figure}
 
-In our case, the next partition has to be determined, by navigating from \texttt{this} via the \texttt{next} link in the metamodel.  Make sure the bound
-checkbox for \texttt{nextPartition} is left empty and quick link from \texttt{this} to \texttt{nextPartition}, or vice-versa, to create a \texttt{next} link
-variable as indicated in figure~\ref{fig:sdm_check_link_variable}.
+An important point to note here is that \texttt{this} and \texttt{card} are visually differentiated from \texttt{nextPartition} by their bold border lines.
+This is how we differentiate \emph{bound} \note{Bound vs. Unbound} variables (\texttt{this, card}) from \emph{unbound} or \emph{free} variables like
+\texttt{nextPartition}. We already know that matches for bound variables are completely determined by the current context. On the other hand, matches for
+unbound variables, have to be determined by the pattern matcher. Such matches are ``found'' by navigating and searching the current model for possible matches
+that satisfy all specified constraints (e.g. type of the variable, links connecting it to other variables and attribute constraints). In our case, the next
+partition has to be determined by navigating from \texttt{this} via the \texttt{next} link in the metamodel.  
+
+\item[$\blacktriangleright$] Make sure the bound checkbox for \texttt{nextPartition} is left empty, and quick link from \texttt{this} to \texttt{nextPartition}
+(or vice-versa) to create a \texttt{next} link variable, as shown in Fig.~\ref{fig:sdm_check_link_variable}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -151,8 +162,8 @@ variable as indicated in figure~\ref{fig:sdm_check_link_variable}.
 \end{center}
 \end{figure}
 
-If you've done everything right, your story pattern should now closely resemble figure~\ref{fig:sdm_check_complete_activity_node}.  Take a step back and reflect
-on what the pattern expresses.
+\item[$\blacktriangleright$] If you've done everything right, your story pattern should now closely resemble Fig.~\ref{fig:sdm_check_complete_activity_node}. 
+Reflect on what the pattern expresses.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -162,10 +173,10 @@ on what the pattern expresses.
 \end{center}
 \end{figure}
 
-Now repeat the process for the story node \texttt{penalizeCard}: extract the story pattern, and create all variables as depicted in
-figure~\ref{fig:sdm_check_complete_penalize}.  This pattern is quite similar to \texttt{promoteCard} but moves the card from \texttt{this} to \texttt{previous}
-instead of \texttt{next}.  Just like before, \texttt{previousPartition} is unbound and must be determined by navigating from \texttt{this} along the link
-\texttt{previous}.
+\item[$\blacktriangleright$] Now repeat the entire process for the story node \texttt{penalizeCard}: extract the story pattern, and create all variables as
+depicted in Fig.~\ref{fig:sdm_check_complete_penalize}.  This pattern is quite similar to \texttt{promoteCard}, except it moves the card from \texttt{this} to
+\texttt{previous} instead of to \texttt{next}. Exactly the same as before, \texttt{previousPartition} is unbound and must be determined by navigating from \texttt{this}
+along the link \texttt{previous}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -175,8 +186,8 @@ instead of \texttt{next}.  Just like before, \texttt{previousPartition} is unbou
 \end{center}
 \end{figure}
 
-To complete our SDM, we need to signalise, as a return value, if the guess was correct or not (and consequently if the card was promoted or penalised).  To do
-\note{Literal Expression} this, double-click the stop node after \texttt{promoteCard} and choose \texttt{LiteralExpression} as the type of expression
+\item[$\blacktriangleright$] To complete our SDM, we need to signalise as a return value if the guess was correct or not (and consequently if the card was promoted or penalised).  To do
+\note{Literal-\\ Expression} this, double-click the stop node after \texttt{promoteCard} and choose \texttt{LiteralExpression} as the type of expression
 (Fig.~\ref{fig:sdm_check_literal_exp}).
 
 \begin{figure}[htbp]
@@ -187,8 +198,8 @@ To complete our SDM, we need to signalise, as a return value, if the guess was c
 \end{center}
 \end{figure}
 
-\emph{Literal expressions} can be used to specify arbitrary text.  This should actually be used only for \emph{literals} like 42, ``foo'' or \texttt{true} but
-can of course be (mis)used for formulating any (Java) expression that will simply be transferred ``literally'' into the  generated code.
+\emph{LiteralExpressions} can be used to specify arbitrary text.  This should really only used for true literals like 42, ``foo'' or \texttt{true}, but it can
+be (mis)used for formulating any (Java) expression that will simply be transferred ``literally'' into the  generated code.
 This is obviously sort of dirty\footnote{It defeats, for example, any attempt to guarantee type safety.} and should be avoided if possible.
 
 \begin{figure}[htbp]
@@ -199,7 +210,14 @@ This is obviously sort of dirty\footnote{It defeats, for example, any attempt to
 \end{center}
 \end{figure}
 
-Type in \texttt{true} as the value of the expression (Fig.~\ref{fig:sdm_check_literal_exp}) and complete the SDM by returning \texttt{false} after penalising a
-card.  Please ensure that your SDM (the control flow) closely resembles figure~\ref{fig:sdm_check_finish}.
-As always, export the project, generate code and inspect the implementation for \texttt{check}.  We strongly recommend that you even write a simple JUnit test
-(take a look at our simple test case in Sec.~\ref{sec:junit} for inspiration) to take your brand new SDM for a test-spin.
+\item[$\blacktriangleright$] Type in \texttt{true} as the value of the expression (Fig.~\ref{fig:sdm_check_literal_exp}) and complete the SDM by returning
+\texttt{false} after penalising a card. Ensure that your SDM (the control flow) closely resembles Fig.~\ref{fig:sdm_check_finish}.
+
+\item[$\blacktriangleright$] As always, export the project, generate code and inspect the implementation for \texttt{check}.  We strongly recommend that you
+even write a simple JUnit test (take a look at our simple test case from Part I for inspiration) to take your brand new SDM for a test-spin.
+
+\fancyfoot[R]{ $\triangleright$ \hyperlink{sec:emptyPartition}{Next SDM} }
+\item[$\blacktriangleright$] Press the link below to proceed to the next SDM implementation, or skip over to the next page to learn how \texttt{check} is
+implemented in the textual syntax.
+
+\end{itemize}
