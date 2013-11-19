@@ -8,7 +8,7 @@ As you now know, eMoflon is a plug-in for Eclipse. More precisely, eMoflon requi
 models, Genmodel and Ecore, for code generation. The Genmodel contains boring information about code generation such as path, file prefixes, and other
 information. We are more interested in the Ecore model, which we specify with MOSL.
 
-When you switched the project explorer from \texttt{Projects} to \texttt{Top Level Elements}, you noticed that a few extra nodes were displayed in the project
+When you switched the ``Top Level Elements'' from \texttt{Projects} to \texttt{Working Sets}, you noticed that a few extra nodes were displayed in the project
 browser. Each node you see has different criteria for grouping related Eclipse Projects together, which makes them your project \emph{working sets}.
 
 The \texttt{Specifications} working set contains all \emph{metamodel projects} in a workspace (Fig. ~\ref{fig_modelSpecification}). This means that for every
@@ -16,7 +16,7 @@ new metamodel you create in your current workspace, all of the relevant files wi
 
  \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.5\textwidth]{eclipse_Specification}
+  \includegraphics[width=0.6\textwidth]{eclipse_Specification}
   \caption{Specification working set}
   \label{fig_modelSpecification}
 \end{figure}
@@ -37,8 +37,8 @@ container functions are used exclusively for control flow (ie., sequences, branc
 
  \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.6\textwidth]{eclipse_eclassNode}
-  \caption{The \texttt{Node} eclass {\bf update (comments)}}
+  \includegraphics[width=1.0\textwidth]{eclipse_commentsNode}
+  \caption{The \texttt{Node} eclass}
   \label{fig_eclassNode}
 \end{figure}
 
@@ -66,6 +66,6 @@ So that's a quick overview of the MOSL language but again, how to we generate co
 
 %\fancyfoot[R]{  $\triangleright$ \hyperlink{codeGen common}{Next} }
 
-First, eMoflon does not do perform compelete code generation on every change. To improve performance, only the parser is invoked when you save files. This means
+First, eMoflon does not perform compelete code generation on every change. To improve performance, only the parser is invoked when you save files. This means
 that to generate code for the project, you need to invoke the \texttt{Build (and clean)} command from the eMoflon context menu after right clicking your
 metamodel project.
