@@ -10,6 +10,8 @@ Before we continue, please make a few slight adjustments to Enterprise Architect
 \item[$\blacktriangleright$] Select ``Tools/Options/Standard Colors'' in EA, and set your colours to reflect Fig.~\ref{fig_standardColoursEA}.
 This is advisable but you are, of course, free to choose your own colour schema.
 
+\vspace{0.5cm}
+
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.8\textwidth]{standardColours}
@@ -17,10 +19,14 @@ This is advisable but you are, of course, free to choose your own colour schema.
   \label{fig_standardColoursEA}
 \end{figure}
 
+\vspace{0.5cm}
+
 \item[$\blacktriangleright$] In the same dialogue, go to ``Diagram/Appearance'' and reflect the settings in Fig.~\ref{fig_standardAppearanceEA}.
 Again, this is just a suggestion and not mandatory.
 
 %\nxtPage{\thepage}
+\vspace{0.5cm}
+
 \item[$\blacktriangleright$] Last but not least, and still in the same dialogue, find ``Source Code Engineering'' and be sure to choose \texttt{Ecore} as the
 default language for code generation (Fig.~\ref{fig_standardSCEEA}). This setting \emph{is} mandatory, and very important.
 \end{itemize}
@@ -37,15 +43,17 @@ default language for code generation (Fig.~\ref{fig_standardSCEEA}). This settin
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{standardCodeEngineering}
-    \caption{Make sure you set the standard language to Ecore}
+    \caption{Make sure you set the standard language to \texttt{Ecore}}
     \label{fig_standardSCEEA}
  \end{figure}
  
+\clearpage
+
 In your EA `workspace' (actually referred to as an \emph{EA project}), take a careful  look at the project browser:  The root node \texttt{Demo} is called a
 \emph{model} in EA lingo, and is used as a container to group a set of related \emph{packages}. In our case, \texttt{Demo}  consists of a single package
 \texttt{DoubleLinkedListLanguage}. An EA project however, can consist of numerous models that in turn, group numerous packages.
 
-Now switch back to your \emph{Eclipse workspace} and note the two nodes named \texttt{Spe\-ci\-fi\-ca\-tions} and \texttt{Demo} (Fig.~\ref{fig_eclipsePS}).
+Now switch back to your Eclipse workspace and note the two nodes named \texttt{Spe\-ci\-fi\-ca\-tions} and \texttt{Demo} (Fig.~\ref{fig_eclipsePS}).
 
 \begin{figure}[htbp]
     \centering
@@ -66,7 +74,7 @@ in EA is mapped to a working set in Eclipse with the same name. From every packa
 
 \begin{figure}[htbp]
     \centering
-  \includegraphics[width=\textwidth]{bothexplorers}
+  \includegraphics[width=\textwidth]{Unbenannt}
     \caption{From EA to Eclipse}
     \label{fig_fromEAtoEclipse}
 \end{figure}
@@ -76,17 +84,10 @@ projects}. A nature is Eclipse lingo for ``project type'' and is visually indica
 Our metamodel projects sport a neat little class diagram symbol. Repository projects are generated automatically with a certain project structure according to
 our conventions.
 
-The  \texttt{model} subfolder is probably the most important, as it contains the \emph{Ecore model} (Fig ~\ref{fig_modelSubfolder}) for the project. Ecore is a
+The \texttt{model} subfolder in the Eclipse package explorer is probably the most important as it contains the \emph{Ecore model} for the project. Ecore is a
 metamodelling language that provides building blocks such as \emph{classes} and \emph{references} for defining the  static structure (concepts and relations
 between concepts) of a system. This folder also contains a \emph{Genmodel}, the second model required by the Eclipse Modeling Framework (EMF) to generate Java
 code.
-
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.5\textwidth]{eclipse_modelSubfolder}
-	\caption{Eclipse: The model subfolder}
-	\label{fig_modelSubfolder}
-\end{figure}
 
 %\nxtPage{\thepage}
 
@@ -105,8 +106,8 @@ independent fashion using a blend of activity  diagrams and a ``graph pattern'' 
 
 %\nxtPage{\thepage}
 
-In our EA project, these `Story Diagrams' or simply \emph{SDM}s, are placed in SDM Containers named according to the method they implement.
-E.g.  \texttt{$\guillemotleft$SDM Activity$\guillemotright$ insertNodeAfter SDM} for the method  \texttt{insertNodeAfter(Node)} as depicted in
+In our EA project, these \emph{Story Diagrams} or simply \emph{SDM}s, are placed in SDM Containers named according to the method they implement.
+E.g.  \texttt{$\guillemotleft$SDM Activity$\guillemotright$ insertNodeAfter SDM} for the method \texttt{insertNodeAft\-er(Node)} as depicted in
 Fig.~\ref{fig_fromEAtoEclipse}.  We'll dedicate Part III of the handbook to understanding why SDMs are so  {\huge crazily} cool!
 
 To recap all we've discussed, let's consider the complete workflow as depicted in Fig.~\ref{fig_Overview}.
