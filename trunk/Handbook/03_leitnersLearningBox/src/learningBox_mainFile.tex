@@ -39,14 +39,16 @@
 
 \newcommand{\note}[1]{\marginpar{\emph{#1}}}
 
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{1}
 
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
+
 \graphicspath{%
 {../../00_introduction/common/}%
-{../2_staticSemantics/vis_anAbstractDefinition/abstractImages/}{../2_staticSemantics/tex_ConcreteDefinition/concreteImages/}%
+{../2_staticSemantics/1_newStart/nsImages/}{../2_staticSemantics/2_definingClasses/dcImages/}%
+{../2_staticSemantics/3_connectingClasses/ccImages/}{../2_staticSemantics/4_creatingMethods/cmImages/}%
 {../3_validatingMetamodel/vis_EAValidation/03_images/}%
 {../4_creatingInstance/04_images/}%
 }
@@ -58,6 +60,16 @@
 \newcommand{\nxtPage}[1]{
 	\FPeval{\nxtPg}{clip(#1 +1)}
 	\fancyfoot[R]{$\triangleright$ \hyperlink{page.\nxtPg}{Next}}
+}
+
+% Command to output suggested time for handbook part
+\newcommand{\requiredTime}[1]{
+	{\scriptsize \texttt{Approximate time to complete: #1} }
+}
+
+% Formats words to appear in margin; These definitons should appear in the glossary
+\newcommand{\define}[1]{
+	\marginpar{\small\emph{#1}}
 }
 
 % --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
@@ -97,8 +109,8 @@
 }
 
 % --- Title Page Information ----------------------------------------------------------------------------------------------------------------------------------
-\def\partTitle{Part II: Leitner's Learning Box}
-\def\versionNumber{0.5}
+\def\partTitle{Part II: Ecore}
+\def\versionNumber{0.0}
 \input{../../00_introduction/common/titlepage}
 % -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
