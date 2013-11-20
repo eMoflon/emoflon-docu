@@ -3,22 +3,22 @@
 \visHeader
 \hypertarget{static:starting vis}{}
 
-You can begin modeling Leitner's Box in one of two ways - you can build the diagrams in the same workspace as the Part I demo by
-opening the old \texttt{`demo.eap'} file, or you can start afresh by going to ``New Metamodel Project,'' choosing to start a new visual project without a demo
-(Fig.~\ref{fig:new_visModel}), and opening that \texttt{.eap} file. This handbook has assumed you prefer the latter, which is reflected in the screenshots.
-If you use the previous files, please note that the steps are exactly the same, but our package explorers may not match exactly. Keep a sharp eye out for
-footnotes which explain the few differences.
+You can begin modeling Leitner's Box in two different ways. You can either continue in the same workspace as the Part I demo by opening the previous
+\texttt{demo.eap} file in EA, initializating a new diagram and working within that space, or you can start this project with a clean slate by going to ``New
+Metamodel Project,'' choosing to start a new visual project (without the demo specifications) (Fig.~\ref{fig:new_visModel}), and opening that empty
+\texttt{.eap} file. This handbook has assumed you prefer the latter, which is reflected in the screenshots. If you use the previous file, please note that the
+steps are exactly the same, but our package explorers may not match exactly. Keep a sharp eye out for footnotes which will explain the few differences.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.7\textwidth]{eclipse_newMetamodelVisualPlain}
+  \includegraphics[width=0.9\textwidth]{eclipse_newMetamodelVisualPlain}
 	\caption{Starting a new visual project}
 	\label{fig:new_visModel}
 \end{figure}
 
 \newpage
 \begin{itemize}
-\item[$\blacktriangleright$] From EA, select your working set and click on the \texttt{Add a Package} button (Fig.~\ref{fig:new_package}).
+\item[$\blacktriangleright$] From EA, select your working set and press the ``Add a Package'' button (Fig.~\ref{fig:new_package}).
 
 \begin{figure}[htbp]
 	\centering
@@ -30,8 +30,8 @@ footnotes which explain the few differences.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] In the dialogue that pops up (Fig.~\ref{fig:new_package_name}), choose \texttt{Class View}, enter \texttt{Learning\-Box\-Language}
-as the name of the new package and click \texttt{OK}.
+\item[$\blacktriangleright$] In the dialogue that pops up (Fig.~\ref{fig:new_package_name}), enter 'Learning\-Box\-Language' as the name of the new package,
+choose \texttt{Class View},  and click \texttt{OK}.
 
 \begin{figure}[htbp]
 	\centering
@@ -54,7 +54,7 @@ as the name of the new package and click \texttt{OK}.
 \FloatBarrier
 
 \clearpage
-\item[$\blacktriangleright$] Now create a \texttt{New Diagram} (Fig.~\ref{fig:diagram}).
+\item[$\blacktriangleright$] Now create a ``New Diagram'' (Fig.~\ref{fig:diagram}).
 
 \begin{figure}[htbp]
 	\centering
@@ -64,7 +64,7 @@ as the name of the new package and click \texttt{OK}.
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] In the dialogue that appears, (Fig.~\ref{fig:diagram_type}), choose \texttt{eMoflon Ecore Diagrams}, then select \texttt{OK}.
+\item[$\blacktriangleright$] In the dialogue that appears, (Fig.~\ref{fig:diagram_type}), choose \texttt{eMoflon Ecore Diagrams}, then press \texttt{OK}.
 
 \begin{figure}[htbp]
 	\centering
@@ -85,7 +85,9 @@ as the name of the new package and click \texttt{OK}.
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] You have now just created the starting part for your Leitner's Box!
+\item[$\blacktriangleright$] These are the basic steps for creating \emph{any} new metamodel. Your LearningBoxLanguage diagram will be the starting point, or
+anchor, for each piece of this example program. All generated code is derived from this location. Your working set is able to hold several different projects at
+once\footnote{which is the current case if you're continuing with the previous demo files.} some other comment here. Careful not to rehash.
 
 \fancyfoot[R]{$\triangleright$ \hyperlink{static:classes vis}{Next}}
 \end{itemize}
