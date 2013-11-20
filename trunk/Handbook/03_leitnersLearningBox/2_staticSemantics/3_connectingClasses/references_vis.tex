@@ -1,5 +1,5 @@
 \newpage
-\subsection{Connecting your classes}
+\subsubsection{Connecting your classes in EA}
 \visHeader
 \hypertarget{static:references vis}{}
 
@@ -16,71 +16,92 @@ manner. To use Quick Link, choose an element and note the little black arrow in 
 \end{figure}
 \FloatBarrier
 
-Click on this black arrow and `pull' to another element you wish to link to. To start, quick link from \texttt{Box} to \texttt{Partition}. In the context-menu
-that pops up, choose \texttt{Create Bidirectional EReference} (Fig.~\ref{fig:ereference}).
+Click this black arrow and `pull' to the element you wish to link to. To start, quick-link from \texttt{Box} to \texttt{Partition}. In the context menu
+that appears, select ``Create Bidirectional EReference'' (Fig.~\ref{fig:ereference}).
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.5\textwidth]{ea_eReferenceBidirectional}
+  \includegraphics[width=0.6\textwidth]{ea_eReferenceBidirectional}
 	\caption{Create a reference via Quick Link}
 	\label{fig:ereference}
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] Double click the reference to invoke a dialogue. Here you can change the reference direction\footnote{this is particuluary useful
-if you accidentally click one of the other options while creating the quick link and wish to change it, or if you went backwards from partition to box.} and
-enter a name. The name will only be used for documentation purposes as it is not relevant for code generation.
+\item[$\blacktriangleright$] Double click the reference to invoke a dialogue. Here you can change the reference direction and enter a name. Feel free to leave
+the \texttt{Name} value blank - this property is only used for documentation purposes, and not relevant to code generation.
 
-\item[$\blacktriangleright$] In the same dialogue, choose \texttt{Target Role} and enter the values in Fig.~\ref{fig:reference_ends} to set the properties for
-the ``target'' end of the reference (the \texttt{Box} role). As you can see, the default target is set to the class you linked \emph{from}, and the default
-source is the class you linked \emph{to}. If you decided to ignore the instructions, and went from \texttt{Partition} to \texttt{Box}, the only difference
-between the references are the titles - the following information will still be the same! In this window, it's important not to forget to check and modify the
+\item[$\blacktriangleright$] In the same dialogue, go to ``Target Role'' and enter the values in Fig.~\ref{fig:reference_ends} to set the properties for the
+`target' end of the reference (the \texttt{Box} role). As you can see, the default target is set to the class you linked \emph{from}, and the default source is
+the class you linked \emph{to}. 
+
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] If you decided to ignore the previous instructions, and went from \texttt{Partition} to \texttt{Box}, the only difference between
+the two references are their titles. The following information will still be the same! In this window, it's important not to forget to confirm and modify the
 \texttt{Role}, \texttt{Navigability}, \texttt{Multiplicity}, and \texttt{Aggregation} settings for the target.  Repeat the process for the \texttt{Source Role}.
 
+\vspace{1cm}
 
 \begin{figure}[htbp]
 	\centering
 	  \includegraphics[width=0.73\textwidth]{ea_assocPropsTarget}\\
-  \vspace{1cm}
-    \includegraphics[width=0.73\textwidth]{ea_assocPropsSource}
-	\caption{Enter properties for target and source of reference}
+	\caption{Properties for the target role of a reference}
 	\label{fig:reference_ends}
 \end{figure}
 \FloatBarrier
 
+\begin{figure}[htbp]
+	\centering
+    \includegraphics[width=0.73\textwidth]{ea_assocPropsSource}
+	\caption{Properties for the source role of a reference}
+	\label{fig:sketch_roles}
+\end{figure}
+\FloatBarrier
 
-We reviewed the source and target purposes, but what are the other three options we had to modify? Firstly, navigable ends are mapped to class attributes with
-getters and setters in Java and therefore \emph{must} have a specified name and  multiplicity for successful code generation. Corresponding values for
-non-navigable ends can  be regarded as additional documentation and do not have to be specified.
+\end{itemize}
 
-Next, the multiplicity of a reference controls if the relation is mapped to a Java Collection (\texttt{*},  \texttt{1..*}, \texttt{0..*}), or to a single valued
-class attribute (\texttt{1}, \texttt{0..1}).
+To explain, the first value you completed was the navigation name. The \texttt{Navigation} should have been automatically set to \texttt{Navigable}. Without these,
+the correct code cannot be generated. 
 
-Finally, in Ecore, the aggregation values of a reference can either be \texttt{none} or \texttt{com\-po\-site}. Composite means that the current role is that of
-a \emph{container} for the opposite role.
-In our case for example, \texttt{box} is a container for \texttt{partitions}.\\
-This has a series of consequences: (1) every element must have a container, (2) an element cannot be in more than one container at the same time, and (3) a
-container's contents are deleted together with the container. Non-composite (\texttt{none}) means that the current role is not that of a container and the rules
-for containment do not hold (reference is a simple ``pointer'').
+Next, you set the \texttt{Multiplicity} value. In your target role (\texttt{Box}), you have allowed the creation of up to
+one target (\texttt{box}) reference for every connected source (\texttt{Partition}). This means you could not have a single source connected to two targets
+(ie., one partition that belongs to two unique boxes). In the source (\texttt{Partition}) role, you have specified that any target (in our case, \texttt{box})
+can have any positive-sized number of sources. Figure~\ref{fig:sketch_roles} sketches this idea\footnote{Remember, if you quick-linked in the opposite
+direction, the concept is the same, but the role titles are reversed.}. 
 
-
-\item[$\blacktriangleright$] If you've done everything right, your workspace should now resemble Fig.~\ref{fig:ereference_completed} with a relation between
-\texttt{Box} and \texttt{Partition}.
+Finally, you set the \texttt{Aggregation} value. In this case, \texttt{box} is a
+container for \texttt{Partition}s, and \texttt{containedPartition} doesn't need to adhere to any rules.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.3\textwidth]{ea_relationBoxPartition.pdf}
+    \includegraphics[width=0.6\textwidth]{sketch_multiplicities.pdf}
+	\caption{The target and source roles of Leitner's Learning Box}
+	\label{fig:sketch_roles}
+\end{figure}
+\FloatBarrier
+
+\begin{itemize}
+
+\item[$\blacktriangleright$] Take a moment to review how the \texttt{Aggregration} settings extend the \texttt{Multiplicity}. If you've done everything right,
+your workspace should now resemble Fig.~\ref{fig:ereference_completed}, with a single bidirectional EReference between \texttt{Box} and \texttt{Partition}.
+
+\vspace{1cm}
+
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=0.4\textwidth]{ea_relationBoxPartition.pdf}
 	\caption{\texttt{Box} contains \texttt{Partition}s}
 	\label{fig:ereference_completed}
 \end{figure}
 \FloatBarrier
 
+\clearpage
+\item[$\blacktriangleright$] Create another bidirectional EReference\footnote{To be precise, \emph{all} references in Ecore are actually unidirectional.
+A ``bidirectional'' reference in our metamodel is really two mapped \texttt{EReferences} that are opposites of each other.
+We however, believe it is simpler to handle these pairs as single references, and prefer this concise concrete syntax.} between \texttt{Partition} and
+\texttt{Card}, then two unidirectional self-references for \texttt{Partition}. Your final workspace should resemble Fig.~\ref{fig:ereferences_all}.
 
-\item[$\blacktriangleright$] Create another bidirectional reference\footnote{To be precise, \emph{all} references in Ecore are actually unidirectional.
-A ``bidirectional'' reference in our metamodel is in reality mapped to two \texttt{EReferences} that are opposites of each other.
-We however believe it is simpler to handle these pairs as single references and prefer this concise concrete syntax.} between \texttt{Partition} and
-\texttt{Card}, then two unidirectional self-references for \texttt{Partition} according to Fig.~\ref{fig:ereferences_all}\footnote{If you have difficulties
-deciphering the role names and other details in this screenshot, please forward to figure~\ref{fig:metamodel_complete} for a better diagram of the metamodel.}.
+\vspace{1cm}
 
 \begin{figure}[htbp]
 	\centering
@@ -91,8 +112,8 @@ deciphering the role names and other details in this screenshot, please forward 
 
 \FloatBarrier
 
-\item[$\blacktriangleright$] All of your program attributes and references have now been set up. To see how this would appear in eMoflon's textual syntax, check
-out figures~\ref{fig:allReferences} and \ref{fig:partitionReferences} in \hyperlink{sec:static tex}{section 2.2}!
+\item[$\blacktriangleright$] All the attributes and references required for your learning box have now been set up. We encourage you to \emph{not} click the link below, and
+see how these are declared in the textual syntax, in the next section. In particular, check out Fig.~\ref{fig:allReferences}!
 
 \fancyfoot[R]{$\triangleright$ \hyperlink{static:methods vis}{Next}}
 

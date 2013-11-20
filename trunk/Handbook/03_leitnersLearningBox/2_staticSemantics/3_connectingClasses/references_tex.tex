@@ -1,60 +1,68 @@
 \newpage
-\subsection{Connecting your classes}
+\subsubsection{Connecting your classes with MOSL}
 \texHeader
 \hypertarget{static:references tex}{}
 
+In MOSL, the declaration of a reference is simple; the syntax is made up of four parts:  \small{\texttt{[Aggregation Type][Navigation
+Name](Multiplicity):[Role]}}. A simple reference is defined with an arrow operator, while a contained reference is a sideways diamond and arrow combination.
+
+% Edit me
+To avoid redundancies in your code, it's important to know that both types automatically update the other role involved in the reference, which means you only
+have to declare a direction once.
+
+
 \begin{itemize}
 
-\item[$\blacktriangleright$] Now, lets add some references. MOSL supports two reference types - a \emph{contained reference} and a \emph{simple reference}. Both
-automatically update the other element involved in the reference automatically, which means you only have to declare a direction once.
-
-\item[$\blacktriangleright$] Activate the \texttt{Card} editor and add a simple reference named \texttt{cardContainer} with a multiplicity of zero to one, of
-type \texttt{Partition} (Fig.~\ref{fig:cardReference}). This means that a single card can belong to a maximum of 1 partition.
+\item[$\blacktriangleright$] Open \texttt{Box} class in the editor and add a \emph{container reference} named \texttt{containedPartition} with a multiplicity of zero
+to infinite, of type \texttt{Partition} (Fig.~\ref{fig:cpartitionReference}). This means {\bf THAT}.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.5\textwidth]{eclipse_cardReference}
-	\caption{Creating a \emph{simple reference} in Card}
-	\label{fig:cardReference}
+  \includegraphics[width=0.6\textwidth]{eclass_box}
+	\caption{Creating a \emph{contained reference} in \texttt{Box}}
+	\label{fig:cpartitionReference}
 \end{figure} 
 
-\item[$\blacktriangleright$] Now add a \emph{container reference} to \texttt{Partition}. Name it \texttt{card}, and allow it to hold an unlimited amount of
-cards.
+\item[$\blacktriangleright$] Now add a \emph{simple reference} to \texttt{Partition}. Name it \texttt{box}, and allow it to hold up to one \texttt{Box}
+(Fig.~\ref{fig:boxReference}). This means {\bf THAT}.
 
-\item[$\blacktriangleright$] Congratulations, you have just built your first \emph{Bidirectional EReference}! In essence, you have now set up a relation that
-allows a potentially infinite amount of item \texttt{card} to be stored in a cardContainer (partition), and restricts that \texttt{containedCard} to only
-\emph{one} partition.
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=0.6\textwidth]{eclass_partition}
+	\caption{Creating a \emph{simple reference} in \texttt{Partition}}
+	\label{fig:boxReference}
+\end{figure} 
 
-\item[$\blacktriangleright$] Now, lets create another bidirectional reference between \texttt{Partition} and \texttt{Box}. If you think about it, it's really
-not all that different than the relation between \texttt{Partition} and \texttt{Card}. In fact, it's not different at all! A \texttt{Box} should be able to hold
-an unlimited amount of partitions, but a \texttt{Partition} should only be allowed to belong to zero or one boxes. Name the two new relations
-\texttt{containedPartition}, and \texttt{box}.
-
-\item[$\blacktriangleright$] Your classes should now closely resemble Fig.~\ref{fig:allReferences}.
-
-\item[$\blacktriangleright$] The next step is to set up two relations between \texttt{Partition} and itself, so it can shift between the previous and next
-partition in the box. Create two new simple references, named \texttt{previous}, and \texttt{next}. Allow them to have a maximum of 1 link each. If you've done
-everything correctly, your \texttt{Partition} class should now resemble Fig.~\ref{fig:partitionReferences}.
-
-\item[$\blacktriangleright$] All of our references are now set up! To see how all of this is depicted visually, check out Fig.~\ref{fig:ereferences_all} in
-\hyperlink{sec:static vis}{section 2.1}.
+\item[$\blacktriangleright$] Congratulations, you have just built your first pair of EReferences. This pair is also known as a \emph{Bidirectional
+EReference}! To see how this is depicted visually, check out Fig.~\ref{fig:ereference_completed} in the previous subsection.
 
 \newpage
 
+\item[$\blacktriangleright$] Now, lets create another EReference pair, or bidirectional EReference, between \texttt{Partition} and \texttt{Card}. If you think
+about it, it's really not all that different than the relation between \texttt{Box} and \texttt{Partition}. In fact, it's not different at all! A
+\texttt{Partition} should be able to hold an unlimited amount of \texttt{Card}s, but a \texttt{Card} should only be allowed to belong to zero or one
+\texttt{Partition}s. Name the two new relations \texttt{containedPartition}, and \texttt{box}.
+
+\item[$\blacktriangleright$] Your classes should now closely resemble Fig.~\ref{fig:almostAllReferences}.
+
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.5\textwidth]{eclipse_workspaceReferences}
+  \includegraphics[width=0.65\textwidth]{eclipse_workspaceReferences}
 	\caption{The Completed Bidirectional EReferences}
-	\label{fig:allReferences}
+	\label{fig:almostAllReferences}
 \end{figure} 
 
-\vspace{2cm}
+\item[$\blacktriangleright$] The next step is to set up two relations between \texttt{Partition} and itself, so it can shift between the previous and next
+partition in the box. Create two new simple references, named \texttt{previous}, and \texttt{next}. Allow them to have a maximum of 1 link each.
+
+\item[$\blacktriangleright$] All of our references are now set up! If you have done everything correctly, your classes should now resemble Fig.~\ref{fig:allReferences}.
+To see how all of this is depicted visually, check out Fig.~\ref{fig:ereferences_all} in \hyperlink{sec:static vis}{section 2.1}.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.5\textwidth]{eclipse_partitionReferences}
-	\caption{All references in \texttt{Partition}}
-	\label{fig:partitionReferences}
+  \includegraphics[width=0.6\textwidth]{eclipse_allReferences}
+	\caption{All references in Leitner's Learning Box}
+	\label{fig:allReferences}
 \end{figure} 
 
 \fancyfoot[R]{$\triangleright$ \hyperlink{static:methods tex}{Next}}
