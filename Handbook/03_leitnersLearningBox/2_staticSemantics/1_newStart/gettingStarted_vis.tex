@@ -11,37 +11,39 @@ steps are exactly the same, but our package explorers may not match exactly. Kee
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.9\textwidth]{eclipse_newMetamodelVisualPlain}
+  \includegraphics[width=0.75\textwidth]{eclipse_newMetamodelVisualPlain}
 	\caption{Starting a new visual project}
 	\label{fig:new_visModel}
 \end{figure}
 
 \newpage
 \begin{itemize}
-\item[$\blacktriangleright$] From EA, select your working set and press the ``Add a Package'' button (Fig.~\ref{fig:new_package}).
+\item[$\blacktriangleright$] From EA, select your working set and press the ``Add a Package'' button (Fig.~\ref{fig:new_package})\footnote{If using the previous
+files, you won't have the \texttt{eMoflon Languages} package, since all the needed files were included in \texttt{Demo}. For this simple example, we won't be
+using all the features of eMoflon, so this limited collection will suffice.}.
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.5\textwidth]{ea_addPackage}
-	\caption{Add a new package to \texttt{Demo}.}
+	\caption{Add a new package to \texttt{MyWorkingSet}}
 	\label{fig:new_package}
 	\vspace{0.5cm}
 \end{figure}
 
-\vspace{0.5cm}
+\vspace{1.0cm}
 
-\item[$\blacktriangleright$] In the dialogue that pops up (Fig.~\ref{fig:new_package_name}), enter 'Learning\-Box\-Language' as the name of the new package,
-choose \texttt{Class View},  and click \texttt{OK}.
+\item[$\blacktriangleright$] In the dialogue that pops up (Fig.~\ref{fig:new_package_name}), enter `Learning\-Box\-Language' as the name of the new package.
+Make sure \texttt{Class View} is selected, and click \texttt{OK}.
 
 \begin{figure}[htbp]
 	\centering
     \includegraphics[width=0.33\textwidth]{ea_namePackage.png}
-	\caption{Enter the name of the new package.}
+	\caption{Enter the name of the new package}
 	\label{fig:new_package_name}
 \end{figure}
 \FloatBarrier
 
-\vspace{0.5cm}
+\vspace{1.0cm}
 
 \item[$\blacktriangleright$] Your \texttt{Project Browser} should now resemble Fig.~\ref{fig:new_package_completed}.
 
@@ -64,7 +66,8 @@ choose \texttt{Class View},  and click \texttt{OK}.
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] In the dialogue that appears, (Fig.~\ref{fig:diagram_type}), choose \texttt{eMoflon Ecore Diagrams}, then press \texttt{OK}.
+\item[$\blacktriangleright$] In the dialogue that appears, (Fig.~\ref{fig:diagram_type}), choose \texttt{eMoflon Ecore Diagrams}, then press \texttt{OK}. The
+name will be automatically created.
 
 \begin{figure}[htbp]
 	\centering
@@ -75,7 +78,9 @@ choose \texttt{Class View},  and click \texttt{OK}.
 \FloatBarrier
 
  
-\item[$\blacktriangleright$] After creating the new diagram, your  \texttt{Project Browser} should now resemble Fig.~\ref{fig:diagram_completed}.
+\item[$\blacktriangleright$] After creating the new diagram, your  \texttt{Project Browser} should now resemble Fig.~\ref{fig:diagram_completed}. You'll notice
+that your \texttt{LearningBoxLanguage} package transformed into a container. This will now be the source location for any and all diagrams, the place where
+all your generated files are derived.
 
 \begin{figure}[htbp]
 	\centering
@@ -85,9 +90,28 @@ choose \texttt{Class View},  and click \texttt{OK}.
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] These are the basic steps for creating \emph{any} new metamodel. Your LearningBoxLanguage diagram will be the starting point, or
-anchor, for each piece of this example program. All generated code is derived from this location. Your working set is able to hold several different projects at
-once\footnote{which is the current case if you're continuing with the previous demo files.} some other comment here. Careful not to rehash.
+\newpage
+
+\item[$\blacktriangleright$] To finalize the initalization of your metamodel, export your project to Eclipse\footnote{If unsure how to perform this step, please
+refer to Section 2.1 in Part I.}, then refresh your \texttt{Package Explorer}. A new \texttt{Other Projects} node\footnote{If you do not have the two distinct
+nodes, make sure your ``Top Level Elements'' are set to \texttt{Working Sets}} should have appeared containing your adapted \texttt{Epackage}
+(Fig.~\ref{fig:init_import}). You can see the that a \texttt{LearningBoxLanguage.ecore} file has been generated, and placed in ``model.'' This is the graph of
+your metamodel that will adhere to all future types and restrictions you create.
+
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=0.5\textwidth]{eclipse_initExport}
+	\caption{Inital import to Eclipse}
+	\label{fig:init_import}
+\end{figure}
+\FloatBarrier
+
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] If you'd like to review the overall project structure, the purposes of certain files and folders, read Section 4 from
+Part~I\footnote{\downLink} of this handbook. Otherwise, click to learn how to declare your classes and attributes.
 
 \fancyfoot[R]{$\triangleright$ \hyperlink{static:classes vis}{Next}}
 \end{itemize}

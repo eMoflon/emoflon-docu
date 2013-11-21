@@ -1,0 +1,30 @@
+\newpage
+\section{Intro to injections}
+\genHeader
+
+In this chapter you will learn how to implement small methods by adding handwritten code to classes created from your model.
+
+Injections are inspired by partial classes in C\#, and are our preferred way of providing a clean separation of generated from handwritten code.
+
+Open ``gen/LearningBoxLanguage/impl/BoxImpl.java'' and implement the code given below {\small (do we want this, and THEN explain, or should we give a long
+winded explanation about how to d? they're modfying a java file\ldots) idea. KEEP IN MIND: textual; is there stuff they can copy paste? set it up so they can..}
+Do not remove the comment which is necessary to indicate that this code is written by the user and needs to be extracted into our injection file.
+
+// write code (Fig.)
+
+Right-click on BoxImpl.java and choose ``eMoflon/Create Injection for class'' (Fig.) 
+
+This creates a new file in the ``injection'' folder of your project with the same packages and name as the Java class but with \texttt{.inject} as extension
+(Fig.). This file contains the definition of a \textit{partial class}~(Fig.).
+
+You now have the choice of implementing your methods directly in the injection file, or in the corresponding Java file and generating the injection from it. We
+recommend the latter as you can use the usual support from the Java editor. Just don't forget to update the injection before re-generating code! Now complete
+the injection with the code given in Fig.
+
+Rebuild your project (eMoflon $\rightarrow$ Clean and build) and this code will be injected in \texttt{LearningBoxLanguage.impl.BoxImpl.java} (Fig.). 
+
+There are also some extra options you can incorporate with your injections. (Read A:5)
+
+two additional comments? (injection members)
+
+Task: Read the main chapter portion, and figure out how to implement with removeCard
