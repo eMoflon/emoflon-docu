@@ -1,10 +1,11 @@
 \newpage 
 \genHeader
 \subsection{Reviewing your metamodel}
+\hypertarget{static review}{}
 
-\hypertarget{static review}{Before moving on, lets take a step back and review our metamodel.}
-We have modelled a \texttt{Box} that can contain an arbitrary amount of \texttt{Partition}s. A \texttt{Partition} in the \texttt{Box} has a \texttt{next} and
-\texttt{previous} \texttt{Partition} that can or not be set. Finally, \texttt{Partition}s contain \texttt{Card}s.
+Congratulations on completing the abstract syntax of your metamodel!
+Before moving on, lets take a step back and review our metamodel.We have modelled a \texttt{Box} that can contain an arbitrary amount of \texttt{Partition}s. A
+\texttt{Partition} in the \texttt{Box} has a \texttt{next} and \texttt{previous} \texttt{Partition} that can or not be set. Finally, \texttt{Partition}s contain \texttt{Card}s.
 
 A \texttt{Box} has a \texttt{name}, and can be extended by calling \texttt{grow}. A \texttt{Box} can print out its contents via the \texttt{toString} method.
 
@@ -19,5 +20,12 @@ A \texttt{Card} contains the actual content to be learned as a question on the c
 also maintain \texttt{partition\-History}, which can be used to keep track of how often a \texttt{Card} has been answered incorrectly.
 This may indicate how difficult the \texttt{Card} is for a specific user, and remind them to spend more time on that set. When learning a language, it makes
 sense to be able to swap the target and source language and this is supported by \texttt{Card} via \texttt{invert} (turns the card around).
+
+On a final note, we encourage you to review how the program was constructed in the syntax \emph{opposite} to the one you just used. Compare the differences
+between modelling classes and references in diagrams using a separate program, then exporting to Eclipse to build, versus modelling entirely within the Eclipse
+IDE with various commands. Which do you find easier to work with?
+
+If you have had problems with this section, and, despite firmly believing everything is correct, things still don't work, feel free to contact us at
+\href{mailto:contact@moflon.org}{contact@moflon.org}.
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{validation vis}{Next [visual]\hspace{0.2cm}} \\ $\triangleright$ \hyperlink{validation tex}{Next [textual]}}

@@ -10,8 +10,8 @@ This language oriented approach has a lot of advantages including a natural supp
 and a clear separation between platform independent and platform specific details.
 
 So what constitutes a language?  The first question is obviously what the building blocks of your language ``look'' like. Will your language be textual? Visual?
- This representation referred to as the \emph{Concrete Syntax}\define{Concrete~Syntax} of a language and is basically an interface to end users who use the
-language. In the case of our learning box, figure~\ref{fig:membox_illustration} can be viewed as a possible concrete syntax. As we are building a learning box
+ This representation is referred to as the \emph{Concrete Syntax}\define{Concrete~Syntax} of a language and is basically an interface to end users who use the
+language. In the case of our learning box, Fig.~\ref{fig:membox_illustration} can be viewed as a possible concrete syntax. As we are building a learning box
 as a software system however, our actual concrete syntax  will probably be composed of GUI elements like buttons, drop-down menus and text fields.
 
 Irrespective of what a language looks like, members of the language must adhere to the same set of ``rules''. For a natural language like
@@ -21,7 +21,7 @@ graph}\define{Type~Graph} that defines what types and relations  constitute a la
 
 A graph that is a member of your language must \emph{conform to} the corresponding type graph for the language. To be more precise, it must be possible to type
 the graph according to the type graph - the types and relations used in the graph must exist in the type graph and not contradict the structure defined there.
-This way of defining membership to a language has many parallels to the class-object relationship in the object-oriented paradigm and
+This way of defining membership to a language has many parallels to the class-object relationship in the object-oriented (OO) paradigm and
 should seem very familiar for any programmer used to OO.\define{Abstract~Syntax} This type graph is referred to as the \emph{Abstract Syntax} of a language.
 
 Often, one might want to further constrain a language, beyond simple typing rules. This can be accomplished with a further set of rules or constraints that
@@ -32,7 +32,7 @@ With these few basic concepts, we can now introduce a further and central concep
 simple class diagram. A metamodel defines not only the abstract syntax of a language but also some basic constraints (a part of the static semantics).
 
 In analogy\define{Unification} to the ``everything is an object'' principle in the Object Oriented (OO) paradigm, in metamodelling, everything is a model! This
-principle\define{Meta-meta\-model} is called \emph{Unification},  and carries many advantages. If everything is a model, a metamodel that defines (at least a part
+principle\define{Meta-meta\-model} is called \emph{Unification},  and has many advantages. If everything is a model, a metamodel that defines (at least a part
 of)\define{Modelling~Lan\-guage} a language must be a model itself. This means that it conforms to some \emph{meta-metamodel} which in turn defines a 
 \emph{(meta)modelling language} or \emph{meta-language}.\define{Meta-Lang\-uage} For metamodelling with eMoflon, we support \emph{Ecore} as a modelling language
 and it defines types like \texttt{EClass} and \texttt{EReference}, which we will be using to specify  our metamodels. Alternate modelling languages include MOF,
@@ -40,12 +40,18 @@ UML and Kermeta.
 
 Thinking back to our learning box, we can define the types and relations we want to allow. We want an entire box of flashcards where each card is contained
 within a partition, and each partition is contained within the box. Multiplicities are an example of static constraints that do not belong to the abstract
-syntax, but can nonetheless be expressed in a metamodel.
-An example could be that a card can only ever exist in one partition, or that a partition can have either one \texttt{next} partition, or none at all.
+syntax, but can nonetheless be expressed in a metamodel. An example could be that a card can only ever exist in one partition, or that a partition can have
+either one \texttt{next} partition, or none at all.
 
 More complex constraints that cannot be expressed in a metamodel are usually specified using an extra \emph{constraint language}\define{Constraint~Language}
-such as the Object Constraint Language (OCL). This idea, however,  is beyond the scope of this handbook. We'll stick to metamodels without needeing an extra
-contstraint language.
+such as the Object Constraint Language (OCL). This idea, however,  is beyond the scope of this handbook. We'll stick to metamodels without an extra
+constraint language.
+
+In addition to its static structure, every system has certain dynamic aspects that describe the system's behaviour and how it reacts to external stimulus or
+evolves over time. In a language, these rules that govern the dynamic behaviour of a system are referred to collectively as the
+\define{Dynamic~Semantics}\emph{dynamic semantics} of the language. Although these rules can be defined as a set of separate \emph{model transformations}, we
+take a holistic approach and advocate integrating the transformations directly in the metamodel as operations. This naturally fits quite nicely into the OO
+paradigm.
 
 $\textbf{A short recap:}$ We have learned that metamodelling starts with defining a suitable language. For the moment, we know that a language comprises a
 concrete syntax (how the language ``looks''),  an abstract syntax (types and relations of the underlying graph structure), and static semantics (further

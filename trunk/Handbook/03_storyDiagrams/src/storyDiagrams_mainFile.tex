@@ -63,10 +63,16 @@
 % Remove section numbers 0.1, 0.2 ..
 \renewcommand{\thesection}{\arabic{section}} 
 
+% MAY NOT NEED
 % Creates footer link for the immediate next page; pass in \thepage and place in src file near end of page
 \newcommand{\nxtPage}[1]{
 	\FPeval{\nxtPg}{clip(#1 +1)}
 	\fancyfoot[R]{$\triangleright$ \hyperlink{page.\nxtPg}{Next}}
+}
+
+% Command to output suggested time for handbook part
+\newcommand{\requiredTime}[1]{
+	{\scriptsize \texttt{Approximate time to complete: #1} }
 }
 
 % --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------

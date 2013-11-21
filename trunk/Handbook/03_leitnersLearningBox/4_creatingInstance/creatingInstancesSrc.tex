@@ -1,11 +1,11 @@
 \newpage
 \genHeader
 
-% This section applies to both??
 \section{Creating Instances}
+\hypertarget{creatingInstance common}{}
 
-\hypertarget{creatingInstance common}{}Before diving into modelling dynamic behaviour in \texttt{Part III}, let's have a brief look at how to create a concrete
-\emph{instance model} of your metamodel in Eclipse.
+Before diving into modelling dynamic behaviour in Part III, let's have a brief look at how to create a concrete \emph{instance model} of your metamodel
+in Eclipse.
 
 In the following section, we use \emph{metamodel} and \emph{instance model} to differentiate between models that represent the abstract syntax and static
 semantics of a domain specific language (metamodel), and those that are expressed \emph{in} such a language (instance models of the metamodel).
@@ -13,43 +13,44 @@ semantics of a domain specific language (metamodel), and those that are expresse
 \begin{itemize}
 
 \item[$\blacktriangleright$] To create an instance model, navigate to the generated \texttt{model} folder in your \texttt{LearningBoxLanguage} project.
-Double-click the \texttt{LearningBoxLanguage.ecore} model to invoke  the \emph{Ecore model editor}. The Eclipse Modeling Framework (EMF) provides a generic
-model editor which allows us to create and edit an arbitrary instance of any metamodel specified with eMoflon. Expand this tree to view the different classes
-and packages you've modelled.
+Double-click the \texttt{LearningBoxLa\-nguage.ecore} model to invoke  the \emph{Ecore model editor}. The Eclipse Modeling Framework (EMF) provides a generic
+tree-model editor which allows us to create and edit an arbitrary instance of any metamodel specified with eMoflon. Expand this tree to view the different
+classes and packages you've modelled.
 
-\item[$\blacktriangleright$] To create a concrete instance of the metamodel, you must select a class which will become the root element of the new instance.
-For our example, right-click the class \texttt{Box} and choose \texttt{Create Dynamic Instance\ldots} from the context-menu as depicted in
+\item[$\blacktriangleright$] To create a concrete instance of the metamodel, you must select a class that will become the root element of the new instance.
+For our example, right-click the class \texttt{Box} and navigate to ``Create Dynamic Instance'' from the context-menu, as depicted in
 Fig.~\ref{fig:context_menu}.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.6\textwidth]{eclipse_createInstance}
+  \includegraphics[width=0.7\textwidth]{eclipse_createInstance}
 	\caption{Context menu of Ecore model in eclipse}
 	\label{fig:context_menu}
 \end{figure}
 
+\clearpage
 
 \item[$\blacktriangleright$] A dialogue should appear asking where the instance model file should be persisted. We suggest saving all your instances in a folder
-named \texttt{instances} which is created in every new repository project. This is just a convention however. You are free to store your instances anywhere.
-Last but not least, enter a name for the instance model (Fig.~\ref{fig:store_dynamic_instance}).
+named ``instances,'' which is automatically created in every new repository project. This however, is just a convention. You are free to store your
+instances anywhere. Last but not least, enter a name for the instance model (Fig.~\ref{fig:store_dynamic_instance}).
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.5\textwidth]{eclipse_boxDynamicModel}
+  \includegraphics[width=0.75\textwidth]{eclipse_boxDynamicModel}
 	\caption{Dialogue for creating a dynamic model instance}
 	\label{fig:store_dynamic_instance}
 \end{figure}
 
-\item[$\blacktriangleright$] Press \texttt{Finish} and the \emph{generic model editor} should open for your new instance model. This editor works just like the
-previous Ecore model editor except it's ``generic,'' meaning it allows you to create and edit an instance of \emph{any} metamodel, not just ecore.
+\item[$\blacktriangleright$] Press \texttt{Finish}, and the generic model editor should open for your new instance model. This editor works just like the
+previous Ecore model editor except it's ``generic,'' meaning it allows you to create and edit an instance of \emph{any} metamodel, not those using Ecore.
 
 \item[$\blacktriangleright$] You can populate your instance model by adding new children or siblings via a right-click on an element of the instance model to
 invoke the context-menu depicted in Fig.~\ref{fig:create_instance}. Note that EMF supports you by respecting your metamodel, and reducing the choice of
-creatable elements to valid types only\footnote{This depends on the current context. Try it out!}.
+available elements to valid types only\footnote{This depends on the current context. Try it out!}.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.9\textwidth]{adjustModel}
+  \includegraphics[width=0.8\textwidth]{adjustModel}
 	\caption{Context menu for creating model elements}
 	\label{fig:create_instance}
 \end{figure}
@@ -62,7 +63,7 @@ resemble Fig.~\ref{fig:eclipse_populatedTree}.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.6\textwidth]{eclipse_populatedTree}
+  \includegraphics[width=0.75\textwidth]{eclipse_populatedTree}
 	\caption{Our Learning box with two filled partitions}
 	\label{fig:eclipse_populatedTree}
 \end{figure}
@@ -71,25 +72,30 @@ resemble Fig.~\ref{fig:eclipse_populatedTree}.
 \pagebreak
 
 \item[$\blacktriangleright$] Double click on one of the partitions to bring up the ``Properties'' tab in the window below the editor
-(Fig.~\ref{fig:properties_partition}). Here you'll see the attributes you defined earlier in the classes. Pick a number - any one you like - and edit the
+(Fig.~\ref{fig:properties_partition}). Here you'll see the attributes you defined earlier in the classes. Pick a number - any one you like - and update the
 \texttt{Index} value. As soon as you hit \texttt{Enter}, you'll see that the change in name has been reflected in the tree. Give the second partition a unique
 EInt value as well.
 
+\vspace{0.5cm}
+
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.7\textwidth]{eclipse_propertiesPartition}
+  \includegraphics[width=0.9\textwidth]{eclipse_propertiesPartition}
 	\caption{Change the \texttt{Index} value in the partition's property tab}
 	\label{fig:properties_partition}
 \end{figure}
 
-\item[$\blacktriangleright$] In the same fashion, double click on each \texttt{Card} you created and modify their values. In particular, modify the
-\texttt{Back} attribute. This is the value you'll see from the partition.
+\vspace{0.5cm}
 
-\item[$\blacktriangleright$] You now have a unique, customized learning box! Ensure no errors exist before proceeding with the final part of this tutorial.
+\item[$\blacktriangleright$] In the same fashion, double click on each \texttt{Card} you created and modify their values. In particular, modify the
+\texttt{Back} attribute. Change it to `Guten Morgen.' This is the value you'll see from the partition. You'll be experimenting with the \texttt{Front} attribute
+in a later, so provide a `Good Morning'value for that as well.
+
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] Fill in the rest of the cards with similar vocabulary-style words. You now have a unique, customized learning box! Ensure no errors
+exist before proceeding with the final sections of this handbook.
 
 \end{itemize}
 
-{\bf using the graph view\ldots} \\
-{\bf intro to injections + example (able to be tested within the GUI?) ((New section?))} \\
-{\bf Using and connecting the GUI, then testing user created instances and the implemented method}
 \fancyfoot[R]{ $\triangleright$ \hyperlink{conclusion}{Next} }

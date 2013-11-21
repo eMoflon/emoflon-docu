@@ -5,13 +5,13 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Double-click your \texttt{LearningBoxLanguage} diagram to ensure it's open.
+\item[$\blacktriangleright$] Return to EA, and double-click your \texttt{LearningBoxLanguage} diagram to ensure it's open.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] To the left of the workbench in EA, a \emph{Toolbox} containing the types available in Ecore for metamodelling should have
+\item[$\blacktriangleright$] To the left of the workbench, a \emph{Toolbox} containing the ECore types available for metamodelling should have
 appeared\footnote{If not, choose ``Diagram/Diagram Toolbox'' to show the current toolbox.} (Fig.~\ref{fig:eclass}). Click on \texttt{EClass}, then click again
-in the open diagram.
+somewhere in the open diagram.
 
 \vspace{0.5cm}
 
@@ -46,12 +46,12 @@ In general, a similar ``properties'' dialogues can be opened in the same fashion
 	\label{fig:eclass_completed}
 \end{figure}
 
-\item[$\blacktriangleright$] Now create \texttt{Partition} and \texttt{Card} the same way, until your workspace resembles Fig.~\ref{fig:all_eclasses}.
-These are the main models for our learning box.
+\item[$\blacktriangleright$] Now create the \texttt{Partition} and \texttt{Card} classes the same way, until your workspace resembles
+Fig.~\ref{fig:all_eclasses}. These will be the main types for our learning box metamodel.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Now choose \texttt{Box}, right-click to call up the context menu, and choose ``Features \& Properties/Attributes..''
+\item[$\blacktriangleright$] Right-click on \texttt{Box} to activate the context menu, and choose ``Features \& Properties/Attributes..''
 (Fig.~\ref{fig:attribute}).
 
 \begin{figure}[htbp]
@@ -70,27 +70,38 @@ These are the main models for our learning box.
 \FloatBarrier
 
 \item[$\blacktriangleright$] In the dialogue that pops-up, enter `name' as the name of the attribute, choose \texttt{EString} as its type, and press
-\texttt{Save} (Fig.~\ref{fig:attribute_properties}). New attributes for the same class can be added by choosing \texttt{New}.
+\texttt{Save} (Fig.~\ref{fig:attribute_properties}). New attributes for the same class can be added by pressing \texttt{New}.
+
+\vspace{1.0cm}
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.6\textwidth]{ea_addingAttributes}
+  \includegraphics[width=0.9\textwidth]{ea_addingAttributes}
 	\caption{Adding attributes to an EClass}
 	\label{fig:attribute_properties}
 \end{figure}
 
-\item[$\blacktriangleright$] Add attributes to all classes until your workspace resembles Fig.~\ref{fig:attribute_completed}.
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] Add attributes to each class until your workspace resembles Fig.~\ref{fig:attribute_completed}.
+
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] Save the file, then export your updated diagram to Eclipse. You'll be able to see the changes in the \texttt{.ecore} model file, where
+your \texttt{LearningBoxLanguage} has now expanded into a tree structure with each class and its attributes. So far, so good!
+
+\newpage
+
+\vspace*{3cm}
+
+\fancyfoot[R]{$\triangleright$ \hyperlink{static:references splash}{Next}}
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.23\textwidth]{ea_allAttributes}
-	\caption{Main classes with attributes}
+  \includegraphics[width=0.35\textwidth]{ea_allAttributes}
+	\caption{Main classes declared with their attributes}
 	\label{fig:attribute_completed}
 \end{figure}
 \FloatBarrier
-
-\item[$\blacktriangleright$] Closing message.
-
-\fancyfoot[R]{$\triangleright$ \hyperlink{static:references splash}{Next}}
 
 \end{itemize}

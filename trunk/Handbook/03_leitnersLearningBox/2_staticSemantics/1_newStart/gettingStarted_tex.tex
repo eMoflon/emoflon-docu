@@ -6,7 +6,7 @@
 \begin{itemize}
 
 \item[$\blacktriangleright$] \hypertarget{static tex}{Begin a} new metamodel project from eclipse by navigating to the \texttt{New Metamodel} button on the
-toolbar. In the dialog that appears, enter \texttt{LeitnersLearningBox} as the project name, and select \texttt{Textual (MOSL)}  (Fig.~\ref{fig:new_project}).
+toolbar. In the dialog that appears, enter `LeitnersLearningBox' as the project name, and select \texttt{Textual (MOSL)}  (Fig.~\ref{fig:new_project}).
 
 \begin{figure}[htbp]
 	\centering
@@ -17,7 +17,7 @@ toolbar. In the dialog that appears, enter \texttt{LeitnersLearningBox} as the p
 
 \item[$\blacktriangleright$] Expand the project as deep as it goes. Your Package explorer may look different than ours (Fig.~\ref{fig:expanded_folders}),
 depending on whether or not you completed the Demo in Part I. In an effort to keep things clear as possible, we have removed them from our workspaces, but
-recommend keeping them for future reference.
+still recommend keeping them for future reference.
 
 \begin{figure}[htbp]
 	\centering
@@ -27,30 +27,37 @@ recommend keeping them for future reference.
 \end{figure} 
 
 \clearpage
-\item[$\blacktriangleright$] You can see two folders, \texttt{.temp}, and \texttt{MOSL}, and one subfolder, \texttt{MyWorkingSet}, inside the
-\texttt{Specifications} node\footnote{if you can't, make sure your \texttt{Top Level Elements} are set to \texttt{Working Sets}.}. We're most insterested in
-\texttt{MyWorkingSet}, which stores the collection of files and  \emph{unifies} everything we need for Leitner's Box\footnote{for detailed review on the
-explorer structure, review Part I.}.
+
+\item[$\blacktriangleright$] You should be able to see two folders, \texttt{.temp}, and \texttt{MOSL}, and one subfolder, \texttt{MyWorkingSet}\footnote{if you
+can't, make sure your `Top Level Elements' are set to \texttt{Working Sets}.}. We're most insterested in \texttt{MyWorkingSet}, which will store the collection
+of files and \emph{unifies} the things we need for our Leitner's Box\footnote{for detailed review on the explorer structure, review Part I.}.
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Right click on your current workspace folder, \texttt{MyWorkingSet}, and create a new subfolder. Name it
-`LearningBoxLanguage'. This is now the container for all your modelling files (Fig.~\ref{fig:all_files}).
+`LearningBoxLanguage'. This is now the container for all your modelling files. In essence, this is the location all your generated
+files will be derived from.
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.4\textwidth]{eclipse_modelingContainer}
-	\caption{Completed package explorer}
+  \includegraphics[width=0.8\textwidth]{eclipse_preBuild}
+	\caption{}
 	\label{fig:all_files}
 \end{figure} 
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] These are the basic steps needed to start any new textual metamodeling project. The \texttt{LearningBoxLanguage} folder will contain everything
-your project needs such EClass files, pattern roots, and more. Remember, \texttt{MyWorkingSet} can hold several different projects at once, so files not within
-\texttt{LearningBoxLanguage} will not be generated as part of that project.
+\item[$\blacktriangleright$] To finalize initalization of your metamodel, navigate to ``Build (Without cleaning),'' found beside ``New Metamodel'' on the
+toolbar (Fig.~\ref{fig:all_files}).
+
+\item[$\blacktriangleright$] Navigate to ``LearningBoxLanguage/model.'' There, you'll be able to see a \texttt{LearningBoxLanguage.ecore} file. This is the
+concrete model for your metamodel, which will adhere to any types and contraints you define within
+``LeitnersLearningBox/MOSL/MyWorkingSet/LearningBoxLanguage.''
+
+\item[$\blacktriangleright$] You've just finished creation process of a new metamodel project! If you would like to review specific details on the textual 
+project structure, read Section 4.2 in Part I\footnote{\downLink}.
 
 \fancyfoot[R]{$\triangleright$ \hyperlink{static:classes tex}{Next}}
 
