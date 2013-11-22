@@ -1,6 +1,55 @@
 \newpage
 \section{eMoflon's Graph Viewer}
 \genHeader
+\hypertarget{sec:Graph View}{}
 
-From ecore, drag and drop\ldots may have to edit/open up the window again. Can right click the ``eMoflon'' tab, and press ``Reset'' to reload any windows you
-may have accidentally closed. ALternatively, you can go to ``Window/Show View/Other\ldots'' and then to ``Other/Graph View.''
+At this point, you should have a small instance model completely built. While Eclipse's built-in editor offers a nice tree structure to view your model,
+wouldn't it be nice to see depiction of your customized model? Recalling the definition of a model, we know its simply a graph that ahderes to a set of rules
+and contraints. eMoflon's ``Graph View'' offers a visual depiction of this graph!
+
+\begin{itemize}
+
+\item[$\blacktriangleright$] When you first opened the eMoflon perspective, a small window to the right should have appeared with two tabs, ``Outline'' and
+``Graph View.'' \footnote{If this window is not open, you can re-activate it by right-clicking on the ``eMoflon'' button on the main toolbar and pressing
+``Reset,'' or by going to ``Window/Show View/Other..,'' then ``Other/Graph View''.} 
+
+\item[$\blacktriangleright$] Activate the second tab, then drag a \texttt{Partition} instance into the window. 
+
+\item[$\blacktriangleright$] Here you can see your model, fully expanded to display every element it contains, connected by a named reference line
+(Fig.~\ref{fig:graphView_init}).
+
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=1.0\textwidth]{eclipse_graphViewInit}
+	\caption{Comment}
+	\label{fig:graphView_init}
+\end{figure}
+
+\item[$\blacktriangleright$] Clicking any item in the view will highlight it, and hovering over a node will quickly list all its properties. If you hover
+over a card, for example, you should be able to see their \texttt{back} and \texttt{face} values. You can also drag elements to new positions.
+
+\item[$\blacktriangleright$] Try dragging the second \texttt{Partition} element from the model to the viewer. As you can see, it doesn't replace the current
+view, it simply places them side-by-side. To clear the screen, click the upside-down triangle in the top right corner of the window, and select ``Clear View.''
+
+\item[$\blacktriangleright$] To make the graph bigger, increase the size of the window, then select ``Redraw Graph'' from the same upside-down arrow. As you can
+see, the graph view is not automatically updated. This option is useful if you change a property of an element (ie., the \texttt{back} value of a \texttt{Card})
+and wish to see it reflected in the graph.
+
+\item[$\blacktriangleright$] Try experimenting with each of the different layouts and zoom settings. You'll notice for the ``Spring Layout'' that each time you
+press ``Redraw Graph,'' the graph will re-arrange itself, even if you haven't updated any values or changed the window size.
+
+\item[$\blacktriangleright$] This feature is not exclusively for models - Expand your platform in the ecore editor, and drag and drop the
+\texttt{LearningBoxLanguage} package into the viewer. Your entire metamodel, or type graph, is now completely displayed (Fig.~\ref{fig:graphView_typeGraph})! We
+have found that the ``Radial Layout'' works best for a model of this complexity.
+
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=1.0\textwidth]{eclipse_entireTypeGraph}
+	\caption{Comment}
+	\label{fig:graphView_typeGraph}
+\end{figure}
+
+\fancyfoot[R]{ $\triangleright$ \hyperlink{sec:injections common}{Next}}
+\end{itemize}
+
+Seque

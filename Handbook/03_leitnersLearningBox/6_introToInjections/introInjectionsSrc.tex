@@ -1,30 +1,77 @@
 \newpage
-\section{Intro to injections}
+\section{Introduction to injections}
 \genHeader
+\hypertarget{sec:injections common}{}
 
-In this chapter you will learn how to implement small methods by adding handwritten code to classes created from your model.
+This short introducion will show you how to implement small methods by adding handwritten code to classes created from your model. Injections are inspired by
+partial classes in C\#, and are our preferred way of providing a clean separation between generated and handwritten code. 
 
-Injections are inspired by partial classes in C\#, and are our preferred way of providing a clean separation of generated from handwritten code.
+Let's implement the \texttt{removeCard} method declared in the \texttt{Partition} class. All we need to do to `remove' a card from a partition however, is
+disable the link between two, but we can't forget that not only does \texttt{removeCard} have to pass in a \texttt{Card}, it must return one as well.
 
-Open ``gen/LearningBoxLanguage/impl/BoxImpl.java'' and implement the code given below {\small (do we want this, and THEN explain, or should we give a long
-winded explanation about how to d? they're modfying a java file\ldots) idea. KEEP IN MIND: textual; is there stuff they can copy paste? set it up so they can..}
-Do not remove the comment which is necessary to indicate that this code is written by the user and needs to be extracted into our injection file.
+\begin{itemize}
 
-// write code (Fig.)
 
-Right-click on BoxImpl.java and choose ``eMoflon/Create Injection for class'' (Fig.) 
+\item[$\blacktriangleright$] Open ``gen/LearningBoxLanguage.impl/PartitionImpl.java'' and enter the following code at the end of the file\footnote{To avoid
+errors, you are able to copy/paste this text.}. Do not remove the comment, which is necessary to indicate that this code is written by the user and needs to be
+extracted into our injection file.
 
-This creates a new file in the ``injection'' folder of your project with the same packages and name as the Java class but with \texttt{.inject} as extension
-(Fig.). This file contains the definition of a \textit{partial class}~(Fig.).
+\begin{figure}[htbp]
+        \centering
+        \begin{lstlisting}[language=Java, keywordstyle={\bfseries\color{purple}}, backgroundcolor=\color{white}]
+    public Card removeCard(Card toBeRemoved) {
+        // [user code injected with eMoflon]
+        
+        toBeRemoved.setCardContainer(null);
+        return toBeRemoved;
+    }
+        \end{lstlisting}
+        \caption{Implementation of \texttt{addToStringRep}}
+        \label{fig:addToStringRep_impl}
+\end{figure}
 
-You now have the choice of implementing your methods directly in the injection file, or in the corresponding Java file and generating the injection from it. We
-recommend the latter as you can use the usual support from the Java editor. Just don't forget to update the injection before re-generating code! Now complete
-the injection with the code given in Fig.
+\item[$\blacktriangleright$] Right-click on Partition.java and choose ``eMoflon/ Create/Update Injection for class'' (Fig.~\ref{fig:injection_create_injection}) 
+    
+\item[$\blacktriangleright$] This creates a new file in the ``injection'' folder of your project with the same packages and name as the Java class, but with a
+new \texttt{.inject} extension (Fig.~\ref{fig:injection_folder}). 
 
-Rebuild your project (eMoflon $\rightarrow$ Clean and build) and this code will be injected in \texttt{LearningBoxLanguage.impl.BoxImpl.java} (Fig.). 
+\item[$\blacktriangleright$] Double click to view this file. It contains the definition of a \textit{partial class}~(Fig.~\ref{fig:injection_partialClass}).
 
-There are also some extra options you can incorporate with your injections. (Read A:5)
+\item[$\blacktriangleright$] Save and rebuild your project to complete your handwritten code.
 
-two additional comments? (injection members)
+\item[$\blacktriangleright$] While this is a remarkably simple process, it can quickly become challenging when implemented complex functions. Instead, we'll
+learn how and continue to implement our method signatures with Story Diagrams in Part III.
 
-Task: Read the main chapter portion, and figure out how to implement with removeCard
+\end{itemize}
+
+\clearpage
+
+\vspace*{3cm}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{eclipse_injectionCreate}
+    \caption{Create a new injection}
+    \label{fig:injection_create_injection}
+\end{figure}
+
+\clearpage
+\fancyfoot[R]{ $\triangleright$ \hyperlink{sec:LBGUI}{Next}}
+
+\vspace*{0.5cm}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{eclipse_injectionFolder}
+    \caption{Injection location}
+    \label{fig:injection_folder}
+\end{figure}
+
+\vspace{2cm}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{eclipse_partialClass}
+    \caption{Generated Injection file}
+    \label{fig:injection_partialClass}
+\end{figure}
