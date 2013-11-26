@@ -3,11 +3,11 @@
 \visHeader
 \hypertarget{static:methods vis}{}
 
-Now we shall define the \emph{signatures} of some operations for our learning box. (Because\ldots)
+To finish defining our types, lets define the \emph{signatures} of some operations they'll eventually implement.
 
 \begin{enumerate}
   
-\item[$\blacktriangleright$] Right-click \texttt{Partition} to invoke the context-menu depicted in Fig.~\ref{fig:add_operation} and choose ``Features \&
+\item[$\blacktriangleright$] Right-click \texttt{Partition} to invoke the context-menu as depicted in Fig.~\ref{fig:add_operation} and choose ``Features \&
 Properties/Operations..''
 
 \begin{figure}[htbp]
@@ -19,32 +19,14 @@ Properties/Operations..''
 \FloatBarrier
 
 \item[$\blacktriangleright$] In the dialogue that pops-up (Fig.~\ref{fig:operation_properties}), enter `empty' as the \texttt{Name} of the operation,
-leave the \texttt{Return Type} as `void', and press \texttt{Save}.
+leave the \texttt{Return Type} as `void', and press \texttt{Save}. 
 
-\item[$\blacktriangleright$] In the same dialogue, press \texttt{New} to add further operations and enter the values in Fig.~\ref{fig:operation_parameters}. 
-Parameters can be added by pressing \texttt{Edit}\footnote{You must save the operation before this option will become active.} and entering the name and
-choosing the type of each parameter in a separate dialogue.
+\vspace{0.5cm}
 
-\begin{figure}[htbp]
-	\centering
-  	\includegraphics[width=0.9\textwidth]{ea_operationEmpty}
-	\caption{Properties for operation}
-	\label{fig:operation_properties}
-\end{figure}
-\FloatBarrier
-
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.9\textwidth]{ea_operationRemoveCard}
-	\caption{Parameters and Return Type}
-	\label{fig:operation_parameters}
-\end{figure}
-\FloatBarrier
-
-\item[$\blacktriangleright$] Repeat the process for the \texttt{check} operation in Fig.~\ref{fig:operation_partition}. Notice that the \texttt{Return Type} can
-be chosen by either the drop-down menu for primitives (e.g. \texttt{EBoolean}), or via the `\texttt{\ldots}' button (highlighted in
-Fig.~\ref{fig:operation_properties}) for types you've established in the metamodel (e.g. \texttt{Card}).
-
+\item[$\blacktriangleright$] In the same dialogue, press \texttt{New} to add a second operation, \texttt{removeCard}, and edit the values as seen in 
+Fig.~\ref{fig:operation_parameters}. Notice that the \texttt{Return Type} can be chosen by either the drop-down menu for
+primitives (e.g. \texttt{EBoolean}), or via the `\texttt{\ldots}' button (highlighted in Fig.~\ref{fig:operation_properties}) for types you've established in
+the metamodel (e.g. \texttt{Card}).
 \vspace{-.3cm}
 \begin{quote}
 { \small
@@ -52,6 +34,25 @@ $\textbf{Please note:}$ Non-primitive types \emph{must} be chosen via the `\text
 your project. Simply typing them won't work!
 }
 \end{quote}
+
+\begin{figure}[htbp]
+	\centering
+  	\includegraphics[width=0.8\textwidth]{ea_operationEmpty}
+	\caption{Properties for operation}
+	\label{fig:operation_properties}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=0.85\textwidth]{ea_operationRemoveCard}
+	\caption{Parameters and Return Type}
+	\label{fig:operation_parameters}
+\end{figure}
+
+\item[$\blacktriangleright$] Parameters can be added by pressing \texttt{Edit}\footnote{You must save the operation before this option will become active.} and
+completing the dialouge.
+
+\item[$\blacktriangleright$] Repeat this process for the \texttt{check} operation (with two parameters), as depicted in Fig.~\ref{fig:operation_partition}. 
 
 \item[$\blacktriangleright$] If you've done everything right, your dialogue should now contain three methods - \texttt{check}, \texttt{empty}, and
 \texttt{removeCard} - each with the corresponding parameters and return types in Fig.~\ref{fig:operation_partition}.
@@ -66,25 +67,24 @@ your project. Simply typing them won't work!
 \item[$\blacktriangleright$] Add all operations analogously for \texttt{Box} and \texttt{Card} so that your metamodel closely resembles
 Fig.~\ref{fig:metamodel_complete}\footnote{Please note that names of parameters may not be displayed by default in EA.}.
 
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.7\textwidth]{ea_metamodelComplete.png}
-\caption[Complete metamodel for our learning box.]{Complete metamodel for our learning box}
-	\label{fig:metamodel_complete}
-\end{figure}
-
-\pagebreak
-
-\item[$\blacktriangleright$] To see how this complete metamodel is represented in the textual syntax, examine Fig.~\ref{fig:workspaceMethods} in the following
-section.
-
-\item[$\blacktriangleright$] To finish, try to export the metamodel for code generation in Eclipse.
+\item[$\blacktriangleright$] To finish, export the metamodel for code generation in Eclipse, and examine the model once again. Each signature should have
+appeared in their respective class trees.
 
 \item[$\blacktriangleright$]  If code is generated successfully, take a look at all the stuff that's been generated under \texttt{/gen}. (Fig.). In particular,
 look at the the default implementation for all methods who throw an \texttt{OperationNotSupported} exception. We shall shortly discover that the Eclipse
 Modeling Foundation's (EMF) code generator supports injecting hand-written implementations of methods into these already generated methods and classes.
 With eMoflon however, we can model a large part of the dynamic semantics and only need to implement small helper methods (such as string manipulation) by
 hand.
+
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=0.63\textwidth]{ea_metamodelComplete.png}
+\caption[Complete metamodel for our learning box.]{Complete metamodel for our learning box}
+	\label{fig:metamodel_complete}
+\end{figure}
+
+\item[$\blacktriangleright$] To see how this complete metamodel is represented in the textual syntax, examine Fig.~\ref{fig:workspaceMethods} in the following
+section. Otherwise, continue to carry on with the visual portion of this handbook.
 
 \end{enumerate}
 
