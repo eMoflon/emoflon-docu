@@ -5,41 +5,48 @@
 
 % Uneeded? We talked a little bit about this in injections.. (it adhgeres to metamodel, or type graph)
 We would like to now introduce you to the \texttt{Leitner Box Gui}, a small java application generated from your \texttt{.ecore} instance model! This is the
-interface where you can interact with your partition and cards and later, once we implement more methods, manipulate the items in your box.
+interface where you can interact with each of your partitions and cards.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Navigate to the top left of your toolbar and select ``New.'' (Fig.~\ref{fig:load_GUI})
+\item[$\blacktriangleright$] Navigate to the top left of your toolbar and start the ``New'' wizard.
+
+\item[$\blacktriangleright$] Load ``Examples/eMoflon Handbook Examples/Leitner Box GUI'' (Fig.~\ref{fig:GUI_load}). This will load the new project into
+your workspace\footnote{If nothing appears, go to the small arrow to the right of the window, and select ``Configure Working Sets\ldots'' Make sure \texttt{Other
+Projects} is selected, and press \texttt{Ok}}. Right click \texttt{LeitnersBox} to raise the context menu and select ``Run as/Java application.''
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{eclipse_loadGUI}
     \caption{Load Leitner's Box GUI}
-    \label{fig:load_GUI}
+    \label{fig:GUI_load}
 \end{figure}
 
-\item[$\blacktriangleright$] Load ``Examples/eMoflon Handbook Examples/Leitner Box GUI.'' This will load a new project into your workspace. Right click it to
-raise the context menu then select ``Run as/Java application.'' 
+\clearpage
 
-\item[$\blacktriangleright$] The program will immediately open to an ``Open File" dialouge. Navigate to and open the \texttt{Box.xmi} instance
-file\footnote{If you do not specify a file to open, the GUI will load some default files.}.
+\item[$\blacktriangleright$] The GUI will automatically navigate to the instances folder where you've stored your instance model, then load your partitions and
+cards into the visualized box.
+
+\vspace{1cm}
+
+\item[$\blacktriangleright$] Navigate to any card, and you'll be able to see two options, ``Remove Card'' and ``Check Card'' (Fig~\ref{fig:GUI_cardOptions}).
+While we'll implement ``Check Card" via a different method in Part III, ``Remove Card'' is currently active, completely implemented by the injection you just created.
+
+\vspace{1cm}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{eclipse_loadXMI}
-    \caption{Load the instance file}
-    \label{fig:load_XMI}
+    \includegraphics[width=0.5\textwidth]{eclipse_GUICardOptions}
+    \caption{Action Options}
+    \label{fig:GUI_cardOptions}
 \end{figure}
 
-\item[$\blacktriangleright$] The main window represents your box, and clicking on the \texttt{Partitions} button will list your current partitions. Hovering
-over each element will take you to the next layer in your box.
+\vspace{1cm}
 
-\item[$\blacktriangleright$] Hover over any card - you should be able to see the \texttt{removeCard} method you implemented via Injections in the previous
-section. (Fig.)
+\item[$\blacktriangleright$] Experiment with your \texttt{.ecore} model and confirm your injection works by removing some items in the GUI.  You'll notice the change immediately in the
+``Box.xmi'' tree. You can also close the GUI and try adding, removing, or renaming more attributes in the model itself, then observing how they're reflected
+in the window.
 
-\item[$\blacktriangleright$] Experiment with your \texttt{.ecore} model by adding, removing, or renaming more attributes, and observe how they're reflected in
-the GUI.
-
-\fancyfoot[R]{ $\triangleright$ \hyperlink{conclusion}{Next}}
+% \fancyfoot[R]{ $\triangleright$ \hyperlink{conclusion}{Next}}
 
 \end{itemize}
