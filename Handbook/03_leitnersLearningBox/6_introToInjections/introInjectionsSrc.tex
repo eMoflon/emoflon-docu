@@ -31,8 +31,8 @@ which is necessary to indicate that this code is written by the user and needs t
         \label{fig:addToStringRep_impl}
 \end{figure}
 
-\item[$\blacktriangleright$] Save the file, then right-click on ``PartitionImpl.java'' and choose ``eMoflon/ Create/Update Injection for class'' from the
-context menu (Fig.~\ref{fig:injection_create_injection}).
+\item[$\blacktriangleright$] Save the file, then right-click on the file in the package explorer and choose ``eMoflon/ Create/Update Injection for class'' from
+the context menu (Fig.~\ref{fig:injection_create_injection}).
 
 \begin{figure}[htbp]
     \centering
@@ -52,8 +52,9 @@ but with a new \texttt{.inject} extension (Fig.~\ref{fig:injection_folder}).
 \end{figure}
 
 \item[$\blacktriangleright$] Double click to view this file. It contains the definition of a \textit{partial
-class}~(Fig.~\ref{fig:injection_partialClassPartition}).
-Here you can see here the skeleton of two other functions you have the option of implementing. In fact, lets try one!
+class}~(Fig.~\ref{fig:injection_partialClassPartition}). Here you can see here the skeleton of two other functions you have the option of implementing in the
+opposite direction. Instead of generating from the Java file, and injecting into its partial class, you could also generate the method contents from the
+partial class, and inject it into its corresponding Java file.
 
 \begin{figure}[htbp]
     \centering
@@ -64,14 +65,19 @@ Here you can see here the skeleton of two other functions you have the option of
 
 \clearpage
 
-\item[$\blacktriangleright$] You can see that you now have the choice of implementing your method directly here in the injection file without editing the Java
-file, or as we just did in the Java file, then generating the injection from that. We reccommend the latter as you can use the usual support from
-the Java editor. Lets try implementing a pair of methods that our SDMs will use in this alternate way.
+\item[$\blacktriangleright$] Lets try implementing a pair of methods in this alternate way. We reccommend the first as you can use the usual support
+from the Java editor, but its always fun to learn.
+
+\vspace{0.5cm}
 
 \item[$\blacktriangleright$] Go to ``BoxImpl.java'' and, without editing any method signatures there, generate its corresponding injection file.
 
+\vspace{0.5cm}
+
 \item[$\blacktriangleright$] Another \texttt{.inject} file should have been placed in the same folder as \texttt{PartitionImpl.java}. Open this file, and notice
-the partial class includes every method declaration but, as expected, no implementation code (Fig.~\ref{fig:injection_partialClassBox}).
+the partial class includes every method declaration but no implementation code (Fig.~\ref{fig:injection_partialClassBox}).
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
     \centering
@@ -80,11 +86,13 @@ the partial class includes every method declaration but, as expected, no impleme
     \label{fig:injection_partialClassBox}
 \end{figure}
 
+\vspace{0.5cm}
+
 \item[$\blacktriangleright$] Complete the \texttt{addToStringRep} and \texttt{determineNextSize} methods as specified in Fig.~\ref{code:complete_inject_file}
 
 \begin{figure}[htbp]
         \centering
-        \begin{lstlisting}[language=Java]
+        \begin{lstlisting}[language=Java, keywordstyle={\bfseries\color{purple}}, backgroundcolor=\color{white}]
 partial class BoxImpl {
 
     @model addToStringRep (Card card) <--
@@ -122,7 +130,7 @@ partial class BoxImpl {
     \end{figure}
     \FloatBarrier
 
-\item[$\blacktriangleright$] Right-click the injection file, and rebuild your project by selecting ``eMOflon/Clean and
+\item[$\blacktriangleright$] Right-click the injection file, and rebuild your project by selecting ``eMoflon/Clean and
 Build''(Fig~\ref{fig:eclipse_buildFromInjecton}).
 
 \vspace{0.5cm}
@@ -130,7 +138,7 @@ Build''(Fig~\ref{fig:eclipse_buildFromInjecton}).
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=1.0\textwidth]{eclipse_buildFromInject}
-    \caption{Rebuild entire project from injection file}
+    \caption{Build the entire project from the injection file}
     \label{fig:eclipse_buildFromInjecton}
 \end{figure}
 
@@ -149,13 +157,12 @@ Build''(Fig~\ref{fig:eclipse_buildFromInjecton}).
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] For additional information on injections, check out Part IV of the handbook.
+\item[$\blacktriangleright$] For additional information on injections, check out Part IV Miscellaneous\footnote{\downLink} of the handbook.
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] While injecting in either direction is a remarkably simple process, it can quickly become challenging when trying to implement
-complex functions. Instead, we'll learn how and continue to implement our method signatures with Story Diagrams in Part III. (include the other stuff you missed
-here)
+complex functions. Instead, we'll learn how and continue to implement our method signatures with Story Diagrams in Part III.
 
  % \fancyfoot[R]{ $\triangleright$ \hyperlink{sec:LBGUI}{Next}}
  

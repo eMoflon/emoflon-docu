@@ -1,21 +1,18 @@
 \newpage
 \texHeader
 
-{\bf \Large 3 \hspace{0.5cm}Validating Your Metamodel}
-
-\subsection{ The MOSL Builder (Textual)}
-
-{\scriptsize explain the '***' here? (time to build!)}
+\subsection{ eMoflon support with the MOSL Builder }
 
 \hypertarget{validation tex}{} Our MOSL language is accompanied with its own builder that proves support for validating the static semantics of your metamodel.
 Integrated with the Eclipse IDE, if there's an error in your files when you save, a message will appear in the console. Lets try to make an error, just to
 confirm it works.
 
-Go to your \texttt{Partition} class and change the parameter type from \texttt{Card} to \texttt{card}. Press save. An error should immediately appear to inform
-you of your terrible mistake. Change your file back to the way it was, and the message should disappear.
+Go to your \texttt{Partition} class and change the parameter type in \texttt{removeCard} from \texttt{Card} to \texttt{card}. Press save. An error should
+immediately appear below the editor to inform you of your terrible mistake. Change your file back to the way it was, and the message should disappear.
 
-Now, what would happen if you were to delete a reference? Can we make a more serious error appear? Go to any class, delete any reference, and press save.
-Nothing happens! As we mentioned earlier in the handbook, MOSL updates both classes and objects involved in any association. You won't ever have a dangling
-edge, an issue where a link is defined in one place, but not another.
+In summary, MOSL extends the EClipse IDE to let you know if there are any problems with your metamodel. MOSL also lets you know whether or not your project has
+recently been built. You may have noticed this feature in the previous sections. Similar to how Eclipse informs you your file has changed by placing a
+\texttt{*} beside the name in the editor tab, MOSL places a \texttt{***} symbol beside your metamodel folder title in the package explorer to remind you to
+build your project.
 
-\fancyfoot[R]{ $\triangleright$ \hyperlink{sec:creatingInstance common}{Next step} }
+% \fancyfoot[R]{ $\triangleright$ \hyperlink{sec:creatingInstance common}{Next step} }
