@@ -3,61 +3,84 @@
 \texHeader
 \hypertarget{static:starting tex}{}
 
-\begin{itemize}
+\hypertarget{static tex}{} 
 
-\item[$\blacktriangleright$] \hypertarget{static tex}{Begin a} new metamodel project from eclipse by navigating to the \texttt{New Metamodel} button on the
-toolbar. In the dialog that appears, enter `LeitnersLearningBox' as the project name, and select \texttt{Textual (MOSL)}  (Fig.~\ref{fig:new_project}).
+{\footnotesize If you completed the demo in Part I, your Eclipse workspace will look slightly different than ours depicted in the screenshots. In an effort to
+keep things as clear as possible, we have removed the files from our package explorer, but still recommend keeping them for future reference.}
+
+\begin{itemize}
+\item[$\blacktriangleright$] Begin a new metamodel project from eclipse by navigating to the \texttt{New Metamodel} button on the toolbar. In the dialog that
+appears, enter `LeitnersLearningBox' as the project name, and select \texttt{Textual (MOSL)}  (Fig.~\ref{fig:new_project}).
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.7\textwidth]{eclipse_newMetamodelTextPlain}
-	\caption{Create a new metamodeling project}
+  \includegraphics[width=0.8\textwidth]{eclipse_texNewMetamodelPlain}
+	\caption{Creating a new metamodel project}
 	\label{fig:new_project}
 \end{figure}
 
-\item[$\blacktriangleright$] Expand the project as deep as it goes. Your Package explorer may look different than ours (Fig.~\ref{fig:expanded_folders}),
-depending on whether or not you completed the Demo in Part I. In an effort to keep things clear as possible, we have removed them from our workspaces, but
-still recommend keeping them for future reference.
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] You'll see your new project appear under the ``Specifications" node\footnote{If no nodes are appearing in your package explorer,
+make sure your ``Top Level Elements'' are set to ``WorkingSets.''}. If you're interested in the details on eMoflon's project structure, review Section 4.2 from
+Part I\footnote{\downLink}. Otherwise, expand the project as deep as it goes (Fig.~\ref{fig:expanded_folders}).
+
+\clearpage
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.5\textwidth]{eclipse_foldersExpanded}
+  \includegraphics[width=0.6\textwidth]{eclipse_texFoldersExpanded}
 	\caption{Expanded project files}
 	\label{fig:expanded_folders}
 \end{figure} 
 
-\clearpage
+\vspace{0.25cm}
 
-\item[$\blacktriangleright$] You should be able to see two folders, \texttt{.temp}, and \texttt{MOSL}, and one subfolder, \texttt{MyWorkingSet}\footnote{if you
-can't, make sure your `Top Level Elements' are set to \texttt{Working Sets}.}. We're most insterested in \texttt{MyWorkingSet}, which will store the collection
-of files and \emph{unifies} the things we need for our Leitner's Box\footnote{for detailed review on the explorer structure, review Part I.}.
+\item[$\blacktriangleright$] We're most interested in \texttt{MyWorkingSet}, which represents the project scope. It includes all the technical details required
+for code generations, such as those found in the \texttt{\_imports.mconf} file. Right click this folder, and create a new \texttt{EPackage}, naming it
+`LearningBoxLanguage'. This is now the container for all your modelling files. In essence, this is the location all your generated files will be derived from.
 
-\vspace{0.5cm}
+\item[$\blacktriangleright$] Your package explorer should now resemble Fig.~\ref{fig:preBuild}.
 
-\item[$\blacktriangleright$] Right click on your current workspace folder, \texttt{MyWorkingSet}, and create a new subfolder. Name it
-`LearningBoxLanguage'. This is now the container for all your modelling files. In essence, this is the location all your generated
-files will be derived from.
+\item[$\blacktriangleright$] To finish initalizing your metamodel, navigate to ``Build (Without cleaning),'' found beside ``New Metamodel'' on the
+toolbar (Fig.~\ref{fig:preBuild}).
 
-\vspace{0.5cm}
+\vspace{0.25cm}
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.8\textwidth]{eclipse_preBuild}
-	\caption{}
-	\label{fig:all_files}
+  \includegraphics[width=0.8\textwidth]{eclipse_texBuildButton}
+	\caption{Inital structure of Leitner's Learning Box}
+	\label{fig:preBuild}
+\end{figure} 
+
+\vspace{0.25cm}
+
+\item[$\blacktriangleright$] A new, ``MyWorkingSet'' node, named after your project container, should have been created (Fig.~\ref{fig:finalFiles}). The
+first key folder in this node is ``gen.'' This is the package where any and all Java files, generated from your metamodel will be placed.
+
+\newpage
+
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=0.5\textwidth]{eclipse_texFinalExpansion}
+	\caption{The project fully initialized}
+	\label{fig:finalFiles}
 \end{figure} 
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] To finalize initalization of your metamodel, navigate to ``Build (Without cleaning),'' found beside ``New Metamodel'' on the
-toolbar (Fig.~\ref{fig:all_files}).
+\item[$\blacktriangleright$] Navigate to ``LearningBoxLanguage/model.'' This folder contains \\ \texttt{LearningBoxLanguage.ecore}, the concrete model of
+your metamodel. This will adhere to any types and constraints you define within ``LeitnersLearningBox/MOSL/MyWorkingSet/LearningBoxLanguage.'' Like ``gen,"
+its currently empty as we haven't declared any classes (types) or references. This folder also contains a \texttt{.genmodel} file, which contains the technical
+details needed for generation, such as build paths.
 
-\item[$\blacktriangleright$] Navigate to ``LearningBoxLanguage/model.'' There, you'll be able to see a \texttt{LearningBoxLanguage.ecore} file. This is the
-concrete model for your metamodel, which will adhere to any types and contraints you define within
-``LeitnersLearningBox/MOSL/MyWorkingSet/LearningBoxLanguage.''
+\vspace{0.5cm}
 
-\item[$\blacktriangleright$] You've just finished creation process of a new metamodel project! If you would like to review specific details on the textual 
-project structure, read Section 4.2 in Part I\footnote{\downLink}.
+\item[$\blacktriangleright$] In the next section, we'll start creating the abstract syntax for Leitner's Box, and you'll quickly see each of these elements
+grow.
 
 \fancyfoot[R]{$\triangleright$ \hyperlink{static:classes tex}{Next}}
 
