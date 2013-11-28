@@ -3,4 +3,56 @@
 \texHeader
 \hypertarget{remCard tex}{}
 
-Fill.
+\begin{itemize}
+
+\item[$\blacktriangleright$] First, we need to fill the function with something. Go to the \texttt{removeCard} signature in \texttt{Partition} and fill in the
+method. (Fig.)
+
+\item[$\blacktriangleright$] Syntax: patterns are 'called' from two square brackets, you return the modified value with an \texttt{@} symbol.
+
+\item[$\blacktriangleright$] \texttt{[deleteSingleCard] \\ return @card }
+
+\item[$\blacktriangleright$] You should immediately get an error stating it cannot find the required \texttt{.pattern} file for your class in the window below
+the editor (Fig.). Select it, then press ``ctrl + 1.'' This will prompt eMoflon's ``Quick Fix'' wizard.
+
+\item[$\blacktriangleright$] Select \texttt{Create a pattern file} fix, and then \texttt{Finish}. (Fig.)
+
+\item[$\blacktriangleright$] A new directory structure will appear under ``\_patterns'' (Fig.). To explain, every pattern a certain type calls must be in a
+containter folder with the same name. Next, each method that calls a pattern will also have its own folder. This is where the actual \texttt{pattern} file will be found.
+
+\item[$\blacktriangleright$] In eclipse, navigate to this file, and you'll find an empty declaration. The content of any pattern file is simply a list of tasks
+and rules.
+
+% don't forget to discuss syntax!
+\item[$\blacktriangleright$] passed in variables are BOUND, so is this. If you remember, this method is called by partition.removeCard(card). 
+
+\item[$\blacktriangleright$] Create two rules (Fig.),\\ \texttt{@this : Partition { \\ }} \\ and \\ \texttt{@card : Card { \\ }} \\ for the two main pieces of
+our method. This obvs applies to the current context item, \texttt{Partition}, and card is the name of our passed-in value.
+
+\item[$\blacktriangleright$] It doesn't matter what order the rules are placed, as long as they are there.
+
+\item[$\blacktriangleright$] Syntax: same as declaring an attribute: var name, colon, type. Again, we're just adding rules to it now.
+
+\item[$\blacktriangleright$] in the \texttt{this} rule, add \texttt{-- -> card : card} to destroy the navigation named \texttt{card} of the object variable
+\texttt{card} (Fig.).
+
+\item[$\blacktriangleright$] If you ever need to remind yourself what the names of the passed-in vars, or navigation names are, simply look at your metamodel
+files! There's no need to scour the Java files for a specific name. From your patterns file, you can do this by pressing \texttt{alt + <- }. Similarily, you can
+jump into any pattern file by pressing \texttt{ctrl} and clicking the pattern name from inside the pattern delcaration.
+
+\item[$\blacktriangleright$] Leave the second rule blank. Remember the constraints file you built? The \emph{Link} you made between \texttt{Partition} and
+\texttt{Card} means that the \texttt{cardContainer} reference in \texttt{Card} will be synchronized with the deletion in \texttt{Partition}.
+
+\item[$\blacktriangleright$] Navigate to ``Partition.impl'' and scroll down to the removeCard declaration. You should be able to see generated code. (Fig.)
+
+\item[$\blacktriangleright$] lets test our implementation using this new context in the GUI JUST to make sure it works.
+
+\item[$\blacktriangleright$] If you haven't downloaded or used the GUI before, read section 7 of Part II. In any case, the program should run without error.
+
+\item[$\blacktriangleright$] You have now implemented a simple manipulation via patterns from the Story Driven Modeling paradigm. This is great for abstraction,
+keeping things separated and clean, and for implementing large function that could otherwise take a \emph{very} long time using traditional Java
+implementation.
+
+\fancyfoot[R]{ $\triangleright$ \hyperlink{sec:checkCard}{Next} }
+
+\end{itemize}

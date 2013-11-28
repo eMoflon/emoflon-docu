@@ -49,7 +49,7 @@ Rule application is denoted as $G \stackrel{r}{\Rightarrow} H$ and is depicted i
 
 Lets review this application. 
 
-(1) is called \emph{graph pattern matching}\note{Pattern Matching}, and this finds occurrences of object(s) $L$ in the model $G$ via an $m$ match.
+(1) is called \emph{graph pattern matching}\define{Pattern~Matching}, and this finds occurrences of object(s) $L$ in the model $G$ via an $m$ match.
 
 (2) is called `building a \emph{push-out complement} $PC = (G\setminus Destroy)$', which results in $L\cup(G\setminus Destroy) = G$
 
@@ -76,9 +76,9 @@ one partition to the next? Figure~\ref{fig:rule_example} depicts this $moveCard$
 
 \pagebreak
 
-As already indicated by the colours used for $moveCard$, we employ a compact representation the rules formed by merging $(L,R)$ into a single
-\note{Story\\Pattern} \emph{story pattern} composed of  $Destroy := (L\setminus R)$ in red, $Retain :=  L\cap R$ in black, and $Create := (R\setminus L)$ in 
-green (Fig.~\ref{fig:rule_compact}).
+As already indicated by the colours used for $moveCard$, we employ a compact representation the rules formed by merging $(L,R)$ into a single \emph{story
+pattern}\define{Story~Patte\-rn} composed of  $Destroy := (L\setminus R)$ in red, $Retain :=  L\cap R$ in black, and $Create := (R\setminus L)$ in green
+(Fig.~\ref{fig:rule_compact}).
 
 \begin{figure}[htp]
 \begin{center}
@@ -93,9 +93,9 @@ deleted, retained, and created. We can therefore apply $moveCard$ to a learning 
 
 % Should define activity NODE here? (first appearance, but may only apply to visual)
 There's just one last thing to explain before we continue with our learning box; Individual rules still have to be applied in a suitable sequence to realise
-complex model transformations that consist of many steps! This can be done through simplified activity diagrams, where a single \emph{activity node}
-\note{Activity\\Node} is a pattern (as discussed above) with \emph{activity edges} \note{Activity Edges} which link to other nodes to form a control flow. The
-entire rule can therefore be viewed as two separate layers: an imperative layer to define the top-level control flow via activity diagrams (ie., if-else
+complex model transformations that consist of many steps! This can be done through simplified activity diagrams, where a single \emph{activity
+node}\define{Activity~Node} is a pattern (as discussed above) with \emph{activity edges}\define{Activity~Edge} which link to other nodes to form a control flow.
+The entire rule can therefore be viewed as two separate layers: an imperative layer to define the top-level control flow via activity diagrams (ie., if-else
 statements, loops, etc.), and a pattern layer comprised of story patterns where each activity node specifies (via a graph transformation rule) how the model is
 to be manipulated.
 \pagebreak
@@ -108,5 +108,4 @@ to be manipulated.
 \end{center}
 \end{figure}
 
-\fancyfoot[R]{ $\triangleright$ \hyperlink{sec:remCard}{First SDM: Removing a Card} }
 Enough theory! Grab your mouse and lets get cracking with SDMs\ldots

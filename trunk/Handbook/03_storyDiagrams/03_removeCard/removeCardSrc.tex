@@ -1,0 +1,46 @@
+\newpage
+\genHeader
+\section{Removing a card}
+\hypertarget{sec:remCard}{}
+
+Since we're just getting started with SDM's, lets re-implement the method we created via injections. we'll begin with a straightforward diagram. The goal of
+this SDM is to remove a single card from its current partition (Fig.~\ref{fig:goal_removeCard}), which can be done by destroying a reference between the two
+items.
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
+	\centering
+    \includegraphics[width=0.17\textwidth]{removeCard.pdf}
+	\caption{Removing a card from its partition}
+	\label{fig:goal_removeCard}
+\end{figure}
+\FloatBarrier
+
+\vspace{0.5cm}
+
+According to the signature of the method \texttt{removeCard}, we should return the card that has been deleted. Although this might strike you as slightly odd,
+considering that we already passed in this exact card as an argument, it still makes sense as it allows for chaining method calls:
+\begin{quote}\texttt{aPartition.removeCard(aCard).invert()}\end{quote}
+
+% SDMs are placed in SDM containers, named according to the method they implement.
+Since this method makes a structure change, it \emph{must} be implemented as a pattern. Lets get started by removing the code the previously injected code.
+
+\begin{itemize}
+
+\item[$\blacktriangleright$] Go to PartitionImpl.java remove everything under \texttt{removeCard(Card card)} ({\bf check})
+% and replace everything under \texttt{removeCard(Card card)} with: \\
+% 		// TODO: implement this method here but do not remove the injection marker 
+% 		throw new UnsupportedOperationException() \\
+
+\item[$\blacktriangleright$] Delete PartitionImpl.inject from the ``injection'' folder of your working set.
+
+\item[$\blacktriangleright$] Now, click somewhere in your package explorer, then go to ``Build (Without Cleaning)'' on the toolbar. It should compile without
+error.
+
+\fancyfoot[R]{ $\triangleright$ \hyperlink{remCard vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{remCard tex}{Next [textual]} }
+
+\end{itemize}
+
+\input{../03_removeCard/visRemoveCard}
+
+\input{../03_removeCard/texRemoveCard}
