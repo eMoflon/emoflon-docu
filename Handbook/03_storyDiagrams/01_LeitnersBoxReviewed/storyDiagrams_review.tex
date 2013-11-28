@@ -1,4 +1,4 @@
-\section{Leitner's Learning Box reviewed}
+\section{Leitner's learning box reviewed}
 
 % Mention the visual validation tool?
 \emph{Leitner's learning box}\footnote{http://en.wikipedia.org/wiki/Leitner\_system} is a simple, but ingenious little contraption to support the tedious
@@ -25,18 +25,26 @@ For a more detailed overview of the box and our goals, we recommend you read the
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.65\textwidth]{eclipse_downloadWizard}
+  \includegraphics[width=0.75\textwidth]{eclipse_downloadWizard}
 	\caption{Download the file set to get started}
 	\label{fig:downloadWizard}
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] Download the file package of the eMolfon syntax type you'd like to learn about. Remember, there's no difference between the
-two - this is purely a matter of preference.
+\item[$\blacktriangleright$] Download the file package of the eMolfon syntax type you'd like to learn about. Remember, with the visual syntax, you'll be using
+an external modeling program to craft your metamodel diagrams, then exporting the data to Eclipse. With textual, you'll be working entirely within the
+Eclipse IDE in the eMolfon perspective.
 
-\item[$\blacktriangleright$] If your package explorer does not resemble ours in Fig.~\ref{fig:workingSets}, select the small, downward facing arrow in the
-corner of the module window. Choose ``Working Sets'' as your top level elements. We work with many working sets, and use them to structure the workspace in 
-Eclipse.
+\item[$\blacktriangleright$] If your package explorer does not resemble ours in Fig.~\ref{fig:workingSets} with at least two distinct nodes, select the
+small, downward facing arrow in the corner of the module window. Choose ``Working Sets'' as your ``Top Level Elements''. We work with many working sets, and use
+them to structure the workspace in Eclipse.
+\end{itemize}
+
+The ``MyWorkingSet" node contains \texttt{LeitnersLearningBox}, which in turns contains all the metamodel project files. Visually, this is represented in a
+single \texttt{.eap} file. In the textual syntax, it is a specific project structure with several classes. The model generated from the metamodel can be found
+under the second node, in \texttt{LearningBoxLanguage}. These sets are not contained within the same node because they are different \emph{nature}s, or
+project types. \texttt{LearningBoxLanguage} is your \emph{repository project}, the Eclipse classification for a normal Java project\footnote{For more details
+on the project structure, review section 4 of Part I.}. 
 
 \begin{figure}[htbp]
 	\centering
@@ -46,17 +54,14 @@ Eclipse.
 \end{figure}
 \FloatBarrier
 
-\fancyfoot[R]{ $\triangleright$ \hyperlink{explanation}{Next Step} }
+\begin{itemize}
+% THINK: Is this information actually helpful for the user?
+\item[$\blacktriangleright$] Inspect the files until you feel comfortable with what you'll be working with. In particular, look at your metamodel structure in
+the \texttt{MOSL} folder. Everything defined here is also defined in the \texttt{.ecore} model file in ``LearningBoxLanguage/model/''. You can review how to
+create a dynamic instance of your model in section 4 of Part II. We have included a small instance in your download, but encourage experimentation. We also
+invite you to browse the files in \texttt{gen}, especially each of the \texttt{.impl} files. You'll find the each implementation file includes an
+empty method declaration for each signature declared in the metamodel\footnote{For specific details on their contents, refer to Part II, section 5.}.
 
-You should have two nodes, each containing a project file. \texttt{LeitnersLearningBox} contains the metamodel project, which in turn generated the model
-instance found in \texttt{LearningBoxLanguage}. They are not contained within the same node as \texttt{LearningBoxLanguage} is a different \emph{nature}, or
-project type, than the metamodel project. This is your \emph{repository project}, the Eclipse classification for a normal Java project. For more details on
-the project structure, review section 4 of Part I.
-
-\item[$\blacktriangleright$] Inspect the files to get familiar with what you'll be working with. In particular, look at your metamodel structure in the
-\texttt{MOSL} folder. You'll be able to see everything defined here also defined in the corresponding \texttt{.ecore} model file in
-``LearningBoxLanguage/model/''. We also invite you to browse the files in \texttt{gen}. For details on their contents, refer to Part II, section 5.
-
-\item[$\blacktriangleright$] Well, that's it! A quick review, paired with a fine download makes an excellent appetizer to SDMs. 
+\item[$\blacktriangleright$] Well, that's it! A quick review, paired with a fine download makes an excellent appetizer to SDMs. Let's get started.
 
 \end{itemize}
