@@ -1,7 +1,7 @@
 \clearpage
 \visHeader
 
-\subsection{A first look at Enterprise Architect}
+\subsection{A first look at EA}
 
 \begin{itemize}
 \FloatBarrier
@@ -13,30 +13,30 @@ In the meantime, do not rename, move, or delete anything.
 
 \item[$\blacktriangleright$] Double-click \texttt{Demo.eap} to start EA, and choose \texttt{Ultimate} when starting EA for the first time.
 
-\item[$\blacktriangleright$] In EA, navigate to ``Extensions/MOFLON::Ecore Addin/Export\- all\- to\- Workspace'' (Fig.~\ref{fig:ea}). 
+\item[$\blacktriangleright$] In EA, navigate to ``Extensions/MOFLON::Ecore Addin/Validate All'' (Fig.~\ref{fig:validate_dropdown}). Not only will this check
+your diagram for errors, it will export your files to the Eclipse workspace once its successful.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.9\textwidth]{ea_firststart}
+  \includegraphics[width=0.8\textwidth]{ea_extensionMenu}
 	\caption{Export from EA} 
-	\label{fig:ea} 
+	\label{fig:validate_dropdown} 
 \end{figure}
 
 \item[$\blacktriangleright$] Please note that this submenu is limited, and does not provide access to all eMoflon functionality. You can activate eMoflon's full
-control panel window by going to ``Extensions/Add-In Windows'' (Fig.~\ref{fig:controlPanel}). To export from here, click \texttt{All} in the ``Export'' section.
+control panel window by enabling ``Extensions/Add-In Windows'' (Fig.~\ref{fig:validate_dropdown}). To export from here, click \texttt{All} in the ``Validate''
+section (Fig.~\ref{fig:controlPanel})
+
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.9\textwidth]{ea_controlPanel}
+  \includegraphics[width=0.9\textwidth]{ea_controlPanelValidateAll}
 	\caption{eMoflon's control panel} 
 	\label{fig:controlPanel} 
 \end{figure}
 
 \item[$\blacktriangleright$] Now try exploring the EA project browser! Try to navigate to the packages, classes, and diagrams. Don't worry if you don't
 understand that much - we'll get to explaining everything in a moment. Just make sure not to change anything!
-
-%\nxtPage{\thepage}
-\newpage
 
 \item[$\blacktriangleright$] Switch back to Eclipse, choose your metamodel project, and press F5 to refresh. A new folder should appear, and your errors should
 disappear after a few seconds. Since you've chosen to use our visual syntax, there isn't much to look at here. The export from EA places all required files in a

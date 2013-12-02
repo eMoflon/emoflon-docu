@@ -11,7 +11,7 @@ partition an unknown number of times (Fig.~\ref{fig:goal_empty}).
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.25\textwidth]{empty.pdf}
+  \includegraphics[width=0.3\textwidth]{goal_partitionEmpty.pdf}
 	\caption{Emptying a partition of every card}
 	\label{fig:goal_empty}
 \end{figure}
@@ -39,15 +39,7 @@ transformation engine eMoflon uses\footnote{CodeGen2, a part of Fujaba \url{http
 in a model. Since deleting just the \texttt{card} would result in a `dangling edge' attached to \texttt{this}, that link is deleted as well. Explicitly
 destroying the link is therefore a matter of taste, so \ldots why not be as explicit as possible?
 
-\vspace{1cm}
-\begin{itemize}
-\item[$\blacktriangleright$] Select a link below to begin this SDM.
-\end{itemize}
-
-\begin{center} {$\triangleright$ \hyperlink{emptyPartition vis}{Emptying a Partition: The visual syntax}}%
-\\ \vspace{0.5cm}
-{$\triangleright$ \hyperlink{emptyPartition tex}{Emptying a Partition: The textual syntax} }\end{center} 
-
+\fancyfoot[R]{ $\triangleright$ \hyperlink{emptyPartition vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{emptyPartition tex}{Next [textual]} }
 
 \input{../05_emptyPartition/visEmptyCards}
 

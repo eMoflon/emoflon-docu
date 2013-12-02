@@ -28,14 +28,12 @@ give as 'foo.'} and choose \texttt{eMoflon}\footnote{Items you can open or click
 	\label{fig_eclipseNewMetamodelButton}
 \end{figure}
 
-%\nxtPage{\thepage}
-
 \newpage
 \item[$\blacktriangleright$] A new dialog box should appear. This is the place where you officially decide which eMoflon syntax you'd like to use
-(Fig.~\ref{fig_chooseSyntax}). With the visual syntax, you'll be using Eclipse alongside EA. You'll use EA to specify several kinds of diagrams, export, and
-refresh your workspace in Eclipse. With the textual syntax (MOSL\footnote{eMoflon Specification Language}), you'll be working entirely within the Eclipse IDE.
-No matter which syntax you choose however, give your project a name and make sure the \texttt{Add Demo Specification} button is selected. This will create all the
-files and tests required to ensure you've set up eMoflon correctly.
+(Fig.~\ref{fig_chooseSyntax}). With the visual syntax, you'll be using Eclipse along and a UML tool, Enterprise Architect(EA). You'll use EA to specify several
+kinds of diagrams, export, and refresh your workspace in Eclipse. With the textual syntax (MOSL)\footnote{Moflon Specification Language}, you'll be working
+entirely within the Eclipse IDE. No matter which syntax you choose however, give your project a name and make sure the \texttt{Add Demo Specification} button is
+selected. This will create all the files and tests required to ensure you've set up eMoflon correctly.
 
 \begin{figure}[htbp]
 	\centering
@@ -46,16 +44,16 @@ files and tests required to ensure you've set up eMoflon correctly.
 
 \item[$\blacktriangleright$]  A second button in the new action set is ``View and configure logging'' (Fig.~\ref{fig_logger}), represented by an \texttt{L}.
 Clicking on this icon will open a \texttt{log4jConfig.properties} file where you can silence certain loggers, set the level of loggers, and configure other
-settings\footnote{If you're not sure how to do this, check out a short Log4j tutorial at
-\href{http://logging.apache.org/log4j/1.2/manual.html}{http://logging.apache.org/log4j/1.2/manual.html}}. eMoflon's logfile is automatically written each time
-you save, and appears in the eMoflon console window, just below your main editor window. This contains important information for us if something goes wrong!
+settings.\footnote{If you're not sure how to do this, check out a short Log4j tutorial a
+\href{http://logging.apache.org/log4j/1.2/manual.html}{http://logging.apache.org/log4j/1.2/manual.html}} eMoflon's messages and appear in our eMoflon console
+window, just below your main editor window. This contains important information for us if something goes wrong!
 
 \newpage
 \vspace*{3cm}
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.9\textwidth]{eclipse_logger}
-	\caption{The eMoflon logger}
+  \includegraphics[width=1.0\textwidth]{eclipse_logger}
+	\caption{The eMoflon console with log messages}
 	\label{fig_logger}
 \end{figure} 
 \end{itemize}

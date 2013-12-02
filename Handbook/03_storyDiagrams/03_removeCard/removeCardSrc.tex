@@ -3,14 +3,14 @@
 \section{Removing a card}
 \hypertarget{sec:remCard}{}
 
-Since we're just getting started with SDM's, lets re-implement the method we created via injections. we'll begin with a straightforward diagram. The goal of
-this SDM is to remove a single card from its current partition (Fig.~\ref{fig:goal_removeCard}), which can be done by destroying a reference between the two
-items.
+Since we're just getting started with SDM's, lets re-implement the method previously created with injections.\footnote{To review how to make
+injections, refer to Part II, section 6} The goal of this method is to remove a single card from its current
+partition, which can be done by destroying the link between the two items (Fig.~\ref{fig:goal_removeCard}).
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 	\centering
-    \includegraphics[width=0.17\textwidth]{removeCard.pdf}
+    \includegraphics[width=0.17\textwidth]{goal_removeCard.pdf}
 	\caption{Removing a card from its partition}
 	\label{fig:goal_removeCard}
 \end{figure}
@@ -19,23 +19,35 @@ items.
 \vspace{0.5cm}
 
 According to the signature of the method \texttt{removeCard}, we should return the card that has been deleted. Although this might strike you as slightly odd,
-considering that we already passed in this exact card as an argument, it still makes sense as it allows for chaining method calls:
+considering that we already passed in the card as an argument, it still makes sense as it allows for chaining method calls:
 \begin{quote}\texttt{aPartition.removeCard(aCard).invert()}\end{quote}
 
-% SDMs are placed in SDM containers, named according to the method they implement.
-Since this method makes a structure change, it \emph{must} be implemented as a pattern. Lets get started by removing the code the previously injected code.
+Before we implement this change as a pattern, lets remove the old injection content to avoid potential conflicts.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Go to PartitionImpl.java remove everything under \texttt{removeCard(Card card)} ({\bf check})
-% and replace everything under \texttt{removeCard(Card card)} with: \\
-% 		// TODO: implement this method here but do not remove the injection marker 
-% 		throw new UnsupportedOperationException() \\
+\item[$\blacktriangleright$] Delete the \texttt{PartitionImpl.inject} file from your working set (Fig~\ref{fig:delete_injection}).
 
-\item[$\blacktriangleright$] Delete PartitionImpl.inject from the ``injection'' folder of your working set.
+\item[$\blacktriangleright$] Now select your ``Specifications'' node and rebuild your project by navigating to the ``Build (Without Cleaning)'' button on the
+toolbar.
 
-\item[$\blacktriangleright$] Now, click somewhere in your package explorer, then go to ``Build (Without Cleaning)'' on the toolbar. It should compile without
-error.
+\item[$\blacktriangleright$] You'll be able to see the change in \texttt{PartitionImpl.java}, found under ``MyWorkingSet.'' The \texttt{removeCard}
+declaration should now look the same as the other declarations.
+
+\newpage
+
+\vspace*{3cm}
+
+\begin{figure}[htbp]
+	\centering
+    \includegraphics[width=0.7\textwidth]{eclipse_removeInjection}
+	\caption{Remove injection content}
+	\label{fig:delete_injection}
+\end{figure}
+
+\vspace{0.5cm}
+
+You're ready to start your first SDM! Make sure your project compiles without error before continuing.
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{remCard vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{remCard tex}{Next [textual]} }
 
