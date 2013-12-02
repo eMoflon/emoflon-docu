@@ -22,11 +22,10 @@ we'll need to create a new object variable, \texttt{nextPartition}, and link it 
 The first/last partitions in the box are arbitrary partitions in the box with no previous/next partitions defined. The valid matches are made unique and thus
 deterministic by construction. In other words, if you \emph{grow} the box via this method, there will always be exactly one first and one last partition.
 
-% INCORRECT IMAGE - no link between first/last
 \begin{figure}[htbp]
  	\centering
-  \includegraphics[width=0.9\textwidth]{growBox.pdf}
-	\caption{Some link actions in Box::Grow}
+  \includegraphics[width=0.6\textwidth]{goal_growBox.pdf}
+	\caption{Growing a box by inserting a new partition}
 	\label{fig:goal_grow}
 \end{figure}
 \FloatBarrier
@@ -47,15 +46,7 @@ finally determine the new size.
 Don't worry if you're a bit confused by all this theory (especially that part about \mbox{NAC}s). Once implemented, it should make more sense.
 % If not, the interested reader can always refer to.. 
 
-\vspace{0.5cm}
-\begin{itemize}
-\item[$\blacktriangleright$] As always, click on a link below to begin.
-\end{itemize}
-
-\begin{center} {$\triangleright$ \hyperlink{growBox vis}{Growing a Box: The visual syntax}}%
-\\ \vspace{0.5cm}
- {$\triangleright$ \hyperlink{growBox tex}{Growing a Box: The textual syntax}}\end{center} 
-
+\fancyfoot[R]{ $\triangleright$ \hyperlink{growBox vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{growBox tex}{Next [textual]} }
 
 \input{../07_growBox/visGrowBox}
 

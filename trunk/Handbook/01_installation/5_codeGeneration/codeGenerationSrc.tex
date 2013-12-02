@@ -3,7 +3,7 @@
 
 \section{Code generation}
 
-Now\hypertarget{codeGen common}{} that you've worked through the specifics of your syntax, lets have a discussion about code generation.
+Now\hypertarget{codeGen common}{} that you've worked through the specifics of your syntax, lets have a brief discussion on code generation.
 
 The Ecore model is used to drive a code generator that maps the model to Java interfaces and classes.
 The generated Java code that represents the model is often referred to as a repository. This is the reason why we refer to such projects as repository projects.
@@ -34,8 +34,6 @@ complex, large models with lots of mean pitfalls however, this becomes a dauntin
 The code generator provides you with years and \emph{years} of experience of professional programmers who have thought up clever ways of handling multiple
 inheritance, an efficient event mechanism, reflection, consistency between bidirectionally linked objects, and much more.
 
-% \fancyfoot[R]{  $\triangleright$ \hyperlink{conclusion}{Next}}
-
-A point to note here is that the mapping to Java is obviously not unique. Indeed there exists different standards of how to map a modelling language to a
+A point to note here is that the mapping to Java is obviously not unique. Indeed there exist different standards of how to map a modelling language to a
 general purpose programming language such as Java. As previously mentioned, we use a mapping defined and implemented by the Eclipse Modelling Framework (EMF),
-which tends to favour efficiency and simplicity.
+which tends to favour efficiency and simplicity over expressiveness and advanced features.

@@ -1,58 +1,127 @@
 \newpage
-\subsection{Removing a card from a partition (Textual)}
-\texHeader
 \hypertarget{remCard tex}{}
+\subsection{Partition::removeCard(Card) - The textual syntax}
+\texHeader
+
+Given that we just deleted everything, we need to insert some commands into the method. One of the goals of using SDMs and their
+patterns along with eMoflon's code generation is to allow you to focus less on \emph{how} a method will do something, but rather on \emph{what} the method will
+do. As a result, the only thing you need to establish in any method is appropriate control flow.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] First, we need to fill the function with something. Go to the \texttt{removeCard} signature in \texttt{Partition} and fill in the
-method. (Fig.)
+\item[$\blacktriangleright$] Go to the \texttt{removeCard} signature in the \texttt{Partition.eclass} file. Fill the method with a single pattern call,
+'[deleteSingleCard]' and a return statement (Fig~\ref{fig:remCardDec}).
 
-\item[$\blacktriangleright$] Syntax: patterns are 'called' from two square brackets, you return the modified value with an \texttt{@} symbol.
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{eclipse_removeCardDeclaration}
+  \caption{Control flow for \texttt{removeCard}}
+  \label{fig:remCardDec}
+\end{center}
+\end{figure}
 
-\item[$\blacktriangleright$] \texttt{[deleteSingleCard] \\ return @card }
+\item[$\blacktriangleright$] To lightly touch on MOSL syntax, the `@' operator refers to a \emph{bound} variable. In this method, \texttt{card} is bound since
+it is the passed-in variable.
 
-\item[$\blacktriangleright$] You should immediately get an error stating it cannot find the required \texttt{.pattern} file for your class in the window below
-the editor (Fig.). Select it, then press ``ctrl + 1.'' This will prompt eMoflon's ``Quick Fix'' wizard.
+\item[$\blacktriangleright$] As soon as you save the file, an error should immediately appear. In the ``Problems'' tab below the editor, the message states that
+the builder cannot find the specified pattern file. Well, that makes sense - you haven't made it yet! Click on this message then press \texttt{Control + 1} to
+invoke a ``Quick Fix'' dialouge (Fig~\ref{fig:quixFix})
 
-\item[$\blacktriangleright$] Select \texttt{Create a pattern file} fix, and then \texttt{Finish}. (Fig.)
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.6\textwidth]{eclipse_patternQuickFix}
+  \caption{A quick solution to a pattern error}
+  \label{fig:quixFix}
+\end{center}
+\end{figure}
 
-\item[$\blacktriangleright$] A new directory structure will appear under ``\_patterns'' (Fig.). To explain, every pattern a certain type calls must be in a
-containter folder with the same name. Next, each method that calls a pattern will also have its own folder. This is where the actual \texttt{pattern} file will be found.
+\item[$\blacktriangleright$] It offers to create a pattern file for you. Given that's exactly what you'd like to do, select the option and press
+\texttt{Finish}.
 
-\item[$\blacktriangleright$] In eclipse, navigate to this file, and you'll find an empty declaration. The content of any pattern file is simply a list of tasks
-and rules.
+\item[$\blacktriangleright$] The new file will open in the editor, and a new directory structure will appear under ``\_patterns'' (Fig.~\ref{fig:pattStruct}). SDMs are
+placed in SDM containers, named according to the method they implement. In this case, \texttt{deleteSingleCard.pattern} is invoked by the method \texttt{removeCard},
+which itself is found in the \texttt{Partition} class. \texttt{Partition} will eventually contain folders for each method that implements a pattern.
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.9\textwidth]{eclipse_patternStructure}
+  \caption{Directory structure for a pattern}
+  \label{fig:pattStruct}
+\end{center}
+\end{figure}
 
 % don't forget to discuss syntax!
-\item[$\blacktriangleright$] passed in variables are BOUND, so is this. If you remember, this method is called by partition.removeCard(card). 
+\item[$\blacktriangleright$] The content of any pattern file is simply a list of tasks and rules. You create a series of \emph{Object Variables}, and then,
+within those declarations, state operations such as `delete this reference'.\footnote{Hint, hint!} Remember - the focus here is not on how, but on what.
 
-\item[$\blacktriangleright$] Create two rules (Fig.),\\ \texttt{@this : Partition { \\ }} \\ and \\ \texttt{@card : Card { \\ }} \\ for the two main pieces of
-our method. This obvs applies to the current context item, \texttt{Partition}, and card is the name of our passed-in value.
+\item[$\blacktriangleright$] Create two rules, \texttt{@this:Partition\{ \}} and~\texttt{@card:Card\{ \}}~(Fig.~\ref{fig:remCardObjVar}). Just like parameter
+values, \texttt{this} variables are always bounded.
 
-\item[$\blacktriangleright$] It doesn't matter what order the rules are placed, as long as they are there.
+\item[$\blacktriangleright$] eMoflon offers type completion to assist you when declaring items in your metamodel. Simply press \texttt{control + space} before
+typing to see your options.
 
-\item[$\blacktriangleright$] Syntax: same as declaring an attribute: var name, colon, type. Again, we're just adding rules to it now.
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.6\textwidth]{eclipse_remCardObjVars}
+  \caption{Object Variables for \texttt{removeCard}}
+  \label{fig:remCardObjVar}
+\end{center}
+\end{figure}
 
-\item[$\blacktriangleright$] in the \texttt{this} rule, add \texttt{-- -> card : card} to destroy the navigation named \texttt{card} of the object variable
-\texttt{card} (Fig.).
+\clearpage
 
-\item[$\blacktriangleright$] If you ever need to remind yourself what the names of the passed-in vars, or navigation names are, simply look at your metamodel
-files! There's no need to scour the Java files for a specific name. From your patterns file, you can do this by pressing \texttt{alt + <- }. Similarily, you can
-jump into any pattern file by pressing \texttt{ctrl} and clicking the pattern name from inside the pattern delcaration.
+\item[$\blacktriangleright$] Add `\texttt{-- -> card:card}' to \texttt{@this} to destroy the \texttt{card} reference targeting the \texttt{card} object. Your
+workspace should now resemble Fig.~\ref{fig:deleteReference}.
 
-\item[$\blacktriangleright$] Leave the second rule blank. Remember the constraints file you built? The \emph{Link} you made between \texttt{Partition} and
-\texttt{Card} means that the \texttt{cardContainer} reference in \texttt{Card} will be synchronized with the deletion in \texttt{Partition}.
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.6\textwidth]{eclipse_thisObjVar}
+  \caption{Destroy the link between a card and its partition}
+  \label{fig:deleteReference}
+\end{center}
+\end{figure}
 
-\item[$\blacktriangleright$] Navigate to ``Partition.impl'' and scroll down to the removeCard declaration. You should be able to see generated code. (Fig.)
+\item[$\blacktriangleright$] If you ever need to quickly remind yourself of specific navigation names or attributes, press \texttt{alt} and the left arrow to
+jump back to your eclass. Conversely, to quickly open or jump to a pattern, Hover over the pattern name while holding \texttt{control} until it's underlined, then click!
 
-\item[$\blacktriangleright$] lets test our implementation using this new context in the GUI JUST to make sure it works.
+\item[$\blacktriangleright$] Remember that links between classes are defined via \emph{Bidrectional EReferences},\footnote{technically two
+\emph{unidirectional EReferences}} linked together as opposites in ``LearningBoxLanguage/\_con\-straints.mconf.'' This means we can leave the second rule empty,
+as declaring \texttt{-- -> cardContainer:Card} would be redundant.
 
-\item[$\blacktriangleright$] If you haven't downloaded or used the GUI before, read section 7 of Part II. In any case, the program should run without error.
+\item[$\blacktriangleright$] Build your project and navigate to ``MyWorkingSet/LearningBoxLanguage/gen." Open ``Partition.impl'' and scroll down to the
+\texttt{RemoveCard} declaration. If everything compiled without errors, you should be able to see some generated code (Fig.~\ref{fig:remCardImpl}).
 
-\item[$\blacktriangleright$] You have now implemented a simple manipulation via patterns from the Story Driven Modeling paradigm. This is great for abstraction,
-keeping things separated and clean, and for implementing large function that could otherwise take a \emph{very} long time using traditional Java
-implementation.
+\item[$\blacktriangleright$] Given that we were able to actually remove a card from our Box using injections, lets test \emph{this} implementation using our GUI
+(Fig.~\ref{fig:GUITest}).\footnote{ If you haven't downloaded or used the GUI before, review Part II, section 7} If it doesn't work for you, inspect your
+pattern class and confirm it matches Fig.~\ref{fig:deleteReference}.
 
-\fancyfoot[R]{ $\triangleright$ \hyperlink{sec:checkCard}{Next} }
+\item[$\blacktriangleright$] Fantastic work! You have now implemented a simple reference manipulation via patterns. SDM is great for
+abstraction, keeping things separated and clean, and for effectively implementing large functions that would otherwise take a \emph{very} long time. To see how
+this same method is crafted in the visual syntax, check out Fig.~\ref{fig:sdm_complete_control_flow} from the previous section. Otherwise, keep going to become
+a master of SDMs.
+
+\newpage
+
+\vspace*{1cm}
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=\textwidth]{eclipse_remCardImpl}
+  \caption{Generated implementation code}
+  \label{fig:remCardImpl}
+\end{center}
+\end{figure}
+
+\vspace*{2cm}
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{eclipse_remCardGUITest}
+  \caption{Testing implementation with the GUI}
+  \label{fig:GUITest}
+\end{center}
+\end{figure}
+
+% \fancyfoot[R]{ $\triangleright$ \hyperlink{sec:checkCard}{Next} }
 
 \end{itemize}

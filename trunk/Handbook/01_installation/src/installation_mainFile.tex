@@ -46,17 +46,17 @@
 
 \graphicspath{%
 {../../00_introduction/common/}%
-{../1_installation/}{../1_installation/installPlugin/images/}{../1_installation/installEA/images/}%
-{../2_simpleDemo/2_images/}{../2_simpleDemo/EADemo/images/}{../2_simpleDemo/eclipseDemo/images/}%
-{../3_validate/images/}%
-{../4_projectSetup/modelingWithEA/images/}{../4_projectSetup/eclipseMOSL/images/}%
-{../5_codeGeneration/images/}%
+{../1_installation/}{../1_installation/installPlugin/}{../1_installation/installEA/iea_images/}%
+{../2_simpleDemo/sd_images/}{../2_simpleDemo/EADemo/images/}{../2_simpleDemo/eclipseDemo/}%
+{../3_validate/va_images/}%
+{../4_projectSetup/modelingWithEA/ea_images/}{../4_projectSetup/eclipseMOSL/mosl_images/}%
+{../5_codeGeneration/}%
 }
- 
+
 % Remove section numbers 0.1, 0.2 ..
 \renewcommand{\thesection}{\arabic{section}} 
 
-% Creates footer link for the immediate next page; pass in \thepage and place in src file near end of page
+% \nxtPage{\thepage}; Creates footer link for the immediate next page 
 \newcommand{\nxtPage}[1]{
 	\FPeval{\nxtPg}{clip(#1 +1)}
 	\fancyfoot[R]{$\triangleright$ \hyperlink{page.\nxtPg}{Next}}
@@ -103,11 +103,21 @@
   	\fancyfoot{}
 }
 
-% --- Title Page Information ----------------------------------------------------------------------------------------------------------------------------------
+% --- Quickset download and version information ---------------------------------------------------------------------------------------------------------------
+\newcommand{\EclipseVersion}{Kepler}
+\newcommand{\JavaVersion}{1.7}
+%% Store in 01_installation/1_installation/installPlugin
+\newcommand{\EclipseDownloadImage}{eclipseDownloadPage}
+\newcommand{\EclipseDownloadLink}{\url{ http://www.eclipse.org/downloads/index.php }}
+
+\newcommand{\eMoflonUpdateSite}{\url{ http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/update-site2 }}
+
+\newcommand{\EAExtensionLink}{\url{ http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/ea-ecore-addin/ea-ecore-addin.zip }}
+
+% --- Set Title Page Information ------------------------------------------------------------------------------------------------------------------------------
+\input{../../00_introduction/common/titlepage}
 \def\partTitle{Part I: Installation and Setup}
 \def\versionNumber{0.0}
-\input{../../00_introduction/common/titlepage}
-
 % --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 \begin{document}

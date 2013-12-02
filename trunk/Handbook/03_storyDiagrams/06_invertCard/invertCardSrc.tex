@@ -3,6 +3,9 @@
 \genHeader
 \hypertarget{sec:invertCard}{}
 
+Now that every method in Partition has been filled, lets move on to Card; if you've ever done a swap method before, you know we need a temp, or a place holder
+object to store the information.
+
 This next SDM \emph{inverts} a card by swapping its back and face values (Fig.~\ref{fig:goal_invert}). This therefore ``turns a card around'' in the learning
 box. This action makes sense if a user wants to try learning, for example, the definition of a word in the opposite direction. Instead of guessing the
 definition of every word when presented with the term, perhaps they would like to guess the term when presented with the defintion. This method doesn't need to
@@ -12,7 +15,7 @@ accept any parameters. Instead, it uses a bounded \texttt{this} variable.
 
 \begin{figure}[htbp]
 	\centering
-    \includegraphics[width=0.4\textwidth]{invert.pdf}
+    \includegraphics[width=0.4\textwidth]{goal_invert.pdf}
  	\caption{Inverting the attributes of a \texttt{Card}}
  	\label{fig:goal_invert}
 \end{figure}
@@ -46,16 +49,7 @@ Please note that the reference, or mapping, is implicitly defined via the same \
 provides rudimentary support via a drop-down menu which can be used to choose the name of an object variable and avoid possible mistakes stemming from typing by
 hand.
 
-\vspace{1cm}
-\begin{itemize}
-\item[$\blacktriangleright$] Click on a link below to begin.
-\end{itemize}
-
-\begin{center}{$\triangleright$ \hyperlink{invertCard vis}{Inverting a Card: The visual syntax}}%
-\\ \vspace{0.5cm}
-{$\triangleright$ \hyperlink{invertCard tex}{Inverting a Card: The textual syntax}} \end{center} 
-
-
+\fancyfoot[R]{ $\triangleright$ \hyperlink{invertCard vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{invertCard tex}{Next [textual]} }
 
 \input{../06_invertCard/visTurnCard}
 

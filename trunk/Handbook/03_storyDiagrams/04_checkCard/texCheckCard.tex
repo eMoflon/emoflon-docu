@@ -2,11 +2,6 @@
 \subsection{Checking Cards (Textual)}
 \texHeader
 \hypertarget{checkCard tex}{}
-
- % introduce the tricks in THIS section?
- 
- \texttt{}
- \emph{}
  
  \begin{itemize}
    
@@ -14,32 +9,40 @@
 But, given that this is an assertion, we need to generate proper control flow; we need to create an \texttt{if/else}
 
 \item[$\blacktriangleright$] in the \texttt{check} declaration, enter the following code: (Fig) \\ 
-if \texttt{checkCard}  { \\ \texttt{promoteCard} return true \\ } else \\ \texttt{ [penalizeCard] return false} \\
+if \texttt{checkCard}  { \\ \texttt{promoteCard} } else \\ \texttt{ [penalizeCard] } 
 
 \item[$\blacktriangleright$] Using the ``Quick Fix'' wizard, generate the pattern files for all three. Your package explorer should now resemble Fig.
 
 \item[$\blacktriangleright$] In order to validate the guess, go to the \texttt{checkCard} pattern, and create a rule bound to the passed-in \texttt{card} (Fig).
+\texttt{@card : Card{ } } \\ that's it!
 
 \item[$\blacktriangleright$] Now that we have the card to be checked, we need to compare the user's guess to the value on the back of the card. To do this, we
 need to specify an \emph{Attribute Constraint}. This is a non-structural condition that must be satisfied for a story pattern to match.
 
-\item[$\blacktriangleright$] ATTRIB CONSTRAINT + RETURN == click to proceed to figure it out. (and then descr in the tutorial\ldots)
+\item[$\blacktriangleright$] enter \texttt{card.back == $guess$} in the \texttt{card} rule
 
 \item[$\blacktriangleright$] Promote card: three rules. create a bounded \texttt{card : Card} and  \texttt{this : Partition}, and a free  \texttt{next :
 Partition} variable.
 
-\item[$\blacktriangleright$] Just like \texttt{removeCard}, in the \texttt{@this} rule, enter  \texttt{--> card : card}. In order to create a new reference and
-place the card in its new partition, enter  \texttt{++ -> card : Card} under \texttt{next}. Because a link was set to update a card anytime a partition
-deletes or creates a reference to it, it would be redundant to put any commands under \texttt{card}.
+\item[$\blacktriangleright$] \texttt{-- -> cardContainer : this \\ ++ -> cardContainer : next}. Because a link was set to update a card anytime a partition
+deletes or creates a reference to it, it would be redundant to put any commands under \texttt{this} or  \texttt{next}.
 
-\item[$\blacktriangleright$] Be sure to check each of your eclasses to make sure the reference names are correct, or else nothing will be generated.	
+\item[$\blacktriangleright$] You also need to guarantee the \texttt{previous} and \texttt{next} references stay intact. In the \texttt{@this} rule, enter
+\texttt{-> next : next} in \texttt{promoteCard} and \texttt{-> previous : previous} . To set the references to the partitions
 
-\item[$\blacktriangleright$] \texttt{penalizeCard} has the Same variable/rule set up as \texttt{promoteCard}, except the creation and deletion are opposite,
-and a \texttt{previous : Partition}.
+\item[$\blacktriangleright$] Be sure to check each of your eclasses to make sure the reference names are correct, or else nothing will be generated. Your
+workspace should now resemble (Fig.)
 
-\item[$\blacktriangleright$] The final thing we need to do is return a final boolean statement depending on how the card was moved.
+\item[$\blacktriangleright$] \texttt{penalizeCard} has the Same variable/rule set up as \texttt{promoteCard}, except the reference \texttt{previous} is used
+instead of next. This should look like (Fig.)
 
-\item[$\blacktriangleright$] View the changes in ``PartitionImpl.Java''
+\item[$\blacktriangleright$] The final thing we need to do is return a final boolean statement depending on how the card was moved. If the card was promoted,
+that means it was a success. It penalized, fail. (Fig)
+
+\item[$\blacktriangleright$] Build project. View the changes in ``PartitionImpl.Java'' (theres changes in setNext, etc etc? ). New generated code in check.
+
+\item[$\blacktriangleright$] Have now just implemented a ctrl flow, checking, where you created three story patterns to represent actions, with two unique stop
+returns. To see how this is repped visually..
 
  \end{itemize}
  

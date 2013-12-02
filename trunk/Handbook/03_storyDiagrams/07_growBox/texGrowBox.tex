@@ -3,4 +3,31 @@
 \texHeader
 \hypertarget{growBox tex}{}
 
-Fill
+\begin{itemize}
+  
+\item[$\blacktriangleright$] Create a simple control flow. Match the box (this) with ANY two partitions in the box (Fig)
+
+\item[$\blacktriangleright$] To create the correct NACs.. first fill in box. establish two references between the matched references as the first and last.
+
+\item[$\blacktriangleright$] Next, in last partition, set next to the NAC, and create a brand new one to new partition.
+
+\item[$\blacktriangleright$] the exclamation mark sets it as an NAC
+
+\item[$\blacktriangleright$] in first partition, reinforce the previous link, and below the declaration, create the second Nac
+
+\item[$\blacktriangleright$] Lastly, declare a creation variable and set the remaining two links: box and previous
+  
+\item[$\blacktriangleright$] Overall, this inserts a new partition between two arbitrarily selected first and last partitions.
+
+\item[$\blacktriangleright$] We're not quite done yet - our newest partition doesn't yet have a size. that means not only do we need to make another attribute
+contsraint, but we need to do a method call in order to set the value. %
+% Move to splash
+If you remember, Box has the method determineNextSize. This was implemented using injections. we need to call this now using a methodExpression
+
+\item[$\blacktriangleright$] Above your reference declarations in newPartition, add the following: \texttt{newPartition.partitionSize :=
+@this.determineNextSize()}
+
+\item[$\blacktriangleright$] That's it - this was a difficult one to wrap your head around but, as you can see, not hard to implement. If you're worried you
+messed something up, build!
+
+\end{itemize}

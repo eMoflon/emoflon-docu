@@ -53,7 +53,7 @@ previous Ecore model editor except it's ``generic,'' meaning it allows you to cr
 
 \item[$\blacktriangleright$] You can populate any element of your instance by adding new children or siblings via a right-click of an element to invoke the
 context-menu depicted in Fig.~\ref{fig:create_instance}. Note that EMF supports you by respecting your metamodel, and reducing the choice of available elements
-to valid types only\footnote{This depends on the current context. Try it out!}.
+to valid types only.\footnote{This depends on the current context. Try it out!}
 
 \begin{figure}[htbp]
 	\centering
@@ -72,11 +72,15 @@ double-click to invoke the generic model editor.
 \texttt{Partition} value. As soon as you hit \texttt{Enter}, you'll see that the change in name has been reflected in the tree. Give the second partition a
 unique EInt value as well.
 
+\item[$\blacktriangleright$] Now you need to set the \texttt{Next} and \texttt{Previous} partition values that will make it possible to move cards through the
+box. Set every \texttt{Previous} value to the very first partition in your box, then each \texttt{Next} value to the next partition. For the last partition, set
+the \texttt{Next} value to itself. 
+
 \item[$\blacktriangleright$] In the same fashion, double click on each \texttt{Card} you created and modify their values. In particular, modify the
 \texttt{Back} attribute. Change it to `Null' This is the value you'll see from the partition. You'll be experimenting with the \texttt{Face} attribute shortly,
 so provide a `Zero' value for that as well.
 
-\item[$\blacktriangleright$] Fill in the rest of the cards with similar vocabulary-style words that you can quiz yourself on. You now have a unique, customized
+\item[$\blacktriangleright$] Fill in the rest the cards with similar vocabulary-style words that you can quiz yourself on. You now have a unique, customized
 learning box! Save your model, and ensure no errors exist before proceeding with the final sections of this handbook.
 
 \newpage
