@@ -3,10 +3,10 @@
 \genHeader
 \hypertarget{sec:checkCard}{}
 
-The next method we shall model with SDMs is probably the most important! When user decides to test themselves on a card in the learning box, this is the method
-that will be invoked! The user can see the contents on the \texttt{front} of the card, and so they'll make a guess as to what's on the \texttt{back}, and
-\emph{check} to see if their guess was correct (Fig.~\ref{fig:goal_check}). If true, the card can be \emph{promoted} by moving it to the \emph{next} partition.
-If false, the card is \emph{penalized} by being sent to very first partition in the box.
+The next method we shall model with SDMs is probably the most important! This method will be invoked when a user decides to test themselves on a card in the
+learning box. The user will be able to see the \texttt{Back} of a card, then they will make a guess and check their answer with the \texttt{face} of the
+card (Fig.~\ref{fig:goal_check}). Following the rules of Leitners Box, if their guess was correct, the card will be \emph{promoted} and moved to the
+\emph{next} partition. If wrong, the card will be \emph{penalized} and returned to very first partition in the box.
 
 \begin{figure}[htbp]
  	\centering
@@ -16,23 +16,26 @@ If false, the card is \emph{penalized} by being sent to very first partition in 
 \end{figure}
 \FloatBarrier
 
-As you can see, checking the guess is simple assertion. The actual movement however, must be implemented as patterns since they manipulate data.
-Fig.~\ref{fig:patterns_check} briefly shows the intended creation and deletion links that each of these patterns must make.
+As you can see, checking the guess is simple assertion. The actual movements however, must be implemented as separate patterns. Fig.~\ref{fig:patterns_check}
+briefly shows the intended creation and deletion links that each of these patterns must make.
 
 \begin{figure}[htbp]
  	\centering
    \includegraphics[width=0.5\textwidth]{checkCard_promote.pdf}
    \\ \vspace{1cm}
     \includegraphics[width=0.5\textwidth]{checkCard_penalize.pdf}
- 	\caption{Patterns to move a card}
+ 	\caption{Promote and penalize card pattern concept}
  	\label{fig:patterns_check}
 \end{figure}
 \FloatBarrier
 
-Will require an attrib constraint: define.
-define: edge guard (if / else)
-define: bound vs unbound
-define? literal expression (maybe not: applies only to EA)
+Overall, this means that our method's control flow must be a new \emph{if/Else} construct. This is specified in SDM via \emph{edge guards},
+\define{Edge~Guards}explicit statements on which actions to take when the \emph{if} statement fails or succeeds. To implement this, the \emph{if} statment must
+include an \emph{Attribute Constraint},\define{Attribute~Constraint}a non-structural condition that must be satisifed for a story pattern to match. This
+special attribute type will compare the user's guess to the actual answer on the back of the card. The comparison is referred to as a \texttt{Paramter
+Expression}.
+
+Now that you have a solid foundation of SDMs, this next part should be a breeze.
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{checkCard vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{checkCard tex}{Next [textual]} }
 

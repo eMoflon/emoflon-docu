@@ -3,9 +3,10 @@
 \section{Removing a card}
 \hypertarget{sec:remCard}{}
 
-Since we're just getting started with SDM's, lets re-implement the method previously created with injections.\footnote{To review how to make
-injections, refer to Part II, section 6} The goal of this method is to remove a single card from its current
-partition, which can be done by destroying the link between the two items (Fig.~\ref{fig:goal_removeCard}).
+Since we're just getting started with SDMs, lets re-implement the method previously completed with injections.\footnote{To review how to make
+injections, refer to Part II, section 6} The goal of this method is to remove a single card from its current partition, which can be done by destroying the link
+between the two items (Fig.~\ref{fig:goal_removeCard}).
+
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
@@ -31,12 +32,12 @@ Before we implement this change as a pattern, lets remove the old injection cont
 \item[$\blacktriangleright$] Now select your ``Specifications'' node and rebuild your project by navigating to the ``Build (Without Cleaning)'' button on the
 toolbar.
 
-\item[$\blacktriangleright$] You'll be able to see the change in \texttt{PartitionImpl.java}, found under ``MyWorkingSet.'' The \texttt{removeCard}
-declaration should now look the same as the other declarations.
+\item[$\blacktriangleright$] You'll be able to see the changes in \texttt{PartitionImpl.java}, found under ``MyWorkingSet.'' The \texttt{removeCard}
+declaration should now look the same as the others.
+
+\end{itemize}
 
 \newpage
-
-\vspace*{3cm}
 
 \begin{figure}[htbp]
 	\centering
@@ -45,13 +46,47 @@ declaration should now look the same as the other declarations.
 	\label{fig:delete_injection}
 \end{figure}
 
-\vspace{0.5cm}
+\vspace{1cm}
 
-You're ready to start your first SDM! Make sure your project compiles without error before continuing.
+Now, given that we've just deleted everything, we know we'll need to insert some new commands to form our method. One of the goals SDM is to allow you to
+focus less on \emph{how} a method will do something, but rather on \emph{what} the method will do. As a result, the only thing you need to model is
+an\define{Activity}\emph{activity}, established via a procedural control flow. 
+
+Integrated as an atomic step in this overall control flow, a single graph transformation step (such as link deletion) can be embedded as
+a\define{Story~Patte\-rn}\emph{story pattern}. These story patterns are simply declarative transformation rules.\footnote{as introduced in Part II while
+discussing static semantics}
+
+In order to make these transformations, \emph{patterns} must establish\define{Object~Variables}\emph{object variables}. Object variables are, as
+the word ``variable'' indicates, place holders for actual objects in a model.  During \emph{pattern matching}, actual objects in the 
+current model are assigned to the object variables in the pattern according to the indicated type and other conditions.\footnote{We shall
+learn what conditions may be specified in a later SDM} In this SDM, the story pattern will have two object variables - a \texttt{this} partition (named
+according to Java convention) referring to the object whose method is invoked, and \texttt{card}, the card object to be removed. In order to assign
+\texttt{card}, we'll need\define{Parameter~Expression}to use a \emph{Paramter Expression} to refers to the parameter of the current method.
+
+Patterns must also establish \emph{link variables}\define{Link~Varia\-bles} to match links in story patterns. These too act as place holders, and
+can used be match to actual references in the model. This SDM will therefore have a single link variable to match the current partition and paramter-specified
+card.
+
+Before we begin, there is one last thing we need to clarify. We know the pattern matcher uses a randomized system until it matches a valid object to its
+variables. We also know that newly created objects are merely place holders, and don't have any values. In the case of remove card however, the two object
+variables \emph{do} have values from the \texttt{Box.xmi} model. So how do we get and assign these correct values?
+
+We need to update the \emph{binding state}\define{Binding~State}of every object whose value is known beforehand from the model. By default, each object is
+unbounded, or a \emph{free variable}.\define{Free~Variab\-le}Values for these objects can be both assigned and changed throughout the activity. By declaring
+an object as \emph{bound}, the activity does not need to assign a value as it will already have a fixed value from the context of the model. \emph{Binding} is
+implicit via the \emph{name} of the bound object variable. As a rule, \texttt{this} variables, and any paramterized values (i.e.,
+\texttt{card}) are always bounded.
+
+Every object or link variable's binding operator can be set to \texttt{Check Only, Create, or Destroy}. For a rule $r: (L, R)$, as discussed in
+\hyperlink{explanation}{section 2}, this marks the variable as belonging to the set of elements to be retained ($L\cap R$), the set of elements to be newly
+created ($R\setminus L$), or the set of elements to be deleted ($L\setminus R$).
+
+If you're feeling overwhelmed by all the new terms and concepts, don't worry! We will define them again in the context of your syntax with the example. For
+quick reference, we have also defined each of the marginalized words at the end of this part in the \hyperlink{glossary}{Glossary}. Otherwise, it's time
+to begin\ldots
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{remCard vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{remCard tex}{Next [textual]} }
 
-\end{itemize}
 
 \input{../03_removeCard/visRemoveCard}
 
