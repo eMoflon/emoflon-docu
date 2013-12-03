@@ -6,14 +6,31 @@
 \begin{itemize}
 
 \item[$\blacktriangleright$] You're no longer an SDM beginner, so create two patterns in the invert declaration, named \texttt{initializeTemp} and
-\texttt{swapVariable}. Don't forget the return statement.
+\texttt{swapVariable}. The only flow this method requires is that these pattern are performed in order - there's no assertion, and it only needs to be
+performed once. Don't forget to include a return statement!
 
-\item[$\blacktriangleright$] Remember, you can use auto complete here. (Explain all this when first metion: control flow, type completion (after the : ))
+\item[$\blacktriangleright$] Your declaration should now resemble Fig.~\ref{fig:eclipse_invert}
 
-\item[$\blacktriangleright$] Similar to how we made a destruction obj var in empty(), our temp var needs to be created. (++)
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.4\textwidth]{eclipse_invertControlFlow}
+  \caption{Control flow for \texttt{card.invert}}  
+  \label{fig:eclipse_invert}
+\end{center}
+\end{figure}
 
-\item[$\blacktriangleright$] Its not NECESSARY to build after creating each SDM, but its a good way to confirm you haven't screwed up TOO badly yet.
+\item[$\blacktriangleright$] Create two bounded object variables in each pattern, and complete the rules until your patterns resemble
+Fig.~\ref{fig:invertPatterns}.
 
-\item[$\blacktriangleright$] your workspace should now resemble (Fig.)
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{eclipse_invertPatterns}
+  \caption{Swap Patterns}  
+  \label{fig:invertPatterns}
+\end{center}
+\end{figure}
+
+\item[$\blacktriangleright$] Believe it or not, that's it! We reccommend building at this point, just to confirm nothing has gone wrong with your metamodel. To
+see this method in the visual syntax, review Fig.~\ref{fig:sdm_invert}.
 
 \end{itemize}

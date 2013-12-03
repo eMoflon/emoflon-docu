@@ -3,14 +3,10 @@
 \subsection{Partition::removeCard(Card) - The textual syntax}
 \texHeader
 
-Given that we just deleted everything, we need to insert some commands into the method. One of the goals of using SDMs and their
-patterns along with eMoflon's code generation is to allow you to focus less on \emph{how} a method will do something, but rather on \emph{what} the method will
-do. As a result, the only thing you need to establish in any method is appropriate control flow.
-
 \begin{itemize}
 
 \item[$\blacktriangleright$] Go to the \texttt{removeCard} signature in the \texttt{Partition.eclass} file. Fill the method with a single pattern call,
-'[deleteSingleCard]' and a return statement (Fig~\ref{fig:remCardDec}).
+\texttt{[deleteSingleCard]} and a return statement (Fig~\ref{fig:remCardDec}).
 
 \begin{figure}[htp]
 \begin{center}
@@ -24,7 +20,7 @@ do. As a result, the only thing you need to establish in any method is appropria
 it is the passed-in variable.
 
 \item[$\blacktriangleright$] As soon as you save the file, an error should immediately appear. In the ``Problems'' tab below the editor, the message states that
-the builder cannot find the specified pattern file. Well, that makes sense - you haven't made it yet! Click on this message then press \texttt{Control + 1} to
+the builder cannot find the specified pattern file. Well, that makes sense - you haven't made it yet! Click this message and press \texttt{Control + 1} to
 invoke a ``Quick Fix'' dialouge (Fig~\ref{fig:quixFix})
 
 \begin{figure}[htp]
@@ -70,13 +66,13 @@ typing to see your options.
 
 \clearpage
 
-\item[$\blacktriangleright$] Add `\texttt{-- -> card:card}' to \texttt{@this} to destroy the \texttt{card} reference targeting the \texttt{card} object. Your
-workspace should now resemble Fig.~\ref{fig:deleteReference}.
+\item[$\blacktriangleright$] Add `\texttt{-- -> card:card}' to \texttt{@this} to destroy the \texttt{card} reference targeting the \texttt{card} object. The key
+spaces of your workspace should now resemble Fig.~\ref{fig:deleteReference}.
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.6\textwidth]{eclipse_thisObjVar}
-  \caption{Destroy the link between a card and its partition}
+  \caption{Destroy the link between a card and its partition {\bf add declaration}}
   \label{fig:deleteReference}
 \end{center}
 \end{figure}
@@ -91,19 +87,6 @@ as declaring \texttt{-- -> cardContainer:Card} would be redundant.
 \item[$\blacktriangleright$] Build your project and navigate to ``MyWorkingSet/LearningBoxLanguage/gen." Open ``Partition.impl'' and scroll down to the
 \texttt{RemoveCard} declaration. If everything compiled without errors, you should be able to see some generated code (Fig.~\ref{fig:remCardImpl}).
 
-\item[$\blacktriangleright$] Given that we were able to actually remove a card from our Box using injections, lets test \emph{this} implementation using our GUI
-(Fig.~\ref{fig:GUITest}).\footnote{ If you haven't downloaded or used the GUI before, review Part II, section 7} If it doesn't work for you, inspect your
-pattern class and confirm it matches Fig.~\ref{fig:deleteReference}.
-
-\item[$\blacktriangleright$] Fantastic work! You have now implemented a simple reference manipulation via patterns. SDM is great for
-abstraction, keeping things separated and clean, and for effectively implementing large functions that would otherwise take a \emph{very} long time. To see how
-this same method is crafted in the visual syntax, check out Fig.~\ref{fig:sdm_complete_control_flow} from the previous section. Otherwise, keep going to become
-a master of SDMs.
-
-\newpage
-
-\vspace*{1cm}
-
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_remCardImpl}
@@ -112,7 +95,9 @@ a master of SDMs.
 \end{center}
 \end{figure}
 
-\vspace*{2cm}
+\item[$\blacktriangleright$] Given that we were able to actually remove a card from our Box using injections, lets test \emph{this} implementation using our GUI
+(Fig.~\ref{fig:GUITest}).\footnote{ If you haven't downloaded or used the GUI before, review Part II, section 7} If it doesn't work for you, inspect your
+pattern class and confirm it matches Fig.~\ref{fig:deleteReference}.
 
 \begin{figure}[htp]
 \begin{center}
@@ -121,6 +106,10 @@ a master of SDMs.
   \label{fig:GUITest}
 \end{center}
 \end{figure}
+
+\item[$\blacktriangleright$] Fantastic work! You have now implemented a simple reference manipulation via patterns. As you could see, SDM is effective for
+implementing large functions that could potentially take a \emph{very} long time. To see how this same method is crafted in the visual syntax, check out
+Fig.~\ref{fig:sdm_complete_control_flow} from the previous section.
 
 % \fancyfoot[R]{ $\triangleright$ \hyperlink{sec:checkCard}{Next} }
 
