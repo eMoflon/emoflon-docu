@@ -2,13 +2,34 @@
 \section{Extending the Leitner's Box GUI}
 \genHeader
 
-Here, user needs to edit the code to permit the GUI to access the checkCard method. Explain that the ideas in this section can easily be transited to implement
-\emph{any} method implemented in this Part. We've only included one in order to keep this preview short.
+\vspace{0.5cm}
 
-open LeitnersBoxController.java from the source file. \\
+In addition to \texttt{removeCard}, the GUI is able to access and operate the \texttt{check} method using your SDM implementation! To avoid errors however, its
+currently commented out, so you'll need to release it. First, double check and make sure your metamodel is built, and that you have correctly imported the GUI.
 
-scroll down to doActionCheckCard. Uncomment @TODO \\
+\begin{itemize}
 
-save. Run application.\\
+\item[$\blacktriangleright$] Go to ``Other Projects/LeitnersBox/Src'' and open \texttt{LeitnersBoxController.java} in the package.
 
-it works! mwuahahahaaha
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] Beside the scrollbar on the right side of the text editor, you should be able to see two blue rectangles. Click the second one
+to skip ahead to the commented line (Fig.~\ref{fig:remComment}).
+
+\vspace{0.5cm}
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=\textwidth]{eclipse_GUICommentLine}
+  \caption{Remove the comment operator on line 123}
+  \label{fig:remComment}
+\end{center}
+\end{figure}
+
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] Activate the line below the highlight, save the file, then take your GUI for a spin! Experiment with
+making right and wrong guesses, and watch how your cards move through the box. Try editing your instance file by making more partitions, cards and
+new \texttt{FastCard}s, to see how they all interact with one another.
+
+\end{itemize}

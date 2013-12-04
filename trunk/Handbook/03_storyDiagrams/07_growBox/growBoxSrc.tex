@@ -3,48 +3,39 @@
 \genHeader
 \hypertarget{sec:growBox}{}
 
-% I'm not so sure I like this.
-In this SDM, we shall specify how our learning box is built up by examining how the contained partitions are connected together, and how cards are able to
-move back and forth in the box. While different behaviors can be implemented, we will use the classical rules as depicted in Fig.~\ref{fig:membox_depiction}.
-
-No matter what, we know that our box will always be able to define a \texttt{first} and \texttt{last} partition. As explained in
-\hyperlink{sec:emptyPartition}{section 5}, the current story pattern will determine these partitions non-deterministically.
-
-SDMs provide a declarative means of identifying the first and last partition via \emph{Negative Application Conditions}, also simply referred to as
-\mbox{NACs}\footnote{Pronounced $\backslash 'nak \backslash$}\note{\mbox{NACs}}. \mbox{NAC}s express structures that are forbidden before or after applying a
-rule. In this SDM, the \mbox{NAC} will be a negative partition element that should \emph{not} be present in a valid pattern match. In the theory of algebraic
-graph transformations \cite{EEPT06}, \mbox{NACs} can be complex graphs that are much more general and powerful but in our implementation\footnote{To be more
-precise CodeGen2 from Fujaba.}, however, we only support single negative elements (object or link variables).
-
-To create an appropriate \mbox{NAC} that that constrains the possible matches for \texttt{lastPartitionInBox} to \emph{exactly} the last partition in the box,
-we'll need to create a new object variable, \texttt{nextPartition}, and link it to the last. It can then be completed by connecting it to both \texttt{Box} and
-\texttt{firstPartitionInBox}. Overall, the NAC will be able to be interpreted as follows:
-The first/last partitions in the box are arbitrary partitions in the box with no previous/next partitions defined. The valid matches are made unique and thus
-deterministic by construction. In other words, if you \emph{grow} the box via this method, there will always be exactly one first and one last partition.
+In this SDM, we shall explicitly specify how our learning box is to be built up. We shall state a specific pattern that will append new partition elements
+to the end of \texttt{Box} which will follow our established movement rules (Fig.~\ref{fig:membox_depiction}) for a \texttt{Card}. This means the new partition
+will become the \texttt{next} reference of the absolute last partition, and its \texttt{previous} reference must connect to the absolute first partition in the
+box (Fig.~\ref{fig:goal_grow}).
 
 \begin{figure}[htbp]
  	\centering
-  \includegraphics[width=0.6\textwidth]{goal_growBox.pdf}
+  	\includegraphics[width=0.7\textwidth]{growBoxNACGoal.pdf}
 	\caption{Growing a box by inserting a new partition}
 	\label{fig:goal_grow}
 \end{figure}
 \FloatBarrier
 
-\vfill
-\newpage
+Unfortunately, precise instructions such as these contradict the pattern matcher. We know that, no matter what, a box will always be able to
+define first and last partitions. As explained in \hyperlink{sec:emptyPartition}{section 5} however, these will be determined non-deterministically. They will
+be chosen at random, and are unlikely to be the actual first and last partitions. How can we guarantee this match to be true?
 
-Of course, it's not just a matter of NACs or how to link/insert a new partition into the box. We still need to figure how \emph{many} partitions to add! Since
-the new size must be calculated depending on the rest of the partitions currently in the box (partitions usually get bigger) we'll need to call the
-\texttt{determineNextSize()} method that we previously declared\footnote{Inspect your model, and review Part II, section \#} in the same class. Of course, we 
-won't need to implement this until the end.
-% Image? show the new boxes and new links to one another (given the size.. )?
+SDMs provide a declarative means of identifying specific partitions via \emph{Negative Application Conditions}, simply referred to as
+\mbox{NAC}s.\footnote{Pronounced $\backslash 'nak \backslash$}\define{NAC}\mbox{NAC}s express structures that are forbidden to exist before or after applying a
+transformation rule. In this SDM, the \mbox{NAC} will be a link variable that may not be valid during the pattern match. In the theory of algebraic
+graph transformations \cite{EEPT06}, \mbox{NACs} can be complex graphs that are much more general and powerful but in our implementation,\footnote{To be
+precise, in CodeGen2 from Fujaba} we only support single negative elements (object or link variables).
 
-Whoo, that was a lot of reading! To summarize our task, we will first create a basic control flow between the \texttt{Box}, and the first and the last
-partitions which were determined at random by \emph{pattern matching}. We will then need to create some NACs as rules to insert new partitions, and then 
-finally determine the new size.
+As depicted in Fig.~\ref{fig:goal_grow}, to create an appropriate \mbox{NAC} that constrains possible matches, we'll need to check to see if the current matched
+pattern has certain `active' link variables. Suppose the targeted last partition has a set \texttt{next} reference. This means it is \emph{not} the absolute
+last partition, and so the match becomes invalid. We only want the pattern to insert a new partition when the \texttt{next} link is null. Similarily, if the
+targeted first partition has a \texttt{previous} value, the match is invalid. The complete pattern match is therefore made unique through NACs and thus becomes
+\emph{deterministic} by construction. In other words, if you \emph{grow} the box with this method, there will always be exactly one first and one last
+partition.
 
-Don't worry if you're a bit confused by all this theory (especially that part about \mbox{NAC}s). Once implemented, it should make more sense.
-% If not, the interested reader can always refer to.. 
+Of course, to complete this method we still need to determine how \emph{many} partitions to add! Since the new size must be calculated depending on the rest of
+the partitions currently in the box (partitions usually get bigger) we'll need to calla helper method, \texttt{determineNextSize()}, that we previously
+declared\footnote{Inspect \texttt{PartitionImpl} and review Part II, section 6} with injections.
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{growBox vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{growBox tex}{Next [textual]} }
 
