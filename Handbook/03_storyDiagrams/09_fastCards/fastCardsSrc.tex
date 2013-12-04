@@ -3,35 +3,30 @@
 \genHeader
 \hypertarget{sec:fastCard}{}
 
-Congratulations, you're almost there! This is the last SDM we need to build to make Leitener's Learning Box fully functional.
+Congratulations, you're almost there! This is the last SDM needed before Leitener's Learning Box is fully functional.
 
-For very simple cards (i.e: words in different language that are similar), it might be a bit annoying to have to answer these cards again and again in every
-partition. Such \emph{fast} cards should somehow be marked and handled differently! If a fast card is gotten right once, it should be immediately moved to the
-last partition in the box. This way the card is reviewed once, and is tested only once more before finally being removed from the box (Fig.).
+For very simple cards (i.e: words in different language that are similar), it might be a bit annoying to have to answer these cards again and again in
+successive partitions. Such \emph{fast} cards should somehow be marked and handled differently. If a fast card is correctly answered once, it should be
+immediately moved to the final partition in the box. This way, the card is practiced once, and tested once more before finally being removed from the
+box.
 
-It makes sense that a \texttt{fastCard} is simply inherited from \texttt{Card}, so we'll extend the current object in our metamodel in a new class. It has the
-exact same structure as a standard card, it just has an extra marker to show it gets moved differently (Fig.~\ref{fig:goal_fastCard}).
+It makes sense that a \texttt{FastCard} element inherits a \texttt{Card}, so we'll extend the current object in our metamodel in a new eclass, adding a
+new marker to show it behaves differently (Fig.~\ref{fig:goal_fastCard}).
 
 \begin{figure}[htbp]
 	\centering
-    \includegraphics[width=0.7\textwidth]{goal_fastCard}
+    \includegraphics[width=0.9\textwidth]{goal_fastCard}
 	\caption{Checking a fast card against a guess}
 	\label{fig:goal_fastCard}
 \end{figure}
 \FloatBarrier
 
-% Describe HOW we would extend it here? (they might be TOTALLY different for each, and so they NEED to be explained differently).
-Overall, this means we need to extend our check method to also check for fast cards.
+In addition to creating a new \texttt{eclass}, we also need to extend the existing \texttt{check} method to check for this special card type once a correct
+guess is made. This new pattern faces a similar challenge as \texttt{grow}. A \texttt{FastCard} can't simply progress to the \texttt{next} partition - it
+must skip ahead to the absolute last partition in the box. This means another NAC is required to form a deterministic pattern match.
 
-\vspace{0.5cm}
-\begin{itemize}
-\item[$\blacktriangleright$] You're nearly there! Click a link below to begin.
-\end{itemize}
-
-\begin{center} {$\triangleright$ \hyperlink{fastCard vis}{Fast cards: The visual syntax}}%
-\\ \vspace{0.5cm}
-{$\triangleright$ \hyperlink{fastCard tex}{Fast cards: The textual syntax}}\end{center} 
- 
+\fancyfoot[R]{ $\triangleright$ \hyperlink{fastCard vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{fastCard tex}{Next [textual]} } 
+  
 \input{../09_fastCards/visFastCard}
 
 \input{../09_fastCards/texFastCard}
