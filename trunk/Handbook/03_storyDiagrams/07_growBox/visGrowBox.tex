@@ -1,11 +1,11 @@
 \newpage
-\subsection{Box::grow() - The visual syntax}
+\subsection{Implementing grow}
 \visHeader
 \hypertarget{growBox vis}{}
 
 \begin{itemize}
  
-\item[$\blacktriangleright$] Start by creating a simple control flow via the story pattern depicted in Fig.~\ref{fig:sdm_grow_1}. This matches the box
+\item[$\blacktriangleright$] Start by creating the simple story pattern depicted in Fig.~\ref{fig:sdm_grow_1}. This matches the box
 (\texttt{this}), with \emph{any} two partitions in the box\footnote{Remember, this is for the \emph{pattern matcher}}.
 
 \begin{figure}[htbp]
@@ -31,9 +31,7 @@ variable \texttt{nextPartition}, of type \texttt{Partition}, and set \note{Bindi
 \item[$\blacktriangleright$] Now, quick link \texttt{nextPartition} to \texttt{lastPartitionInBox}, but be sure choose the link type carefully! The
 \texttt{nextPartition} should play the role of \texttt{next} with respect to \texttt{lastPartitionInBox}.
 
-\item[$\blacktriangleright$] Complete the story pattern so that it closely resembles Fig.~\ref{fig:sdm_grow_3}. To review, \mbox{NACs} can be interpreted as
-follows:  The first/last partition in the box are partitions in the box with no previous/next partitions. The valid matches are made unique and thus
-deterministic by construction, i.e., if you \emph{grow} the box via this method, there will always be exactly one first and one last partition.
+\item[$\blacktriangleright$] Complete the story pattern so that it closely resembles Fig.~\ref{fig:sdm_grow_3}. 
 
 \begin{figure}[htbp]
 \begin{center}
@@ -46,17 +44,17 @@ deterministic by construction, i.e., if you \emph{grow} the box via this method,
 \item[$\blacktriangleright$] Notice how the created partition \texttt{newPartition} is `hung' into the box. It becomes the next partition of the current
 \emph{last} partition, and has its previous partition set to the first partition in the box (as depicted with the arrows in Fig.~\ref{fig:membox_depiction}).
   
-\item[$\blacktriangleright$] The only step missing to complete this SDM is an assignment to set the size of the new partition. We know from the last SDM that an
-assignment is an attribute constraint defined by a \texttt{:=} operator, so go ahead and invoke the corresponding dialogue. 
+\item[$\blacktriangleright$] To complete this SDM, build the assignment to set the size of the new partition. Go ahead and invoke the corresponding dialogue to
+activate the \texttt{:=} operator.
 
-% DOES THIS APPLY TO VISUAL ONLY? If not, move to splash!
-Since the new size must be calculated
-depending on the rest of the partitions in the box (partitions usually get bigger) we call a helper function \note{MethodCallExpression} via a
-\emph{MethodCallExpression}. A MethodCallExpression is used to invoke a method that is defined in a class in the current EA project. Enter the values in
-Fig.~\ref{fig:sdm_grow_4} choosing the argument \texttt{this} as target and \texttt{determineNextSize} as the method to be invoked.
-Parameters could be specified by just choosing the appropriate parameter declaration between guillemets (e.g. \texttt{<Box box>}) via the drop-down menu and
-typing in the value (this is basically a literal expression). Don't forget to press the \texttt{Save} button for every parameter, and \texttt{Add} + \texttt{OK}
-to confirm and close the dialogue. Since \texttt{determineNextSize} does not require any parameters, you can ignore the \texttt{Parameters} field this time.
+Given that the new size must be calculated using a helper function via a \emph{MethodCallExpression}.\define{MethodCallExpression}A MethodCallExpression is
+used to invoke a method defined in any class in the current EA project. Enter the values in Fig.~\ref{fig:sdm_grow_4}, choosing the argument \texttt{this} as
+the target, and \texttt{determineNextSize} as the method to be invoked. 
+
+Since \texttt{determineNextSize} doesn't require any parameters, you can ignore the \texttt{Parameters} field this time, but for future reference, parameters
+can be specified by choosing the appropriate parameter declaration between guillemets (e.g. \texttt{<Box box>}) found in the drop-down menu and typing in the
+value (this is basically a literal expression). Don't forget to press the \texttt{Save} button for every parameter, then \texttt{Add} + \texttt{OK} to confirm
+and close the dialogue.
  
  %UPDATE not under 'target' but 'objects'
 \begin{figure}[htbp]
@@ -66,7 +64,6 @@ to confirm and close the dialogue. Since \texttt{determineNextSize} does not req
   \label{fig:sdm_grow_4} 
 \end{center}
 \end{figure}
-\FloatBarrier
 
 \item[$\blacktriangleright$]  If you've done everything right, your SDM should now closely resemble Fig.~\ref{fig:sdm_grow_5}. 
 
@@ -89,6 +86,7 @@ to confirm and close the dialogue. Since \texttt{determineNextSize} does not req
 \end{figure}
 
 \item[$\blacktriangleright$]  That's it - your \texttt{grow} SDM is complete! This was probably the most challenging SDM to build, so give yourself a solid 
-pat on the back. If you found it easy then \ldots gee whiz, I don't think i'm doing my job correctly. Curse you, easy-to-use software!
+pat on the back. If you found it easy then \ldots gee whiz, I don't think i'm doing my job correctly. To see how this is done in the texual syntax, review
+Fig.~\ref{fig:patternComplete}.\footnote{We do recommend reading the instructions for this one, however, since NACs can be tricky.}
 
 \end{itemize}

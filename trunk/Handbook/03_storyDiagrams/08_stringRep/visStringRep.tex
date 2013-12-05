@@ -1,11 +1,7 @@
 \newpage
-\subsection{Box::toString() - The visual syntax}
+\subsection{Implementing stringRep}
 \visHeader
 \hypertarget{stringRep vis}{}
-
-SDMs support arbitrary nesting of For Each story nodes via special guards. In \hyperlink{emptyPartition vis}{section 5.1} 
-we already used the \texttt{[end]} edge guard to terminate a loop and, as depicted in \note{[each time]}Fig.~\ref{fig:sdm_tostring_1}, an
-\texttt{[each time]} guard is used to indicate control flow that is \emph{nested} in the For Each story node and is executed for each match.
 
 \begin{itemize}
 
@@ -35,8 +31,8 @@ MethodCallExpression. This way, the method invocation is represented as an activ
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] As we have already used a MethodCallExpression in an attribute constraint\footnote{see \hyperlink{sec:growBox}{ec. 5}}, go ahead
-and click the \texttt{Method Call Statement} tab and select \texttt{MethodCallExpression} as expression, \texttt{this} as object, \texttt{addToStringRep} as
+\item[$\blacktriangleright$] As we have already used a MethodCallExpression in an attribute constraint\footnote{see \hyperlink{sec:growBox}{section 5}}, go
+ahead and click the \texttt{Method Call Statement} tab and select \texttt{MethodCallExpression} as expression, \texttt{this} as object, \texttt{addToStringRep} as
 operation and \texttt{card} as value of the parameter. That way, we pass the object variable \texttt{card} to the method \texttt{addToStringRep} as parameter.
 
 \end{itemize}
@@ -76,7 +72,6 @@ primitive then it can be invoked in an attribute constraint as in \hyperlink{sec
 \begin{itemize}
 \item[$\blacktriangleright$] To complete the SDM, return the final string representation of the box via an \texttt{AttributeValueExpression} in the stop node
 (Fig.~\ref{fig:sdm_tostring_4}).
-\end{itemize}
 
 
 % \begin{figure}[htbp]
@@ -87,11 +82,14 @@ primitive then it can be invoked in an attribute constraint as in \hyperlink{sec
 % \end{center}
 % \end{figure}
 
-Take some time to compare and reflect on the complete SDM as depicted in Fig.~\ref{fig:sdm_tostring_5}.  The idea was to abstract from the actual text
-representation of the box and model the necessary traversal of the data structure. The helper methods \texttt{addToStringRep} could, for example, build up a
+\item[$\blacktriangleright$] Take some time to compare and reflect on the complete SDM as depicted in Fig.~\ref{fig:sdm_tostring_5}.  The idea was to abstract
+from the actual text representation of the box and model the necessary traversal of the data structure. The helper methods \texttt{addToStringRep} could, for example, build up a
 string buffer and update this string representation. While modelling this SDM, we have seen that for each story nodes can be nested, and have learnt two new
 uses of MethodCallExpressions that provide a type safe\footnote{Apart from the literal expressions used for specifying argument values.} means of invoking
 methods from SDMs.
+
+\item[$\blacktriangleright$] You know the drill - to see how this is done in the textual syntax, check out the nested loops in Fig.~\ref{fig:toStringFlow} and
+the patterns in Fig.~\ref{fig:toStringPatterns}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -101,4 +99,6 @@ methods from SDMs.
 \end{center}
 \end{figure}
 \FloatBarrier
+
+\end{itemize}
 

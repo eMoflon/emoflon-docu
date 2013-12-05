@@ -1,13 +1,13 @@
 \newpage
 \hypertarget{remCard vis}{}
-\subsection{Partition::removeCard(Card) - The visual syntax}
+\subsection{Implementing removeCard}
 \visHeader
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] In Enterprise Architect (EA), open the main diagram in Enterprise Architect (EA) from Eclipse by double-clicking the \texttt{.eap}
-file, and carefully do the following: (1) Click \emph{once} on \texttt{Partition} to select it, then (2) Click \emph{once} on the method
-\texttt{removeCard} to choose it (Fig.~\ref{fig:sdm_start}). (3) \emph{Double-click} on the chosen method to indicate that you want to implement it.
+\item[$\blacktriangleright$] Re-open the LearningBoxLanguage diagram in Enterprise Architect (EA) from Eclipse by double-clicking the \texttt{.eap}
+file, then carefully do the following: (1) Click \emph{once} on \texttt{Partition} to select it, then (2) Click \emph{once} on the method
+\texttt{removeCard} to highlight it (Fig.~\ref{fig:sdm_start}), and (3) \emph{Double-click} on the chosen method to indicate that you want to implement it.
 
 \begin{figure}[htp]
 \begin{center}
@@ -17,12 +17,12 @@ file, and carefully do the following: (1) Click \emph{once} on \texttt{Partition
 \end{center}
 \end{figure}
  
-\item[$\blacktriangleright$] If you did everything right, a new \emph{activity diagram} should be created and open in a new tab with a cute little \emph{start node} 
+\item[$\blacktriangleright$] If you did everything right, a new \emph{activity diagram} should be created and open in a new tab with a cute \emph{start node} 
 labelled with the signature of the method (Fig.~\ref{fig:sdm_skeleton}).  
 
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=1.0\textwidth]{ea_generatedSDM}
+ \includegraphics[width=1.0\textwidth]{ea_generatedSDM}
   \caption{Generated SDM diagram and start node}  
   \label{fig:sdm_skeleton}
 \end{center}
@@ -30,21 +30,21 @@ labelled with the signature of the method (Fig.~\ref{fig:sdm_skeleton}).
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Let's quickly get familiar with the EA workspace. First, inspect the project browser and notice that an \texttt{<<SDM Activity>>}
-container has been created for the method \texttt{removeCard} to contain this new \emph{activity}. If you're at any time unhappy with an SDM,\footnote{As you
-might have already noticed, we use ``SDM'' interchangeably to mean our graph transformation language \emph{or} a concrete transformation (a story model) used
-to implement a method and consisting of an activity diagram and a pattern in each story node.} you can always delete the appropriate container in the project
-browser and start from scratch. This container will eventually host every diagram related to this pattern.
+\item[$\blacktriangleright$] Let's quickly familiarise ourselves the EA workspace. First, inspect the project browser and notice that an \texttt{<<SDM
+Activity>>} container has been created for the method \texttt{removeCard}. This container will eventually host every diagram related to this pattern. Please
+note that, if you're at any time unhappy with an SDM,\footnote{As you might have already noticed, we use ``SDM'' interchangeably to mean our graph
+transformation language \emph{or} a concrete transformation (a story model) used to implement a method and consisting of an activity diagram and a pattern in
+each story node.} you can always delete the appropriate container in the project browser (such as this one), and start from scratch.
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Next, note the new \texttt{SDM} toolbox that has been automatically opened up for the diagram and placed to the left above
-the common toolbox. This provides quick access to common SDM items that you can use in your diagram.
+the common toolbox. This provides quick access to SDM items that you'll frequently use in your diagram.
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Finally, in the top left corner of the diagram, you'll notice a small anchor. Double click on this icon to quickly jump back to the
-metamodel. From there, double click the method again to jump back to the SDM. This is just a small trick to help you shift between diagrams quickly. 
+metamodel. From there, double click the method again to jump back to the SDM. This is just a small trick to help you quickly shift between diagrams.
 
 \vspace{0.5cm}
 
@@ -60,8 +60,9 @@ metamodel. From there, double click the method again to jump back to the SDM. Th
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Similar to quick linking\footnote{Refer to Part II, Section 2.5}, a second fundamental gesture in EA is \emph{Quick Create}. To
-quick-create an element, pull the arrow and click on an empty spot in the diagram. This is basically ``quick linking'' to a non-existent element.
+\item[$\blacktriangleright$] Similar to quick linking,\footnote{Learnt in Part II, Section 2.5} a second fundamental gesture in EA is \emph{Quick
+Create}.
+To quick-create an element, pull the arrow and click on an empty spot in the diagram. This is basically ``quick linking'' to a non-existent element.
 
 \item[$\blacktriangleright$] EA notices that there is nothing to quick-link to, and pops up a small context-sensitive dialogue to create an element that can be
 connected to the indicated source element.
@@ -97,9 +98,10 @@ it reaches a stop node, where it finally terminates.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] While \emph{Stop Node} is pretty self explanitory, you may be wondering at this point about the differences between a \emph{story
-node} and a \emph{statement node}. Since not all activity nodes can contain story patterns (i.e., start and stop nodes), those that can are called \emph{story
-nodes}. Statement nodes .. we'll encounter these in a later SDM, but for now, lets finish our first story node.
+\item[$\blacktriangleright$] While a \emph{stop node} is rather self explanatory, you may be wondering about the differences between a \emph{story
+node}\define{Story Node}and a \emph{statement node}.\define{Statement Node}Since not all activity nodes can contain story patterns (i.e., start and stop
+nodes), those that \emph{can} are called story nodes. Statement nodes are simply used to guarantee a certain action. They happen along the control flow between
+story nodes. We'll encounter these in a later SDM, but for now, lets finish our first story node.
 
 \vspace{0.5cm}
 
@@ -129,7 +131,8 @@ activity node now has a single \emph{object variable}, \texttt{this} (Fig.~\ref{
 \newpage
 
 \item[$\blacktriangleright$] To create an object variable that can be assigned to other objects, choose \texttt{SDM ObjectVariable} from the toolbox
-(Fig.~\ref{fig:tool_box}), then click inside the activity node to raise the properties window for the new object (Fig.~\ref{fig:object_variable_properties}).
+(Fig.~\ref{fig:tool_box}), then click inside the activity node. A properties window will be raised for the new object
+(Fig.~\ref{fig:object_variable_properties}).
 
 \vspace{0.5cm}
 
@@ -142,19 +145,18 @@ activity node now has a single \emph{object variable}, \texttt{this} (Fig.~\ref{
 \end{figure}
 
 
-\item[$\blacktriangleright$] Choose \texttt{card} as the name of the object variable and set \texttt{Card} as its type using the relevant drop-down menus.
-Since \texttt{card} is a parameter of the method, it is offered as a possible name in the drop-down menu, which can be directly chosen to prevent annoying
-typing mistakes.
+\item[$\blacktriangleright$] Using the drop-down menus, choose \texttt{card} as the name of the object variable and set \texttt{Card} as its type.
+Since \texttt{card} is a parameter of the method, it is offered as a possible name which can be directly chosen to prevent annoying typing mistakes.
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] In this dialogue, note that the \texttt{Bound} option must be set. We have now seen two cases in this activity for bound object
-variables: the assignment to \texttt{this}, and an assignment to the parameter of the method.
+variables: an assignment to \texttt{this}, and an assignment to a method parameter. \texttt{Unbounded} object are not represented by a bolded box.
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] To create a \emph{link variable} between the current partition (who invoked \texttt{removeCard}), and the
-card to be removed (passed in as a parameter of \texttt{removeCard}), choose the object variable \texttt{this} and quick-link it to \texttt{card}
+card to be removed (passed in as a parameter), choose the object variable \texttt{this} and quick-link it to \texttt{card}
 (Fig.~\ref{fig:link_variable}).
 
 \begin{figure}[htpb]
@@ -165,8 +167,8 @@ card to be removed (passed in as a parameter of \texttt{removeCard}), choose the
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] According to the metamodel, there is only one possible link type between a partition and card. Select this and set the
-\emph{Binding Operator} to \texttt{Destroy} (Fig.~\ref{fig:link_variable_properties}). 
+\item[$\blacktriangleright$] According to the metamodel, there is only one possible link between a partition and card. Select this and set the
+\emph{Binding Operator} to \texttt{Destroy} (Fig.~\ref{fig:link_variable_properties}). The names will automatically appear in the diagram.
 
 \vspace{0.5cm}
 
@@ -192,7 +194,8 @@ SDM can be specified in the stop node. As depicted in Fig.~\ref{fig:stop_node_re
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] In the \texttt{Expression} field, choose \texttt{ParameterExpression} as the expression, and \texttt{card} as the parameter.
+\item[$\blacktriangleright$] In the \texttt{Expression} field, choose \texttt{ParameterExpression}\define{ParameterExpression}as the expression, and
+\texttt{card} as the parameter. This expression mechanism refers exclusively to parameters of the current method.
 
 \vspace{0.5cm}
 
@@ -205,10 +208,9 @@ to express as a pattern.
 The alternative approach to eMoflon would be to support arbitrary expressions, for example, in a script language like JavaScript or in an appropriate
 DSL\footnote{A DSL is a Domain Specific Language: a language designed for a specific task which is usually simpler than a general purpose language like Java and
 more suitable for the exact task.} designed for this purpose. In the following SDM implementations, we'll learn the other expression types eMoflon supports,
-and how to use them. For the moment however, we'll use a \emph{ParameterExpression} which refers to the parameters of the current
-method, exactly what we needed and have used for our \texttt{removeCard} SDM.
+and how to use them. 
 
-\item[$\blacktriangleright$] Returning to the activity, if you've done everything right, your complete SDM should now resemble
+\item[$\blacktriangleright$] Returning to the activity, if you've done everything right, your first SDM completed with eMoflon should resemble
 Fig.~\ref{fig:sdm_complete_control_flow}. The return value is indicated below the stop node.
 
 
@@ -220,14 +222,9 @@ Fig.~\ref{fig:sdm_complete_control_flow}. The return value is indicated below th
 \end{center}
 \end{figure}
 
-Let's take a step back and briefly review what we have specified:  if \texttt{p.remove\-Card(c)} is invoked for a partition \texttt{p}, with a card, \texttt{c},
-as its argument, the specified pattern will \emph{match} only if that card is contained in the partition. After determining matches for all variables, the
-link between the partition and the card is deleted, effectively ``removing'' the card from the partition. If the card is \emph{not} contained in the partition,
-the pattern won't match, and nothing will happen. In both cases, the card that was passed in is returned.
-
-\item[$\blacktriangleright$] Well, that's it! Congratulations! You have now specified your first complete SDM using eMolfon! Don't forget to save your
-files, validate and export your pattern to the Eclipse workspace\footnote{Go to to ``\texttt{Extensions}" and select \texttt{Add-In Windows} to activate
-eMoflon's console. If you're unsure how to validate, export, or use this window, review Part II, section 3}, then build your metamodel's code.
+\item[$\blacktriangleright$]  Don't forget to save your files, validate and export your pattern to the Eclipse workspace\footnote{Go to to
+``\texttt{Extensions}" and select \texttt{Add-In Windows} to activate eMoflon's console. If you're unsure how to validate, export, or use this window, review
+Part II, section 3}, then build your metamodel's code.
 
 \item[$\blacktriangleright$] If you're unable to export or generate code successfully, compare your SDM carefully with Fig.~\ref{fig:sdm_complete_control_flow}
 and make sure you haven't forgotten anything.
@@ -236,9 +233,17 @@ and make sure you haven't forgotten anything.
 \texttt{\-remove\-Card} declaration. Inspect the generated implementation for your method. Notice all the null checks that are automatically created - only a
 very conscientious (and probably slightly paranoid) programmer would program so defensively!
 
-\item[$\blacktriangleright$] We admit, this section had a lot of reading and theory - it does get better! Soon, you'll be an eMoflon master, and we'll hardly
-need to give you any instructions at all! In the following sections, we shall explore further features of SDM that allow for really expressive and powerful
-patterns. If you'd like to see how this SDM is implemented in the textual syntax, check out Fig.~\ref{fig:deleteReference} in the next section.
+Let's take a step back and briefly review what we have specified:  if \texttt{p.remove\-Card(c)} is invoked for a partition \texttt{p}, with a card, \texttt{c},
+as its argument, the specified pattern will \emph{match} only if that card is contained in the partition. After determining matches for all variables, the
+link between the partition and the card is deleted, effectively ``removing'' the card from the partition. If the card is \emph{not} contained in the partition,
+the pattern won't match, and nothing will happen. In both cases, the card that's passed in is returned.
+
+\item[$\blacktriangleright$] If you'd like to see how this SDM is implemented in the textual syntax, check out Fig.~\ref{fig:deleteReference} in the next
+section.
+
+\item[$\blacktriangleright$] Now we admit, this section had a lot of reading and theory, but it does get better. Soon, you'll be an eMoflon master, and we'll
+hardly need to give you any instructions at all! In the following sections, we shall explore further features of SDM that allow for really expressive and
+powerful patterns.
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{sec:checkCard}{Next} }
 

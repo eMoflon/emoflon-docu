@@ -10,59 +10,57 @@
 \begin{description}
 
 \item[\bf Activity]
-Container elements that describe the behavior and structure for one method.
+Container element that describes the behavior and structure for one method.
 
 \item[\bf Activity Edge]
 A directed connection between elements (such as activity and stop nodes) within an \emph{activity} as a part of control flow.
 
 \item[\bf Activity Node]
-Describe and contain actions that manipulate the states of objects; Defined within method implementations.
+Describe and contain actions that manipulate the states of objects.
 
 \item[\bf Assignments]
-Used in context to set attributes; An attribute constraint specified by \texttt{:=}.
+Used in context to set attributes and variables.
 
 \item[\bf Attribute Constraint]
-A non-structural contraint that must be satisfied for a story pattern to match.
+A non-structural contraint that must be satisfied for a story pattern to match. Specified by an \texttt{:=} operator.
 
-\item[\bf Binding (state)]
-Can be set for an object variable, and represents the final case where the object can be marked as being \emph{bound}; Represent the fourth 
-possibility of giving manual bindings for an object variable.
+\item[\bf Binding State]
+Can be either \emph{bound} or \emph{unbound/free}. See \emph{Bound vs Unbound}.
 
 \item[\bf Binding operator]
-Every object or \emph{link variable} can be set to \texttt{Check Only, Create, Destroy.}
+Determines purpose of pattern variable, whether they will be just \emph{checked}, \emph{created}, or \emph{destroyed} during pattern matching.
 
 \item[\bf Binding Semantics]
-Used to create appropriate \emph{NAC}s or objects.
+Determine if an object variable \emph{must} exist (\emph{madatory}), may not exist (\emph{negative}; see \emph{NAC}), or either or (\emph{optional}) during
+\emph{pattern matching}.
 
 \item[\bf Bound vs Unbound]
-Bound variables are completley determined by the current context, whereas unbound (free) variable matches have yet to be determined by the \emph{pattern matcher}.
+Bound variables are completley determined by the current context, whereas unbound (free) variable matches have to be determined by the \emph{pattern matcher}.
+\texttt{This} and parameter values are always bound.
 
 \item[\bf Dangling Edges]
-Edges that would not have either an target or source after use. They immediately make graphs invalid.
+An edge stemming from the source role of a reference with no target, or vice versa. Existence immediately make graphs invalid.
 
 \item[\bf EA]
-Enterprise Architect; The Visual modeling program used with our tool.
+Enterprise Architect; The UML visual modeling program used with our tool.
 
 \item[\bf Edge Guards]
-Define an if/else construct or another condition that must be satisfied before the process can reach the target node;
-
-\item[\bf \emph{For each} Story Node]
-Performs the specified action for every match of its story pattern.
+Construct of conditional branching, these block actions in node at end of edge until a specific condition is satisifed.
 
 \item[\bf Link Variable]
-Act as unbound placeholders in a pattern; \emph{Binding operators} can be used to determine their purpose.
+Placeholders for object references during pattern matching. Syntax: [aggregration type][reference name]:[target object]
 
 \item[\bf Literal Expression]
 Can express any arbitrary text, though an effort should be made to use only for constants (literals).
 
 \item[\bf MethodCallExpression]
-Helper method that calls another method defined in a different class of your current \emph{EA} Project.
+Helper method that calls any method defined in a different class than current method in an \emph{EA} Project.
 
 \item[\bf NAC]
-Negative Application Condition; Represents a negative element that should not be present in any valid match.
-
+Negative Application Condition, express structures that cannot be present before or after applying a transformation rule.
+	
 \item[\bf Object Variable]
-Free place holders for actual objects in the current model.
+Bindable place holders for actual objects in the current model during pattern matching.
 
 \item[\bf ObjectVariableExpression]
 Refer to other object variables from preceding story nodes.
@@ -70,21 +68,20 @@ Refer to other object variables from preceding story nodes.
 \item[\bf Parameter Expression]
 Used to refer to the passed in method parameter.
 
-\item[\bf Pattern Matching]
-A rule applied to objects in a model (a typed graph) by finding an occurrence (a match). 
+\item[\bf (Graph) Pattern Matching]
+Find occurrences of objects (from the typed graph) in a model.
 
 \item[\bf Statement Nodes]
-Used to invoke a method from a class in any package within the current Enterprise Architect Project via a \emph{MethodCallExpression}. Guarantees method
-invocation and execution.
+Cannot contain stop or start modes; Used to guarantee method invocation and execution.
 
 \item[\bf Story Node]
-\emph{Activity node}s that are able to contain \emph{story pattern}s.
+Patterns that contain stop and start nodes (i.e., contain \emph{story pattern}s).
 
 \item[\bf Story Pattern]
-Implements a structure change in the model; Declarative transformation rules.
+Implements a structure change in the model; Declarative transformation rules that the transformation must perform.
 
 \item[\bf Unification]
-% As copied from Part II
 An extension of the Object Oriented ``Everything is a object'' principle, where everything is classified as a \emph{model}, even the metamodel which defines
 other models.
+
 \end{description}

@@ -1,5 +1,5 @@
 \newpage
-\subsection{Partition::check(Card, EString) - The visual syntax}
+\subsection{Implementing check}
 \visHeader
 \hypertarget{checkCard vis}{}
 
@@ -17,7 +17,7 @@
 \end{figure}
 
 \item[$\blacktriangleright$] To check if the guess was correct, create an object variable that is bound to the argument \texttt{card}. This will
-representing the card the user has picked from the learning box. Remember that this binding is implicitly defined by choosing the name of the argument as the
+represent the card the user picked from the learning box. Remember that this binding is implicitly defined by choosing the name of the argument as the
 name of the object variable (Fig.~\ref{fig:sdm_check_addCard}).
 
 \begin{figure}[htbp]
@@ -29,15 +29,15 @@ name of the object variable (Fig.~\ref{fig:sdm_check_addCard}).
 \end{figure}
 
 % Will this attribute constraint also be defined for textual??
-\item[$\blacktriangleright$] Now that we have the card to be checked, we need to compare the user's guess to\note{Attribute Constraint} the actual answer on the
-back of the card. To do this we need to specify an \emph{Attribute Constraint}. An attribute constraint is a non-structural condition that must be satisfied for
-a story pattern to match, and can be specified by choosing the \texttt{Attribute Constraint} tab as depicted in Fig.~\ref{fig:sdm_check_att_constraint}. In this
-dialogue, choose the attribute to be used in formulating the constraint (\texttt{back}), and the type of \texttt{Expression} used to express it. As we shall
-compare the back of the card with the user's guess (passed in as a parameter), we'll need to use a \texttt{ParameterExpression} again to refer to this value.
+\item[$\blacktriangleright$] Now that we have the card to be checked, we need to compare the user's guess to the actual answer on the
+back of the card. To do this we need to specify an \emph{Attribute Constraint}. Choose the \texttt{Attribute Constraint} tab as depicted in
+Fig.~\ref{fig:sdm_check_att_constraint} ({\bf get this image}). In this dialogue, choose the attribute to be used in formulating the constraint
+(\texttt{back})({\bf you sure it's not face?}), and the type of \texttt{Expression} used to express it. As we shall compare the back of the card with the user's
+guess (passed in as a parameter), we'll need to use a \texttt{ParameterExpression} again to refer to this value.
 
 \item[$\blacktriangleright$] In the previous section, we used a \emph{ParameterExpression} to specify the return value in a stop node. Now, choose the parameter
 (\texttt{guessed}), and the type of constraint or \emph{operation} to be executed. In this case, it's an equality check (\texttt{==}). Press the button labelled
-\texttt{Add} and admire your first attribute constraint (Fig.~\ref{fig:sdm_check_att_constraint}).
+\texttt{Add} and admire your first attribute constraint (Fig.~\ref{fig:sdm_check_att_constraint}) ({\bf get this image}).
 
 % Update this screenshot
 \begin{figure}[htbp]
@@ -56,23 +56,20 @@ compare the back of the card with the user's guess (passed in as a parameter), w
 \end{center}
 \end{figure}
 
-Let's return to the control flow.  We need to explicitly specify that the card is to be penalised if the guess was wrong (the story node
-\texttt{Check\-If\-Guess\-Is\-Correct} did not match) and to be promoted if it was correct (a match could be found, i.e., all constraints/conditions both
-\note{Edge Guards} structural and non-structural could be fulfilled). Such an if/else construct is specified in SDMs via \emph{Edge Guards}.
+Let's return to the control flow. We now need to explicitly specify how the card is to be moved based on the result of the guess. Such an if/else construct is
+built in SDMs via \emph{Edge Guards}.
 
 \item[$\blacktriangleright$] To add a guard to the edge leading from \texttt{Check\-If\-Guess\-Is\-Correct} to \texttt{penalize\-Card}, double click the edge
 and set the \emph{Guard Type} in the dialogue (Fig.~\ref{fig:sdm_check_guard}).
 
 \item[$\blacktriangleright$] Choose \texttt{Failure}, and repeat the process for the edge leading to \texttt{promoteCard} by selecting \texttt{Success}.
 
-\pagebreak
-
-The next feature of eMoflon that we shall learn about is a means of coping with large patterns\footnote{You thought I was going to say 'coping with our coffee
-addiction', weren't you?}. It might be nice to visualise \emph{small} story patterns directly in their story nodes, but for large patterns or complex
+The next feature of EA and eMoflon that we shall learn about is a means of coping with large patterns\footnote{You thought I was going to say `coping with our
+coffee addiction', weren't you?}. It might be nice to visualise \emph{small} story patterns directly in their story nodes, but for large patterns or complex
 surrounding control flow, such diagrams would get extremely cumbersome and unwieldy very quickly!  This is indeed a popular argument against visual languages and
 it might already have crossed your mind (``this is cute, but it'll \emph{never} scale!''). With the right tools and concepts however, even huge diagrams can be
-mastered. We support \emph{extracting} story patterns to their own extra diagrams, and recommend this for most cases (unless the
-pattern is really concise and only contains 2 or 3 object variables).
+mastered. We support \emph{extracting} story patterns to their own diagrams, and recommend this in most cases (unless the pattern is really concise and only
+contains 2 or 3 object variables).
 
 \item[$\blacktriangleright$] To extract an empty or already partially modelled story pattern, just double-click the corresponding story node
 (\texttt{promoteCard}) and choose \texttt{Extract Story Pattern} (Fig.~\ref{fig:sdm_check_extract_storypattern}). Note the new diagram that is immediately
@@ -216,8 +213,10 @@ This is obviously sort of dirty\footnote{It defeats, for example, any attempt to
 \item[$\blacktriangleright$] As always, export the project, generate code and inspect the implementation for \texttt{check}.  We strongly recommend that you
 even write a simple JUnit test (take a look at our simple test case from Part I for inspiration) to take your brand new SDM for a test-spin.
 
+
+\item[$\blacktriangleright$] Great job - \texttt{check} is now complete! To see how this is implemented in the texual syntax, see Figs.
+\ref{fig:completedPatterns} and \ref{fig:finalMethod} in the following section.
+
 \fancyfoot[R]{ $\triangleright$ \hyperlink{sec:emptyPartition}{Next SDM} }
-\item[$\blacktriangleright$] Press the link below to proceed to the next SDM implementation, or skip over to the next page to learn how \texttt{check} is
-implemented in the textual syntax.
 
 \end{itemize}
