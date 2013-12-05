@@ -3,7 +3,7 @@
 \genHeader
 \hypertarget{sec:fastCard}{}
 
-Congratulations, you're almost there! This is the last SDM needed before Leitener's Learning Box is fully functional.
+Congratulations, you're almost there! This is the last SDM needed before Leitner's Learning Box is fully functional.
 
 For very simple cards (i.e: words in different language that are similar), it might be a bit annoying to have to answer these cards again and again in
 successive partitions. Such \emph{fast} cards should somehow be marked and handled differently. If a fast card is correctly answered once, it should be
@@ -22,7 +22,15 @@ new marker to show it behaves differently (Fig.~\ref{fig:goal_fastCard}).
 \FloatBarrier
 
 In addition to creating a new \texttt{eclass}, we also need to extend the existing \texttt{check} method to check for this special card type once a correct
-guess is made. This new pattern faces a similar challenge as \texttt{grow}. A \texttt{FastCard} can't simply progress to the \texttt{next} partition - it
+guess is made. Now \texttt{check} needs to decide, based on the dynamic type\footnote{In a statically typed language like Java, every object has a static type
+(determined at compile time) and a dynamic type (that can only be determined at runtime).} of \texttt{card}, if it needs to handle this special fast card. This
+can be expressed in SDMs via \emph{BindingExpressions} (or just \emph{Bindings}).\define{Bindings}A binding can be specified for a \emph{bound} object variable
+and represents the final case where an object variable can be marked as being bound.
+
+To refresh your memory, we have already learnt that a bound object variable is either (1) assigned to \texttt{this}, (2) a parameter of the method, or (3) a
+value determined in a preceding activity node. Bindings represent a fourth possibility of giving a manual binding for an object variable.
+
+Finally, this new pattern faces a similar challenge as \texttt{grow}. A \texttt{FastCard} can't simply progress to the \texttt{next} partition - it
 must skip ahead to the absolute last partition in the box. This means another NAC is required to form a deterministic pattern match.
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{fastCard vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{fastCard tex}{Next [textual]} } 

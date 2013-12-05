@@ -1,5 +1,5 @@
 \newpage
-\subsection{Handling `Fast Cards' in the visual syntax}
+\subsection{Implementing FastCards}
 \visHeader
 \hypertarget{fastCard vis}{}
 
@@ -32,13 +32,7 @@ to \texttt{Card} and choose \texttt{Inheritance} from the context menu (Fig.~\re
 
 \end{itemize}
 
-Now \texttt{check} needs to decide, based on the dynamic type\footnote{In a statically typed language like Java, every object has a static type (determined at
-compile time) and a dynamic type (that can only be determined at runtime).} of \texttt{card}, if it needs to handle a special fast card. This can be expressed
-in SDMs via \emph{BindingExpressions} (or just \emph{Bindings}). A binding can be specified for a \emph{bound} object variable \note{Bindings} and represents
-the final case where an object variable can be marked as being bound.
 
-To refresh your memory, we have already learnt that a bound object variable is either (1) assigned to \texttt{this}, (2) a parameter of the method, or (3) a
-value determined in a preceding activity node. Bindings represent a fourth possibility of giving a manual binding for an object variable.
 
 \begin{itemize}
   
@@ -68,8 +62,7 @@ Since we already know all the types let's consider what each type would mean in 
   copied with a surrounding typecast into the generated code.  Using
   LiteralExpressions too often is usually a sign for not thinking in a
   \emph{pattern oriented} manner and is considered a \emph{bad smell}.
-  
-  \pagebreak
+
   
   \item[ObjectVariableExpression:]~\\ This can be used to refer to other object
   variables in preceding story nodes.  Just like for ParameterExpressions, this
@@ -96,7 +89,6 @@ Fig.~\ref{fig:sdm_fastcard_4}.
 \item[$\blacktriangleright$] To complete the SDM, extract the story pattern of \texttt{promote FastCard} and specify the pattern according to
 Fig.~\ref{fig:sdm_fastcard_5}.
 The fast card is transferred from the current partition \texttt{this}, to the last partition in the box, which is identified with an appropriate \mbox{NAC}
-(already used in \hyperlink{sec:growBox}{Sec. 5}).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -106,8 +98,11 @@ The fast card is transferred from the current partition \texttt{this}, to the la
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Export, generate code and inspect the implementation for \texttt{check}.  Can you find the generated type casts for \texttt{fastcard}?
+\item[$\blacktriangleright$] Inspect Fig.~\ref{fig:promoFastCardFinal} to see how this is finalized in the you-know-what syntax.
 
+\item[$\blacktriangleright$] You have now completed every method signature from your abstract syntax using SDMs - fantastic work! Validate, export, and generate
+code for your metamodel. Inspect the implementation for \texttt{check}.  Can you find the generated type casts for \texttt{fastcard}?
+
+\item[$\blacktriangleright$] At this point, we encourage you to read each of the textual SDM sections to understand the full scope of eMoflon's features
+(which start on page~\hyperlink{page.11}{11}) but you are, of course, free to carry on
 \end{itemize}
-
-\emph{Add more things here, to avoid a page with just a single line.}

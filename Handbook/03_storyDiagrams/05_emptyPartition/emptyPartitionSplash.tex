@@ -3,7 +3,7 @@
 \genHeader
 \hypertarget{sec:emptyPartition}{}
 
-This next SDM should \emph{empty} a partition of all its cards by removing every card within it. Since we can assume that there is more than one card in the
+This next SDM should \emph{empty} a partition by removing every card contained inside. Since we can assume that there is more than one card in the
 partition\footnote{If there was only one, we would just invoke \texttt{removeCard}.}, we obviously need some construct for repeatedly deleting each card in the
 partition an unknown number of times (Fig.~\ref{fig:goal_empty}). 
 
@@ -21,10 +21,10 @@ partition an unknown number of times (Fig.~\ref{fig:goal_empty}).
 
 In SDM, this \note{For Each} construct is accomplished via a \emph{for each} story node. A
 \emph{for each} story node performs the specified actions for \emph{every} match in its pattern. That means for every \texttt{Card} the pattern finds, it'll
-peform an action set.
+perform an action set.
 
-This construct however, gives us two very interesting points to dicuss. Firstly, how would the pattern be interpreted if the node was a normal story node, not a
-\emph{for each}?
+This construct however, gives us two very interesting points to discuss. Firstly, how would the pattern be interpreted if the node was a normal story node, not
+a \emph{for each}?
 
 The pattern would specify that \emph{a} card should be matched and deleted from the current partition - that's it. The \emph{exact} card is not specified,
 meaning that the actual choice of the card is \emph{non-deterministic} or random, and it is only done once. This randomness is a common property of both graph

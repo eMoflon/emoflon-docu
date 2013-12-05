@@ -28,14 +28,15 @@ precise, in CodeGen2 from Fujaba} we only support single negative elements (obje
 
 As depicted in Fig.~\ref{fig:goal_grow}, to create an appropriate \mbox{NAC} that constrains possible matches, we'll need to check to see if the current matched
 pattern has certain `active' link variables. Suppose the targeted last partition has a set \texttt{next} reference. This means it is \emph{not} the absolute
-last partition, and so the match becomes invalid. We only want the pattern to insert a new partition when the \texttt{next} link is null. Similarily, if the
+last partition, and so the match becomes invalid. We only want the pattern to insert a new partition when the \texttt{next} link is null. Similarly, if the
 targeted first partition has a \texttt{previous} value, the match is invalid. The complete pattern match is therefore made unique through NACs and thus becomes
 \emph{deterministic} by construction. In other words, if you \emph{grow} the box with this method, there will always be exactly one first and one last
 partition.
 
 Of course, to complete this method we still need to determine how \emph{many} partitions to add! Since the new size must be calculated depending on the rest of
-the partitions currently in the box (partitions usually get bigger) we'll need to calla helper method, \texttt{determineNextSize()}, that we previously
-declared\footnote{Inspect \texttt{PartitionImpl} and review Part II, section 6} with injections.
+the partitions currently in the box (partitions usually get bigger) we'll need to call a helper method, \texttt{determineNextSize()}, that we previously
+declared\footnote{Inspect \texttt{PartitionImpl} and review Part II, section 6} with injections. From the previous SDM, we know that to assign this value, we'll
+need to use another attribute constraint.
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{growBox vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{growBox tex}{Next [textual]} }
 

@@ -4,9 +4,9 @@
 \hypertarget{sec:checkCard}{}
 
 The next method we shall model with SDMs is probably the most important! This method will be invoked when a user decides to test themselves on a card in the
-learning box. The user will be able to see the \texttt{Back} of a card, then they will make a guess and check their answer with the \texttt{face} of the
-card (Fig.~\ref{fig:goal_check}). Following the rules of Leitners Box, if their guess was correct, the card will be \emph{promoted} and moved to the
-\emph{next} partition. If wrong, the card will be \emph{penalized} and returned to very first partition in the box.
+learning box. The user will be able to see the \texttt{Back} of a card (displayed in the box), make a guess as to what's on the \texttt{Face}, then check their
+answer (Fig.~\ref{fig:goal_check}). Following the Leitner's Box rules, if their guess was correct the card will be \emph{promoted} and moved to the next
+partition. If wrong, the card will be \emph{penalized} and returned to very first partition.
 
 \begin{figure}[htbp]
  	\centering
@@ -17,7 +17,7 @@ card (Fig.~\ref{fig:goal_check}). Following the rules of Leitners Box, if their 
 \FloatBarrier
 
 As you can see, checking the guess is simple assertion. The actual movements however, must be implemented as separate patterns. Fig.~\ref{fig:patterns_check}
-briefly shows the intended creation and deletion links that each of these patterns must make.
+briefly shows the intended creation and deletion transformations that each of these patterns must execute.
 
 \begin{figure}[htbp]
  	\centering
@@ -30,8 +30,8 @@ briefly shows the intended creation and deletion links that each of these patter
 \FloatBarrier
 
 Overall, this means that our method's control flow must be a new \emph{if/Else} construct. This is specified in SDM via \emph{edge guards},
-\define{Edge~Guards}explicit statements on which actions to take when the \emph{if} statement fails or succeeds. To implement this, the \emph{if} statment must
-include an \emph{Attribute Constraint},\define{Attribute~Constraint}a non-structural condition that must be satisifed for a story pattern to match. This
+\define{Edge~Guards}explicit statements on which actions to take when the \emph{if} statement fails or succeeds. To implement this, the \emph{if} statement must
+include an \emph{Attribute Constraint},\define{Attribute~Constraint}a non-structural condition that must be satisfied for a story pattern to match. This
 special attribute type will compare the user's guess to the actual answer on the back of the card. The comparison is referred to as a \texttt{Paramter
 Expression}.
 

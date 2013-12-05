@@ -56,15 +56,14 @@
 {../07_growBox/}{../07_growBox/visGBImages/}{../07_growBox/texGBImages/}%
 {../08_stringRep/}{../08_stringRep/visSRImages/}{../08_stringRep/texSRImages/}%
 {../09_fastCards/}{../09_fastCards/visFCImages/}{../09_fastCards/texFCImages/}%
-{../10_conditionalBranching/}{../10_conditionalBranching/visCBImages/}{../10_conditionalBranching/texCBImages/}%
+{../10_conditionalBranching/}{../10_conditionalBranching/splashImages/}{../10_conditionalBranching/visCBImages/}{../10_conditionalBranching/texCBImages/}%
 {../11_LLBGuiExtended/}%
 }
 
 % Remove section numbers 0.1, 0.2 ..
 \renewcommand{\thesection}{\arabic{section}} 
 
-% MAY NOT NEED
-% Creates footer link for the immediate next page; pass in \thepage and place in src file near end of page
+% NOT IN USE; \nxtPage{\thepage}; Creates footer link for the immediate next page
 \newcommand{\nxtPage}[1]{
 	\FPeval{\nxtPg}{clip(#1 +1)}
 	\fancyfoot[R]{$\triangleright$ \hyperlink{page.\nxtPg}{Next}}
@@ -78,7 +77,7 @@
 % Formats words to appear in margin; These definitons should appear in the glossary
 \newcommand{\define}[1]{
 	\marginpar{\small\emph{#1}}
-}	
+}
 
 % --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
 % Default plain header; turn off all lines and colors; turn on page numbers for all
