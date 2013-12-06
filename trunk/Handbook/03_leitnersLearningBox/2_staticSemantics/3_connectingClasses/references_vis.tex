@@ -27,21 +27,16 @@ In the context menu that appears, select ``Create Bidirectional EReference'' (Fi
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] Double click the reference to invoke a dialogue. In this window you can switch the reference from bi-direction to a uni-direction,
-change the source and target classes, and enter a name. Feel free to leave the \texttt{Name} value blank - this property is only used for documentation purposes, and not
-relevant to code generation.
+\item[$\blacktriangleright$] Double click the reference to invoke a dialogue. In this window you can adjust all relevant settings. Feel free to leave the
+\texttt{Name} value blank - this property is only used for documentation purposes, and is not relevant to code generation.
 
-\item[$\blacktriangleright$] Within this dialogue, go to ``Target Role'', and enter the values in Fig.~\ref{fig:role_target} to set the properties for the
-\emph{Target} end of the reference (the \texttt{Box} role). As you can see, the default target is set to the class you linked \emph{from}, and the default
-\emph{Source} is the class you linked \emph{to}. In this window, it's important not to forget to confirm and modify the \texttt{Role}, \texttt{Navigability},
-\texttt{Multiplicity}, and \texttt{Aggregation} settings for the target.  Repeat the process for the \texttt{Source Role} (Fig.~\ref{fig:role_source}).
+\item[$\blacktriangleright$] Within this dialogue, go to ``Target Role'', and compare the relevant values in Fig.~\ref{fig:role_target} for the \emph{Target}
+end of the reference (the \texttt{Box} role). As you can see, the default target is set to the class you linked \emph{from}, and the default \emph{Source} is
+the class you linked \emph{to}. In this window, do not forget to confirm and modify the \texttt{Role}, \texttt{Navigability},
+\texttt{Multiplicity}, and \texttt{Aggregation} settings for the target are required.  Repeat the process for the \texttt{Source Role}
+(Fig.~\ref{fig:role_source}).
 
 \vspace{0.5cm}
-
-\item[$\blacktriangleright$] If you decided to ignore the previous instructions, and went from \texttt{Partition} to \texttt{Box}, the only difference between
-what you see here versus on your screen is a reversal of roles. The following information will still be the same! You can switch the roles by returning to the 
-``General" window and modifying \texttt{Target} and \texttt{Source} there. 
-\vspace{1cm}
 
 \begin{figure}[htbp]
 	\centering
@@ -61,15 +56,15 @@ what you see here versus on your screen is a reversal of roles. The following in
 
 \end{itemize}
 
-To review these properties, the first value you edited was the navigation name. The \texttt{Navigation} value should have been automatically set to
-\texttt{Navigable}. Without these, correct getter and setter methods can't be generated.
+To review these properties, the first value you edited was the role name. The \texttt{Navigation} value should have been automatically set to
+\texttt{Na\-vi\-ga\-ble}. Without these two settings, getter and setter methods will not be generated.
 
 \vspace{0.5cm}
 
-Next, you set the \texttt{Multiplicity} value. In your target role (\texttt{Box}), you have allowed the creation of up to
-one target (\texttt{box}) reference for every connected source (\texttt{Partition}). This means you could not have a single source connected to two targets
-(ie., one partition that belongs to two unique boxes). In the source (\texttt{Partition}) role, you have specified that any target (in our case, \texttt{box})
-can have any positive-sized number of sources. Figure~\ref{fig:sketch_roles} sketches this idea.
+Next, you set the \texttt{Multiplicity} value. In your target role (\texttt{Box}), you have allowed the creation of up to one target (\texttt{box}) reference
+for every connected source (\texttt{Partition}). This means you could not have a single source connected to two targets (ie., one partition that belongs to two
+boxes). In the source (\texttt{Partition}) role, you have specified that any target (in our case, \texttt{box}) can have any positive-sized number of sources.
+Figure~\ref{fig:sketch_roles} sketches this idea.
 
 \vspace{0.5cm}
 
@@ -81,12 +76,13 @@ can have any positive-sized number of sources. Figure~\ref{fig:sketch_roles} ske
 \end{figure}
 \FloatBarrier
 
-Finally, you set the \texttt{Aggregation} value. In this case, \texttt{box} is a
-container for \texttt{Partition}s, and \texttt{containedPartition} doesn't need to adhere to any rules.
+Finally, you set the \texttt{Aggregation} value. In this case, \texttt{box} is a container for \texttt{Partition}s, and \texttt{containedPartition} is
+consquently not.
 
 \begin{itemize}
 \item[$\blacktriangleright$] Take a moment to review how the \texttt{Aggregration} settings extend the \texttt{Multiplicity} rules. If you've done everything
-right, your workspace should now resemble Fig.~\ref{fig:ereference_completed}, with a single \emph{Bidirectional EReference} between \texttt{Box} and \texttt{Partition}.
+right, your workspace should now resemble Fig.~\ref{fig:ereference_completed}, with a single \emph{bidirectional EReference} between \texttt{Box} and
+\texttt{Partition}.
 
 \vspace{1cm}
 
@@ -98,7 +94,7 @@ right, your workspace should now resemble Fig.~\ref{fig:ereference_completed}, w
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] Following the same process, create two unidirectional self-references for \texttt{Partition}, and then a second bidirectional
+\item[$\blacktriangleright$] Following the same process, create two unidirectional self-EReferences for \texttt{Partition}, and then a second bidirectional
 EReference\footnote{To be precise, \emph{all} references in Ecore are actually unidirectional. A ``bidirectional'' reference in our metamodel is really two
 mapped \texttt{EReferences} that are opposites of each other. We however, believe it is simpler to handle these pairs as single references, and prefer this
 concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\ref{fig:ereferences_all}). 
@@ -115,26 +111,27 @@ concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\re
 
 \vspace{1cm}
 
-\item[$\blacktriangleright$] You'll notice that the second pair has the same set up as those between \texttt{Partition} and \texttt{Box}. This makes sense as a
-partition should be able to hold an unlimited amount of cards, but a card can only belong to one partition at a time.
+\item[$\blacktriangleright$] You'll notice that the connection \texttt{card} and \texttt{Partition} is similar to that between \texttt{Partition} and
+\texttt{Box}. This makes sense as a partition should be able to hold an unlimited amount of cards, but a card can only belong to one partition at a time.
 
 \vspace{1cm}
 
-\item[$\blacktriangleright$] Export your diagram to Eclipse and refresh your workspace. Your modeling file should now resemble Fig~\ref{fig:model_allClasses}.
+\item[$\blacktriangleright$] Export your diagram to Eclipse and refresh your workspace. Your Ecore file should now resemble Fig~\ref{fig:model_allClasses}.
 
 \vspace{1cm}
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.7\textwidth]{eclipse_modelDeclaredClasses}
-	\caption{Classes fully declared and displayed in the model}
+	\caption{Your Ecore file}
 	\label{fig:model_allClasses}
 \end{figure}
 
 \vspace{1cm}
 
 \item[$\blacktriangleright$] All the required attributes and references for your learning box have now been set up. We encourage you to see how these are
-declared in the textual syntax, starting on the immediate next page. In particular, check out Fig.~\ref{fig:allReferences}, where the classes are fully declared, and Fig.~\ref{fig:bothConstraints}, where the key references are linked to eachother.
+declared in the textual syntax, starting on the immediate next page. In particular, check out Fig.~\ref{fig:allReferences}, where the classes are fully
+declared, and Fig.~\ref{fig:bothConstraints}, where bidirectionality is explicitly specified as a constraint.
 
 \fancyfoot[R]{$\triangleright$ \hyperlink{static:methods vis}{Next}}
 
