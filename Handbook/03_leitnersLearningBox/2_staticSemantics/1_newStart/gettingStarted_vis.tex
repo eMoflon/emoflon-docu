@@ -1,16 +1,17 @@
-% make sure not a repeat header!
+\newpage
 \subsection{Getting started in EA}
 \visHeader
 \hypertarget{static:starting vis}{}
 
 \begin{itemize}
+  
 \item[$\blacktriangleright$]  If you have continued from Part I, you can begin modeling this project in two different ways. You can either continue in the same
-workspace as the demo by opening the \texttt{demo.eap} file in EA, initializating a new diagram, and then working within that space, or you can start this
-project with a fresh space as instructed below. If you choose to do this, please note that the steps are exactly the same, but our package explorers may not
-exactly match. This handbook has assumed you prefer the latter.
+workspace as the demo by opening the \texttt{demo.eap} file in EA, initializating a new diagram, and then working within that EA Project, or you can start a new
+project. If you choose to do this, please note that the steps are exactly the same, but our package explorers may not exactly match. This handbook has assumed
+you prefer the latter.
 
-\item[$\blacktriangleright$]  To begin, navigate to ``New Metamodel Project,'' and start a new visual project (without demo specifications) named `Leitners
-Learning Box' (Fig.~\ref{fig:new_visModel}). Open the empty \texttt{.eap} file in EA.
+\item[$\blacktriangleright$]  To begin, navigate to ``New Metamodel Project,'' and start a new visual project (this time without the demo specifications) named
+\texttt{LeitnersLearningBox} (Fig.~\ref{fig:new_visModel}). Open the empty \texttt{.eap} file in EA.
 
 \begin{figure}[htbp]
 	\centering
@@ -21,9 +22,7 @@ Learning Box' (Fig.~\ref{fig:new_visModel}). Open the empty \texttt{.eap} file i
 
 \newpage
 
-\item[$\blacktriangleright$] From EA, select your working set and press the ``Add a Package'' button (Fig.~\ref{fig:new_package}).\footnote{If using the
-previous files, you won't have the \texttt{eMoflon Languages} package, since all the needed files were included in \texttt{Demo}. For this simple example, we won't be
-using all the features of eMoflon, so this limited collection will suffice.}
+\item[$\blacktriangleright$] In EA, select your working set and press the ``Add a Package'' button (Fig.~\ref{fig:new_package}).
 
 \begin{figure}[htbp]
 	\centering
@@ -35,8 +34,8 @@ using all the features of eMoflon, so this limited collection will suffice.}
 
 \vspace{1.0cm}
 
-\item[$\blacktriangleright$] In the dialogue that pops up (Fig.~\ref{fig:new_package_name}), enter `Learning\-Box\-Language' as the name of the new package.
-Make sure \texttt{Class View} is selected, and click \texttt{OK}.
+\item[$\blacktriangleright$] In the dialogue that pops up (Fig.~\ref{fig:new_package_name}), enter \texttt{LearningBoxLanguage} as the name of the new
+package. Make sure \texttt{Class View} is selected, and click \texttt{OK}.
 
 \begin{figure}[htbp]
 	\centering
@@ -69,7 +68,7 @@ Make sure \texttt{Class View} is selected, and click \texttt{OK}.
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] In the dialogue that appears, (Fig.~\ref{fig:diagram_type}), choose \texttt{eMoflon Ecore Diagrams} and press \texttt{OK}. 
+\item[$\blacktriangleright$] In the dialogue that appears (Fig.~\ref{fig:diagram_type}), choose \texttt{eMoflon Ecore Diagrams} and press \texttt{OK}. 
 
 \begin{figure}[htbp]
 	\centering
@@ -81,8 +80,7 @@ Make sure \texttt{Class View} is selected, and click \texttt{OK}.
 
  
 \item[$\blacktriangleright$] After creating the new diagram, your  \texttt{Project Browser} should now resemble Fig.~\ref{fig:diagram_completed}. You'll notice
-that your \texttt{LearningBoxLanguage} package has transformed into a container. This is now be the source location for any and all ecore diagrams for your
-project; All generated files are derived from the pieces stored in this package.
+that your \texttt{LearningBoxLanguage} package has been transformed into an EPackage.
 
 \begin{figure}[htbp]
 	\centering
@@ -94,11 +92,11 @@ project; All generated files are derived from the pieces stored in this package.
 
 \newpage
 
-\item[$\blacktriangleright$] To finish the initialization of your metamodel, export your project to Eclipse,\footnote{If unsure how to perform this step, please
+\item[$\blacktriangleright$] You can now already export your project to Eclipse,\footnote{If unsure how to perform this step, please
 refer to Part I, section 2.1} then refresh your \texttt{Package Explorer}. A new node, \texttt{My Working Set}\footnote{If you do not have the two
-distinct nodes, make sure your ``Top Level Elements'' are set to \texttt{Working Sets}} should have appeared containing your adapted \texttt{Epackage}
-(Fig.~\ref{fig:init_export}). You can see the that a \texttt{LearningBoxLanguage.ecore} file has been generated, and placed in ``model.'' This is the graph of
-your metamodel that must adhere to all future types and restrictions you create in your diagrams.
+distinct nodes, make sure your ``Top Level Elements'' are set to \texttt{Working Sets}} should have appeared containing your \texttt{Epackage}
+(Fig.~\ref{fig:init_export}). You can see that a \texttt{LearningBoxLanguage.ecore} file has been generated, and placed in ``model.'' This is your metamodel
+that will contain all future types you create in your diagrams.
 
 \vspace{0.5cm}
 
@@ -113,7 +111,7 @@ your metamodel that must adhere to all future types and restrictions you create 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] If you're interested in reviewing the overall project structure, the purposes of certain files and folders, read section 4.1 from
-Part~I of this handbook. Otherwise, continue to the next section learn how to declare your classes and attributes.
+Part~I of this handbook. Otherwise, continue to the next to section learn how to declare classes and attributes.
 
 \fancyfoot[R]{$\triangleright$ \hyperlink{static:classes vis}{Next}}
 \end{itemize}

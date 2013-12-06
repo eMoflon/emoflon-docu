@@ -3,33 +3,27 @@
 \genHeader
 \hypertarget{static:references splash}{}
 
-\texttt{}
-\emph{}
-
-At this point, you've declared your types and attributes, but what good are those if none of them can communicate with each other? We need to create some
+At this point, you've declared your types and their attributes, but what good are those if you can't connect them to each other? We need to create some
 \emph{EReferences}!
 
-There are 4 properties that must be set in order to create an EReference: the target and source \emph{Role}, \emph{Navigation}, \emph{Aggregation}, and
+There are four properties that must be set in order to create an EReference: the target and source \emph{Role}, \emph{Navigation}, \emph{Aggregation}, and
 \emph{Multiplicity}. As you can probably guess, they're declared differently in each syntax, but let's review the concepts since they're the same.
 
-To start, a \emph{Role} clarifies which way a reference is `pointing.' In other words, the \emph{source} and \emph{target} roles determine the direction of the
+A \emph{Role} clarifies which way a reference is `pointing.' In other words, the \emph{source} and \emph{target} roles determine the direction of the
 connection.
 
-Next, \emph{Navigable} ends are mapped to class attributes with getters and setters in Java, and therefore \emph{must} have a specified name and
+\emph{Navigable} ends are mapped to class attributes with getters and setters in Java, and therefore \emph{must} have a specified name and
 multiplicity for successful code generation. Corresponding values for \emph{Non-Navigable} ends can  be regarded as additional documentation, and do not have
 to be specified.
 
-Thirdly, the \emph{Multiplicity} refers to that of a reference.\footnote{Don't get multiplicity of a reference confused with the multiplicity of an element!
-Multiplicity of an element defines the permitted range of individual instances, rather than of types} It controls if the relation is mapped to a
-Java Collection (\texttt{*},~\texttt{1..*},~\texttt{0..*}), or to a single valued class attribute (\texttt{1}, \texttt{0..1}). We'll explain this setting in
-detail when you encounter them in your syntax instructions.
+\emph{Multiplicity} of a reference. It controls if the relation is mapped to a (Java) collection (\texttt{*},~\texttt{1..*},~\texttt{0..*}), or to a single
+valued class attribute (\texttt{1}, \texttt{0..1}). We'll explain this setting in detail later.
 
-Lastly, in Ecore, the \emph{Aggregration} values of a reference can be none, shared, or com\-po\-site. Composite means that the current role is that of a
+Lastly, in Ecore, the \emph{Aggregration} values of a reference can be either none or com\-po\-site. Composite means that the current role is that of a
 \emph{container} for the opposite role. You'll see in our example that \texttt{Box} is a container for several \texttt{Partition}s.
 This has a series of consequences: (1) every element must have a container, (2) an element cannot be in more than one container at the same time, and (3) a
 container's contents are deleted together with the container. Conversely, non-composite (none) means that the current role is not that of a container,
-and the rules for containment do not hold (in other words, the reference is set a simple `pointer'). The \emph{shared} setting is beyond the scope of this
-handbook.
+and the rules for containment do not hold (in other words, the reference is a simple `pointer').
 
 
 \fancyfoot[RO]{ $\triangleright$ \hyperlink{static:references vis}{Next [visual]\hspace{0.2cm}} \\ $\triangleright$ \hyperlink{static:references tex}{Next
