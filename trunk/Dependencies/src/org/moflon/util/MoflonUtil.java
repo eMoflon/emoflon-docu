@@ -128,7 +128,7 @@ public class MoflonUtil
 	 * @param eClass
 	 * @return
 	 */
-	public static String getFQN(EClassifier eClass) {
+	public static String getFQN(ENamedElement eClass) {
 		String fqn = eClass.getName();
 
 		ENamedElement e = eClass;
