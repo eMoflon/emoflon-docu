@@ -3,12 +3,14 @@
 \visHeader
 \hypertarget{static:methods vis}{}
 
-To finish defining our types, lets define the \emph{signatures} of some operations they'll eventually implement.
+To finish defining our types, lets define the \emph{signatures} of some operations they'll eventually support.
 
 \begin{enumerate}
   
-\item[$\blacktriangleright$] Right-click \texttt{Partition} to invoke the context-menu as depicted in Fig.~\ref{fig:add_operation} and choose ``Features \&
-Properties/Operations..''
+\item[$\blacktriangleright$] Right-click \texttt{Partition} to invoke the context-menu as depicted in Fig.~\ref{fig:add_operation}
+
+\item[$\blacktriangleright$] Select \texttt{Partition} and either right-click to invoke the context-menu (Fig.~\ref{fig:add_operation})  and choose ``Features \&
+Properties/Operations..'' or simply press \texttt{F10}.
 
 \begin{figure}[htbp]
 	\centering
@@ -38,14 +40,14 @@ your project. Simply typing them won't work!
 \begin{figure}[htbp]
 	\centering
   	\includegraphics[width=0.8\textwidth]{ea_operationEmpty}
-	\caption{Properties for operation}
+	\caption{Class properties editor}
 	\label{fig:operation_properties}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.85\textwidth]{ea_operationRemoveCard}
-	\caption{Parameters and Return Type}
+	\caption{Parameters and return type}
 	\label{fig:operation_parameters}
 \end{figure}
 
@@ -68,13 +70,12 @@ completing the dialouge.
 Fig.~\ref{fig:metamodel_complete}.\footnote{Please note that names of parameters may not be displayed by default in EA}
 
 \item[$\blacktriangleright$] To finish, export the metamodel for code generation in Eclipse, and examine the model once again. Each signature should have
-appeared in their respective class trees.
+appeared in their respective classes.
 
-\item[$\blacktriangleright$]  If code is generated successfully, take a look at all the stuff that's been generated under \texttt{/gen}. (Fig.). In particular,
-look at the the default implementation for all methods who throw an \texttt{OperationNotSupported} exception. We shall shortly discover that the Eclipse
-Modeling Foundation's (EMF) code generator supports injecting hand-written implementations of methods into these already generated methods and classes.
-With eMoflon however, we can model a large part of the dynamic semantics and only need to implement small helper methods (such as string manipulation) by
-hand.
+\item[$\blacktriangleright$]  If code is generated successfully, take a look at all the stuff that's been generated under \texttt{/gen}. In particular, look at
+the the default implementation for all methods who throw an \texttt{OperationNotSupported} exception. We shall shortly discover how our code generator supports
+injecting hand-written implementations of methods into these already generated methods and classes. With eMoflon however, we can actually model a large part of
+the dynamic semantics and only need to implement small helper methods (such as string manipulation) by hand.
 
 \begin{figure}[htbp]
 	\centering
@@ -84,7 +85,7 @@ hand.
 \end{figure}
 
 \item[$\blacktriangleright$] To see how this complete metamodel is represented in the textual syntax, examine Fig.~\ref{fig:workspaceMethods} in the following
-section. Otherwise, continue to carry on with the visual portion of this handbook.
+section. 
 
 \end{enumerate}
 

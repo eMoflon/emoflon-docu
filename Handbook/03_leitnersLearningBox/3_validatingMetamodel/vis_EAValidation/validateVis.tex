@@ -2,7 +2,7 @@
 
 \hypertarget{validation vis}{Our} EA extension provides rudimentary support for validating both the static semantics (Ecore) and dynamic semantics (SDM) of
 metamodels. Validation results are displayed and, in some cases, even ``quick fixes'' to automatically solve the problems are offered. In addition to reviewing
-your model, the validation option automatically exports the current model to your eclipse workspace.
+your model, the validation option automatically exports the current model to your eclipse workspace if no problems were detected.
 
 \subsection{eMoflon validation support in EA}
 
@@ -33,15 +33,15 @@ should remain empty, indicating your metamodels are free of errors.
 \FloatBarrier
 \end{enumerate}
 
-If an error did appear, the validation system would try to suggest a ``Quick Fix.'' Why don't we try to get familiar and examine the validation and quick fix
-features in detail? Let's add two small modelling errors in \texttt{LearningBoxLanguage}.
+If an error did appear, the validation system attempts to suggest a ``Quick Fix.'' Why don't we examine the validation and quick fix features in detail? Let's
+add two small modelling errors in \texttt{LearningBoxLanguage}.
 
 \begin{enumerate}
 \item[$\blacktriangleright$] Create a new Eclass in the \texttt{Learning\-Box\-Language} diagram. You can retain the default name \texttt{EClass1}. Let's
-assume, you wish to delete this class from your metamodel.
+assume you wish to delete this class from your metamodel.
 
-\item[$\blacktriangleright$] Select the rouge class in the diagram and press the \texttt{Delete} button on your keyboard. Note that \texttt{EClass1} still
-exists in the project browser (and thus in your metamodel).
+\item[$\blacktriangleright$] Select the rouge class in the diagram and press the \texttt{Delete} button on your keyboard. Note that this only deleted it from
+the current diagram and \texttt{EClass1} still exists in the project browser (and thus in your metamodel).
 
 \item[$\blacktriangleright$] Run the validation test, and notice the new \texttt{Information} message in the validation output
 (Fig.~\ref{fig:validation_information}).
@@ -53,7 +53,7 @@ exists in the project browser (and thus in your metamodel).
 	\label{fig:validation_information}
 \end{figure}
 
-This message informs you that \texttt{EClass1} is not on any diagram, and seeing as it is still in the model, that this \emph{could} be a mistake. As you
+This message informs you that \texttt{EClass1} is not on any diagram, and seeing as it is still in the metamodel, that this \emph{could} be a mistake. As you
 can see, just pressing the \texttt{Delete} button is not the proper way of removing a class from a metamodel - It only removes it from the current
 diagram!\footnote{Deleting elements properly and other EA specific aspects are discussed in detail in Part VI: Micellaneous}
 
@@ -61,8 +61,8 @@ diagram!\footnote{Deleting elements properly and other EA specific aspects are d
 \texttt{Project Browser}, click \emph{once} on the information message.
 
 \item[$\blacktriangleright$] To check to see if there are any quick fixes available, \emph{double} click the information message to invoke the ``QuickFix''
-dialogue. In this case, there is one quick fix which suggests (properly) deleting the element from the model (Fig.~\ref{fig:quick-fix1}). Since this was indeed
-the intent, click \texttt{Ok}.
+dialogue. In this case, there are two potential solutions - add the element to the current diagram or (properly) deleting the element from the metamodel
+(Fig.~\ref{fig:quick-fix1}). Since this was the original intent, click \texttt{Ok}.
 
 \begin{figure}[htbp]
 	\centering
@@ -87,7 +87,7 @@ the validation output window.
 
 \item[$\blacktriangleright$] You should now see a new \texttt{Fatal Error} in the validation output, stating that a navigable end \emph{must} have a role name.
 Double click the error to view the quick fix menu (Fig.~\ref{fig:fatal-error}). As navigable references are mapped to data members in a Java class, omitting the
-name of a navigable reference makes code generation impossible (data members (i.e., class variables) must have a name).
+name of a navigable reference makes code generation impossible (data members ,i.e., class variables, must have a name).
 
 \begin{figure}[htbp]
 	\centering
@@ -100,7 +100,7 @@ name of a navigable reference makes code generation impossible (data members (i.
 \texttt{previous}.
 
 \item[$\blacktriangleright$] Ensure that your metamodel closely resembles Fig.~\ref{fig:metamodel_complete} again, and that there are no error messages before
-you proceed with the rest of this handbook.
+proceeding.
 \end{enumerate}
 
 \vspace*{1cm}
@@ -121,8 +121,7 @@ As you may have already noticed, eMoflon distinguishes between five different ty
   \item[Fatal Error:]~\\ The metamodel cannot be exported as required information, such as names or classifiers of model elements, are incorrectly set or
   missing.
   
-  \item[Eclipse Error:]~\\ Display error messages produced by our Eclipse plugin after an unsuccessful attempt to generate code. This is currently not actively
-  used.
+  \item[Eclipse Error:]~\\ Display error messages produced by our Eclipse plugin after an unsuccessful attempt to generate code. 
 
 \end{description}
 

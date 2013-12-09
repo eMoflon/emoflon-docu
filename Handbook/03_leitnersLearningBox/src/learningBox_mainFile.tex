@@ -47,7 +47,10 @@
 
 \graphicspath{%
 {../../00_introduction/common/}%
-{../2_staticSemantics/1_newStart/nsImages/}{../2_staticSemantics/2_definingClasses/dcImages/}%
+{../2_staticSemantics/1_newStart/nsImages/}% REMOVE ME
+{../2_staticSemantics/1_newStart/nsVisImages/}{../2_staticSemantics/1_newStart/nsTexImages/}%
+{../2_staticSemantics/2_definingClasses/dcImages/}% REMOVE ME
+{../2_staticSemantics/2_definingClasses/dcVisImages/}{../2_staticSemantics/2_definingClasses/dcTexImages/}%
 {../2_staticSemantics/3_connectingClasses/ccImages/}{../2_staticSemantics/4_creatingMethods/cmImages/}%
 {../3_validatingMetamodel/vis_EAValidation/03_images/}%
 {../4_creatingInstance/04_images/}%
@@ -74,7 +77,6 @@
 \newcommand{\define}[1]{
 	\marginpar{\small\emph{#1}}
 }
-
 % --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
 % Default plain header; turn off all lines and colors; turn on page numbers for all
 \newcommand{\noHeader}{
@@ -111,12 +113,22 @@
   		\color{ProcessBlue}\leaders\hrule height \headrulewidth\hfill}}
 }
 
+% --- Download links for mentioned handbook parts -------------------------------------------------------------------------------------------------------------
+\newcommand{\dlPartZero}{
+	\url{http://www.moflon.org/}}
+
+\newcommand{\dlPartOne}{
+	\url{http://www.moflon.org/}}
+  	
+\newcommand{\dlPartSix}{
+	\url{http://www.moflon.org/}}
+
 % --- Title Page Information ----------------------------------------------------------------------------------------------------------------------------------
 \def\partTitle{Part II: Ecore}
 \def\versionNumber{0.0}
 \input{../../00_introduction/common/titlepage}
 % -------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+ 
 \begin{document}
 
 \frontmatter 
