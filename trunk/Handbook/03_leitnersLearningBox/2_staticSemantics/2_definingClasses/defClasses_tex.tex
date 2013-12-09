@@ -3,27 +3,40 @@
 \texHeader
 \hypertarget{static:classes tex}{}
 
-% Discuss syntax in this section! (We removed it from Part I)
 \begin{itemize}
 
-\item[$\blacktriangleright$] Right click \texttt{LearningBoxLanguage}, and create your first EClass by choosing ``New/EClass.'' Name it \texttt{Box}.
+\item[$\blacktriangleright$] Right click \texttt{LearningBoxLanguage}, and create your first EClass by navigating to ``New/EClass.'' Name it \texttt{Box}.
 
 \item[$\blacktriangleright$] The class editor should automatically open. Let's add the first two EAttributes of our program, \texttt{name} and
-\texttt{stringRep}. In MOSL, attributes are declared by stating their name and type as \texttt{name:type}. In this case, both are of type \texttt{EString}
-(Fig.~\ref{fig:boxDeclaration}).
+\texttt{stringRep}. eMoflon offers type completion to help you with this task. Go to an empty line and press \texttt{cntrl + space}.
 
-\vspace{0.5cm}
+\item[$\blacktriangleright$] Given that your class is empty, you'll be presented with a short list of declaration template suggestions
+(Fig.~\ref{fig:typeComp_Main}). The first four items are relevant for method signatures, so select \texttt{attribute} near the bottom, and create \texttt{name}
+of type \texttt{EString}.
 
 \begin{figure}[htbp]
+	\centering
+  \includegraphics[width=0.5\textwidth]{eclipse_typeCompletion_main}
+	\caption{eMoflon's type completion}
+	\label{fig:typeComp_Main}
+\end{figure} 
+
+\item[$\blacktriangleright$] Type completion also supports you by providing a list of types. Start to create a second attribute, \texttt{stringRep}, but after
+the \texttt{``:''} operator, press the same hotkeys. The new list provides all the types currently available - any further EClasses you create will also appear
+in this list. Begin to type \texttt{EString} until the option is highlighted and press \texttt{enter} ({\bf get image}). Your workspace should now resemble
+(Fig.~\ref{fig:boxDeclaration}).
+
+\begin{figure}[h!]
 	\centering
   \includegraphics[width=0.5\textwidth]{eclipse_classBoxDeclaration}
 	\caption{Newly created box class}
 	\label{fig:boxDeclaration}
 \end{figure} 
+\FloatBarrier
 
-\vspace{0.5cm}
+\newpage
 
-\item[$\blacktriangleright$] Create two empty classes in your model, \texttt{Partition} and \texttt{Card}.
+\item[$\blacktriangleright$] Now create two empty EClasses in your model, \texttt{Partition} and \texttt{Card}.
 
 \item[$\blacktriangleright$] In \texttt{Partition}, add two \texttt{EInt} attributes, \texttt{index} and \texttt{partitionSize}.
 
@@ -31,14 +44,7 @@
 
 \item[$\blacktriangleright$] If you've done everything correctly, your workspace should now resemble Fig.~\ref{fig:workspaceClassAttributes}.
 
-\item[$\blacktriangleright$] That's it for declaring class attributes! Feel free to build your project again and view the changes in the \texttt{.ecore}
-mode, and the generated files in ``gen" and ``src." On a final note, while some languages (such as Java) allow the declaration of several small classes (such as
-these three) in the same file, when tooling with eMolfon, we keep them separated. Don't worry - we'll explain this later in the handbook. As for now, continue
-to the next section to start creating references between these classes.
-
-\newpage
-
-\vspace*{3cm}
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 	\centering
@@ -46,6 +52,13 @@ to the next section to start creating references between these classes.
 	\caption{Declaration of classes and attributes}
 	\label{fig:workspaceClassAttributes}
 \end{figure} 
+
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] That's it for declaring class attributes! Feel free to build your project again and view the changes in the \texttt{.ecore}
+mode, and the generated files in ``gen" and ``src." On a final note, while some languages (such as Java) allow the declaration of several small classes (such as
+these three) in the same file, when tooling with eMolfon, we keep them separated. Don't worry - we'll explain this later in the handbook. As for now, continue
+to the next section to start creating references between these classes.
 
 % \fancyfoot[R]{$\triangleright$ \hyperlink{static:references splash}{Next}}
 

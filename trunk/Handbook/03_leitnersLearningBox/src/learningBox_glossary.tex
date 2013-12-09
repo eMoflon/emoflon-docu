@@ -9,47 +9,47 @@
 \begin{description}
 
 \item[\bf Abstract Syntax] 
-Defines the structure for a program. It must strictly conform to the type graph for the specified language, and the types and relations defined here must exist
-without errors.
+Defines the valid static structure of members of a language. 
 
 \item[\bf Concrete Syntax]
-The implementation syntax of a model. (ie: Visual or Textual)
+How members of a language are represented. This is often done textually of visually.
 
 \item[\bf Constraint Language] 
-Complex constraints (static semantics) that cannot be expressed in a metamodel.
+Typically used to specify complex constraints (as part of the static semantics or a language) that cannot be expressed in a metamodel.
 
 \item[\bf Dynamic Semantics] 
-Set of rules that define a system's behavior and reactions to external stimulus.
+Defines the dynamic behavior for members of a language.
 
 \item[\bf Grammar] 
-Syntax description; A set of rules or constructs a language must follow.
+A set of rules that can be used to generate a language. 
 
 \item[\bf Graph Grammar] 
-A collection of the language grammar, presented as a graph with a left-hand argument, and a right-hand description.
+A grammar that describes a graph language. This can be used instead of a metamodel or type graph to define the abstract syntax of a language.
 
 \item[\bf Meta-Language] 
-A language used to define another language through a consistent set of rules. 
+A language that can be used to define another language.
 
 \item[\bf Meta-metamodel] 
-A model that defines a \emph{modeling language} for metamodels.
+A \emph{modeling language} for specifying metamodels.
 
 \item[\bf Metamodel] 
-Defines the abstract syntax of a language and includes some static semantics by which a model can be derived.
+Defines the abstract syntax of a language including some aspects of the static semantics such as multiplicities. 
 
 \item[\bf Model] 
-Graphs which conform to some previously-defined metamodel.
+Graphs which conform to some metamodel.
 
 \item[\bf Modeling Language] 
-See Meta-language; Used to formulage models, where graphical (visual) languages use diagrammed techniques, while textual languages use standardized keywords.
+Used to specify languages. Typically contains concepts such as classes and connections between classes.
 
 \item[\bf Static Semantics] 
-An additional list of rules and constraints a language must obey.
+Constraint members a language must obey in addition to being conform to the abstract syntax of the language.
 
 \item[\bf Type Graph] 
-The graph that defines all types, relations, and objects that form a language.
+The graph that defines all types and relations that form a language. Equivalent to a metamodel but wihout any static semantics.
 
 \item[\bf Unification]  
-An extension of the Object Oriented ``Everything is a object'' principle, where everything is classified as a model, even the metamodel which defines other models.
+An extension of the object oriented ``Everything is an object'' principle, where everything is regarded as a model, even the metamodel which defines other
+models.
 
 
 \end{description}

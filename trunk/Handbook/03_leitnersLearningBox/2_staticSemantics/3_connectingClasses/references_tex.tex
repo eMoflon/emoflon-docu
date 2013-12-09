@@ -3,16 +3,27 @@
 \texHeader
 \hypertarget{static:references tex}{}
 
-% Add quote environment
-In MOSL, the declaration of a reference is simple - you simply set each of the properties we discussed in the following syntax: {\small{\texttt{[Aggregation
-Type][Navigation Name](Multiplicity):[Source role]}}}. The source type is determined by the class in which the reference is placed. Aggregation
-is defined a sideways diamond.
+In MOSL, the declaration of a reference is simple - you simply set each property according to the following syntax:
+
+{ \begin{quote} \small
+[$<>$] -$>$ role\_name ( multiplicity ) :  target\_type \\
+\\
+role\_name := STRING \\
+multiplicity := $|$ 0..1 $|$ 0..* $|$ 1 $|$ \ldots \\
+target\_type := STRING \\
+\end{quote} }
+
+The source type is determined by the class in which the reference is placed. You can signal an aggregation reference by including the sideways diamond before
+the arrow symbol. Don't worry - you don't have to remember this syntax! Our type completion provides a \texttt{Link Variable} template when you activate the hot
+keys.
 
 \begin{itemize}
 
 \item[$\blacktriangleright$] Open \texttt{Box.eclass} in the editor and add a \emph{container reference} named \texttt{containedPartition} with a
-multiplicity of zero to infinity, from \texttt{Box} to \texttt{Partition} (Fig.~\ref{fig:cpartitionReference}). This means a \texttt{Box} can hold an
-infinite number of partitions.
+multiplicity of zero to infinity, from \texttt{Box} to \texttt{Partition} (Fig.~\ref{fig:cpartitionReference}). This reference means a \texttt{Box}
+can hold an infinite number of partitions.
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 	\centering
@@ -21,9 +32,18 @@ infinite number of partitions.
 	\label{fig:cpartitionReference}
 \end{figure} 
 
+\vspace{0.5cm}
+
 \item[$\blacktriangleright$] Now add a \emph{simple reference} to \texttt{Partition}. Name it \texttt{box}, and allow it to hold up to one \texttt{Box}
 (Fig.~\ref{fig:boxReference}). This means a single partition can belong to either zero, or one \texttt{Box}, and that's it. It can't belong to two different
 boxes at the same time.
+
+\item[$\blacktriangleright$] Congratulations, you have just built your first pair of EReferences! To see how this is depicted visually, check out
+Fig.~\ref{fig:ereference_completed} from the previous subsection.
+
+\newpage
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 	\centering
@@ -32,15 +52,14 @@ boxes at the same time.
 	\label{fig:boxReference}
 \end{figure} 
 
-\item[$\blacktriangleright$] Congratulations, you have just built your first pair of EReferences! To see how this is depicted visually, check out
-Fig.~\ref{fig:ereference_completed} from the previous subsection.
-
-\newpage
+\vspace{0.5cm}
 
 \item[$\blacktriangleright$] Now, lets create another pair of EReferences between \texttt{Partition} and \texttt{Card}. If you think about it, it's really not
 all that different from the relation between \texttt{Box} and \texttt{Partition}. A \texttt{Partition} should be able to hold an unlimited amount of
 \texttt{Card}s, but a \texttt{Card} should only be allowed to belong to zero or one \texttt{Partition}s. Name the two new references
 \texttt{containedPartition}, and \texttt{box}. Your classes should now closely resemble Fig.~\ref{fig:almostAllReferences}.
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 	\centering
@@ -49,11 +68,15 @@ all that different from the relation between \texttt{Box} and \texttt{Partition}
 	\label{fig:almostAllReferences}
 \end{figure} 
 
-\item[$\blacktriangleright$] The next step is to set up two connections between \texttt{Partition}s and, so \texttt{Cards} can be moved between its previous and
-next partitions in the box. Create two new simple references, named \texttt{previous}, and \texttt{next}, each with a \texttt{0..1} multiplicity. Allow them to
-have a maximum of 1 link each.
+\item[$\blacktriangleright$] The next step is to construct two connections between \texttt{Partition}s and \texttt{Card}, so cards can be moved between its
+previous and next partitions in the box. Create two new simple references, named \texttt{previous}, and \texttt{next}, each with a \texttt{0..1} multiplicity.
+Allow them to have a maximum of 1 link each.
+
+\vspace{0.5cm}
 
 \item[$\blacktriangleright$] If you have done everything correctly, your classes should now resemble Fig.~\ref{fig:allReferences}. 
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 	\centering
@@ -62,19 +85,34 @@ have a maximum of 1 link each.
 	\label{fig:allReferences}
 \end{figure} 
 
-\newpage
+\clearpage
 
 At this point, all of your references have been created! The problem is, suppose you set the \texttt{containedPartition} reference in a particular \texttt{Box}.
 That's great, you would now have the box containing one partition. However, if you went and examined that partition independently, its \texttt{box} reference
 would still be null. We still need to set up the link between these references so that when one is updated, the other will be too.
 
-\item[$\blacktriangleright$] Navigate to the ``\_constraints.mconf'' file. You can see it has a single \texttt{opposites} scope that's currently empty. Enter
-the following text: \texttt{containedPartition : Box <-> box : Partition}. This statement sets the two references to be opposites of one another, i.e., the
-connection between the classes is now bidirectional.
+\vspace{0.5cm}
 
-\item[$\blacktriangleright$] Reviewing the \texttt{Partition} class, its easy to see that \texttt{previous} and \texttt{next} are certainly not opposites
-(Fig.~\ref{}), but we do need to establish the same opposite link between a \texttt{card} and its \texttt{cardContainer}. Follow the same steps until your
-constraint file resembles Fig.~\ref{fig:bothConstraints}.
+\item[$\blacktriangleright$] Navigate to the ``\_constraints.mconf'' file. You can see it has a single \texttt{opposites} scope that's currently empty.
+Constraints follow the syntax structure below: 
+{ \begin{quote} \small
+	opposite\_constraint : reference `$<$ - $>$' reference \\
+	reference : reference\_name `:' source\_type \\
+	\\
+	reference\_name : STRING \\
+	source\_type : STRING \\
+\end{quote} }
+
+This statement sets the two references to be opposites of one another, i.e., the connection between will classes be bidirectional. To start, enter the following
+text:
+
+{\begin{quote} \small
+	containedPartition : Box $<$ - $>$ : Partition
+\end{quote}}
+
+\item[$\blacktriangleright$] Reviewing the \texttt{Partition} class, its easy to see that \texttt{previous} and \texttt{next} are certainly not
+opposites,\footnote{Review the rules depicted in (Fig.~\ref{fig:membox_illustration})} but we do need to establish an opposing link between
+\texttt{card} and its \texttt{cardContainer}. Follow the same steps until your constraint file resembles Fig.~\ref{fig:bothConstraints}.
 
 \begin{figure}[htbp]
 	\centering

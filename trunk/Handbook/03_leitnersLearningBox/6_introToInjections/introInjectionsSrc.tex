@@ -15,7 +15,7 @@ one as well.
 
 \item[$\blacktriangleright$] From your working set, open ``gen/LearningBoxLanguage.impl/PartitionImpl.java'' and enter the following code\footnote{To avoid
 errors, you are able to copy/paste this text} in the \texttt{removeCard} declaration, starting at approximately line 358. Do not remove the first comment,
-which is necessary to indicate that this code is written by the user and needs to be extracted into our injection file.
+which is necessary to indicate that this code is written by the user and needs to be extracted automatically into our injection file.
 
 \begin{figure}[htbp]
         \centering
@@ -51,15 +51,13 @@ but with a new \texttt{.inject} extension (Fig.~\ref{fig:injection_folder}).
     \label{fig:injection_folder}
 \end{figure}
 
-\item[$\blacktriangleright$] Double click to view this file. It contains the definition of a \textit{partial
-class}~(Fig.~\ref{fig:injection_partialClassPartition}). Here you can see here the skeleton of two other functions you have the option of implementing in the
-opposite direction. Instead of generating from the Java file, and injecting into its partial class, you could also generate the method contents from the
-partial class, and inject it into its corresponding Java file.
+\item[$\blacktriangleright$] Double click to open and view this file. It contains the definition of a \textit{partial
+class}~(Fig.~\ref{fig:injection_partialClassPartition}). 
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\textwidth]{eclipse_partialClass}
-    \caption{Generated Injection file for \texttt{PartitionImpl.java}}
+    \caption{Generated injection file for \texttt{PartitionImpl.java}}
     \label{fig:injection_partialClassPartition}
 \end{figure}
 
@@ -157,12 +155,12 @@ Build''(Fig~\ref{fig:eclipse_buildFromInjecton}).
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] For additional information on injections, check out Part IV Miscellaneous of the handbook.
+\item[$\blacktriangleright$] For additional information on injections, check out Part IV:Miscellaneous of the handbook.\footnote{Download at: \dlPartSix}
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] While injecting in either direction is a remarkably simple process, it can quickly become challenging when trying to implement
-complex functions. Instead, we'll learn how and continue to implement our method signatures with Story Diagrams in Part III.
+\item[$\blacktriangleright$] While injecting handwritten code is a remarkably simple process, it is pretty boring and low level to call all those setters and
+getters yourself. Instead, we'll learn how to implement our methods with Story Diagrams in Part III.
 
  % \fancyfoot[R]{ $\triangleright$ \hyperlink{sec:LBGUI}{Next}}
  
