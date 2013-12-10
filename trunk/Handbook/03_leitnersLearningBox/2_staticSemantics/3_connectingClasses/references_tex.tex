@@ -3,7 +3,7 @@
 \texHeader
 \hypertarget{static:references tex}{}
 
-In MOSL, the declaration of a reference is simple - you simply set each property according to the following syntax:
+In MOSL, the declaration of an EReference is simple - you simply set each property according to the following syntax:
 
 { \begin{quote} \small
 [$<>$] -$>$ role\_name ( multiplicity ) :  target\_type \\
@@ -13,14 +13,14 @@ multiplicity := $|$ 0..1 $|$ 0..* $|$ 1 $|$ \ldots \\
 target\_type := STRING \\
 \end{quote} }
 
-The source type is determined by the class in which the reference is placed. You can signal an aggregation reference by including the sideways diamond before
+The source type is determined by the EClass in which the EReference is placed. You can signal an aggregation EReference by including the sideways diamond before
 the arrow symbol. Don't worry - you don't have to remember this syntax! Our type completion provides a \texttt{Link Variable} template when you activate the hot
 keys.
 
 \begin{itemize}
 
 \item[$\blacktriangleright$] Open \texttt{Box.eclass} in the editor and add a \emph{container reference} named \texttt{containedPartition} with a
-multiplicity of zero to infinity, from \texttt{Box} to \texttt{Partition} (Fig.~\ref{fig:cpartitionReference}). This reference means a \texttt{Box}
+multiplicity of zero to infinity, from \texttt{Box} to \texttt{Partition} (Fig.~\ref{fig:cpartitionReference}). This EReference means a \texttt{Box}
 can hold an infinite number of partitions.
 
 \vspace{0.5cm}
@@ -56,15 +56,15 @@ Fig.~\ref{fig:ereference_completed} from the previous subsection.
 
 \item[$\blacktriangleright$] Now, lets create another pair of EReferences between \texttt{Partition} and \texttt{Card}. If you think about it, it's really not
 all that different from the relation between \texttt{Box} and \texttt{Partition}. A \texttt{Partition} should be able to hold an unlimited amount of
-\texttt{Card}s, but a \texttt{Card} should only be allowed to belong to zero or one \texttt{Partition}s. Name the two new references
-\texttt{containedPartition}, and \texttt{box}. Your classes should now closely resemble Fig.~\ref{fig:almostAllReferences}.
+\texttt{Card}s, but a \texttt{Card} should only be allowed to belong to zero or one \texttt{Partition}s. Name the two new EReferences
+\texttt{card}, and \texttt{cardContainer}. Your EClasses should now closely resemble Fig.~\ref{fig:almostAllReferences}.
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.65\textwidth]{eclipse_workspaceReferences}
-	\caption{The Completed Bidirectional EReferences}
+	\caption{Completed EReference pairs}
 	\label{fig:almostAllReferences}
 \end{figure} 
 
@@ -74,22 +74,22 @@ Allow them to have a maximum of 1 link each.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] If you have done everything correctly, your classes should now resemble Fig.~\ref{fig:allReferences}. 
+\item[$\blacktriangleright$] If you have done everything correctly, your EClasses should now resemble Fig.~\ref{fig:allReferences}. 
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.6\textwidth]{eclipse_allReferences}
-	\caption{All references for our Leitner's Learning Box}
+	\caption{All EReferences for Leitner's learning box}
 	\label{fig:allReferences}
 \end{figure} 
 
 \clearpage
 
-At this point, all of your references have been created! The problem is, suppose you set the \texttt{containedPartition} reference in a particular \texttt{Box}.
-That's great, you would now have the box containing one partition. However, if you went and examined that partition independently, its \texttt{box} reference
-would still be null. We still need to set up the link between these references so that when one is updated, the other will be too.
+At this point, all of your EReferences have been created! The problem is, suppose you set the \texttt{containedPartition} EReference in a particular
+\texttt{Box}. That's great, you would now have the box containing one partition. However, if you went and examined that partition independently, its
+\texttt{box} EReference would still be null. We still need to set up the link between these EReferences so that when one is updated, the other will be too.
 
 \vspace{0.5cm}
 
@@ -103,14 +103,17 @@ Constraints follow the syntax structure below:
 	source\_type : STRING \\
 \end{quote} }
 
-This statement sets the two references to be opposites of one another, i.e., the connection between will classes be bidirectional. To start, enter the following
-text:
+This statement sets the two EReferences to be opposites of one another, i.e., the connection between EClasses will be bidirectional. As you can see, syntax here
+is slightly different than that of a standard EReference. Instead of the reference type trailing the colon operator, it has switched to become the source type.
+
+
+\item[$\blacktriangleright$] To begin, enter the following text:
 
 {\begin{quote} \small
 	containedPartition : Box $<$ - $>$ : Partition
 \end{quote}}
 
-\item[$\blacktriangleright$] Reviewing the \texttt{Partition} class, its easy to see that \texttt{previous} and \texttt{next} are certainly not
+\item[$\blacktriangleright$] Reviewing the \texttt{Partition} EClass, its easy to see that \texttt{previous} and \texttt{next} are certainly not
 opposites,\footnote{Review the rules depicted in (Fig.~\ref{fig:membox_illustration})} but we do need to establish an opposing link between
 \texttt{card} and its \texttt{cardContainer}. Follow the same steps until your constraint file resembles Fig.~\ref{fig:bothConstraints}.
 
@@ -121,9 +124,9 @@ opposites,\footnote{Review the rules depicted in (Fig.~\ref{fig:membox_illustrat
 	\label{fig:bothConstraints}
 \end{figure} 
 
-\item[$\blacktriangleright$] Now the references for your Leitners learning box are truly complete! To see how each of the classes, attributes, and references
-are depicted in the visual syntax, check out Fig.~\ref{fig:ereferences_all} in \hyperlink{sec:static vis}{Section 2.1}. Otherwise, build your project to
-make sure there are no errors, and continue to the next section to finalize the declaration of your classes.
+\item[$\blacktriangleright$] Now the EReferences for your learning box are complete! To see how each of the classes, attributes, and references
+are depicted in the visual syntax, check out Fig.~\ref{fig:ereferences_all} from \hyperlink{sec:static vis}{section 2.1}. Otherwise, build your project to
+make sure there are no errors, and continue to the next section to finalize the declaration of your EClasses.
 
 \fancyfoot[R]{$\triangleright$ \hyperlink{static:methods tex}{Next}}
 

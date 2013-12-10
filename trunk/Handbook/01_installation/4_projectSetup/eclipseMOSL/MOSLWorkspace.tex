@@ -23,7 +23,7 @@ new metamodel you create in your current workspace, all of the relevant files wi
 Let's have a look at the two \emph{eclass} files. While you can combine several short class declarations in a single file in some languages (such as Java),
 each class is kept separated in its own file when using MOSL.
 
-Inspect the file \texttt{List.eclass}, and you'll see it has a just one \emph{EAttribute}. EAttributes are defined by their name, followed by a colon
+Inspect the file \texttt{List.eclass}, and you'll see it has just one \emph{EAttribute}. EAttributes are defined by their name, followed by a colon
 symbol and type. This class also has one \emph{EReference}, a \emph{container reference}. This is represented by the diamond operator in front of an arrow.
 Switch to the \texttt{Node} eclass and you can observe the second reference type, a \emph{simple~reference}. It's represented by a plain arrow. EReference names are
 immediately followed by their multiplicity and then, similar to an attribute, a colon and their type of the referenced EClass (i.e., the target of the arrow).
@@ -55,10 +55,10 @@ Check out the \texttt{deleteNode} pattern (Fig ~\ref{fig_patternDeleteNode}).
   \label{fig_patternDeleteNode}
 \end{figure}
 
-You can see that there is a destroy command on \texttt{@this}, denoted by ``--''. It gets rid of the node, but it doesn't do anything about the previous and
-next references defined on it (remember that we're dealing with a double linked list here!). That's because when the node is removed, everything attached to it
-will be automatically cleaned and updated. The final command reconnects the next and previous nodes of the deleted node to close the 'hole' in the list. this is
-accomplished by setting (``++'') the previous reference of the next node to the previous node.
+You can see that there is a destroy command on \texttt{@this}, denoted by \texttt{-~-}. It gets rid of the node, but it doesn't do anything about the previous
+and next references defined on it (remember that we're dealing with a double linked list here!). That's because when the node is removed, everything attached to it
+will be automatically cleaned and updated. The final command reconnects the next and previous nodes of the deleted node to close the `hole' in the list. this is
+accomplished by setting (\texttt{++}) the previous reference of the next node to the previous node.
  
 So that's a quick overview of the MOSL language but, how do we generate code from all of this?
 

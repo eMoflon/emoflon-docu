@@ -3,7 +3,7 @@
 \genHeader
 \hypertarget{sec:growBox}{}
 
-In this SDM, we shall explicitly specify how our learning box is to be built up. We shall state a specific pattern that will append new partition elements
+In this SDM, we shall explicitly specify how our learning box is to be built up. We create a specific pattern that will append new partition elements
 to the end of \texttt{Box} which will follow our established movement rules (Fig.~\ref{fig:membox_depiction}) for a \texttt{Card}. This means the new partition
 will become the \texttt{next} reference of the absolute last partition, and its \texttt{previous} reference must connect to the absolute first partition in the
 box (Fig.~\ref{fig:goal_grow}).
@@ -33,12 +33,11 @@ targeted first partition has a \texttt{previous} value, the match is invalid. Th
 \emph{deterministic} by construction. In other words, if you \emph{grow} the box with this method, there will always be exactly one first and one last
 partition.
 
-Of course, to complete this method we still need to determine how \emph{many} partitions to add! Since the new size must be calculated depending on the rest of
-the partitions currently in the box (partitions usually get bigger) we'll need to call a helper method, \texttt{determineNextSize()}, that we previously
-declared\footnote{Inspect \texttt{PartitionImpl} and review Part II, section 6} with injections. From the previous SDM, we know that to assign this value, we'll
-need to use another attribute constraint.
+Of course, to complete this method we will still need to determine how \emph{many} partitions to add! Since the new size must be calculated depending on the
+rest of the partitions currently in the box (partitions usually get bigger) we'll need to call a helper method, \texttt{determineNextSize()}. Instead of declaring this
+method with SDMs however, we will expand on injections by writing simple Java code, and generating it into our metamodel.
 
-\fancyfoot[R]{ $\triangleright$ \hyperlink{growBox vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{growBox tex}{Next [textual]} }
+\input{../07_growBox/injection_declareNextSize}
 
 \input{../07_growBox/visGrowBox}
 

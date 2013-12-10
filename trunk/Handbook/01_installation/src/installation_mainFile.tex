@@ -16,7 +16,6 @@
 \usepackage{color}
 \usepackage[usenames,dvipsnames,svgnames]{xcolor}
 \usepackage{listings}
-\usepackage[nomessages]{fp} % Necessary for \nxtPage
 
 \definecolor{codelightgray}{rgb}{0.87,0.87,0.87}
 
@@ -37,15 +36,14 @@
     morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
 }
 
-\newcommand{\note}[1]{\marginpar{\emph{#1}}}
-
+% Set TOC depth
 \setcounter{tocdepth}{1}
 
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
 \graphicspath{%
-{../../00_introduction/common/}%
+{../../06_miscellaneous/commonFiles/}% Title image and memBox illustration
 {../1_installation/}{../1_installation/installPlugin/}{../1_installation/installEA/iea_images/}%
 {../2_simpleDemo/sd_images/}{../2_simpleDemo/EADemo/images/}{../2_simpleDemo/eclipseDemo/}%
 {../3_validate/va_images/}%
@@ -56,21 +54,9 @@
 % Remove section numbers 0.1, 0.2 ..
 \renewcommand{\thesection}{\arabic{section}} 
 
-% \nxtPage{\thepage}; Creates footer link for the immediate next page 
-\newcommand{\nxtPage}[1]{
-	\FPeval{\nxtPg}{clip(#1 +1)}
-	\fancyfoot[R]{$\triangleright$ \hyperlink{page.\nxtPg}{Next}}
-}
-
-% Command to output suggested time for handbook part
-\newcommand{\requiredTime}[1]{
-	{\scriptsize \texttt{Approximate time to complete: #1} }
-}
-
 % --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
 % Default plain header; turn off all lines and colors; turn on page numbers for all
 \newcommand{\noHeader}{
-	% NOTE: since this is the first header, we effectively 'turn on' the page numbers. They don't need to be re-declared in each heading.
  	\fancyhead[R]{\thepage}
  	\fancyhead[L]{}
 	\renewcommand{\headrulewidth}{0pt}
@@ -102,20 +88,30 @@
   		\color{ProcessBlue}\leaders\hrule height \headrulewidth\hfill}}
   	\fancyfoot{}
 }
+% --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\newcommand{\requiredTime}[1]{
+	{\scriptsize \texttt{Approximate time to complete: #1} }
+}
 
 % --- Quickset download and version information ---------------------------------------------------------------------------------------------------------------
 \newcommand{\EclipseVersion}{Kepler}
 \newcommand{\JavaVersion}{1.7}
-%% Store in 01_installation/1_installation/installPlugin
+
+% ( Store Eclipse download screenshot in 01_installation/1_installation/installPlugin )
 \newcommand{\EclipseDownloadImage}{eclipseDownloadPage}
 \newcommand{\EclipseDownloadLink}{\url{ http://www.eclipse.org/downloads/index.php }}
 
+% Eclipse plugin update site
 \newcommand{\eMoflonUpdateSite}{\url{ http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/update-site2 }}
 
+% EA Extension site
 \newcommand{\EAExtensionLink}{\url{ http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/ea-ecore-addin/ea-ecore-addin.zip }}
 
+
+
 % --- Set Title Page Information ------------------------------------------------------------------------------------------------------------------------------
-\input{../../00_introduction/common/titlepage}
+\input{../../06_miscellaneous/commonFiles/titlepage}
 \def\partTitle{Part I: Installation and Setup}
 \def\versionNumber{0.0}
 % --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -125,11 +121,11 @@
 \frontmatter 
 \noHeader
 
-% Title Page without blank
+% Title Page without trailing blank page
 {\let\newpage\relax\maketitle}
 
 % Copyright notice
-\input{../../00_introduction/common/copyright}
+\input{../../06_miscellaneous/commonFiles/copyright}
 \let\cleardoublepage\clearpage
 
 \tableofcontents
@@ -143,13 +139,6 @@
 % Main content for this Part
 \input{installation_source}
 
-% Conclusion to forward users onto other parts
 \input{installation_conclusion}
-
-% References?
-%
-
-% Glossary?
-%
 
 \end{document}

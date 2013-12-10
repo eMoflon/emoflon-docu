@@ -5,7 +5,7 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] A fundamental gesture in EA is \emph{Quick Link}. Quick Link is used to create references between elements in a context-sensitive
+\item[$\blacktriangleright$] A fundamental gesture in EA is \emph{Quick Link}. Quick Link is used to create EReferences between elements in a context-sensitive
 manner. To use quick link, choose an element and note the little black arrow in its top-right corner (Fig.~\ref{fig:quicklink}).
 
 \begin{figure}[htbp]
@@ -22,36 +22,35 @@ In the context menu that appears, select ``Create Bidirectional EReference'' (Fi
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.6\textwidth]{ea_eReferenceBidirectional}
-	\caption{Create a reference via Quick Link}
+	\caption{Create an EReference via Quick Link}
 	\label{fig:ereference}
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] Double click the reference to invoke a dialogue. In this window you can adjust all relevant settings. Feel free to leave the
+\item[$\blacktriangleright$] Double click the EReference to invoke a dialogue. In this window you can adjust all relevant settings. Feel free to leave the
 \texttt{Name} value blank - this property is only used for documentation purposes, and is not relevant to code generation.
 
-\item[$\blacktriangleright$] Within this dialogue, go to ``Target Role'', and compare the relevant values in Fig.~\ref{fig:role_target} for the \emph{Target}
-end of the reference (the \texttt{Box} role). As you can see, the default target is set to the class you linked \emph{from}, and the default \emph{Source} is
-the class you linked \emph{to}. In this window, do not forget to confirm and modify the \texttt{Role}, \texttt{Navigability},
-\texttt{Multiplicity}, and \texttt{Aggregation} settings for the target are required.  Repeat the process for the \texttt{Source Role}
-(Fig.~\ref{fig:role_source}).
+\item[$\blacktriangleright$] Within this dialogue, go to ``Source Role,'' and compare the relevant values in Fig.~\ref{fig:role_source} for the \emph{Source}
+end of the EReference (the \texttt{Partition} role). As you can see, the default source is set to the EClass you linked \emph{to}, and the default \emph{Target}
+is the EClass you linked \emph{from}. In this window, do not forget to confirm and modify the \texttt{Role}, \texttt{Navigability}, \texttt{Multiplicity}, and
+\texttt{Aggregation} settings for the source as required. Repeat the process for the \texttt{Target Role} (Fig.~\ref{fig:role_target}).
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 	\centering
-	  \includegraphics[width=0.9\textwidth]{ea_assocPropsTarget}
-	\caption{Properties for the target role of a reference}
-	\label{fig:role_target}
+    \includegraphics[width=0.9\textwidth]{ea_assocPropsSource}
+	\caption{Properties for the source role of an EReference}
+	\label{fig:role_source}
 \end{figure}
-\FloatBarrier
 
 \begin{figure}[htbp]
 	\centering
-    \includegraphics[width=0.9\textwidth]{ea_assocPropsSource}
-	\caption{Properties for the source role of a reference}
-	\label{fig:role_source}
+	  \includegraphics[width=0.9\textwidth]{ea_assocPropsTarget}
+	\caption{Properties for the target role of an EReference}
+	\label{fig:role_target}
 \end{figure}
+\FloatBarrier
 \FloatBarrier
 
 \end{itemize}
@@ -95,8 +94,8 @@ right, your workspace should now resemble Fig.~\ref{fig:ereference_completed}, w
 \FloatBarrier
 
 \item[$\blacktriangleright$] Following the same process, create two unidirectional self-EReferences for \texttt{Partition}, and then a second bidirectional
-EReference\footnote{To be precise, \emph{all} references in Ecore are actually unidirectional. A ``bidirectional'' reference in our metamodel is really two
-mapped \texttt{EReferences} that are opposites of each other. We however, believe it is simpler to handle these pairs as single references, and prefer this
+EReference\footnote{To be precise, \emph{all} EReferences in Ecore are actually unidirectional. A ``bidirectional'' EReference in our metamodel is really two
+mapped EReferences that are opposites of each other. We however, believe it is simpler to handle these pairs as single EReferences, and prefer this
 concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\ref{fig:ereferences_all}). 
 
 \vspace{1cm}
@@ -130,7 +129,7 @@ concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\re
 \vspace{1cm}
 
 \item[$\blacktriangleright$] All the required attributes and references for your learning box have now been set up. We encourage you to see how these are
-declared in the textual syntax, starting on the immediate next page. In particular, check out Fig.~\ref{fig:allReferences}, where the classes are fully
+declared in the textual syntax, starting on the immediate next page. In particular, check out Fig.~\ref{fig:allReferences}, where each EClass is fully
 declared, and Fig.~\ref{fig:bothConstraints}, where bidirectionality is explicitly specified as a constraint.
 
 \fancyfoot[R]{$\triangleright$ \hyperlink{static:methods vis}{Next}}
