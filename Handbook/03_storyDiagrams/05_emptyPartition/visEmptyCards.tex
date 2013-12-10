@@ -23,6 +23,12 @@ Fig.~\ref{fig:sdm_complete_control_flow}} however, the goal of \texttt{emptyCard
 want the matched \texttt{card} to be fully deleted. This means in the properties tab, after setting the name and binding state, you'll need to set the \emph{Binding
 Operator} to \texttt{Destroy} (Fig.~\ref{fig:sdm_bindingOperator}).
 
+\item[$\blacktriangleright$] Complete the story pattern as indicated in Fig.~\ref{fig:sdm_end}. Notice that the guard that terminates the looping node has an
+\texttt{[end]} edge guard. Indeed, a \emph{for each} story node \emph{must} execute an \texttt{end} activity when all matches in the pattern have been
+handled.
+
+\newpage
+
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.65\textwidth]{ea_emptyBindingOperator}
@@ -30,10 +36,6 @@ Operator} to \texttt{Destroy} (Fig.~\ref{fig:sdm_bindingOperator}).
   \label{fig:sdm_bindingOperator}
 \end{center}
 \end{figure}
-
-\item[$\blacktriangleright$] Complete the story pattern as indicated in Fig.~\ref{fig:sdm_end}. Notice that the guard that terminates the looping node has an
-\texttt{[end]} edge guard. Indeed, a \emph{for each} story node \emph{must} execute an \texttt{end} activity when all matches in the pattern have been
-handled.
 
 \begin{figure}[htbp]
 \begin{center}

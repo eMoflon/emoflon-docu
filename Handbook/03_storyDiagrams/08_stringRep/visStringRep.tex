@@ -20,7 +20,7 @@ create the new \emph{[each time]} guards. Note that \texttt{partition} in \textt
 
 \item[$\blacktriangleright$] To actually do something sensible with each card, double-click the empty activity node that is taken each time a card is matched and invoke the \texttt{Edit
 ActivityNode} dialogue. Now choose \texttt{addToStringRep} as the name, and \texttt{StatementNode} as the type of the activity node
-(Fig.~\ref{fig:sdm_tostring_2}). \note{Statement Nodes} A statement node is used to invoke a method from a class in any package in the current EA project via a
+(Fig.~\ref{fig:sdm_tostring_2}). \define{Statement Nodes} A statement node is used to invoke a method from a class in any package in the current EA project via a
 MethodCallExpression. This way, the method invocation is represented as an activity node and is guaranteed to be executed at this point in the control flow.
 
 \begin{figure}[htbp]
@@ -88,6 +88,8 @@ string buffer and update this string representation. While modelling this SDM, w
 uses of MethodCallExpressions that provide a type safe\footnote{Apart from the literal expressions used for specifying argument values.} means of invoking
 methods from SDMs.
 
+\fancyfoot[R]{ $\triangleright$ \hyperlink{sec:fastCard}{Next}}
+
 \item[$\blacktriangleright$] You know the drill - to see how this is done in the textual syntax, check out the nested loops in Fig.~\ref{fig:toStringFlow} and
 the patterns in Fig.~\ref{fig:toStringPatterns}
 
@@ -101,4 +103,3 @@ the patterns in Fig.~\ref{fig:toStringPatterns}
 \FloatBarrier
 
 \end{itemize}
-

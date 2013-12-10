@@ -1,7 +1,7 @@
 \clearpage
 \subsection{Getting started with MOSL}
 \texHeader
-\hypertarget{static tex}{} 
+\hypertarget{static:starting tex}{} 
 
 \begin{itemize}
 
@@ -32,8 +32,11 @@ make sure your ``Top Level Elements'' are set to ``WorkingSets''} If you're inte
 	\label{fig:expanded_folders}
 \end{figure} 
 
+\vspace{0.5cm}
+
 \item[$\blacktriangleright$] We're most interested in \texttt{MOSL/MyWorkingSet}, which represents the project scope. Right click this folder, and create a new
-\texttt{EPackage} (Fig.~\ref{fig:new_EPackage}), naming it \texttt{LearningBoxLanguage}.
+\texttt{EPackage} (Fig.~\ref{fig:new_EPackage}), naming it \texttt{LearningBoxLanguage}. Using this wizard to generate your EPackage will automatically create
+the necessary \texttt{\_patterns} folder and \texttt{\_constraints} file.
 
 \vspace{0.5cm}
 
@@ -44,15 +47,12 @@ make sure your ``Top Level Elements'' are set to ``WorkingSets''} If you're inte
 	\label{fig:new_EPackage}
 \end{figure} 
 
+\clearpage
+
 \item[$\blacktriangleright$] Your package explorer should now resemble Fig.~\ref{fig:preBuild}.
 
 \item[$\blacktriangleright$] To finish initalising your metamodel, navigate to ``Build (Without cleaning),'' found beside ``New Metamodel'' in the
 toolbar (Fig.~\ref{fig:preBuild}).
-
-\item[$\blacktriangleright$] A new, ``MyWorkingSet'' node, named after your project container, should have been created (Fig.~\ref{fig:finalFiles}). The folder
-``gen'' is where all Java files, generated from your metamodel, will be placed.
-
-\clearpage
 
 \begin{figure}[htbp]
 	\centering
@@ -60,6 +60,11 @@ toolbar (Fig.~\ref{fig:preBuild}).
 	\caption{Inital structure of Leitner's Learning Box}
 	\label{fig:preBuild}
 \end{figure} 
+
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] A new, ``MyWorkingSet'' node, named after your project container, should have been created (Fig.~\ref{fig:finalFiles}). The folder
+``gen'' is where all Java files, generated from your metamodel, will be placed.
 
 \vspace{0.5cm}
 

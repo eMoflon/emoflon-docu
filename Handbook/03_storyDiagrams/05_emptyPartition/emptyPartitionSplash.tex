@@ -19,7 +19,7 @@ partition an unknown number of times (Fig.~\ref{fig:goal_empty}).
 
 \vspace{0.5cm}
 
-In SDM, this \note{For Each} construct is accomplished via a \emph{for each} story node. A
+In SDM, this \define{For Each} construct is accomplished via a \emph{for each} story node. A
 \emph{for each} story node performs the specified actions for \emph{every} match in its pattern. That means for every \texttt{Card} the pattern finds, it'll
 perform an action set.
 
@@ -34,7 +34,7 @@ order of valid matches. The \emph{for each} node ensures that \emph{all} cards w
 Our second point is determining if we actually need to destroy the link between \texttt{this} and \texttt{card}. Would the pattern be interpreted differently if we
 destroyed \texttt{card} and left the link?
 
-The answer is no, the pattern would yield the same result, regardless of if the link is explicitly destroyed!  \note{Dangling Edges}This is due to the
+The answer is no, the pattern would yield the same result, regardless of if the link is explicitly destroyed!  \define{Dangling Edges}This is due to the
 transformation engine eMoflon uses\footnote{CodeGen2, a part of Fujaba \url{http://www.fujaba.de/}}. It ensures that there are never any \emph{dangling edges}
 in a model. Since deleting just the \texttt{card} would result in a `dangling edge' attached to \texttt{this}, that link is deleted as well. Explicitly
 destroying the link is therefore a matter of taste, so \ldots why not be as explicit as possible?

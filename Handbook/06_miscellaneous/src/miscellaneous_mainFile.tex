@@ -37,15 +37,14 @@
     morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
 }
 
-\newcommand{\note}[1]{\marginpar{\emph{#1}}}
-
-\setcounter{tocdepth}{3}
+% Set TOC Depth
+\setcounter{tocdepth}{1}
 
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
 \graphicspath{%
-{../../00_introduction/common/}%
+{../commonFiles/}% Title page and membox illustration
 {../1_grokkingEA/01_layOutElements/}{../1_grokkingEA/02_bendingLines/}{../1_grokkingEA/03_delVSRem/}{../1_grokkingEA/04_exclusion/}%
 {../1_grokkingEA/05_verbose/}{../1_grokkingEA/06_duplicating/}{../1_grokkingEA/07_seek/}{../1_grokkingEA/08_advSearch/}%
 {../1_grokkingEA/09_multiEAPs/}%
@@ -55,18 +54,6 @@
 % Remove section numbers 0.1, 0.2 ..
 \renewcommand{\thesection}{\arabic{section}} 
 
-% MAY NOT NEED
-% Creates footer link for the immediate next page; pass in \thepage and place in src file near end of page
-\newcommand{\nxtPage}[1]{
-	\FPeval{\nxtPg}{clip(#1 +1)}
-	\fancyfoot[R]{$\triangleright$ \hyperlink{page.\nxtPg}{Next}}
-}
-
-% MAY NOT NEED
-% Command to output suggested time for handbook part
-\newcommand{\requiredTime}[1]{
-	{\scriptsize \texttt{Approximate time to complete: #1} }
-}
 
 % --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
 % Default plain header; turn off all lines and colors; turn on page numbers for all
@@ -107,7 +94,7 @@
 % --- Title Page Information ----------------------------------------------------------------------------------------------------------------------------------
 \def\partTitle{Part IV: Miscellaneous}
 \def\versionNumber{0.2}
-\input{../../00_introduction/common/titlepage}
+\input{../commonFiles/titlepage}
 % -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 \begin{document}
@@ -115,11 +102,11 @@
 \frontmatter 
 \noHeader
 
-% Title Page without following blank page
+% Title Page without trailing blank page
 {\let\newpage\relax\maketitle}
 
 % Copyright notice
-\input{../../00_introduction/common/copyright}
+\input{../commonFiles/copyright}
 \let\cleardoublepage\clearpage
 
 % TOC
@@ -131,7 +118,7 @@
 
 \mainmatter
 
-% Main content for this Part (Previously: Appendices)
+% Main content
 \include{miscellaneous_source}
 
 % -- References
@@ -141,8 +128,7 @@
 \renewcommand*{\bibname}{References}
 \bibliographystyle{plain}
 \normalsize
-% lists ALL references (those without a cite)
 \nocite{*}  
-\bibliography{references}
+\bibliography{../commonFiles/references}
 
 \end{document}

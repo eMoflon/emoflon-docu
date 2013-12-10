@@ -16,7 +16,6 @@
 \usepackage{color}
 \usepackage[usenames,dvipsnames,svgnames]{xcolor}
 \usepackage{listings}
-\usepackage[nomessages]{fp} % Necessary for \nxtPage
 
 \definecolor{codelightgray}{rgb}{0.87,0.87,0.87}
 
@@ -37,49 +36,32 @@
     morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
 }
 
-\newcommand{\note}[1]{\marginpar{\emph{#1}}}
-
+% Set TOC Depth
 \setcounter{tocdepth}{1}
 
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
 \graphicspath{%
-{../../00_introduction/common/}% eMoflon image for the title page
-{../../02_leitnersLearningBox/}% memory box illustration for review section
+{../../06_miscellaneous/commonFiles/}% Title image and memBox illustration
 {../01_LeitnersBoxReviewed/lbrImages/}%
 {../02_transformationsExplained/teImages/}%
 {../03_removeCard/splashImages/}{../03_removeCard/visRemImages/}{../03_removeCard/texRemImages/}%
 {../04_checkCard/splashImages/}{../04_checkCard/visCheImages/}{../04_checkCard/texCheImages/}%
 {../05_emptyPartition/}{../05_emptyPartition/visEPImages/}{../05_emptyPartition/texEPImages/}%
 {../06_invertCard/}{../06_invertCard/visICImages/}{../06_invertCard/texICImages/}%
-{../07_growBox/}{../07_growBox/visGBImages/}{../07_growBox/texGBImages/}%
+{../07_growBox/}{../07_growBox/injections/iImages/}{../07_growBox/visGBImages/}{../07_growBox/texGBImages/}%
 {../08_stringRep/}{../08_stringRep/visSRImages/}{../08_stringRep/texSRImages/}%
 {../09_fastCards/}{../09_fastCards/visFCImages/}{../09_fastCards/texFCImages/}%
 {../10_conditionalBranching/}{../10_conditionalBranching/splashImages/}{../10_conditionalBranching/visCBImages/}{../10_conditionalBranching/texCBImages/}%
 {../11_LLBGuiExtended/}%
 }
 
+
 % Remove section numbers 0.1, 0.2 ..
 \renewcommand{\thesection}{\arabic{section}} 
 
-% NOT IN USE; \nxtPage{\thepage}; Creates footer link for the immediate next page
-\newcommand{\nxtPage}[1]{
-	\FPeval{\nxtPg}{clip(#1 +1)}
-	\fancyfoot[R]{$\triangleright$ \hyperlink{page.\nxtPg}{Next}}
-}
-
-% Command to output suggested time for handbook part
-\newcommand{\requiredTime}[1]{
-	{\scriptsize \texttt{Approximate time to complete: #1} }
-}
-
-% Formats words to appear in margin; These definitons should appear in the glossary
-\newcommand{\define}[1]{
-	\marginpar{\small\emph{#1}}
-}
-
-% --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
+% --- HEADER FUNCTIONS ----------------------------------------------------------------------------------------------------------------------------------------
 % Default plain header; turn off all lines and colors; turn on page numbers for all
 \newcommand{\noHeader}{
 	\fancyfoot{}
@@ -114,23 +96,39 @@
 	\renewcommand{\headrule}{\hbox to\headwidth{%
   		\color{ProcessBlue}\leaders\hrule height \headrulewidth\hfill}}
 }
+% -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+% Command to output suggested time for handbook part
+\newcommand{\requiredTime}[1]{
+	{\scriptsize \texttt{Approximate time to complete: #1} }
+}
+
+% These words should appear in the glossary
+\newcommand{\define}[1]{
+	\marginpar{\small\emph{#1}}
+}
+
+% --- Individual Download Handbook Links  ----------------------------------------------------------------------------------------------------------------------
+\newcommand{\dlPartTwo}{\url{http://www.moflon.org/}}
+\newcommand{\dlPartSix}{\url{http://www.moflon.org/}}
+
 
 % --- Title Page Information ----------------------------------------------------------------------------------------------------------------------------------
 \def\partTitle{Part III: Story Driven Modeling}
 \def\versionNumber{0.0}
-\input{../../00_introduction/common/titlepage}
+\input{../../06_miscellaneous/commonFiles/titlepage}
 % -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 \begin{document}
 
-\frontmatter 
+\frontmatter
 \noHeader
 
-% Title Page without following blank page
+% Title Page without trailing blank page
 {\let\newpage\relax\maketitle}
 
 % Copyright notice
-\input{../../00_introduction/common/copyright}
+\input{../../06_miscellaneous/commonFiles/copyright}
 \let\cleardoublepage\clearpage
 
 % TOC
@@ -155,7 +153,7 @@
 \addcontentsline{toc}{section}{References}
 \renewcommand*{\bibname}{References}
 \bibliographystyle{plain}  
-\bibliography{../../06_miscellaneous/src/references}
+\bibliography{../../06_miscellaneous/commonFiles/references}
 
 
 \end{document}

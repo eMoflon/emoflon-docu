@@ -5,12 +5,13 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Right click \texttt{LearningBoxLanguage}, and create your first EClass by navigating to ``New/EClass.'' Name it \texttt{Box}.
+\item[$\blacktriangleright$] Right click your \texttt{LearningBoxLanguage} model and create your first EClass by navigating to ``New/EClass.'' Name it
+\texttt{Box}.
 
 \item[$\blacktriangleright$] The class editor should automatically open. Let's add the first two EAttributes of our program, \texttt{name} and
 \texttt{stringRep}. eMoflon offers type completion to help you with this task. Go to an empty line and press \texttt{cntrl + space}.
 
-\item[$\blacktriangleright$] Given that your class is empty, you'll be presented with a short list of declaration template suggestions
+\item[$\blacktriangleright$] Given that your EClass is empty, you'll be presented with a short list of declaration template suggestions
 (Fig.~\ref{fig:typeComp_Main}). The first four items are relevant for method signatures, so select \texttt{attribute} near the bottom, and create \texttt{name}
 of type \texttt{EString}.
 
@@ -29,7 +30,7 @@ in this list. Begin to type \texttt{EString} until the option is highlighted and
 \begin{figure}[h!]
 	\centering
   \includegraphics[width=0.5\textwidth]{eclipse_classBoxDeclaration}
-	\caption{Newly created box class}
+	\caption{Newly created \texttt{Box} EClass}
 	\label{fig:boxDeclaration}
 \end{figure} 
 \FloatBarrier
@@ -49,7 +50,7 @@ in this list. Begin to type \texttt{EString} until the option is highlighted and
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=1.0\textwidth]{eclipse_workspaceTexClassAttributes}
-	\caption{Declaration of classes and attributes}
+	\caption{Declaration of all EClasses and attributes}
 	\label{fig:workspaceClassAttributes}
 \end{figure} 
 
@@ -58,7 +59,7 @@ in this list. Begin to type \texttt{EString} until the option is highlighted and
 \item[$\blacktriangleright$] That's it for declaring class attributes! Feel free to build your project again and view the changes in the \texttt{.ecore}
 mode, and the generated files in ``gen" and ``src." On a final note, while some languages (such as Java) allow the declaration of several small classes (such as
 these three) in the same file, when tooling with eMolfon, we keep them separated. Don't worry - we'll explain this later in the handbook. As for now, continue
-to the next section to start creating references between these classes.
+to the next section to start creating references between these EClasses.
 
 % \fancyfoot[R]{$\triangleright$ \hyperlink{static:references splash}{Next}}
 

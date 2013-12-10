@@ -56,14 +56,14 @@ Integrated as an atomic step in this overall control flow, a single graph transf
 a \emph{story pattern}. These story patterns are simply declarative transformation rules.\footnote{as introduced in Part II while
 discussing static semantics}
 
-In order to make these transformations, \emph{patterns} must establish\define{Object~Variables}\emph{object variables}. Object variables are, as
+In order to make these transformations, \emph{patterns} must establish\define{Object Variables}\emph{object variables}. Object variables are, as
 the word ``variable'' indicates, place holders for actual objects in a model.  During \emph{pattern matching}, actual objects in the 
 current model are assigned to the object variables in the pattern according to the indicated type and other conditions.\footnote{We shall
 learn what conditions may be specified in a later SDM} In this SDM, the story pattern will have two object variables - a \texttt{this} partition (named
 according to Java convention) referring to the object whose method is invoked, and \texttt{card}, the card object to be removed. In order to assign
-\texttt{card}, we'll need\define{Parameter~Expression}to use a \emph{Parameter Expression} to refers to the parameter of the current method.
+\texttt{card}, we'll need\define{Parameter Expression}to use a \emph{Parameter Expression} to refers to the parameter of the current method.
 
-Patterns must also establish \emph{link variables}\define{Link~Varia\-bles} to match links in story patterns. These too act as place holders, and
+Patterns must also establish \emph{link variables}\define{Link Variables} to match links in story patterns. These too act as place holders, and
 can used be match to actual references in the model. This SDM will therefore have a single link variable to match the current partition and parameter-specified
 card.
 
@@ -72,7 +72,7 @@ variables. We also know that newly created objects are merely place holders, and
 variables \emph{do} have values from the \texttt{Box.xmi} model. So how do we get and assign these correct values?
 
 We need to update the \emph{binding state}\define{Binding~State}of every object whose value is known beforehand from the model. By default, each object is
-unbounded, or a \emph{free variable}.\define{Free~Variab\-le}Values for these objects can be both assigned and changed throughout the activity. By declaring
+unbounded, or a \emph{free variable}.\define{Free Variable}Values for these objects can be both assigned and changed throughout the activity. By declaring
 an object as \emph{bound}, the activity does not need to assign a value as it will already have a fixed value from the context of the model. \emph{Binding} is
 implicit via the \emph{name} of the bound object variable. As a rule, \texttt{this} variables, and any parameterized values (i.e.,
 \texttt{card}) are always bounded.

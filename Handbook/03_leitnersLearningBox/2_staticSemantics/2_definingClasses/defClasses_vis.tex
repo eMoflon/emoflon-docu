@@ -9,9 +9,10 @@
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] To the left of the workbench, a \emph{Toolbox} containing the Ecore types available for metamodelling should have
-appeared (Fig.~\ref{fig:eclass}).\footnote{If not, choose ``Diagram/Diagram Toolbox'' to show the current toolbox}  
-Click on \texttt{EClass}, then click again somewhere in the open diagram.
+\item[$\blacktriangleright$] There are two ways for you to create your first \texttt{EClass}. First, to the left of the workbench, a \emph{Toolbox} containing
+the Ecore types available for metamodelling should have appeared (Fig.~\ref{fig:eclass}).\footnote{If not, choose ``Diagram/Diagram Toolbox'' to show the
+current toolbox} Click on the \texttt{EClass} icon then somewhere in the diagram. Alternatively, you can click in the diagram and press \texttt{space} to invoke
+the toolbox context menu, then select \texttt{EClass}.
 
 \vspace{0.5cm}
 
@@ -24,9 +25,11 @@ Click on \texttt{EClass}, then click again somewhere in the open diagram.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] In the dialogue that pops-up, enter \texttt{Box} as the name of the class and click \texttt{OK} (Fig.~\ref{fig:eclass_properties}).
-This dialogue can always be invoked again by double-clicking the class, and contains many other properties we'll investigate later in the handbook.
-In general, a similar properties dialogue can be opened in the same fashion for almost every element in EA.
+\item[$\blacktriangleright$] In the dialogue that pops-up, set \texttt{Box} as the name and click \texttt{OK} (Fig.~\ref{fig:eclass_properties}).
+This dialogue can always be invoked again by double-clicking the EClass, or by pressing \texttt{alt} and single-clicking. It contains many other properties
+we'll investigate later in the handbook. In general, a similar properties dialogue can be opened in the same fashion for almost every element in EA.
+
+\clearpage
 
 \begin{figure}[ht]
 	\centering
@@ -35,9 +38,9 @@ In general, a similar properties dialogue can be opened in the same fashion for 
 	\label{fig:eclass_properties}
 \end{figure}
 
-\newpage
-
 \item[$\blacktriangleright$] After creating \texttt{Box}, your EA workspace should resemble Fig.~\ref{fig:eclass_completed}.
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 	\centering
@@ -46,7 +49,7 @@ In general, a similar properties dialogue can be opened in the same fashion for 
 	\label{fig:eclass_completed}
 \end{figure}
 
-\item[$\blacktriangleright$] Now create the \texttt{Partition} and \texttt{Card} classes the same way, until your workspace resembles
+\item[$\blacktriangleright$] Now create the \texttt{Partition} and \texttt{Card} EClasses the same way, until your workspace resembles
 Fig.~\ref{fig:all_eclasses}. These are the main classes of your learning box metamodel.
 
 \vspace{0.5cm}
@@ -57,7 +60,7 @@ Properties/Attributes..'' (Fig.~\ref{fig:attribute}), or press \texttt{F9} to op
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.9\textwidth]{ea_createPartitionCard}
-	\caption{All classes for the metamodel}
+	\caption{All EClasses for the metamodel}
 	\label{fig:all_eclasses}
 \end{figure}
 
@@ -69,26 +72,26 @@ Properties/Attributes..'' (Fig.~\ref{fig:attribute}), or press \texttt{F9} to op
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] Enter \texttt{name} as the name of the attribute, choose \texttt{EString} as its type, and press
-\texttt{Save} (Fig.~\ref{fig:attribute_properties}). New attributes for the same class can be added by pressing \texttt{New}.
+\item[$\blacktriangleright$] Enter \texttt{name} as the name of the attribute, select \texttt{EString} as its type from the drop-down menu, and press
+\texttt{Save} (Fig.~\ref{fig:attribute_properties}). New attributes for the same EClass can be added by pressing \texttt{New}.
 
 \vspace{1.0cm}
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.9\textwidth]{ea_addingAttributes}
+  \includegraphics[width=0.9\textwidth]{ea_addAttributesDialogue}
 	\caption{Adding attributes to an EClass}
 	\label{fig:attribute_properties}
 \end{figure}
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Add the remaining attributes analogously to each class until your workspace resembles Fig.~\ref{fig:attribute_completed}.
+\item[$\blacktriangleright$] Add the remaining attributes analogously to each EClass until your workspace resembles Fig.~\ref{fig:attribute_completed}.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Save and export to Eclipse. You'll be able to see the changes in the \texttt{.ecore} model file, where
-your \texttt{LearningBoxLanguage} has now expanded into a tree structure with each class and its attributes. So far, so good!
+\item[$\blacktriangleright$] Save and export to Eclipse. After refreshing your workspace, your \texttt{.ecore} model can now be expanded as it includes
+every class and attribute from your metamodel. So far, so good!
 
 \newpage
 
@@ -99,7 +102,7 @@ your \texttt{LearningBoxLanguage} has now expanded into a tree structure with ea
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.35\textwidth]{ea_allAttributes}
-	\caption{Main classes declared with their attributes}
+	\caption{Main EClasses declared with their attributes}
 	\label{fig:attribute_completed}
 \end{figure}
 \FloatBarrier
