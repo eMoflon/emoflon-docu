@@ -50,15 +50,11 @@ is the EClass you linked \emph{from}. In this window, do not forget to confirm a
 	\caption{Properties for the target role of an EReference}
 	\label{fig:role_target}
 \end{figure}
-\FloatBarrier
-\FloatBarrier
 
 \end{itemize}
 
 To review these properties, the first value you edited was the role name. The \texttt{Navigation} value should have been automatically set to
 \texttt{Na\-vi\-ga\-ble}. Without these two settings, getter and setter methods will not be generated.
-
-\vspace{0.5cm}
 
 Next, you set the \texttt{Multiplicity} value. In your target role (\texttt{Box}), you have allowed the creation of up to one target (\texttt{box}) reference
 for every connected source (\texttt{Partition}). This means you could not have a single source connected to two targets (ie., one partition that belongs to two
@@ -122,7 +118,7 @@ concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\re
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.7\textwidth]{eclipse_modelDeclaredClasses}
-	\caption{Your Ecore file}
+	\caption{Refreshed Ecore file all EReferences}
 	\label{fig:model_allClasses}
 \end{figure}
 

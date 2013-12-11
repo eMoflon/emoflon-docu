@@ -21,7 +21,7 @@ between the two items (Fig.~\ref{fig:goal_removeCard}).
 
 According to the signature of the method \texttt{removeCard}, we should return the card that has been deleted. Although this might strike you as slightly odd,
 considering that we already passed in the card as an argument, it still makes sense as it allows for chaining method calls:
-\begin{quote}\texttt{aPartition.removeCard(aCard).invert()}\end{quote}
+{ \begin{quote} \small aPartition.removeCard(aCard).invert() \end{quote} }
 
 Before we implement this change as a pattern, lets remove the old injection content to avoid potential conflicts.
 
@@ -29,8 +29,7 @@ Before we implement this change as a pattern, lets remove the old injection cont
 
 \item[$\blacktriangleright$] Delete the \texttt{PartitionImpl.inject} file from your working set (Fig~\ref{fig:delete_injection}).
 
-\item[$\blacktriangleright$] Now select the repository project's main folder and build the project.
-toolbar.
+\item[$\blacktriangleright$] Now select the repository project's main folder and build the project via ``Build (without cleaning)'' in the toolbar.
 
 \item[$\blacktriangleright$] You'll be able to see the changes in \texttt{PartitionImpl.java}, found under ``MyWorkingSet.'' The \texttt{removeCard}
 declaration should now be empty and look identical to the others.
@@ -53,17 +52,17 @@ focus less on \emph{how} a method will do something, but rather on \emph{what} t
 an\define{Activity}\emph{activity}, established via a procedural control flow. 
 
 Integrated as an atomic step in this overall control flow, a single graph transformation step (such as link deletion) can be embedded as
-a \emph{story pattern}. These story patterns are simply declarative transformation rules.\footnote{as introduced in Part II while
+a \emph{story pattern}. These story patterns are simply declarative transformation rules.\footnote{As introduced in Part II while
 discussing static semantics}
 
-In order to make these transformations, \emph{patterns} must establish\define{Object Variables}\emph{object variables}. Object variables are, as
+In order to make these transformations, \emph{patterns} must establish\define{Object \\ Variables}\emph{object variables}. Object variables are, as
 the word ``variable'' indicates, place holders for actual objects in a model.  During \emph{pattern matching}, actual objects in the 
 current model are assigned to the object variables in the pattern according to the indicated type and other conditions.\footnote{We shall
 learn what conditions may be specified in a later SDM} In this SDM, the story pattern will have two object variables - a \texttt{this} partition (named
 according to Java convention) referring to the object whose method is invoked, and \texttt{card}, the card object to be removed. In order to assign
 \texttt{card}, we'll need\define{Parameter Expression}to use a \emph{Parameter Expression} to refers to the parameter of the current method.
 
-Patterns must also establish \emph{link variables}\define{Link Variables} to match links in story patterns. These too act as place holders, and
+Patterns must also establish \emph{link variables}\define{Link \\ Variables} to match links in story patterns. These too act as place holders, and
 can used be match to actual references in the model. This SDM will therefore have a single link variable to match the current partition and parameter-specified
 card.
 
@@ -72,7 +71,7 @@ variables. We also know that newly created objects are merely place holders, and
 variables \emph{do} have values from the \texttt{Box.xmi} model. So how do we get and assign these correct values?
 
 We need to update the \emph{binding state}\define{Binding~State}of every object whose value is known beforehand from the model. By default, each object is
-unbounded, or a \emph{free variable}.\define{Free Variable}Values for these objects can be both assigned and changed throughout the activity. By declaring
+unbounded, or a \emph{free variable}.\define{Free \\ Variable}Values for these objects can be both assigned and changed throughout the activity. By declaring
 an object as \emph{bound}, the activity does not need to assign a value as it will already have a fixed value from the context of the model. \emph{Binding} is
 implicit via the \emph{name} of the bound object variable. As a rule, \texttt{this} variables, and any parameterized values (i.e.,
 \texttt{card}) are always bounded.
@@ -82,7 +81,7 @@ Every object or link variable's binding operator can be set to \texttt{Check Onl
 created ($R\setminus L$), or the set of elements to be deleted ($L\setminus R$).
 
 If you're feeling overwhelmed by all the new terms and concepts, don't worry! We will define them again in the context of your syntax with the example. For
-quick reference, we have also defined each of the marginalized words at the end of this part in the \hyperlink{glossary}{Glossary}. Otherwise, it's time
+quick reference, we have also defined each of the marginalized words at the end of this part in the \hyperlink{glossary}{glossary}. Otherwise, it's time
 to begin\ldots
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{remCard vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{remCard tex}{Next [textual]} }

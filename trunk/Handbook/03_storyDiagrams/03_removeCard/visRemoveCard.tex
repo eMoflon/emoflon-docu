@@ -6,7 +6,7 @@
 \begin{itemize}
 
 \item[$\blacktriangleright$] Re-open the LearningBoxLanguage diagram in Enterprise Architect (EA) from Eclipse by double-clicking the \texttt{.eap}
-file, then carefully do the following: (1) Click \emph{once} on \texttt{Partition} to select it, then (2) Click \emph{once} on the method
+file. Carefully do the following: (1) Click \emph{once} on \texttt{Partition} to select it, then (2) Click \emph{once} on the method
 \texttt{removeCard} to highlight it (Fig.~\ref{fig:sdm_start}), and (3) \emph{Double-click} on the chosen method to indicate that you want to implement it.
 
 \begin{figure}[htp]
@@ -17,8 +17,8 @@ file, then carefully do the following: (1) Click \emph{once} on \texttt{Partitio
 \end{center}
 \end{figure}
  
-\item[$\blacktriangleright$] If you did everything right, a new \emph{activity diagram} should be created and open in a new tab with a cute \emph{start node} 
-labelled with the signature of the method (Fig.~\ref{fig:sdm_skeleton}).  
+\item[$\blacktriangleright$] If you did everything right, a new \emph{activity diagram} should be created and open in a new tab with a cute anchor in
+the corner, and a \emph{start node} labelled with the signature of the method (Fig.~\ref{fig:sdm_skeleton}).  
 
 \begin{figure}[htp]
 \begin{center}
@@ -38,7 +38,7 @@ each story node.} you can always delete the appropriate container in the project
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Next, note the new \texttt{SDM} toolbox that has been automatically opened up for the diagram and placed to the left above
+\item[$\blacktriangleright$] Next, note the new \texttt{SDM} toolbox that has been automatically opened for the diagram and placed to the left above
 the common toolbox. This provides quick access to SDM items that you'll frequently use in your diagram.
 
 \vspace{0.5cm}
@@ -48,7 +48,7 @@ metamodel. From there, double click the method again to jump back to the SDM. Th
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] To begin, choose the start node, and note the small black arrow that appears (Fig.~\ref{fig:sdm_quicklink}). 
+\item[$\blacktriangleright$] To begin, select the start node, and note the small black arrow that appears (Fig.~\ref{fig:sdm_quicklink}). 
 
 \newpage
 
@@ -64,7 +64,7 @@ metamodel. From there, double click the method again to jump back to the SDM. Th
 Create}.
 To quick-create an element, pull the arrow and click on an empty spot in the diagram. This is basically ``quick linking'' to a non-existent element.
 
-\item[$\blacktriangleright$] EA notices that there is nothing to quick-link to, and pops up a small context-sensitive dialogue to create an element that can be
+\item[$\blacktriangleright$] EA notices that there is nothing to quick-link to, and pops a small context-sensitive dialogue to create an element that can be
 connected to the indicated source element.
 
 \item[$\blacktriangleright$] As illustrated in Fig.~\ref{fig:sdm_new_activity_node}, choose \texttt{Append StoryNode} to create an \emph{activity
@@ -100,8 +100,8 @@ it reaches a stop node, where it finally terminates.
 
 \item[$\blacktriangleright$] While a \emph{stop node} is rather self explanatory, you may be wondering about the differences between a \emph{story
 node}\define{Story Node}and a \emph{statement node}.\define{Statement Node}Since not all activity nodes can contain story patterns (i.e., start and stop
-nodes), those that \emph{can} are called story nodes. Statement nodes are simply used to guarantee a certain action. They happen along the control flow between
-story nodes. We'll encounter these in a later SDM, but for now, lets finish our first story node.
+nodes), those that \emph{can} are called story nodes. Statement nodes are simply used to guarantee a certain action. They happen between story nodes. We'll
+encounter these in a later SDM, but for now, lets finish our first story node.
 
 \vspace{0.5cm}
 
@@ -202,8 +202,8 @@ SDM can be specified in the stop node. As depicted in Fig.~\ref{fig:stop_node_re
 We're nearly done! As you can see, by using several different dialouges, eMoflon employs a simple context-sensitive expression language for specifying required
 values. We have intentionally avoided creating a full-blown sub-language, and limit expressions to a few simple types.\footnote{We also do not support nesting
 expressions} The philosophy here is to keep things simple and concentrate on what SDMs are good for -- expressing structural changes. Our approach is to
-provide a clear and type-safe interface to a general purpose language (Java) and support a simple \emph{fallback} as soon as things get low-level and difficult
-to express as a pattern.
+provide a clear and type-safe interface to a general purpose language (Java) and support a simple \emph{fallback} as soon as things get too low-level and
+difficult to express as a pattern.
 
 The alternative approach to eMoflon would be to support arbitrary expressions, for example, in a script language like JavaScript or in an appropriate
 DSL\footnote{A DSL is a Domain Specific Language: a language designed for a specific task which is usually simpler than a general purpose language like Java and
