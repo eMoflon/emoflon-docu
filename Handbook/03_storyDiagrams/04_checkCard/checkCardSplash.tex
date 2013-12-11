@@ -3,10 +3,10 @@
 \genHeader
 \hypertarget{sec:checkCard}{}
 
-The next method we shall model with SDMs is probably the most important! This method will be invoked when a user decides to test themselves on a card in the
-learning box. The user will be able to see the \texttt{Back} of a card (displayed in the box), make a guess as to what's on the \texttt{Face}, then check their
-answer (Fig.~\ref{fig:goal_check}). Following the Leitner's Box rules, if their guess was correct the card will be \emph{promoted} and moved to the next
-partition. If wrong, the card will be \emph{penalized} and returned to very first partition.
+The next method we shall model is probably the most important! This method will be invoked when a user decides to test themselves on a card in the
+learning box. They'll be able to see the \texttt{Back} of a card from the box, make a guess as to what's on the \texttt{Face}, then check their
+answer (Fig.~\ref{fig:goal_check}). Following the Leitner's Box rules, if their guess was correct the card will be \emph{promoted} to the next
+partition. If wrong, the card will be \emph{penalized} and returned to very first.
 
 \begin{figure}[htbp]
  	\centering
@@ -16,8 +16,8 @@ partition. If wrong, the card will be \emph{penalized} and returned to very firs
 \end{figure}
 \FloatBarrier
 
-As you can see, checking the guess is simple assertion. The actual movements however, must be implemented as separate patterns. Fig.~\ref{fig:patterns_check}
-briefly shows the intended creation and deletion transformations that each of these patterns must execute.
+As you can see, checking \texttt{guess} is simple assertion. The actual movements however, must be implemented as separate patterns.
+Fig.~\ref{fig:patterns_check} briefly shows the intended constructive and destructive transformations.
 
 \begin{figure}[htbp]
  	\centering
@@ -29,14 +29,11 @@ briefly shows the intended creation and deletion transformations that each of th
 \end{figure}
 \FloatBarrier
 
-Overall, this means that our method's control flow must be a new \emph{if/Else} construct. This is specified in SDM via \emph{edge guards},
-\define{Edge~Guards}explicit statements on which actions to take when the \emph{if} statement fails or succeeds. To implement this, the \emph{if} statement must
-include an \emph{Attribute Constraint},\define{Attribute Constraint}a non-structural condition that must be satisfied for a story pattern to match. This
-special attribute type will compare the user's guess to the actual answer on the back of the card. The comparison is referred to as a \texttt{Paramter
-Expression}.
+Overall, this means the control flow must be an \emph{if/Else} construct. This is specified in SDM via \emph{edge guards}, \define{Edge~Guards}explicit
+statements on which activity edge to follow when the \emph{if} statement fails or succeeds. To implement this, the conditional must be an \emph{Attribute
+Constraint},\define{Attribute Constraint}a non-structural condition that must be satisfied for a story pattern to match. 
 
-Now that you have a solid foundation of SDMs, this next part should be a breeze.
-
+%The comparison is referred to as a \texttt{ParamterExpression}.
 \fancyfoot[R]{ $\triangleright$ \hyperlink{checkCard vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{checkCard tex}{Next [textual]} }
 
 \input{../04_checkCard/visCheckCard}

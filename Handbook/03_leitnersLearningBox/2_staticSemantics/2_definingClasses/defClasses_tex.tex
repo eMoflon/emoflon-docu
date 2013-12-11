@@ -1,33 +1,51 @@
 \newpage
+\hypertarget{static:classes tex}{}
 \subsection{Declaring classes and attributes}
 \texHeader
-\hypertarget{static:classes tex}{}
 
 \begin{itemize}
 
 \item[$\blacktriangleright$] Right click your \texttt{LearningBoxLanguage} model and create your first EClass by navigating to ``New/EClass.'' Name it
 \texttt{Box}.
 
-\item[$\blacktriangleright$] The class editor should automatically open. Let's add the first two EAttributes of our program, \texttt{name} and
-\texttt{stringRep}. eMoflon offers type completion to help you with this task. Go to an empty line and press \texttt{cntrl + space}.
+\vspace{0.5cm}
 
-\item[$\blacktriangleright$] Given that your EClass is empty, you'll be presented with a short list of declaration template suggestions
-(Fig.~\ref{fig:typeComp_Main}). The first four items are relevant for method signatures, so select \texttt{attribute} near the bottom, and create \texttt{name}
-of type \texttt{EString}.
+\item[$\blacktriangleright$] The class editor should automatically open. Let's add the first two EAttributes of our program, \texttt{name} and
+\texttt{stringRep}. eMoflon offers type completion templates to help you with this task. Go to an empty line and press \texttt{ctrl + space}. You'll be provided
+with a short list of suggestions (Fig.~\ref{fig:typeCompTempl}). The first four items are related to method control flow, so select \texttt{attribute} near
+the bottom, and create \texttt{name} of type \texttt{EString}.
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.5\textwidth]{eclipse_typeCompletion_main}
+  \includegraphics[width=0.6\textwidth]{eclipse_typeCompletionTemplates}
 	\caption{eMoflon's type completion}
-	\label{fig:typeComp_Main}
+	\label{fig:typeCompTempl}
 \end{figure} 
 
-\item[$\blacktriangleright$] Type completion also supports you by providing a list of types. Start to create a second attribute, \texttt{stringRep}, but after
-the \texttt{``:''} operator, press the same hotkeys. The new list provides all the types currently available - any further EClasses you create will also appear
-in this list. Begin to type \texttt{EString} until the option is highlighted and press \texttt{enter} ({\bf get image}). Your workspace should now resemble
-(Fig.~\ref{fig:boxDeclaration}).
+\vspace{0.5cm}
 
-\begin{figure}[h!]
+\item[$\blacktriangleright$] Type completion also supports you by suggesting a list of types. Start to create a second attribute, \texttt{stringRep}, but
+stop after typing the \texttt{`:'} operator and press the hotkeys. The pop-up list provides a list of all types currently available (Fig.~\ref{fig:typeCompTypes}) in
+both your metamodel, and eMoflon's standard metamodel that's included in every new project.
+
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] Your workspace should now resemble (Fig.~\ref{fig:boxDeclaration}).
+
+\newpage
+
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=0.6\textwidth]{eclipse_typeCompletionTypes}
+	\caption{Object type suggestions for \texttt{stringRep}}
+	\label{fig:typeCompTypes}
+\end{figure} 
+
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.5\textwidth]{eclipse_classBoxDeclaration}
 	\caption{Newly created \texttt{Box} EClass}
@@ -35,17 +53,21 @@ in this list. Begin to type \texttt{EString} until the option is highlighted and
 \end{figure} 
 \FloatBarrier
 
-\newpage
+\vspace{0.5cm}
 
 \item[$\blacktriangleright$] Now create two empty EClasses in your model, \texttt{Partition} and \texttt{Card}.
 
+\vspace{0.5cm}
+
 \item[$\blacktriangleright$] In \texttt{Partition}, add two \texttt{EInt} attributes, \texttt{index} and \texttt{partitionSize}.
+
+\vspace{0.5cm}
 
 \item[$\blacktriangleright$] In \texttt{Card}, create three \texttt{EString} attributes, \texttt{back}, \texttt{face} , and \texttt{partitionHistory}.
 
-\item[$\blacktriangleright$] If you've done everything correctly, your workspace should now resemble Fig.~\ref{fig:workspaceClassAttributes}.
-
 \vspace{0.5cm}
+
+\item[$\blacktriangleright$] If you've done everything correctly, your workspace should now resemble Fig.~\ref{fig:workspaceClassAttributes}.
 
 \begin{figure}[htbp]
 	\centering

@@ -1,12 +1,12 @@
 \newpage
+\hypertarget{growBox vis}{}
 \subsection{Implementing grow}
 \visHeader
-\hypertarget{growBox vis}{}
 
 \begin{itemize}
  
 \item[$\blacktriangleright$] Start by creating the simple story pattern depicted in Fig.~\ref{fig:sdm_grow_1}. This matches the box
-(\texttt{this}), with \emph{any} two partitions in the box\footnote{Remember, this is for the \emph{pattern matcher}}.
+(\texttt{this}), with \emph{any} two partitions in the box.\footnote{Remember, this is for the \emph{pattern matcher}}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -60,7 +60,7 @@ and close the dialogue.
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{ea_methodCall.png}
-  \caption{Invoking a method via a \texttt{MethodCallExpression} {\bf UPDATE}}  
+  \caption{Invoking a method via a \texttt{MethodCallExpression} \update}  
   \label{fig:sdm_grow_4} 
 \end{center}
 \end{figure}
@@ -77,17 +77,21 @@ and close the dialogue.
 % When testing (which you will \emph{of course} do right?), note that you can only grow a ``minimal'' box that has at least a first and last partition, i.e., a box with 
 %no partitions at all cannot be grown using our specified SDM. 
 
+\item[$\blacktriangleright$]  That's it - your \texttt{grow} SDM is complete! This was probably the most challenging SDM to build, so give yourself a solid 
+pat on the back. If you found it easy well then \ldots I don't think i'm doing my job correctly. To see how this is done in the texual syntax, review
+Fig.~\ref{fig:patternComplete}.\footnote{We do recommend reading the instructions for this one, since NACs can be tricky.}
+
+\newpage
+\vspace*{3cm}
+
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.9\textwidth]{ea_completeActivityGrowBox.pdf}
+  \includegraphics[width=\textwidth]{ea_completeActivityGrowBox.pdf}
   \caption{Complete SDM for \texttt{Box::grow}}  
   \label{fig:sdm_grow_5}
 \end{center}
 \end{figure}
-
-\item[$\blacktriangleright$]  That's it - your \texttt{grow} SDM is complete! This was probably the most challenging SDM to build, so give yourself a solid 
-pat on the back. If you found it easy then \ldots gee whiz, I don't think i'm doing my job correctly. To see how this is done in the texual syntax, review
-Fig.~\ref{fig:patternComplete}.\footnote{We do recommend reading the instructions for this one, however, since NACs can be tricky.}
+\FloatBarrier
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{sec:stringRep}{Next}}
 

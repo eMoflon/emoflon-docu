@@ -1,18 +1,16 @@
 \newpage
+\hypertarget{sec:stringRep}{}
 \section{String representations}
 \genHeader
-\hypertarget{sec:stringRep}{}
 
-% We've already used a for each.. not new; rewrite. we just haven't made NESTED for loops
 In the next SDM we shall create a string representation for all the contents in a single learning box. To accomplish this, we will have to iterate through 
-every card, in every partition. This means we'll need to create an inner loop nested within an outer loop (Fig.~\ref{fig:goal_stringRep}), otherwise known as a
-\emph{for each} loop.
-Further still, we'll need another \emph{for each} loop to add the contents of each card to the \texttt{stringRep}.
+every card, in every partition. This means we'll need to create an inner loop nested within an outer loop (Fig.~\ref{fig:goal_stringRep}), another
+\emph{for each} loop. Further still, we'll need another \emph{for each} loop to add the contents of each card to the \texttt{stringRep}.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.3\textwidth]{goal_stringRep.pdf}
-	\caption{Nested for each loops}
+	\caption{Nested \emph{for/each} loops}
 	\label{fig:goal_stringRep}
 \end{figure}
 \FloatBarrier

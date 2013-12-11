@@ -3,7 +3,7 @@
 \texHeader
 \hypertarget{static:references tex}{}
 
-In MOSL, the declaration of an EReference is simple - you simply set each property according to the following syntax:
+In MOSL, the declaration of an EReference is simple - you set each property according to the following syntax:
 
 { \begin{quote} \small
 [$<>$] -$>$ role\_name ( multiplicity ) :  target\_type \\
@@ -14,8 +14,8 @@ target\_type := STRING \\
 \end{quote} }
 
 The source type is determined by the EClass in which the EReference is placed. You can signal an aggregation EReference by including the sideways diamond before
-the arrow symbol. Don't worry - you don't have to remember this syntax! Our type completion provides a \texttt{Link Variable} template when you activate the hot
-keys.
+the arrow symbol. Don't worry - you don't have to remember this syntax. Our type completion provides a \texttt{reference} template when you activate the hot
+keys. Try it out!
 
 \begin{itemize}
 
@@ -59,14 +59,14 @@ all that different from the relation between \texttt{Box} and \texttt{Partition}
 \texttt{Card}s, but a \texttt{Card} should only be allowed to belong to zero or one \texttt{Partition}s. Name the two new EReferences
 \texttt{card}, and \texttt{cardContainer}. Your EClasses should now closely resemble Fig.~\ref{fig:almostAllReferences}.
 
-\vspace{0.5cm}
-
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.65\textwidth]{eclipse_workspaceReferences}
+  \includegraphics[width=0.58\textwidth]{eclipse_workspaceReferences}
 	\caption{Completed EReference pairs}
 	\label{fig:almostAllReferences}
 \end{figure} 
+
+\newpage
 
 \item[$\blacktriangleright$] The next step is to construct two connections between \texttt{Partition}s and \texttt{Card}, so cards can be moved between its
 previous and next partitions in the box. Create two new simple references, named \texttt{previous}, and \texttt{next}, each with a \texttt{0..1} multiplicity.
@@ -106,8 +106,7 @@ Constraints follow the syntax structure below:
 This statement sets the two EReferences to be opposites of one another, i.e., the connection between EClasses will be bidirectional. As you can see, syntax here
 is slightly different than that of a standard EReference. Instead of the reference type trailing the colon operator, it has switched to become the source type.
 
-
-\item[$\blacktriangleright$] To begin, enter the following text:
+\item[$\blacktriangleright$] To begin, press \texttt{ctrl + space} and complete the template with the following:
 
 {\begin{quote} \small
 	containedPartition : Box $<$ - $>$ : Partition

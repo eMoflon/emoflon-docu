@@ -21,8 +21,9 @@ which is necessary to indicate that this code is written by the user and needs t
         \begin{lstlisting}[language=Java, keywordstyle={\bfseries\color{purple}}, backgroundcolor=\color{white}]
     public Card removeCard(Card card) {
         // [user code injected with eMoflon]
-        
-        card.setCardContainer(null);
+        if (card != null){
+        	card.setCardContainer(null);
+        }
         return card;
     }
         \end{lstlisting}
@@ -46,7 +47,7 @@ but with a new \texttt{.inject} extension (Fig.~\ref{fig:injection_folder}).
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{eclipse_injectionFolder}
-    \caption{Injection location}
+    \caption{Partition injection file}
     \label{fig:injection_folder}
 \end{figure}
 
@@ -55,7 +56,7 @@ but with a new \texttt{.inject} extension (Fig.~\ref{fig:injection_folder}).
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{eclipse_partialClass}
+    \includegraphics[width=0.9\textwidth]{eclipse_partialClassPartition}
     \caption{Generated injection file for \texttt{PartitionImpl.java}}
     \label{fig:injection_partialClassPartition}
 \end{figure}
