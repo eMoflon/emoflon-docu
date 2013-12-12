@@ -98,14 +98,16 @@ it reaches a stop node, where it finally terminates.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] While a \emph{stop node} is rather self explanatory, you may be wondering about the differences between a \emph{story
-node}\define{Story Node}and a \emph{statement node}.\define{Statement Node}Since not all activity nodes can contain story patterns (i.e., start and stop
-nodes), those that \emph{can} are called story nodes. Statement nodes are simply used to guarantee a certain action. They happen between story nodes. We'll
-encounter these in a later SDM, but for now, lets finish our first story node.
+\item[$\blacktriangleright$] While a \emph{stop node} is rather self explanatory, you may be wondering about the differences between the other two item options,
+a\define{Story Node}\emph{story node}and a \emph{statement node}.\define{Statement Node}Since not all activity nodes can contain story patterns (i.e., start
+and stop nodes), those that \emph{can} are called story nodes. Statement nodes are simply used to guarantee a certain action. They happen between story nodes.
+We'll encounter these in a later SDM, but for now, lets finish our first story node.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] To create the story pattern, double click \texttt{ActivityNode 1} to prompt the dialogue depicted in Fig.~\ref{fig:story_pattern}.
+\item[$\blacktriangleright$] To craft the story pattern, double click \texttt{ActivityNode 1} to prompt the dialogue depicted in
+Fig.~\ref{fig:story_pattern}. Enter \texttt{removeCardFromPartition} as the name of the story node, and select \texttt{Create this Object}.  Click
+\texttt{OK} - the activity node now has a single \emph{object variable}, \texttt{this} (Fig.~\ref{fig:tool_box}).
 
 \begin{figure}[htpb]
 \begin{center} 
@@ -114,11 +116,6 @@ encounter these in a later SDM, but for now, lets finish our first story node.
   \label{fig:story_pattern}
 \end{center}
 \end{figure}
-
-\vspace{0.5cm}
-
-\item[$\blacktriangleright$] Enter `removeCardFromPartition' as the name of the story node, select \texttt{Create this Object}, and click \texttt{OK}. The
-activity node now has a single \emph{object variable}, \texttt{this} (Fig.~\ref{fig:tool_box}).
 
 \begin{figure}[htp]
 \begin{center}
@@ -130,8 +127,8 @@ activity node now has a single \emph{object variable}, \texttt{this} (Fig.~\ref{
 
 \newpage
 
-\item[$\blacktriangleright$] To create an object variable that can be assigned to other objects, choose \texttt{SDM ObjectVariable} from the toolbox
-(Fig.~\ref{fig:tool_box}), then click inside the activity node. A properties window will be raised for the new object
+\item[$\blacktriangleright$] To create an object variable that can be assigned to other objects, either choose \texttt{SDM ObjectVariable} from the toolbox or
+press \texttt{ctrl}, then click inside the activity node (Fig.~\ref{fig:tool_box}). A properties window will be raised for the new object
 (Fig.~\ref{fig:object_variable_properties}).
 
 \vspace{0.5cm}
@@ -151,13 +148,11 @@ Since \texttt{card} is a parameter of the method, it is offered as a possible na
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] In this dialogue, note that the \texttt{Bound} option must be set. We have now seen two cases in this activity for bound object
-variables: an assignment to \texttt{this}, and an assignment to a method parameter. \texttt{Unbounded} object are not represented by a bolded box.
+variables: an assignment to \texttt{this}, and an assignment to a method parameter. \texttt{Unbounded} object are represented by a thin-bordered box. Setting
+\texttt{card} to bound means that it will implicitly assign itself to the passed parameter valued.
 
-\vspace{0.5cm}
-
-\item[$\blacktriangleright$] To create a \emph{link variable} between the current partition (who invoked \texttt{removeCard}), and the
-card to be removed (passed in as a parameter), choose the object variable \texttt{this} and quick-link it to \texttt{card}
-(Fig.~\ref{fig:link_variable}).
+\item[$\blacktriangleright$] To create a \emph{link variable} between the current partition and the card to be removed, choose the object variable \texttt{this}
+and quick-link it to \texttt{card} (Fig.~\ref{fig:link_variable}).
 
 \begin{figure}[htpb]
 \begin{center}
@@ -168,7 +163,7 @@ card to be removed (passed in as a parameter), choose the object variable \textt
 \end{figure}
 
 \item[$\blacktriangleright$] According to the metamodel, there is only one possible link between a partition and card. Select this and set the
-\emph{Binding Operator} to \texttt{Destroy} (Fig.~\ref{fig:link_variable_properties}). The names will automatically appear in the diagram.
+\emph{Binding Operator} to \texttt{Destroy} (Fig.~\ref{fig:link_variable_properties}). The reference names will automatically appear in the diagram.
 
 \vspace{0.5cm}
 
@@ -194,8 +189,9 @@ SDM can be specified in the stop node. As depicted in Fig.~\ref{fig:stop_node_re
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] In the \texttt{Expression} field, choose \texttt{ParameterExpression}\define{ParameterExpression}as the expression, and
-\texttt{card} as the parameter. This expression mechanism refers exclusively to parameters of the current method.
+\item[$\blacktriangleright$] In the \texttt{Expression} field, choose \texttt{ParameterExpression}\define{ParameterExpression}as the expression. Given that
+\texttt{card} is the sole parameter, it will be automatically selected. In EA, a \emph{ParameterExpression} is a mechanism that exclusively accesses any
+paramter value.
 
 \vspace{0.5cm}
 
@@ -222,9 +218,9 @@ Fig.~\ref{fig:sdm_complete_control_flow}. The return value is indicated below th
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$]  Don't forget to save your files, validate and export your pattern to the Eclipse workspace\footnote{Go to to
+\item[$\blacktriangleright$]  Don't forget to save your files, validate and export your pattern to the Eclipse workspace,\footnote{Go to to
 ``\texttt{Extensions}" and select \texttt{Add-In Windows} to activate eMoflon's console. If you're unsure how to validate, export, or use this window, review
-Part II, section 3}, then build your metamodel's code.
+Part II, section 3} then build your metamodel's code from the package explorer.
 
 \item[$\blacktriangleright$] If you're unable to export or generate code successfully, compare your SDM carefully with Fig.~\ref{fig:sdm_complete_control_flow}
 and make sure you haven't forgotten anything.

@@ -1,13 +1,12 @@
 \newpage
+\hypertarget{invertCard tex}{}
 \subsection{Implementing invert}
 \texHeader
-\hypertarget{invertCard tex}{}
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] You're no longer an SDM beginner, so create two patterns in the invert declaration, named \texttt{initializeTemp} and
-\texttt{swapVariable}. This method only needs a \emph{simple flow}, or two patterns listed and performed in order. There's no assertion, and it only needs to be
-performed once. Don't forget to include a return statement!
+\item[$\blacktriangleright$] You're no longer an SDM beginner, so create a simple control flow with two patterns in \texttt{card.eclass} under the invert
+declaration, named \texttt{initializeTemp} and \texttt{swapVariable}. Don't forget to include a return statement!
 
 \item[$\blacktriangleright$] Your declaration should now resemble Fig.~\ref{fig:eclipse_invert}
 
@@ -19,18 +18,18 @@ performed once. Don't forget to include a return statement!
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Create two bounded object variables in each pattern, and complete the rules until your patterns resemble
+\item[$\blacktriangleright$] Create \texttt{this} and \texttt{temp} \texttt{Card} variables in each pattern until your workspace resembles
 Fig.~\ref{fig:invertPatterns}.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_invertPatterns}
-  \caption{Swap Patterns {\bf edit the first one (should be unbound)}}  
+  \caption{Swapping the \texttt{card} values}  
   \label{fig:invertPatterns}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Believe it or not, that's it! We reccommend building at this point to confirm nothing has gone wrong with your metamodel. To
+\item[$\blacktriangleright$] Believe it or not, that's it! We recommend building at this point to confirm nothing has gone wrong with your metamodel. To
 see this method in the visual syntax, review Fig.~\ref{fig:sdm_invertComplete} on the previous page.
 
 \end{itemize}

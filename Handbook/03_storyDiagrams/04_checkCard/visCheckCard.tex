@@ -14,7 +14,7 @@
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=1\textwidth]{ea_activityCheck.pdf}
+  \includegraphics[width=0.9\textwidth]{ea_activityCheck}
   \caption{Activity diagram for \texttt{Partition::check}}
   \label{fig:sdm_check_start}
 \end{center}
@@ -22,7 +22,7 @@
 
 \vspace{1cm}
 
-\item[$\blacktriangleright$] In \texttt{checkIfGuessIsCorrect}, create an object variable that is bound to the parameter argument, \texttt{card} 
+\item[$\blacktriangleright$] In \texttt{checkCard}, create an object variable that is bound to the parameter argument, \texttt{card} 
 (Fig.~\ref{fig:sdm_check_addCard}). This will represent the card the user picked from the learning box. Remember, the binding for this variable is implicitly
 defined when its name is the same as the argument's name.
 
@@ -37,7 +37,7 @@ defined when its name is the same as the argument's name.
 \clearpage
 
 \item[$\blacktriangleright$] Now that the pattern has the correct card to check, it needs to compare the user's guess against the unseen \texttt{face} value on
-the opposite side. To do this, we need to specify an \emph{attribute constraint}. Open the \texttt{attribute constraint} tab as depicted in
+the opposite side. To do this, we need to specify an \emph{attribute constraint}. Open the \texttt{attribute constraint} tab for \texttt{card} as depicted in
 Fig.~\ref{fig:sdmcheck_att_constraint}, select the correct object attribute (\texttt{face}) and comparison operator.
 
 \begin{figure}[htbp]
@@ -155,8 +155,8 @@ stick out over any edge}.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Currently, we have the single \texttt{card} that we want to promote through the box. Drag and drop two further object variables for
-the current partition, \texttt{this}, and the \texttt{nextPartition} as depicted in Fig.~\ref{fig:sdm_check_complete_sp}.
+\item[$\blacktriangleright$] Currently, we have the single \texttt{card} that we want to promote through the box. Drag and drop two partition objects,
+\texttt{this}, and the \texttt{nextPartition} as depicted in Fig.~\ref{fig:sdm_check_complete_sp}.
 
 \begin{figure}[htbp]
 \begin{center}

@@ -1,9 +1,9 @@
 \newpage
+\hypertarget{sec:emptyPartition}{}
 \section{Emptying a partition of all cards}
 \genHeader
-\hypertarget{sec:emptyPartition}{}
 
-This next SDM should \emph{empty} a partition by removing every card contained inside. Since we can assume that there is more than one card in the
+This next SDM should \emph{empty} a partition by removing every contained card. Since we can assume that there is more than one card in the
 partition,\footnote{If there was only one, we would just invoke \texttt{removeCard}} we obviously need some construct for repeatedly deleting each card in the
 partition an unknown number of times (Fig.~\ref{fig:goal_empty}). 
 
@@ -20,8 +20,8 @@ partition an unknown number of times (Fig.~\ref{fig:goal_empty}).
 \vspace{0.5cm}
 
 In SDM, this \define{For Each} construct is accomplished via a \emph{for each} story node. A
-\emph{for each} story node performs the specified actions for \emph{every} match in its pattern. That means for every \texttt{Card} the pattern finds, it'll
-perform an action set.
+\emph{for each} story node (pattern) performs the specified actions for \emph{every} match in its pattern. That means for every \texttt{Card} the pattern
+finds, it'll perform an action set.
 
 This construct however, gives us two very interesting points to discuss. Firstly, how would the pattern be interpreted if the node was a normal story node, not
 a \emph{for each}?
@@ -36,7 +36,7 @@ destroyed \texttt{card} and left the link?
 
 The answer is no, the pattern would yield the same result, regardless if the link is explicitly destroyed!  \define{Dangling Edges}This is due to the
 transformation engine eMoflon uses.\footnote{CodeGen2, a part of Fujaba \url{http://www.fujaba.de/}} It ensures that there are never any \emph{dangling edges}
-in a model. Since deleting just the \texttt{card} would result in a `dangling edge' attached to \texttt{this}, that link is deleted as well. Explicitly
+in a model. Since deleting just the \texttt{card} would result in a dangling edge attached to \texttt{this}, that link is deleted as well. Explicitly
 destroying the link is therefore a matter of taste, so \ldots why not be as explicit as possible?
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{emptyPartition vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{emptyPartition tex}{Next [textual]} }
