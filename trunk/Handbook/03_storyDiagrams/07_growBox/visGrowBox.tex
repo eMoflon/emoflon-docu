@@ -22,7 +22,7 @@ variable \texttt{nextPartition}, of type \texttt{Partition}, and set \define{Bin
  
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.9\textwidth]{ea_negElement}
+  \includegraphics[width=0.9\textwidth]{ea_newNac}
   \caption{Adding a negative element}  
   \label{fig:sdm_grow_2}
 \end{center}
@@ -31,7 +31,8 @@ variable \texttt{nextPartition}, of type \texttt{Partition}, and set \define{Bin
 \item[$\blacktriangleright$] Now, quick link \texttt{nextPartition} to \texttt{lastPartitionInBox}, but be sure choose the link type carefully! The
 \texttt{nextPartition} should play the role of \texttt{next} with respect to \texttt{lastPartitionInBox}.
 
-\item[$\blacktriangleright$] Complete the story pattern so that it closely resembles Fig.~\ref{fig:sdm_grow_3}. 
+\item[$\blacktriangleright$] Complete the story pattern so that it closely resembles Fig.~\ref{fig:sdm_grow_3}. Be sure to triple-check your references to make
+sure everything will transition in the right direction.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -44,8 +45,12 @@ variable \texttt{nextPartition}, of type \texttt{Partition}, and set \define{Bin
 \item[$\blacktriangleright$] Notice how the created partition \texttt{newPartition} is `hung' into the box. It becomes the next partition of the current
 \emph{last} partition, and has its previous partition set to the first partition in the box (as depicted with the arrows in Fig.~\ref{fig:membox_depiction}).
   
-\item[$\blacktriangleright$] To complete this SDM, build the assignment to set the size of the new partition. Go ahead and invoke the corresponding dialogue to
-activate the \texttt{:=} operator.
+\newpage  
+
+\item[$\blacktriangleright$] To complete this SDM, build the assignment to set the size of the \texttt{newPartition}. Go ahead and invoke the corresponding
+dialogue to activate the \texttt{:=} operator.
+
+\vspace{0.5cm}
 
 Given that the new size must be calculated using a helper function via a \emph{MethodCallExpression}.\define{MethodCallExpression}A MethodCallExpression is
 used to invoke a method defined in any class in the current EA project. Enter the values in Fig.~\ref{fig:sdm_grow_4}, choosing the argument \texttt{this} as
@@ -56,10 +61,9 @@ can be specified by choosing the appropriate parameter declaration between guill
 value (this is basically a literal expression). Don't forget to press the \texttt{Save} button for every parameter, then \texttt{Add} + \texttt{OK} to confirm
 and close the dialogue.
  
- %UPDATE not under 'target' but 'objects'
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{ea_methodCall.png}
+  \includegraphics[width=0.5\textwidth]{ea_attributeMethodCall.png}
   \caption{Invoking a method via a \texttt{MethodCallExpression} \update}  
   \label{fig:sdm_grow_4} 
 \end{center}

@@ -1,16 +1,12 @@
 \newpage
+\hypertarget{emptyPartition tex}{}
 \subsection{Implementing empty}
 \texHeader
-\hypertarget{emptyPartition tex}{}
-
-\texttt{}
-\emph{}
 
 \begin{itemize}
  
-\item[$\blacktriangleright$] To initialize your control flow, you can take advantage of eMolfon's type completion here. Inside the \texttt{empty}
-declaration, press  \texttt{control + space} to bring up a small context menu. Select \texttt{forEach} to write the pattern syntax
-(Fig.~\ref{fig:typeCompletion}).
+\item[$\blacktriangleright$] To initialize your control flow, you can once again take advantage of eMolfon's type completion here. Inside the \texttt{empty}
+declaration, press  \texttt{ctrl + space} and select \texttt{forEach} from the menu (Fig.~\ref{fig:typeCompletion}).
 
 \vspace{0.5cm}
 
@@ -24,8 +20,8 @@ declaration, press  \texttt{control + space} to bring up a small context menu. S
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Create a single \texttt{deleteCardsInPartition}. Remove the second pattern automatically created since, for every card you delete,
-you want to return to the loop and keep deleting for every match the pattern makes.
+\item[$\blacktriangleright$] Create a single \texttt{deleteCardsInPartition}. Remove the second pattern that was automatically created since after deleting
+every card in one partition, you want to return to the loop and restart for the next matched partition.
 
 \vspace{0.5cm}
 
@@ -54,12 +50,12 @@ type by prefacing \texttt{card} with an `-~-' operator.
 \begin{figure}[htpb]
 \begin{center}
   \includegraphics[width=0.6\textwidth]{eclipse_emptyPattern}
-  \caption{Destroy an entire card, not just the link to it}
+  \caption{Destroying an entire card}
   \label{fig:emptyPattern}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] That's it - you're just speeding through these SDMs now! To see how it's done in the visual syntax, review Fig.~\ref{fig:sdm_end}
-in the previous section.
+\item[$\blacktriangleright$] That's it! Look at you go - you're just speeding through these SDMs now! To see how \texttt{empty} is done in the visual syntax,
+review Fig.~\ref{fig:sdm_end} from the previous section.
 
 \end{itemize}

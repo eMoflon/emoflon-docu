@@ -1,7 +1,7 @@
 \newpage
+\hypertarget{stringRep tex}{}
 \subsection{Implementing stringRep}
 \texHeader
-\hypertarget{stringRep tex}{}
 
 \vspace{0.5cm}
 
@@ -13,7 +13,7 @@ surround the command with `\texttt{< >}' tags. Finally, before exiting the flow,
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Your eclass file should now resemble Fig.~\ref{fig:toStringFlow}
+\item[$\blacktriangleright$] Your eclass file should now resemble Fig.~\ref{fig:toStringFlow}.
 
 \vspace{0.5cm}
 
@@ -27,11 +27,12 @@ surround the command with `\texttt{< >}' tags. Finally, before exiting the flow,
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Despite its complicated appearance, remember - the core idea behind this method is to create a path to every item in
-\texttt{Box}. Then from the control flow (which we've already established), call a helper function to complete the action. This means both patterns need only
-create their two relevant object variables each, then link them together.
+\item[$\blacktriangleright$] Despite its complicated appearance, remember - the core idea behind the patterns is to access every item in \texttt{Box}. The
+control flow (which we've already established), is where we call a helper function to complete the action. This means both patterns need only create their
+object variables and link them together.
 
-\item[$\blacktriangleright$] Confirm your patterns match Fig.~\ref{fig:toStringPatterns} before continuing.
+\item[$\blacktriangleright$] Set \texttt{forAllPartitions} to have \texttt{@this} reference each partition in the loop via a simple reference, then
+\texttt{forAllCards} reference each card. Confirm your patterns match Fig.~\ref{fig:toStringPatterns} before continuing.
 
 \begin{figure}[htp]
 \begin{center}

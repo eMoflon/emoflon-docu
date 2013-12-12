@@ -12,27 +12,6 @@ construct these black boxes. In fact, this feature is yet another way of integra
 method must return \texttt{EBoolean}, \texttt{Success}, or \texttt{Failure}, respectively corresponding to \texttt{true} and \texttt{false}. Any other values
 will set \texttt{Failure} to \texttt{null}. It follows that void methods cannot be used for branching - an exception will be thrown during execution.
 
-Introduce example here; source has basic idea for \texttt{Check} modification.
-
-% Suppose we wanted to modify \texttt{check} so that, instead of doing an exact comparison of \texttt{card.face} against \texttt{guess}, LeitnersBox prompts the
-% user with the face of the card, then asks the user if their answers match. The user can then respond \texttt{yes} or \texttt{no}.\footnote{While you may
-% initially consider this as an easy way to cheat (``They'll just say `yes' to everything!''), this is reflective of a true flashcard system. There can be several
-% ways to provide the right answer, but \texttt{card.face} can only store one.}
-% 
-% Go to your \texttt{Partition.eclass} in the metamodel and create a new method, \texttt{isAnswer(card:Card, guess:EString):EBoolean}. Build and generate your
-% files, then go to \texttt{PartitionImpl.java} (Fig.~\ref{fig:genIsAnsw}) and fill in the declaration with the code below (Fig.~\ref{}).\footnote{We are assuming you
-% are unfamilar with JFrame, and have enabled this text to be easily copy/pasted into your Java file to avoid mistakes}
-% 
-% \begin{figure}[htp]
-% \begin{center}
-%   \includegraphics[width=\textwidth]{eclipse_generatedIsAnswer}
-%   \caption{Generated code location for \texttt{isAnswer}}
-%   \label{fig:genIsAnsw}
-% \end{center}
-% \end{figure}
-
-% Second CODE figure with stuff that works (with gui)
-
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{conBran vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{conBran tex}{Next [textual]} } 
 

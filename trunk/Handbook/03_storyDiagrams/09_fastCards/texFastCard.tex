@@ -17,7 +17,7 @@ attributes, so leave its declaration empty (Fig.~\ref{fig:fastClass}).
 \end{figure}
 
 \item[$\blacktriangleright$] Return to \texttt{Partition} to \texttt{check(card, guess)}, and edit the control flow by adding a second \texttt{if/else}
-construct. Call the assertion pattern \texttt{isFastCard}, and the action pattern \texttt{promoteFastCard}. Keep the original \texttt{[promoteCard]} pattern in
+construct. Call the assertion pattern \texttt{isFastCard}, and the action pattern \texttt{promoteFastCard}. Move the original \texttt{[promoteCard]} pattern in
 the \texttt{else} statement.
 
 \item[$\blacktriangleright$] Your workspace should now resemble Fig.~\ref{fig:isFastCard}.
@@ -32,9 +32,7 @@ the \texttt{else} statement.
 
 \item[$\blacktriangleright$] \texttt{isFastCard} is a simple, one line statement pattern. You need to create an assignment constraint to check a bounded object,
 of type \texttt{FastCard}, against the type of card that was passed in through the parameter. Remember, to access paramter valuers, preface the name with a `\$'
-symbol.
-
-\item[$\blacktriangleright$] Your workspace should now resemble Fig.~\ref{fig:isFastCardPattern}.
+symbol. Your workspace should now resemble Fig.~\ref{fig:isFastCardPattern}.
 
 \begin{figure}[htp]
 \begin{center}
@@ -44,7 +42,7 @@ symbol.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] To establish \texttt{promoteFastCard.pattern}, first create the four main object variables - \texttt{@fastCard}, \texttt{@this},
+\item[$\blacktriangleright$] To establish \texttt{promoteFastCard}, first create the four main object variables - \texttt{@fastCard}, \texttt{@this},
 \texttt{lastPartition}, and \texttt{box}. Immediately under \texttt{lastPartition}, also create a \texttt{next} NAC.
 
 \vspace{0.5cm}
@@ -60,10 +58,10 @@ symbol.
 \end{figure}
 
 \item[$\blacktriangleright$] When creating the necessary references, remember - this is the pattern that will be invoked when the fast card status has been
-confirmed! This means that, in the appropriate variables, you'll want to:
-(1) Link the partition to the current box.
-(2) Remove \texttt{fastCard} from its current partition, and insert it into \texttt{lastPartition}
-(3) Confirm \texttt{lastPartition} is in a box, then check to see if it has a \texttt{next} value.\footnote{If you need help remembering how NACs work, review
+\emph{confirmed}! This means that, in the appropriate variables, you'll want to:
+(1) link the partition to the current box.
+(2) remove \texttt{fastCard} from its current partition, and insert it into \texttt{lastPartition}
+(3) confirm \texttt{lastPartition} is in a box, then check to see if it has a \texttt{next} value.\footnote{If you need help remembering how NACs work, review
 section 7}
 
 \vspace{0.5cm}
@@ -84,9 +82,10 @@ section 7}
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] You have now completed \texttt{every} method signature from your abstract syntax using SDMs - fantastic work! Build your project to
-confirm there aren't any errors, and review Fig.~\ref{fig:sdm_fastcard_5} to see how \texttt{FastCard}s are implemented visually. We encourage you to read each
-visual SDM section to understand the full scope of eMoflon's features (which start on page~\hyperlink{page.11}{11}) but you are, of course, free to carry
-on.
+\item[$\blacktriangleright$] You have now completed \emph{every} method signature from your abstract syntax using SDMs - fantastic work! Build your project to
+confirm there aren't any errors, and review Fig.~\ref{fig:sdm_fastcard_5} to see how \texttt{FastCard}s are implemented visually. 
+
+\item[$\blacktriangleright$] You are encouraged to read the visual SDM sections on each method to understand the full scope of eMoflon's features (which start
+on page~\hyperlink{page.9}{9}). 
   
 \end{itemize}

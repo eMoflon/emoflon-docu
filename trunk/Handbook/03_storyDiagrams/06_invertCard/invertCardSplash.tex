@@ -18,16 +18,16 @@ accept any parameters - it'll use a bounded \texttt{this} variable.
 \end{figure}
 \FloatBarrier
 
-Something new that we'll use in this SDM are \emph{assignments}\define{Assignments}to set the attributes of \texttt{temp} in \texttt{Initialize temp} and to
-swap the attributes of \texttt{this} in \texttt{Swap variables}. An assignment is simply an attribute constraint\footnote{Which we encountered in
-\texttt{check}} set with a `\texttt{:=}' operator. Though it might be slightly confusing to refer to an assignment as a constraint, if you think about it,
-\emph{everything} can be considered a a constraint that must be fulfilled with different strategies. 
+Something new that we'll use in this SDM are \emph{assignments}\define{Assignments}to set the attributes of \texttt{temp} to the \texttt{card}, then again to
+set \texttt{card} to the 'new' swapped values. An assignment is simply an attribute constraint\footnote{Which we first encountered in \texttt{check}} set via a
+`\texttt{:=}' operator. Though it may be slightly confusing to refer to an assignment as a constraint, if you think about it, \emph{everything} can be
+considered a a constraint that must be met through different strategies.
 
 With \texttt{invert}, a successful match is achieved not by searching as you would with a comparison (\texttt{==, >, <, \ldots}), but by \emph{performing} the
-assignment. If the assignment cannot be completed, the match is invalid. Similarly, non-context elements (set to create or destroy) can be viewed as structural
-constraints that are fulfilled when the corresponding element is created or destroyed.  A constraint is therefore a unifying concept similar to ``everything is
-an object'' from OO, and ``everything is a model'' from metamodelling.  If you're interested in why \emph{unification} is considered cool check out
-item \cite{BEZ05} the reference section.
+above assignment. If the assignment cannot be completed, the match is invalid. Similarly, non-context elements (set to create or destroy) can be viewed as
+structural constraints that are fulfilled when the corresponding element is created or destroyed.  A constraint is therefore a unifying concept similar to
+``everything is an object'' from OO, and ``everything is a model'' from metamodelling.  If you're interested in why \emph{unification} is considered cool check
+out item \cite{BEZ05} from the reference section.
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{invertCard vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{invertCard tex}{Next [textual]} }
 
