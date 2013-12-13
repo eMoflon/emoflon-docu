@@ -28,10 +28,10 @@ In the context menu that appears, select ``Create Bidirectional EReference'' (Fi
 \FloatBarrier
 
 \item[$\blacktriangleright$] Double click the EReference to invoke a dialogue. In this window you can adjust all relevant settings. Feel free to leave the
-\texttt{Name} value blank - this property is only used for documentation purposes, and is not relevant to code generation.
+\texttt{Name} value blank - this property is only used for documentation purposes, and is not relevant for code generation.
 
-\item[$\blacktriangleright$] Within this dialogue, go to ``Source Role,'' and compare the relevant values in Fig.~\ref{fig:role_source} for the \emph{Source}
-end of the EReference (the \texttt{Partition} role). As you can see, the default source is set to the EClass you linked \emph{to}, and the default \emph{Target}
+\item[$\blacktriangleright$] Within this dialogue, go to ``Source Role,'' and compare the relevant values in Fig.~\ref{fig:role_source} for the \emph{source}
+end of the EReference (the \texttt{Partition} role). As you can see, the default source is set to the EClass you linked \emph{to}, and the default target
 is the EClass you linked \emph{from}. In this window, do not forget to confirm and modify the \texttt{Role}, \texttt{Navigability}, \texttt{Multiplicity}, and
 \texttt{Aggregation} settings for the source as required. Repeat the process for the \texttt{Target Role} (Fig.~\ref{fig:role_target}).
 
@@ -56,10 +56,10 @@ is the EClass you linked \emph{from}. In this window, do not forget to confirm a
 To review these properties, the first value you edited was the role name. The \texttt{Navigation} value should have been automatically set to
 \texttt{Na\-vi\-ga\-ble}. Without these two settings, getter and setter methods will not be generated.
 
-Next, you set the \texttt{Multiplicity} value. In your target role (\texttt{Box}), you have allowed the creation of up to one target (\texttt{box}) reference
+Next, you set the \texttt{Multiplicity} value. In the source (\texttt{Partition}) role, you have specified that any target (in our case, \texttt{box}) can have
+any positive-sized number of sources. In your target role (\texttt{Box}), you have allowed the creation of up to one target (\texttt{box}) reference
 for every connected source (\texttt{Partition}). This means you could not have a single source connected to two targets (ie., one partition that belongs to two
-boxes). In the source (\texttt{Partition}) role, you have specified that any target (in our case, \texttt{box}) can have any positive-sized number of sources.
-Figure~\ref{fig:sketch_roles} sketches this idea.
+boxes). Figure~\ref{fig:sketch_roles} sketches this schematically.
 
 \vspace{0.5cm}
 
@@ -72,11 +72,11 @@ Figure~\ref{fig:sketch_roles} sketches this idea.
 \FloatBarrier
 
 Finally, you set the \texttt{Aggregation} value. In this case, \texttt{box} is a container for \texttt{Partition}s, and \texttt{containedPartition} is
-consquently not.
+consequently not.
 
 \begin{itemize}
 \item[$\blacktriangleright$] Take a moment to review how the \texttt{Aggregration} settings extend the \texttt{Multiplicity} rules. If you've done everything
-right, your workspace should now resemble Fig.~\ref{fig:ereference_completed}, with a single \emph{bidirectional EReference} between \texttt{Box} and
+right, your metamodel should now resemble Fig.~\ref{fig:ereference_completed}, with a single \emph{bidirectional EReference} between \texttt{Box} and
 \texttt{Partition}.
 
 \vspace{1cm}
@@ -106,7 +106,7 @@ concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\re
 
 \vspace{1cm}
 
-\item[$\blacktriangleright$] You'll notice that the connection \texttt{card} and \texttt{Partition} is similar to that between \texttt{Partition} and
+\item[$\blacktriangleright$] You'll notice that the connection between \texttt{Card} and \texttt{Partition} is similar to that between \texttt{Partition} and
 \texttt{Box}. This makes sense as a partition should be able to hold an unlimited amount of cards, but a card can only belong to one partition at a time.
 
 \vspace{1cm}
@@ -118,7 +118,7 @@ concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\re
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.7\textwidth]{eclipse_modelDeclaredClasses}
-	\caption{Refreshed Ecore file all EReferences}
+	\caption{Refreshed Ecore file with all EReferences}
 	\label{fig:model_allClasses}
 \end{figure}
 

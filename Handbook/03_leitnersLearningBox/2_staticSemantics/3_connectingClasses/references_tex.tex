@@ -3,15 +3,15 @@
 \texHeader
 \hypertarget{static:references tex}{}
 
-In MOSL, the declaration of an EReference is simple - you set each property according to the following syntax:
+In MOSL, the declaration of an EReference is simple - you set each property according to the following syntax (specified in simple EBNF, if you know what that
+is):
 
-{ \begin{quote} \small
-[$<>$] -$>$ role\_name ( multiplicity ) :  target\_type \\
+\syntax{ `[' `$<>$' `]' `-$>$' role\_name `(' multiplicity `)' `:'  target\_type \\
 \\
+With:\\
 role\_name := STRING \\
 multiplicity := $|$ 0..1 $|$ 0..* $|$ 1 $|$ \ldots \\
-target\_type := STRING \\
-\end{quote} }
+target\_type := STRING \\}
 
 The source type is determined by the EClass in which the EReference is placed. You can signal an aggregation EReference by including the sideways diamond before
 the arrow symbol. Don't worry - you don't have to remember this syntax. Our type completion provides a \texttt{reference} template when you activate the hot
@@ -28,7 +28,7 @@ can hold an infinite number of partitions.
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.6\textwidth]{eclass_box}
-	\caption{Creating a \emph{contained reference} in \texttt{Box}}
+	\caption{Creating a \emph{container reference} in \texttt{Box}}
 	\label{fig:cpartitionReference}
 \end{figure} 
 
@@ -68,9 +68,8 @@ all that different from the relation between \texttt{Box} and \texttt{Partition}
 
 \newpage
 
-\item[$\blacktriangleright$] The next step is to construct two connections between \texttt{Partition}s and \texttt{Card}, so cards can be moved between its
-previous and next partitions in the box. Create two new simple references, named \texttt{previous}, and \texttt{next}, each with a \texttt{0..1} multiplicity.
-Allow them to have a maximum of 1 link each.
+\item[$\blacktriangleright$] The next step is to construct two connections between \texttt{Partition}s so cards can be moved between their previous and next
+partitions in the box. Create two new simple references, named \texttt{previous}, and \texttt{next}, each with a \texttt{0..1} multiplicity.
 
 \vspace{0.5cm}
 
@@ -93,24 +92,24 @@ At this point, all of your EReferences have been created! The problem is, suppos
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Navigate to the ``\_constraints.mconf'' file. You can see it has a single \texttt{opposites} scope that's currently empty.
-Constraints follow the syntax structure below: 
-{ \begin{quote} \small
-	opposite\_constraint : reference `$<$ - $>$' reference \\
-	reference : reference\_name `:' source\_type \\
-	\\
-	reference\_name : STRING \\
-	source\_type : STRING \\
-\end{quote} }
+\item[$\blacktriangleright$] Navigate to the \texttt{\_constraints.mconf} file. You can see it has a single \texttt{opposites} scope that's currently empty.
+Constraints follow the syntax below: 
+
+\syntax{reference `$<$ - $>$' reference \\
+\\
+With:\\
+reference `:' reference\_name `:' source\_type \\
+reference\_name : STRING \\
+source\_type : STRING \\}
 
 This statement sets the two EReferences to be opposites of one another, i.e., the connection between EClasses will be bidirectional. As you can see, syntax here
 is slightly different than that of a standard EReference. Instead of the reference type trailing the colon operator, it has switched to become the source type.
 
+\vspace{0.5cm}
+
 \item[$\blacktriangleright$] To begin, press \texttt{ctrl + space} and complete the template with the following:
 
-{\begin{quote} \small
-	containedPartition : Box $<$ - $>$ : Partition
-\end{quote}}
+\syntax{containedPartition : Box $<$ - $>$ box : Partition}
 
 \item[$\blacktriangleright$] Reviewing the \texttt{Partition} EClass, its easy to see that \texttt{previous} and \texttt{next} are certainly not
 opposites,\footnote{Review the rules depicted in (Fig.~\ref{fig:membox_illustration})} but we do need to establish an opposing link between
@@ -122,6 +121,8 @@ opposites,\footnote{Review the rules depicted in (Fig.~\ref{fig:membox_illustrat
 	\caption{The completed constraints file}
 	\label{fig:bothConstraints}
 \end{figure} 
+
+\newpage
 
 \item[$\blacktriangleright$] Now the EReferences for your learning box are complete! To see how each of the classes, attributes, and references
 are depicted in the visual syntax, check out Fig.~\ref{fig:ereferences_all} from \hyperlink{sec:static vis}{section 2.1}. Otherwise, build your project to

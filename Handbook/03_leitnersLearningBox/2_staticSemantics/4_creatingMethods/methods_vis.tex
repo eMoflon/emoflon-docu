@@ -44,12 +44,6 @@ your project. Simply typing them won't work!
 	\label{fig:operation_properties}
 \end{figure}
 
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.85\textwidth]{ea_operationRemoveCard}
-	\caption{Parameters and return type}
-	\label{fig:operation_parameters}
-\end{figure}
 
 \item[$\blacktriangleright$] Parameters can be added by pressing \texttt{Edit}\footnote{You must save the operation before this option will become active} and
 completing the dialouge. Please remember that you must also use either the drop-down menu, or the `\texttt{\ldots}' button to select the type or else validation
@@ -60,12 +54,6 @@ will fail.
 \item[$\blacktriangleright$] If you've done everything right, your dialogue should now contain three methods - \texttt{check}, \texttt{empty}, and
 \texttt{removeCard} - each with the corresponding parameters and return types in Fig.~\ref{fig:operation_partition}.
 
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.9\textwidth]{ea_operationCheck}
-	\caption{All operations in \texttt{Partition}}
-	\label{fig:operation_partition}
-\end{figure}
 
 \item[$\blacktriangleright$] Add all operations analogously for \texttt{Box} and \texttt{Card} until your metamodel closely resembles
 Fig.~\ref{fig:metamodel_complete}.\footnote{Please note that names of parameters may not be displayed by default in EA}
@@ -73,16 +61,42 @@ Fig.~\ref{fig:metamodel_complete}.\footnote{Please note that names of parameters
 \item[$\blacktriangleright$] To finish, export the metamodel for code generation in Eclipse, and examine the model once again. Each signature should have
 appeared in their respective EClass.
 
+\item[$\blacktriangleright$] To see how this complete metamodel is represented in the textual syntax, examine Fig.~\ref{fig:workspaceMethods} in the following
+section. 
+
+\newpage
+
+\vspace*{1cm}
+
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=0.85\textwidth]{ea_operationRemoveCard}
+	\caption{Parameters and return type}
+	\label{fig:operation_parameters}
+\end{figure}
+
+\vspace{1cm}
+
+\begin{figure}[h!]
+	\centering
+  \includegraphics[width=0.9\textwidth]{ea_operationCheck}
+	\caption{All operations in \texttt{Partition}}
+	\label{fig:operation_partition}
+\end{figure}
+
+\newpage
+
+\vspace*{2cm}
+
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.63\textwidth]{ea_metamodelComplete.png}
 \caption[Complete metamodel for our learning box.]{Complete metamodel for our learning box}
 	\label{fig:metamodel_complete}
 \end{figure}
+\FloatBarrier
 
-\item[$\blacktriangleright$] To see how this complete metamodel is represented in the textual syntax, examine Fig.~\ref{fig:workspaceMethods} in the following
-section. 
+\fancyfoot[R]{$\triangleright$ \hyperlink{validation vis}{Next}}
 
 \end{enumerate}
 
-\fancyfoot[R]{$\triangleright$ \hyperlink{validation vis}{Next}}

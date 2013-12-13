@@ -5,49 +5,48 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] To introduce fast cards to our learning box go to the metamodel and create the new \texttt{eclass}, \texttt{FastCard}. Quick-link
-to \texttt{Card} and choose \texttt{Inheritance} from the context menu (Fig.~\ref{fig:sdm_fastcard_1}).
+\item[$\blacktriangleright$] To introduce fast cards into your learning box, return to the metamodel and create the new \texttt{eclass}, \texttt{FastCard}.
+Quick-link to \texttt{Card} and choose \texttt{Create Inheritance} from the context menu (Fig.~\ref{fig:sdm_fastcard_1}). You don't to override anything, so
+when the \texttt{Overrides \& Implementations} dialogue appears, make sure nothing is selected. Your metamodel should now resemble
+Fig.~\ref{fig:metamodel_FastCard}
 
-% INCORRECT IMAGE: missing operation printCard()
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=0.4\textwidth]{fastcard}
-  \caption{Fast cards are a special kind of card. {\bf UPDATE}}  
-  \label{fig:sdm_fastcard_1}
+  \includegraphics[width=0.9\textwidth]{ea_EClassFastCard}
+  \caption{Fast cards are a special kind of card}  
+  \label{fig:metamodel_FastCard}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Now go to the SDM \texttt{check} in \texttt{Partition} and extend the control flow as depicted in Fig.~\ref{fig:sdm_fastcard_2}.
- 
-\item[$\blacktriangleright$] Add new story nodes \texttt{isFastCard?} and \texttt{promote FastCard} and drag and drop a bound object variable
-\texttt{fastcard} \emph{of type} \texttt{FastCard} into \texttt{is fast card?}.
+\item[$\blacktriangleright$] Now return to the \texttt{check} SDM (in \texttt{Partition}) and extend the control flow as depicted in
+Fig.~\ref{fig:extendCheck}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=1.2\textwidth]{fastcard_controlflow.pdf}
+  \includegraphics[width=\textwidth]{ea_extendCheck}
   \caption{Extend check to handle fast cards.}  
-  \label{fig:sdm_fastcard_2}
+  \label{fig:extendCheck}
 \end{center}
 \end{figure}
-
-\end{itemize}
-
-
-
-\begin{itemize}
+ 
+\item[$\blacktriangleright$] As you can see, you have created two new story nodes, the \texttt{isFastCard} assertion, and the \texttt{promoteFastCard} movement.
+In order to complete the conditional, create a bounded \texttt{fastcard} object in \texttt{isFastCard}. To check the dynamic type, we'll need to create a binding
+of \texttt{card} (of type \texttt{Card}) to \texttt{fastcard} (of type \texttt{FastCard}), so edit the \texttt{Binding} tab in the \texttt{Object Variable
+Properties} dialogue (Fig.~\ref{fig:fastCardBinding}). As you can see, this construction sets the pattern matcher to check for types, rather than
+\texttt{parameters} and \texttt{attributes} as we've previously encountered.
   
-\item[$\blacktriangleright$] To create a binding for \texttt{fastcard}, choose the \texttt{Binding} tab in the \texttt{Object Variable Properties} dialogue (Fig.~\ref{fig:sdm_fastcard_3}).
-
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{fastcard_bindingexp}
-  \caption{Create a binding for \texttt{fastcard}.}  
-  \label{fig:sdm_fastcard_3}
+  \includegraphics[width=0.9\textwidth]{ea_fastCardBinding}
+  \caption{Create a binding for \texttt{fastcard}}  
+  \label{fig:fastCardBinding}
 \end{center}
 \end{figure}
 
-As usual, all our expression types can be used for the \texttt{Binding Expression}.  
-Since we already know all the types let's consider what each type would mean in this context: 
+ \clearpage
+
+As usual, all of our expression types can be used for the binding expression. Since you have encountered all of these at least once over the course of building
+the complete metamodel, let's consider what each type would mean in this context:
 \begin{description}
   \item[MethodCallExpression:]~\\ This would allow invoking a method and binding
   its return value to the object variable.  This is how non-primitive return
@@ -73,9 +72,13 @@ Since we already know all the types let's consider what each type would mean in 
 In our case, we could use a ParameterExpression or an ObjectVariableExpression as \texttt{card} is indeed a parameter \emph{and} has already been used in
 \texttt{checkIfGuessIsCorrect}. 
 
-\item[$\blacktriangleright$] Since we haven't used ObjectVariableExpressions before, lets try it out! Choose \texttt{ObjectVariableExpression} as the type of
-binding expression, and \texttt{card} from the drop-down menu as the target. If you've done everything right, the binding should be visualised concisely as in
-Fig.~\ref{fig:sdm_fastcard_4}.
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] Since we haven't used \texttt{ObjectVariableExpression} before, lets change our \texttt{fastcard} binding and try it out! Switch
+the expression to \texttt{ObjectVariableExpression} with \texttt{card} as the target. If you've done everything right, the binding should be visualised
+concisely as in Fig.~\ref{fig:sdm_fastcard_4}.
+ 
+ \vspace{0.5cm}
  
 \begin{figure}[htbp]
 \begin{center}
@@ -85,26 +88,32 @@ Fig.~\ref{fig:sdm_fastcard_4}.
 \end{center}
 \end{figure}
 
-% Maybe include a footnote hyperlink to 'extract' in case user needs a reminder on how to do? (this chapter is fairly large, after all..)
-\item[$\blacktriangleright$] To complete the SDM, extract the story pattern of \texttt{promote FastCard} and specify the pattern according to
-Fig.~\ref{fig:sdm_fastcard_5}.
-The fast card is transferred from the current partition \texttt{this}, to the last partition in the box, which is identified with an appropriate \mbox{NAC}
+\clearpage
+
+\item[$\blacktriangleright$] Enough playing -- lets finish this SDM. Extract the \texttt{promoteFastCard} story pattern and build the pattern as
+depicted in according to Fig.~\ref{fig:promoteFastCardPattern}. Compare this pattern to Figs.~\ref{fig:sdm_check_complete_activity_node} and
+\ref{fig:sdm_check_complete_penalize}. As you can see, they're very similar, except \texttt{fastCard} is transferred from the current partition (\texttt{this})
+and immediately to the last partition in \texttt{box}, identified as having no \texttt{next} references via an NAC.
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.9\textwidth]{promoteFastCard}
+  \includegraphics[width=\textwidth]{ea_promoteFastCardPattern}
   \caption{Story pattern for handling fast cards.}  
-  \label{fig:sdm_fastcard_5}
+  \label{fig:promoteFastCardPattern}
 \end{center}
 \end{figure}
 
+\vspace{0.5cm}
+
 \item[$\blacktriangleright$] Inspect Fig.~\ref{fig:promoFastCardFinal} to see how this is finalized in the you-know-what syntax.
 
-\item[$\blacktriangleright$] You have now completed every method signature from your abstract syntax using SDMs - fantastic work! Validate, export, and generate
-code for your metamodel. Inspect the implementation for \texttt{check}.  Can you find the generated type casts for \texttt{fastcard}?
+\item[$\blacktriangleright$] You have now completed every method signature from your abstract syntax using SDMs - fantastic work! Validate, export, and build to
+generate the new code for your metamodel. Inspect the implementation for \texttt{check}.  Can you find the generated type casts for \texttt{fastcard}?
 
 \item[$\blacktriangleright$] At this point, we encourage you to read each of the textual SDM sections to understand the full scope of eMoflon's features
-(which start on page~\hyperlink{page.11}{11}) but you are, of course, free to carry on.
+(which start on page~\hyperlink{page.9}{9}) but you are, of course, free to carry on.
 
 \fancyfoot[R]{ $\triangleright$ \hyperlink{sec:conBran}{Next}}
 

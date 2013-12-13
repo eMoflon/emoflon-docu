@@ -74,7 +74,7 @@ in EA is mapped to a working set in Eclipse with the same name. From every packa
 
 \begin{figure}[htbp]
     \centering
-  \includegraphics[width=\textwidth]{Unbenannt}
+  \includegraphics[width=\textwidth]{fromEAToEclipse}
     \caption{From EA to Eclipse}
     \label{fig_fromEAtoEclipse}
 \end{figure}
@@ -89,15 +89,13 @@ metamodelling language that provides building blocks such as \emph{classes} and 
 between concepts) of a system. This folder also contains a \emph{Genmodel}, the second model required by the Eclipse Modeling Framework (EMF) to generate Java
 code.
 
-%\nxtPage{\thepage}
-
 Looking back to Fig.~\ref{fig_fromEAtoEclipse}, realize that it also depicts how the class \texttt{Node} in the EA model is mapped to the Java interface
 \texttt{Node}. Double-click \texttt{Node.java} and take a look at the methods declared in the interface. These correspond directly to the methods declared in
 the modelled \texttt{Node} class.
 
 As indicated by the source folders \texttt{src}, \texttt{injection}, and \texttt{gen}, we advocate a clean separation of hand-written (should be placed in
 \texttt{src} and \texttt{injection}) and generated code (automatically in \texttt{gen}). As we shall see later in the handbook, hand-written code can be
-integrated in generated classes via \emph{Injections}. This is sometimes necessary for small helper functions.
+integrated in generated classes via \emph{injections}. This is sometimes necessary for small helper functions.
 
 Have you noticed the methods of the \texttt{Node} class in our EA model?  Now hold on tight -- each method can be \emph{modelled} completely in EA and the
 corresponding implementation in Java is generated automatically and placed in \texttt{NodeImpl.java}.
