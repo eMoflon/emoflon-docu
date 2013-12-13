@@ -9,19 +9,16 @@
 all, a model that only stores attributes and references is a bit boring, right?
 
 \item[$\blacktriangleright$] Let's set up the operations we want each EClass to do by declaring their \emph{signatures} which follow the syntax below:
-{ \begin{quote} \small
-	name `(' arguments `)' `:' return\_type \\
-	\\
-	name, arguments, return\_type := STRING
-\end{quote}}
+\syntax{name `(' argument* `)' `:' return\_type \\
+\\
+With:\\
+name, arguments, return\_type := STRING}
 
 \item[$\blacktriangleright$] Starting with the \texttt{Partition} EClass, we want a partition to be able to do three things: compare the answer on a
 \texttt{Card} with a guess and return a true/false response, remove a specific card from the partition, or empty itself of all cards.
 
 \item[$\blacktriangleright$] Start with the \texttt{empty} method. It won't need any parameters, and it doesn't return anything. Declare this via:
-{ \begin{quote} \small
-	empty() : void
-\end{quote} }
+\syntax{empty() : void}
 
 \item[$\blacktriangleright$] Create two more functions for \texttt{Partition} the same way. We'll need a \texttt{removeCard} method that accepts and returns a
 \texttt{Card}, as well as a EBoolean \texttt{check} method that accepts a \texttt{Card} and an \texttt{EString} guess. 
@@ -46,7 +43,7 @@ side. We'll also need to print whatever is on the current side. Create two param
 
 \begin{description}
   \item[\texttt{determineNextSize():EInt}] Calculate how large a new partition in the box should be
-  \item[\texttt{grow():void}] Increase the box by adding a new partition
+  \item[\texttt{grow():void}] Increase the box by adding a new partition \update
   \item[\texttt{toString():EString}] Produce a string representation of the box with all its contents
   \item[\texttt{addToStringRep(card:Card):void}] Update the current string representation to include \texttt{card}
 \end{description}

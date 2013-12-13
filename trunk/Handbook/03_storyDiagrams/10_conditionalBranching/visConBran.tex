@@ -3,35 +3,52 @@
 \subsection{Visual; (original appendix text)}
 \visHeader
 
-Perform the following steps to branch with a \texttt{StatementNode}:
-\begin{enumerate}
-\item[$\blacktriangleright$] Add a new statement node (cf.~Fig.~\ref{fig:cond_statement_node}) at the appropriate location in your SDM.
-\item[$\blacktriangleright$] Invoke a non-void method (an operation in the metamodel) via a \texttt{MethodCallExpression} (cf.~Fig.~\ref{fig:cond_method_call}).
-\item[$\blacktriangleright$] Add \texttt{Success} \emph{and} \texttt{Failure} edges to the \texttt{StatementNode} to branch appropriately.
-\end{enumerate}
+\begin{itemize}
+  
+
+\item[$\blacktriangleright$] Edit the \texttt{Box} class in your metamodel by invoking the \texttt{Operations} dialogue and create a new method called
+\texttt{initalizeBox}. Recalling the sole condition of this feature, set its return type as \texttt{EBoolean}. Save the method, then open the \texttt{grow} SDM.
+
+\item[$\blacktriangleright$] Add a new \texttt{StatementNode} named \texttt{initialize}. In the \texttt{Statement} tab, invoke a \texttt{MethodCallExpression},
+using the \texttt{this} object to access your new method.
+
+\item[$\blacktriangleright$] Attach two \texttt{StopNode}s to this statement, one \texttt{true} upon \texttt{success}, and one \texttt{false} upon
+\texttt{failure}. The new additions should resemble Fig.~\ref{fig:newGrowControl}.
 
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{01_switch_to_statement_node}
-  \caption{Switch from activity node to statement node}
-  \label{fig:cond_statement_node}
+  \includegraphics[width=0.7\textwidth]{ea_growControlAddition}
+  \caption{caption}
+  \label{fig:newGrowControl}
 \end{center}
 \end{figure}
+
+
+\item[$\blacktriangleright$] Given that we now have our desired control flow, save, validate, and build your metamodel in Eclipse. Open \texttt{BoxImpl.java},
+and go to the \texttt{grow} declaration, starting at (approximately) line 207. Scan the comments until you find \texttt{``//satement node initialize''}.
 
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{02_specify_method_call_expression}
-  \caption{Specify the method call expression}
-  \label{fig:cond_method_call}
+  \includegraphics[width=0.5\textwidth]{eclipse_boxImplStatementNode}
+  \caption{caption}
+  \label{fig:initBoxImpl}
 \end{center}
 \end{figure}
 
-Fig.~\ref{fig:cond_branch_on_op_code} depicts the corresponding generated if/else branch in Java.
+\item[$\blacktriangleright$] Remember - the purpose of SDMs is to model \emph{control flow} -- this is \emph{not} where you'll define the function! Instead,
+press \texttt{ctrl} and click on \texttt{initializeBox()}. This will automatically take you to its declaration (Fig.~\ref{fig:initBoxDecl}).
 
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{generated_code}
-  \caption{Generated code for branch}
-  \label{fig:cond_branch_on_op_code}
+  \includegraphics[width=\textwidth]{eclipse_initializeBoxDeclaration}
+  \caption{caption}
+  \label{fig:initBoxDecl}
 \end{center}
 \end{figure}
+
+\item[$\blacktriangleright$] Before writing the needed Java code, lets review the goal of this pattern. We want to create two new boxes if and only if there are
+\emph{no} partitions (i.e., no partition structure exists). This means we'll need to create a NAC!
+ 
+ \fancyfoot[R]{ $\triangleright$ \hyperlink{return conBran}{Next}}
+
+\end{itemize}

@@ -13,9 +13,7 @@ semantics of a domain specific language (metamodel), and those that are expresse
 \begin{itemize}
 
 \item[$\blacktriangleright$] To create an instance model, navigate to the generated \texttt{model} folder in your \texttt{LearningBoxLanguage} project.
-Double-click the \texttt{LearningBoxLa\-nguage.ecore} model to invoke  the \emph{Ecore model editor}. The Eclipse Modeling Framework (EMF) provides a generic
-tree model editor which allows us to create and edit arbitrary instances of any metamodel specified with eMoflon. Expand this tree to review all the EClasses,
-attributes, and operations in your metamodel.
+Double-click the \texttt{LearningBoxLa\-nguage.ecore} model to invoke  the \emph{Ecore model editor}. 
 
 \vspace{0.5cm}
 
@@ -44,9 +42,9 @@ instance model (Fig.~\ref{fig:store_dynamic_instance}).
 	\label{fig:store_dynamic_instance}
 \end{figure}
 
-\item[$\blacktriangleright$] Press \texttt{Finish}, and the generic model editor should open for your new instance model. This editor works just like the
-previous Ecore model editor except it's ``generic,'' meaning it allows you to create and edit an instance of \emph{any} metamodel, not only those with
-metamodels.
+\item[$\blacktriangleright$] Press \texttt{Finish}, and a generic model editor should open for your new instance model. This editor works just like the
+previous Ecore model editor except it's ``generic,'' meaning it allows you to create and edit an instance of \emph{any} metamodel, not only instances of Ecore
+(i.e., metamodels).
 
 \clearpage
 
@@ -83,16 +81,15 @@ partition's unique idenfitication value, and \texttt{Partition Size} is the reco
 \texttt{Enter}, the values will be reflected in the \texttt{.xmi} tree.
 
 \item[$\blacktriangleright$] Now you need to set the \texttt{Next} and \texttt{Previous} EReferences which will make it possible to move cards through the
-box. Set every \texttt{Previous} value to the very first partition in your box, then each \texttt{Next} value to the next partition. For the final partition,
-set the \texttt{Next} value to itself.
+box. Given that there are no partition before the first, set \texttt{Previous} values only for your second and third partition to that first partition.
+Similarly, only set the \texttt{Next} values for the first, and second partition to their respective 'next' partitions.
 
 \item[$\blacktriangleright$] In the same fashion, double click on each \texttt{Card} you created and modify their values. In particular, update the
 \texttt{Back} attribute to \texttt{One}. This is the value you'll be able to see from the partition and thus, the \texttt{.xmi} tree. You'll be experimenting
 with the \texttt{Face} attribute shortly, so provide a \texttt{1} value for that as well.
 
-\item[$\blacktriangleright$] Fill in the rest the cards with similar vocabulary-style words (Such as two/2, three/3, \ldots) that you can `test' yourself on
-(Fig.~\ref{fig:finalXMI}).
-You now have a unique, customized learning box! Save your model, and ensure no errors exist before proceeding.
+\item[$\blacktriangleright$] Fill in the rest the cards with similar vocabulary-style words (such as two/2, three/3, \ldots) that you can `test' yourself on
+(Fig.~\ref{fig:finalXMI}). You now have a unique, customized learning box! Save your model, and ensure no errors exist before proceeding.
 
 \begin{figure}[htbp]
 	\centering

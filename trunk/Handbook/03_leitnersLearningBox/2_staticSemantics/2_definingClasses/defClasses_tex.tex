@@ -10,25 +10,25 @@
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] The class editor should automatically open. Let's add the first two EAttributes of our program, \texttt{name} and
-\texttt{stringRep}. eMoflon offers type completion templates to help you with this task. Go to an empty line and press \texttt{ctrl + space}. You'll be provided
+\item[$\blacktriangleright$] The class editor should automatically open. Let's add the first two EAttributes of our \texttt{Box}, \texttt{name} and
+\texttt{stringRep}. eMoflon offers auto-completion templates to help you with this task. Go to an empty line and press \texttt{ctrl + space}. You'll be provided
 with a short list of suggestions (Fig.~\ref{fig:typeCompTempl}). The first four items are related to method control flow, so select \texttt{attribute} near
-the bottom, and create \texttt{name} of type \texttt{EString}.
+the bottom to create \texttt{name} of type \texttt{EString}.
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.6\textwidth]{eclipse_typeCompletionTemplates}
-	\caption{eMoflon's type completion}
+	\caption{eMoflon's auto-completion}
 	\label{fig:typeCompTempl}
 \end{figure} 
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Type completion also supports you by suggesting a list of types. Start to create a second attribute, \texttt{stringRep}, but
+\item[$\blacktriangleright$] Auto-completion also supports you by suggesting a list of types. Start to create a second attribute, \texttt{stringRep}, but
 stop after typing the \texttt{`:'} operator and press the hotkeys. The pop-up list provides a list of all types currently available (Fig.~\ref{fig:typeCompTypes}) in
-both your metamodel, and eMoflon's standard metamodel that's included in every new project.
+both your metamodel, and eMoflon's standard metamodels that are included in every new project.
 
 \vspace{0.5cm}
 
@@ -39,7 +39,7 @@ both your metamodel, and eMoflon's standard metamodel that's included in every n
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.6\textwidth]{eclipse_typeCompletionTypes}
-	\caption{Object type suggestions for \texttt{stringRep}}
+	\caption{Type suggestions for \texttt{stringRep}}
 	\label{fig:typeCompTypes}
 \end{figure} 
 
@@ -63,9 +63,7 @@ both your metamodel, and eMoflon's standard metamodel that's included in every n
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] In \texttt{Card}, create three \texttt{EString} attributes, \texttt{back}, \texttt{face} , and \texttt{partitionHistory}.
-
-\vspace{0.5cm}
+\item[$\blacktriangleright$] In \texttt{Card}, create three \texttt{EString} attributes, \texttt{back}, \texttt{face} , and \texttt{part\-it\-ion\-His\-tory}.
 
 \item[$\blacktriangleright$] If you've done everything correctly, your workspace should now resemble Fig.~\ref{fig:workspaceClassAttributes}.
 
@@ -82,7 +80,5 @@ both your metamodel, and eMoflon's standard metamodel that's included in every n
 mode, and the generated files in ``gen" and ``src." On a final note, while some languages (such as Java) allow the declaration of several small classes (such as
 these three) in the same file, when tooling with eMolfon, we keep them separated. Don't worry - we'll explain this later in the handbook. As for now, continue
 to the next section to start creating references between these EClasses.
-
-% \fancyfoot[R]{$\triangleright$ \hyperlink{static:references splash}{Next}}
 
 \end{itemize}

@@ -88,21 +88,24 @@
 % Text instructions; Blue header
 \newcommand{\texHeader}{
 	\fancyfoot{}
-	\fancyhead[L]{\color{ProcessBlue}\tiny \bf TEXTUAL}
+	\fancyhead[L]{\color{CornflowerBlue}\tiny \bf TEXTUAL}
 	\renewcommand{\headrulewidth}{1.5pt}
 	\renewcommand{\headrule}{\hbox to\headwidth{%
-  		\color{ProcessBlue}\leaders\hrule height \headrulewidth\hfill}}
+  		\color{CornflowerBlue}\leaders\hrule height \headrulewidth\hfill}}
 }
 % -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-\newcommand{\requiredTime}[1]{
-	{\scriptsize \texttt{Approximate time to complete: #1} }
-}
+\newcommand{\requiredTime}[1]{{\scriptsize \texttt{Approximate time to complete: #1} }}
 
 % These words should appear in the glossary
-\newcommand{\define}[1]{
-	\marginpar{\small\emph{#1}}
-}	
+\newcommand{\define}[1]{ \marginpar{\small\emph{#1}}
+}
+
+% Text syntax/command format
+\newcommand{\syntax}[1]{ \begin{quote} \small \texttt{#1} \end{quote}}	
+
+% Author comment
+\newcommand{\update}{{\bf update}}
 
 % --- Individual Download Handbook Links  ----------------------------------------------------------------------------------------------------------------------
 \newcommand{\dlPartZero}{\url{http://www.moflon.org/}}
@@ -112,6 +115,7 @@
 \def\versionNumber{0.0}
 \input{../../06_miscellaneous/commonFiles/titlepage}
 % -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
  
 \begin{document}
 

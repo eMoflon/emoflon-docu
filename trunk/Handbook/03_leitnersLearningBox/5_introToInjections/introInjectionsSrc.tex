@@ -2,7 +2,7 @@
 \section{Introduction to injections}
 \genHeader
 
-This short introducion will show you how to implement small methods by adding handwritten code to classes created from your model. Injections are inspired by
+This short introducion will show you how to implement small methods by adding handwritten code to classes generated from your model. Injections are inspired by
 partial classes in C\#, and are our preferred way of providing a clean separation between generated and handwritten code. 
 
 Let's implement the \texttt{removeCard} method, declared in the \texttt{Partition} EClass. In order to `remove' a card from a partition, all one needs to do is
@@ -14,7 +14,7 @@ one as well.
 
 \item[$\blacktriangleright$] From your working set, open ``gen/LearningBoxLanguage.impl/Part\-it\-ionImpl.java'' and enter the following code\footnote{To avoid
 errors, you are able to copy/paste this text} in the \texttt{removeCard} declaration, starting at approximately line 358. Do not remove the first comment,
-which is necessary to indicate that this code is written by the user and needs to be extracted automatically into our injection file.
+which is necessary to indicate that this code is written by the user and needs to be extracted automatically as an injection.
 
 \begin{figure}[htbp]
         \centering
@@ -31,7 +31,7 @@ which is necessary to indicate that this code is written by the user and needs t
         \label{fig:addToStringRep_impl}
 \end{figure}
 
-\item[$\blacktriangleright$] Save the file, then right-click either on the file in the package explorer, or in editor window, and choose ``eMoflon/
+\item[$\blacktriangleright$] Save the file, then right-click either on the file in the package explorer, or in the editor window, and choose ``eMoflon/
 Create/Update Injection for class'' from the context menu (Fig.~\ref{fig:injection_create_injection}).
 
 \begin{figure}[htbp]
@@ -60,6 +60,7 @@ but with a new \texttt{.inject} extension (Fig.~\ref{fig:injection_folder}).
     \caption{Generated injection file for \texttt{PartitionImpl.java}}
     \label{fig:injection_partialClassPartition}
 \end{figure}
+\item[$\blacktriangleright$] As a final step, clean and build your metamodel to check that the code is generated and injected properly.
 
 \item[$\blacktriangleright$] That's it! While injecting handwritten code is a remarkably simple process, it is pretty boring and low level to call all those
 setters and getters yourself. While we'll still establish two simple methods in Part III using this strategy, we'll also learn how to implement more complex
