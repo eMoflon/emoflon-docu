@@ -31,8 +31,8 @@ In the context menu that appears, select ``Create Bidirectional EReference'' (Fi
 \texttt{Name} value blank - this property is only used for documentation purposes, and is not relevant for code generation.
 
 \item[$\blacktriangleright$] Within this dialogue, go to ``Source Role,'' and compare the relevant values in Fig.~\ref{fig:role_source} for the \emph{source}
-end of the EReference (the \texttt{Partition} role). As you can see, the default source is set to the EClass you linked \emph{to}, and the default target
-is the EClass you linked \emph{from}. In this window, do not forget to confirm and modify the \texttt{Role}, \texttt{Navigability}, \texttt{Multiplicity}, and
+end of the EReference (the \texttt{Box} role). As you can see, the default source is set to the EClass you linked from, while the default target
+is the EClass you linked to. In this window, do not forget to confirm and modify the \texttt{Role}, \texttt{Navigability}, \texttt{Multiplicity}, and
 \texttt{Aggregation} settings for the source as required. Repeat the process for the \texttt{Target Role} (Fig.~\ref{fig:role_target}).
 
 \vspace{0.5cm}
@@ -56,10 +56,10 @@ is the EClass you linked \emph{from}. In this window, do not forget to confirm a
 To review these properties, the first value you edited was the role name. The \texttt{Navigation} value should have been automatically set to
 \texttt{Na\-vi\-ga\-ble}. Without these two settings, getter and setter methods will not be generated.
 
-Next, you set the \texttt{Multiplicity} value. In the source (\texttt{Partition}) role, you have specified that any target (in our case, \texttt{box}) can have
-any positive-sized number of sources. In your target role (\texttt{Box}), you have allowed the creation of up to one target (\texttt{box}) reference
-for every connected source (\texttt{Partition}). This means you could not have a single source connected to two targets (ie., one partition that belongs to two
-boxes). Figure~\ref{fig:sketch_roles} sketches this schematically.
+Next, you set the \texttt{Multiplicity} value.  In your source role (\texttt{Box}), you have allowed the creation of up to one target (\texttt{Partition})
+reference for every connected source (\texttt{box}). This means you could not have a single target connected to two sources (i.e., one partition that belongs to
+two boxes). In the target (\texttt{Partition}) role, you have specified that any source (in our case, \texttt{box}) can have any positive-sized number of targets.
+Figure~\ref{fig:sketch_roles} sketches this schematically.
 
 \vspace{0.5cm}
 
@@ -98,7 +98,7 @@ concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\re
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.6\textwidth]{ea_classAttributes}
+  \includegraphics[width=0.7\textwidth]{ea_classAttributes}
 	\caption{All relations in our metamodel}
 	\label{fig:ereferences_all}
 \end{figure}
@@ -128,6 +128,6 @@ concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\re
 declared in the textual syntax, starting on the immediate next page. In particular, check out Fig.~\ref{fig:allReferences}, where each EClass is fully
 declared, and Fig.~\ref{fig:bothConstraints}, where bidirectionality is explicitly specified as a constraint.
 
-\fancyfoot[R]{$\triangleright$ \hyperlink{static:methods vis}{Next}}
+\jumpSingle{static:methods vis}
 
 \end{itemize}

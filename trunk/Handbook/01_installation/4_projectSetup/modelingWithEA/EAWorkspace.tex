@@ -100,11 +100,8 @@ integrated in generated classes via \emph{injections}. This is sometimes necessa
 Have you noticed the methods of the \texttt{Node} class in our EA model?  Now hold on tight -- each method can be \emph{modelled} completely in EA and the
 corresponding implementation in Java is generated automatically and placed in \texttt{NodeImpl.java}.
 Just in case you didn't get it: The behavioural or dynamic aspects of a system can be completely modelled in an abstract, platform (programming language)
-independent fashion using a blend of activity  diagrams and a ``graph pattern'' language called \textit{Story Driven Modelling}~(SDM).
-
-%\nxtPage{\thepage}
-
-In our EA project, these \emph{Story Diagrams} or simply \emph{SDM}s, are placed in SDM Containers named according to the method they implement.
+independent fashion using a blend of activity  diagrams and a ``graph pattern'' language called \textit{Story~Driven~Modelling}~(SDM). In our EA project, these
+\emph{Story Diagrams} or simply \emph{SDM}s, are placed in SDM Containers named according to the method they implement.
 E.g.  \texttt{$\guillemotleft$SDM Activity$\guillemotright$ insertNodeAfter SDM} for the method \texttt{insertNodeAft\-er(Node)} as depicted in
 Fig.~\ref{fig_fromEAtoEclipse}.  We'll dedicate Part III of the handbook to understanding why SDMs are so  {\huge crazily} cool!
 
@@ -116,15 +113,14 @@ On this lower \emph{level of abstraction}, we can flesh out the generated reposi
 libraries.  Our abstract specification of behaviour (methods) in SDM is translated to a series of method calls that form the body of the corresponding Java
 method~(6).
 
-\newpage
-\fancyfoot[R]{  $\triangleright$ \hyperlink{codeGen common}{Next} }
+\jumpSingle{codeGen common}
 
-\vspace*{3cm}
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=1.1\textwidth]{tafelbild}
 	\caption{Overview}
 	\label{fig_Overview}
 \end{figure}
+
 
 \clearpage
