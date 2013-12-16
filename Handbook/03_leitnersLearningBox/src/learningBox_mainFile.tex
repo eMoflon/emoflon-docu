@@ -97,26 +97,32 @@
 
 \newcommand{\requiredTime}[1]{{\scriptsize \texttt{Approximate time to complete: #1} }}
 
-% These words should appear in the glossary
-\newcommand{\define}[1]{ \marginpar{\small\emph{#1}}
+% Jump links 
+\newcommand{\jumpSingle}[1]{
+\fancyfoot[OR]{$\triangleright$ \hyperlink{#1}{\texttt{Next}}}
 }
+
+\newcommand{\jumpDual}[2]{
+\fancyfoot[RO]{ $\triangleright$ \hyperlink{#1}{\texttt{Next [visual]\hspace{0.2cm}}}%
+ \\ $\triangleright$ \hyperlink{#2}{\texttt{Next [textual]}}}
+}
+
+% These words should appear in the glossary
+\newcommand{\define}[1]{ \marginpar{\small\emph{#1}} }
 
 % Text syntax/command format
 \newcommand{\syntax}[1]{ \begin{quote} \small \texttt{#1} \end{quote}}	
 
-% Author comment
-\newcommand{\update}{{\bf update}}
-
-% --- Individual Download Handbook Links  ----------------------------------------------------------------------------------------------------------------------
+% TODO: Set download links ------------------------------------------------------------------------------------
 \newcommand{\dlPartZero}{\url{http://www.moflon.org/}}
 
-% --- Title Page Information ----------------------------------------------------------------------------------------------------------------------------------
+% TODO:  Update version number (Title Page Information)--------------------------------------------------------------------------------------------------------
 \def\partTitle{Part II: Ecore}
 \def\versionNumber{0.0}
 \input{../../06_miscellaneous/commonFiles/titlepage}
 % -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- 
+
 \begin{document}
 
 \frontmatter 

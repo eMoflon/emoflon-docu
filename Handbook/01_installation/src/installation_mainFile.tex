@@ -94,14 +94,21 @@
 	{\scriptsize \texttt{Approximate time to complete: #1} }
 }
 
-% Author comment
-\newcommand{\update}{{\bf update}}
+% Jump links 
+\newcommand{\jumpSingle}[1]{
+\fancyfoot[OR]{$\triangleright$ \hyperlink{#1}{\texttt{Next}}}
+}
 
-% --- Quickset download and version information ---------------------------------------------------------------------------------------------------------------
+\newcommand{\jumpDual}[2]{
+\fancyfoot[RO]{ $\triangleright$ \hyperlink{#1}{\texttt{Next [visual]\hspace{0.2cm}}}%
+ \\ $\triangleright$ \hyperlink{#2}{\texttt{Next [textual]}}}
+}
+
+% TODO: Update download links and version information ---------------------------------------------------------------------------------------------------------
 \newcommand{\EclipseVersion}{Kepler}
 \newcommand{\JavaVersion}{1.7}
 
-% ( Store Eclipse download screenshot in 01_installation/1_installation/installPlugin )
+% (Store Eclipse download screenshot in 01_installation/1_installation/installPlugin)
 \newcommand{\EclipseDownloadImage}{eclipseDownloadPage}
 \newcommand{\EclipseDownloadLink}{\url{ http://www.eclipse.org/downloads/index.php }}
 
@@ -112,8 +119,7 @@
 \newcommand{\EAExtensionLink}{\url{ http://www.moflon.org/fileadmin/download/moflon-ide/eclipse-plugin/ea-ecore-addin/ea-ecore-addin.zip }}
 
 
-
-% --- Set Title Page Information ------------------------------------------------------------------------------------------------------------------------------
+% TODO:  Update version number (Title Page Information)--------------------------------------------------------------------------------------------------------
 \input{../../06_miscellaneous/commonFiles/titlepage}
 \def\partTitle{Part I: Installation and Setup}
 \def\versionNumber{0.0}

@@ -43,7 +43,7 @@ side. We'll also need to print whatever is on the current side. Create two param
 
 \begin{description}
   \item[\texttt{determineNextSize():EInt}] Calculate how large a new partition in the box should be
-  \item[\texttt{grow():void}] Increase the box by adding a new partition \update
+  \item[\texttt{grow():EBoolean}] Increase the box by adding a new partition
   \item[\texttt{toString():EString}] Produce a string representation of the box with all its contents
   \item[\texttt{addToStringRep(card:Card):void}] Update the current string representation to include \texttt{card}
 \end{description}
@@ -56,7 +56,7 @@ wait for the package explorer to refresh.
 
 \newpage
 
-\fancyfoot[R]{ $\triangleright$ \hyperlink{validation tex}{Next}}
+\jumpSingle{validation tex}
 
 \begin{figure}[htbp]
 	\centering
