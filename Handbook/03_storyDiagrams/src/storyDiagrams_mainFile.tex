@@ -46,7 +46,8 @@
 {../../06_miscellaneous/commonFiles/}% Title image and memBox illustration
 {../01_LeitnersBoxReviewed/lbrImages/}%
 {../02_transformationsExplained/teImages/}%
-{../03_removeCard/splashImages/}{../03_removeCard/visRemImages/}{../03_removeCard/texRemImages/}%
+{../03_removeCard/splashImages/}{../03_removeCard/GUIImages/}%
+{../03_removeCard/visRemImages/}{../03_removeCard/texRemImages/}%
 {../04_checkCard/splashImages/}{../04_checkCard/visCheImages/}{../04_checkCard/texCheImages/}%
 {../05_emptyPartition/}{../05_emptyPartition/visEPImages/}{../05_emptyPartition/texEPImages/}%
 {../06_invertCard/}{../06_invertCard/visICImages/}{../06_invertCard/texICImages/}%
@@ -91,33 +92,44 @@
 % Text instructions; Blue header
 \newcommand{\texHeader}{
 	\fancyfoot{}
-	\fancyhead[L]{\color{ProcessBlue}\tiny \bf TEXTUAL}
+	\fancyhead[L]{\color{CornflowerBlue}\tiny \bf TEXTUAL}
 	\renewcommand{\headrulewidth}{1.5pt}
 	\renewcommand{\headrule}{\hbox to\headwidth{%
-  		\color{ProcessBlue}\leaders\hrule height \headrulewidth\hfill}}
+  		\color{CornflowerBlue}\leaders\hrule height \headrulewidth\hfill}}
 }
 % -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-% Command to output suggested time for handbook part
-\newcommand{\requiredTime}[1]{
-	{\scriptsize \texttt{Approximate time to complete: #1} }
+
+\newcommand{\requiredTime}[1]{ {\scriptsize \texttt{Approximate time to complete: #1} } }
+
+% Jump links 
+\newcommand{\jumpSingle}[1]{
+\fancyfoot[OR]{$\triangleright$ \hyperlink{#1}{\texttt{Next}}}
+}
+
+\newcommand{\jumpDual}[2]{
+\fancyfoot[RO]{ $\triangleright$ \hyperlink{#1}{\texttt{Next [visual]\hspace{0.2cm}}}%
+ \\ $\triangleright$ \hyperlink{#2}{\texttt{Next [textual]}}}
 }
 
 % These words should appear in the glossary
-\newcommand{\define}[1]{
-	\marginpar{\small\emph{#1}}
-}
+\newcommand{\define}[1]{ \marginpar{\small\emph{#1}} }
+
+% Text syntax/command format
+\newcommand{\syntax}[1]{ \begin{quote} \small \texttt{#1} \end{quote}}	
 
 % Quick author note; remove from final
 \newcommand{\update}{{\bf update}}
 
-\newcommand{\dlPartOne}{\url{http://www.emoflon.org/}}
+% TODO: update description download link
+\newcommand{\dlPartZero}{\url{http://www.emoflon.org/}}
 
-% --- Title Page Information ----------------------------------------------------------------------------------------------------------------------------------
+% TODO:  Update version number (Title Page Information)--------------------------------------------------------------------------------------------------------
 \def\partTitle{Part III: Story Driven Modeling}
 \def\versionNumber{0.0}
 \input{../../06_miscellaneous/commonFiles/titlepage}
 % -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 \begin{document}
 

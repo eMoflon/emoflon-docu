@@ -1,6 +1,6 @@
 \newpage
 \hypertarget{sec:conBran}{}
-\section{Conditional Branching}
+\section{Conditional branching}
 \genHeader
 
 When working with SDMs, you'll often find yourself needing to decide which statement(s) to execute based on the return value of an arbitrary (black box)
@@ -12,34 +12,13 @@ corresponding to \texttt{true} and \texttt{false}. Any other values will set \te
 branching - an exception will be thrown during execution.
 
 Let's reconsider \texttt{grow}, the method that adds a new partition to our box. Reviewing Fig.~\ref{fig:growComplete}, the current pattern assumes
-there are already at least two partitions in \texttt{box}. What would happen if it had only one, or no partitions at all? The metamodel simply wouldn't
-work -- the pattern would \emph{never} find a match. To correct this problem, lets modify \texttt{grow} so that if the match returns \texttt{false}, we
-initalize two new partitions (a first and last), but \emph{only} if the partition is completely empty. In other words, if a \texttt{Box} has only one partition,
-it will fail the first match, and will fail the new creation and return \texttt{false}, never growing the box.
+there are already at least two partitions in \texttt{box}. What would happen if it had only one, or even no partitions at all? The metamodel simply wouldn't
+work -- the pattern would \emph{never} find a match. To correct this problem, lets modify \texttt{grow} so that if the original match fails, we
+initalize two new partitions (a first and last), but \emph{only} if it failed due to being completely empty. In other words, if \texttt{box} has only one
+partition, it won't add any more.
 
-% Special init instructions for both vis and header, but then it goes back to gen instructions
-
-\fancyfoot[R]{ $\triangleright$ \hyperlink{conBran vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{conBran tex}{Next [textual]} } 
+\jumpDual{conBran vis}{conBran tex}
 
 \input{../10_conditionalBranching/visConBran}
 
 \input{../10_conditionalBranching/texConBran}
-
-\newpage
-\genHeader
-\hypertarget{return conBran}{}
-
-\begin{itemize}
-
-\item[$\blacktriangleright$] Edit the declaration until it looks like Fig.~\ref{code:initBox}
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_initBoxCode}
-  \caption{{\bf check meeee!}}  
-  \label{code:initBox} 
-\end{center}
-\end{figure}
-\FloatBarrier
-
-\end{itemize}

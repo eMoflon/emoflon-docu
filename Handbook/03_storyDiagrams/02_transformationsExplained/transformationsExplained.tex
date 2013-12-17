@@ -6,7 +6,7 @@
 The core idea when modelling behaviour is to regard dynamic aspects of a system (let's call this a model from now on) as bringing about a change of state.
 This means a model in state $S$ can evolve to state $S^*$ via a transformation $\Delta: S \stackrel{\Delta}{\rightarrow}S^*$. In this light, dynamic or
 behavioural aspects of a model are synonymous with \emph{model transformations}, and the dynamic semantics of a language equate simply to a suitable set of
-model transformations. This approach is once again quite similar to the Object Oriented (OO) paradigm, where objects have a state, and can \emph{do} things via
+model transformations. This approach is once again quite similar to the object oriented (OO) paradigm, where objects have a state, and can \emph{do} things via
 methods that manipulate their state.
 
 So how do we \emph{model} model transformations?  There are quite a few possibilities. We could employ a suitably concise imperative programming language in
@@ -62,10 +62,9 @@ Since this black box formalisation involves two push-outs - one when cutting $De
 and one when inserting $Create := (R\setminus L)$ in $(G\setminus Destroy)$ to yield $H$ (creation) - this rule is referred to as a \emph{double push-out}.
 We won't go into further details in this handbook, but the interested reader can refer to \cite{EEPT06} for the exciting details.
 
-But, now that we know what rules are, let's take a look at a simple example for our learning box. What would a rule application look like for moving a card from
+Now that we know what rules are, let's take a look at a simple example for our learning box. What would a rule application look like for moving a card from
 one partition to the next? Figure~\ref{fig:rule_example} depicts this $moveCard$ rule.
   
-%\usepackage{graphics} is needed for \includegraphics
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=1\textwidth]{rule_example}
@@ -91,14 +90,14 @@ pattern}\define{Story Pattern} composed of  $Destroy := (L\setminus R)$ in red, 
 As we shall see in a moment, this  representation is quite intuitive, as one can just forget the details of rule application and think in terms of what is to be
 deleted, retained, and created. We can therefore apply $moveCard$ to a learning box in terms of steps (1) -- (3), as depicted in Fig.~\ref{fig:rule_app_example}.
 
-% Should define activity NODE here? (first appearance, but may only apply to visual)
-There's just one last thing to explain before we continue with our learning box; Individual rules still have to be applied in a suitable sequence to realise
-complex model transformations that consist of many steps! This can be done through simplified activity diagrams, where a single \emph{activity
-node}\define{Activity~Node} is a pattern (as discussed above) with \emph{activity edges}\define{Activity~Edge} which link to other nodes to form a control flow.
-The entire rule can therefore be viewed as two separate layers: an imperative layer to define the top-level control flow via activity diagrams (ie., if-else
-statements, loops, etc.), and a pattern layer comprised of story patterns where each activity node specifies (via a graph transformation rule) how the model is
-to be manipulated.
+Despite being able to merge rules together to form one story pattern, the individual rules still have to be applied in a suitable sequence to realise
+complex model transformations consisting of many steps! This can be done through simplified activities, where a single \emph{activity} or \emph{control 
+node} is either a single pattern, or made of several (as discussed above) to form a control flow. The entire rule can therefore be viewed as two separate
+layers: an imperative layer to define the top-level control flow via activities (ie., if-else statements, loops, etc.), and a pattern layer comprised of story patterns where each activity node specifies (via a graph transformation rule) how the model is to be manipulated.
+
 \pagebreak
+
+\vspace*{2cm}
 
 \begin{figure}[htp] 
 \begin{center}

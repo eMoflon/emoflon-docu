@@ -5,9 +5,10 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Go to the \texttt{removeCard} signature in the \texttt{Partition.eclass} file. Fill the method with a single pattern
-call, \texttt{[deleteSingleCard]} and a return statement (Fig~\ref{fig:remCardDec}). Remember, you can use eMoflon's type completion support by pressing
-\texttt{ctrl + space} to generate a pattern template.
+\item[$\blacktriangleright$] Go to the \texttt{removeCard} signature in \texttt{Partition.eclass}. Complete the method with a single pattern
+(\texttt{[deleteSingleCard]}) and a return statement as depicted in Fig~\ref{fig:remCardDec}. We hope you haven't forgotten about eMolfon's type completion; you
+can press \texttt{ctrl + space} on an empty line to select and generate a generic pattern template.
+
 
 \begin{figure}[htp]
 \begin{center}
@@ -17,12 +18,15 @@ call, \texttt{[deleteSingleCard]} and a return statement (Fig~\ref{fig:remCardDe
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] As a light reminder of MOSL syntax, the `@' operator refers to a \emph{bound} variable. In this method, \texttt{card} is bound
-since it is the passed-in variable.
+\item[$\blacktriangleright$] This updated construct is refered to as an \emph{activity}. MOSL limits method defintions to just the method's control flow, which
+makes this the rule's top layer. All actual transformations are modeled in a separate \emph{patterns} file. In this case, \texttt{removeCard}'s link
+deletion will be modeled in \texttt{[deleteSingleCard]}.
 
-\item[$\blacktriangleright$] As soon as you save the file, an error should immediately appear. In the ``Problems'' tab below the editor, the message states that
-the builder cannot find the specified pattern file. Well, that makes sense - you haven't made it yet! Click this message and press \texttt{ctrl + 1} to
-invoke a ``Quick Fix'' dialouge (Fig~\ref{fig:quixFix})
+\item[$\blacktriangleright$] Save the file, and an error should immediately appear. In the ``Problems'' tab below the editor, the message states that
+the builder cannot find the specified pattern file. Well, that makes sense - you haven't made it yet! 
+
+\item[$\blacktriangleright$] Click this message then press \texttt{ctrl + 1} to invoke a ``Quick Fix'' dialouge (Fig~\ref{fig:quixFix}). It offers to create a
+pattern file for you. Given that's exactly what you'd like to do, select the option and press \texttt{Finish}.
 
 \begin{figure}[htp]
 \begin{center}
@@ -32,14 +36,12 @@ invoke a ``Quick Fix'' dialouge (Fig~\ref{fig:quixFix})
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] It offers to create a pattern file for you. Given that's exactly what you'd like to do, select the option and press
-\texttt{Finish}.
-
 \newpage
 
-\item[$\blacktriangleright$] The new file will open in the editor, and a new directory structure will appear under ``\_patterns'' (Fig.~\ref{fig:pattStruct}). SDMs are
-placed in SDM containers, named according to the method they implement. In this case, \texttt{deleteSingleCard.pattern} is invoked by the method \texttt{removeCard},
-which itself is found in the \texttt{Partition} class. \texttt{Partition} will eventually contain folders for each method that implements a pattern.
+\item[$\blacktriangleright$] The new file will open in the editor, and you'll be able to see a new directory structure will under
+``LearningBoxLanguage/\_patterns'' (Fig.~\ref{fig:pattStruct}). SDMs are placed in SDM containers, named according to the method they implement. In this case,
+\texttt{deleteSingleCard.pattern} is invoked by the method \texttt{removeCard}, which itself is found in the \texttt{Partition} EClass. \texttt{Partition} will
+eventually contain a folder for each method that needs a pattern.
 
 \vspace{0.5cm}
 
@@ -51,13 +53,14 @@ which itself is found in the \texttt{Partition} class. \texttt{Partition} will e
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] The content of any pattern file is simply a list of tasks and rules. You create a series of \emph{Object Variables}, and then,
-within those declarations, state operations such as `delete this reference'.\footnote{Hint, hint!} Remember - the focus here is not on how, but on what.
+\item[$\blacktriangleright$] The content of any pattern file is simply a list of tasks and rules. You create a series of \emph{object variables}, and then,
+within those declarations, state operations such as `delete this reference.' Remember - the main goal of SDMs is to focus here is not on \emph{how}, but
+\emph{what}.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Create two rules, \texttt{@this:Partition\{ \}} and~\texttt{@card:Card\{ \}}~(Fig.~\ref{fig:remCardObjVar}). Just like parameter
-values, \texttt{this} variables are always bounded.
+\item[$\blacktriangleright$] Create two object variables, \texttt{@this:Partition\{ \}} and~\texttt{@card:Card\{ \}}~(Fig.~\ref{fig:remCardObjVar}). In MOSL
+syntax, `\texttt{@}' indicates that a variable is \emph{bounded}.
 
 \begin{figure}[htp]
 \begin{center}
@@ -69,8 +72,8 @@ values, \texttt{this} variables are always bounded.
 
 \clearpage
 
-\item[$\blacktriangleright$] Add `\texttt{-- -> card:card}' to \texttt{@this} to destroy the \texttt{card} reference targeting the \texttt{card} object. The key
-spaces of your workspace should now resemble Fig.~\ref{fig:deleteReference}.
+\item[$\blacktriangleright$] Add `\texttt{-- -> card:card}' to \texttt{@this} to destroy the \texttt{card} reference targeting the \texttt{card} object.
+Your pattern should now resemble Fig.~\ref{fig:deleteReference}.
 
 \vspace{0.5cm}
 
@@ -83,7 +86,7 @@ spaces of your workspace should now resemble Fig.~\ref{fig:deleteReference}.
 \end{figure}
 
 \item[$\blacktriangleright$] If you ever need to quickly remind yourself of specific navigation names or attributes, press \texttt{alt} and the left arrow to
-jump back to your eclass. Conversely, to quickly open or jump to a pattern, Hover over the pattern name while holding \texttt{ctrl} until it's underlined,
+jump back to your EClass. Conversely, to quickly open or jump to a pattern, Hover over the pattern name while holding \texttt{ctrl} until it's underlined,
 then click!
 
 \vspace{0.5cm}
@@ -94,39 +97,12 @@ as declaring \texttt{-- -> cardContainer:Card} would be redundant.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Build your project and navigate to ``MyWorkingSet/LearningBoxLanguage/gen." Open ``Partition.impl'' and scroll down to the
-\texttt{RemoveCard} declaration (apprx line 385). If everything compiled without errors, you should be able to see some generated code
-(Fig.~\ref{fig:remCardImpl}).
+\item[$\blacktriangleright$] Save and build your metamodel. Make sure no errors occur. If some do, double check and make sure your control flow and pattern
+match ours. 
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Given that we were able to actually remove a card from our Box using injections, lets test \emph{this} implementation using our GUI
-(Fig.~\ref{fig:GUITest}).\footnote{ If you haven't downloaded or used the GUI before, review Part II, section 7} If it doesn't work for you, inspect your
-pattern class and confirm it matches Fig.~\ref{fig:deleteReference}.
-
-\clearpage
-
-\begin{figure}[htp]
-\begin{center}
-  \includegraphics[width=\textwidth]{eclipse_remCardImpl}
-  \caption{Generated implementation code}
-  \label{fig:remCardImpl}
-\end{center}
-\end{figure}
-
-\vspace{0.5cm}
-
-\begin{figure}[htp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{eclipse_remCardGUITest}
-  \caption{Testing implementation with the GUI}
-  \label{fig:GUITest}
-\end{center}
-\end{figure}
-
-\vspace{0.5cm}
-
-\item[$\blacktriangleright$] Fantastic work! You have now implemented a simple reference manipulation via patterns. As you could see, SDM is effective for
+\item[$\blacktriangleright$] Fantastic work! You have now implemented a simple reference manipulation via patterns. As you can see, SDMs are effective for
 implementing large functions that could potentially take a \emph{very} long time. To see how this same method is crafted in the visual syntax, check out
 Fig.~\ref{fig:sdm_complete_control_flow} from the previous section.
 

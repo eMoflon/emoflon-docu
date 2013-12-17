@@ -6,7 +6,7 @@
 Since we're just getting started with SDMs, lets re-implement the method previously completed with injections.\footnote{Refer to Part II, section 6} The goal of
 this method is to remove a single card from its current partition, which can be done by destroying the link between the two items (Fig.~\ref{fig:goal_removeCard}).
 
-\vspace{0.5cm}
+\vspace{1cm}
 
 \begin{figure}[htbp]
 	\centering
@@ -20,7 +20,7 @@ this method is to remove a single card from its current partition, which can be 
 
 According to the signature of the method \texttt{removeCard}, we should return the card that has been deleted. Although this might strike you as slightly odd,
 considering that we already passed in the card as an argument, it still makes sense as it allows for chaining method calls:
-{ \begin{quote} \small aPartition.removeCard(aCard).invert() \end{quote} }
+\syntax{ aPartition.removeCard(aCard).invert()}
 
 Before we implement this change as a pattern, lets remove the old injection content to avoid potential conflicts.
 
@@ -44,49 +44,50 @@ declaration should now be empty and look identical to the others.
 	\label{fig:delete_injection}
 \end{figure}
 
-\vspace{0.5cm}
+\vspace{1cm}
 
-Now, that we've just deleted everything, we know we'll need to insert some new commands to form our method. One of the goals SDM is to allow you to
-focus less on \emph{how} a method will do something, but rather on \emph{what} the method will do. This means the main focus becomes \texttt{control flow}.
+Thats it! We now have a fresh start for \texttt{removeCard}. Let's briefly discuss what we need to establish the transformation.
 
-Integrated as an atomic step in this overall control flow, a single graph transformation step (such as link creation) can be embedded as
-a \emph{story pattern}. These story patterns are simply declarative transformation rules.\footnote{As introduced in Part II while
-discussing static semantics}
+Remember, one of the goals of SDM is to allow you to focus less on \emph{how} a method will do something, but rather on \emph{what} the method will do.
+Integrated as an atomic step in the overall control flow, a single graph transformation step (such as link deletion)\footnote{hint, hint!} can be embedded as a
+\emph{story pattern}.
 
-In order to conduct these transformations, patterns must establish\define{Object \\ Variables}\emph{object variables}. Object variables are, as
-the word ``variable'' indicates, place holders for actual objects in a model.  During \emph{pattern matching}, actual objects in the 
-current model are assigned to the object variables in the pattern according to the indicated type and other conditions.\footnote{We shall
-learn what conditions may be specified in later SDMs} 
+These patterns however, must establish\define{Object \\ Variables}\emph{object variables}, place holders for actual objects in a model (i.e., an object for
+each element in your instance model). During \emph{pattern matching}, occurrences of objects in the current model are connected to the object variables in the
+pattern according to the indicated type and other conditions.\footnote{We shall learn what conditions may be specified in later SDMs}
 
-In the \texttt{removeCard} SDM, the story pattern will have two just object variables: a \texttt{this} partition (named according to Java convention) referring
-to the object whose method is invoked, and \texttt{card}, the card object to be removed. In order to assign \texttt{card}, we'll need\define{Parameter
-Expression}to use a \emph{parameter expression} to refers to the parameter of the current method.
+\clearpage
 
-Patterns must also establish \emph{link variables}\define{Link \\ Variables} to match links in story patterns. These too act as place holders, and
-can used be match to actual references in the model. This SDM will therefore have a single link variable to match the current partition and parameter-specified
-card.
+In \texttt{removeCard}, the SDM will have just two object variables: a \texttt{this} partition (named according to Java convention) which refers to the
+object whose method is invoked, and \texttt{card}, the parameter \texttt{Card} object that will be removed.
 
-Before we begin, there is one last thing we need to clarify. We know the pattern matcher uses a randomized system until it matches a valid object to its
-variables. We also know that newly created objects are merely place holders, and don't have any values. In the case of remove card however, the two object
-variables \emph{do} have values from the \texttt{Box.xmi} model. So how do we get and assign these values?
+When applicable, patterns must also establish \emph{link variables}\define{Link \\ Variables} to match references in the model. Given that
+we're concerned with removing a certain card from a specific partition, \texttt{removeCard} will therefore have a single link variable to match these two
+objects together.
 
-We need to update the \emph{binding state}\define{Binding~State}of every object whose value is known beforehand from the model. By default, each object is
-unbounded, or a \emph{free variable}.\define{Free \\ Variable}Values for these objects can be both assigned and changed throughout the activity. By declaring
-an object as \emph{bound}, the activity does not need to assign a value as it will already have a fixed value from the context of the model. \emph{Binding} is
-implicit via the \emph{name} of the bound object variable. As a rule, \texttt{this} variables, and any parameterized values (i.e.,
-\texttt{card}) are always bounded.
+Unfortunately, the pattern matcher uses a randomized system until it matches a valid object to each of its variables, and any new variables a pattern
+creates simply won't have any default settings. How can this be changed so that, as required for \texttt{removeCard}, the matcher will retrieve the information
+associated with specific model objects?
 
-Every object or link variable's binding operator can be set to \texttt{Check Only, Create, or Destroy}. For a rule $r: (L, R)$, as discussed in
-\hyperlink{explanation}{section 2}, this marks the variable as belonging to the set of elements to be retained ($L\cap R$), the set of elements to be newly
-created ($R\setminus L$), or the set of elements to be deleted ($L\setminus R$).
+The \emph{binding state}\define{Binding~State}of every object determines how its data is determined. By default, every object is \emph{unbounded}, also referred
+to as \emph{free variable}s.\define{Free \\ Variable}Values for these objects can be both assigned and changed throughout an activity. By declaring a
+\emph{bounded}\define{Bounded}object however, the activity will not need to assign a value as it will already have a fixed value from the
+context of the model.
+\emph{Binding} is implicit via the \emph{name} of the bound object variable. As a rule, \texttt{this} variables, and any parameterized values (i.e., \texttt{card}) are always
+bounded.
+
+On a final note, every object or link variable can set its \emph{binding operator} to \texttt{Check Only, Create, or Destroy}. For a rule $r: (L,
+R)$, as discussed in \hyperlink{explanation}{Section 2}, these marks the variable as belonging to the set of elements to be retained ($L\cap R$), the set of
+elements to be newly created ($R\setminus L$), or the set of elements to be deleted ($L\setminus R$).
 
 If you're feeling overwhelmed by all the new terms and concepts, don't worry! We will define them again in the context of your syntax with the example. For
-quick reference, we have also defined each of the marginalized words at the end of this part in a \hyperlink{glossary}{glossary}. Otherwise, it's time
-to begin\ldots
+quick reference, we have also defined each of the marginalized words at the end of this part in a \hyperlink{glossary}{glossary}. Otherwise, let's go!
 
-\fancyfoot[R]{ $\triangleright$ \hyperlink{remCard vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{remCard tex}{Next [textual]} }
-
+\jumpDual{remCard vis}{remCard tex}
 
 \input{../03_removeCard/visRemoveCard}
 
 \input{../03_removeCard/texRemoveCard}
+
+\input{../03_removeCard/removeCardGui}
+
