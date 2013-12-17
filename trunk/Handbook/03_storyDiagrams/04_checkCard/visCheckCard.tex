@@ -38,7 +38,9 @@ defined when its name is the same as the argument's name.
 
 \item[$\blacktriangleright$] Now that the pattern has the correct card to check, it needs to compare the user's guess against the unseen \texttt{face} value on
 the opposite side. To do this, we need to specify an \emph{attribute constraint}. Open the \texttt{attribute constraint} tab for \texttt{card} as depicted in
-Fig.~\ref{fig:sdmcheck_att_constraint}, select the correct object attribute (\texttt{face}) and comparison operator.
+Fig.~\ref{fig:sdmcheck_att_constraint}, select the correct object attribute and operator.
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -48,19 +50,20 @@ Fig.~\ref{fig:sdmcheck_att_constraint}, select the correct object attribute (\te
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Similar to how the return value was specified in the previous SDM, set the \texttt{ParameterExpression} to refer to \texttt{guess}.
-Press \texttt{Add} and admire your first attribute constraint.
+\item[$\blacktriangleright$] Similar to how the return value was specified in the previous SDM, set the \texttt{ParameterExpression} to refer to \texttt{guess}
+to retrieve the user EString input. Press \texttt{Add} and admire your first attribute constraint.
 
-\vspace{1cm}
+\vspace{0.5cm}
 
 Before building the other two activity nodes, let's quickly return to the control flow. Currently, the pattern will branch off into two separate patterns after
 completing the initial check, then terminate the method based on whichever activity finishes first\ldots and that's not what we want at all! We need to add
-\emph{edge guards} to change this into an \emph{if/else} construct based on the results of the comparison.
+\emph{edge guards}\define{Edge Guards}to change this into an \emph{if/else} construct based on the results of the comparison.
 
 \newpage
 
 \item[$\blacktriangleright$] To add a guard to the edge leading from \texttt{check\-If\-Guess\-Is\-Correct} to \texttt{penalize\-Card}, double click the edge
-and set the \emph{Guard Type} to \texttt{Failure} (Fig.~\ref{fig:sdm_check_guard}).
+and set the \emph{Guard Type} to \texttt{Failure} (Fig.~\ref{fig:sdm_check_guard}). Repeat the process for the \texttt{Success} edge leading to
+\texttt{promoteCard}.
 
 \vspace{0.5cm}
 
@@ -74,16 +77,12 @@ and set the \emph{Guard Type} to \texttt{Failure} (Fig.~\ref{fig:sdm_check_guard
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Repeat the process for the \texttt{Success} edge leading to \texttt{promoteCard}.
-
-\vspace{0.75cm}
-
-Another feature of eMolfon (with EA) provides a means of coping with large patterns.\footnote{You thought I was going to say `coping
+One great feature of eMolfon (with EA) provides a means of coping with large patterns.\footnote{You thought I was going to say `coping
 with our coffee addiction', weren't you?} It might be nice to visualise \emph{small} story patterns directly in their nodes, but for large patterns or complex
 control flow, such diagrams would get extremely cumbersome and unwieldy very quickly! This is indeed a popular argument against visual languages and it might
 have already crossed your mind (``This is cute, but it'll \emph{never} scale!''). With the right tools and concepts however, even huge diagrams can be
 mastered. We support \emph{extracting} story patterns into their own diagrams, and unless the pattern is really concise with 2 or 3 object variables, recommend
-this course of action.
+this course of action. In other words, eMoflon supports seprating your transformation's pattern layer from the control flow.
 
 \vspace{0.5cm}
 
@@ -109,9 +108,9 @@ this course of action.
 
 \newpage
 
-Another EA gesture you should start to take advantage of is a good ol' \emph{Drag and Drop} action from the project browser\footnote{Remember he other two
-gestures we have learnt: ``Quick Link'' and ``Quick Create''} into a diagram. We can use this move as an alternative to creating new objects (with known types) from the SDM
-toolbox.
+Another EA gesture you should start to take advantage of is a good ol' \emph{Drag and Drop} action from the project browser\footnote{The other two gestures we
+have learnt are ``Quick Link'' and ``Quick Create''} into a diagram. We can use this move as an alternative to creating new objects (with known types) from the
+SDM toolbox.
 
 \vspace{0.5cm}
 
@@ -120,19 +119,17 @@ pattern diagram (Fig.~\ref{fig:sdm_check_bound_card}).
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{ea_dragDropDialogue}
+  \includegraphics[width=\textwidth]{ea_dragDropDialogue}
   \caption{Add a new object variable per drag and drop}
   \label{fig:sdm_check_bound_card}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] A dialogue will appear asking what kind of variable should be created. You can create (1) a simple link (which would
-refer to and be represented by \texttt{Card}'s class), (2) create an instance of \texttt{Card} as an object, or (3) create a subclass. Paste \texttt{Card} as an
+\item[$\blacktriangleright$] A dialogue will appear asking what kind of variable should be created. You can create (1) a simple link (which would refer to and
+be represented by \texttt{Card}'s entire class), (2) create an instance of \texttt{Card} as an object, or (3) create a subclass. Paste \texttt{Card} as an
 instance and check \texttt{Autosave Selection as Default} under ``Options" so option (2) will be used next time by default. You should also check \texttt{Use
 Ctrl + Mouse drag to show this Dialog}, so this dialogue doesn't appear every time. Don't worry - if you ever need options (1) and (3), you  just need to hold
 \texttt{Ctrl} when dragging to invoke the dialogue then change the settings.
-
-\vspace{0.5cm}
 
 \item[$\blacktriangleright$] After creating the object, the same object properties dialogue will open.  Set the \texttt{Name} to \texttt{card} and its
 \texttt{Binding State} to \texttt{Bound} (Fig.~\ref{fig:sdm_new_card_properties}).
@@ -149,9 +146,9 @@ Ctrl + Mouse drag to show this Dialog}, so this dialogue doesn't appear every ti
 
 The main advantage of drag and drop is that the \texttt{Object Variable Pro\-per\-ties} dialogue should have the type of the object pre-configured. Choosing
 the type in the project browser and dragging it in is (for most people) a more natural gesture than choosing the type from a long drop-down menu (as we had to
-when using the SDM toolbar). This can be a great time saver for large metamodels\footnote{Drag and drop is also possible in embedded story patterns
+when using the SDM toolbar). This can be a great time saver for large metamodels.\footnote{Drag and drop is also possible in embedded story patterns
 (still visualised in their story nodes).  You must ensure however, that the object variable is \emph{completely} contained inside the story node and does not
-stick out over any edge}.
+stick out over any edge.}
 
 \vspace{0.5cm}
 
@@ -230,6 +227,8 @@ should really only used for true literals like 42, ``foo'' or \texttt{true}. It 
 transferred ``literally'' into the generated code, but this is obviously sort of dirty\footnote{It defeats, for example, any attempt to guarantee type safety}
 and should be avoided when possible.
 
+\vspace{0.5cm}
+
 \item[$\blacktriangleright$] To implement a literal, double click the stop node stemming from  \texttt{promoteCard}, and change the expression type from
 \texttt{void} to \texttt{LiteralEx\-pression} (Fig.~\ref{fig:sdm_check_literal_exp}). Change the value in the window below to \texttt{true}. Press \texttt{OK},
 then finish the SDM by returning \texttt{false} after \texttt{penaliseCard} in the same manner. Your diagram should now resemble
@@ -260,6 +259,6 @@ test-spin.
 \item[$\blacktriangleright$] To see how this is implemented in the textual syntax, see Figs. \ref{fig:completedPatterns} and \ref{fig:finalMethod} in the
 following section.
 
-\fancyfoot[R]{ $\triangleright$ \hyperlink{sec:emptyPartition}{Next}}
+\jumpSingle{sec:emptyPartition}
 
 \end{itemize}

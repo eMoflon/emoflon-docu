@@ -8,7 +8,7 @@
 \item[$\blacktriangleright$] In this SDM, the guess assertion, card promotion, and card penalisation must each be implemented as patterns. Given that every
 action is determined a the result of a conditional statement, we can't use a simple control flow. We need an \emph{if/else} construct!
 
-\item[$\blacktriangleright$] In the \texttt{check} method declaration, create the basic \emph{if/else} construct with three patterns, as illustrated in
+\item[$\blacktriangleright$] In the \texttt{check} declaration, create the basic \emph{if/else} construct with three patterns, as illustrated in
 Fig.~\ref{fig:checkDec}. The type completion feature includes a template for this.
 
 \vspace{0.5cm}
@@ -32,17 +32,14 @@ explorer should now resemble Fig.~\ref{fig:checkPatternsExplorer}.
 \end{center}
 \end{figure} 
 
-\vspace{0.5cm}
-
-Open the \texttt{checkCard} pattern. What do we need in order to validate the user's guess? Given that \texttt{guess} is a parameter and not an object in the
-metamodel, the only variable we need to create is a bounded \texttt{card}. Then we'll need to specify an \emph{attribute constraint} in this variable to compare
-\texttt{card} and \texttt{guess}. Attribute constraints have similar operators as Java comparison, so to equate the values, we'll want to use \texttt{==}.
-
-\vspace{0.5cm}
+\item[$\blacktriangleright$] Open the \texttt{checkCard} pattern. What do we need in order to validate the user's guess? Given that \texttt{guess} is a
+parameter and not an object in the metamodel, the only variable we need to create is a bounded \texttt{card}. Then we'll need to specify an \emph{attribute constraint} in this variable to compare
+\texttt{card} and \texttt{guess}. Attribute constraints have similar operators as Java comparators so to equate the values, we'll want to use \texttt{==}.
 
 \item[$\blacktriangleright$] To access the \texttt{back} attribute and compare it to the parameter, simply write: 
-{\begin{quote} card.back == \$guess \end{quote} }
-Your completed attribute constraint should now resemble Fig.~\ref{fig:checkPattern}.
+\syntax{card.back == \$guess}
+Accessing object attributes follow the tradtional \texttt{.} operator while the \texttt{\$} symbol is required to retrieve parameter values. Your completed
+attribute constraint and \texttt{checkCard} pattern should now resemble Fig.~\ref{fig:checkPattern}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -54,8 +51,8 @@ Your completed attribute constraint should now resemble Fig.~\ref{fig:checkPatte
 
 \clearpage
 
-\item[$\blacktriangleright$] Now lets develop the \texttt{promoteCard} pattern. It requires three rules - the card, the current partition, and the partition the
-card will move to. Your workspace should resemble Fig.~\ref{fig:promoteCardPattern}.
+\item[$\blacktriangleright$] Now lets develop the \texttt{promoteCard} pattern. It requires three variables - the card, the current partition, and the partition
+the card will move to. Your workspace should resemble Fig.~\ref{fig:promoteCardPattern}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -104,13 +101,13 @@ resemble Fig.~\ref{fig:completedPatterns}.
 \end{figure}
 
 
-\item[$\blacktriangleright$] Did you notice that the order of the \texttt{this} and \texttt{card} object variables were reversed in the second pattern?
-Overall, it doesn't matter in which order objects are created, or references changed in patterns. Everything just needs to be established in their correct
-place.
+\item[$\blacktriangleright$] Did you notice that the order of the \texttt{this} and \texttt{card} object variables were reversed in our images?
+Overall, for simple transformations like this, it doesn't matter in which order objects are created, or references changed in patterns. Everything just needs to
+be correctly declared.
 
-\item[$\blacktriangleright$] The last thing we need to do is complete the control flow. We have specified the assertion and movements, but we haven't
-returned any \texttt{EBoolean} results as the method requires. If the card was promoted, the guess was successful or \texttt{true}. If it was penalized, the
-guess was \texttt{false}. Edit the method declaration to reflect this. Your \texttt{partition} EClass should then resemble Fig.\ref{fig:finalMethod}.
+\item[$\blacktriangleright$] We nearly forgot to complete the control flow! We have specified the assertion and movements, but we haven't returned any
+\texttt{EBoolean} results as the method requires. If the card was promoted, the guess was successful, so return \texttt{true} beneath \texttt{[promoteCard]}. If
+it was penalized, the guess was \texttt{false}. Your \texttt{partition} EClass should now include Fig.\ref{fig:finalMethod}.
 
 \vspace{0.5cm}
 
@@ -122,12 +119,12 @@ guess was \texttt{false}. Edit the method declaration to reflect this. Your \tex
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] It's now time to build your metamodel. If everything was done correctly, the build will be successful and you can view the changes
-in ``PartitionImpl.Java'' under \texttt{check}. You'll be able to see the if/else construct, as well as the link manipulations.
+\item[$\blacktriangleright$] Save and build your metamodel, then try viewing the changes in ``PartitionImpl.Java'' under \texttt{check}. You'll be able to
+see the if/else construct, as well as the link manipulations. 
 
-\item[$\blacktriangleright$] Great job! You have just implemented a new kind of control flow and created two patterns that shift cards. To see how
-this SDM is implemented visually, check out Fig.~\ref{fig:sdm_check_finish} for the control flow, and Figs.~\ref{fig:sdm_check_complete_activity_node} and
-\ref{fig:sdm_check_complete_penalize} for the movement patterns, all from the previous section.
+\item[$\blacktriangleright$] Great job! You have just implemented a new kind of control flow and created two patterns that transform cards.
+To see how this SDM is implemented visually, check out Fig.~\ref{fig:sdm_check_finish} for the control flow, and Figs.~\ref{fig:sdm_check_complete_activity_node} and
+\ref{fig:sdm_check_complete_penalize} for the movement patterns, all in the previous section.
 
 \end{itemize}
  

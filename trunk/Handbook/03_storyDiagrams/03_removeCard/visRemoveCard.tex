@@ -30,27 +30,26 @@ the corner, and a \emph{start node} labelled with the signature of the method (F
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Let's quickly familiarise ourselves the EA workspace. First, inspect the project browser and notice that an \texttt{<<SDM
-Activity>>} container has been created for the method \texttt{removeCard}. This container will eventually host every diagram related to this pattern. Please
-note that, if you're at any time unhappy with an SDM,\footnote{As you might have already noticed, we use ``SDM'' interchangeably to mean our graph
-transformation language \emph{or} a concrete transformation (a story model) used to implement a method and consisting of an activity diagram and a pattern in
-each story node.} you can always delete the appropriate container in the project browser (such as this one), and start from scratch.
+\item[$\blacktriangleright$] As you can guess, this diagram is where you'll model \texttt{removeCard}'s activities via a \emph{control flow}. In other words,
+this \emph{removeCard}'s top level. We refer to the whole activity diagram simply as the \emph{activity}, which always starts with a start node, terminates with
+a \emph{stop node}, and consists of activity nodes connected via \emph{activity edges}. Before developing these however, let's quickly familiarise ourselves the
+EA workspace.
 
-\vspace{0.5cm}
+\item[$\blacktriangleright$] First, inspect the project browser and notice that an \texttt{<<SDM Activity>>} container has been created for the method
+\texttt{removeCard}. This container will eventually host every artifact related to this pattern (i.e., object variables, stop nodes, etc). Please note
+that if you're ever unhappy with an SDM,\footnote{As you might have already noticed, we use ``SDM'' interchangeably to mean our graph transformation
+language \emph{or} a concrete transformation (a story model) used to implement a method, consisting of an activity diagram and a pattern in each story
+node.} you can always delete the appropriate container in the project browser (such as this one), and start from scratch.
 
 \item[$\blacktriangleright$] Next, note the new \texttt{SDM} toolbox that has been automatically opened for the diagram and placed to the left above
 the common toolbox. This provides quick access to SDM items that you'll frequently use in your diagram.
 
-\vspace{0.5cm}
-
 \item[$\blacktriangleright$] Finally, in the top left corner of the diagram, you'll notice a small anchor. Double click on this icon to quickly jump back to the
 metamodel. From there, double click the method again to jump back to the SDM. This is just a small trick to help you quickly shift between diagrams.
 
-\vspace{0.5cm}
+\newpage
 
 \item[$\blacktriangleright$] To begin, select the start node, and note the small black arrow that appears (Fig.~\ref{fig:sdm_quicklink}). 
-
-\newpage
 
 \begin{figure}[htp]
 \begin{center}
@@ -64,12 +63,11 @@ metamodel. From there, double click the method again to jump back to the SDM. Th
 Create}.
 To quick-create an element, pull the arrow and click on an empty spot in the diagram. This is basically ``quick linking'' to a non-existent element.
 
-\item[$\blacktriangleright$] EA notices that there is nothing to quick-link to, and pops a small context-sensitive dialogue to create an element that can be
-connected to the indicated source element.
+\item[$\blacktriangleright$] EA notices that there is nothing to quick-link to, and pops a small, context-sensitive dialogue offering to create an element which
+can be connected to the source element.
 
 \item[$\blacktriangleright$] As illustrated in Fig.~\ref{fig:sdm_new_activity_node}, choose \texttt{Append StoryNode} to create an \emph{activity
-node}. We refer to the whole activity diagram simply as the \emph{activity}, which always starts with a start node, terminates with a \emph{stop node}, and
-consists of activity nodes connected via \emph{activity edges}.
+node}. 
 
 \begin{figure}[htp]
 \begin{center}
@@ -92,22 +90,22 @@ connecting the two items. Complete the activity by quick creating a stop node as
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] If everything is correct, you should now have a complete activity that models the \emph{control flow} of the method. 
+\item[$\blacktriangleright$] If everything is correct, you should now have a complete activity that models the flow of the method. 
 The semantics of our activity is pretty straightforward -- the control begins in the start node, and flows along edges and their connected activity nodes until
 it reaches a stop node, where it finally terminates. 
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] While a \emph{stop node} is rather self explanatory, you may be wondering about the differences between the other two item options,
-a\define{Story Node}\emph{story node}and a \emph{statement node}.\define{Statement Node}Since not all activity nodes can contain story patterns (i.e., start
-and stop nodes), those that \emph{can} are called story nodes. Statement nodes are simply used to guarantee a certain action. They happen between story nodes.
-We'll encounter these in a later SDM, but for now, lets finish our first story node.
+\item[$\blacktriangleright$] While a \emph{stop node} is rather self explanatory, you may be wondering about the differences between the other two menu options,
+a\define{Story Node}\emph{story node} and a \emph{statement node}.\define{Statement Node}Since not all activity nodes can contain story patterns (i.e., start
+and stop nodes), those that \emph{can} are called story nodes. Statement nodes are used to guarantee an action, such as method execution, and only happen
+between story nodes. We'll encounter these in a later SDM.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] To craft the story pattern, double click \texttt{ActivityNode 1} to prompt the dialogue depicted in
+\item[$\blacktriangleright$] To complete the story pattern, double-click \texttt{ActivityNode 1} to prompt the dialogue depicted in
 Fig.~\ref{fig:story_pattern}. Enter \texttt{removeCardFromPartition} as the name of the story node, and select \texttt{Create this Object}.  Click
-\texttt{OK} - the activity node now has a single \emph{object variable}, \texttt{this} (Fig.~\ref{fig:tool_box}).
+\texttt{OK}. The activity node now has a single bounded \emph{object variable}, \texttt{this} (Fig.~\ref{fig:tool_box}).
 
 \begin{figure}[htpb]
 \begin{center} 
@@ -127,9 +125,8 @@ Fig.~\ref{fig:story_pattern}. Enter \texttt{removeCardFromPartition} as the name
 
 \newpage
 
-\item[$\blacktriangleright$] To create an object variable that can be assigned to other objects, either choose \texttt{SDM ObjectVariable} from the toolbox or
-press \texttt{ctrl}, then click inside the activity node (Fig.~\ref{fig:tool_box}). A properties window will be raised for the new object
-(Fig.~\ref{fig:object_variable_properties}).
+\item[$\blacktriangleright$] To create a new object variable, either choose \texttt{SDM ObjectVariable} from the toolbox or press \texttt{ctrl}, then
+click inside the activity node (Fig.~\ref{fig:tool_box}). A properties window will automatically appear (Fig.~\ref{fig:object_variable_properties}).
 
 \vspace{0.5cm}
 
@@ -148,8 +145,8 @@ Since \texttt{card} is a parameter of the method, it is offered as a possible na
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] In this dialogue, note that the \texttt{Bound} option must be set. We have now seen two cases in this activity for bound object
-variables: an assignment to \texttt{this}, and an assignment to a method parameter. \texttt{Unbounded} object are represented by a thin-bordered box. Setting
-\texttt{card} to bound means that it will implicitly assign itself to the passed parameter valued.
+variables: an assignment to \texttt{this}, and an assignment to a method parameter. Setting \texttt{card} to bound means that it will implicitly assign itself
+to the passed parameter valued.
 
 \item[$\blacktriangleright$] To create a \emph{link variable} between the current partition and the card to be removed, choose the object variable \texttt{this}
 and quick-link it to \texttt{card} (Fig.~\ref{fig:link_variable}).
@@ -161,6 +158,8 @@ and quick-link it to \texttt{card} (Fig.~\ref{fig:link_variable}).
   \label{fig:link_variable}
 \end{center}
 \end{figure}
+
+\vspace{0.5cm}
 
 \item[$\blacktriangleright$] According to the metamodel, there is only one possible link between a partition and card. Select this and set the
 \emph{Binding Operator} to \texttt{Destroy} (Fig.~\ref{fig:link_variable_properties}). The reference names will automatically appear in the diagram.
@@ -190,25 +189,29 @@ SDM can be specified in the stop node. As depicted in Fig.~\ref{fig:stop_node_re
 \end{figure}
 
 \item[$\blacktriangleright$] In the \texttt{Expression} field, choose \texttt{ParameterExpression}\define{ParameterExpression}as the expression. Given that
-\texttt{card} is the sole parameter, it will be automatically selected. In EA, a \emph{ParameterExpression} is a mechanism that exclusively accesses any
-paramter value.
+\texttt{card} is the sole parameter, it will be automatically selected. A \emph{ParameterExpression} is an eMoflon mechanism that exclusively accesses parameter
+values.
 
 \vspace{0.5cm}
 
-We're nearly done! As you can see, by using several different dialouges, eMoflon employs a simple context-sensitive expression language for specifying required
-values. We have intentionally avoided creating a full-blown sub-language, and limit expressions to a few simple types.\footnote{We also do not support nesting
-expressions} The philosophy here is to keep things simple and concentrate on what SDMs are good for -- expressing structural changes. Our approach is to
+We're nearly done! As you can see, by using several different dialouges, eMoflon employs a simple context-sensitive expression language for specifying  values.
+We have intentionally avoided creating a full-blown sub-language, and limit expressions to a few simple types.\footnote{We also do not support nesting expressions} The philosophy here is to keep things simple and concentrate on what SDMs are good for -- expressing structural changes. Our approach is to
 provide a clear and type-safe interface to a general purpose language (Java) and support a simple \emph{fallback} as soon as things get too low-level and
 difficult to express as a pattern.
+
+\newpage
 
 The alternative approach to eMoflon would be to support arbitrary expressions, for example, in a script language like JavaScript or in an appropriate
 DSL\footnote{A DSL is a Domain Specific Language: a language designed for a specific task which is usually simpler than a general purpose language like Java and
 more suitable for the exact task.} designed for this purpose. In the following SDM implementations, we'll learn the other expression types eMoflon supports,
 and how to use them. 
 
-\item[$\blacktriangleright$] Returning to the activity, if you've done everything right, your first SDM completed with eMoflon should resemble
-Fig.~\ref{fig:sdm_complete_control_flow}. The return value is indicated below the stop node.
+\vspace{0.5cm}
 
+\item[$\blacktriangleright$] Returning to the activity, if you've done everything right, your first eMolfon SDM should resemble
+Fig.~\ref{fig:sdm_complete_control_flow}, where \texttt{removeCard}'s entire pattern layer is modeled inside the sole \emph{activity node}. The method's return value is indicated below the stop node.
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -218,6 +221,8 @@ Fig.~\ref{fig:sdm_complete_control_flow}. The return value is indicated below th
 \end{center}
 \end{figure}
 
+\vspace{0.5cm}
+
 \item[$\blacktriangleright$]  Don't forget to save your files, validate and export your pattern to the Eclipse workspace,\footnote{Go to to
 ``\texttt{Extensions}" and select \texttt{Add-In Windows} to activate eMoflon's console. If you're unsure how to validate, export, or use this window, review
 Part II, section 3} then build your metamodel's code from the package explorer.
@@ -225,23 +230,14 @@ Part II, section 3} then build your metamodel's code from the package explorer.
 \item[$\blacktriangleright$] If you're unable to export or generate code successfully, compare your SDM carefully with Fig.~\ref{fig:sdm_complete_control_flow}
 and make sure you haven't forgotten anything.
 
-\item[$\blacktriangleright$] If successful, navigate to ``Learning\-Box\-Language/\-gen/\-Learning\-Box\-Language/\-impl/\-Partition\-Impl.java" to the
-\texttt{\-remove\-Card} declaration. Inspect the generated implementation for your method. Notice all the null checks that are automatically created - only a
-very conscientious (and probably slightly paranoid) programmer would program so defensively!
-
-Let's take a step back and briefly review what we have specified:  if \texttt{p.remove\-Card(c)} is invoked for a partition \texttt{p}, with a card, \texttt{c},
-as its argument, the specified pattern will \emph{match} only if that card is contained in the partition. After determining matches for all variables, the
-link between the partition and the card is deleted, effectively ``removing'' the card from the partition. If the card is \emph{not} contained in the partition,
-the pattern won't match, and nothing will happen. In both cases, the card that's passed in is returned.
-
 \item[$\blacktriangleright$] If you'd like to see how this SDM is implemented in the textual syntax, check out Fig.~\ref{fig:deleteReference} in the next
 section.
 
-\item[$\blacktriangleright$] Now we admit, this section had a lot of reading and theory, but it does get better. Soon, you'll be an eMoflon master, and we'll
-hardly need to give you any instructions at all! In the following sections, we shall explore further features of SDM that allow for really expressive and
+\item[$\blacktriangleright$] Now we admit, these past few sections have had a lot of reading and theory, but it does get better. Soon, you'll be an eMoflon
+master, and we'll hardly need to give you any instructions at all! In the following sections, we shall explore further features of SDM that allow for really expressive and
 powerful patterns.
 
-\fancyfoot[R]{ $\triangleright$ \hyperlink{sec:checkCard}{Next} }
+\jumpSingle{remCard end}
 
 \end{itemize}
 

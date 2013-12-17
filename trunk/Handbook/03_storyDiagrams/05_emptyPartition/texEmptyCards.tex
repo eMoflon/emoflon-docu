@@ -8,7 +8,7 @@
 \item[$\blacktriangleright$] To initialize your control flow, you can once again take advantage of eMolfon's type completion here. Inside the \texttt{empty}
 declaration, press  \texttt{ctrl + space} and select \texttt{forEach} from the menu (Fig.~\ref{fig:typeCompletion}).
 
-\vspace{0.5cm}
+\vspace{1cm}
 
 \begin{figure}[htpb]
 \begin{center}
@@ -18,12 +18,10 @@ declaration, press  \texttt{ctrl + space} and select \texttt{forEach} from the m
 \end{center}
 \end{figure}
 
-\vspace{0.5cm}
+\vspace{1cm}
 
-\item[$\blacktriangleright$] Create a single \texttt{deleteCardsInPartition}. Remove the second pattern that was automatically created since after deleting
-every card in one partition, you want to return to the loop and restart for the next matched partition.
-
-\vspace{0.5cm}
+\item[$\blacktriangleright$] Create a single \texttt{deleteCardsInPartition}. Remove the suggested second pattern since you only need to complete the deletion
+-- no extra steps required!
 
 \item[$\blacktriangleright$] Your control flow should now resemble Fig.~\ref{fig:emptyControlFlow}.
 
@@ -38,12 +36,12 @@ every card in one partition, you want to return to the loop and restart for the 
 \end{figure}
 
 \item[$\blacktriangleright$] While similar to \texttt{removeCard}, this new pattern goes one step further by requesting a full destruction of card, instead of
-just detaching the link. This means, in addition to destroying the link in \texttt{@this}, we need a destructive object variable. You can declare this special
-type by prefacing \texttt{card} with an `-~-' operator.
+just detaching the link. This means, in addition to destroying the link in \texttt{@this}, we need to set the binding operator for this variable to destroy. 
+You can declare this special type by prefacing \texttt{card} with an `-~-' operator.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Your workspace should now resemble Fig.~\ref{fig:emptyPattern}.
+\item[$\blacktriangleright$] Your pattern should now resemble Fig.~\ref{fig:emptyPattern}.
 
 \vspace{0.5cm}
 

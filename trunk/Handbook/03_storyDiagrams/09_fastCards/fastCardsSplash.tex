@@ -33,7 +33,7 @@ value determined in a preceding activity node. Bindings represent a fourth possi
 Finally, this new pattern faces a similar challenge as \texttt{grow}. A \texttt{FastCard} can't simply progress to the \texttt{next} partition - it
 must skip ahead to the absolute last partition in the box. This means another NAC is required to form a deterministic pattern match.
 
-\fancyfoot[R]{ $\triangleright$ \hyperlink{fastCard vis}{Next [visual]\hspace{0.2cm} } \\ $\triangleright$ \hyperlink{fastCard tex}{Next [textual]} } 
+\jumpDual{fastCard vis}{fastCard tex}
   
 \input{../09_fastCards/visFastCard}
 

@@ -5,9 +5,9 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Open a new activity diagram for \texttt{Partition.empty}. To begin building the \emph{for each} pattern, quick create a new story
+\item[$\blacktriangleright$] Open a new activity diagram for \texttt{Partition.empty()}. To begin building the \emph{for each} pattern, quick-create a new story
 node and edit its properties. Name it \texttt{deleteCardsInPartition} and change the \texttt{Type} from \texttt{StoryNode} to \texttt{ForEach}. You'll also want
-to create the invoking \texttt{Partition} object, so ensure that too, is selected. As you can see, a \emph{for each} node is represented as a stacked node to
+to create the invoking \texttt{Partition} object. As you can see, a \emph{for each} node is represented as a stacked node to
 indicate the potential for repetition.
 
 \begin{figure}[htbp]
@@ -25,7 +25,7 @@ the \texttt{Binding Operator} to \texttt{Destroy} (Fig.~\ref{fig:sdm_bindingOper
 
 \item[$\blacktriangleright$] Complete the story pattern as indicated in Fig.~\ref{fig:sdm_end}. Notice that the guard that terminates the looping node has an
 \texttt{[end]} edge guard. Indeed, a \emph{for each} story node \emph{must} execute an \texttt{end} activity when all matches in the pattern have been
-handled. \texttt{empty} is defined as a \texttt{void} method, so don't worry about setting any return values.
+handled. \texttt{empty} is defined as a \texttt{void} method, so don't worry about setting any return values in the stop node.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -45,10 +45,12 @@ handled. \texttt{empty} is defined as a \texttt{void} method, so don't worry abo
 \FloatBarrier
 
 \item[$\blacktriangleright$] Done! You've now learnt that in order to create a repeating action, all you need to do is change a standard standard story node
-into a \texttt{for each} node, and include \emph{edge guards}. Inspect Fig.~\ref{fig:emptyControlFlow} and Fig.~\ref{fig:emptyPattern} to see how this is
-implemented in the textual specifications.
+into a \texttt{for each} node, and include \emph{edge guards}. 
 
-\fancyfoot[R]{ $\triangleright$ \hyperlink{sec:invertCard}{Next}} 
+\item[$\blacktriangleright$] As always, save and build your metamodel. Inspect Fig.~\ref{fig:emptyControlFlow} and Fig.~\ref{fig:emptyPattern} to see how this
+SDM is implemented in the textual specifications.
+
+\jumpSingle{sec:invertCard}
 
 \end{itemize}
 
