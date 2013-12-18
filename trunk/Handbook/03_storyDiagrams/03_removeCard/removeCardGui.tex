@@ -3,6 +3,9 @@
 \hypertarget{remCard end}{}
 \subsubsection{Concluding removeCard}
 
+Fantastic work! You have now implemented a simple reference manipulation via patterns. As you can see, SDMs are effective for
+implementing large functions that could potentially take a \emph{very} long time. 
+
 Let's take a step back and briefly review what we have specified:  if \texttt{p.remove\-Card(c)} is invoked for a partition \texttt{p}, with a card, \texttt{c},
 as its argument, the specified pattern will \emph{match} only if that card is contained in the partition. After determining matches for all variables, the
 link between the partition and the card is deleted, effectively ``removing'' the card from the partition. If the card is \emph{not} contained in the partition,
@@ -15,6 +18,8 @@ the pattern won't match, and nothing will happen. In both cases, the card that's
 Inspect the generated implementation for your method (Fig.~\ref{fig:remCardImpl}). Notice all the null checks that are automatically created - only a very conscientious
 (and probably slightly paranoid) programmer would program so defensively!
 
+\vspace{0.5cm}
+
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_remCardImpl}
@@ -23,8 +28,22 @@ Inspect the generated implementation for your method (Fig.~\ref{fig:remCardImpl}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] After using injections, you were able to test your implementation with \texttt{LeitnersBoxGui},\footnote{If you haven't downloaded
-or used the GUI before, review Part II, Section 7} so lets test and make sure \emph{this} version works. Load and run the GUI, then go to any partition and
-select \texttt{Remove Card}. If it doesn't work, make sure your metamodel is built, and double check your specification syntax.
+\newpage
+
+\item[$\blacktriangleright$] Near the end of Part I (after using injections), you were able to test your implementation with our
+\texttt{LeitnersBoxGui}.\footnote{If you haven't downloaded or used the GUI before, review Part II, Section 7} Lets run this again to make sure
+\emph{this} version of \texttt{removeCard} works. Load and run the GUI as an application, then go to any partition and select
+\texttt{Remove Card} (Fig.~\ref{fig:GUIRemCard}). It should immediately refresh, and you'll no longer be able to see the card in either the GUI or in the
+\texttt{Box.xmi} tree in the ``instances'' folder. Pretty cool, eh?
+
+\vspace{0.5cm}
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{eclipse_GUIRemove}
+  \caption{Remove a card}
+  \label{fig:GUIRemCard}
+\end{center}
+\end{figure}
 
 \end{itemize}

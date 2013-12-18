@@ -4,8 +4,8 @@
 \genHeader
 
 In the next SDM we shall create a string representation for all the contents in a single learning box. To accomplish this, we will have to iterate through 
-every card, in every partition. The concept is similar to \texttt{Partition}'s \texttt{empty} method, except we'll need to create a nested loop 
-(Fig.~\ref{fig:goal_stringRep}). Further still, we'll need to call another helper method to add the contents of each card to \texttt{stringRep}.
+every card, in every partition. The concept is similar to \texttt{Partition}'s \texttt{empty} method, except we'll need to create a nested \emph{for/each}
+loop (Fig.~\ref{fig:goal_stringRep}). Further still, we'll need to call a helper method to add the contents of each card to \texttt{stringRep}.
 
 \vspace{1cm}
 
@@ -18,26 +18,18 @@ every card, in every partition. The concept is similar to \texttt{Partition}'s \
 
 \vspace{1cm}
 
-SDMs support arbitrary nesting of \emph{for each} story nodes via special guards. In \hyperlink{emptyPartition vis}{section 5.1} we used the \texttt{[end]} edge
-guard to terminate a loop. Now we'll use a new guard, the \texttt{[each time]}\define{[each time]} guard, to indicate control flow that is \emph{nested} in
-the \emph{for each} story node and executed for each match.
+As you can see, The first loop will match to all partitions, which then loops to match each card. Each card will then call our second kind of activity, a
+\emph{statement}, to invoke the \texttt{addToStringRep()} method. 
 
 \vspace{0.5cm}
 
-The first \emph{for each} loop will match all partitions, where each partition is used \texttt{[each time]} to match all the cards.  When 
-all cards have been matched, the second loop \texttt{[end]}s, and returns to the outer loop.
-
-\vspace{0.5cm}
-
-The second \emph{for each} will need to print the contents of every card to the string. If you review your metamodel, we already declared the
-\texttt{addToStringRep()} method. To invoke this, we'll create another \texttt{MethodCallExpression}.
+While we declared \texttt{addToStringRep()} in Part II, we didn't complete it. Analogously to how you implemented \texttt{determineNextSize} in the
+previous section, quickly edit the \texttt{Box.impl} partial class again with the code in Fig.~\ref{code:addToStringRep_inject_file} and rebuild your project.
+Confirm the changes in \texttt{Box.impl}, and you'll be ready to start.
 
 \newpage
 
-While we declared \texttt{addToStringRep()}, we didn't fully complete it. Analogously to how you implemented \texttt{determineNextSize} in the previous section,
-quickly edit the \texttt{Box.impl} partial class again with the code in Fig.~\ref{code:addToStringRep_inject_file} and rebuild your project.
-
-\vspace{1cm}
+\vspace*{3cm}
 
 \begin{figure}[h!]
         \centering
@@ -65,14 +57,10 @@ quickly edit the \texttt{Box.impl} partial class again with the code in Fig.~\re
             stringRep = sb.toString();
     -->
         \end{lstlisting}
-        \caption{Developing \texttt{Box}'s \emph{partial class}}
+        \caption{Extending \texttt{Box}'s \emph{partial class}}
         \label{code:addToStringRep_inject_file}
     \end{figure}
     \FloatBarrier
-
-\vspace{1cm}
-
-Comfirm the changes in \texttt{Box.impl}, and you're ready to start.
 
 \jumpDual{stringRep vis}{stringRep tex}
 

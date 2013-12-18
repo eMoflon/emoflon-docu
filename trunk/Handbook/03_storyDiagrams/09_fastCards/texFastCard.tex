@@ -5,8 +5,10 @@
 
 \begin{itemize}
   
-\item[$\blacktriangleright$] Create a new eclass in ``LearningBoxLanguage" named \texttt{FastCard} that extends \texttt{Card}. It doesn't need any new
-attributes, so leave its declaration empty (Fig.~\ref{fig:fastClass}).
+\item[$\blacktriangleright$] Slight problem. We haven't defined a \texttt{FastCard} before. Create a new eclass under ``LearningBoxLanguage" named
+\texttt{FastCard} which extends \texttt{Card}. It doesn't need any new attributes, so leave its declaration empty. It should resemble Fig.~\ref{fig:fastClass}.
+
+\vspace{0.5cm}
 
 \begin{figure}[htp]
 \begin{center}
@@ -16,11 +18,11 @@ attributes, so leave its declaration empty (Fig.~\ref{fig:fastClass}).
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Return to \texttt{Partition} to \texttt{check(card, guess)}, and edit the control flow by adding a second \texttt{if/else}
-construct. Call the assertion pattern \texttt{isFastCard}, and the action pattern \texttt{promoteFastCard}. Move the original \texttt{[promoteCard]} pattern in
-the \texttt{else} statement.
+\item[$\blacktriangleright$] Open \texttt{Partition.eclass} once again, and find \texttt{check(card, guess)}. Edit the activity by adding a second
+\texttt{if/else} construct. Call the new assertion pattern \texttt{isFastCard}, and the action pattern \texttt{promoteFastCard}. Move the original
+\texttt{[promoteCard]} pattern into the \texttt{else} statement. Your workspace should then resemble Fig.~\ref{fig:isFastCard}.
 
-\item[$\blacktriangleright$] Your workspace should now resemble Fig.~\ref{fig:isFastCard}.
+\vspace{0.5cm}
 
 \begin{figure}[htp]
 \begin{center}
@@ -30,9 +32,9 @@ the \texttt{else} statement.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] \texttt{isFastCard} is a simple, one line statement pattern. You need to create an assignment constraint to check a bounded object,
-of type \texttt{FastCard}, against the type of card that was passed in through the parameter. Remember, to access paramter valuers, preface the name with a `\$'
-symbol. Your workspace should now resemble Fig.~\ref{fig:isFastCardPattern}.
+\item[$\blacktriangleright$] \texttt{isFastCard} is a simple, one line statement pattern. You simply need to create an assignment constraint to check a bounded
+object, of type \texttt{FastCard}, against the type of \texttt{card} that was passed in through the parameter. Remember, to access parameter values, preface
+the name with a `\$' symbol. Your workspace should now resemble Fig.~\ref{fig:isFastCardPattern}.
 
 \begin{figure}[htp]
 \begin{center}
@@ -44,10 +46,9 @@ symbol. Your workspace should now resemble Fig.~\ref{fig:isFastCardPattern}.
 
 \item[$\blacktriangleright$] To establish \texttt{promoteFastCard}, first create the four main object variables - \texttt{@fastCard}, \texttt{@this},
 \texttt{lastPartition}, and \texttt{box}. Immediately under \texttt{lastPartition}, also create a \texttt{next} NAC.
+Your workspace should then resemble Fig.~\ref{fig:objVarFastCard}.
 
 \vspace{0.5cm}
-
-\item[$\blacktriangleright$] Your workspace should now resemble Fig.~\ref{fig:objVarFastCard}.
 
 \begin{figure}[htp]
 \begin{center}
@@ -57,8 +58,8 @@ symbol. Your workspace should now resemble Fig.~\ref{fig:isFastCardPattern}.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] When creating the necessary references, remember - this is the pattern that will be invoked when the fast card status has been
-\emph{confirmed}! This means that, in the appropriate variables, you'll want to:
+\item[$\blacktriangleright$] When creating the necessary references, remember - this is the pattern that will be invoked when the fast card status has
+already been confirmed! This means that, in the appropriate rules, you'll want to:
 (1) link the partition to the current box.
 (2) remove \texttt{fastCard} from its current partition, and insert it into \texttt{lastPartition}
 (3) confirm \texttt{lastPartition} is in a box, then check to see if it has a \texttt{next} value.\footnote{If you need help remembering how NACs work, review
@@ -66,7 +67,9 @@ section 7}
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Your final workspace should resemble Fig.~\ref{fig:promoFastCardFinal}
+\item[$\blacktriangleright$] Your final workspace should resemble Fig.~\ref{fig:promoFastCardFinal}. As you can see, this pattern is remarkably similar to the
+original movement patterns, \texttt{promoteCard} and \texttt{penalizeCard} (Fig.~\ref{fig:completedPatterns}). This of course makes sense - it only
+needed a brief NAC to check the \texttt{card} type.
 
 \newpage
 
@@ -83,7 +86,7 @@ section 7}
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] You have now completed \emph{every} method signature from your abstract syntax using SDMs - fantastic work! Build your project to
-confirm there aren't any errors, and review Fig.~\ref{fig:sdm_fastcard_5} to see how \texttt{FastCard}s are implemented visually. 
+confirm there aren't any errors, and review Fig.~\ref{fig:promoteFastCardPattern} to see how \texttt{FastCard}s are implemented in the visual syntax.
 
 \item[$\blacktriangleright$] You are encouraged to read the visual SDM sections on each method to understand the full scope of eMoflon's features (which start
 on page~\hyperlink{page.9}{9}). 

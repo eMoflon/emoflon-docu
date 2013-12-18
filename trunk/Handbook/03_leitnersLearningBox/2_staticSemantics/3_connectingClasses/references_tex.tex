@@ -6,12 +6,13 @@
 In MOSL, the declaration of an EReference is simple - you set each property according to the following syntax (specified in simple EBNF, if you know what that
 is):
 
-\syntax{ `[' `$<>$' `]' `-$>$' role\_name `(' multiplicity `)' `:'  target\_type \\
+\syntax{ [ `<>' ] `->' role\_name `(' multiplicity `)' `:'  target\_type \\
 \\
 With:\\
 role\_name := STRING \\
-multiplicity := $|$ 0..1 $|$ 0..* $|$ 1 $|$ \ldots \\
-target\_type := STRING \\}
+multiplicity := `0..1' $|$ `0..*' $|$ `1' $|$ \ldots \\
+target\_type := STRING \\
+}
 
 The source type is determined by the EClass in which the EReference is placed. You can signal an aggregation EReference by including the sideways diamond before
 the arrow symbol. Don't worry - you don't have to remember this syntax. Our type completion provides a \texttt{reference} template when you activate the hot
@@ -95,12 +96,12 @@ At this point, all of your EReferences have been created! The problem is, suppos
 \item[$\blacktriangleright$] Navigate to the \texttt{\_constraints.mconf} file. You can see it has a single \texttt{opposites} scope that's currently empty.
 Constraints follow the syntax below: 
 
-\syntax{reference `$<$ - $>$' reference \\
+\syntax{reference `<->' reference \\
 \\
 With:\\
-reference `:' reference\_name `:' source\_type \\
-reference\_name : STRING \\
-source\_type : STRING \\}
+reference := reference\_name `:' source\_type \\
+reference\_name := STRING \\
+source\_type := STRING \\}
 
 This statement sets the two EReferences to be opposites of one another, i.e., the connection between EClasses will be bidirectional. As you can see, syntax here
 is slightly different than that of a standard EReference. Instead of the reference type trailing the colon operator, it has switched to become the source type.
@@ -109,10 +110,10 @@ is slightly different than that of a standard EReference. Instead of the referen
 
 \item[$\blacktriangleright$] To begin, press \texttt{ctrl + space} and complete the template with the following:
 
-\syntax{containedPartition : Box $<$ - $>$ box : Partition}
+\syntax{containedPartition : Box <-> box : Partition}
 
 \item[$\blacktriangleright$] Reviewing the \texttt{Partition} EClass, its easy to see that \texttt{previous} and \texttt{next} are certainly not
-opposites,\footnote{Review the rules depicted in (Fig.~\ref{fig:membox_illustration})} but we do need to establish an opposing link between
+opposites,\footnote{Review the rules depicted in Fig.~\ref{fig:membox_illustration}} but we do need to establish an opposing link between
 \texttt{card} and its \texttt{cardContainer}. Follow the same steps until your constraint file resembles Fig.~\ref{fig:bothConstraints}.
 
 \begin{figure}[htbp]

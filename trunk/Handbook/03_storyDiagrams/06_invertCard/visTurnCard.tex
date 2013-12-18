@@ -7,7 +7,8 @@
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] You've got to be pretty good at SDMs by now -- model the simple control flow depicted in Fig.~\ref{fig:sdm_invertEmpty}. 
+\item[$\blacktriangleright$] If you've made it through all the work so far, you've got to be pretty good at SDMs now. Model the simple control flow
+depicted in Fig.~\ref{fig:sdm_invertEmpty}.
 
 \vspace{0.5cm}
 
@@ -19,12 +20,12 @@
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Note that the binding operator on the first \texttt{temp} is set to create. This is so that we actually \emph{make} a new
-variable, and not pattern match to an existing one in the model.
+\item[$\blacktriangleright$] Note that the binding operator on the first \texttt{temp} is set to \texttt{create}. This is so that we actually \emph{make} a new
+object, and not pattern match to an existing one in our model.
 
-\item[$\blacktriangleright$] This activity will need four assignment constraints - two in \texttt{initializeTemp} to store the opposite values in
-\texttt{temp}, and two in \texttt{swapVariables} to set the new values. Create your first assignment constraint by going to the creational \texttt{temp} card
-and using the `\texttt{:=}' operator to set the \texttt{temp.back} value to \texttt{this.face} (Fig.~\ref{fig:sdm_invertAssignment}).
+\item[$\blacktriangleright$] This activity will need four assignment constraints - two in \texttt{in\-it\-ia\-lize\-Temp} (to store the ``opposite'' values),
+and two in \texttt{swapVariables} (to switch the values). Create your first assignment constraint by going to the creational \texttt{temp} card and using the
+`\texttt{:=}' operator to set the \texttt{temp.back} value to \texttt{this.face} (Fig.~\ref{fig:sdm_invertAssignment}).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -38,7 +39,7 @@ and using the `\texttt{:=}' operator to set the \texttt{temp.back} value to \tex
 
 \vspace*{0.5cm}
 
-\item[$\blacktriangleright$] Complete the SDM with the remaining constraints according to Fig~\ref{fig:sdm_invertComplete} below.
+\item[$\blacktriangleright$] Complete the SDM with the remaining constraints according to Fig.~\ref{fig:sdm_invertComplete} below.
 
 \vspace{0.5cm}
 
@@ -53,7 +54,7 @@ and using the `\texttt{:=}' operator to set the \texttt{temp.back} value to \tex
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Believe or not, that's it! Check out how this method was implemented in the textual syntax by reviewing
-Fig.~\ref{fig:invertPatterns} on the next page. You don't \emph{have} to export and build to Eclipse, but it's always nice to confirm your work.
+Fig.~\ref{fig:invertPatterns} in the next section. You don't \emph{have} to export and build to Eclipse, but it's always nice to confirm your work.
 
 \jumpSingle{invert close} 
 
