@@ -4,7 +4,7 @@
 ingenious little contraption to support the tedious process of memorization, especially prominent when trying to learn, for example, a new language. As depicted in
 Fig.~\ref{fig:membox_depiction}, this box consists of a series of partitions with a strict set of rules. The contents to be memorized are written on little cards and placed in the first container. Every
 time the user correctly answers a card, that card is promoted to the next partition. Once it reaches the final partition, it can be considered memorized, and
-no longer needs to be practiced. Every time the user incorrectly answers a card however, it is sent back to the original starting partition, and the
+no longer needs to be practiced. Every time the user incorrectly answers a card however, it is returned to the original starting partition, and the
 learning process is restarted.
 
 \begin{figure}[htbp]
@@ -24,13 +24,13 @@ For a more detailed overview of the box and our goals, we recommend you read the
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.75\textwidth]{eclipse_downloadWizard}
-	\caption{Download the file set to get started}
+	\caption{Download a file set to get started}
 	\label{fig:downloadWizard}
 \end{figure}
 
-\item[$\blacktriangleright$] Download the file package of the eMolfon syntax type you'd like to learn about. Remember, with the visual syntax, you'll be using
-an external modeling program to craft your metamodel diagrams, then exporting the data to Eclipse. With textual, you'll be working entirely within the
-Eclipse IDE in the eMolfon perspective.
+\item[$\blacktriangleright$] Download the file package of the eMolfon specification type you'd like to learn. Remember, with the visual syntax, you'll be
+using an external modeling program to craft your metamodel diagrams, then exporting the data to Eclipse for generation. With textual, you'll be working entirely
+within the Eclipse IDE in the eMolfon perspective.
 
 \newpage
 
@@ -47,25 +47,27 @@ in Eclipse.
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.9\textwidth]{eclipse_workingSets}
-	\caption{Setting your Package Explorer}
+	\caption{Setting your Package Explorer \update}
 	\label{fig:workingSets}
 \end{figure}
 
-The ``MyWorkingSet" node contains \texttt{LeitnersLearningBox}, which in turn contains all the metamodel project files. Visually, this is represented in a
-single \texttt{.eap} file. In the textual syntax, it's an explicit project structure with several classes. 
+The ``MyWorkingSet" node contains \texttt{Learn\-ing\-Box\-Lang\-uage}, which in turn contains all the code generated from your metamodel. The metamodel itself
+is found in \texttt{Leit\-ners\-Learn\-ing\-Box} under ``Specifications''. The visual metamodel is a single \texttt{.eap} file, while the textual metamodel is
+contained within an explicit project structure. 
 
-The model generated from the metamodel can be found under the second node, in \texttt{LearningBoxLanguage}. These sets are not contained within the same node
-because they are different \emph{nature}s, or project types. \texttt{Learning\-Box\-Language} is your \emph{repository project}, the Eclipse classification of a
-normal Java project.\footnote{For details on the project setup, review Part I, sections 4 and 5} 
+These sets are not included under same node due to being different \emph{nature}s, or project types. \texttt{Learning\-Box\-Language} is your
+\emph{repository project}, the Eclipse classification of a normal Java project.\footnote{For details on the project setup, review Part I, sections 4 and 5} 
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Inspect the files in both nodes until you feel comfortable with what you'll be working with. In particular, look at the
-files found under ``gen." Each Java file has a corresponding \texttt{.impl} file, where all actionable code will be placed.\footnote{For specific details on
-their contents, refer to Part II, section 5} Also compare everything in your ``MOSL'' file with the ecore modeling file, and review the dynamic instance in
-``LearningBoxLanguage/model/instances.'' While you can make and customize your own instance,\footnote{To learn how to make your own instance model, review Part
-II, section 4} we have included a small sample in your download to get you started.
+\item[$\blacktriangleright$] Inspect the files in both nodes until you feel comfortable with what you'll be working with. In particular, look at the files found
+under ``gen." Each Java file has a corresponding \texttt{.impl} file, where all actionable code (such as method implementations) will be placed.\footnote{For
+specific details on their contents, refer to Part II, section 5} 
 
-\item[$\blacktriangleright$] Well, that's it! A quick review, paired with a fine download makes an excellent appetizer to SDMs. Let's get started.
+\item[$\blacktriangleright$] Be sure to also review the ecore model under ``LearningBoxLanguage/model/'' and the dynamic instance found in ``instances.'' While
+you can make and customize your own instance,\footnote{To learn how to make your own instance model, review Part II, section 4} we have included a small sample
+in your download to help you get started.
 
 \end{itemize}
+
+Well, that's it! A quick review, paired with a fine download makes an excellent appetizer to SDMs. Let's get started.

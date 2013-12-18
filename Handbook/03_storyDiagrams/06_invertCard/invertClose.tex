@@ -1,12 +1,11 @@
 \newpage
+\subsubsection{Inversion review}
 \genHeader
 \hypertarget{invert close}{}
 
-{\Large \bf Inversion review}
-
-Before we start the next SDM, lets quickly review one thing. Have you considered why the \texttt{temp} object is bound in the second pattern,
-((\texttt{swap variables})), but not where it's first defined (in \texttt{initialize temp})? This is a new case for bound variables that we haven't treated
-yet!
+Before we start the next SDM, lets quickly review one thing. Have you considered why the \texttt{temp} object is bound in the second pattern for
+\texttt{invert}, ( in \texttt{swap variables}), but not where it's first defined (in \texttt{initialize temp})? This is a new case for bound variables that we
+haven't treated yet!
 
 Until now, we have seen object variables that can be bound to (1) an argument of the method (set when the method is invoked), or (2) the
 current object (\texttt{this}) whose method is invoked. In both cases, the object to be matched is completely determined by the context of the method before

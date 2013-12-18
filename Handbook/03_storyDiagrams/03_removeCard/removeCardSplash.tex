@@ -3,14 +3,16 @@
 \section{Removing a card}
 \hypertarget{sec:remCard}{}
 
-Since we're just getting started with SDMs, lets re-implement the method previously completed with injections.\footnote{Refer to Part II, section 6} The goal of
-this method is to remove a single card from its current partition, which can be done by destroying the link between the two items (Fig.~\ref{fig:goal_removeCard}).
+Since we're just getting started with SDMs,\footnote{As you may have already noticed, we use ``SDM'' interchangeably to mean both our graph transformation
+language \emph{or} a concrete transformation (a story model) used to implement a method, consisting of an activity and pattern.} lets re-implement the method
+previously completed with injections.\footnote{Refer to Part II, Section 6} The goal of this method is to remove a single card from its current partition, which
+can be done by destroying the link between the two items (Fig.~\ref{fig:goal_removeCard}).
 
 \vspace{1cm}
 
 \begin{figure}[htbp]
 	\centering
-    \includegraphics[width=0.17\textwidth]{goal_removeCard.pdf}
+    \includegraphics[width=0.2\textwidth]{goal_remove}
 	\caption{Removing a card from its partition}
 	\label{fig:goal_removeCard}
 \end{figure}
@@ -48,40 +50,39 @@ declaration should now be empty and look identical to the others.
 
 Thats it! We now have a fresh start for \texttt{removeCard}. Let's briefly discuss what we need to establish the transformation.
 
-Remember, one of the goals of SDM is to allow you to focus less on \emph{how} a method will do something, but rather on \emph{what} the method will do.
+One of the goals of SDM is to allow you to focus less on \emph{how} a method will do something, but rather on \emph{what} the method will do.
 Integrated as an atomic step in the overall control flow, a single graph transformation step (such as link deletion)\footnote{hint, hint!} can be embedded as a
 \emph{story pattern}.
 
-These patterns however, must establish\define{Object \\ Variables}\emph{object variables}, place holders for actual objects in a model (i.e., an object for
-each element in your instance model). During \emph{pattern matching}, occurrences of objects in the current model are connected to the object variables in the
+These patterns however, must establish\define{Object \\ Variables}\emph{object variables}, place holders for actual objects in a model (i.e., an object for each
+element in your instance model). During \emph{pattern matching}, occurrences of objects in the current model are connected to the object variables in the
 pattern according to the indicated type and other conditions.\footnote{We shall learn what conditions may be specified in later SDMs}
 
 \clearpage
 
-In \texttt{removeCard}, the SDM will have just two object variables: a \texttt{this} partition (named according to Java convention) which refers to the
-object whose method is invoked, and \texttt{card}, the parameter \texttt{Card} object that will be removed.
+In \texttt{removeCard}, the SDM will requires just two object variables: a \texttt{this} partition (named according to Java convention) referring to the
+object whose method is invoked, and \texttt{card}, the parameter object that will be removed.
 
 When applicable, patterns must also establish \emph{link variables}\define{Link \\ Variables} to match references in the model. Given that
 we're concerned with removing a certain card from a specific partition, \texttt{removeCard} will therefore have a single link variable to match these two
 objects together.
 
-Unfortunately, the pattern matcher uses a randomized system until it matches a valid object to each of its variables, and any new variables a pattern
+Unfortunately, we know the pattern matcher uses a randomized system until it matches a valid object to each of its variables, and any new variables a pattern
 creates simply won't have any default settings. How can this be changed so that, as required for \texttt{removeCard}, the matcher will retrieve the information
-associated with specific model objects?
+associated with specific model objects (i.e., match with the correct \texttt{card})?
 
-The \emph{binding state}\define{Binding~State}of every object determines how its data is determined. By default, every object is \emph{unbounded}, also referred
-to as \emph{free variable}s.\define{Free \\ Variable}Values for these objects can be both assigned and changed throughout an activity. By declaring a
-\emph{bounded}\define{Bounded}object however, the activity will not need to assign a value as it will already have a fixed value from the
-context of the model.
-\emph{Binding} is implicit via the \emph{name} of the bound object variable. As a rule, \texttt{this} variables, and any parameterized values (i.e., \texttt{card}) are always
-bounded.
+The \emph{binding state}\define{Binding~State}of an object determines how its data is found. By default, every object is \emph{unbounded}, or a  \emph{free
+variable}.\define{Free \\ Variable}Values for these objects can be both assigned and changed throughout an activity. By declaring a
+\emph{bounded}\define{Bounded}object however, the item will have a fixed value from the context of the model.
+\emph{Binding} is implicit via the \emph{name} of the bound object variable. As a rule, \texttt{this} variables, and any parameterized values (i.e.,
+\texttt{card}) are always bounded.
 
-On a final note, every object or link variable can set its \emph{binding operator} to \texttt{Check Only, Create, or Destroy}. For a rule $r: (L,
+On a final note, every object or link variable can also set its \emph{binding operator} to \texttt{Check Only, Create, or Destroy}. For a rule $r: (L,
 R)$, as discussed in \hyperlink{explanation}{Section 2}, these marks the variable as belonging to the set of elements to be retained ($L\cap R$), the set of
 elements to be newly created ($R\setminus L$), or the set of elements to be deleted ($L\setminus R$).
 
 If you're feeling overwhelmed by all the new terms and concepts, don't worry! We will define them again in the context of your syntax with the example. For
-quick reference, we have also defined each of the marginalized words at the end of this part in a \hyperlink{glossary}{glossary}. Otherwise, let's go!
+quick reference, we have also defined each of the marginalized words at the end of this part in a \hyperlink{glossary}{glossary}. 
 
 \jumpDual{remCard vis}{remCard tex}
 

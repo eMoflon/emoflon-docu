@@ -24,7 +24,7 @@
 
 \item[$\blacktriangleright$] In \texttt{checkCard}, create an object variable that is bound to the parameter argument, \texttt{card} 
 (Fig.~\ref{fig:sdm_check_addCard}). This will represent the card the user picked from the learning box. Remember, the binding for this variable is implicitly
-defined when its name is the same as the argument's name.
+defined when its name is the same as the argument's.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -51,7 +51,7 @@ Fig.~\ref{fig:sdmcheck_att_constraint}, select the correct object attribute and 
 \end{figure}
 
 \item[$\blacktriangleright$] Similar to how the return value was specified in the previous SDM, set the \texttt{ParameterExpression} to refer to \texttt{guess}
-to retrieve the user EString input. Press \texttt{Add} and admire your first attribute constraint.
+to retrieve the user's EString input. Press \texttt{Add} and admire your first conditional.
 
 \vspace{0.5cm}
 
@@ -82,7 +82,7 @@ with our coffee addiction', weren't you?} It might be nice to visualise \emph{sm
 control flow, such diagrams would get extremely cumbersome and unwieldy very quickly! This is indeed a popular argument against visual languages and it might
 have already crossed your mind (``This is cute, but it'll \emph{never} scale!''). With the right tools and concepts however, even huge diagrams can be
 mastered. We support \emph{extracting} story patterns into their own diagrams, and unless the pattern is really concise with 2 or 3 object variables, recommend
-this course of action. In other words, eMoflon supports seprating your transformation's pattern layer from the control flow.
+this course of action. In other words, eMoflon supports seperating your transformation's pattern layer from its imperative.
 
 \vspace{0.5cm}
 
@@ -108,14 +108,22 @@ this course of action. In other words, eMoflon supports seprating your transform
 
 \newpage
 
-Another EA gesture you should start to take advantage of is a good ol' \emph{Drag and Drop} action from the project browser\footnote{The other two gestures we
-have learnt are ``Quick Link'' and ``Quick Create''} into a diagram. We can use this move as an alternative to creating new objects (with known types) from the
-SDM toolbox.
+Another EA gesture\footnote{The other two gestures we have learnt are ``Quick Link'' and ``Quick Create''} you should start to take advantage of here is a good
+ol' \emph{Drag-and-Drop} action from the project browserinto a diagram. We can use this action as an alternative to creating new objects (with known types) from
+the SDM toolbox.
+
+The main advantage of drag-and-drop is that the \texttt{Object Variable Pro\-per\-ties} dialogue should have the type of the object pre-configured. Choosing
+the type in the project browser and dragging it in is (for most people) a more natural gesture than choosing the type from a long drop-down menu (as we had to
+when using the SDM toolbar). This can be a great time saver for large metamodels.\footnote{Drag and drop is also possible in embedded story patterns
+(still visualised in their story nodes).  You must ensure however, that the object variable is \emph{completely} contained inside the story node and does not
+stick out over any edge.}
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] To create a new \texttt{Card} object variable, simply drag and drop the class from the project browser into the new (extracted)
-pattern diagram (Fig.~\ref{fig:sdm_check_bound_card}).
+\item[$\blacktriangleright$] To put this into practice, create a new \texttt{Card} object variable by drag-and-dropping the class from the project browser
+into the new (extracted) pattern diagram (Fig.~\ref{fig:sdm_check_bound_card}).
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -128,13 +136,13 @@ pattern diagram (Fig.~\ref{fig:sdm_check_bound_card}).
 \item[$\blacktriangleright$] A dialogue will appear asking what kind of variable should be created. You can create (1) a simple link (which would refer to and
 be represented by \texttt{Card}'s entire class), (2) create an instance of \texttt{Card} as an object, or (3) create a subclass. Paste \texttt{Card} as an
 instance and check \texttt{Autosave Selection as Default} under ``Options" so option (2) will be used next time by default. You should also check \texttt{Use
-Ctrl + Mouse drag to show this Dialog}, so this dialogue doesn't appear every time. Don't worry - if you ever need options (1) and (3), you  just need to hold
-\texttt{Ctrl} when dragging to invoke the dialogue then change the settings.
+Ctrl + Mouse drag to show this Dialog}, so this dialogue doesn't appear every time you use this action. Don't worry - if you ever need options (1) and (3), 
+just hold \texttt{Ctrl} when dragging to invoke the dialogue, then change the settings.
 
-\item[$\blacktriangleright$] After creating the object, the same object properties dialogue will open.  Set the \texttt{Name} to \texttt{card} and its
-\texttt{Binding State} to \texttt{Bound} (Fig.~\ref{fig:sdm_new_card_properties}).
+\vspace{0.5cm}
 
-\newpage
+\item[$\blacktriangleright$] After creating the object, the same object properties dialogue will open.  Set the \texttt{Name} to \texttt{card} and check its
+\texttt{Binding State} is \texttt{Bound} (Fig.~\ref{fig:sdm_new_card_properties}).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -144,16 +152,12 @@ Ctrl + Mouse drag to show this Dialog}, so this dialogue doesn't appear every ti
 \end{center}
 \end{figure}
 
-The main advantage of drag and drop is that the \texttt{Object Variable Pro\-per\-ties} dialogue should have the type of the object pre-configured. Choosing
-the type in the project browser and dragging it in is (for most people) a more natural gesture than choosing the type from a long drop-down menu (as we had to
-when using the SDM toolbar). This can be a great time saver for large metamodels.\footnote{Drag and drop is also possible in embedded story patterns
-(still visualised in their story nodes).  You must ensure however, that the object variable is \emph{completely} contained inside the story node and does not
-stick out over any edge.}
-
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Currently, we have the single \texttt{card} that we want to promote through the box. Drag and drop two partition objects,
-\texttt{this}, and the \texttt{nextPartition} as depicted in Fig.~\ref{fig:sdm_check_complete_sp}.
+\texttt{this}, and \texttt{nextPartition} as depicted in Fig.~\ref{fig:sdm_check_complete_sp}.
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -162,8 +166,6 @@ stick out over any edge.}
   \label{fig:sdm_check_complete_sp}
 \end{center}
 \end{figure}
-
-\vspace{0.5cm}
 
 An important point to note here is that \texttt{this} and \texttt{card} are visually differentiated from \texttt{nextPartition} by
 their bold border lines. This is how we differentiate \emph{bound} from \emph{unbound} (\emph{free}) variables. We already know that matches for bound

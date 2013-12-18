@@ -9,7 +9,8 @@ operation, as we just saw in \texttt{check}. In our example so far, we have impl
 With eMoflon however, there is an alternate way to construct these black boxes. In fact, this feature is yet another way of integrating handwritten java code
 with your SDM! The only ``rule'' of this feature is that your method must return \texttt{EBoolean}, \texttt{Success}, or \texttt{Failure}, respectively
 corresponding to \texttt{true} and \texttt{false}. Any other values will set \texttt{Failure} to \texttt{null}. It follows that void methods cannot be used for
-branching - an exception will be thrown during execution.
+branching - an exception will be thrown during execution. This new way uses \emph{statement nodes} as the \emph{if} construct's conditional by using whatever
+value a method returns.
 
 Let's reconsider \texttt{grow}, the method that adds a new partition to our box. Reviewing Fig.~\ref{fig:growComplete}, the current pattern assumes
 there are already at least two partitions in \texttt{box}. What would happen if it had only one, or even no partitions at all? The metamodel simply wouldn't

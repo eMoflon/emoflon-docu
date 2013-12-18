@@ -34,7 +34,7 @@ exclusively for control flow (i.e., sequences, branches, and loops).
 
  \begin{figure}[htbp]
   \centering
-  \includegraphics[width=1.0\textwidth]{eclipse_commentsNode}
+  \includegraphics[width=0.9\textwidth]{eclipse_commentsNode}
   \caption{The \texttt{Node} eclass}
   \label{fig_eclassNode}
 \end{figure}
@@ -48,7 +48,7 @@ Check out the \texttt{deleteNode} pattern (Fig ~\ref{fig_patternDeleteNode}).
  \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.6\textwidth]{eclipse_patternDeleteNode}
-  \caption{Eclipse: The deleteNode Pattern}
+  \caption{Eclipse: The deleteNode pattern}
   \label{fig_patternDeleteNode}
 \end{figure}
 
@@ -57,7 +57,7 @@ and next references defined on it (remember that we're dealing with a double lin
 will be automatically cleaned and removed. The final command reconnects the next and previous nodes of the deleted node to close the `hole' in the list. This is
 accomplished by setting (\texttt{++}) the previous reference of the next node to the previous node.
  
-So that's a quick overview of the MOSL language but, how do we generate code from all of this?
+So that's a quick overview of the MOSL language but how do we generate code from all of this?
 
 First, eMoflon does not generate code with every change. To improve performance, only the parser is invoked when you save files. This means
 that to generate code for the project, you need to either invoke the \texttt{Build (and clean)} command from the eMoflon context menu after right clicking your
