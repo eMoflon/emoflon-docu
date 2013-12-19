@@ -1,0 +1,22 @@
+\newpage
+\section{Specifying TGG rules}
+\genHeader
+
+After declaring our correspondence types in the TGG schema, we can now specify a set of \emph{TGG rules} to describe the simultaneous evolution of both source,
+correspondence and target models.
+
+A TGG rule is quite similar to an SDM storypattern and is also of the form (\emph{precondition, postcondition}). In other words, we have to state:
+
+\begin{itemize}
+  \item What pattern must be matched, i.e, under which conditions can the rule be applied (this is the precondition).
+  \item The objects and links to be created when the rule is applied to a match (this is deduced from the postcondition).
+\end{itemize}
+
+Note that the rules of a TGG only describe the simultaneous \emph{build-up} of the models and do not delete or modify any existing elements, i.e., TGG rules
+are \emph{monotonic}. This might seem surprising at first and you might think this is a terrible restriction. The point is that the TGG should only specify a
+consistency relation and not directly the forward and backward transformations, which are derived automatically. It turns out that deletion is not necessary on
+this level to do this, but will of course be used at the right places in the generated transformations.
+
+\input{../2_rules/visRules}
+
+\input{../2_rules/texRules}

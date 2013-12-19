@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Fri Nov 08 14:33:00 CET 2013
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=tripleGraphTransformations_mainFile.tex
+outputFile=04_TGGs.pdf
+langSpell=en
+markDer=true
+srcDir=src/
