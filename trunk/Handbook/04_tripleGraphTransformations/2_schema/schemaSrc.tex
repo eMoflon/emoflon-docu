@@ -1,0 +1,21 @@
+\newpage
+\section{Specifying a TGG schema}
+\genHeader
+
+As you might assume, the first step to a completing a TGG is to model the correspondence component of your triples. The correspondence, or \emph{link metamodel}
+consists, of \emph{correspondence types} which connect classes between the source and target metamodels. In our case, our source metamodel is our
+current running example, \texttt{LearningBoxLanguage}, and our target is \texttt{DictionaryLanguage}, which we'll have you import into your project in the next
+few steps. Remember, a \emph{correspondence type} can be considered as a traceability link. While the correspondence metamodel is really just a standard
+metamodel, we use a slightly different concrete syntax to present it, and adhere to certain naming conventions.\define{TGG Schema}The overall metamodel triple
+consisting of the relevant parts of the source, correspondence, and target metamodels is called the \emph{TGG schema}.
+
+A TGG schema can be viewed as the metamodel triple to which all created triples must conform. In less technical lingo, it gives an abstract view on the
+relationship or \emph{correspondence} between two metamodels or domains. Just by looking at the TGG schema, a domain expert should understand \emph{why} the
+connected elements are related, irrespective of \emph{how} the relationship is actually established by TGG rules (coming up next). Note that all other
+information in the source and target metamodels such as attributes, methods and references between classes are also visualized per default in the TGG schema --
+just in case you were wondering where all the attributes and references suddenly came from.
+
+
+\input{../2_schema/visSchema.tex}
+
+\input{../2_schema/texSchema.tex}

@@ -42,6 +42,9 @@
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
+% Remove section numbers 0.1, 0.2 ..
+\renewcommand{\thesection}{\arabic{section}} 
+
 \graphicspath{%
 {../../06_miscellaneous/commonFiles/}% Title image and memBox illustration
 {../01_LeitnersBoxReviewed/lbrImages/}%
@@ -58,9 +61,6 @@
 {../11_LLBGuiExtended/}%
 }
 
-
-% Remove section numbers 0.1, 0.2 ..
-\renewcommand{\thesection}{\arabic{section}} 
 
 % --- HEADER FUNCTIONS ----------------------------------------------------------------------------------------------------------------------------------------
 % Default plain header; turn off all lines and colors; turn on page numbers for all
