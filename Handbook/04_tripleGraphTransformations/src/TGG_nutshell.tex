@@ -1,4 +1,5 @@
 \section{Triple Graph Grammars in a nutshell}
+\label{sec:nutshell}
 \genHeader
 
 Triple graph grammars~\cite{tgg:schuerr_94,sk2008,Klar2010} are a declarative, rule-based technique of specifying the simultaneous evolution of three connected
@@ -36,7 +37,7 @@ We believe there are two main keys to understanding TGGs:
 	target graph is \emph{sufficient} to derive a forward transformation, i.e., given source, determine consistent correspondence and target graphs, and a
 	backward transformation (i.e., given a target, you can determine consistent correspondence and source graphs). As these derived rules must be executed to
 	perform forward and backward transformations, they are called \emph{operational} rules as opposed to the TGG \emph{declarative} rules. The derivation process,
-	therefore, is referred to as the \emph{operationalization} of a TGG.
+	therefore, is referred to as the\define{Operationalization}\emph{operationalization} of a TGG.
 	
 \end{description}
 
@@ -57,10 +58,10 @@ The second reason is a bit more subtle, and difficult to explain without a concr
 that the TGGs are symmetric and forward/backward can be interchanged freely.  As it is cumbersome to always write forward/backward, we shall simply say
 forward} transformation is \emph{not} injective and cannot be inverted! How is it possible to we provide a backward transformation then?
 
-Remember, a function can only be inverted if it is \emph{bijective}, meaning it is both \emph{injective} and \emph{surjective}.\footnote{See definitions in the
-glossary for a reminder} To accomodate this, when executing the forward transformation, eMoflon sort of ``cheats'' and, if there was a choice, remembers what
-target element was chosen.\footnote{It's 'cheating' since this choice is what makes the transformation non-injective.} In this way,
-eMoflon \emph{bidirectionalize}s the transformation on-the-fly with correspondence links.  
+Remember, a function can only be inverted if it is \emph{bijective},\define{Bijective}meaning it is both \emph{injective}\define{Injective}and
+\emph{surjective}.\define{Surjective}To accomodate this, when executing the forward transformation, eMoflon sort of ``cheats'' and, if there was a choice,
+remembers what target element was chosen.\footnote{It's 'cheating' since this choice is what makes the transformation non-injective.} In this way, eMoflon
+\emph{bidirectionalize}s the transformation on-the-fly with correspondence links.
 
 If somehow lose the correspondence graph, no worries, because the \emph{same} TGG specification that has been used to derive your forward and backward
 transformations can also be used to reconstruct the correspondence model between two existing source and target models (to a certain degree).\footnote{We refer

@@ -2,19 +2,24 @@
 \section{Specifying TGG rules}
 \genHeader
 
-After declaring our correspondence types in the TGG schema, we can now specify a set of \emph{TGG rules} to describe the simultaneous evolution of both source,
-correspondence and target models.
+Now that we have declared our correspondence types in the TGG schema, we can now specify a set of \emph{TGG rules}\define{TGG rules}to describe the simultaneous
+evolution of the source, correspondence and target models.
 
-A TGG rule is quite similar to a  SDM story pattern, also being in the (\emph{precondition, postcondition}) form. In other words, we have to state:
-
+As we dicussed in Section~\ref{sec:nutshell}, a TGG rule is quite similar to a SDM story pattern, given that it follows a \emph{precondition, postcondition}
+format. This means we'll need to state:
 \begin{itemize}
-  \item What pattern must be matched (i.e, under which conditions can the rule be applied)
-  \item The objects and links to be created when the rule is applied to a match 
+  \item What pattern must be matched (i.e., under which conditions can the rule be applied)
+  \item The objects and links to be created when the rule is applied to a match  (i.e., which object must exist upon exit)
 \end{itemize}
 
-Note that the rules of a TGG only describe the simultaneous \emph{build-up} of the models and do not delete or modify any existing elements. In other rules, TGG
-rules are \emph{monotonic}. This might seem surprising at first, and you might even think this is a terrible restriction. The point is that the TGG should only
-specify a consistency relation and not directly the forward and backward transformations, which are derived automatically. It turns out that deletion is not necessary on this level to do this, but will of course be used at the right places in the generated transformations.
+\vspace{0.5cm}
+
+Note that the rules of a TGG only describe the simultaneous \emph{build-up} of each model, and do not delete or modify any existing elements. In other rules,
+TGG rules are \emph{monotonic}.\define{Monotonic}This might seem surprising at first, and you might even think this is a terrible restriction. The intention is
+that a TGG should only specify a consistency relation, and \emph{not} the forward and backward transformations directly, which are derived automatically. In the
+end, modifcations are not necessary on this level but can, of course, be used at the right place in the generated transformation.
+
+\jumpDual{rules vis}{rules tex}
 
 \input{../3_rules/visRules}
 

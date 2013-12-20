@@ -2,22 +2,63 @@
 \section{Setting up your workspace}
 \genHeader
 
-Unfortunately, before you're able to dive into TGGs, you need to have your two metamodels already prepared. Our source graph for this example will be
-\texttt{LearningBoxLanguage}, the metamodel we have built over the past four parts of this handbook. We provide the target metamodel,
-\texttt{Dictionarylanguage}, as an import to your current project. These instructions are cruical as \emph{both} metamodels must be in the \emph{same} EAP
-file so we can specify an integration with TGGs.
+Unfortunately, before you're able get started with  TGGs, you need to have your two metamodels already prepared. Our source metamodel will be
+\texttt{LearningBoxLanguage}, which we built and completed in Parts II and III. We have provided the target metamodel, \texttt{Dictionarylanguage}, in the
+download zip file for this part of the handbook. You'll need to properly import this metmodel into your current \texttt{.eap} file. These instructions are
+crucial as \emph{both} metamodels must be in the \emph{same} file to specify an integration with TGGs.
 
-If you have skipped over the previous parts of the handbook but wish to get started right away with TGGs, we have created a small download package of
-LetinersLearningBox based on the concrete specification - visual or textual - that you'd like to learn.  If you're continuing from Part III, feel free to skip
-ahead to \texttt{Section~\ref{sec:multiEAP}}.
+If you have just joined us in this part and wish to get started right away with TGGs, complete Section~\ref{sec:loadSourceMeta} to load our running example. If
+you've completed Part III however, skip ahead to either \texttt{Section~\ref{sec:multiEAP} (Visual)} or \texttt{Section~\ref{sec:multiMOSL} (Textual)} for
+instructions on how to import the target metamodel into your workspace.
 
 \subsection{Loading \texttt{LearningBoxLanguage}}
-How to: Part IV download package files (wizard)
+\label{sec:loadSourceMeta}
+\begin{itemize}
 
-For a detailed overview on this metamodel, review the
-introduction to Part II.
+\item[$\blacktriangleright$] To get started, press the \texttt{new} button on the toolbar and navigate to ``Examples/eMoflon Handbook Examples/''
+(Fig.~\ref{fig:downPartIV})
 
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.75\textwidth]{eclipse_downloadWizardPartIV}
+  \caption{Download a file set to get started}
+  \label{fig:downPartIV}
+\end{center}
+\end{figure}
 
-\subsection{Working with Multiple EAPs}
-\label{sec:multiEAP}
-import instructions here: SPLIT INTO VISUAL AND TEXTUAL
+\item[$\blacktriangleright$] We have created two file packages based on the eMolfon specification type you'd like to learn. Remember, with the visual
+syntax, you'll be using an external modeling program to craft your metamodel diagrams, then exporting the data to Eclipse for generation. With textual, you'll
+be working entirely within the Eclipse IDE, in the eMolfon perspective. 
+
+\item[$\blacktriangleright$] If your package explorer does not look similar to ours in Fig.~\ref{fig:workingSets} with at least two distinct nodes, select the
+small, downward facing arrow in the corner of the module window. Choose ``Working Sets'' as your ``Top Level Elements.'' We use these to structure the
+workspace in Eclipse.
+
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
+	\centering
+  \includegraphics[width=0.9\textwidth]{eclipse_workingSets}
+	\caption{Setting your Package Explorer}
+	\label{fig:workingSets}
+\end{figure}
+
+The ``MyWorkingSet" node contains \texttt{Learn\-ing\-Box\-Lang\-uage}, which in turn contains all the code generated from your metamodel. The metamodel itself
+is found under ``Specifications.'' The visual metamodel is a single \texttt{.eap} file, while the textual metamodel is inside an explicit project structure.
+
+\vspace{0.5cm}
+
+These sets are not included under same node due to being different \emph{nature}s, or project types. \texttt{Learning\-Box\-Language} is your
+\emph{repository project}, the Eclipse classification of a normal Java project.\footnote{For details on the project setup, review Part I, sections 4 and 5} 
+
+\vspace{0.5cm}
+
+We recommend reading the overview of \texttt{LeitnersLearningBox}, it's purpose and goals, in the introduction to Part II. This will provide the
+motivation for creating a TGG with a dictionary language, and may help you understand why certain attributes and links are connected.
+
+\end{itemize}
+
+% Instructions for loading target model
+\input{../1_gettingStarted/visImport/visImportSrc}
+
+\input{../1_gettingStarted/texImport/texImportSrc}

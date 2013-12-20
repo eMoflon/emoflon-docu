@@ -28,7 +28,7 @@
 	pagecolor=black,%
 	urlcolor=black
 }
-	
+
 \lstset{language=,
     keywordstyle=\color{blue},
     basicstyle=\scriptsize\ttfamily,
@@ -43,6 +43,9 @@
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
+% Remove section numbers 0.1, 0.2 ..
+\renewcommand{\thesection}{\arabic{section}} 
+
 \graphicspath{%
 {../commonFiles/}% Title page and membox illustration
 {../1_grokkingEA/01_layOutElements/}{../1_grokkingEA/02_bendingLines/}{../1_grokkingEA/03_delVSRem/}{../1_grokkingEA/04_exclusion/}%
@@ -50,10 +53,6 @@
 {../1_grokkingEA/09_multiEAPs/}%
 {../2_subversionEA/}{../3_existingEMF/emfImages/}%
 }
-
-% Remove section numbers 0.1, 0.2 ..
-\renewcommand{\thesection}{\arabic{section}} 
-
 
 % --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
 % Default plain header; turn off all lines and colors; turn on page numbers for all
@@ -91,9 +90,9 @@
   		\color{CornflowerBlue}\leaders\hrule height \headrulewidth\hfill}}
 }
 
-% --- Title Page Information ----------------------------------------------------------------------------------------------------------------------------------
-\def\partTitle{Part IV: Miscellaneous}
-\def\versionNumber{0.2}
+% TODO: update version (Title Page Information) ---------------------------------------------------------------------------------------------------------------
+\def\partTitle{Part VI: Miscellaneous}
+\def\versionNumber{0.1}
 \input{../commonFiles/titlepage}
 % -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
