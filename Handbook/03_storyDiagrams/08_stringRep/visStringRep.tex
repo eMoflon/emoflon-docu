@@ -5,7 +5,7 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Visual SDMs support arbitrary nesting of \emph{for each} story nodes via special guards. In \hyperlink{emptyPartition vis}{section
+\item[$\blacktriangleright$] Visual SDMs support arbitrary nesting of \emph{for each} story nodes via special guards. In \hyperlink{emptyPartition vis}{Section
 5.1} we used the \texttt{[end]} edge guard to terminate a loop. Now we'll use a new guard, the \texttt{[each time]}\define{[each time]} guard, to indicate control flow that is \emph{nested} and
 executed for each match. Go ahead and create the SDM for \texttt{Box::toString} until it closely resembles Fig.~\ref{fig:sdm_tostring_1}. 
 
@@ -21,14 +21,14 @@ executed for each match. Go ahead and create the SDM for \texttt{Box::toString} 
 
 \clearpage
 
-\item[$\blacktriangleright$] Now, while the \texttt{addToStringRep} activity node has been created, its default type will not allow it to access our helper
-method. Double-click the node to invoke its editor and update the \texttt{type} to a \texttt{StatementNode}\define{Statement
-Node}(Fig.~\ref{fig:updateStatement}). Statement nodes are used to guarantee execution in the control flow and, while we have invoked methods as part of object
-variables, using this strategy lets us represent the action as an activity.
+\item[$\blacktriangleright$] Now, while the \texttt{addToStringRep} activity node has been created, its default type will not allow it to invoke our helper
+method. Double-click the node to invoke its properties dialogue and change its \texttt{type} to a \texttt{StatementNode}\define{Statement
+Node}(Fig.~\ref{fig:updateStatement}). Statement nodes are used to invoke methods as part of the control flow and, while we have already invoked methods to set
+attributes of object variables, using this strategy lets us represent the action as an activity node.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Before closing, switch to the \texttt{Statement} tab (Fig.~\ref{fig:editStatement}) to construct the \texttt{MethodCallExpression}.
+\item[$\blacktriangleright$] Before closing, switch to the \texttt{Statement} tab (Fig.~\ref{fig:editStatement}) to construct a \texttt{MethodCallExpression}.
 We want to access the \texttt{Box} object (\texttt{this}) and its \texttt{addToStringRep} method. Update the \texttt{Parameter Values} to \texttt{card} so we
 can pass the object variable \texttt{card} to the method as parameter.
 
@@ -50,7 +50,7 @@ can pass the object variable \texttt{card} to the method as parameter.
 
 \end{itemize}
 
-Statement nodes should be used to interact with methods that are implemented by hand as they provide a means of invoking libraries and arbitrary Java code from
+Statement nodes can be used to interact with methods that are implemented by hand as they provide a means of invoking libraries and arbitrary Java code from
 SDMs. Please note that we do not differentiate at this point between methods that are implemented via an SDM or by hand and thus, statement nodes can of course
 be used to invoke other SDMs via a MethodCallExpression. Most importantly, this enables \emph{recursion} as the current SDM can be invoked on \texttt{this} with
 appropriate new arguments.
@@ -77,13 +77,12 @@ the stop node (Fig.~\ref{fig:toStringStopNode}).
 \item[$\blacktriangleright$] Take some time to compare and reflect on the complete SDM as depicted in Fig.~\ref{fig:sdm_tostring_5}.  The idea was to abstract
 from the actual text representation of the box and model the necessary traversal of the data structure. The helper methods \texttt{addToStringRep} could, for example, build up a
 string buffer and update this string representation. While modelling this SDM, we have seen that \emph{for each} stroy nodes can be nested, and have learnt two
-new uses of MethodCallExpressions that provide a type safe\footnote{Apart from the literal expressions used for specifying argument values} means of invoking
-methods from SDMs.
+new uses of MethodCallExpressions that provide a type safe means of invoking methods from SDMs.
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] At this point, you should know the drill. Save, validate, and build your metamodel in Eclipse. To see how this is done in the
-textual syntax, check out the nested loops in Fig.~\ref{fig:toStringFlow} and each pattern in Fig.~\ref{fig:toStringPatterns}
+textual syntax, check out the nested loops in Fig.~\ref{fig:toStringFlow} and each pattern in Fig.~\ref{fig:toStringPatterns}.
 
 \newpage
 

@@ -5,7 +5,7 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Open \texttt{LearningBoxLanguage.eap} in Enterprise Architect (EA) from Eclipse by double-clicking it in Eclipse. Carefully do the
+\item[$\blacktriangleright$] Open \texttt{LearningBoxLanguage.eap} in Enterprise Architect (EA) by double-clicking it in Eclipse. Carefully do the
 following: (1) Click \emph{once} on \texttt{Partition} to select it, then (2) Click \emph{once} on the method \texttt{removeCard} to highlight it
 (Fig.~\ref{fig:sdm_start}), and (3) \emph{Double-click} on the chosen method to indicate that you want to implement it.
 
@@ -17,7 +17,7 @@ following: (1) Click \emph{once} on \texttt{Partition} to select it, then (2) Cl
 \end{center}
 \end{figure}
  
-\item[$\blacktriangleright$] If you did everything right, a new \emph{activity diagram} should be created and open in a new tab with a cute anchor in
+\item[$\blacktriangleright$] If you did everything right, a new \emph{activity diagram} should be created and opened in a new tab with a cute anchor in
 the corner, and a \emph{start node} labelled with the signature of the method (Fig.~\ref{fig:sdm_skeleton}).  
 
 \begin{figure}[htp]
@@ -30,20 +30,21 @@ the corner, and a \emph{start node} labelled with the signature of the method (F
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] This diagram is where you'll model \texttt{removeCard}'s activities via a \emph{control flow}. In other words,
-this \emph{removeCard}'s imperative top level. We refer to the whole activity diagram simply as the \emph{activity}, which always starts with a start node,
-contains \emph{activity nodes} connected via \emph{activity edges}, then finally terminates with a \emph{stop node}. Before developing these however, let's
-quickly familiarise ourselves the EA workspace.
+\item[$\blacktriangleright$] This diagram is where you'll model \texttt{removeCard}'s \emph{control flow}. In other words,
+this is \emph{removeCard}'s imperative top level diagram. We refer to the whole activity diagram simply as the \emph{activity}, which always starts with a
+\emph{start node,} contains \emph{activity nodes} connected via \emph{activity edges}, then finally terminates with a \emph{stop node}. Before creating
+these however, let's quickly familiarise ourselves with the EA workspace.
 
 \item[$\blacktriangleright$] First, inspect the project browser and notice that an \texttt{<<SDM Activity>>} container has been created for the method
 \texttt{removeCard}. This container will eventually host every artifact related to this pattern (i.e., object variables, stop nodes, etc). Please note
 that if you're ever unhappy with an SDM, you can always delete the appropriate container in the project browser (such as this one), and start from scratch.
 
 \item[$\blacktriangleright$] Next, note the new \texttt{SDM} toolbox that has been automatically opened for the diagram and placed to the left above
-the common toolbox. This provides quick access to SDM items that you'll frequently use in your diagram.
+the common toolbox. This provides quick access to SDM items that you'll frequently use in your diagram. You can also invoke the active toolbox in a pop-up
+context menu anywhere in the diagram by pressing space.
 
 \item[$\blacktriangleright$] Finally, in the top left corner of the diagram, you'll notice a small anchor. Double click on this icon to quickly jump back to the
-metamodel. From there, double click the method again to jump back to the SDM. This is just a small trick to help you quickly shift between diagrams.
+metamodel. From there, double click the method again to jump back to the SDM. This is just a small trick to help you quickly navigate between diagrams.
 
 \newpage
 
@@ -57,12 +58,12 @@ metamodel. From there, double click the method again to jump back to the SDM. Th
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Similar to quick linking,\footnote{Learnt in Part II, Section 2.5} a second fundamental gesture in EA is \emph{Quick
+\item[$\blacktriangleright$] Similar to quick linking,\footnote{This was discussed in Part II, Section 2.5} a second fundamental gesture in EA is \emph{Quick
 Create}.
 To quick-create an element, pull the arrow and click on an empty spot in the diagram. This is basically ``quick linking'' to a non-existent element.
 
-\item[$\blacktriangleright$] EA notices that there is nothing to quick-link to, and pops a small, context-sensitive dialogue offering to create an element which
-can be connected to the source element.
+\item[$\blacktriangleright$] EA notices that there is nothing to quick-link to, and pops up a small, context-sensitive dialogue offering to create an element
+which can be connected to the source element.
 
 \item[$\blacktriangleright$] As illustrated in Fig.~\ref{fig:sdm_new_activity_node}, choose \texttt{Append StoryNode} to create a \emph{Story Node}.
 
@@ -91,15 +92,15 @@ connecting the two items. Complete the activity by quick-creating a stop node (F
 
 \item[$\blacktriangleright$] While a \emph{stop node} is rather self explanatory, you may be wondering about the differences between the other two menu options,
 the\define{Story Node}\emph{story node} and \emph{statement node}.\define{Statement Node}Since not all activity nodes can contain story patterns (i.e., start
-and stop nodes), those that \emph{can} are called story nodes. Statement nodes are just used to guarantee an action, such as method execution, and only happen
-between story nodes. We'll encounter this type in a later SDM.
+and stop nodes), those that \emph{can} are called story nodes. Statement nodes are just used to invoke an action, such as method execution. We'll encounter this
+in a later SDM.
 
 \item[$\blacktriangleright$] To complete this activity, double-click \texttt{ActivityNode1} to prompt the dialogue depicted in
 Fig.~\ref{fig:story_pattern}. Enter \texttt{removeCardFromPartition} as the name of the story node, and select \texttt{Create this Object}.  Click
-\texttt{OK}. The activity node now has a single \emph{bounded} \emph{object variable}, \texttt{this}.
+\texttt{OK}. The activity node now has a single \emph{bound} \emph{object variable}, \texttt{this}.
 
-\item[$\blacktriangleright$] To create a new object variable, either choose \texttt{SDM ObjectVariable} from the toolbox or press \texttt{ctrl}, then
-click inside the activity node (Fig.~\ref{fig:tool_box}). A properties window will automatically appear (Fig.~\ref{fig:object_variable_properties}).
+\item[$\blacktriangleright$] To create a new object variable, choose \texttt{SDM ObjectVariable} from the toolbox then click inside the activity node
+(Fig.~\ref{fig:tool_box}). A properties window will automatically appear (Fig.~\ref{fig:object_variable_properties}).
 
 \begin{figure}[htpb]
 \begin{center} 
@@ -135,9 +136,9 @@ Since \texttt{card} is a parameter of the method, it is offered as a possible na
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] In this dialogue, note that the \texttt{Bound} option is set. We have now seen two cases in this activity for bound object
-variables: an assignment to \texttt{this}, and an assignment to a method parameter. Setting \texttt{card} to bound means that it will implicitly assign itself
-to a parameter value of the same name.
+\item[$\blacktriangleright$] In this dialogue, note that the \texttt{Bound} option is automatically set. We have now seen two cases in this activity for bound
+object variables: an assignment to \texttt{this}, and an assignment to a method parameter. Setting \texttt{card} to bound means that it will be implicitly
+assigned to the parameter value of the same name.
 
 \item[$\blacktriangleright$] To create a \emph{link variable} between the current partition and the card to be removed, choose the object variable \texttt{this}
 and quick-link it to \texttt{card} (Fig.~\ref{fig:link_variable}).
@@ -168,7 +169,7 @@ and quick-link it to \texttt{card} (Fig.~\ref{fig:link_variable}).
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Remember how we said that this method should return the same card that was passed in? As luck would have it, a return value for any
+\item[$\blacktriangleright$] Remember how we said that this method should return the same card that was passed in? As luck would have it, a return value for an
 SDM can be specified in the stop node. As depicted in Fig.~\ref{fig:stop_node_return_value}, double-click the stop node to prompt the \texttt{Edit StopNode} dialogue. 
 
 \newpage
@@ -182,15 +183,15 @@ SDM can be specified in the stop node. As depicted in Fig.~\ref{fig:stop_node_re
 \end{figure}
 
 \item[$\blacktriangleright$] In the \texttt{Expression} field, choose \texttt{ParameterExpression}\define{ParameterExpression}as the expression. Given that
-\texttt{card} is the sole parameter, it will be automatically selected. A \emph{ParameterExpression} is an eMoflon (with EA) mechanism that exclusively accesses
+\texttt{card} is the sole parameter, it will be automatically selected. A \emph{ParameterExpression} is an expression that exclusively accesses
 parameter values.
 
 \vspace{0.5cm}
 
-We're nearly done! As you can see, by using several different dialouges, eMoflon employs a simple context-sensitive expression language for specifying  values.
-We have intentionally avoided creating a full-blown sub-language, and limit expressions to a few simple types.\footnote{We also do not support nesting expressions} The philosophy here is to keep things simple and concentrate on what SDMs are good for -- expressing structural changes. Our approach is to
-provide a clear and type-safe interface to a general purpose language (Java) and support a simple \emph{fallback} as soon as things get too low-level and
-difficult to express as a pattern.
+We're nearly done! As you can see, by using several different dialogues, eMoflon employs a simple context-sensitive expression language for specifying  values.
+We have intentionally avoided creating a full-blown sub-language, and limit expressions to a few simple types. The philosophy here is to keep things simple and
+concentrate on what SDMs are good for -- expressing structural changes. Our approach is to provide a clear and type-safe interface to a general purpose
+language (Java) and support a simple \emph{fallback} via calls to injected methods as soon as things get too low-level and difficult to express as a pattern.
 
 The alternative approach to eMoflon would be to support arbitrary expressions, for example, in a script language like JavaScript or in an appropriate
 DSL\footnote{A DSL is a Domain Specific Language: a language designed for a specific task which is usually simpler than a general purpose language like Java and
@@ -199,7 +200,7 @@ and how to use them.
 
 \newpage
 
-\item[$\blacktriangleright$] Returning to the activity, if you've done everything right, your first eMolfon SDM should resemble
+\item[$\blacktriangleright$] Returning to the activity, if you've done everything right, your first SDM should resemble
 Fig.~\ref{fig:sdm_complete_control_flow}, where \texttt{removeCard}'s entire pattern layer is modeled inside the sole \emph{activity node}. The method's return
 value is now indicated below the stop node.
 
@@ -217,7 +218,7 @@ value is now indicated below the stop node.
 
 \item[$\blacktriangleright$]  Don't forget to save your files, validate and export your pattern to the Eclipse workspace,\footnote{Go to to
 ``\texttt{Extensions}" and select \texttt{Add-In Windows} to activate eMoflon's console. If you're unsure how to validate, export, or use this window, review
-Part II, section 3} then build your metamodel's code from the package explorer.
+Part II, Section 3} then build your metamodel's code from the package explorer.
 
 \item[$\blacktriangleright$] If you're unable to export or generate code successfully, compare your SDM carefully with Fig.~\ref{fig:sdm_complete_control_flow}
 and make sure you haven't forgotten anything.

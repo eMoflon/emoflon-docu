@@ -5,7 +5,7 @@
 
 The core idea when modelling behaviour is to regard dynamic aspects of a system (let's call this a model from now on) as bringing about a change of state.
 This means a model in state $S$ can evolve to state $S^*$ via a transformation $\Delta: S \stackrel{\Delta}{\rightarrow}S^*$. In this light, dynamic or
-behavioural aspects of a model are synonymous with \emph{model transformations}, and the dynamic semantics of a language equate simply to a suitable set of
+behavioural aspects of a model are synonymous with \emph{model transformations}, and the dynamic semantics of a language equates simply to a suitable set of
 model transformations. This approach is once again quite similar to the object oriented (OO) paradigm, where objects have a state, and can \emph{do} things via
 methods that manipulate their state.
 
@@ -13,9 +13,9 @@ So how do we \emph{model} model transformations?  There are quite a few possibil
 which we simply say how the system morphs in a step-by-step manner. There actually exist quite a few very successful languages and tools in this direction. But
 isn't this almost like just programming directly in Java? There's got to be a better way! 
 
-From the relatively mature area of graph grammars and graph transformations, we take a \emph{declarative} and \emph{rule-based} approach. Declarative in this
+From the relatively mature field of graph grammars and graph transformations, we take a \emph{declarative} and \emph{rule-based} approach. Declarative in this
 context means that we do not want to specify exactly how, and in what order, changes to the model must be carried out to achieve a transformation. We just want
-to say under what conditions the transformation can be executed (precondition), and the state of the model after executing the transformation (post condition).
+to say under what conditions the transformation can be executed (precondition), and the state of the model after executing the transformation (postcondition).
 The actual task of going from precondition to postcondition should be taken over by a transformation engine, where all related details are basically regarded as
 a black box.
 
@@ -26,14 +26,14 @@ A rule, $r: (L,R)$, can be \emph{applied} to a model (a typed graph) $G$ by:
 \begin{enumerate}
   \item \emph{Finding} an occurrence of the precondition $L$ in $G$ via a \emph{match}, $m$
   
-  \item \emph{Cutting} out or $Destroy := (L\setminus R)$ i.e., the elements that are present in the precondition but not in the postcondition are to be deleted
+  \item \emph{Cutting} out or $Destroying (L\setminus R)$ i.e., the elements that are present in the precondition but not in the postcondition are deleted
   from $G$ to form  $(G\setminus Destroy)$
   
-  \item \emph{Pasting} or $Create := (R\setminus L)$ i.e., new elements that are present in the postcondition but not in the precondition and are to be created
-  in the hole in $(G\setminus Destroy)$ to form a new graph, $H = (G\setminus Destroy) \cup Create$.
+  \item \emph{Pasting} or $Creating (R\setminus L)$ i.e., new elements that are present in the postcondition but not in the precondition and are to be created
+  in the hole left in $(G\setminus Destroy)$ to form a new graph, $H = (G\setminus Destroy) \cup Create$.
 \end{enumerate}
 
-Rule application is denoted as $G \stackrel{r}{\Rightarrow} H$ and is depicted in Fig.\ref{fig:rule_application}. 
+Rule application is denoted as $G \stackrel{r}{\Rightarrow} H$ and is depicted schematically in Fig.\ref{fig:rule_application}. 
 
 \vspace{0.5cm}
 
@@ -49,18 +49,19 @@ Rule application is denoted as $G \stackrel{r}{\Rightarrow} H$ and is depicted i
 
 Lets review this application. 
 
-(1) is called \emph{graph pattern matching}\define{Pattern Matching}, and this finds occurrences of object(s) $L$ in the model $G$ via an $m$ match.
+(1) is determined by a process called \emph{graph pattern matching},\define{Pattern Matching}i.e., finding an occurrence or \emph{match} of the precondition or
+\emph{pattern} in the model $G$.
 
-(2) is called `building a \emph{push-out complement} $PC = (G\setminus Destroy)$', which results in $L\cup(G\setminus Destroy) = G$
+(2) is detemined by building a \emph{push-out complement} $PC = (G\setminus Destroy)$, such that $L\cup PC = G$.
 
-(3) is called `building a \emph{push-out} $PO = H$', so that $(G\setminus Destroy) \cup R = H$.
+(3) is determined by building a \emph{push-out} $PO = H$, so that $(G\setminus Destroy) \cup R = H$.
 
-A push-out is a generalised union defined on typed graphs. Since we are dealing with graphs, it is not such a trivial task to define (1) -- (3) in precise
-terms, with conditions for when a rule can or cannot be applied. A substantial amount of theory already exists to satisfy this goal.
+A push-out (complement) is a generalised union (subtraction) defined on typed graphs. Since we are dealing with graphs, it is not such a trivial task to define
+(1) -- (3) in precise terms, with conditions for when a rule can or cannot be applied. A substantial amount of theory already exists to satisfy this goal.
 
 Since this black box formalisation involves two push-outs - one when cutting $Destroy := (L\setminus R)$ from $G$ to yield $(G\setminus Destroy)$ (deletion),
-and one when inserting $Create := (R\setminus L)$ in $(G\setminus Destroy)$ to yield $H$ (creation) - this rule is referred to as a \emph{double push-out}.
-We won't go into further details in this handbook, but the interested reader can refer to \cite{EEPT06} for the exciting details.
+and one when inserting $Create := (R\setminus L)$ in $(G\setminus Destroy)$ to yield $H$ (creation) - this construction is referred to as a \emph{double
+push-out}. We won't go into further details in this handbook, but the interested reader can refer to \cite{EEPT06} for the exciting details.
 
 Now that we know what rules are, let's take a look at a simple example for our learning box. What would a rule application look like for moving a card from
 one partition to the next? Figure~\ref{fig:rule_example} depicts this $moveCard$ rule.
@@ -75,14 +76,14 @@ one partition to the next? Figure~\ref{fig:rule_example} depicts this $moveCard$
 
 \pagebreak
 
-As already indicated by the colours used for $moveCard$, we employ a compact representation the rules formed by merging $(L,R)$ into a single \emph{story
+As already indicated by the colours used for $moveCard$, we employ a compact representation of rules formed by merging $(L,R)$ into a single \emph{story
 pattern}\define{Story Pattern} composed of  $Destroy := (L\setminus R)$ in red, $Retain :=  L\cap R$ in black, and $Create := (R\setminus L)$ in green
 (Fig.~\ref{fig:rule_compact}).
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.45\textwidth]{rule_compact}
-  \caption[]{Compact representation of $moveCard$ as a \emph{story pattern}}
+  \caption[]{Compact representation of $moveCard$ as a single \emph{story pattern}}
   \label{fig:rule_compact}
 \end{center}
 \end{figure}
@@ -91,9 +92,11 @@ As we shall see in a moment, this  representation is quite intuitive, as one can
 deleted, retained, and created. We can therefore apply $moveCard$ to a learning box in terms of steps (1) -- (3), as depicted in Fig.~\ref{fig:rule_app_example}.
 
 Despite being able to merge rules together to form one story pattern, the individual rules still have to be applied in a suitable sequence to realise
-complex model transformations consisting of many steps! This can be done through simplified activities, where a single \emph{activity} or \emph{control 
-node} is either a single pattern, or made of several (as discussed above) to form a control flow. The entire rule can therefore be viewed as two separate
-layers: an imperative layer to define the top-level control flow via activities (ie., if-else statements, loops, etc.), and a pattern layer comprised of story patterns where each activity node specifies (via a graph transformation rule) how the model is to be manipulated.
+complex model transformations consisting of many steps! This can be specified with simplified activity diagrams, where every \emph{activity node} or
+\emph{story node} contains a single story pattern, and are combined with the usual imperative constructs to form a control flow structure. The entire
+transformation can therefore be viewed as two separate layers: an imperative layer to define the top-level control flow via activities (ie., if-else statements,
+loops, etc.), and a pattern layer comprised of story patterns where each activity node specifies (via a graph transformation rule) how the model is to be
+manipulated.
 
 \pagebreak
 
@@ -109,4 +112,4 @@ layers: an imperative layer to define the top-level control flow via activities 
 
 \vspace*{1cm}
 
-Enough theory! Grab your mouse and get cracking with SDMs\ldots
+Enough theory! Grab your mouse and lets get cracking with SDMs\ldots

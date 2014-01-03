@@ -5,7 +5,7 @@
 
 \begin{itemize}
  
-\item[$\blacktriangleright$] Start by creating the simple story pattern depicted in Fig.~\ref{fig:sdm_grow_1}. This matches the box, \texttt{this}, with
+\item[$\blacktriangleright$] Start by creating the simple story pattern depicted in Fig.~\ref{fig:sdm_grow_1}. This matches the box, \texttt{this} and 
 \emph{any} two partitions.\footnote{Remember, the \emph{pattern matcher} is randomized!}
 
 \vspace{0.5cm}
@@ -20,7 +20,7 @@
 
 \item[$\blacktriangleright$] To create an appropriate \mbox{NAC} to constrain the possible matches for \texttt{lastPartitionInBox},  create a new
 \texttt{Partition} object variable \texttt{next\-Part\-ition} and set its \emph{binding semantics} to \texttt{negative} (Fig.~\ref{fig:sdm_grow_2}). The object
-variable should be visualised as being cancelled or struck out.
+variable should now be visualised as being cancelled or struck out.
  
 \begin{figure}[htbp]
 \begin{center}
@@ -30,14 +30,14 @@ variable should be visualised as being cancelled or struck out.
 \end{center}
 \end{figure}
  
-\item[$\blacktriangleright$] Now, quick link \texttt{nextPartition} to \texttt{lastPartitionInBox}. Be sure choose the link type carefully! The
+\item[$\blacktriangleright$] Now, quick link \texttt{nextPartition} to \texttt{lastPartitionInBox}. Be sure to choose the link type carefully! The
 \texttt{nextPartition} should play the role of \texttt{next} with respect to \texttt{lastPartitionInBox}. This combination (the negative binding and reference)
-tells the pattern matcher that if the (assumed) last partition has an element connected to its \texttt{next} reference, the current match is invalid.
+tells the pattern matcher that if the (assumed) last partition has an element connected via its \texttt{next} reference, the current match is invalid.
 
-\item[$\blacktriangleright$] Great work -- the first NAC is complete! In a similar fashion, create the remaining NAC for \texttt{firstPartitionInBox}. Name the
-negative element \texttt{previousPartition}, and again, be sure to double-check the navigation.
+\item[$\blacktriangleright$] Great work -- the first NAC is complete! In a similar fashion, create the NAC for \texttt{firstPartitionInBox}. Name the
+negative element \texttt{previousPartition}, and again, be sure to double-check the link variable.
 
-\item[$\blacktriangleright$] Finally, complete the pattern rule so that it closely resembles Fig.~\ref{fig:sdm_grow_3}. 
+\item[$\blacktriangleright$] Finally, complete the pattern so that it closely resembles Fig.~\ref{fig:sdm_grow_3}. 
 
 \begin{figure}[htbp]
 \begin{center}
@@ -52,9 +52,9 @@ negative element \texttt{previousPartition}, and again, be sure to double-check 
 Fig.~\ref{fig:membox_depiction}). In other words, the new partition is appended onto the current order of partitions.
 
 \item[$\blacktriangleright$] In order to complete \texttt{grow}, we need to set the size of the \texttt{newPartition}. Given that the new size is calculated
-via the helper function \texttt{det\-er\-mine\-Next\-Size}, we need to invoke a \emph{MethodCallExpression}.\define{MethodCallExpression}A MethodCallExpression
-is another specialized EA mechanism. As the name suggests, its designed to access any method defined in any class of the current project. Go ahead and invoke
-the corresponding dialogue to activate the assignment (\texttt{:=}) operator, and match your values to Fig.~\ref{fig:sdm_grow_4}
+via the helper function \texttt{det\-er\-mine\-Next\-Size}, we need to invoke a \emph{MethodCallExpression}. As the name suggests, it's designed to access any
+method defined in any class of the current project. Go ahead and invoke the corresponding dialogue, activate the assignment (\texttt{:=}) operator, and match
+your values to Fig.~\ref{fig:sdm_grow_4}.
  
 \begin{figure}[htbp]
 \begin{center}
@@ -64,10 +64,7 @@ the corresponding dialogue to activate the assignment (\texttt{:=}) operator, an
 \end{center}
 \end{figure}
 
-Since \texttt{determineNextSize} doesn't require any parameters, you can ignore the \texttt{Parameter values} field this time. For future reference however,
-parameters can be specified by choosing the appropriate parameter declaration between guillemets (e.g. \texttt{<Box box>}) found in the drop-down menu and typing in the
-value (this is basically a literal expression). Don't forget to press the \texttt{Save} button for every parameter, then \texttt{Add} + \texttt{OK} to confirm
-and close the dialogue.
+Since \texttt{determineNextSize} doesn't require any parameters, you can ignore the \texttt{Parameter values} field this time. 
 
 \vspace{0.5cm}
 
@@ -77,7 +74,7 @@ generate code, and inspect the method implementation.
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$]  That's it - your \texttt{grow} SDM is complete! This was probably the most challenging SDM to build, so give yourself a solid 
-pat on the back. If you found it easy, well then \ldots I don't think I'm doing my job correctly. To see how this is done in the texual syntax, review
+pat on the back. If you found it easy, well then \ldots I guess I'm doing my job correctly. To see how this is done in the texual syntax, review
 Fig.~\ref{fig:patternComplete}.\footnote{We do recommend reading the instructions for this one, since NACs can be tricky}
 
 \vspace{0.5cm}
