@@ -24,20 +24,19 @@ For a more detailed overview of the box and our goals, we recommend you read the
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.75\textwidth]{eclipse_downloadWizard}
-	\caption{Download a file set to get started}
+	\caption{Choose a Cheat Package}
 	\label{fig:downloadWizard}
 \end{figure}
 
-\item[$\blacktriangleright$] Download the file package of the eMolfon specification type you'd like to learn. Remember, with the visual syntax, you'll be
-using an external modeling program to craft your metamodel diagrams, then exporting the data to Eclipse for generation. With textual, you'll be working entirely
-within the Eclipse IDE in the eMolfon perspective.
+\item[$\blacktriangleright$] Choose the cheat package for Part III and the syntax you prefer (textual or visual). Read Section 1 from Part I for details on
+the differences between the types.
 
 \newpage
 
 \vspace*{0.5cm}
 
 \item[$\blacktriangleright$] If your package explorer does not resemble ours in Fig.~\ref{fig:workingSets} with at least two distinct nodes, select the
-small, downward facing arrow in the corner of the module window. Choose ``Working Sets'' as your ``Top Level Elements.'' We use these to structure the
+small, downward facing arrow in the corner of the package explorer. Choose ``Working Sets'' as your ``Top Level Elements.'' We use these to structure the
 workspace in Eclipse.
 
 \vspace{0.75cm}
@@ -47,27 +46,29 @@ workspace in Eclipse.
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.9\textwidth]{eclipse_workingSets}
-	\caption{Setting your Package Explorer}
+	\caption{Configuring your Package Explorer}
 	\label{fig:workingSets}
 \end{figure}
 
 The ``MyWorkingSet" node contains \texttt{Learn\-ing\-Box\-Lang\-uage}, which in turn contains all the code generated from your metamodel. The metamodel itself
 is found in \texttt{Leit\-ners\-Learn\-ing\-Box} under ``Specifications.'' The visual metamodel is a single \texttt{.eap} file, while the textual metamodel is
-contained within an explicit project structure. 
+contained within an explicit folder structure, starting with ``/MOSL''. 
 
-These sets are not included under same node due to being different \emph{nature}s, or project types. \texttt{Learning\-Box\-Language} is your
-\emph{repository project}, the Eclipse classification of a normal Java project.\footnote{For details on the project setup, review Part I, sections 4 and 5} 
+These projects are not placed in the same working set as they have different \emph{nature}s, or project types. \texttt{Learning\-Box\-Language} is a
+\emph{repository project}, while \texttt{LeitnersLearningBox} is a metamodel project.
+
+the Eclipse classification of a normal Java project.\footnote{For details on the project setup, review Part I, Sections 4 and 5} 
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Inspect the files in both nodes until you feel comfortable with what you'll be working with. In particular, look at the files found
-under ``gen." Each Java file has a corresponding \texttt{.impl} file, where all actionable code (such as method implementations) will be placed.\footnote{For
-specific details on their contents, refer to Part II, section 5} 
+\item[$\blacktriangleright$] Inspect the files in both projects until you feel comfortable with what you'll be working with. In particular, look at the files
+found under ``gen." Each Java file has a corresponding \texttt{.impl} file, where all generated method implementations will be placed.\footnote{For
+more details, refer to Part II, Section 5} 
 
-\item[$\blacktriangleright$] Be sure to also review the ecore model under ``LearningBoxLanguage/model/'' and the dynamic instance found in ``instances.'' While
-you can make and customize your own instance,\footnote{To learn how to make your own instance model, review Part II, section 4} we have included a small sample
-in your download to help you get started.
+\item[$\blacktriangleright$] Be sure to also review the Ecore model in ``LearningBoxLanguage/model/'' and the dynamic model found in ``instances.'' While
+you can make and customize your own instances,\footnote{To learn how to make your own instance models, review Part II, Section 4} we have included a small
+sample to help you get started.
 
 \end{itemize}
 
-Well, that's it! A quick review, paired with a fine download makes an excellent appetizer to SDMs. Let's get started.
+Well, that's it! A quick review, paired with a fine cheat package makes an excellent appetizer to SDMs. Let's get started.

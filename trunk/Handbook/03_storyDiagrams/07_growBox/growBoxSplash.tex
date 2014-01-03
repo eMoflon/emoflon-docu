@@ -2,44 +2,38 @@
 \section{Growing the box}
 \genHeader
 
-In this SDM, we shall explicitly specify how our learning box is to be built up. We create a specific pattern that will append new partition elements
-to the end of \texttt{Box} which will follow our established movement rules (Fig.~\ref{fig:membox_depiction}) for a \texttt{Card}. This means the new partition
-will become the \texttt{next} reference of the absolute last partition, and its \texttt{previous} reference must connect to the absolute first partition in the
-box (Fig.~\ref{fig:goal_grow}).
+In this SDM, we shall explicitly specify how our learning box is to be built up. We create a specific pattern that will append new partition elements to the end
+of a \texttt{Box} that will follow our established movement rules (Fig.~\ref{fig:membox_depiction}). This means the new partition will become the \texttt{next}
+reference of the current last partition, and its \texttt{previous} reference must be connected to the first partition in the box (Fig.~\ref{fig:goal_grow}).
 
 \begin{figure}[htbp]
  	\centering
   	\includegraphics[width=0.7\textwidth]{growBoxNACGoal.pdf}
-	\caption{Growing a box by inserting a new partition}
+	\caption{Growing a box by inserting a new partition \update}
 	\label{fig:goal_grow}
 \end{figure}
 \FloatBarrier
 
-Unfortunately, precise instructions such as these contradict the pattern matcher. We know that, no matter what, a box will always be able to
-define first and last partitions. As explained in \hyperlink{sec:emptyPartition}{section 5} however, these will be determined non-deterministically. They will
-be chosen at random, and are unlikely to be the actual first and last partitions. How can we guarantee this match to be true?
-
 SDMs provide a declarative means of identifying specific partitions via \emph{Negative Application Conditions}, simply referred to as
 \mbox{NAC}s.\footnote{Pronounced $\backslash 'nak \backslash$}\define{NAC}\mbox{NAC}s express structures that are forbidden to exist before or after applying a
-transformation rule. In this SDM, the \mbox{NAC} will be a link variable that may not be valid during the pattern match. In the theory of algebraic
-graph transformations \cite{EEPT06}, \mbox{NACs} can be complex graphs that are much more general and powerful but in our implementation,\footnote{To be
-precise, in CodeGen2 from Fujaba} we only support single negative elements (object or link variables).
+transformation rule. In this SDM, the \mbox{NAC} will be an object variable that must not be assigned a value during pattern matching. In the theory of
+algebraic graph transformations \cite{EEPT06}, \mbox{NACs} can be arbitrarily complex graphs that are much more general and powerful than what we currently
+support in our implementation,\footnote{To be precise, in CodeGen2 from Fujaba} namely only single negative elements (object or link variables).
 
-As depicted in Fig.~\ref{fig:goal_grow}, to create an appropriate \mbox{NAC} that constrains possible matches, we'll need to check to see if the current matched
-pattern has certain `active' link variables. Suppose the targeted last partition has a set \texttt{next} reference. This means it is \emph{not} the absolute
-last partition, and so the match becomes invalid. We only want the pattern to insert a new partition when the \texttt{next} link is null. Similarly, if the
-targeted first partition has a \texttt{previous} value, the match is invalid. The complete pattern match is therefore made unique through NACs and thus becomes
-\emph{deterministic} by construction. In other words, if you \emph{grow} the box with this method, there will always be exactly one first and one last
-partition.
+As depicted in Fig.~\ref{fig:goal_grow}, to create an appropriate \mbox{NAC} that constrains possible matches, we'll need to check to see if the currently
+matched pattern can be extended to include the negative elements. Suppose the current potential last partition has a \texttt{nextPartition}. This means it
+is \emph{not} the absolute last partition, and so the match becomes invalid. We only want the pattern to insert a new partition when the \texttt{nextPartition}
+of the last partition is null. Similarly, if the current potential first partition has a \texttt{previousPartition}, the match is invalid. The complete match is
+therefore made unique through NACs and thus becomes \emph{deterministic} by construction. In other words, if you \emph{grow} the box with this method, there
+will always be exactly one first and one last partition of the box.
 
-Of course, to complete this method we will still need to determine how \emph{many} partitions to add! Since the new size must be calculated depending on the
+Of course, to complete this method we will still need to determine the size of the new partition! Since the new size must be calculated depending on the
 rest of the partitions currently in the box (partitions usually get bigger) we'll need to call a helper method, \texttt{determineNextSize()}. Due to the
-low-level nature of this task however, it will be easier to implement this via \emph{Injections}, rather than an SDM.
+algorithmic and non-structural nature of this task however, it will be easier to implement this via a Java \emph{injection}, rather than an SDM.
 
 \input{../07_growBox/injectionsRevisited/injectionsRevisitedSrc}
 
-% Footer and links contained in injectionsRevisited
-
+% Footer and links to the following are contained in injectionsRevisited
 \input{../07_growBox/visGrowBox}
 
 \input{../07_growBox/texGrowBox}

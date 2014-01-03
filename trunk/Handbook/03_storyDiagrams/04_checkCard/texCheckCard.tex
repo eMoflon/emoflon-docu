@@ -6,10 +6,10 @@
 \begin{itemize}
    
 \item[$\blacktriangleright$] In this SDM, the guess assertion, card promotion, and card penalisation must each be implemented as patterns. Given that every
-action is determined a the result of a conditional statement, we can't use a simple control flow. We need an \emph{if/else} construct!
+action is determined a the result of a conditional statement, we need an \emph{if/else} construct!
 
-\item[$\blacktriangleright$] In the \texttt{check} declaration, create the basic \emph{if/else} construct with three patterns, as illustrated in
-Fig.~\ref{fig:checkDec}. The type completion feature includes a template for this.
+\item[$\blacktriangleright$] In the \texttt{check} method, create the basic \emph{if/else} construct with three patterns, as illustrated in
+Fig.~\ref{fig:checkDec}. The auto completion feature includes a template for this.
 
 \vspace{0.5cm}
 
@@ -21,8 +21,8 @@ Fig.~\ref{fig:checkDec}. The type completion feature includes a template for thi
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] Upon saving, you should again encounter some problems. Use the ``Quick Fix'' wizard to generate the pattern files. Your package
-explorer should now resemble Fig.~\ref{fig:checkPatternsExplorer}.
+\item[$\blacktriangleright$] Upon saving use the ``Quick Fix'' wizard again to generate the required pattern files. Your package explorer should now resemble
+Fig.~\ref{fig:checkPatternsExplorer}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -32,14 +32,17 @@ explorer should now resemble Fig.~\ref{fig:checkPatternsExplorer}.
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] Open the \texttt{checkCard} pattern. What do we need in order to validate the user's guess? Given that \texttt{guess} is a
-parameter and not an object in the metamodel, the only variable we need to create is a bounded \texttt{card}. Then we'll need to specify an \emph{attribute constraint} in this variable to compare
-\texttt{card} and \texttt{guess}. Attribute constraints have similar operators as Java comparators so to equate the values, we'll want to use \texttt{==}.
+\item[$\blacktriangleright$] Open the \texttt{checkCard} pattern. What do we need in order to validate the user's guess? Given that \texttt{guess} is a string
+parameter and not an object in the model, the only variable we need to create is a bound \texttt{card}. Then we'll need to specify an \emph{attribute
+constraint} on this variable to compare \texttt{card.back} and \texttt{guess}. Attribute constraints have similar operators as Java comparators, so to equate
+the values, we'll want to use \texttt{==}.
 
 \item[$\blacktriangleright$] To access the \texttt{back} attribute and compare it to the parameter, simply write: 
+
 \syntax{card.back == \$guess}
-Accessing object attributes follow the tradtional `\texttt{.}' operator, while the `\texttt{\$}' symbol is required to retrieve parameter values. Your completed
-attribute constraint and \texttt{checkCard} pattern should now resemble Fig.~\ref{fig:checkPattern}.
+
+Accessing object attributes follows the traditional `\texttt{.}' operator, while the `\texttt{\$}' symbol is required to refer to primitive parameter values.
+Your completed attribute constraint and \texttt{checkCard} pattern should now resemble Fig.~\ref{fig:checkPattern}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -51,20 +54,20 @@ attribute constraint and \texttt{checkCard} pattern should now resemble Fig.~\re
 
 \clearpage
 
-\item[$\blacktriangleright$] Now lets develop the \texttt{promoteCard} pattern. It requires three variables - the card, the current partition, and the partition
-the card will move to. Your workspace should resemble Fig.~\ref{fig:promoteCardPattern}.
+\item[$\blacktriangleright$] Now let's specify the \texttt{promoteCard} pattern. It requires three object variables - the current partition (\texttt{this}),
+the card to be promoted, and the partition the card will move to. Your workspace should resemble Fig.~\ref{fig:promoteCardPattern}.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_promoteCardPattern}
-  \caption{Promoting a card}
+  \caption{Object variables for promoting a card}
   \label{fig:promoteCardPattern}
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] Given that \texttt{this} is bound while \texttt{next} is free, we need to establish the reference between this and the
-partition, so that the card will move to the correct place. Create a simple reference from \texttt{next} to its target \texttt{nextPartition}. Your file should
-now resemble Fig.~\ref{fig:promoteThisRule}.
+\item[$\blacktriangleright$] Given that \texttt{this} is bound while \texttt{next} partition is free, we need to establish the reference between this and the
+partition, so that the card will move to the correct place. Create a simple link variable representing \texttt{next} with target \texttt{nextPartition}. Your
+file should now resemble Fig.~\ref{fig:promoteThisRule}.
 
 \vspace{0.5cm}
 
@@ -76,9 +79,9 @@ now resemble Fig.~\ref{fig:promoteThisRule}.
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] Finally, lets create and delete the \texttt{cardContainer} references in \texttt{card}. Make a simple destruction reference to
-\texttt{this}, and a simple creation reference to \texttt{nextPartition}.\footnote{There are several different ways you could have implemented this movement, such as having a
-creation reference in \texttt{nextPartition}} Your pattern is now complete, and should resemble Fig.~\ref{fig:completedPromote}.
+\item[$\blacktriangleright$] Finally, lets update the \texttt{cardContainer} reference of \texttt{card}. Simply delete the link to \texttt{this}, and create the
+linke to \texttt{nextPartition}.\footnote{There are several different ways you could have implemented this movement, updating the link from
+\texttt{nextPartition} to \texttt{card}.} Your pattern is now complete, and should resemble Fig.~\ref{fig:completedPromote}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -89,7 +92,7 @@ creation reference in \texttt{nextPartition}} Your pattern is now complete, and 
 \end{figure} 
 
 \item[$\blacktriangleright$] Compare the differences between the \texttt{promoteCard} and \texttt{penalizeCard} concepts. They both do the exact same thing,
-except the destination partition is slightly different. Knowing this, try to complete \texttt{penalizeCard} entirely on your own. Your workspace should come to
+except the destination partition is different. Knowing this, try to complete \texttt{penalizeCard} entirely on your own. Your workspace should come to
 resemble Fig.~\ref{fig:completedPatterns}.
 
 \begin{figure}[htbp]
@@ -101,13 +104,13 @@ resemble Fig.~\ref{fig:completedPatterns}.
 \end{figure}
 
 
-\item[$\blacktriangleright$] Did you notice that the order of the \texttt{this} and \texttt{card} object variables were reversed in our images?
-Overall, for simple transformations like this, it doesn't matter in which order objects are created, or references changed in patterns. Everything just needs to
-be correctly declared.
+\item[$\blacktriangleright$] Did you notice that the order of the \texttt{this} and \texttt{card} object variable scopes are reversed in the figures above?
+In general, for simple transformations like this, it doesn't matter in which order object variables are specified, or link variables manipulated in patterns.
+Everything just needs to be correctly stated.
 
-\item[$\blacktriangleright$] We nearly forgot to complete the control flow! We have specified the assertion and movements, but we haven't returned any
-\texttt{EBoolean} results as the method requires. If the card was promoted, the guess was successful, so return \texttt{true} beneath \texttt{[promoteCard]}. If
-it was penalized, the guess was \texttt{false}. Your \texttt{partition} EClass should now include Fig.\ref{fig:finalMethod}.
+\item[$\blacktriangleright$] We nearly forgot to complete the control flow! We have specified the assertion and card movements, but we haven't returned a
+\texttt{EBoolean} result as the method requires. If the card was promoted, the guess was successful, so return \texttt{true} beneath \texttt{[promoteCard]}. If
+it was penalized, the guess was \texttt{false}. Your \texttt{check} method should now resemble Fig.\ref{fig:finalMethod}.
 
 \vspace{0.5cm}
 
@@ -122,9 +125,9 @@ it was penalized, the guess was \texttt{false}. Your \texttt{partition} EClass s
 \item[$\blacktriangleright$] Save and build your metamodel, then try viewing the changes in ``PartitionImpl.Java'' under \texttt{check}. You'll be able to
 see the if/else construct, as well as the link manipulations. 
 
-\item[$\blacktriangleright$] Great job! You have just implemented a new kind of control flow and created two patterns that transform cards.
-To see how this SDM is implemented visually, check out Fig.~\ref{fig:sdm_check_finish} for the control flow, and Figs.~\ref{fig:sdm_check_complete_activity_node} and
-\ref{fig:sdm_check_complete_penalize} for the movement patterns, all in the previous section.
+\item[$\blacktriangleright$] Great job! You have just implemented checking card guesses with a new control flow construct, \emph{if/else}, and two patterns that
+move the cards appropriately. To see how this SDM is implemented visually, check out Fig.~\ref{fig:sdm_check_finish} for the control flow, and
+Figs.~\ref{fig:sdm_check_complete_activity_node} and \ref{fig:sdm_check_complete_penalize} for the movement patterns, all in the previous section.
 
 \end{itemize}
  

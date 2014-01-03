@@ -8,7 +8,7 @@
 \begin{itemize}
   
 \item[$\blacktriangleright$] Closely following Fig.~\ref{fig:goal_stringRep}, create a nested \texttt{forEach} loop in \texttt{Box.toString()}.
-Don't worry about the method invocation just yet, just make sure you return \texttt{this.stringRep}. It should resemble Fig.~\ref{fig:emptyLoops}.
+Don't worry about the method invocation yet, just make sure you return \texttt{this.stringRep}. It should resemble Fig.~\ref{fig:emptyLoops}.
 
 \begin{figure}[htp]
 \begin{center}
@@ -18,11 +18,10 @@ Don't worry about the method invocation just yet, just make sure you return \tex
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] In order to invoke \texttt{addToStringRep}, we need to introduce a new activity type, our \emph{statement node}. These are
-different from patterns as they are able to call methods declared anywhere in the metamodel. This is also their only purpose. They are used strictly for control
-flow, to guarantee execution of a task. This special type is declared by surrounding the invocation command with  `\texttt{<>}' tags. Therefore, inside the
-second loop, write \texttt{<this.addToStringRepCard>}. The correct \texttt{card} parameter will come from the \texttt{ForAllCards} pattern, which we'll
-establish next.
+\item[$\blacktriangleright$] In order to invoke \texttt{addToStringRep}, we need to make use of a new activity node type, a \emph{statement node}. These are
+different from story patterns as they are able to invoke methods as part of the control flow. A statement node is declared by surrounding the invocation command
+with  `\texttt{<>}.' Therefore, inside the second loop, write \texttt{<@this.addToStringRepCard(card)>}. The correct \texttt{card} parameter will be matched by
+the \texttt{ForAllCards} pattern, which we'll establish next.
 
 \vspace{0.5cm}
 
@@ -38,12 +37,12 @@ establish next.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Despite its complicated appearance, remember - the core idea behind the patterns is to access every item in \texttt{Box}. The
-control flow (which we've already established), is where we call a helper function to complete the action. This means both patterns need only create their
-object variables and link them together.
+\item[$\blacktriangleright$] The aim of the activity to access every item in a \texttt{Box}. The control flow (which we've already established), invokes a
+helper method to complete the action. This means both patterns need only match their object variables to ensure that all cards in all partitions are found.
 
-\item[$\blacktriangleright$] Complete each patterns as depicted in Fig.~\ref{fig:toStringPatterns}. The second \texttt{partition} is bounded to the one matched
-in the first loop, but \texttt{card} is \emph{not} bounded as it doesn't matter how its match is determined.
+\item[$\blacktriangleright$] Complete each pattern as depicted in Fig.~\ref{fig:toStringPatterns}. The \texttt{partition}in \texttt{forAllCards} is bound to
+the current one matched in the first loop containing \texttt{forAllPartitions}, but \texttt{card} is \emph{not} bound as it must be matched with
+\texttt{forAllCards.}
 
 \vspace{0.5cm}
 

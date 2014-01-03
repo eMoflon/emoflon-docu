@@ -10,7 +10,7 @@ proper method declaration. This entire space can be referred to the method's \em
 transformation is defined.
 
 \item[$\blacktriangleright$] Complete the activity with a single pattern and return statement as depicted in Fig~\ref{fig:remCardDec}. Don't forget -- you can
-use eMolfon's auto-complete feature here! Press \texttt{ctrl + space} on an empty line, then select the pattern template.
+use eMolfon's auto-complete features here as well! Press \texttt{ctrl + space} on an empty line, then select the pattern template.
 
 \begin{figure}[htp]
 \begin{center}
@@ -20,28 +20,27 @@ use eMolfon's auto-complete feature here! Press \texttt{ctrl + space} on an empt
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] It should be mentioned that MOSL limits method defintions exclusively to the method's control flow. All actual transformations are
+\item[$\blacktriangleright$] It should be mentioned that MOSL limits method definitions exclusively to the method's control flow. All actual transformations are
 modeled in separate \emph{pattern} files. In this case, \texttt{removeCard}'s link deletion will be modeled in \texttt{[deleteSingleCard]}.
 
 \item[$\blacktriangleright$] Save the \texttt{Partition.eclass}. An error should immediately appear below the editor! In the ``Problems'' tab, the message
-states that the builder cannot find the specified pattern file. Well, this makes sense. You haven't made it yet! Click this message and press \texttt{ctrl + 1}
-to invoke a ``Quick Fix'' dialouge (Fig~\ref{fig:quixFix}). It offers to create a pattern file for you. Given that's exactly what you'd like, select the option
+states that the builder cannot find the specified pattern file. Well, this makes sense. You haven't created it yet! Click this message and press \texttt{ctrl +
+1} to invoke a ``Quick Fix'' dialogue (Fig~\ref{fig:quixFix}). It offers to create a pattern file for you. Given that's exactly what you'd like, select the option
 and press \texttt{Finish}.
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.6\textwidth]{eclipse_patternQuickFix}
-  \caption{A quick solution to a pattern error}
+  \caption{A quick fix to a missing pattern error}
   \label{fig:quixFix}
 \end{center}
 \end{figure}
 
 \newpage
 
-\item[$\blacktriangleright$] The new file will open in the editor, and you'll be able to see a new directory structure will under
-``LearningBoxLanguage/\_patterns'' (Fig.~\ref{fig:pattStruct}). SDMs are placed in SDM containers, named according to the method they implement. In this case,
-\texttt{deleteSingleCard.pattern} is invoked by the method \texttt{removeCard}, which itself is found in the \texttt{Partition} EClass. \texttt{Partition} will
-eventually contain a folder for each method that needs a pattern.
+\item[$\blacktriangleright$] The new file will open in the editor, and you'll be able to see a new directory structure under ``LearningBoxLanguage/\_patterns''
+(Fig.~\ref{fig:pattStruct}). In this case, \texttt{deleteSingleCard.pattern} is invoked by the method \texttt{removeCard}, which is in the \texttt{Partition}
+EClass. \texttt{Partition} will eventually contain a folder for each method that needs a pattern.
 
 \vspace{0.5cm}
 
@@ -53,49 +52,57 @@ eventually contain a folder for each method that needs a pattern.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] The content of any pattern file is simply a list of tasks and rules. You create a series of \emph{object variables}, and then,
-within those declarations, state operations such as `delete this reference.' Remember - the main goal of SDMs is to focus here is not on \emph{how}, but
+\item[$\blacktriangleright$] The content of any pattern file is simply a list \emph{object variable scopes}, and then,
+within those declarations, operations such as `delete this reference.' Remember - the main goal of SDMs is to focus here is not on \emph{how}, but
 \emph{what}.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Create two object variables, \texttt{@this:Partition\{\}} and~\texttt{@card:Card\{\}} (Fig.~\ref{fig:remCardObjVar}). In MOSL
-syntax, `\texttt{@}' indicates that a variable is \emph{bounded}. \texttt{this} is bounded to the object who invoked the method, is \texttt{card} is now bound
-to the parameter value with the same name. 
+\item[$\blacktriangleright$] Create two object variables, \texttt{@this:Partition} and~\texttt{@card:Card} (Fig.~\ref{fig:remCardObjVar}). In MOSL syntax,
+`\texttt{@}' indicates that a variable is \emph{bound}. \texttt{this} is bound to the object who invoked the method, while \texttt{card} is bound to the
+parameter value with the same name.
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.6\textwidth]{eclipse_remCardObjVars}
-  \caption{Object variables for \texttt{removeCard}}
+  \caption{Object variables for \texttt{removeCard} \update (empty scope? No curly)}
   \label{fig:remCardObjVar}
 \end{center}
 \end{figure}
 
 \clearpage
 
-\item[$\blacktriangleright$] Once defined, object variables are simply a set of rules that determine the changes to take place. Therefore, add \texttt{-- ->
-card:card} to \texttt{@this} to destroy the \texttt{card} reference targeting the \texttt{card} object.
-Your pattern should now resemble Fig.~\ref{fig:deleteReference}.
+\item[$\blacktriangleright$] Object variable scopes determine the changes to be applied to the \emph{outgoing link variables} of the variable. Therefore, add
+\texttt{-- -> card:card} to \texttt{@this} to destroy the \texttt{card} reference targeting the \texttt{card} object. Your pattern should now resemble
+Fig.~\ref{fig:deleteReference}. The syntax follows this format:
+
+\syntax{[action]'->'nameOfOutgoingLV':'targetOV\\
+\\
+With:\\
+action := '- -' | '++' | '!'\\
+nameOfOutgoingLV := STRING\\
+targetOV := STRING
+}
 
 \vspace{0.5cm}
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.6\textwidth]{eclipse_thisObjVar}
-  \caption{Destroy the link between a card and its partition}
+  \caption{Destroy the link between a card and its partition \update empty scope}
   \label{fig:deleteReference}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] If you ever need to quickly remind yourself of specific navigation or attributes names, press \texttt{alt} and the \texttt{left}
-arrow to jump back to your EClass. Conversely, to quickly open or jump to a pattern, hover over the pattern name while holding \texttt{ctrl} until it's
-underlined, then click!
+arrow to jump back from your pattern to your EClass. Conversely, to quickly open or jump to a pattern, hover over the pattern name while holding \texttt{ctrl}
+until it's underlined, then click!
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Remember that links between classes are defined via \emph{Bidrectional EReferences},\footnote{Technically two
-\emph{unidirectional EReferences}} linked together as opposites in ``LearningBoxLanguage/\_con\-straints.mconf.'' This means we don't need to worry about
-declaring \texttt{-- -> cardContainer:Card} inside \texttt{card}, as it would be redundant.
+\item[$\blacktriangleright$] Remember that links between classes can be specified as \emph{bidrectional EReferences},\footnote{Technically two
+\emph{unidirectional EReferences}} linked together as opposites in ``LearningBoxLanguage/\_con\-straints.mconf.'' In this case, therefore, we don't need to
+worry about declaring \texttt{-- -> cardContainer:Card} inside \texttt{card}, as it would be redundant.
 
 \vspace{0.5cm}
 

@@ -7,7 +7,7 @@
 
 \vspace{1cm}
 
-\item[$\blacktriangleright$] Since you're nearly a SDM wizard already, try using concepts we have already learnt to create the control flow for
+\item[$\blacktriangleright$] Since you're nearly an SDM wizard already, try using concepts we have already learnt to create the control flow for
 \texttt{Partition::check} as depicted in Fig.~\ref{fig:sdm_check_start}.
 
 \vspace{1cm}
@@ -50,8 +50,8 @@ Fig.~\ref{fig:sdmcheck_att_constraint}, select the correct object attribute and 
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Similar to how the return value was specified in the previous SDM, set the \texttt{ParameterExpression} to refer to \texttt{guess}
-to retrieve the user's EString input. Press \texttt{Add} and admire your first conditional.
+\item[$\blacktriangleright$] Similar to how the return value was specified in the previous SDM, set the \texttt{ParameterExpression} to refer to \texttt{guess},
+i.e., the user's EString input. Press \texttt{Add} and admire your first conditional.
 
 \vspace{0.5cm}
 
@@ -77,12 +77,12 @@ and set the \emph{Guard Type} to \texttt{Failure} (Fig.~\ref{fig:sdm_check_guard
 
 \vspace{0.5cm}
 
-One great feature of eMolfon (with EA) provides a means of coping with large patterns.\footnote{You thought I was going to say `coping
-with our coffee addiction', weren't you?} It might be nice to visualise \emph{small} story patterns directly in their nodes, but for large patterns or complex
-control flow, such diagrams would get extremely cumbersome and unwieldy very quickly! This is indeed a popular argument against visual languages and it might
-have already crossed your mind (``This is cute, but it'll \emph{never} scale!''). With the right tools and concepts however, even huge diagrams can be
-mastered. We support \emph{extracting} story patterns into their own diagrams, and unless the pattern is really concise with 2 or 3 object variables, recommend
-this course of action. In other words, eMoflon supports seperating your transformation's pattern layer from its imperative.
+One great feature of eMolfon (with EA) provides a means of coping with large patterns. It might be nice to visualise \emph{small} story patterns directly in
+their nodes, but for large patterns or complex control flow, such diagrams would get extremely cumbersome and unwieldy very quickly! This is indeed a popular
+argument against visual languages and it might have already crossed your mind (``This is cute, but it'll \emph{never} scale!''). With the right tools and
+concepts however, even huge diagrams can be mastered. We support \emph{extracting} story patterns into their own diagrams, and unless the pattern is really
+concise with only 2 or 3 object variables, recommend this course of action. In other words, eMoflon supports separating your transformation's pattern layer
+from its imperative control flow layer.
 
 \vspace{0.5cm}
 
@@ -108,12 +108,12 @@ this course of action. In other words, eMoflon supports seperating your transfor
 
 \newpage
 
-Another EA gesture\footnote{The other two gestures we have learnt are ``Quick Link'' and ``Quick Create''} you should start to take advantage of here is a good
-ol' \emph{Drag-and-Drop} action from the project browserinto a diagram. We can use this action as an alternative to creating new objects (with known types) from
+Another EA gesture\footnote{The other two gestures we have learnt are ``Quick Link'' and ``Quick Create''} you should start to take advantage of here is good
+ol' \emph{Drag-and-Drop} from the project browser into a diagram. We can use this action as an alternative to creating new objects (with known types) from
 the SDM toolbox.
 
-The main advantage of drag-and-drop is that the \texttt{Object Variable Pro\-per\-ties} dialogue should have the type of the object pre-configured. Choosing
-the type in the project browser and dragging it in is (for most people) a more natural gesture than choosing the type from a long drop-down menu (as we had to
+The main advantage of drag-and-drop is that the \texttt{Object Variable Pro\-per\-ties} dialogue will have the type of the object pre-configured. Choosing
+the type in the project browser and dragging it in is (for some people) a more natural gesture than choosing the type from a long drop-down menu (as we had to
 when using the SDM toolbar). This can be a great time saver for large metamodels.\footnote{Drag and drop is also possible in embedded story patterns
 (still visualised in their story nodes).  You must ensure however, that the object variable is \emph{completely} contained inside the story node and does not
 stick out over any edge.}
@@ -128,16 +128,16 @@ into the new (extracted) pattern diagram (Fig.~\ref{fig:sdm_check_bound_card}).
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{ea_dragDropDialogue}
-  \caption{Add a new object variable per drag and drop}
+  \caption{Add a new object variable per drag-and-drop}
   \label{fig:sdm_check_bound_card}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] A dialogue will appear asking what kind of variable should be created. You can create (1) a simple link (which would refer to and
-be represented by \texttt{Card}'s entire class), (2) create an instance of \texttt{Card} as an object, or (3) create a subclass. Paste \texttt{Card} as an
-instance and check \texttt{Autosave Selection as Default} under ``Options" so option (2) will be used next time by default. You should also check \texttt{Use
-Ctrl + Mouse drag to show this Dialog}, so this dialogue doesn't appear every time you use this action. Don't worry - if you ever need options (1) and (3), 
-just hold \texttt{Ctrl} when dragging to invoke the dialogue, then change the settings.
+be represented by the class texttt{Card}), (2) create an instance of \texttt{Card} as an object variable, or (3) as an invocation (as a copy of a State Machine)
+setting the source element as its classifier. Paste \texttt{Card} as an instance and check \texttt{Autosave Selection as Default} under ``Options" so option (2)
+will be used next time by default. You should also check \texttt{Use Ctrl + Mouse drag to show this Dialog}, so this dialogue doesn't appear every time you use
+this action. Don't worry - if you ever need options (1) and (3), just hold \texttt{Ctrl} when dragging to invoke the dialogue, then change the settings.
 
 \vspace{0.5cm}
 
@@ -178,9 +178,8 @@ via the \texttt{next} link in the metamodel.
 
 \item[$\blacktriangleright$] Quick link from \texttt{this} to \texttt{nextPartition} (or vice-versa) to create a \texttt{next} link variable, as shown in
 Fig.~\ref{fig:sdm_check_link_variable}. As you can see, there are several more property options. The goal is to have the current partition to proceed or point
-to the \texttt{nextPartition} via the \texttt{next} reference, so select the second option. This will cause the reference to be defined in \texttt{this}.
-Alternatively, you could define the reference in \texttt{nextPartition} by setting the link proceed from the next partition into the \texttt{previous}
-partition, \texttt{this}.
+to the \texttt{nextPartition} via the \texttt{next} reference, so select the second option. Alternatively, you could define the reference from
+\texttt{nextPartition} by setting the link variable \texttt{previous} to \texttt{this}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -225,7 +224,7 @@ then create the necessary variables and links as depicted in Fig.~\ref{fig:sdm_c
 
 To complete the \texttt{check} SDM, we need to signal (as a return value) the result of the check - was the card promoted or penalised? To do this, we need to
 edit the stop nodes so they return a\define{LiteralExpression}\emph{LiteralExpression}. This expression type can be used to specify arbitrary text, but
-should really only used for true literals like 42, ``foo'' or \texttt{true}. It can be (mis)used for formulating any (Java) expression that will simply be
+should really only be used for true literals like 42, ``foo'' or \texttt{true}. It can be (mis)used for formulating any (Java) expression that will simply be
 transferred ``literally'' into the generated code, but this is obviously sort of dirty\footnote{It defeats, for example, any attempt to guarantee type safety}
 and should be avoided when possible.
 
