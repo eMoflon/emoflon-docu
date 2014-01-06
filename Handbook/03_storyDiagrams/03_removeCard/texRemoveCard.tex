@@ -64,8 +64,8 @@ parameter value with the same name.
 
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=0.6\textwidth]{eclipse_remCardObjVars}
-  \caption{Object variables for \texttt{removeCard} \update (empty scope? No curly)}
+  \includegraphics[width=0.6\textwidth]{eclipse_thisObjVar}
+  \caption{Object variables for \texttt{removeCard}}
   \label{fig:remCardObjVar}
 \end{center}
 \end{figure}
@@ -76,10 +76,10 @@ parameter value with the same name.
 \texttt{-- -> card:card} to \texttt{@this} to destroy the \texttt{card} reference targeting the \texttt{card} object. Your pattern should now resemble
 Fig.~\ref{fig:deleteReference}. The syntax follows this format:
 
-\syntax{[action]'->'nameOfOutgoingLV':'targetOV\\
+\syntax{[action]`->'nameOfOutgoingLV`:'targetOV\\
 \\
 With:\\
-action := '- -' | '++' | '!'\\
+action := `- -' | `++' | `!'\\
 nameOfOutgoingLV := STRING\\
 targetOV := STRING
 }
@@ -88,8 +88,8 @@ targetOV := STRING
 
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=0.6\textwidth]{eclipse_thisObjVar}
-  \caption{Destroy the link between a card and its partition \update empty scope}
+    \includegraphics[width=0.6\textwidth]{eclipse_remCardObjVars}
+  \caption{Destroy the link between a card and its partition}
   \label{fig:deleteReference}
 \end{center}
 \end{figure}

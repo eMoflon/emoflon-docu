@@ -24,10 +24,9 @@ As you can see, The first loop will match all partitions, while the second match
 \vspace{0.5cm}
 
 While we declared \texttt{addToStringRep()} in Part II, we didn't implement it. Analogously to how you implemented \texttt{determineNextSize} in the
-previous section, quickly edit the \texttt{Box.impl} partial class again with the code in Fig.~\ref{code:addToStringRep_inject_file} and rebuild your project.
-Confirm the changes in \texttt{Box.impl}, and you'll be ready to start.
+previous section, quickly edit \texttt{BoxImpl.java} again with the code in Fig.~\ref{code:addToStringRep_inject_file} and rebuild your
+project. Confirm the changes in \texttt{BoxImpl.inject}, and you'll be ready to start.
 
-\update do it the previous way. this is baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaad
 \newpage
 
 \vspace*{3cm}
@@ -35,36 +34,29 @@ Confirm the changes in \texttt{Box.impl}, and you'll be ready to start.
 \begin{figure}[h!]
         \centering
         \begin{lstlisting}[language=Java, keywordstyle={\bfseries\color{purple}}, backgroundcolor=\color{white}]
-    @model addToStringRep (Card card) <--
-
-            StringBuilder sb = new StringBuilder();
-
-            if (stringRep == null)
-            {
-                sb.append("BoxContent: [");
-
-            }
-            else
-            {
-                sb.append(stringRep);
-                sb.append(", [");
-            }
-
-            sb.append(card.getFace());
-            sb.append(", ");
-            sb.append(card.getBack());
-            sb.append("]");
-
-            stringRep = sb.toString();
-    -->
+		public void addToStringRep(Card card) {
+			// [user code injected with eMoflon]
+			StringBuilder sb = new StringBuilder();
+			if (stringRep == null) {
+				sb.append("BoxContent: [");
+			} else {
+				sb.append(stringRep);
+				sb.append(", [");
+			}
+			sb.append(card.getFace());
+			sb.append(", ");
+			sb.append(card.getBack());
+			sb.append("]");
+			stringRep = sb.toString();
+	}
         \end{lstlisting}
-        \caption{Extending \texttt{Box}'s \emph{partial class}}
+        \caption{Editing box.impl again}
         \label{code:addToStringRep_inject_file}
     \end{figure}
     \FloatBarrier
 
 \jumpDual{stringRep vis}{stringRep tex}
 
-\input{../08_stringRep/visStringRep}
+\input{../10_stringRep/visStringRep}
 
-\input{../08_stringRep/texStringRep}
+\input{../10_stringRep/texStringRep}

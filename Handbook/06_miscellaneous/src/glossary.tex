@@ -2,4 +2,134 @@
 \section{Glossary}
 \genHeader
 
-This section will contain the defined words from \emph{every} part.
+% NOT YET ALPHABETIZED; Contains the defitions of the words defined in EVERY part
+% Investigate the GLOSSARY package and get it working!
+
+% PART 2 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\begin{description}
+
+\item[\bf Abstract Syntax] 
+Defines the valid static structure of members of a language. 
+
+\item[\bf Concrete Syntax]
+How members of a language are represented. This is often done textually or visually.
+
+\item[\bf Constraint Language] 
+Typically used to specify complex constraints (as part of the static semantics or a language) that cannot be expressed in a metamodel.
+
+\item[\bf Dynamic Semantics] 
+Defines the dynamic behavior for members of a language.
+
+\item[\bf Grammar] 
+A set of rules that can be used to generate a language. 
+
+\item[\bf Graph Grammar] 
+A grammar that describes a graph language. This can be used instead of a metamodel or type graph to define the abstract syntax of a language.
+
+\item[\bf Meta-Language] 
+A language that can be used to define another language.
+
+\item[\bf Meta-metamodel] 
+A \emph{modeling language} for specifying metamodels.
+
+\item[\bf Metamodel] 
+Defines the abstract syntax of a language including some aspects of the static semantics such as multiplicities. 
+
+\item[\bf Model] 
+Graphs which conform to some metamodel.
+
+\item[\bf Modeling Language] 
+Used to specify languages. Typically contains concepts such as classes and connections between classes.
+
+\item[\bf Static Semantics] 
+Constraints members of a language must obey in addition to being conform to the abstract syntax of the language.
+
+\item[\bf Type Graph] 
+The graph that defines all types and relations that form a language. Equivalent to a metamodel but without any static semantics.
+
+\item[\bf Unification]  
+An extension of the object oriented ``Everything is an object'' principle, where everything is regarded as a model, even the metamodel which defines other
+models.
+
+
+\end{description}
+
+% PART 3 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\begin{description}
+
+\item[\bf Activity]
+Top-most element of an SDM.
+
+\item[\bf Activity Edge]
+A directed connection between activity nodes describing the control flow within an activity.
+
+\item[\bf Activity Node]
+Represent atomic steps in the control flow of an SDM. Can be either story patterns or statement nodes.
+
+\item[\bf Assignments]
+Used to set attributes of object variables.
+
+\item[\bf Attribute Constraint]
+A non-structural contraint that must be satisfied for a story pattern to match. Can be either an assertion or assignment.
+
+\item[\bf Binding State]
+Can be either \emph{bound} or \emph{unbound/free}. See \emph{Bound vs Unbound}.
+
+\item[\bf Binding operator]
+Determine whether a variable is to be \emph{checked}, \emph{created}, or \emph{destroyed} during pattern matching.
+
+\item[\bf Binding Semantics]
+Determines if an object variable \emph{must} exist (\emph{madatory}), may not exist (\emph{negative}; see \emph{NAC}), or is \emph{optional} during
+\emph{pattern matching}.
+
+\item[\bf Bound vs Unbound]
+Bound variables are completely determined by the current context, whereas unbound (free) variables have to be determined by the \emph{pattern matcher}.
+\texttt{this} and parameter values are always bound.
+
+\item[\bf Dangling Edges]
+An edge with no target or source. Graphs with dangling edges are invalid, which is why dangling edges are avoided and automatically deleted by the pattern
+matching engine.
+
+\item[\bf EA]
+Enterprise Architect; The UML visual modeling tool used as our visual frontend.
+
+\item[\bf Edge Guards]
+Refine the control flow in an activity by guarding activity edges with a condition that must be satisfied for the activity edge to be taken.
+
+\item[\bf Link Variable]
+Placeholders for links between matched objects.
+
+\item[\bf Literal Expression]
+Represents literals such as true, false, 7, or ``foo.''
+
+\item[\bf MethodCallExpression]
+Used to invoke any method.
+
+\item[\bf NAC]
+Negative Application Condition; Used to specify structures that must not be present for a transformation rule to be applied.
+	
+\item[\bf Object Variable]
+Place holders for actual objects in the current model to be determined during pattern matching.
+
+\item[\bf ObjectVariableExpression]
+Used to reference other object variables.
+
+\item[\bf Parameter Expression]
+Used to refer to method parameters.
+
+\item[\bf (Graph) Pattern Matching]
+Process of assigning objects and links in a model to the object and link variables in a pattern in a type conform manner. This is also reffered to as finding a
+match for the pattern in the given model.
+
+\item[\bf Statement Nodes]
+Used to invoke methods as part of the control flow in an activity.
+
+\item[\bf Story Node]
+\emph{Activity nodes} that contain \emph{story pattern}s.
+
+\item[\bf Story Pattern]
+Specifies a structure change of the model.
+
+\end{description}
+
+% PART 4 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

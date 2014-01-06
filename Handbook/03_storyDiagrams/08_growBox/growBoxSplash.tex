@@ -9,7 +9,7 @@ reference of the current last partition, and its \texttt{previous} reference mus
 \begin{figure}[htbp]
  	\centering
   	\includegraphics[width=0.7\textwidth]{growBoxNACGoal.pdf}
-	\caption{Growing a box by inserting a new partition \update}
+	\caption{Growing a box by inserting a new partition \update (on OmniGiraffe)}
 	\label{fig:goal_grow}
 \end{figure}
 \FloatBarrier
@@ -31,9 +31,9 @@ Of course, to complete this method we will still need to determine the size of t
 rest of the partitions currently in the box (partitions usually get bigger) we'll need to call a helper method, \texttt{determineNextSize()}. Due to the
 algorithmic and non-structural nature of this task however, it will be easier to implement this via a Java \emph{injection}, rather than an SDM.
 
-\input{../07_growBox/injectionsRevisited/injectionsRevisitedSrc}
+\input{../08_growBox/injectionsRevisited/injectionsRevisitedSrc}
 
 % Footer and links to the following are contained in injectionsRevisited
-\input{../07_growBox/visGrowBox}
+\input{../08_growBox/visGrowBox}
 
-\input{../07_growBox/texGrowBox}
+\input{../08_growBox/texGrowBox}

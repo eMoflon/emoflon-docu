@@ -1,0 +1,32 @@
+\subsection{Injections Revisited}
+\genHeader
+
+Note: If you just began the example in this part, please read Part II, Section 5, ``Introduction to injections" to quickly review how to add handwritten code to
+generated classes. 
+
+
+\begin{itemize}
+
+\item[$\blacktriangleright$] Open ``gen/LearningBoxLanguage.impl/BoxImpl.java.'' Scroll to the method declaration, and
+replace the contents with the code in Fig.~\ref{code:determineNextSize_impl}.
+
+\begin{figure}[htbp]
+        \centering
+        \begin{lstlisting}[language=Java, keywordstyle={\bfseries\color{purple}}, backgroundcolor=\color{white}]
+    public int determineNextSize() {
+    	// [user code injected with eMoflon]
+        return getContainedPartition().size()*10;
+    }
+        \end{lstlisting}
+        \caption{Implementation of \texttt{removeCard}}
+        \label{code:determineNextSize_impl}
+\end{figure}
+
+
+\item[$\blacktriangleright$] Save the file, then right-click either on file in the package explorer, or in the editor window, and choose ``eMoflon/
+Create/Update Injection for class'' from the context menu. 
+
+\item[$\blacktriangleright$] Confirm the update in the new \texttt{BoxImpl.inject} file's partial class. \texttt{determineNextSize} is now ready to be used by
+your metamodel.
+
+\end{itemize}
