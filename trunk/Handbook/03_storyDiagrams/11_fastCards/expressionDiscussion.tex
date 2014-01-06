@@ -1,0 +1,28 @@
+\newpage
+
+\subsection{Expression Discussion}
+\genHeader
+
+As usual, all of our expression types can be used for the binding expression. Since you have encountered the first three of these at least once over the course
+of building the complete metamodel, let's consider what each type would mean in this context:
+\begin{description}
+  \item[MethodCallExpression:]~\\ This would allow invoking a method and binding
+  its return value to the object variable.  This is how non-primitive return
+  values of methods can be used safely in SDMs.
+  
+  \item[ParameterExpression:]~\\ This could be used to bind the object variable
+  to a parameter of the method.  If the object variable is of a different type
+  than the parameter (e.g. a subtype) this represents basically a successful
+  typecast if the pattern matches.
+  
+  \item[LiteralExpression:]~\\ As usual this can be anything and is literally
+  copied with a surrounding typecast into the generated code.  Using
+  LiteralExpressions too often is usually a sign for not thinking in a
+  \emph{pattern oriented} manner and is considered a \emph{bad smell}.
+
+  
+  \item[ObjectVariableExpression:]~\\ This can be used to refer to other object
+  variables in preceding story nodes.  Just like for ParameterExpressions, this
+  represents a simple typecast if the types of the \texttt{target} and the
+  object variable with the binding are different.
+\end{description}

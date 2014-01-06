@@ -7,9 +7,19 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] In \texttt{grow}, create a simple control flow with one story pattern. You'll want this pattern to match the invocation box with
-\emph{any} two partitions, so create a bound \texttt{this} box, and free \texttt{firstPartitionInBox} and \texttt{lastPartitionInBox} partitions.
-You'll also need a variable set to create to represent the new partition. The skeleton of your pattern should now resemble (Fig.~\ref{fig:growPattSkel}).
+\item[$\blacktriangleright$] In \texttt{box.grow()}, create a simple control flow with one story pattern (Fig.~\ref{fig:growDecl}). 
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.4\textwidth]{eclipse_growDecl}
+  \caption{Basic control flow to grow \texttt{box}}
+  \label{fig:growDecl}
+\end{center}
+\end{figure}
+
+\item[$\blacktriangleright$] Create and open the new pattern. You'll want it to match the invoking box with \emph{any} two partitions, so create a bound
+\texttt{this} box, and free \texttt{firstPartitionInBox} and \texttt{lastPartitionInBox} partitions. You'll also need a variable set to create to represent the
+new partition. The skeleton of your pattern should now resemble (Fig.~\ref{fig:growPattSkel}).
 
 \vspace{0.5cm}
 
@@ -51,8 +61,6 @@ be created here, so all you need to establish is the link connecting \texttt{fir
 \end{center}
 \end{figure}
 
-\clearpage
-
 \item[$\blacktriangleright$] Connect \texttt{@this} with appropriate links to the first and last partitions, then establish the \texttt{box} and
 \texttt{previous} references in \texttt{newPartition} (Fig~\ref{fig:growAllLinks}).
 
@@ -86,6 +94,6 @@ Your workspace should then resemble Fig.~\ref{fig:patternComplete}.
 can be used in a wide variety of applications. To see how this method is implemented in the visual syntax, check out Fig~\ref{fig:growComplete} from the previous
 section.
 
-\item[$\blacktriangleright$] \update	move branching content here (to complete grow)
+\item[$\blacktriangleright$] \update move branching content here (to complete grow)
 
 \end{itemize}
