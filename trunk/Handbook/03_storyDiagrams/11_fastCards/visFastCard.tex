@@ -57,15 +57,13 @@ this set-up configures the pattern matcher to check for types, rather than \text
 
  \clearpage
 
-In our case, we could use a ParameterExpression or an ObjectVariableExpression as \texttt{card} is indeed a parameter \emph{and} has already been used in
-\texttt{checkIfGuessIsCorrect}. 
+In our case, we could use a \emph{ParameterExpression} or an \emph{ObjectVariableExpression} as \texttt{card} is indeed a parameter \emph{and} has already been
+used in \texttt{checkIfGuessIsCorrect}, but let's try a new expression type, \emph{ObjectVariableExpression}.
+
+\item[$\blacktriangleright$] \define{ObjectVariableExpression}Update the \texttt{fastcard} binding by switching the expression to 
+\texttt{Object\-Vari\-able\-Ex\-pres\-sion}, with \texttt{card} as the target.
 
 \vspace{0.5cm}
-
-\item[$\blacktriangleright$] Since we haven't used \texttt{ObjectVariableExpression} before, lets update our \texttt{fastcard} binding to try it out! Switch
-the expression to \texttt{Object\-Vari\-able\-Ex\-pres\-sion} with \texttt{card} as the target. 
-
-\clearpage
 
 \item[$\blacktriangleright$] To finalize the SDM, extract the \texttt{promoteFastCard} story pattern and build the pattern according to
 Fig.~\ref{fig:promoteFastCardPattern}. Compare this pattern to Figs.~\ref{fig:sdm_check_complete_activity_node} and \ref{fig:sdm_check_complete_penalize}, the
@@ -92,6 +90,6 @@ to generate the new code for your metamodel. Inspect the implementation for \tex
 \item[$\blacktriangleright$] At this point, we encourage you to read each of the textual SDM instructions to try and understand the full scope of eMoflon's
 features (which start on page~\hyperlink{page.9}{9}) but you are of course, free to carry on.
 
-\jumpSingle{sec:conbran}
+\jumpSingle{subsec:fastGUI}
 
 \end{itemize}

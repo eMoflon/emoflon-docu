@@ -4,16 +4,16 @@
 \hypertarget{sec:remCard}{}
 
 Since we're just getting started with SDMs,\footnote{As you may have already noticed, we use ``SDM'' or ``Story Diagrams" interchangeably to mean both our graph
-transformation language \emph{or} a concrete transformation used to implement a method, consisting of an activity with activity nodes containing story patterns.} lets
-re-implement the method previously specified directly in Java as an injection.\footnote{Refer to Part II, Section 6} The goal of this method is to remove a single card from its current
-partition, which can be done by destroying the link between the two items (Fig.~\ref{fig:goal_removeCard}).
+transformation language \emph{or} a concrete transformation used to implement a method, consisting of an activity with activity nodes containing story
+patterns.} let's re-implement the method previously specified directly in Java as an injection.\footnote{Refer to Part II, Section 6} The goal of this method
+is to remove a single card from its current partition, which can be done by destroying the link between the two items (Fig.~\ref{fig:goal_removeCard}).
 
 \vspace{1cm}
 
 \begin{figure}[htbp]
 	\centering
-    \includegraphics[width=0.2\textwidth]{goal_remove}
-	\caption{Removing a card from its partition \update (no bold)}
+    \includegraphics[width=0.2\textwidth]{goal_removeCard.pdf}
+	\caption{Removing a card from its partition}
 	\label{fig:goal_removeCard}
 \end{figure}
 \FloatBarrier
@@ -24,7 +24,7 @@ According to the signature of the method \texttt{removeCard}, we should return t
 considering that we already passed in the card as an argument, it still makes sense as it allows for chaining method calls:
 \syntax{ aPartition.removeCard(aCard).invert()}
 
-Before we implement this change as a story diagram, lets remove the old injection content to avoid potential conflicts.
+Before we implement this change as a story diagram, let's remove the old injection content to avoid potential conflicts.
 
 \begin{itemize}
 

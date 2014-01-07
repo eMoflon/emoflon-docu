@@ -15,7 +15,7 @@ use eMolfon's auto-complete features here as well! Press \texttt{ctrl + space} o
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_removeCardDeclaration}
-  \caption{Control flow for \texttt{removeCard}}
+  \caption{Control flow for \texttt{removeCard} \update}
   \label{fig:remCardDec}
 \end{center}
 \end{figure}
@@ -98,17 +98,11 @@ targetOV := STRING
 arrow to jump back from your pattern to your EClass. Conversely, to quickly open or jump to a pattern, hover over the pattern name while holding \texttt{ctrl}
 until it's underlined, then click!
 
-\vspace{0.5cm}
-
 \item[$\blacktriangleright$] Remember that links between classes can be specified as \emph{bidrectional EReferences},\footnote{Technically two
 \emph{unidirectional EReferences}} linked together as opposites in ``LearningBoxLanguage/\_con\-straints.mconf.'' In this case, therefore, we don't need to
 worry about declaring \texttt{-- -> cardContainer:Card} inside \texttt{card}, as it would be redundant.
 
-\vspace{0.5cm}
-
 \item[$\blacktriangleright$] Save and build your metamodel. If any errors occur, double check and make sure your activity and pattern match ours. 
-
-\vspace{0.5cm}
 
 \item[$\blacktriangleright$] To see how this same method is crafted in the visual syntax, check out Fig.~\ref{fig:sdm_complete_control_flow} from the previous
 section.

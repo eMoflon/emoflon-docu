@@ -9,7 +9,7 @@ reference of the current last partition, and its \texttt{previous} reference mus
 \begin{figure}[htbp]
  	\centering
   	\includegraphics[width=0.7\textwidth]{growBoxNACGoal.pdf}
-	\caption{Growing a box by inserting a new partition \update (on OmniGiraffe)}
+	\caption{Growing a box by inserting a new partition}
 	\label{fig:goal_grow}
 \end{figure}
 \FloatBarrier
@@ -28,12 +28,47 @@ therefore made unique through NACs and thus becomes \emph{deterministic} by cons
 will always be exactly one first and one last partition of the box.
 
 Of course, to complete this method we will still need to determine the size of the new partition! Since the new size must be calculated depending on the
-rest of the partitions currently in the box (partitions usually get bigger) we'll need to call a helper method, \texttt{determineNextSize()}. Due to the
-algorithmic and non-structural nature of this task however, it will be easier to implement this via a Java \emph{injection}, rather than an SDM.
+rest of the partitions currently in the box (partitions usually get bigger) we'll need to call a helper method, \texttt{determineNextSize} via a
+\emph{MethodCallExpression}.\define{MethodCallExpression}As the name suggests, it is designed to access any method defined in \emph{any} class in the current project.
 
-\input{../08_growBox/injectionsRevisited/injectionsRevisitedSrc}
+Due to the algorithmic and non-structural nature of \texttt{determineNextSize}, it will be easier to implement this method via a Java \emph{injection}, rather
+than an SDM. We initially declared this method in our metamodel, so its signature will be available for editing in \texttt{BoxImpl.java}.
 
-% Footer and links to the following are contained in injectionsRevisited
+\subsection{Injections Revisited}
+\genHeader
+
+Note: If you just began the example in this part, or would like to review the details on injections, please read Part II, Section 5, ``Introduction to
+injections.''
+
+\begin{itemize}
+
+\item[$\blacktriangleright$] Open ``gen/LearningBoxLanguage.impl/BoxImpl.java.'' Scroll to the method declaration, and
+replace the contents with the code in Fig.~\ref{code:determineNextSize_impl}. Do not remove the first comment, which is neccesary to indicate that is code is
+handwritten and needs to be extracted automatically as an injection.
+
+\begin{figure}[htbp]
+        \centering
+        \begin{lstlisting}[language=Java, keywordstyle={\bfseries\color{purple}}, backgroundcolor=\color{white}]
+    public int determineNextSize() {
+    	// [user code injected with eMoflon]
+        return getContainedPartition().size()*10;
+    }
+        \end{lstlisting}
+        \caption{Implementation of \texttt{removeCard}}
+        \label{code:determineNextSize_impl}
+\end{figure}
+
+
+\item[$\blacktriangleright$] Save the file, then right-click either on file in the package explorer, or in the editor window, and choose ``eMoflon/
+Create/Update Injection for class'' from the context menu. 
+
+\item[$\blacktriangleright$] Confirm the update in the new \texttt{BoxImpl.inject} file's partial class. \texttt{determineNextSize} is now ready to be used by
+your metamodel!
+
+\jumpDual{growBox vis}{growBox tex}
+
+\end{itemize}
+
 \input{../08_growBox/visGrowBox}
 
 \input{../08_growBox/texGrowBox}
