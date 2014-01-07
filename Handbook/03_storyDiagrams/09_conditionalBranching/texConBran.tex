@@ -5,13 +5,13 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Before doing anything else, lets declare the method that will insert two new partitions into \texttt{box} when the original pattern
-match fails. Open \texttt{Box.eclass} and add the following signature: 
+\item[$\blacktriangleright$] Before doing anything else, let's declare the method that will insert two new partitions into \texttt{box} when the original
+pattern match fails. Open \texttt{Box.eclass} and add the following signature: 
 \syntax{initializeBox () : EBoolean}
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Now we need to modify \texttt{Box.grow()} by adding a nested \emph{if/else} construct, with \texttt{[addNewPartitionBox]} as the
+\item[$\blacktriangleright$] Now we modify \texttt{Box.grow()} by adding a nested \emph{if/else} construct, with \texttt{[addNewPartitionBox]} as the
 first conditional, and a statement node as the second. \texttt{grow} should now resemble Fig.~\ref{fig:updateGrow}
 
 \vspace{0.5cm}
@@ -19,7 +19,7 @@ first conditional, and a statement node as the second. \texttt{grow} should now 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_updateGrow}
-  \caption{Extending \texttt{box.grow()}}
+  \caption{Our first \emph{statement node}}
   \label{fig:updateGrow}
 \end{center}
 \end{figure}
@@ -43,7 +43,7 @@ box to check and see if a connection to \texttt{onePartition} exists. If none ex
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_buildPartitionsPattern}
-  \caption{Pattern to initalize the box, but only if it's empty}
+  \caption{Pattern to initalize the box, but only if it's empty \update}
   \label{fig:pattBuildParts}
 \end{center}
 \end{figure}

@@ -18,39 +18,40 @@ loop (Fig.~\ref{fig:goal_stringRep}). Further still, we'll need to call a helper
 
 \vspace{1cm}
 
-As you can see, The first loop will match all partitions, while the second matches each card. For each card, a \emph{statement} is used to invoke the
-\texttt{addToStringRep()} method.
+As you can see, The first loop will match all partitions, while the second matches each card. Finally, each card uses a \emph{statement node} to invoke the
+\texttt{addToStringRep} method. In contrast to how they were used for conditional branching in \texttt{grow}, this statement node will simply invoke and
+complete a method.
 
 \vspace{0.5cm}
 
-While we declared \texttt{addToStringRep()} in Part II, we didn't implement it. Analogously to how you implemented \texttt{determineNextSize} in the
-previous section, quickly edit \texttt{BoxImpl.java} again with the code in Fig.~\ref{code:addToStringRep_inject_file} and rebuild your
-project. Confirm the changes in \texttt{BoxImpl.inject}, and you'll be ready to start.
+Analogously to how you implemented \texttt{determineNextSize} as an injection for \texttt{box.grow()}, quickly edit \texttt{BoxImpl.java} again by replacing the
+default code for \texttt{addToStringRep} with that in Fig.~\ref{code:addToStringRep_inject_file}. Save, rebuild, and confirm the changes in
+\texttt{BoxImpl.inject}.
 
 \newpage
 
 \vspace*{3cm}
 
 \begin{figure}[h!]
-        \centering
-        \begin{lstlisting}[language=Java, keywordstyle={\bfseries\color{purple}}, backgroundcolor=\color{white}]
-		public void addToStringRep(Card card) {
-			// [user code injected with eMoflon]
-			StringBuilder sb = new StringBuilder();
-			if (stringRep == null) {
-				sb.append("BoxContent: [");
-			} else {
-				sb.append(stringRep);
-				sb.append(", [");
-			}
-			sb.append(card.getFace());
-			sb.append(", ");
-			sb.append(card.getBack());
-			sb.append("]");
-			stringRep = sb.toString();
+\centering
+\begin{lstlisting}[language=Java, keywordstyle={\bfseries\color{purple}}, backgroundcolor=\color{white}]
+public void addToStringRep(Card card) {
+	// [user code injected with eMoflon]
+	StringBuilder sb = new StringBuilder();
+	if (stringRep == null) {
+		sb.append("BoxContent: [");
+	} else {
+		sb.append(stringRep);
+		sb.append(", [");
+	}
+	sb.append(card.getFace());
+	sb.append(", ");
+	sb.append(card.getBack());
+	sb.append("]");
+	stringRep = sb.toString();
 	}
         \end{lstlisting}
-        \caption{Editing box.impl again}
+        \caption{Editing \texttt{addToStringRep}}
         \label{code:addToStringRep_inject_file}
     \end{figure}
     \FloatBarrier

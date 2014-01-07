@@ -8,7 +8,8 @@
 \begin{itemize}
   
 \item[$\blacktriangleright$] Closely following Fig.~\ref{fig:goal_stringRep}, create a nested \texttt{forEach} loop in \texttt{Box.toString()}.
-Don't worry about the method invocation yet, just make sure you return \texttt{this.stringRep}. It should resemble Fig.~\ref{fig:emptyLoops}.
+Don't worry about invoking \texttt{addToStringRep} yet -  just make sure you return the \texttt{this.stringRep} attribute. It should resemble
+Fig.~\ref{fig:emptyLoops}.
 
 \begin{figure}[htp]
 \begin{center}
@@ -18,31 +19,33 @@ Don't worry about the method invocation yet, just make sure you return \texttt{t
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] In order to invoke \texttt{addToStringRep}, we need to make use of a new activity node type, a \emph{statement node}. These are
-different from story patterns as they are able to invoke methods as part of the control flow. A statement node is declared by surrounding the invocation command
-with  `\texttt{<>}.' Therefore, inside the second loop, write \texttt{<@this.addToStringRepCard(card)>}. The correct \texttt{card} parameter will be matched by
-the \texttt{ForAllCards} pattern, which we'll establish next.
+\item[$\blacktriangleright$] Now, in order to use \texttt{addToStringRep}, we need create a \emph{statement node}. A statement node is declared by surrounding
+the command with  `\texttt{<>}.' Therefore, inside the second loop, write:
+\syntax{<@this.addToStringRepCard(card)>} 
+The correct \texttt{card} parameter will be matched by the \texttt{ForAllCards} pattern; We'll establish this next.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] The \texttt{toString} activity should now resemble Fig.~\ref{fig:toStringFlow}.
+\item[$\blacktriangleright$] The completed \texttt{toString} activity should now resemble Fig.~\ref{fig:toStringFlow}.
 
 \vspace{0.5cm}
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.6\textwidth]{eclipse_boxtoStringFlow}
-  \caption{Our first \emph{statement node}}
+  \caption{Using a \emph{statement node} as part of the control flow}
   \label{fig:toStringFlow}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] The aim of the activity to access every item in a \texttt{Box}. The control flow (which we've already established), invokes a
-helper method to complete the action. This means both patterns need only match their object variables to ensure that all cards in all partitions are found.
+\item[$\blacktriangleright$] Don't forget that the aim of the activity to access every item in a \texttt{Box}. The control flow finishes when the helper method
+is able to called for all existing \texttt{card}s. This means the \texttt{forAllPartitions} and \texttt{forAllCards} patterns only need to match their
+namesake's object variable to ensure that all cards in all partitions are found.
 
-\item[$\blacktriangleright$] Complete each pattern as depicted in Fig.~\ref{fig:toStringPatterns}. The \texttt{partition}in \texttt{forAllCards} is bound to
-the current one matched in the first loop containing \texttt{forAllPartitions}, but \texttt{card} is \emph{not} bound as it must be matched with
-\texttt{forAllCards.}
+\clearpage
+
+\item[$\blacktriangleright$] Complete each pattern as depicted in Fig.~\ref{fig:toStringPatterns}. The \texttt{partition} in \texttt{forAllCards} is bound to
+the one matched in the current (first) loop iteration, but \texttt{card} is \emph{not} bound as it must be newly matched each time.
 
 \vspace{0.5cm}
 
