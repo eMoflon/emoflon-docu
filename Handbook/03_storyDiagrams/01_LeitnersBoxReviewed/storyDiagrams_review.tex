@@ -53,17 +53,17 @@ workspace in Eclipse.
 
 The ``MyWorkingSet" node contains \texttt{Learn\-ing\-Box\-Lang\-uage}, which in turn contains all the code generated from your metamodel. The metamodel itself
 is found in \texttt{Leit\-ners\-Learn\-ing\-Box} under ``Specifications.'' The visual metamodel is a single \texttt{.eap} file, while the textual metamodel is
-contained within an explicit folder structure, starting with ``/MOSL''. 
+contained within an explicit folder structure, starting with ``/MOSL.'' 
 
 These projects are not placed in the same working set as they have different \emph{nature}s, or project types. \texttt{Learning\-Box\-Language} is a
-\emph{repository project}, the Eclipse classification of a normal Java project.\footnote{For details on the project setup, review Part I, Sections 4 and 5}, 
+\emph{repository project}, the Eclipse classification of a normal Java project,\footnote{For details on the project setup, review Part I, Section 4}
 while \texttt{LeitnersLearningBox} is a metamodel project.
 
 \begin{itemize}
 
 \item[$\blacktriangleright$] Inspect the files in both projects until you feel comfortable with what you'll be working with. In particular, look at the files
 found under ``gen." Each Java file has a corresponding \texttt{.impl} file, where all generated method implementations will be placed.\footnote{For
-more details, refer to Part II, Section 5} 
+more details on code generation, refer to Part I, Section 5} 
 
 \item[$\blacktriangleright$] Be sure to also review the Ecore model in ``LearningBoxLanguage/model/'' and the dynamic model found in ``instances.'' While
 you can make and customize your own instances,\footnote{To learn how to make your own instance models, review Part II, Section 4} we have included a small

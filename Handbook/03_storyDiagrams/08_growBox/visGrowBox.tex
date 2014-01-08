@@ -5,8 +5,8 @@
 
 \begin{itemize}
  
-\item[$\blacktriangleright$] Start by creating the simple story pattern depicted in Fig.~\ref{fig:sdm_grow_1}. This matches the box, \texttt{this} and 
-\emph{any} two partitions.\footnote{Remember, the \emph{pattern matcher} is randomized!}
+\item[$\blacktriangleright$] Start by creating the simple story pattern depicted in Fig.~\ref{fig:sdm_grow_1}. This matches the box to \emph{any} two
+partitions.\footnote{Remember, the \emph{pattern matcher} is randomized!}
 
 \vspace{0.5cm}
 
@@ -49,7 +49,7 @@ negative element \texttt{previousPartition}, and again, be sure to double-check 
  
 \item[$\blacktriangleright$] Notice how the created partition \texttt{newPartition} is `hung' into the box. It becomes the next partition of the current
 \emph{last} partition, and its previous partition is automatically set to the first partition in the box (as dictated by the rules set in
-Fig.~\ref{fig:membox_depiction}). In other words, the new partition is appended onto the current order of partitions.
+Fig.~\ref{fig:membox_depiction}). In other words, the new partition is appended onto the current set of partitions.
 
 \item[$\blacktriangleright$] In order to complete \texttt{grow}, we need to set the size of the \texttt{newPartition}. Given that the new size is calculated
 via the helper function \texttt{det\-er\-mine\-Next\-Size}, we need to invoke a \emph{MethodCallExpression}. Go ahead and invoke the corresponding dialogue,
@@ -68,13 +68,13 @@ activate the assignment (\texttt{:=}) operator, and match your values to Fig.~\r
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] If you've done everything right, your SDM should now closely resemble Fig.~\ref{fig:growComplete}. As usual, try to export,
-generate code, and inspect the method implementation.
+generate code, and inspect the method implementation in Eclipse.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$]  That's it - your \texttt{grow} SDM is complete! This was probably the most challenging SDM to build, so give yourself a solid 
+\item[$\blacktriangleright$]  That's it -- the \texttt{grow} SDM is complete! This was probably the most challenging SDM to build so give yourself a solid 
 pat on the back. If you found it easy, well then \ldots I guess I'm doing my job correctly. To see how this is done in the texual syntax, review
-Fig.~\ref{fig:patternComplete}.\footnote{We do recommend reading the instructions for this one, since NACs can be tricky}
+Fig.~\ref{fig:patternComplete}.\footnote{We do recommend reading the instructions for this one anyway, since NACs can be tricky}
 
 \vspace{0.5cm}
 

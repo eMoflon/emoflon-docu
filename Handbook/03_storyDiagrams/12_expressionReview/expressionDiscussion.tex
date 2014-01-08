@@ -2,8 +2,17 @@
 \section{Reviewing eMoflon's expressions}
 \genHeader
 
+As you've discovered while making SDMs, eMoflon employs a simple context-sensitive expression language for specifying  values. We have intentionally avoided
+creating a full-blown sub-language, and limit expressions to a few simple types. The philosophy here is to keep things simple and concentrate on what SDMs are good for -- expressing structural
+changes. Our approach is to provide a clear and type-safe interface to a general purpose language (Java) and support a simple \emph{fallback} via calls to
+injected methods as soon as things get too low-level and difficult to express as a pattern.
+
+The alternative approach to eMoflon would be to support arbitrary expressions, for example, in a script language like JavaScript or in an appropriate
+DSL\footnote{A DSL is a Domain Specific Language: a language designed for a specific task which is usually simpler than a general purpose language like Java and
+more suitable for the exact task.} designed for this purpose. 
+
 We've encountered several different expression types throughout our SDMs so far, and all of them can be used for binding expresssions. Since each syntax has
-used at least three of these once over the course of completing the metamodel, let's consider what each type would mean in this context:
+used at least three of these once, let's consider what each type would mean in the context on SDMs:
 
 \begin{description}
   
@@ -12,14 +21,20 @@ used at least three of these once over the course of completing the metamodel, l
   into the generated code.  Using \emph{LiteralExpression}s too often is usually a sign 
   for not thinking in a pattern oriented manner and is considered a \emph{bad smell}.
   
+  \vspace{0.5cm}
+  
   \item[MethodCallExpression:]~\\ 
   This would allow invoking a method and binding its return value to the object variable.  
   This is how non-primitive return values of methods can be used safely in SDMs.
   
+  \vspace{0.5cm}
+  
   \item[ParameterExpression:]~\\ 
   This could be used to bind the object variable to a parameter of the method.  
-  If the object variable is of a different type than the parameter (e.g. a subtype), 
+  If the object variable is of a different type than the parameter (i.e., a subtype), 
   this represents basically a successful typecast if the pattern matches.
+  
+  \newpage
   
   \item[ObjectVariableExpression:]~\\ 
   This can be used to refer to other object variables in preceding story nodes.  
@@ -28,5 +43,6 @@ used at least three of these once over the course of completing the metamodel, l
 
 \end{description}
 
-For those using the textual syntax, we have provided a \hyperlink{quickRef}{quick-reference guide} at the end of this part, along with the structure of
-several other commands encountered so far. Part VI, Miscellaneous, contains a complete reference of all MOSL commands.
+For those using the textual syntax, we have provided a \hyperlink{quickRef}{quick-reference guide} at the end of this part listing the syntax of each of these
+expressions. We have also included the structure of several other commands used in the example so far. Part VI: Miscellaneous, however contains a complete
+detailed reference of all MOSL commands.

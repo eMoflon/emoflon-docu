@@ -5,23 +5,23 @@
  
 \begin{itemize}
    
-\item[$\blacktriangleright$] In this SDM, the guess assertion, card promotion, and card penalisation must each be implemented as patterns. Given that every
-action is determined a the result of a conditional statement, we need an \emph{if/else} construct!
+\item[$\blacktriangleright$] In this SDM, the guess assertion, card promotion, and card penalization must each be implemented as patterns. Given that every
+action is determined a the result of a conditional statement, we need an \emph{if/Else} construct!
 
-\item[$\blacktriangleright$] In the \texttt{check} method, create the basic \emph{if/else} construct with three patterns, as illustrated in
-Fig.~\ref{fig:checkDec}. The auto completion feature includes a template for this.
+\item[$\blacktriangleright$] In the \texttt{check} method, create the basic \emph{if/Else} construct with three patterns, as illustrated in
+Fig.~\ref{fig:checkDec}. Our auto completion feature includes a template for this.
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.65\textwidth]{eclipse_checkCardMethod}
-  \caption{An if/else construct in \texttt{check} \update}
+  \caption{An if/Else construct in \texttt{check}}
   \label{fig:checkDec}
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] Upon saving use the ``Quick Fix'' wizard again to generate the required pattern files. Your package explorer should now resemble
+\item[$\blacktriangleright$] Upon saving, use the ``Quick Fix'' wizard again to generate the required pattern files. Your package explorer should now resemble
 Fig.~\ref{fig:checkPatternsExplorer}.
 
 \begin{figure}[htbp]
@@ -32,19 +32,23 @@ Fig.~\ref{fig:checkPatternsExplorer}.
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] Open the \texttt{checkCard} pattern. In order to validate the user's guess, we need to establish an \texttt{attribute contstraint}
+\item[$\blacktriangleright$] Open the \texttt{checkCard} pattern. In order to validate the user's guess, we need to establish an \emph{attribute contstraint}
 between the \texttt{back} attribute of the current \texttt{card}, and the primitive \texttt{EString} parameter, \texttt{guess}. 
 
-\item[$\blacktriangleright$] Referencing the \texttt{back} attribute can be done via `dot' operator, as used in Java.
+\item[$\blacktriangleright$] As done in Java, referencing the \texttt{back} is done in MOSL via `dot' operator, so begin the statement with \texttt{card.back}
 
 \item[$\blacktriangleright$] Attribute constraints have similar operators as Java comparators, so we'll want to use \texttt{`=='} to equate the
-values.\footnote{See the \hyperlink{quickRef}{Quick Reference} for a listing of all operators}
+values.\footnote{See the \hyperlink{quickRef}{Quick Reference} at the end of this part for a listing of all operators}
 
-\item[$\blacktriangleright$] The tricky part of the statement is referencing the parameter value. Given that we have not created an object variable, we'll need
-to use a \texttt{ParameterExpression}\define{ParameterExpression}to access it. Its syntax is as follows: \syntax{parameter\_expression := `\$'ID}
+\item[$\blacktriangleright$] The tricky part of the overall statement is referencing the parameter value. Given that we have not created an object variable,
+we'll need to use another expression type, \texttt{ParameterExpression},\define{ParameterExpression}to access it. This type exclusively refers to parater
+values, and its syntax is as follows:
+\syntax{parameter\_expression := `\$'ID}
 
-\item[$\blacktriangleright$] All combined, the complete attribute constraint statement is: \syntax{card.back == \$guess} Your pattern should now resemble
+\item[$\blacktriangleright$] Thus, the complete attribute constraint statement is: \syntax{card.back == \$guess} Your pattern should now resemble
 Fig.~\ref{fig:checkPattern}.
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -54,10 +58,14 @@ Fig.~\ref{fig:checkPattern}.
 \end{center}
 \end{figure} 
 
-\clearpage
-
 \item[$\blacktriangleright$] Now let's specify the \texttt{promoteCard} pattern. It requires three object variables: the current partition (\texttt{this}),
-the card to be promoted, and the partition the card will move to. Open the file, and the file so that it resembles Fig.~\ref{fig:promoteCardPattern}.
+the card to be promoted, and the partition the card will move to. Open and edit so that it resembles Fig.~\ref{fig:promoteCardPattern}.
+
+\item[$\blacktriangleright$] Given that \texttt{this} is bound while \texttt{next} partition is free, we need to establish a reference between the \texttt{box}
+and partition. This will allow the card move around. Create a \emph{outgoing link variable}, \texttt{next},  with target object variable \texttt{nextPartition}.
+Your file should now resemble Fig.~\ref{fig:promoteThisRule}.
+
+\newpage
 
 \begin{figure}[htbp]
 \begin{center}
@@ -66,12 +74,6 @@ the card to be promoted, and the partition the card will move to. Open the file,
   \label{fig:promoteCardPattern}
 \end{center}
 \end{figure} 
-
-\item[$\blacktriangleright$] Given that \texttt{this} is bound while \texttt{next} partition is free, we need to establish a reference between the \texttt{box}
-and partition. This will allow the card move around. Create a simple outgoing link variable, \texttt{next},  with target object variable \texttt{nextPartition}.
-Your file should now resemble Fig.~\ref{fig:promoteThisRule}.
-
-\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -82,8 +84,16 @@ Your file should now resemble Fig.~\ref{fig:promoteThisRule}.
 \end{figure} 
 
 \item[$\blacktriangleright$] Finally, let's update the \texttt{cardContainer} reference of \texttt{card}. Simply delete the link to \texttt{this}, and create
-a link to \texttt{nextPartition}.\footnote{There are several different ways you could have implemented this movement, updating the link from
+a link to \texttt{nextPartition}.\footnote{There are several different ways you could have implemented this movement, such as updating the link from
 \texttt{nextPartition} to \texttt{card}.} Your pattern is now complete, and should resemble Fig.~\ref{fig:completedPromote}.
+
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] Compare the differences between the \texttt{promoteCard} and \texttt{penalizeCard} concepts. They both do the exact same thing,
+except the destination partition is different. Knowing this, try to complete \texttt{penalizeCard} entirely on your own. Your workspace should come to
+resemble Fig.~\ref{fig:completedPatterns}.
+
+\newpage
 
 \begin{figure}[htbp]
 \begin{center}
@@ -93,36 +103,28 @@ a link to \texttt{nextPartition}.\footnote{There are several different ways you 
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] Compare the differences between the \texttt{promoteCard} and \texttt{penalizeCard} concepts. They both do the exact same thing,
-except the destination partition is different. Knowing this, try to complete \texttt{penalizeCard} entirely on your own. Your workspace should come to
-resemble Fig.~\ref{fig:completedPatterns}.
-
-\vspace{0.5cm}
-
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_movementPatternsCompleted}
-  \caption{The finished movement patterns}
+  \caption{Both movement patterns completed}
   \label{fig:completedPatterns}
 \end{center}
 \end{figure}
 
-
 \item[$\blacktriangleright$] Did you notice that the order of the \texttt{this} and \texttt{card} object variable scopes are reversed in the figures above?
 In general, for simple transformations like this, it doesn't matter in which order object variables are specified, or link variables manipulated in patterns.
-Everything just needs to be correctly stated.
-
-\clearpage
+Everything just needs to be correctly stated. 
 
 \item[$\blacktriangleright$] We nearly forgot to complete the control flow! We have specified the assertion and card movements, but we haven't returned a
-\texttt{EBoolean} result as the method requires. This is also known as a \emph{LiteralExpression}.\define{LiteralExpression}This expression type can be used to
-specify arbitrary text, but should really only be used for true literals like 42, ``foo'' or \texttt{true}. The syntax for any LiteralExpression is simply:
+\texttt{EBoolean} result as the method requires.  We'll need to implement a new expression type, a \emph{LiteralExpression}.\define{LiteralExpression}This type
+can be used to specify arbitrary text, but should really only be used for true literals like 42, ``foo'' or \texttt{true}. The syntax for any LiteralExpression
+is simply:
 \syntax{LiteralExpression := boolean\_literal | integer\_literal | any\_literal}
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Knowing this, and that \texttt{guess} was successful
-when the card was promoted, return \texttt{true} beneath \texttt{promoteCard}. If it was penalized, the guess was \texttt{false}. Your \texttt{check} method
+when the card was promoted, return \texttt{true} beneath \texttt{promoteCard}. If it was penalized, return \texttt{false}. Your \texttt{check} method
 should now resemble Fig.\ref{fig:finalMethod}.
 
 \vspace{0.5cm}
@@ -130,18 +132,18 @@ should now resemble Fig.\ref{fig:finalMethod}.
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_checkMethodFinal}
-  \caption{Completed control flow for \texttt{check} \update}
+  \caption{Completed control flow for \texttt{check}}
   \label{fig:finalMethod}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] Save and build your metamodel, then try viewing the changes in ``PartitionImpl.Java'' under \texttt{check}. You'll be able to
-see the if/else construct, as well as the link manipulations. 
+see the \emph{if/Else} construct, as well as the link manipulations. 
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Great job! You have just implemented checking card guesses with a new control flow construct, \emph{if/else}, and two patterns that
-move the cards appropriately. To see how this SDM is implemented visually, check out Fig.~\ref{fig:sdm_check_finish} for the control flow, and
+\item[$\blacktriangleright$] Great job! You have just enabled checking a card with guesses via a new control flow construct, \emph{if/Else}, and two patterns
+that move the cards appropriately. To see how this SDM is implemented visually, check out Fig.~\ref{fig:sdm_check_finish} for the control flow, and
 Figs.~\ref{fig:sdm_check_complete_activity_node} and \ref{fig:sdm_check_complete_penalize} for the movement patterns, all in the previous section.
 
 \end{itemize}

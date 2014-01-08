@@ -8,7 +8,7 @@
 \begin{itemize}
   
 \item[$\blacktriangleright$] Closely following Fig.~\ref{fig:goal_stringRep}, create a nested \texttt{forEach} loop in \texttt{Box.toString()}.
-Don't worry about invoking \texttt{addToStringRep} yet -  just make sure you return the \texttt{this.stringRep} attribute. It should resemble
+Don't worry about invoking \texttt{addToStringRep} yet -- just make sure you return the \texttt{this.stringRep} attribute. It should resemble
 Fig.~\ref{fig:emptyLoops}.
 
 \begin{figure}[htp]
@@ -19,8 +19,7 @@ Fig.~\ref{fig:emptyLoops}.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Now, in order to use \texttt{addToStringRep}, we need create a \emph{statement node}. A statement node is declared by surrounding
-the command with  `\texttt{<>}.' Therefore, inside the second loop, write:
+\item[$\blacktriangleright$] Now, in order to use \texttt{addToStringRep}, we need create another \emph{statement node}. Inside the second loop, write:
 \syntax{<@this.addToStringRepCard(card)>} 
 The correct \texttt{card} parameter will be matched by the \texttt{ForAllCards} pattern; We'll establish this next.
 
@@ -38,8 +37,8 @@ The correct \texttt{card} parameter will be matched by the \texttt{ForAllCards} 
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Don't forget that the aim of the activity to access every item in a \texttt{Box}. The control flow finishes when the helper method
-is able to called for all existing \texttt{card}s. This means the \texttt{forAllPartitions} and \texttt{forAllCards} patterns only need to match their
+\item[$\blacktriangleright$] Don't forget that the aim of the activity is to access every item in \texttt{Box}. The control flow finishes when the helper
+method is able to called for all existing cards. This means the \texttt{forAllPartitions} and \texttt{forAllCards} patterns only need to match their
 namesake's object variable to ensure that all cards in all partitions are found.
 
 \clearpage

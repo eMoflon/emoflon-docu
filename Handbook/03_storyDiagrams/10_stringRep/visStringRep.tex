@@ -59,7 +59,9 @@ appropriate new arguments.
 \begin{itemize}
 
 \item[$\blacktriangleright$] To complete the SDM, return the final string representation value of the box via an \texttt{AttributeValueExpression} in
-the stop node (Fig.~\ref{fig:toStringStopNode}).
+the stop node (Fig.~\ref{fig:toStringStopNode}).\define{AttributeValue\-Expression}This is a new expression type we haven't encountered before. Its name is
+fairly self-explanatory however, as all it does it update and bind the return \texttt{stringRep} attribute to the value edited in each instance of
+\texttt{addToStringRep}. How is this expression similar to a \texttt{Parameter\-Expression}?
 
 \vspace{0.5cm}
 
@@ -74,13 +76,13 @@ the stop node (Fig.~\ref{fig:toStringStopNode}).
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Take some time to compare and reflect on the complete SDM as depicted in Fig.~\ref{fig:sdm_tostring_5}.  The idea was to abstract
-from the actual text representation of the box and model the necessary traversal of the data structure. The helper methods \texttt{addToStringRep} could, for example, build up a
-string buffer and update this string representation. While modelling this SDM, we have seen that \emph{for each} stroy nodes can be nested, and have learnt two
-new uses of MethodCallExpressions that provide a type safe means of invoking methods from SDMs.
+from the actual text representation of the box and model the necessary traversal of the data structure. The helper method \texttt{addToStringRep} could, for
+example, build up a string buffer and update this string representation. While modelling this SDM, we have seen that \emph{for each} story nodes can be nested,
+and have learnt two new uses of \emph{MethodCallExpressions} that provide a type safe means of invoking methods from SDMs.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] At this point, you should know the drill. Save, validate, and build your metamodel in Eclipse. To see how this is done in the
+\item[$\blacktriangleright$] As always, save, validate, and build your metamodel in Eclipse. To see how this is done in the
 textual syntax, check out the nested loops in Fig.~\ref{fig:toStringFlow} and each pattern in Fig.~\ref{fig:toStringPatterns}.
 
 \newpage
