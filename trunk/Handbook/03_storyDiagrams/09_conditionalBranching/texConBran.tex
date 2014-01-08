@@ -6,35 +6,31 @@
 \begin{itemize}
 
 \item[$\blacktriangleright$] Before doing anything else, let's declare the method that will insert two new partitions into \texttt{box} when the original
-pattern match fails. Open \texttt{Box.eclass} and add the following signature: 
-\syntax{initializeBox () : EBoolean}
+pattern match fails. Open \texttt{Box.eclass} and add the following signature anywhere in the file: 
+\syntax{initializeBox() : EBoolean}
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Now we modify \texttt{Box.grow()} by adding a nested \emph{if/else} construct, with \texttt{[addNewPartitionBox]} as the
-first conditional, and a statement node as the second. \texttt{grow} should now resemble Fig.~\ref{fig:updateGrow}
+\item[$\blacktriangleright$] Now modify \texttt{Box.grow()} by adding a nested \emph{if/Else} construct, with \texttt{[addNewPartitionBox]} as the
+first conditional, and execute a \emph{statement node} if it fails. \texttt{grow} should now resemble Fig.~\ref{fig:updateGrow}.
 
 \vspace{0.5cm}
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_updateGrow}
-  \caption{Our first \emph{statement node}}
+  \caption{Extending \texttt{Box} with a \emph{statement node}}
   \label{fig:updateGrow}
 \end{center}
 \end{figure}
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Easy! Now, we want to specify our newest method. As we mentioned before, you now have a choice -- you can either write the Java
-implementation yourself in \texttt{Box.impl}, or continue with a pattern. Given that this method is pretty structural, it should work beautifully as a pattern.
-Let's call the new pattern \texttt{buildPartitions}
+\item[$\blacktriangleright$] Next, we want to specify our newest method. Create a new pattern called \texttt{buildPartitions} in its scope. Complete
+the pattern as illustrated in Fig.~\ref{fig:pattBuildParts}.
 
-\vspace{0.5cm}
-
-\item[$\blacktriangleright$] Open and complete \texttt{[buildPartitions]} as illustrated in Fig.~\ref{fig:pattBuildParts}. As you can see, we have a bound
-box to check and see if a connection to \texttt{onePartition} exists. If none exists, the pattern will proceed to create a \texttt{firstPartition} and
-\texttt{lastPartition}, and connect them accordingly.
+\item[$\blacktriangleright$] As you can see, we have created a NAC that can only be fulfilled if the box has no lonely partition. In turn, this means that if a
+box is completely empty, it will be intialized for the first time with two partitions, and guaranteed to remain in a valid state if growing continues.
 
 \clearpage
 
@@ -43,11 +39,12 @@ box to check and see if a connection to \texttt{onePartition} exists. If none ex
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_buildPartitionsPattern}
-  \caption{Pattern to initalize the box, but only if it's empty \update}
+  \caption{NAC initalizing an empty box}
   \label{fig:pattBuildParts}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] That's it! Save and build your metamodel to make sure no errors exist.
+\item[$\blacktriangleright$] That's it! Save and build your metamodel to make sure no errors exist. To see how this is depicted in the visual syntax, check out
+Fig.~\ref{fig:newGrowControl} and Fig.~\ref{fig:buildPartitions}.
 
 \end{itemize}

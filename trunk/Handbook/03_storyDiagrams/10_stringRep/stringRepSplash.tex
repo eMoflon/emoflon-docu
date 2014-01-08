@@ -22,11 +22,9 @@ As you can see, The first loop will match all partitions, while the second match
 \texttt{addToStringRep} method. In contrast to how they were used for conditional branching in \texttt{grow}, this statement node will simply invoke and
 complete a method.
 
-\vspace{0.5cm}
-
-Analogously to how you implemented \texttt{determineNextSize} as an injection for \texttt{box.grow()}, quickly edit \texttt{BoxImpl.java} again by replacing the
-default code for \texttt{addToStringRep} with that in Fig.~\ref{code:addToStringRep_inject_file}. Save, rebuild, and confirm the changes in
-\texttt{BoxImpl.inject}.
+Unlike \texttt{initializeBox} however, this method is actually better specified as an injection so, analogously to how you implemented
+\texttt{determineNextSize} for \texttt{box.grow()}, quickly edit \texttt{BoxImpl.java} by replacing the default code for \texttt{addToStringRep} with that
+in Fig.~\ref{code:addToStringRep_inject_file}. Save, rebuild, and confirm the changes in \texttt{BoxImpl.inject}.
 
 \newpage
 

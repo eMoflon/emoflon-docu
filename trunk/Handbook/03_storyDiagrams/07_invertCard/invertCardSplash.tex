@@ -6,7 +6,7 @@
 This next SDM \emph{inverts} a card by swapping its back and face values (Fig.~\ref{fig:goal_invert}). This therefore ``turns a card around'' in the learning
 box. This action makes sense if a user wants to try learning, for example, the definition of a word in the other (target) language. Instead of guessing the
 definition of every word when presented with the term, perhaps they would like to guess the term when presented with the definition. This method doesn't need to
-accept any parameters -- it'll use a bound \texttt{this} variable.
+accept any parameters -- it'll use a bound \texttt{this} object variable.
 
 \vspace{0.5cm}
 
@@ -18,10 +18,10 @@ accept any parameters -- it'll use a bound \texttt{this} variable.
 \end{figure}
 \FloatBarrier
 
-Something new that we'll use in this SDM are \emph{assignments}\define{Assignments}to set the attributes of \texttt{temp} to the \texttt{card}, then again to
-set \texttt{card} to the `new' swapped values. An assignment is simply an attribute constraint\footnote{Which we first encountered in \texttt{check}} set via a
-`\texttt{:=}' operator. Though it may be slightly confusing to refer to an assignment as a constraint, if you think about it, \emph{everything} can be
-considered as a constraint that must be fulfilled through different strategies.
+Something new that we'll use in this SDM are \emph{assignments}\define{Assignments}to set the set attributes of \texttt{temp} to \texttt{card} (switched), then
+again to actually swap the \texttt{card} values. An assignment is simply an attribute constraint\footnote{Which we first encountered in \texttt{check}} set via
+a \texttt{`:='} operator. Though it may be slightly confusing to refer to an assignment as a constraint, if you think about it, \emph{everything} can be
+considered as a constraint that must be fulfilled using different strategies.
 
 With \texttt{invert}, a successful match is achieved not by searching as you would with a comparison (\texttt{==, >, <, \ldots}), but by \emph{performing} the
 above assignment. If the assignment cannot be completed, the match is invalid. Similarly, non-context elements (set to create or destroy) can be viewed as

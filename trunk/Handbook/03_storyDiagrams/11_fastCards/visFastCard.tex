@@ -6,7 +6,7 @@
 \begin{itemize}
 
 \item[$\blacktriangleright$] To introduce fast cards into your learning box, return to the metamodel and create a new \texttt{eclass}, \texttt{FastCard}.
-Quick-link to \texttt{Card} and choose \texttt{Create Inheritance} from the context menu. You don't need to override anything, so
+Quick link to \texttt{Card} and choose \texttt{Create Inheritance} from the context menu. You don't need to override anything, so
 when the \texttt{Overrides \& Implementations} dialogue appears, make sure nothing is selected. Your metamodel should now resemble
 Fig.~\ref{fig:metamodel_FastCard}.
 
@@ -45,7 +45,7 @@ Fig.~\ref{fig:extendCheck}.
  
 \item[$\blacktriangleright$] To check the dynamic type, we'll need to create a binding of \texttt{card} (of type \texttt{Card}) to \texttt{fastcard} (of
 type \texttt{FastCard}), so edit the \texttt{Binding} tab in the \texttt{Object Variable Properties} dialogue (Fig.~\ref{fig:fastCardBinding}). As you can see,
-this set-up configures the pattern matcher to check for types, rather than \texttt{parameters} and \texttt{attributes} as we've previously encountered.
+this set up configures the pattern matcher to check for types, rather than \texttt{parameters} and \texttt{attributes} as we've previously encountered.
   
 \begin{figure}[htbp]
 \begin{center}
@@ -58,7 +58,7 @@ this set-up configures the pattern matcher to check for types, rather than \text
  \clearpage
 
 In our case, we could use a \emph{ParameterExpression} or an \emph{ObjectVariableExpression} as \texttt{card} is indeed a parameter \emph{and} has already been
-used in \texttt{checkIfGuessIsCorrect}, but let's try a new expression type, \emph{ObjectVariableExpression}.
+used in \texttt{checkIfGuessIsCorrect}. We haven't tried it yet, so lets use \emph{ObjectVariableExpression}.
 
 \item[$\blacktriangleright$] \define{ObjectVariableExpression}Update the \texttt{fastcard} binding by switching the expression to 
 \texttt{Object\-Vari\-able\-Ex\-pres\-sion}, with \texttt{card} as the target.
@@ -84,8 +84,8 @@ original promotion and penalising card movements. As you can see, they're very s
 
 \item[$\blacktriangleright$] Inspect Fig.~\ref{fig:promoFastCardFinal} to see how this is finalized in the textual syntax.
 
-\item[$\blacktriangleright$] You have now implemented every method using SDMs - fantastic work! Validate, export, and build
-to generate the new code for your metamodel. Inspect the implementation for \texttt{check}.  Can you find the generated type casts for \texttt{fastcard}?
+\item[$\blacktriangleright$] You have now implemented every method using SDMs -- fantastic work! Save, validate, and build your metamodel to see some new code.
+Inspect the implementation for \texttt{check}.  Can you find the generated type casts for \texttt{fastcard}?
 
 \item[$\blacktriangleright$] At this point, we encourage you to read each of the textual SDM instructions to try and understand the full scope of eMoflon's
 features (which start on page~\hyperlink{page.9}{9}) but you are of course, free to carry on.

@@ -67,8 +67,8 @@ When applicable, patterns must also establish \emph{link variables}\define{Link 
 we're concerned with removing a certain card from a specific partition, \texttt{removeCard} will therefore have a single link variable that connects these two
 objects together.
 
-Pattern matching is in general non-deterministic, i.e., variables in the pattern are bound to \emph{any} objects that happen to match. How can this be
-influenced so that, as required for \texttt{removeCard}, the pattern matcher chooses the correct \texttt{card} (passed in as a parameter)?
+In general, pattern matching is non-deterministic, i.e., variables in the pattern are bound to \emph{any} objects that happen to match. How can this
+be influenced so that, as required for \texttt{removeCard}, the pattern matcher chooses the correct \texttt{card} (passed in as a parameter)?
 
 The \emph{binding state}\define{Binding~State}of an object variable determines how its found. By default, every object variable is \emph{unbound}, or a 
 \emph{free variable}.\define{Free \\ Variable}Values for these variables can be determined automatically by the pattern matcher. By declaring a
