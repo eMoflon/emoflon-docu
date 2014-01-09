@@ -5,11 +5,12 @@
 Unfortunately, before you're able get started with  TGGs, you need to have two metamodels already prepared - a source and a target. Our source will be
 \texttt{LearningBoxLanguage}, which was built and completed in Parts II and III. The target will be \texttt{Dictionarylanguage}, which was included in the .zip
 folder downloaded from eMoflon's project website along with this handbook. The instructions for properly importing the metamodel into the same project are
-cruicial as both metamodels must be in the same file in order to specify an integration with TGGs.
+cruicial as both metamodels must be in the same project in order to properly specify an integration with TGGs.
 
-If you've newly joined us in this part, complete Section~\ref{sec:loadSourceMeta} to load \texttt{Learn\-ing\-Box\-Lang\-uage}. If you've completed Part III
-however, skip ahead to either \texttt{Section~\ref{sec:multiEAP} (Visual)} or \texttt{Section~\ref{sec:multiMOSL} (Textual)} for the relevant import
-instructions.
+If you've just joined us in this part, complete Section~\ref{sec:loadSourceMeta} to load \texttt{Learn\-ing\-Box\-Lang\-uage}. 
+
+If you've completed Part III however, skip ahead to the target metamodel import instructions, either \texttt{Section~\ref{sec:multiEAP} (Visual)} or
+\texttt{Section~\ref{sec:multiMOSL} (Textual)} depending on your specification type.
 
 \subsection{Loading the source metamodel}
 \label{sec:loadSourceMeta}
@@ -28,8 +29,8 @@ instructions.
 
 \clearpage
 
-\item[$\blacktriangleright$] We have created two ``cheat'' packages based on the eMolfon specification type you prefer. Read Section1 from Part I for details on
-the differences between the types. The packages contain the entire metamodel as built in the previous handbooks.
+\item[$\blacktriangleright$] We have created two ``cheat'' packages based on the eMolfon specification type you prefer. Read Section 1 from Part I for details
+on the differences between the types. The packages contain the entire metamodel as built in the previous handbooks.
 
 \item[$\blacktriangleright$] If your package explorer does not look similar to ours in Fig.~\ref{fig:workingSets} with at least two distinct nodes, select the
 small, downward facing arrow in the corner of the module window. Choose ``Working Sets'' as your ``Top Level Elements.'' We use these to structure the
@@ -48,6 +49,10 @@ We recommend reading the overview of \texttt{LeitnersLearningBox}, it's purpose 
 motivation for creating a TGG with a dictionary language, and may help you understand why certain attributes and links are connected.
 
 \end{itemize}
+
+(loading target)\\
+** Provided in zip file.. can't simple use the download wizard as that will impoert it into your workspace as a separate project, when we want them to be the
+same.
 
 % Instructions for loading target model
 \input{../1_gettingStarted/visImport/visImportSrc}

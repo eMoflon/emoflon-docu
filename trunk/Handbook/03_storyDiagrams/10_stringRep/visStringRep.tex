@@ -21,49 +21,32 @@ executed for each match. Go ahead and create the SDM for \texttt{Box::toString} 
 
 \clearpage
 
-\item[$\blacktriangleright$] Now, while the \texttt{addToStringRep} activity node has been created, its default type will not allow it to invoke our helper
-method. Double-click the node to invoke its properties dialogue and change its \texttt{type} to a \texttt{StatementNode}(Fig.~\ref{fig:updateStatement}). 
+\item[$\blacktriangleright$] Knowing \texttt{addToStringRep}'s default node type will not allow it to invoke our helper method, change it
+into a \texttt{StatementNode}. Then, analogously to how you established a \emph{MethodCallExpression} for \texttt{grow}, have this node invoke
+\texttt{this.addToStringRep(Card)}. 
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Before closing, switch to the \texttt{Statement} tab (Fig.~\ref{fig:editStatement}) to construct a \texttt{MethodCallExpression}.
-We want to access the \texttt{Box} object (\texttt{this}) and its \texttt{addToStringRep} method. Update the \texttt{Parameter Values} to \texttt{card} so we
-can pass the object variable \texttt{card} to the method as parameter. Although \texttt{card} can just be entered, the best practice is to double-click the
-field to pop-up a new dialogue. This way complex expressions can be constructed by repeatedly double-clicking the fields.
+\item[$\blacktriangleright$] You can see in the \texttt{Source} statement that a \texttt{Card} parameter is required. Update the \texttt{Parameter Values}
+field to include \texttt{card} so we may pass the object variable to the method. Although you can simply type in \texttt{card}, the best practice is to
+double-click the field to pop-up a new dialogue. This way, complex expressions can be constructed by repeatedly double-clicking the fields.
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
-   \centering
-      \subfloat[Update the \texttt{addToStringRep} node]{
-        \includegraphics[width=0.5\textwidth]{ea_updateToStatement}
-        \label{fig:updateStatement}
-      }
-      \subfloat[Edit the \texttt{MethodCallExpression} ]{
-        \includegraphics[width=0.5\textwidth]{ea_editStatementNode}
-        \label{fig:editStatement}
-      }
-      \caption{}
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{ea_editStatementNode}
+  \caption{Add a parameter to the \emph{MethodCallExpression}}
+  \label{fig:editStatement}
+\end{center}
 \end{figure}
-\FloatBarrier
 
-\end{itemize}
-
-Statement nodes can be used to interact with methods that are implemented by hand as they provide a means of invoking libraries and arbitrary Java code from
-SDMs. Please note that we do not differentiate at this point between methods that are implemented via an SDM or by hand and thus, statement nodes can of course
-be used to invoke other SDMs via a MethodCallExpression. Most importantly, this enables \emph{recursion} as the current SDM can be invoked on \texttt{this} with
-appropriate new arguments.
+\item[$\blacktriangleright$] To complete the SDM, return the final string representation value of the box via an \emph{AttributeValueExpression} in
+the stop node (Fig.~\ref{fig:toStringStopNode}).\define{AttributeValue\-Expression}This is a new expression type we haven't encountered before. It simply
+updates and binds the return \texttt{stringRep} attribute to the whatever value with the same name was edited in each invocation of
+\texttt{add\-To\-String\-Rep}.
 
 \newpage
-
-\begin{itemize}
-
-\item[$\blacktriangleright$] To complete the SDM, return the final string representation value of the box via an \texttt{AttributeValueExpression} in
-the stop node (Fig.~\ref{fig:toStringStopNode}).\define{AttributeValue\-Expression}This is a new expression type we haven't encountered before. Its name is
-fairly self-explanatory however, as all it does it update and bind the return \texttt{stringRep} attribute to the value edited in each instance of
-\texttt{addToStringRep}. How is this expression similar to a \texttt{Parameter\-Expression}?
-
-\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -77,8 +60,12 @@ fairly self-explanatory however, as all it does it update and bind the return \t
 
 \item[$\blacktriangleright$] Take some time to compare and reflect on the complete SDM as depicted in Fig.~\ref{fig:sdm_tostring_5}.  The idea was to abstract
 from the actual text representation of the box and model the necessary traversal of the data structure. The helper method \texttt{addToStringRep} could, for
-example, build up a string buffer and update this string representation. While modelling this SDM, we have seen that \emph{for each} story nodes can be nested,
-and have learnt two new uses of \emph{MethodCallExpressions} that provide a type safe means of invoking methods from SDMs.
+example, build up a string buffer and update this string representation. 
+
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] While modelling this SDM, we have seen that \emph{for each} story nodes can be nested, and have learnt two new uses of
+\emph{MethodCallExpressions} that provide a type safe means of invoking methods from SDMs.
 
 \vspace{0.5cm}
 
