@@ -5,8 +5,8 @@
 
 Pretend you've just updated the control flow in your metamodel, and haven't specified \texttt{initializeBox} yet. After saving and building, you will be able
 to see the changes in \texttt{BoxImpl.java}, the source file of all your generated code. In fact, open this file now and navigate to \texttt{grow}, which
-starts at (approximately) line 207. Scan the comments until you find \texttt{``//statement node `initialize' ''} (Fig.~\ref{fig:initBoxImpl}). This is the generated
-\emph{statement node} code and as you can see, all it does it invoke your method and branches based on its result. The method isn't actually defined here.
+starts at (approximately) line 207 (Fig.~\ref{fig:initBoxImpl}). This is the generated \emph{statement node} code and as you can see, all it does it invoke your
+method and branches based on its result. The method isn't actually defined here.
 
 \begin{figure}[htp]
 \begin{center}

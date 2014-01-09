@@ -32,7 +32,7 @@ Fig.~\ref{fig:checkPatternsExplorer}.
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] Open the \texttt{checkCard} pattern. In order to validate the user's guess, we need to establish an \emph{attribute contstraint}
+\item[$\blacktriangleright$] Open the \texttt{checkCard} pattern. In order to validate the user's guess, we need to establish an \emph{attribute constraint}
 between the \texttt{back} attribute of the current \texttt{card}, and the primitive \texttt{EString} parameter, \texttt{guess}. 
 
 \item[$\blacktriangleright$] As done in Java, referencing the \texttt{back} is done in MOSL via `dot' operator, so begin the statement with \texttt{card.back}
@@ -41,7 +41,7 @@ between the \texttt{back} attribute of the current \texttt{card}, and the primit
 values.\footnote{See the \hyperlink{quickRef}{Quick Reference} at the end of this part for a listing of all operators}
 
 \item[$\blacktriangleright$] The tricky part of the overall statement is referencing the parameter value. Given that we have not created an object variable,
-we'll need to use another expression type, \texttt{ParameterExpression},\define{ParameterExpression}to access it. This type exclusively refers to parater
+we'll need to use another expression type, \texttt{ParameterExpression},\define{ParameterExpression}to access it. This type exclusively refers to parameter
 values, and its syntax is as follows:
 \syntax{parameter\_expression := `\$'ID}
 

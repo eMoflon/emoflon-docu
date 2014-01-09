@@ -5,12 +5,20 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] To introduce fast cards into your learning box, return to the metamodel and create a new \texttt{eclass}, \texttt{FastCard}.
-Quick link to \texttt{Card} and choose \texttt{Create Inheritance} from the context menu. You don't need to override anything, so
-when the \texttt{Overrides \& Implementations} dialogue appears, make sure nothing is selected. Your metamodel should now resemble
-Fig.~\ref{fig:metamodel_FastCard}.
+\item[$\blacktriangleright$] To introduce fast cards into your learning box, return to the metamodel diagram and create a new \texttt{eclass},
+\texttt{FastCard}. Quick link to \texttt{Card} and choose \texttt{Create Inheritance} from the context menu. We only want to check the dynamic type of a
+tested card at runtime, which means we don't need to override anything. Therefore, when the \texttt{Overrides \& Implementations} dialogue appears, make sure
+nothing is selected (Fig.~\ref{fig:dialogue_override}). Your metamodel should then resemble Fig.~\ref{fig:metamodel_FastCard}.
 
 \vspace{0.5cm}
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=0.6\textwidth]{ea_overrideDialogue}
+  \caption{Selecting operations to override}  
+  \label{fig:dialogue_override}
+\end{center}
+\end{figure}
 
 \begin{figure}[htp]
 \begin{center}
@@ -25,6 +33,8 @@ Fig.~\ref{fig:metamodel_FastCard}.
 \item[$\blacktriangleright$] Now return to the \texttt{check} SDM (in \texttt{Partition}) and extend the control flow as depicted in
 Fig.~\ref{fig:extendCheck}.
 
+ \vspace{0.5cm}
+ 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{ea_extendCheck}
@@ -33,19 +43,15 @@ Fig.~\ref{fig:extendCheck}.
 \end{center}
 \end{figure}
  
- \vspace{0.5cm}
- 
 \item[$\blacktriangleright$] As you can see, you have created two new story nodes, the \texttt{isFastCard} assertion, and the \texttt{promoteFastCard} movement.
-
-\vspace{0.5cm}
  
-\item[$\blacktriangleright$] Next, in order to complete the newest conditional, create a bound \texttt{fastcard} object in \texttt{isFastCard}. 
-
-\vspace{0.5cm}
+\item[$\blacktriangleright$] Next, in order to complete the newest conditional, create a bound \texttt{FastCard} object variable, named \texttt{fastcard} in
+\texttt{isFastCard}.
  
 \item[$\blacktriangleright$] To check the dynamic type, we'll need to create a binding of \texttt{card} (of type \texttt{Card}) to \texttt{fastcard} (of
-type \texttt{FastCard}), so edit the \texttt{Binding} tab in the \texttt{Object Variable Properties} dialogue (Fig.~\ref{fig:fastCardBinding}). As you can see,
-this set up configures the pattern matcher to check for types, rather than \texttt{parameters} and \texttt{attributes} as we've previously encountered.
+type \texttt{FastCard}), so edit the \texttt{Binding} tab in the \texttt{Object Variable Properties} dialogue (Fig.~\ref{fig:fastCardBinding}). Please note that
+this tab will not allow any changes unless the \texttt{bound} option in \texttt{Object Properties} is selected. As you can see, this set up configures the
+pattern matcher to check for types, rather than \texttt{parameters} and \texttt{attributes} as we've previously encountered.
   
 \begin{figure}[htbp]
 \begin{center}
@@ -67,7 +73,7 @@ used in \texttt{checkIfGuessIsCorrect}. We haven't tried it yet, so lets use \em
 
 \item[$\blacktriangleright$] To finalize the SDM, extract the \texttt{promoteFastCard} story pattern and build the pattern according to
 Fig.~\ref{fig:promoteFastCardPattern}. Compare this pattern to Figs.~\ref{fig:sdm_check_complete_activity_node} and \ref{fig:sdm_check_complete_penalize}, the
-original promotion and penalising card movements. As you can see, they're very similar, except \texttt{fastCard} is transferred from the current partition
+original promotion and penalizing card movements. As you can see, they're very similar, except \texttt{fastCard} is transferred from the current partition
 (\texttt{this}) immediately to the last partition in \texttt{box}, identified as having no \texttt{nextPartition} with an appropriate NAC.
 
 \vspace{0.5cm}
@@ -79,8 +85,6 @@ original promotion and penalising card movements. As you can see, they're very s
   \label{fig:promoteFastCardPattern}
 \end{center}
 \end{figure}
-
-\vspace{0.5cm}
 
 \item[$\blacktriangleright$] Inspect Fig.~\ref{fig:promoFastCardFinal} to see how this is finalized in the textual syntax.
 

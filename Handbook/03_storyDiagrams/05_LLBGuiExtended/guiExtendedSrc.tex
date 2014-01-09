@@ -1,38 +1,30 @@
 \newpage
 \hypertarget{sec:extendGui}{}
-\section{Extending the Leitner's Box GUI}
+\section{Running the Leitner's Box GUI}
 \genHeader
 
-\vspace{0.5cm}
-
-In addition to \texttt{removeCard}, the GUI is able to access and operate the \texttt{check} method using your SDM implementation! To avoid build errors
-however, it is currently set as a comment, so you'll need to ``activate'' it. First, double check and make sure your metamodel is built, and that you have
-correctly imported the GUI.
+In addition to \texttt{removeCard}, the GUI is able to access and execute the \texttt{check} method based on your SDM implementation! First, double check that
+your metamodel is saved and built, then run the GUI! 
 
 \begin{itemize}
-
-\item[$\blacktriangleright$] Go to ``Other Projects/LeitnersBox/Src'' and open \texttt{Leitners\-Box\-Cont\-roller\-.java} in the package.
-
-\vspace{0.5cm}
-
-\item[$\blacktriangleright$] On the far right side of the editor, you should be able to see two blue rectangles in the space beside the scrollbar. Click on the
-second to skip ahead to the \texttt{check} invocation (Fig.~\ref{fig:remComment}).
-
-\vspace{0.5cm}
+\item[$\blacktriangleright$] Pick a card from any of your partitions, then run \texttt{check}. You'll be promoted with a dialogue box to make your guess in
+(Fig.~\ref{fig:checkGuess}).
 
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=\textwidth]{eclipse_GUICommentLine}
-  \caption{Remove the comment operator on line 123}
-  \label{fig:remComment}
+  \includegraphics[width=0.5\textwidth]{eclipse_checkGuess}
+  \caption{Enter your guess}
+  \label{fig:checkGuess}
 \end{center}
 \end{figure}
 
-\vspace{0.5cm}
+\item[$\blacktriangleright$] Enter your word, then press \texttt{OK}. You should immediately see any movemement changes in the drop-down menus, and shortly in
+\texttt{box.xmi} after refreshing.
 
-\item[$\blacktriangleright$] Remove the comment operators in from of the line below the \texttt{TODO} statement, save the file, then take your GUI for a spin!
-Experiment with making right and wrong guesses, and watch how your cards move through the box. 
+\item[$\blacktriangleright$] Fully test your implementation by making right and wrong guesses. Watch how they cards move around -- do they
+behave as expected, by the rules of Leitner Box?
 
-\item[$\blacktriangleright$] Keep this section in mind as you progress through the rest this part, and try extending the GUI for the remaining SDMs!
+\item[$\blacktriangleright$] At this point, we invite you to browse the \texttt{LeitnersBoxController.java} file. Can you see how \texttt{removeCard} and
+\texttt{check} were called and executed? You are encouraged to modify this file so that you may be able to test future SDM implementations.
 
 \end{itemize}
