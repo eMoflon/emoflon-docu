@@ -73,8 +73,6 @@ public class WorkspaceHelper
 
    public static final String MOCA_CONTAINER = "org.moflon.moca.MOCA_CONTAINER";
 
-   public static final QualifiedName EMOFLON_SUPPORT = new QualifiedName("", "EMOFLON_SUPPORT");
-
    public static final String MOFLON_CONTAINER =  "org.moflon.ide.MOFLON_CONTAINER";
 
    public static final String TIE_CONTAINER = "org.moflon.tie.TIE_CONTAINER";
