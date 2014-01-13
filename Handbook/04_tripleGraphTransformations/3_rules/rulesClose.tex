@@ -1,0 +1,39 @@
+\newpage
+\hypertarget{rules common}{}
+\subsection{RulesClose}
+\texHeader
+
+Just like the patterns describing \emph{structural} correspondence,  attribute constraints can be automatically \emph{operationalized} as required for  concrete
+transformations (forward, backward). Even more interesting, a set of constraints might have to be ordered a bit differently depending on the direction of the
+transformation, and some constraints might have to be checked for already set attributes, while others must set values appropriately to fulfill the constraint.
+
+For built-in or \emph{library} constraints such as \emph{eq}, \emph{addPrefix} and \emph{concat}, you do not need to worry about these details and can just
+express what should hold -- everything else is handled automatically.
+
+In many cases, however, a constraint might be very problem-specific, such as our \emph{indexToLevel} constraint, and there might not be any fitting combination
+of library constraints to express the consistency condition.
+
+In such a case, the new attribute constraint must be declared before its use.
+
+The list of \emph{adornments} in the declaration specifies the cases for which the constraint can be operationalized. Each adornment consists of a \texttt{B}
+for bound or an \texttt{F} for free, for each argument of the constraint. This is much simpler than its sounds so lets take a look at our example:
+
+\begin{description}
+
+\item[BB] means that the \texttt{partition.index} and \texttt{entry.level} can both be \emph{bound}, i.e., already have assigned values.
+In this case, the \emph{operation} (the operationalized constraint) must check if the assigned values are correct.
+
+\item[BF] means that \texttt{partition.index} is \emph{bound} and \texttt{entry.level} is \emph{free}, i.e., the operation must determine and assign the correct
+value to \texttt{entry.level} using \texttt{partition.index}.
+
+\item[FB] means that \texttt{partition.index} is \emph{free} and \texttt{entry.level} is \emph{bound}, i.e., the operation must determine and assign the correct
+value to \texttt{parti\-tion.in\-dex} using \texttt{entry.level}.
+
+\end{description}
+
+Note that we decide not to support \textbf{FF} as we would have to generate a consistent pair of index and level.
+Although this is possible and might even make sense for some applications, in our case it does not (the pair is not unique\ldots which pair should we take?).
+
+At compile time, the set of constraints (also called \emph{Constraint Satisfaction Problem} (CSP)) for every TGG rule is ``solved'' for each case (forward,
+backward) by operationalizing all constraints and determining a feasible (compatible to the declared adornments of each constraint) sequence in which the
+operations can be executed. An exception is thrown if this is not possible.

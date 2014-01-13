@@ -3,35 +3,47 @@
 \subsection{Text Schema}
 \texHeader
 
+% Expand the crap outta all of this!
 
-Dun dun dunnnnnn
+\begin{itemize}
 
-Need a new TGG; read MASTER THESIS HERE.
+\item[$\blacktriangleright$] Right-click on \texttt{MyWorkingSet}, and navigate to ``New / TGG'' (Fig.~\ref{fig:contextTGG}).
 
-right click MOSL, new -> TGG
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{eclipse_contextTGG}
+  \caption{figureCaption}
+  \label{fig:contextTGG}
+\end{center}
+\end{figure}
 
-name it LearningBoxToDictionaryIntegration
+\item[$\blacktriangleright$] Name it \texttt{LearningBoxToDictionaryIntegration}, setting the source as \texttt{LearningBoxLanguage} and the target as
+\texttt{DictionaryLanguage} (Fig.~\ref{fig:newTGG}).
 
-Set the source: LearningBoxLanguage
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{eclipse_newTGG}
+  \caption{figureCaption}
+  \label{fig:newTGG}
+\end{center}
+\end{figure}
 
-Target:	DictionaryLanguage
+\item[$\blacktriangleright$] A new file should be active in the editor! This is the \emph{TGG Schema} which declares each \emph{correspondence type} as an
+\texttt{integration class}. Press \texttt{ctrl + space} and use the auto completion to generate a new class template.
 
-Now it’s time to insert classes from our source and target projects into our
-TGG project and declare our first correspondence type between them. The
-classes Box and Dictionary are to be related to each other.
+% Explain why we chose THOSE ones; Name is intetionally descriptive
+\item[$\blacktriangleright$] Using the \texttt{tab} button to edit each element, name the class \texttt{BoxToDictionary}, and list the source as \texttt{Box}
+and target as \texttt{Dictionary} (Fig.~\ref{fig:newTGG}).
 
-USE AUTO COMPLETION : build an INTEGRATION class for you; can press tab to jump between parts that need data
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.4\textwidth]{eclipse_schemaFirstClass}
+  \caption{figureCaption}
+  \label{fig:newTGG}
+\end{center}
+\end{figure}
 
-clasname :: descriptive -- BoxToDictionary
+\item[$\blacktriangleright$] That's it! Your schema is now complete with connections to your \texttt{source} and \texttt{target} metamodels via a correspondence
+link!
 
-source :: box
-target :: dictionary
-
-do it again
-
-classname :: CardToEntry
-
-source :: Card
-target :: Entry
-
-thats your TGG Correspondence Types! Woo hoo!
+\end{itemize}
