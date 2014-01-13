@@ -3,25 +3,22 @@
 \subsection{Visual Schema}
 \visHeader
 
-((But user is working from THEIR metamodel, LeitnersLearningBox.eap))
-
 \begin{itemize}
 
-\item[$\blacktriangleright$] Open \texttt{LearningBox2Dictionary.eap} in EA, and add a new package to \texttt{MyWorkingSet} (your model root) with
-\texttt{Learning\-Box\-To\-Dictionary\-Integration} as its name (Fig.~\ref{fig:intgPackage}). 
+\item[$\blacktriangleright$] Open \texttt{LeitnersLearningBox} in EA, and add a new package to your model root, \texttt{My Working Set}. Name it
+\texttt{Learning\-Box\-To\-Dictionary\-Integration} (Fig.~\ref{fig:intgPackage}).
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.4\textwidth]{ea_integrationPackage}
+  \includegraphics[width=0.5\textwidth]{ea_integrationPackage}
   \caption{Create a new package}  
   \label{fig:intgPackage}
 \end{center}
 \end{figure}
 
-
-\item[$\blacktriangleright$] Create a diagram in the new package, selecting \texttt{TGGSchema} as diagram type (Fig.~\ref{fig:tgg_diagram_type}). The diagram
+\item[$\blacktriangleright$] Create a diagram in the new package, selecting \texttt{TGG Schema} as diagram type (Fig.~\ref{fig:tgg_diagram_type}). The diagram
 type indicates to EA that the new package is a TGG Project.
 
 \vspace{0.5cm}
@@ -29,13 +26,13 @@ type indicates to EA that the new package is a TGG Project.
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.9\textwidth]{ea_newTGGSchema}
-  \caption{Choose \texttt{TGGSchema} as your diagram type}  
+  \caption{Choose \texttt{TGG Schema} as your diagram type}  
   \label{fig:tgg_diagram_type}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] After choosing \texttt{TGGSchema} as diagram type, a new dialogue should pop up asking you for the source and target projects of your TGG project. 
-Choose \texttt{Learning\-Box\-Language} as source and \texttt{Dictionary\-Language} as target project and affirm with \texttt{OK} (Fig.~\ref{fig:select_source_target}).
+\item[$\blacktriangleright$] A dialogue should pop up asking you for the source and target projects of your TGG project.  Choose
+\texttt{Learning\-Box\-Language} as source and \texttt{Dictionary\-Language} as target project and affirm with \texttt{OK} (Fig.~\ref{fig:select_source_target}).
 
 \vspace{0.5cm}
 
@@ -64,9 +61,9 @@ Now it's time to insert classes from our source and target projects into our TGG
 The classes \texttt{Box} and \texttt{Dictionary} are to be related to each other.
 
 \begin{itemize}
-\item[$\blacktriangleright$] Hold \texttt{ctrl}, then drag-and-drop the \texttt{Box} class from \texttt{Learning\-Box\-Language} into the newly created TGG
-schema diagram, which should have automatically opened in the editor when you made it. Ensure that the class is pasted \texttt{as a simple link} into the
-diagram (Fig.)
+\item[$\blacktriangleright$] Hold \texttt{ctrl}, then drag-and-drop the \texttt{Box} class from \texttt{Learning\-Box\-Language} into the newly
+created TGG schema diagram, which should have automatically opened in the editor when you made it. Ensure that the class is pasted \texttt{as a simple link} into the
+diagram (Fig.~\ref{fig:TGGdragDrop})
 
 \begin{figure}[htbp]
 \begin{center}
@@ -76,16 +73,14 @@ diagram (Fig.)
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] If you selected the \texttt{Autosave Selection as default} option during the previous drag and drop, you no longer need to hold
-\texttt{ctrl} to bring the \texttt{Dictionary} class from \texttt{Dictionary\-Language} into the TGG schema.
-\end{itemize}
+\item[$\blacktriangleright$] Note that you are able to set \texttt{Autosave Selection as default}. In fact, we did this in the previous Part! We'll need to
+switch drag types several times during this part however, so it's best to leave this unchecked if you do not want to hold \texttt{ctrl} each time you use this
+gesture.
 
-With a class from both source and target projects, we can now create a correspondence type between them.
+\item[$\blacktriangleright$] With a class from both source and target metamodels, we can now create a correspondence type between them! Quick-link from
+\texttt{Box} to \texttt{Dictionary}, and select \texttt{Create TGG Corres\-pon\-dence Type} (Fig.~\ref{fig:create_correspondence}).
 
-\begin{itemize}
-\item[$\blacktriangleright$] Quick-link from \texttt{Box} to \texttt{Dictionary} and select \texttt{Create TGG Corres\-pon\-dence Type} as depicted in
-Fig.~\ref{fig:create_correspondence}.
-\end{itemize}
+\newpage
 
 \begin{figure}[htbp]
 \begin{center}
@@ -95,18 +90,21 @@ Fig.~\ref{fig:create_correspondence}.
 \end{center}
 \end{figure}
 
-A hexagon-shaped correspondence type named \texttt{BoxToDiction\-ary}, and references to each source and target element should have been generated.
-You can rename the type as you wish, but please leave the references as they are (multiplicity and naming conventions are satisfied automatically).
+\item[$\blacktriangleright$] As you can see, a correspondence type has been created, visualised via a hexagonal shape. It is automatically named
+\texttt{BoxToDiction\-ary}, and the relevant references have been generated.
 
-To finish our TGG schema, declare a second correspondence type in the same file between \texttt{Card} and \texttt{Entry}. You'll notice that the
-reference between \texttt{Dictionary} and \texttt{Entry} was automatically created! Your completed TGG Schema should resemble
-Fig.~\ref{fig:complete_tgg_schema}.
+% Can this be omitted? Users create a new one on the fly?
+% \item[$\blacktriangleright$] To finish our TGG schema, declare a second correspondence type in the same file between \texttt{Card} and \texttt{Entry}. You'll
+% notice that the reference between \texttt{Dictionary} and \texttt{Entry} was automatically created! Your completed TGG Schema should resemble
+% Fig.~\ref{fig:complete_tgg_schema}.
 
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=\textwidth]{ea_completeTGGSchema}
-  \caption{Complete TGG schema for our example}
-  \label{fig:complete_tgg_schema}
-\end{center}
-\end{figure}
+% \begin{figure}[htbp]
+% \begin{center}
+%   \includegraphics[width=\textwidth]{ea_completeTGGSchema}
+%   \caption{Complete TGG schema for our example}
+%   \label{fig:complete_tgg_schema}
+% \end{center}
+% \end{figure}
+
+\end{itemize}
 

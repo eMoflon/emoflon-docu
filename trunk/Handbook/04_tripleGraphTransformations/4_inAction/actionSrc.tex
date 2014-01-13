@@ -25,7 +25,7 @@ If you have done everything right, code generation and compilation should termin
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{tgg22}
-  \caption{Integration project after code generation}
+  \caption{\update very very wrong image.}
   \label{fig:gen_folder}
 \end{center}
 \end{figure}
@@ -51,52 +51,53 @@ package csp.constraints;
 
 import java.util.Arrays;
 import java.util.List;
-
 import TGGLanguage.csp.Variable;
 import TGGLanguage.csp.impl.ConstraintImpl;
 
 public class IndexToLevel extends ConstraintImpl {
 
-  private List<String> levels = Arrays.asList(new String[] { "beginner",
-      "advanced", "master" });
+	private List<String> levels = Arrays.asList(new String[] { "beginner",
+			"advanced", "master" });
 
+	public void solve(Variable<Number> var_0, Variable<String> var_1) {
 
-  public void solve(Variable<Integer> var_0, Variable<String> var_1){
-    String bindingStates = getBindingStates(var_0, var_1);
+		int index = var_0.getValue().intValue();
+		String level = var_1.getValue();
 
-    switch(bindingStates){
-    case "BB":
-      int indexBB = var_0.getValue().intValue();
-      String level = var_1.getValue();
-      setSatisfied(levels.get(indexBB).equals(level));
-      break;
-    case "BF":
-     int indexFB = var_0.getValue().intValue();
-      if (indexFB < 0 || indexFB > 2) {
-        setSatisfied(false);
-      } else {
-        var_1.setValue(levels.get(indexFB));
-        var_1.setBound(true);
-        setSatisfied(true);
-      }
-      break;
-    case "FB":
-      String levelBF = var_1.getValue();
-      int indexBF = levels.indexOf(levelBF);
-      if (indexBF == -1) {
-        setSatisfied(false);
-      } else {
-        var_0.setValue(indexBF);
-        var_0.setBound(true);
-        setSatisfied(true);
-      }
-      break;
-    }
+		String bindingStates = getBindingStates(var_0, var_1);
 
-  }
+		switch (bindingStates) {
+		case "BB":
+			setSatisfied(levels.get(index).equals(level));
+			break;
+
+		case "BF":
+			if (index < 0)
+				var_1.setValue(levels.get(0));
+			else if (index > 2)
+				var_1.setValue(levels.get(2));
+			else
+				var_1.setValue(levels.get(index));
+
+			var_1.setBound(true);
+			setSatisfied(true);
+			break;
+
+		case "FB":
+			index = levels.indexOf(level);
+			if (index == -1) {
+				setSatisfied(false);
+			} else {
+				var_0.setValue(index);
+				var_0.setBound(true);
+				setSatisfied(true);
+			}
+			break;
+		}
+	}
 }
 \end{lstlisting}
-  \caption{Implementation of our attribute constraint}
+  \caption{Implementation of our attribute constraint \update (describe!)}
   \label{fig:indexToLevel}
 \end{center}
 \end{figure}
@@ -147,6 +148,8 @@ As you can see, our \texttt{Dictionary} has been translated backward to a \textt
 specified in \texttt{CartToEntryRule}. The \texttt{face} and the \texttt{back} of the \texttt{Card}s are consistent with the \texttt{content}
 of the corresponding \texttt{Entry}, e.g. \texttt{card.face = ``Question : one''} and \texttt{card.back = ``Answer : eins''}. The indices of the partitions
 containing the cards are also consistent with the level of the entry, i.e., \texttt{0} for \texttt{beginner}, and \texttt{1} for \texttt{advanced}.
+
+mention the graph viewer here!
 
 \vspace{0.5cm}
 
