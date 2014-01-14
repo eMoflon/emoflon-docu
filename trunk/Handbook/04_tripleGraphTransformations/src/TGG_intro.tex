@@ -17,20 +17,20 @@ transformations. If you take a careful and critical look at the concept of forwa
 problems.
 
 \begin{description}
-  \item[Productivity:] We have to implement two transformations that are actually quite similar\ldots ~somehow. This doesn't really feel all that productive.
-  Wouldn't it be nice to implement the forward transformation then get the backward transformation for free?  Or vice-versa?  How about deriving forward 
-  \emph{and} backward transformations from a common joint specification?
-  
-  \vspace{0.5cm}
-  
-  \item[Maintainability:] Another, perhaps even more important point, is that two separate transformations become quite a pain to maintain and keep
-  \emph{consistent}.  If the forward transformation is adjusted to produce a different target structure, the backward transformation must be updated
-  appropriately (and vice-versa).  Again it would be great to have some support.
-  
-  \item[Traceability] Finally, one often needs to identify the reason why a certain object has been created during a transformation process. This increases the
-  trust in the specified transformation and is essential for working with systems that may actually do some harm (e.g., automotive or medical     
-  systems). With two separate transformations, \emph{traceability} would have to be supported manually!
+\item[Productivity:] We have to implement two separate transformations that are actually quite similar. This doesn't really feel productive.
+Wouldn't it be nice to implement one direction such as the forward transformation, then get the backward transformation for free? How about deriving
+forward \emph{and} backward transformations from a common joint specification?
+
+\vspace{0.5cm}
+
+\item[Maintainability:] Another, maybe even more important point is that two separate transformations often become a pain to maintain and keep
+\emph{consistent}. If the forward transformation is ever adjusted to produce a different target structure, the backward transformation must be updated
+appropriately to accomdate the change, and vice-versa.  Again, it would be great if transformations offered some support.
+
+\item[Traceability] Finally, one often needs to identify the reason why a certain object has been created during a transformation process. This increases the
+trust in the specified transformation and is essential for working with systems that may actually do some harm (i.e., automotive or medical     
+systems). With two separate transformations, \emph{traceability} would have to be supported manually!
 \end{description}
 
 We shall learn in this part how Triple Graph Grammars (TGGs) are a \emph{bidirectional} transformation language that solves each of these problems. After a
-brief introduction and workspace setup, we shall specify a bidirectional transformation between learning boxes and dictionaries.
+brief introduction to TGGs and setting up your workspace, we will specify a bidirectional transformation using Leitner's Learning Box.

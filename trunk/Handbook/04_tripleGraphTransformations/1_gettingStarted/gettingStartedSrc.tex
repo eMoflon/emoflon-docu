@@ -2,57 +2,57 @@
 \section{Setting up your workspace}
 \genHeader
 
-Unfortunately, before you're able get started with  TGGs, you need to have two metamodels already prepared - a source and a target. Our source will be
-\texttt{LearningBoxLanguage}, which was built and completed in Parts II and III. The target will be \texttt{Dictionarylanguage}, which was included in the .zip
-folder downloaded from eMoflon's project website along with this handbook. The instructions for properly importing the metamodel into the same project are
-cruicial as both metamodels must be in the same project in order to properly specify an integration with TGGs.
+Unfortunately, before you're able get started with  TGGs, you need to have two metamodels -- a source and a target -- already prepared. Our source will be
+\texttt{LearningBoxLanguage}, which was built and completed in Parts II and III. The target will be \texttt{Dictionarylanguage}, included in the .zip
+folder containing this document. The instructions for properly importing the metamodel into the same project are cruicial as both metamodels must be in the same
+project in order to properly specify an integration with TGGs.
 
-If you've just joined us in this part, complete Section~\ref{sec:loadSourceMeta} to load \texttt{Learn\-ing\-Box\-Lang\-uage}. 
+If you've just joined us in this part, complete Section~\ref{sec:loadSourceMeta} to load \texttt{Learn\-ing\-Box\-Lang\-uage}. If you've completed Part III
+however, skip ahead to your import instructions, either \texttt{\hyperlink{sec:multiEAP}{Section 2.2 (Visual)}} or~\texttt{\hyperlink{sec:multiMOSL}{Section 2.3
+(Textual)}}.
 
-If you've completed Part III however, skip ahead to the target metamodel import instructions, either \texttt{Section~\ref{sec:multiEAP} (Visual)} or
-\texttt{Section~\ref{sec:multiMOSL} (Textual)} depending on your specification type.
-
-\subsection{Loading the source metamodel}
+\subsection{Starting Fresh}
 \label{sec:loadSourceMeta}
 \begin{itemize}
 
 \item[$\blacktriangleright$] To get started, press the \texttt{new} button on the toolbar and navigate to ``Examples/eMoflon Handbook Examples/''
-(Fig.~\ref{fig:downPartIV}).
+(Fig.~\ref{fig:downPartIV}).  We have created two `cheat' packages based on eMolfon's specification types --  pick the one you'd like to learn.\footnote{For a
+brief discussion on the differences between the two, refer to Part I, Section I} They both contain the finished model, as completed in the previous handbook
+parts.
+
+\item[$\blacktriangleright$] After loading, if your package explorer does not look similar to ours in Fig.~\ref{fig:workingSets} with at least two distinct
+nodes, select the small, downward facing arrow in the corner of the module window. Choose ``Working Sets/Top Level Elements.'' We use these to structure the
+workspace in Eclipse.
+
+\end{itemize}
+
+At this point we recommend reading the overview of \texttt{LeitnersLearningBox}, it's purpose and goals, and how \texttt{card}s are moved between each
+\texttt{partition}. You can find this in the introduction of Part II, and hopefully it will provide the motivation and reasonsing behind creating a TGG with
+a Dictionary.
+
+\newpage
+
+\vspace*{1cm}
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.75\textwidth]{eclipse_downloadWizardPartIV}
+  \includegraphics[width=0.8\textwidth]{eclipse_downloadWizardPartIV}
   \caption{Download a file set to get started}
   \label{fig:downPartIV}
 \end{center}
 \end{figure}
 
-\clearpage
-
-\item[$\blacktriangleright$] We have created two ``cheat'' packages based on the eMolfon specification type you prefer. Read Section 1 from Part I for details
-on the differences between the types. The packages contain the entire metamodel as built in the previous handbooks.
-
-\item[$\blacktriangleright$] If your package explorer does not look similar to ours in Fig.~\ref{fig:workingSets} with at least two distinct nodes, select the
-small, downward facing arrow in the corner of the module window. Choose ``Working Sets'' as your ``Top Level Elements.'' We use these to structure the
-workspace in Eclipse.
-
 \vspace{0.5cm}
 
-\begin{figure}[htbp]
+% Forced placement so it would co-operate
+\begin{figure}[h!]
 	\centering
   \includegraphics[width=0.9\textwidth]{eclipse_workingSets}
 	\caption{Setting your Package Explorer}
 	\label{fig:workingSets}
 \end{figure}
 
-We recommend reading the overview of \texttt{LeitnersLearningBox}, it's purpose and goals, in the introduction to Part II. This will provide the
-motivation for creating a TGG with a dictionary language, and may help you understand why certain attributes and links are connected.
-
-\end{itemize}
-
-(loading target)\\
-** Provided in zip file.. can't simple use the download wizard as that will impoert it into your workspace as a separate project, when we want them to be the
-same.
+\jumpDual{sec:multiEAP}{sec:multiMOSL}
 
 % Instructions for loading target model
 \input{../1_gettingStarted/visImportSrc}

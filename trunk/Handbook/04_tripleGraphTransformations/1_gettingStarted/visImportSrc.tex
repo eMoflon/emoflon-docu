@@ -3,64 +3,76 @@
 \visHeader
 \label{sec:multiEAP}
 
-It should be mentioned here that the following instructions are about how to properly export and import EA files. You may want to bookmark this section so that
-you can reference it later for your own projects. It should be noted that we could have easily shortened this process and just provided the import file as a
-download, but we want to stress the importance of how to properly import and extract EAP projects.
+Before starting, it should be mentioned that the following instructions are how to properly export and import Enterprise Architect (EA) files. This is not an
+eMoflon exclusive feature. You may want to bookmark this section so that you can reference it later as it's important to be able to import a different EAP into
+the same project.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] In the same \texttt{Part4.zip} folder you extracted this document from, open the \texttt{DictionaryLanguageSource.eap} file in
-Enterprise Architect (EA). % Rearrange this so the definition is in the paragraph above? (ie: eap == enterprise architect project)
+\item[$\blacktriangleright$] In the same \texttt{Part4.zip} folder you extracted this document from, double-click on \texttt{DictionaryLanguageSource.eap} to
+open the file in EA.
 
-\item[$\blacktriangleright$] The expanded rootnote should look like Fig.~\ref{fig:dictionaryLangStart}. Please note that while you could simply copy and paste
-single packages between multiple EAPs (i.e., copy \texttt{<<EPackage>>DictionaryLanguage} into the \texttt{MyWorkingSet} root note)(\update test this), if there
-are packages with dependencies on other packages, it cannot be copied so easily. If you did this, all links would be destroyed!
+\item[$\blacktriangleright$] The expanded rootnote should resemble Fig.~\ref{fig:dictionaryLangStart}. While you are able to copy and paste packages between
+multiple EAPs (i.e., copy \texttt{<<EPack\-age>>DictionaryLanguage} into the \texttt{MyWorkingSet} root note of \texttt{Leit\-nersLearningBox}), if any of the
+copied packages have dependencies on other packages, it cannot be done so easily. All links would be destroyed! If you tried to copy the dictionary language,
+for example, the receiving project would not be able to establish the neccesary links to eMoflon's \texttt{Moca Language}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{ea_dictLangProBrowser}
+  \includegraphics[width=0.4\textwidth]{ea_dictLangProBrowser}
   \caption{caption}
   \label{fig:dictionaryLangStart}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Therefore, to migrate multiple pacakges, you have to first export a \emph{complete} root node to an XMI file. First right-click on
-the root \texttt{DictionaryLanguage}, then navigate to ``Export Model to XMI\ldots'' (Fig.~\ref{fig:contextExport}). Alternatively, select the root and press
-\texttt{Ctrl + Alt + E}.
+\item[$\blacktriangleright$] Therefore, to migrate multiple packages, you have to first export a \emph{complete} root node to an XMI file. First right-click on
+the EPackage \texttt{DictionaryLanguage}, then navigate to ``Import/Export / Export Model to XMI\ldots'' (Fig.~\ref{fig:contextExport}). Alternatively, select
+the root and press \texttt{Ctrl + Alt + E}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{ea_exportToXMI}
+  \includegraphics[width=\textwidth]{ea_contextExport}
   \caption{caption}
   \label{fig:contextExport}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] Save the file somewhere easily accessible, such as your desktop, and change the export type to \texttt{XMI 2.1}. Press export,
-and close the window once the small green bar appears (Fig.~\ref{fig:exportDialogue}).
+and close the window once the small green bar appears (Fig.~\ref{fig:export}).
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{ea_dialogueExport}
+  \includegraphics[width=0.9\textwidth]{ea_dialogueExport}
   \caption{caption}
   \label{fig:export}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Now re-open \texttt{LeitnersLearningBox.eap} from Eclipse and right-click anywhere in the project browser. Navigate to ``Import
+\item[$\blacktriangleright$] Now open \texttt{LeitnersLearningBox.eap} from Eclipse and right-click anywhere in the project browser. Navigate to ``Import
 Model from XMI\ldots''
 
-\item[$\blacktriangleright$] Find the \texttt{.xmi} file you just saved and press \texttt{import}. Press \texttt{OK} in the confirmation dialogue. You workspace
-should now resemble Fig. \update
-% Fig.~\ref{}
+\item[$\blacktriangleright$] Find the \texttt{.xmi} file you just saved and press \texttt{import}. Press \texttt{OK} in the confirmation dialogue. Your project
+browser now resemble Fig.~\ref{fig:importProBrowser}.
 
-\item[$\blacktriangleright$] The final step is to \texttt{Validate All}\footnote{To review how to use the eMoflon control panel, read Part II Section 2.8} and
-refresh your Eclipse workspace. Two newly generated projects should appear in your working set, \texttt{Dictionary Adapter} and \texttt{Dictionary Language}. 
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.4\textwidth]{ea_importedProjectBrowser}
+  \caption{caption}
+  \label{fig:importProBrowser}
+\end{center}
+\end{figure}
 
-\item[$\blacktriangleright$] If you've just joined us and are interested in the eMoflon project structure, and are curious as to how metamodels and generated
-code are related, we invite you to read Part I, Section 4.1. Otherwise, you're read to begin working with TGGs! 
+\item[$\blacktriangleright$] The final step is to validate and export both metamodels to Eclipse! First, use the eMolfon control panel to and under
+\texttt{Validate}, press \texttt{All}.\footnote{To review the details and how to use the eMoflon control panel, read Section 2.8 from Part II}
+
+\item[$\blacktriangleright$] Switch back to Eclipse and refresh your package explorer. A new \texttt{DictionaryLanguage} project should have appeared under
+\texttt{My Working Set}.
+
+\item[$\blacktriangleright$] Thats everything! You're now ready to start using your source and target metamodels with TGGs. If you've just joined us and are
+interested in the eMoflon project structure, or curious as to how Java code is generated from your visual metamodel, we invite you to read Part I, Section 4.1.
+Otherwise, continue with this part to start developing your TGG Schema.
 
 \jumpSingle{TGGSchema}
 
