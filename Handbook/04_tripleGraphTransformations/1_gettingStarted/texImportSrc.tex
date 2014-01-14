@@ -5,15 +5,51 @@
 
 % Eclipse import instructions; all unconfirmed.
 
-In your current project, right-click and navigate to ``Import\ldots''
+\begin{itemize}
 
-Select \texttt{File System} as the import source, and press \texttt{Next >}.
+\item[$\blacktriangleright$] With your source metamodel, \texttt{LeitnersLearningBox} prepared in the Eclipse workspace, right-click on
+browser and select \texttt{Import\ldots} from the context menu (Fig.~\ref{fig:eclipseContextImport}).
 
-Guide your \texttt{From Directory} apth to the same folder you extraced the contents of the Part 4 download to. We've included the MOSL files for your target
-\texttt{Dictionary Language} metamodel there. Be sure to confirm the \texttt{To Directory} path, and make sure it will be included in your \texttt{MOSL}
-workspace folder.
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.6\textwidth]{eclipse_contextImport}
+  \caption{caption}
+  \label{fig:eclipseContextImport}
+\end{center}
+\end{figure}
 
-Go to ``Build (Without Cleaning)'' and build your project. Two new folders -- -- should have appeared. They will contain all the generated code for these
-metamodels. If you haven't already, we invite you to read Part I, Section 4.2 for details on how your metamodel and generated java code are releated.
+\item[$\blacktriangleright$] In the first import dialogue, set your import source by navigating to ``General/File System.'' This is the appproate choice since
+we want to import the entire directory structure of the target metamodel. Continue by pressing \texttt{Next >}.
 
-That's it! You're now ready to get started with TGGs!
+\item[$\blacktriangleright$] Press \texttt{Browse\ldots} (Fig.~\ref{fig:importFileSys}) and navigate to the folder where you extracted the contents of the
+\texttt{Part4.zip} file which included this document. Select \texttt{DictionaryLanguage} from the heirarchy, and affirm with \texttt{OK}.
+
+\item[$\blacktriangleright$] Press \texttt{Select All} to ensure you're importing all the necessary MOSL files for your TGG target \texttt{DictionaryLanguage}
+metamodel. Affirm and close the dialogue by pressing \texttt{Finish}.
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{eclipse_importDialogue}
+  \caption{caption}
+  \label{fig:importFileSys}
+\end{center}
+\end{figure}
+
+\item[$\blacktriangleright$] Navigate to ``Build (Without Cleaning)'' on the toolbar to build both metamodels. Confirm with
+Fig.~\ref{fig:bothmetamodelstructures} that your MOSL directory is now populated with both metamodels, and notice that a second \texttt{Dictionary\-Language}
+folder appeared under the same node as the \texttt{LearningBoxLanguage} repository project. If you expand this folder, you'll be able to see that it contains
+all the generated code for the imported metamodel.
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{eclipse_metamodelStructures}
+  \caption{caption}
+  \label{fig:bothmetamodelstructures}
+\end{center}
+\end{figure}
+
+\item[$\blacktriangleright$] You're now ready to start using your metamodels in a TGG transformation! If you've just joined us and are interested in the eMoflon
+project structure, or curious as to how Java code is generated, we invite you to read Section 4.2 from Part I. Otherwise, continue to the next section to begin
+building your TGG Schema.
+
+\end{itemize}

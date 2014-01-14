@@ -2,120 +2,21 @@
 \section{TGGs in action}
 \genHeader
 \label{sect:TGGs_in_Action}
-In this section, we shall export our TGG, implement our new constraint, and get our integration running! The instructions for both syntaxes are virtually the
-same, but keep a lookout for colored bullet arrows regarding syntax-specific commands
 
-\vspace{0.5cm}
-
-\begin{itemize}
-\item[\color{RedOrange}$\blacktriangleright$] Export your metamodels and TGG from EA by choosing ``\texttt{Extensions/\-MOFLON::\-Ecore Addin\-/Export all to
-Workspace}' and refresh your Eclipse metamodel project.
-
-\vspace{0.5cm}
-
-\item[\color{CornflowerBlue}$\blacktriangleright$] Go to the toolbar and press \texttt{Build (without cleaning)}, and make sure your metamodel project
-refreshes.
-\end{itemize}
-
-\vspace{0.5cm}
-
-If you have done everything right, code generation and compilation should terminate without error, and the structure of the \texttt{gen} folder in
-\texttt{LearningBox\-To\-Dictionary\-Integration} should resemble Fig.~\ref{fig:gen_folder}.
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.8\textwidth]{tgg22}
-  \caption{\update very very wrong image.}
-  \label{fig:gen_folder}
-\end{center}
-\end{figure}
+In order to run our TGG, it first needs to have something tangible to work with. We need to create an instance model\footnote{Refer to Part II, Section 3 for
+review} of either one of our language metamodels, which can then be transformed into an instance model of the \emph{other} language (i.e., peform a forward or
+backwards transformation). Since dictionaries are a much simpler structure, let's start with the backwards transformation, \texttt{dictionary} to
+\texttt{LearningBox}.
 
 \begin{itemize}
 
-\vspace{0.5cm}
-  
-\item[$\blacktriangleright$] To implement the \texttt{IndexToLevel} constraint, locate and open the file \texttt{csp/IndexToLevel.java} under
-  ``LearningBoxToDictionaryIntegration/src/'' 
-
-\vspace{0.5cm}
-  
-\item[$\blacktriangleright$] Copy and paste the code provided in Fig.~\ref{fig:indexToLevel} into the file.
-
-\end{itemize}
+\item[$\blacktriangleright$] Navigate to \texttt{Dictionary\-Language/model/} and open \texttt{DictionaryLanguage.ecore}. Create a new
+dynamic instance of a \texttt{Dictionary} named \texttt{target.xmi}. Don't quickly press \texttt{enter}! Make sure you save it under
+\texttt{Learn\-ing\-Box\-To\-Dictionary\-In\-te\-gra\-tion/in\-stan\-ces/} (Fig.~\ref{fig:create_instance_dict}).
 
 \begin{figure}[htbp]
 \begin{center}
-  % \includegraphics[height=0.64\textheight]{pics/tggBilder/transformation/tgg23}
-\begin{lstlisting}[language=Java,backgroundcolor=\color{white}, keywordstyle={\bfseries\color{purple}}]
-package csp.constraints;
-
-import java.util.Arrays;
-import java.util.List;
-import TGGLanguage.csp.Variable;
-import TGGLanguage.csp.impl.ConstraintImpl;
-
-public class IndexToLevel extends ConstraintImpl {
-
-	private List<String> levels = Arrays.asList(new String[] { "beginner",
-			"advanced", "master" });
-
-	public void solve(Variable<Number> var_0, Variable<String> var_1) {
-
-		int index = var_0.getValue().intValue();
-		String level = var_1.getValue();
-
-		String bindingStates = getBindingStates(var_0, var_1);
-
-		switch (bindingStates) {
-		case "BB":
-			setSatisfied(levels.get(index).equals(level));
-			break;
-
-		case "BF":
-			if (index < 0)
-				var_1.setValue(levels.get(0));
-			else if (index > 2)
-				var_1.setValue(levels.get(2));
-			else
-				var_1.setValue(levels.get(index));
-
-			var_1.setBound(true);
-			setSatisfied(true);
-			break;
-
-		case "FB":
-			index = levels.indexOf(level);
-			if (index == -1) {
-				setSatisfied(false);
-			} else {
-				var_0.setValue(index);
-				var_0.setBound(true);
-				setSatisfied(true);
-			}
-			break;
-		}
-	}
-}
-\end{lstlisting}
-  \caption{Implementation of our attribute constraint \update (describe!)}
-  \label{fig:indexToLevel}
-\end{center}
-\end{figure}
-
-\clearpage
-
-Now we shall create an instance model\footnote{Refer to Part II, Section 3 for review} of one of our languages, then transform it into an instance model of the
-\emph{other} language as according to our TGG (i.e., perform a forward and backward transformation). Since dictionaries are a much simpler structure, lets start
-with the ``backwards''\footnote{No direction implied} transformation, dictionary to learning box.
-
-\begin{itemize}
-\item[$\blacktriangleright$] Navigate to and open \texttt{Dictionary\-Language/model/Dictionary\-Language.ecore}. Create a dynamic instance of
-\texttt{Dictionary} named \texttt{target.xmi}, and save it under \texttt{Learn\-ing\-Box\-To\-Dictionary\-In\-te\-gra\-tion/in\-stan\-ces/}
-(Fig.~\ref{fig:create_instance_dict}).
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.7\textwidth]{tgg24}
+  \includegraphics[width=0.8\textwidth]{eclipse_dictionaryInstance}
   \caption{Create a dynamic instance of \texttt{Dictionary}}
   \label{fig:create_instance_dict}
 \end{center}
@@ -129,19 +30,28 @@ with the ``backwards''\footnote{No direction implied} transformation, dictionary
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{tgg26}
-  \caption{Contents of the dictionary}
+  \caption{Contents of the dictionary \update make smaller}
   \label{fig:dictionaryxmi}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Run the main class, \texttt{TGGMain}, found in \texttt{LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/src}, and refresh
-\texttt{LearningBox\-To\-Dictionary\-In\-te\-gra\-tion/\-instances}.
+\item[$\blacktriangleright$] Run \texttt{TGGMain} as an application\footnote{Right-click, and navigate to ``Run as\ldots/Java Application''}, which can be found
+in ``LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/src''
 
-\vspace{0.5cm}
+\item[$\blacktriangleright$] In the eMoflon console below the editor, there should  one ``Unable to load instances/source.xmi'' error, followed by a success
+message. Both of these makes sense -- our TGG first attempted a forward transformation but, given that it was missing the source instance, it was only able
+to perform a transformation in one direction. Funnily enough however, we actually just created said source file. Since we have our LIST; LIST; and LIST, we
+actually created the source graph. If you remember, this was one of our goals of TGG! Given one language, we wanted to be able to derive the other.  This
+`error' then becomes an extremely easy fix, where we only need to find the generated instance and rename it.
 
-\item[$\blacktriangleright$] Note the console error message, ``Unable to load instances/source.xmi, instances/source.xmi does not exist.'' This is referring to
-the non-existent source file for the ``forward'' transformation - we'll fix this in a moment.
-\end{itemize}
+\item[$\blacktriangleright$] Refresh the integration's \texttt{instances} folder. There should now be four new \texttt{xmi} files. You created \texttt{target},
+\texttt{corr_BWD} is the correspondence graph between target and source, \texttt{protocol_BWD} is a listing of the attempted and successful steps taken in the
+transformation, and \texttt{target.xmi_BWD} was the resulting graph. Open this file in the editor.
+
+\item[$\blacktriangleright$] Expanding the platform, you can see a \texttt{Box} has been created, and it's \texttt{name} is the same as the \texttt{title} of
+\texttt{Dictionary}, the result of the constraint set in our first rule, \texttt{BoxToDictionary}. The box also has three partition, despite
+\texttt{Dictionary} not having any entries. This is because ..\update WORK ON THIS: may not actually be generating correctly..
+
 
 As you can see, our \texttt{Dictionary} has been translated backward to a \texttt{Box} with the same name (\texttt{English Numbers}) and containing three
 \texttt{Par\-ti\-tions} (as specified in \texttt{Box\-To\-Dictionary\-Rule}). The two \texttt{Entry} objects have been translated to \texttt{Card} objects as
@@ -157,7 +67,7 @@ Congratulations! You have successfully performed your first \emph{backward} tran
 using TGGs! To show that the transformation is actually bidirectional however, lets edit the source model (thus resolving the error from above) and transform it
 \emph{forward} to a new target model:
 
-\begin{itemize}
+
 \item[$\blacktriangleright$] Make a copy of \texttt{target.xmi\_BWD.xmi} (the result of the backward transformation)
 and rename it to \texttt{source.xmi}.
   

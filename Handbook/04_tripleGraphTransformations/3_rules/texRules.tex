@@ -4,6 +4,10 @@
 \texHeader
 
 
+Blah, blah, blah, text.
+
+\subsection{BoxToDictionaryRule}
+
 \begin{itemize}
 
 \item[$\blacktriangleright$] You may have noticed that a \texttt{Rules} folder was automatically created when you created the TGG. As you can imagine, this is
@@ -77,7 +81,7 @@ Fig.~\ref{fig:allReferences}.
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{eclipse_allReferences}
-  \caption{figureCaption}
+  \caption{First rule complete}
   \label{fig:allReferences}
 \end{center}
 \end{figure}
@@ -91,6 +95,9 @@ only be able to handle completely \emph{empty} boxes and dictionaries -- you can
 If you're in a hurry, feel free to jump ahead to Section 4: TGGs in Action to execute this rule. Otherwise, the next rule we create will integrate itself with
 \texttt{BoxToDictionaryRule} to increase its functionality. 
 
+\clearpage
+
+\subsection{CardToEntryRule}
 
 \begin{itemize} 
 
@@ -169,7 +176,8 @@ transformation assign a level based on whatever partition a \texttt{card} is fou
 partition due to always being guessed wrong, so let's create a constraint that will make \emph{any} card found there \texttt{advanced}. As you can imagine,
 there is no specific constraint existing in eMoflon to manage this -- we must create our own constraint.
 
-\item[$\blacktriangleright$] Specify the rule within the \texttt{contraints} scope via: \syntax{indexToLevel[BB,BF,FB](EInt, EString)}
+\item[$\blacktriangleright$] Specify the rule within the \texttt{contraints} scope via: \syntax{indexToLevel[BB,BF,FB](EInt, EString)} We will discuss what
+these mean in a minnit.
 
 \item[$\blacktriangleright$] Now you can invoke your rule via: \texttt{indexToLevel(partition0.index, entry.level)}. Your completed rule should now resemble
 Fig.~\ref{fig:c2eDone}.
@@ -177,7 +185,7 @@ Fig.~\ref{fig:c2eDone}.
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{eclipse_completedCardToEntryRule}
-  \caption{figureCaption}
+  \caption{CompletedRule}
   \label{fig:c2eDone}
 \end{center}
 \end{figure}
