@@ -3,19 +3,21 @@
 \visHeader
 \label{sec:multiEAP}
 
-Before starting, it should be mentioned that the following instructions are how to properly export and import Enterprise Architect (EA) files. This is not an
-eMoflon exclusive feature. You may want to bookmark this section so that you can reference it later as it's important to be able to import a different EAP into
-the same project.
+Please note that the following instructions are how to properly export and import Enterprise Architect (EA) files -- this is not an
+eMoflon-exclusive feature! Instead of referring you to their instructions, however, we wanted to include them here in full as it is critical that you're able to
+import a different EAP into the \emph{same} project in order for a TGG Correspondence to work. You may want to bookmark this section for later reference on your
+own projects.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] In the same \texttt{Part4.zip} folder you extracted this document from, double-click on \texttt{DictionaryLanguageSource.eap} to
-open the file in EA.
+\item[$\blacktriangleright$] In the same \texttt{Part4.zip} folder you extracted this document from, open \texttt{DictionaryLanguageSource.eap} in EA.
 
-\item[$\blacktriangleright$] The expanded rootnote should resemble Fig.~\ref{fig:dictionaryLangStart}. While you are able to copy and paste packages between
-multiple EAPs (i.e., copy \texttt{<<EPack\-age>>DictionaryLanguage} into the \texttt{MyWorkingSet} root note of \texttt{Leit\-nersLearningBox}), if any of the
-copied packages have dependencies on other packages, it cannot be done so easily. All links would be destroyed! If you tried to copy the dictionary language,
-for example, the receiving project would not be able to establish the neccesary links to eMoflon's \texttt{Moca Language}.
+\item[$\blacktriangleright$] Expand the root node and confirm its resemblance to Fig.~\ref{fig:dictionaryLangStart}. Feel free to inspect the main
+\texttt{DictionaryLanguage} diagram until you're familiar with what you'll be working with. We'll primarily be working with the \texttt{Dictionary} and
+\texttt{Entry} classes, where dictionaries are unsorted containers for an unlimited number of entries. Dictionaries can be assigned unique \texttt{title}s,
+and each entry will have some sort of \texttt{content} to be learned with a difficulty \texttt{level} of ``beginner,'' ``advanced,'' or ``master.''
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -25,9 +27,16 @@ for example, the receiving project would not be able to establish the neccesary 
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Therefore, to migrate multiple packages, you have to first export a \emph{complete} root node to an XMI file. First right-click on
-the EPackage \texttt{DictionaryLanguage}, then navigate to ``Import/Export / Export Model to XMI\ldots'' (Fig.~\ref{fig:contextExport}). Alternatively, select
-the root and press \texttt{Ctrl + Alt + E}.
+\item[$\blacktriangleright$] While you are able to copy and paste packages between multiple EAPs (i.e., copy \texttt{<<EPack\-age>>DictionaryLanguage} into the
+\texttt{MyWorkingSet} root note of \texttt{Leit\-nersLearningBox.eap}), if any of the copied packages have dependencies on other packages, it cannot be done so
+easily. All links would be destroyed! If you tried to copy \texttt{DictionaryLanguage}, for example, the receiving project would not be able to establish the
+neccesary links to eMoflon's \texttt{Moca Language}.
+
+\clearpage
+
+\item[$\blacktriangleright$] Therefore, to migrate packages, you have to export a \emph{complete} node to an XMI file. Right-click on the
+\texttt{DictionaryLanguage} EPackage, then navigate to ``Import/Export / Export Model to XMI\ldots'' (Fig.~\ref{fig:contextExport}). Alternatively, select the
+root and press \texttt{Ctrl + Alt + E}.
 
 \begin{figure}[htbp]
 \begin{center}

@@ -3,8 +3,8 @@
 \subsection{Tex Rules}
 \texHeader
 
-
-Blah, blah, blah, text.
+Some sort of content so that we don't start right away with a subsection. NOTE users cannot DERIVE TGGs (like visual) so, break it up to emphasize the
+differences between the two -- working with all green vs new black
 
 \subsection{BoxToDictionaryRule}
 
@@ -80,8 +80,8 @@ Fig.~\ref{fig:allReferences}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_allReferences}
-  \caption{First rule complete}
+  \includegraphics[width=0.8\textwidth]{eclipse_completedB2DRule}
+  \caption{First rule complete (note: buggy)}
   \label{fig:allReferences}
 \end{center}
 \end{figure}
@@ -95,13 +95,11 @@ only be able to handle completely \emph{empty} boxes and dictionaries -- you can
 If you're in a hurry, feel free to jump ahead to Section 4: TGGs in Action to execute this rule. Otherwise, the next rule we create will integrate itself with
 \texttt{BoxToDictionaryRule} to increase its functionality. 
 
-\clearpage
-
 \subsection{CardToEntryRule}
 
 \begin{itemize} 
 
-\item[$\blacktriangleright$] Analogusly to how you began the previous rule, create an \emph{Integration Class} called \texttt{CardToEntry} with a \texttt{Card}
+\item[$\blacktriangleright$] Analogously to how you began the previous rule, create an \emph{Integration Class} called \texttt{CardToEntry} with a \texttt{Card}
 source and \texttt{Entry} target. Your updated \texttt{Schema} should now resemble Fig.~\ref{fig:updatedSchema}.
 
 \begin{figure}[htbp]

@@ -36,26 +36,20 @@
     morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
 }
 
-% TOC depth
+\newcommand{\note}[1]{\marginpar{\emph{#1}}}
+
 \setcounter{tocdepth}{1}
 
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
+\graphicspath{%
+{../../06_miscellaneous/commonFiles/}% Title image and memBox illustration
+}
+
 % Remove section numbers 0.1, 0.2 ..
 \renewcommand{\thesection}{\arabic{section}} 
 
-\graphicspath{%
-{../../06_miscellaneous/commonFiles/}% Title image and memBox illustration
-{../1_gettingStarted/}{../1_gettingStarted/visImportImages/}{../1_gettingStarted/texImportImages/}%
-{../2_schema/}{../2_schema/visSImages/}{../2_schema/texSImages/}%
-{../3_rules/}{../3_rules/visRImages/}{../3_rules/texRImages/}%
-{../4_inAction/aImages/}%
-{../5_extending/}%
-{../6_protocol/}%
-{../7_sychronization/}%
-{../8_integrator/}%
-}
 
 % --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
 % Default plain header; turn off all lines and colors; turn on page numbers for all
@@ -87,13 +81,12 @@
 % Text instructions; Blue header
 \newcommand{\texHeader}{
 	\fancyfoot{}
-	\fancyhead[L]{\color{CornflowerBlue}\tiny \bf TEXTUAL}
+	\fancyhead[L]{\color{ProcessBlue}\tiny \bf TEXTUAL}
 	\renewcommand{\headrulewidth}{1.5pt}
 	\renewcommand{\headrule}{\hbox to\headwidth{%
-  		\color{CornflowerBlue}\leaders\hrule height \headrulewidth\hfill}}
+  		\color{ProcessBlue}\leaders\hrule height \headrulewidth\hfill}}
 }
 % -------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 \newcommand{\requiredTime}[1]{ {\scriptsize \texttt{Approximate time to complete: #1} } }
 
@@ -116,11 +109,10 @@
 % Quick author note; remove from final
 \newcommand{\update}{{\bf update }}
 
-% TODO: update description download link
-\newcommand{\dlPartZero}{\url{www.emoflon.org}}
 
-% TODO:  Update version number (Title Page Information)--------------------------------------------------------------------------------------------------------
-\def\partTitle{Part IV: Triple Graph Grammars}
+% TODO: Update version number (Title Page Information)
+% --- Title Page Information ----------------------------------------------------------------------------------------------------------------------------------
+\def\partTitle{Part V: Model-To-Text Transformations}
 \def\versionNumber{0.1}
 \input{../../06_miscellaneous/commonFiles/titlepage}
 
@@ -146,22 +138,14 @@
 \mainmatter
 
 % Main content for this Part 
-\include{TGG_source}
+\include{modelToTextTransforms_source}
 
 % Conclusion to forward users onto other parts
-\input{TGG_conclusion}
+\input{modelToTextTransforms_conclusion}
 
-\input{TGG_glossary}
-
-% -- References
-\newpage \genHeader
-\phantomsection
-\addcontentsline{toc}{section}{References}
-\renewcommand*{\bibname}{References}
-\bibliographystyle{plain}  
-\bibliography{../../06_miscellaneous/commonFiles/references}
+% -- References?
 
 % Glossary?
-% \include{TGG_glossary}
+% \include{learningBox_glossary}
 
 \end{document}
