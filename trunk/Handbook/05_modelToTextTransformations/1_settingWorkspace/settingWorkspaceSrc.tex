@@ -1,0 +1,26 @@
+\newpage
+\section{Setting up your M2T workspace}
+\genHeader
+
+Nowadays, \emph{no one} really writes a complex parser completely by hand. Although this is sometimes still necessary\footnote{Some languages are syntactically
+quite challenging.} most parsers can be whipped up pretty quickly using context-free \emph{string grammars}\footnote{For simple cases, \emph{regular
+expressions} can also be used.} typically in EBNF\footnote{Extended Backus-Naur Form}.
+ANTLR~\cite{ANTLR} is a tool that can generate a parser from a compact EBNF specification for a host of target programming languages, including Java.
+Although ANTLR might not be the most efficient or powerful parser generator out there, it is open-source, well documented and supported, and allows for a
+pragmatic and quite elegant \emph{fallback} to Java when things get nasty and we have to resort to some dirty tricks.
+
+
+% --------------------------------------------------------------------------------------------------------------------------------------------------------
+% 	Does there need to be a 'fresh start section?' i.e, do we need to briefly explain/tell where to look for info? Does user need to download anything from
+% previous parts?
+% \subsection{A fresh start}
+% --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+The first step is preparing an Eclipse workspace according to our suggested workflow.
+
+% \jumpDual{}{}
+
+\input{../1_settingWorkspace/vis_setWkspSrc}
+
+\input{../1_settingWorkspace/tex_setWkspSrc}

@@ -6,19 +6,34 @@
 {\bf \Huge Learning Box to Dictionary \emph{and} back again with TGGs }
 \vspace{1cm}
 
-
 \input{TGG_intro}
 
 \input{TGG_nutshell}
 
+% Setting up (or starting fresh)
 \input{../1_gettingStarted/gettingStartedSrc}
 
+% Declares ONE correspondence type: BoxToDictionary
 \input{../2_schema/schemaSrc}
 
+% Develops BoxToDictionaryRule, CardToEntryRule, Builds (three repo projects), then explains the custom attribute constraint
 \input{../3_rules/rulesSrc}
 
+% Should run successfully on exclusively THREE partitions in BOX; creates one instance, runs it, renames it, ta daa
 \input{../4_inAction/actionSrc}
 
-\input{../5_breakpoints/breakpointsSrc}
+% Introduce the 'problem' :: create a box with FOUR partitions : oh no it fails! (Explain why it didn't even partially work, it just failed the whole thing)
+% Now, even if we created a model (fig) to take care of that fourth partition, there will always be a plus one that we need to deal with. So lets create one
+% more rule to deal with this (in the next section we'll learn about protocols)
+\input{../5_extending/extendingSrc}
 
-\input{../6_synchronization/syncSrc}
+% Protocols : shows the order of potential solutions, etc etc. -- MAY NOT NEED.
+% \input{../6_protocol/protocolSrc}
+
+% To deal with data loss: i.e., from partition to entry and back : no way to put say, fourth partition BACK in fourth
+\input{../7_synchronization/syncSrc}
+
+% new interface; explain how it works and then introduce breakpoints
+\input{../8_integrator/integratorSrc}
+
+% conclusion

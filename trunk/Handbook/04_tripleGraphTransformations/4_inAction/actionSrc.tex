@@ -24,42 +24,68 @@ dynamic instance of a \texttt{Dictionary} named \texttt{target.xmi}. Don't quick
 
 \item[$\blacktriangleright$] Open \texttt{target.xmi}, and edit the \texttt{Dictionary} properties by setting \texttt{Title} to \texttt{English Numbers}.
 
-\item[$\blacktriangleright$] Create two child \texttt{Entry} objects. Set \texttt{Content} of the first to \texttt{one : eins} and its
-\texttt{Level} as \texttt{beginner}. Set the second with \texttt{eleven : elf} and \texttt{advanced} (Fig.~\ref{fig:dictionaryxmi}).
+\item[$\blacktriangleright$] Create two child \texttt{Entry} objects. Remember the format we constructed? Set \texttt{Content} of the first to \texttt{one :
+eins} and its \texttt{Level} as \texttt{beginner}. Set the second with \texttt{eleven : elf} and \texttt{advanced} (Fig.~\ref{fig:dictionaryxmi}).
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{tgg26}
-  \caption{Contents of the dictionary \update make smaller}
+  \includegraphics[width=\textwidth]{eclipse_addEntries}
+  \caption{Contents of the dictionary}
   \label{fig:dictionaryxmi}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Run \texttt{TGGMain} as an application\footnote{Right-click, and navigate to ``Run as\ldots/Java Application''}, which can be found
-in ``LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/src''
+\item[$\blacktriangleright$] In ``LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/src,'' right-click, and navigate to ``Run as\ldots/Java Application'' to run
+\texttt{TGGMain} your TGG.
 
 \item[$\blacktriangleright$] In the eMoflon console below the editor, there should  one ``Unable to load instances/source.xmi'' error, followed by a success
-message. Both of these makes sense -- our TGG first attempted a forward transformation but, given that it was missing the source instance, it was only able
-to perform a transformation in one direction. Funnily enough however, we actually just created said source file. Since we have our LIST; LIST; and LIST, we
+message (Fig.~\ref{fig:tggERROR}). Both of these makes sense -- our TGG first attempted a forward transformation but, given that it was missing the source instance,
+it was only able to perform a transformation in one direction. Funnily enough however, we actually just created said source file. Since we have our LIST; LIST; and LIST, we
 actually created the source graph. If you remember, this was one of our goals of TGG! Given one language, we wanted to be able to derive the other.  This
 `error' then becomes an extremely easy fix, where we only need to find the generated instance and rename it.
 
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=\textwidth]{eclipse_TGGError}
+  \caption{comment}
+  \label{fig:tggERROR}
+\end{center}
+\end{figure}
+
+\newpage
+
 \item[$\blacktriangleright$] Refresh the integration's \texttt{instances} folder. There should now be four new \texttt{xmi} files. You created \texttt{target},
-\texttt{corr_BWD} is the correspondence graph between target and source, \texttt{protocol_BWD} is a listing of the attempted and successful steps taken in the
-transformation, and \texttt{target.xmi_BWD} was the resulting graph. Open this file in the editor.
+\texttt{corr\_BWD} is the correspondence graph between target and source, \texttt{protocol\_BWD} is a listing of the attempted and successful steps taken in the
+transformation, and \texttt{target.xmi\_BWD} was the resulting graph. Open this file in the editor.
 
-\item[$\blacktriangleright$] Expanding the platform, you can see a \texttt{Box} has been created, and it's \texttt{name} is the same as the \texttt{title} of
-\texttt{Dictionary}, the result of the constraint set in our first rule, \texttt{BoxToDictionary}. The box also has three partition, despite
-\texttt{Dictionary} not having any entries. This is because ..\update WORK ON THIS: may not actually be generating correctly..
-
-
-As you can see, our \texttt{Dictionary} has been translated backward to a \texttt{Box} with the same name (\texttt{English Numbers}) and containing three
-\texttt{Par\-ti\-tions} (as specified in \texttt{Box\-To\-Dictionary\-Rule}). The two \texttt{Entry} objects have been translated to \texttt{Card} objects as
-specified in \texttt{CartToEntryRule}. The \texttt{face} and the \texttt{back} of the \texttt{Card}s are consistent with the \texttt{content}
+\item[$\blacktriangleright$] Expand \texttt{box} As you can see, our \texttt{Dictionary} has been translated backward to a \texttt{Box} with the same name
+(\texttt{English Numbers}) and containing three \texttt{Par\-ti\-tions} (as specified in \texttt{Box\-To\-Dictionary\-Rule}) (Fig.~\ref{fig:derivedBOX}). The three
+\texttt{Entry} objects have been translated to \texttt{Card} objects as specified in \texttt{CartToEntryRule}. The \texttt{face} and the \texttt{back} of the \texttt{Card}s are consistent with the \texttt{content}
 of the corresponding \texttt{Entry}, e.g. \texttt{card.face = ``Question : one''} and \texttt{card.back = ``Answer : eins''}. The indices of the partitions
-containing the cards are also consistent with the level of the entry, i.e., \texttt{0} for \texttt{beginner}, and \texttt{1} for \texttt{advanced}.
+containing the cards are also consistent with the level of the entry, i.e., \texttt{0} for \texttt{beginner}, and \texttt{1} for \texttt{advanced}. \update
+mention how the constraints came into play
 
-mention the graph viewer here!
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=\textwidth]{eclipse_TGGRuleBuiltBOX}
+  \caption{our created box}
+  \label{fig:derivedBOX}
+\end{center}
+\end{figure}
+
+
+mention the graph viewer here! Reemmber the graph view? Its a useful tool, especially with TGGs! Drag and drop \texttt{Box English Numbers} into the graph
+viewer. You can see how the partitions are connected via link variables, and you can see which partition contains which card. (Fig.~\ref{fig:graphViewBox}) You
+could do this for \texttt{Dictionary} as well, but you'll only have a simple tree graph, with three long lines connecting each entry to the dictionary.
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{eclipse_EngNumBoxGraphView}
+  \caption{dat graph view. hmmmm.}
+  \label{fig:graphViewBox}
+\end{center}
+\end{figure}
+
 
 \vspace{0.5cm}
 
@@ -74,56 +100,11 @@ and rename it to \texttt{source.xmi}.
 \item[$\blacktriangleright$] Open \texttt{source.xmi} and create some new \texttt{Card} objects in the \texttt{Partition}s (e.g., create a new \texttt{Card}
 with \texttt{Card.face = ``Question : two''}, \texttt{Card.back = ``Answer : zwei''} in \texttt{Partition 0}).
 
-\item[$\blacktriangleright$] Run the \texttt{TGGMain.java} again and inspect the result of the forward transformation, target model
-\texttt{source.xmi\_FWD.xmi}.
+\item[$\blacktriangleright$] Run the \texttt{TGGMain.java} again by pressing the green ``Run As\ldots'' icon on the toolbar. No errors should have appeared. and
+inspect the result of the forward transformation, target model \texttt{source.xmi\_FWD.xmi}. explain the different files that were generated? as you can see,
+\texttt{target} and \texttt{source.xmi\_FWD.xmi} are the same! They were just created different.
 
-\end{itemize}
-
-
-To end this chapter on TGGs, lets check out another feature of eMolfon, the integrator visualizer! This will let us view the visualization of the created
-triple model.
-
-\newpage
-
-\begin{itemize}
-
-\item[$\blacktriangleright$] Right-click on \texttt{corr\_BWD.xmi} and choose ``eMoflon $\rightarrow$ Start Integrator'' which will open the window depicted in
-Fig.~\ref{fig:integrator_start}.
-
-\vspace{0.5cm}
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.7\textwidth]{integrator_start_view.pdf}
-  \caption{Default view of the integrator}
-  \label{fig:integrator_start}
-\end{center}
-\end{figure}
-
-\item[$\blacktriangleright$] Drag and drop \texttt{protocol\_BWD.xmi} into the window. You will now see the controls explained in the lower part of the window 
-(Fig.~\ref{fig:integrator_after_protocol}).
-
-\begin{figure}[h!]
-\begin{center}
-  \includegraphics[width=0.6\textwidth]{integrator_after_protocol_insertion.png}
-  \caption{Integrator after protocol insertion.}
-  \label{fig:integrator_after_protocol}
-\end{center}
-\end{figure} 
-\FloatBarrier
-
-\item[$\blacktriangleright$] The integrator works as an ``offline'' debugger, working on the protocol (trace) of the transformation. You can use
-\texttt{Alt+Right} to navigate forwards \emph{through} the transformation process, and \texttt{Alt+Left} to go backwards.  When you step through the
-transformation, you will notice that some elements are highlighted with colours. These are the elements currently being processed. The colours have the
-following definitions:
-\begin{description}
-  \item[Blue] The element is now about to be processed (is being ``looked at'').
-  \vspace{0.5cm}
-  \item[Yellow] The element cannot be transformed right now and has been queued for later transformation 
-  (e.g., when transforming an Entry to a Card, the Box with partitions to put the 
-  Card into must be translated first).
-  \vspace{0.5cm}
-  \item[Green] The object has just been created.
-\end{description}
+\item[$\blacktriangleright$] Try deleting \texttt{target} and running TGGMain on just your source. you should now get an error saying the backwards
+transformation DNE. do you get the same result if you open \texttt{source.xmi\_FWD.xmi}? (yes)
 
 \end{itemize}

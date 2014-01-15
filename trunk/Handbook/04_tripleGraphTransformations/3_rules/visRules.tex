@@ -3,8 +3,9 @@
 \subsection{Visual Rules}
 \visHeader
 
-
-Blah blah blah, text.
+Some sort of content so that we don't start right away with a subsection. In essence, this section wants to create a rule normally, and then DERIVE a second
+one. In the second rule, we should do 'create new correspondence type' in the window, to show users they don't HAVE to include it in the schema before using
+(declare it on the fly.. not have to switch diagram). maybe in this paragraph we can explain how we'll meet the TGG goals (producitivy, maintability, etc etc))
 
 \subsection{BoxToDictionaryRule}
 \begin{enumerate}
@@ -35,10 +36,8 @@ operator} should already be set to \texttt{box} and \texttt{create}.
 \item[$\blacktriangleright$] Quick-link from \texttt{box} to \texttt{dictionary} and create a TGG Correspondence link. To keep things simple, name it
 \texttt{boxToDictionary} and select the correspondence type from the drop-down list, which you declared in the schema.
 
-\newpage
-
-Believe it or not, our rule already creates a \texttt{Box}, \texttt{Dictionary}, and correspondence link between them at the same time, as-is! Unfortunately,
-this only creates the objects, and doesn't relate any of there values. Why don't we try to connect the \texttt{name} of the \texttt{box} to the \texttt{title}
+Believe it or not, our rule \emph{already} creates a \texttt{Box}, \texttt{Dictionary}, and correspondence link between them at the same time, as-is!
+Unfortunately, this only creates the objects, and doesn't relate any of there values. Why don't we try to connect the \texttt{name} of the \texttt{box} to the \texttt{title}
 of the dictionary? I.e., if you have a \texttt{Kitten} LearningBox, you can transform it into a \texttt{Kitten} Dictionary. Luckily, we can once again use
 \emph{attribute constraints}!\footnote{These were first defined in Part III, Section 4}. When used with TGG rules, attribute constraints provide a bidirectional
 and high-level solution for attribute manipulation. We're looking for a constraint which ensures that \texttt{box.name} and \texttt{dictionary.title} are

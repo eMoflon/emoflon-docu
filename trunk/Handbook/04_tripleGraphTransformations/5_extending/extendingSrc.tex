@@ -1,0 +1,30 @@
+\newpage
+\section{The Protocol}
+\genHeader
+
+Problem: exactly three partition is kind of unrealistic for a box. After all, the more you want to practice a word, or a set of words, the more partitions you
+should have so that you are asked again and again what the answer is. But no matter - our current rule needs at least three to work, right? If a new one is
+added, it should still work for those three. Lets confirm by adding a fourth partition to \texttt{source.xmi}. Give it an index of three, set its prev value to
+partition2, and set the next value in partition2 to partition3. also set its back to QuestionThree and face to answer dreisave and run TGGMain. it failed (say,
+what?!). Even though it was able to find a solution to the first threee, there was no way it could have connected number 4 successfully, resulting in a dangling
+edge, which fujaba does not allow.
+
+But why didn't at least the first set of card from partitions 0, 1, 2. Work? Dangling edges - predicts that there will be no way to repair it, so it ends te
+whole operation.
+
+While we addressed in index issue in our implemenation code (anzthing above 2 would be assigned as index 2), that only took care of one direction (card to
+entry) in the other direction, it simly has no idea what needs to be created /made. 
+
+Lets consider extending the rule so it could handle a fourth card. It would be as simple as including another partition in our rule and connecting it proberly.
+But what if we wanted a fith? a sixth?  This obviously won't work -- there will always be an n+1 partition that needs to be resolved.
+
+Instead, let's create a new rule. After all, the protocol is bound to try EVERY possilbilty before continuing. that means, if the first rule fails, it will try
+to apply this one, and it will succeed.
+
+// split.
+
+Lets correct this via.. using your smarts, build the \texttt{AllCardsRule} as depicted below
+
+\input{../5_extending/visNewRule}
+
+\input{../5_extending/texNewRule}
