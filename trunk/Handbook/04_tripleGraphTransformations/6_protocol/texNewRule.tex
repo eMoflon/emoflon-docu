@@ -1,0 +1,32 @@
+\newpage
+\hypertarget{allCards tex}{}
+\subsection{Text new rule}
+\texHeader
+
+First re-open your schema and make a new integration class (rule) named AllOtherCards. Source: Box, target: Dictionary
+
+Go back to the Rules folder of LearningBoxToDictionaryIntegration and make a new one : AllOtherCardsRule.
+
+In source:
+
+pre condition: box:Box, partition0, partitionN:Partition. Create operator: partitionNN. Set equals attirbute operator on partition0, and for partitionN, give
+it index >= 2. Leave the third blank. (Fig.)
+
+Next set up the containedPartition references in box. Remember, the first two will be black, the one to partitionNN must be green.
+
+Knowing that partitionN+1 will be our latest addition, point the next reference of partitionN to it, and set the previous reference to partition 0. we don't
+need a next on partition0 since we dont know if it will be the next value.
+
+no need to set up a NEW target - we're working exclusively within box to include this extra card in the pattern and assuming dictionary already exists. By
+consequence, we don't need to set up a NEW correspondence to Dictionary, just box <- allOtherCards : AllOtherCards -> dictionary
+But that doesn't mean we're done - we still need to establish a constraint that
+will add one to the index value of partitionN to make partitionN+1 truly the NEXT partition. Luckily, this attribute type is established by eMoflon, and so we don't need to create our own again. 
+
+in the constraints scope, enter:
+add(partitionN.index, 1, partitionNN)
+
+it should be explained that the syntax for this is x+y=z, where add(x,y,z).
+
+What are some other ways you could have constructed this same rule? i.e., does each reference you just declared HAVE to be in their current position?
+
+Alles gut! Save and build. Make sure no errors in the generated files. (then move on)

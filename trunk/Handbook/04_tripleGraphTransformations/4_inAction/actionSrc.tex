@@ -3,15 +3,14 @@
 \genHeader
 \label{sect:TGGs_in_Action}
 
-In order to run our TGG, it first needs to have something tangible to work with. We need to create an instance model\footnote{Refer to Part II, Section 3 for
-review} of either one of our language metamodels, which can then be transformed into an instance model of the \emph{other} language (i.e., peform a forward or
-backwards transformation). Since dictionaries are a much simpler structure, let's start with the backwards transformation, \texttt{dictionary} to
-\texttt{LearningBox}.
+In order to perform a forwards or backwards transformation, we need to actually create something for the TGG to work with. In other words, we need to create an
+instance model\footnote{For a detailed review, refer to Part II, Section 3} of either our target or our source metamodel! Since dictionaries are a much simpler
+structure, let's start with the backwards transformation, from \texttt{DictionaryToBox}.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Navigate to \texttt{Dictionary\-Language/model/} and open \texttt{DictionaryLanguage.ecore}. Create a new
-dynamic instance of a \texttt{Dictionary} named \texttt{target.xmi}. Don't quickly press \texttt{enter}! Make sure you save it under
+\item[$\blacktriangleright$] Navigate to \texttt{Dictionary\-Language/model/} and open \texttt{Dictio\-nary\-Lang\-uage.ecore}. Create a new
+dynamic instance of a \texttt{Dictionary} named \texttt{target.xmi}. Don't quickly press \texttt{enter}! Make sure you persist it in
 \texttt{Learn\-ing\-Box\-To\-Dictionary\-In\-te\-gra\-tion/in\-stan\-ces/} (Fig.~\ref{fig:create_instance_dict}).
 
 \begin{figure}[htbp]
@@ -22,10 +21,15 @@ dynamic instance of a \texttt{Dictionary} named \texttt{target.xmi}. Don't quick
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Open \texttt{target.xmi}, and edit the \texttt{Dictionary} properties by setting \texttt{Title} to \texttt{English Numbers}.
+\newpage
 
-\item[$\blacktriangleright$] Create two child \texttt{Entry} objects. Remember the format we constructed? Set \texttt{Content} of the first to \texttt{one :
-eins} and its \texttt{Level} as \texttt{beginner}. Set the second with \texttt{eleven : elf} and \texttt{advanced} (Fig.~\ref{fig:dictionaryxmi}).
+\item[$\blacktriangleright$] Open \texttt{target.xmi}, and edit the \texttt{Dictionary} properties by setting \texttt{Title} to \texttt{English Numbers}. This
+will be manipulated by the constraint to become \texttt{box.name}.
+
+\item[$\blacktriangleright$] Create three child \texttt{Entry} objects, giving each one a different difficulty level. Remember, the content follows a specific
+syntax based on the concatnation constraint we created in the \texttt{CardToEntryRule}:
+\syntax{word : meaning}
+Your target instance should come to resemble Fig.~\ref{fig:dictionaryxmi}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -35,14 +39,12 @@ eins} and its \texttt{Level} as \texttt{beginner}. Set the second with \texttt{e
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] In ``LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/src,'' right-click, and navigate to ``Run as\ldots/Java Application'' to run
-\texttt{TGGMain} your TGG.
+\item[$\blacktriangleright$] Navigate to ``LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/src'' and right-click on \texttt{TGGMain.java}. Go to ``Run
+as\ldots/Java Application''
 
-\item[$\blacktriangleright$] In the eMoflon console below the editor, there should  one ``Unable to load instances/source.xmi'' error, followed by a success
-message (Fig.~\ref{fig:tggERROR}). Both of these makes sense -- our TGG first attempted a forward transformation but, given that it was missing the source instance,
-it was only able to perform a transformation in one direction. Funnily enough however, we actually just created said source file. Since we have our LIST; LIST; and LIST, we
-actually created the source graph. If you remember, this was one of our goals of TGG! Given one language, we wanted to be able to derive the other.  This
-`error' then becomes an extremely easy fix, where we only need to find the generated instance and rename it.
+\item[$\blacktriangleright$] Did you get one error message, followed by one success message eMoflon console below the editor? Perfect! That's exactly what we
+expected (Fig.~\ref{fig:tggERROR}). Both of these statements make sense -- our TGG first attempted a forward transformation of \texttt{box} to
+\texttt{dictionary} but, given that it was missing the source (\texttt{box}) instance, it was only able to perform a transformation in the backwards direction.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -54,16 +56,14 @@ actually created the source graph. If you remember, this was one of our goals of
 
 \newpage
 
-\item[$\blacktriangleright$] Refresh the integration's \texttt{instances} folder. There should now be four new \texttt{xmi} files. You created \texttt{target},
-\texttt{corr\_BWD} is the correspondence graph between target and source, \texttt{protocol\_BWD} is a listing of the attempted and successful steps taken in the
-transformation, and \texttt{target.xmi\_BWD} was the resulting graph. Open this file in the editor.
+\item[$\blacktriangleright$] Refresh the integration's \texttt{instances} folder. There should now be four new \texttt{xmi} files. While you created
+\texttt{target}, the TGG created \texttt{corr\_BWD}, correspondence graph between target and source, \texttt{protocol\_BWD}, a listing of the attempted
+and successful steps taken in the backwards transformation, and \texttt{target.xmi\_BWD}, the result of the transformation. Open this file in the editor.
 
-\item[$\blacktriangleright$] Expand \texttt{box} As you can see, our \texttt{Dictionary} has been translated backward to a \texttt{Box} with the same name
-(\texttt{English Numbers}) and containing three \texttt{Par\-ti\-tions} (as specified in \texttt{Box\-To\-Dictionary\-Rule}) (Fig.~\ref{fig:derivedBOX}). The three
-\texttt{Entry} objects have been translated to \texttt{Card} objects as specified in \texttt{CartToEntryRule}. The \texttt{face} and the \texttt{back} of the \texttt{Card}s are consistent with the \texttt{content}
-of the corresponding \texttt{Entry}, e.g. \texttt{card.face = ``Question : one''} and \texttt{card.back = ``Answer : eins''}. The indices of the partitions
-containing the cards are also consistent with the level of the entry, i.e., \texttt{0} for \texttt{beginner}, and \texttt{1} for \texttt{advanced}. \update
-mention how the constraints came into play
+\item[$\blacktriangleright$] Its an \texttt{English Numbers Box!} Expand the tree and you'll see our \texttt{Dictionary} now translated backward into
+a box containing three \texttt{Par\-ti\-tions}, as specified in \texttt{Box\-To\-Dictionary\-Rule} (Fig.~\ref{fig:derivedBOX}). Those partitions are then filled
+according to their \texttt{index} and the \texttt{entry}'s difficulty, as specified in the \texttt{IndexToLevelConstraint} in \texttt{CardToEntry}. If you
+double click on each \texttt{card} to view its properties, you can see the \texttt{back} and \texttt{face} have also been satisfied accordingly.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -73,10 +73,13 @@ mention how the constraints came into play
 \end{center}
 \end{figure}
 
+\clearpage
 
-mention the graph viewer here! Reemmber the graph view? Its a useful tool, especially with TGGs! Drag and drop \texttt{Box English Numbers} into the graph
-viewer. You can see how the partitions are connected via link variables, and you can see which partition contains which card. (Fig.~\ref{fig:graphViewBox}) You
-could do this for \texttt{Dictionary} as well, but you'll only have a simple tree graph, with three long lines connecting each entry to the dictionary.
+\item[$\blacktriangleright$] Don't forget about one of eMoflon neat visualizing features - the graph viewer! This is an especially useful tool with TGGs when
+you need to do a quick confirmation that your transformation was successful. To practice, drag-and-drop \texttt{Box English Numbers} into the window. You can
+see the \texttt{partition}s properly connected via link variables, and you can see each \texttt{card} in its proper place (Fig.~\ref{fig:graphViewBox}). You
+could also try viewing the source \texttt{Dictionary} this way as well, but unfortunately you'll only have a terribly uninteresting simple tree graph, with
+three long lines connecting each entry to the dictionary.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -90,21 +93,18 @@ could do this for \texttt{Dictionary} as well, but you'll only have a simple tre
 \vspace{0.5cm}
 
 Congratulations! You have successfully performed your first \emph{backward} transformation from your target model (dictionary) to your source (Learning box)
-using TGGs! To show that the transformation is actually bidirectional however, lets edit the source model (thus resolving the error from above) and transform it
-\emph{forward} to a new target model:
+using TGGs! To show that the transformation is actually bidirectional however, lets edit the source model (thus resolving the error), and run the TGG again to
+transform \texttt{box} forward into a \texttt{Dictionary}.
 
 
 \item[$\blacktriangleright$] Make a copy of \texttt{target.xmi\_BWD.xmi} (the result of the backward transformation)
 and rename it to \texttt{source.xmi}.
   
-\item[$\blacktriangleright$] Open \texttt{source.xmi} and create some new \texttt{Card} objects in the \texttt{Partition}s (e.g., create a new \texttt{Card}
-with \texttt{Card.face = ``Question : two''}, \texttt{Card.back = ``Answer : zwei''} in \texttt{Partition 0}).
+% \item[$\blacktriangleright$] Open \texttt{source.xmi} and create some new \texttt{Card} objects in the \texttt{Partition}s (e.g., create a new \texttt{Card}
+% with \texttt{Card.face = ``Question : two''}, \texttt{Card.back = ``Answer : zwei''} in \texttt{Partition 0}).
 
-\item[$\blacktriangleright$] Run the \texttt{TGGMain.java} again by pressing the green ``Run As\ldots'' icon on the toolbar. No errors should have appeared. and
-inspect the result of the forward transformation, target model \texttt{source.xmi\_FWD.xmi}. explain the different files that were generated? as you can see,
-\texttt{target} and \texttt{source.xmi\_FWD.xmi} are the same! They were just created different.
-
-\item[$\blacktriangleright$] Try deleting \texttt{target} and running TGGMain on just your source. you should now get an error saying the backwards
-transformation DNE. do you get the same result if you open \texttt{source.xmi\_FWD.xmi}? (yes)
+\item[$\blacktriangleright$] Run the \texttt{TGGMain.java} again by pressing the green ``Run As\ldots'' icon on the toolbar. You should now have two success
+messages in the console window! Inspect \texttt{source.xmi\_FWD.xmi}, the result of the forward transformation, and the original target model. If everything was
+created and executed properly, they should look exactly the same! Great work!
 
 \end{itemize}

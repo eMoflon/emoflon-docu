@@ -1,6 +1,13 @@
 \newpage
-\section{The Protocol}
+\section{Expanding LeitnersLearningBox}
 \genHeader
+
+\emph{Introduce the problem: four partitions. Integrator doesn't help, what do? Protocol! Explain what went wront, new rule! Run again, show protocol round
+two, and look! it runs fine.}
+
+At this point, we now have a working TGG transformation for Dictionary into box with three partitions, and a box with \emph{precisely} three partitions into a
+Dictionary. The only forseeable problem here is that\ldots well\ldots exactly three partitions is slightly unrealistic for a proper study box. After all, the
+more you need to practice a subject, the more partitions you should have so you are quizzed again and again.
 
 Problem: exactly three partition is kind of unrealistic for a box. After all, the more you want to practice a word, or a set of words, the more partitions you
 should have so that you are asked again and again what the answer is. But no matter - our current rule needs at least three to work, right? If a new one is
@@ -21,10 +28,10 @@ But what if we wanted a fith? a sixth?  This obviously won't work -- there will 
 Instead, let's create a new rule. After all, the protocol is bound to try EVERY possilbilty before continuing. that means, if the first rule fails, it will try
 to apply this one, and it will succeed.
 
-// split.
+\jumpDual{allCards vis}{allCards tex}
 
-Lets correct this via.. using your smarts, build the \texttt{AllCardsRule} as depicted below
+\input{../6_protocol/visNewRule}
 
-\input{../5_extending/visNewRule}
+\input{../6_protocol/texNewRule}
 
-\input{../5_extending/texNewRule}
+\input{../6_protocol/protocolClose}
