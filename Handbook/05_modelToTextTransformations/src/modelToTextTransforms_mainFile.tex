@@ -143,7 +143,13 @@
 % Conclusion to forward users onto other parts
 \input{modelToTextTransforms_conclusion}
 
-% -- References?
+% -- References
+\newpage \genHeader
+\phantomsection
+\addcontentsline{toc}{section}{References}
+\renewcommand*{\bibname}{References}
+\bibliographystyle{plain}  
+\bibliography{../../06_miscellaneous/commonFiles/references}
 
 % Glossary?
 % \include{learningBox_glossary}
