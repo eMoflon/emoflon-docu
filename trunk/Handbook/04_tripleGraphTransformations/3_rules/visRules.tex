@@ -105,6 +105,7 @@ If you are in hurry, you can jump ahead and proceed to Section~\ref{sect:TGGs_in
 please be aware that your specified TGG (with just one rule) will only be able to cope with empty boxes and dictionaries. Handling additional elements
 (i.e., cards in the learning box and entries in the dictionary) requires a second rule. We intend to create this next.
 
+% --------------- Card To Entry ------------------------------------------------------------------------------------------------------------------------
 \newpage
 \subsection{CardToEntryRule}
 
@@ -135,6 +136,9 @@ will automatically display in a the editor window.
 \item[$\blacktriangleright$] Add instances of \texttt{Card} and \texttt{Entry} to the rule and required links until the diagram closely resembles
 Fig.~\ref{fig:cardtoentry_1}.
 
+\item[$\blacktriangleright$] Also: create NEW correspondence type, \texttt{CardToEntry}. (Explain that even though it wasn't originall on schema, you can do
+here!)
+
   \begin{figure}[htbp]
   \begin{center}
     \includegraphics[width=\textwidth]{ea_cardToEntryRule}
@@ -145,24 +149,17 @@ Fig.~\ref{fig:cardtoentry_1}.
 
 \end{enumerate}
 
-As a final step, we now have to specify how attributes are to be handled via appropriate attribute constraints.
-
-The \texttt{content} of an \texttt{Entry} in a \texttt{Dictionary} is to be of the form \texttt{<word>:<meaning>}, while the \texttt{face} of a \texttt{Card}
-must read \texttt{Question:<word>}, and the \texttt{back} of the Card \texttt{Answer:<meaning>}.
-
-Using two predefined attribute constraints, \texttt{addPrefix} and \texttt{concat}, we can specify this as a set of constraints:
+Now we want to create a series of constraints in order to specify how attributes should be handled. Let's define a syntax for every \texttt{Entry} in
+\texttt{Dictionary}. \syntax{<word> : <meaning>}. Therefore, syntax for card.back should be Question : <word>, and card.face should be Answer : <meaning>.
+Luckily, we have two predefined attribute constraints, \texttt{addPrefix} and \texttt{concat} to help us.
 
 \begin{enumerate}
- % Describe the dictionary class? Don't know reasoning behind these variables..
-\item[$\blacktriangleright$] Double-click your constraint element and add an \texttt{addPrefix} constraint, where \texttt{prefix} is \texttt{``Question:''},
-\texttt{a} is \texttt{word}, and \texttt{b} is \texttt{card.face}.
-  
-\item[$\blacktriangleright$] Create a second \texttt{addPrefix} constraint with \texttt{``Answer''}, \texttt{meaning}, \texttt{card.back}.
+  \item[$\blacktriangleright$] addPrefix(``Question '', word, card.face)
+  \item[$\blacktriangleright$] addPrefix(``Answer'', answer, card.back)
+  \item[$\blacktriangleright$] concat(``:'', word, meaning, entry.content)
+\end{enumerate}
 
-\item[$\blacktriangleright$] Finally, add a \texttt{concat} constraint, with \texttt{``~:~''} as the \texttt{separator}, and \texttt{word}, \texttt{meaning},
-\texttt{entry.content} as \texttt{a}, \texttt{b}, \texttt{c}.
-
-\item[$\blacktriangleright$] Your rule should now resemble Fig.~\ref{fig:cardtoentry_2}.
+Your rule should now resemble Fig.~\ref{fig:cardtoentry_2}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -172,7 +169,7 @@ Using two predefined attribute constraints, \texttt{addPrefix} and \texttt{conca
 \end{center}
 \end{figure}
 \FloatBarrier
-\end{enumerate}
+
 
 % Rewrite to make this a bit more clear..
 Finally, we have to specify how the partition (into which the new \texttt{card} is to be placed) must be chosen.
@@ -205,7 +202,7 @@ After defining the dependencies of the constraint, your complete TGG rule should
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=1.2\textwidth]{ea_cardToEntryComplete}
+  \includegraphics[width=\textwidth]{ea_cardToEntryComplete}
   \caption{\texttt{CardToEntryRule} with complete attribute manipulation}
   \label{fig:cardtoentry_complete}
 \end{center}

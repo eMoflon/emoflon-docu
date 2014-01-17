@@ -1,32 +1,64 @@
 \newpage
-\section{Expanding LeitnersLearningBox}
+\section{Extending our Functionality}
 \genHeader
 
-\emph{Introduce the problem: four partitions. Integrator doesn't help, what do? Protocol! Explain what went wront, new rule! Run again, show protocol round
-two, and look! it runs fine.}
+% Remember, this is relevant for BOTH specifications.
+
+% \emph{Introduce the problem: four partitions. Integrator doesn't help, what do? Protocol! Explain what went wrong, new rule! Run again, show protocol round
+% two, and look! it runs fine.}
+
+% Introduce problem: we want four partitions. Add one - woah, it doesn't work! Let's try the integrator. Doesn't help. Chat about the protocol. Lets implement a
+% new rule!
+% protocol Splash
+
+% vis rule
+
+% tex rule
+
+% Run it again! It works! BRILLIANT. Show in protocol.
 
 At this point, we now have a working TGG transformation for Dictionary into box with three partitions, and a box with \emph{precisely} three partitions into a
-Dictionary. The only forseeable problem here is that\ldots well\ldots exactly three partitions is slightly unrealistic for a proper study box. After all, the
-more you need to practice a subject, the more partitions you should have so you are quizzed again and again.
+Dictionary. The only potential problem here is that exactly three partitions in a LearningBox is rather unrealistic as a proper studying tool. After all, the
+more you need to practice a subject, the more cards and partitions you should have so you can be quizzed again and again.
 
-Problem: exactly three partition is kind of unrealistic for a box. After all, the more you want to practice a word, or a set of words, the more partitions you
-should have so that you are asked again and again what the answer is. But no matter - our current rule needs at least three to work, right? If a new one is
-added, it should still work for those three. Lets confirm by adding a fourth partition to \texttt{source.xmi}. Give it an index of three, set its prev value to
-partition2, and set the next value in partition2 to partition3. also set its back to QuestionThree and face to answer dreisave and run TGGMain. it failed (say,
-what?!). Even though it was able to find a solution to the first threee, there was no way it could have connected number 4 successfully, resulting in a dangling
-edge, which fujaba does not allow.
+Given that we have three partition and a rule to transform these, lets add a fourth partition to our source graph and see if it our TGG will at least complete
+a partial transformation. Modify your \texttt{source.xmi} until it resembles Fig.~\ref{fig:fourthPartitionStart}.
 
-But why didn't at least the first set of card from partitions 0, 1, 2. Work? Dangling edges - predicts that there will be no way to repair it, so it ends te
-whole operation.
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{eclipse_fillFourthPartition}
+  \caption{caption}
+  \label{fig:fourthPartitionStart}
+\end{center}
+\end{figure}
 
-While we addressed in index issue in our implemenation code (anzthing above 2 would be assigned as index 2), that only took care of one direction (card to
-entry) in the other direction, it simly has no idea what needs to be created /made. 
+Don't forget to set its \texttt{previous} value to \texttt{partition0}, and the \texttt{next} value of \texttt{Partition 2} to \texttt{Partition3}.
 
-Lets consider extending the rule so it could handle a fourth card. It would be as simple as including another partition in our rule and connecting it proberly.
-But what if we wanted a fith? a sixth?  This obviously won't work -- there will always be an n+1 partition that needs to be resolved.
+Save and run TGGMain.
 
-Instead, let's create a new rule. After all, the protocol is bound to try EVERY possilbilty before continuing. that means, if the first rule fails, it will try
-to apply this one, and it will succeed.
+%FailImage
+
+Doesn't work! Let's check the integrator.
+
+{\bf integrator stuff here; where does it fail}
+
+
+Doesn't help - let's check the protocol!
+
+
+{\bf protocol stuff here; precisely where/WHY it fails}
+
+Even though there was a solution to the first threee, there was no way it could have connected number 4 successfully, resulting
+in a dangling edge, which fujaba does not allow \ldots why didn't at least the first set of card from partitions 0, 1, 2. Work? Dangling edges - predicts that there
+will be no way to repair it, so it ends te whole operation.
+
+While we addressed in index issue in our implemenation code (anzthing above 2 would be assigned as index 2), that only took care of the attribute, not the
+actual object. Lets consider just extending our current rule so it could handle a fourth card \ldots It would be as simple as including
+another partition in our rule and connecting it proberly. But what if we wanted a fith? a sixth?  This obviously won't work -- there will always be an n+1
+partition that needs to be resolved.
+
+Instead, let's create a new rule so that the TGG can check both. After all, the protocol is bound to try EVERY possilbilty before continuing. that means, if
+the first rule fails, it will try to apply this one, and it will succeed.
 
 \jumpDual{allCards vis}{allCards tex}
 

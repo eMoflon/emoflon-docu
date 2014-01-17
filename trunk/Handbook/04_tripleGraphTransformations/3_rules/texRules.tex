@@ -24,8 +24,8 @@ resemble Fig.~\ref{}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{eclipse_startRule}
-  \caption{figureCaption}
+  \includegraphics[width=0.5\textwidth]{eclipse_boxToDictionary_start}
+  \caption{start BoxToDictionary}
   \label{fig:textSourceRule}
 \end{center}
 \end{figure}
@@ -46,8 +46,8 @@ Your rule should now resemble Fig.~\ref{fig:ruleBasic}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_ruleBasic}
-  \caption{figureCaption}
+  \includegraphics[width=0.8\textwidth]{eclipse_boxToDictionary_firstElements}
+  \caption{first elements}
   \label{fig:ruleBasic}
 \end{center}
 \end{figure}
@@ -61,16 +61,7 @@ able to see it assigned to the dictionary. Go to ``LearningBoxLanguage/instances
 \item[$\blacktriangleright$] Returning to \texttt{BoxToDictionaryRule}, in order to complete our TGG Rule, we still need to create the structure of the learning
 box that would result from executing the \emph{backwards} transformation, from \texttt{dictionary} to \texttt{box}. In contrast to how every \emph{Entry} in a
 \texttt{Dictionary} are simply contained within in, each \texttt{Card} in a \texttt{Box} is sorted into different \texttt{Partition}s. In the object variable
-scrop for \texttt{box}, create \texttt{partition0}, \texttt{partitio1}, and \texttt{partition2}, each of type \texttt{Partition}. Your workspace should now
-resemble Fig.~\ref{fig:firstReferences}.
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_ruleContainedReferences}
-  \caption{figureCaption}
-  \label{fig:firstReferences}
-\end{center}
-\end{figure}
+scrop for \texttt{box}, create \texttt{partition0}, \texttt{partitio1}, and \texttt{partition2}, each of type \texttt{Partition}. 
 
 \item[$\blacktriangleright$] To complete each \texttt{partition} structure, we also need to set up the movement references as according to the Leitner Box
 Rules -- if a card is guessed wrong, it will always be returned to the very first partition, no matter how far along it is. Conversely, if a card if guessed
@@ -80,7 +71,7 @@ Fig.~\ref{fig:allReferences}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_completedB2DRule}
+  \includegraphics[width=0.8\textwidth]{eclipse_boxToDictionary_complete}
   \caption{First rule complete (note: buggy)}
   \label{fig:allReferences}
 \end{center}
@@ -95,6 +86,9 @@ only be able to handle completely \emph{empty} boxes and dictionaries -- you can
 If you're in a hurry, feel free to jump ahead to Section 4: TGGs in Action to execute this rule. Otherwise, the next rule we create will integrate itself with
 \texttt{BoxToDictionaryRule} to increase its functionality. 
 
+
+% --------------- Card To Entry ------------------------------------------------------------------------------------------------------------------------
+\newpage
 \subsection{CardToEntryRule}
 
 \begin{itemize} 
@@ -105,7 +99,7 @@ source and \texttt{Entry} target. Your updated \texttt{Schema} should now resemb
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.4\textwidth]{eclipse_updatedSchema}
-  \caption{figureCaption}
+  \caption{udpated schema}
   \label{fig:updatedSchema}
 \end{center}
 \end{figure}
@@ -121,8 +115,8 @@ ones are already known from the context? Which element still needs to be made? Y
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.4\textwidth]{eclipse_sourceOVs}
-  \caption{figureCaption}
+  \includegraphics[width=0.4\textwidth]{eclipse_cardToEntry_sourceOVs}
+  \caption{source filled}
   \label{fig:c2eRuleSource}
 \end{center}
 \end{figure}
@@ -134,8 +128,8 @@ between \texttt{card} and \texttt{entry} with the new correspondence type from o
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_secondRuleStructured}
-  \caption{figureCaption}
+  \includegraphics[width=0.8\textwidth]{eclipse_cardToEntry_correspondence}
+  \caption{correspondence}
   \label{fig:c2etargetCorresp}
 \end{center}
 \end{figure}
@@ -147,8 +141,8 @@ just press \texttt{ctrl + space} after writing \texttt{->} for a list of availab
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_c2eAllReferences}
-  \caption{figureCaption}
+  \includegraphics[width=0.8\textwidth]{eclipse_cardToEntry_objectVariables}
+  \caption{all object variables}
   \label{fig:c2eAllReferences}
 \end{center}
 \end{figure}
@@ -163,8 +157,8 @@ constraints from the previous rule. Instead, we need to create three strictly re
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_contentConstraints}
-  \caption{figureCaption}
+  \includegraphics[width=0.8\textwidth]{eclipse_cardToEntry_firstConstraints}
+  \caption{preexisting constraints}
   \label{fig:contentConstraints}
 \end{center}
 \end{figure}
@@ -182,8 +176,8 @@ Fig.~\ref{fig:c2eDone}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_completedCardToEntryRule}
-  \caption{CompletedRule}
+  \includegraphics[width=0.8\textwidth]{eclipse_cardToEntry_complete}
+  \caption{COMPLETED rule}
   \label{fig:c2eDone}
 \end{center}
 \end{figure}

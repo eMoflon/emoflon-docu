@@ -62,9 +62,8 @@ Now that we an understanding behind the construction of a new attribute constrai
 \begin{itemize}
 \item[$\blacktriangleright$] Locate and open \texttt{IndexToLevel.java} under ``src/csp.constraints'' in \texttt{LearningBoxToDictionaryIntegration}.
 
-\item[$\blacktriangleright$] As you can see, code has been generated in order to handle the current unimplemented state of \texttt{IndexToLevel}. Copy
-and paste the the code in Fig.~\ref{fig:indexToLevel} on the next page into the file to replace it.\footnote{You can format the code by pressing
-\texttt{Ctrl + shift + F}}
+\item[$\blacktriangleright$] As you can see, code has been generated in order to handle the current unimplemented state of \texttt{IndexToLevel}. Use the
+Eclipse's built-in auto-complete feature to help implement the code in Fig.~\ref{fig:indexToLevel} and replace the default code.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -126,18 +125,18 @@ public class IndexToLevel extends ConstraintImpl {
 
 \vspace{0.5cm}
 
-To briefly explain, the \texttt{levels} list sets each String \texttt{level} to 0,1, or 2, which correspond to the \texttt{index} values of each partition.
-You'll notice that instead of setting `master' to 2, we have set it to 0. This is because unlike an \texttt{entry} in \texttt{dictionary}, the postition of each
-\texttt{card} in \texttt{box} is \emph{not} based on difficulty, but simply how it has been moved as a result of the user's guess. Easy cards are therefore more
-likely to be in the final partiton by moving through the box quickly, while challenging cards are most likely to be near the start, as they keep getting
-sent backwards.
+To briefly explain its implementation, the \texttt{levels} String list sets each \texttt{level} to 0,1, or 2, which correspond to each partition's
+\texttt{index} attribute. You'll notice that instead of setting `master' to 2, it has been set to match the first 0 partition. Unlike an \texttt{entry} in
+\texttt{dictionary}, the postition of each \texttt{card} in \texttt{box} is \emph{not} based on difficulty, but simply how it has been moved as a result of the
+user's guess. Easy cards are therefore more likely to be in the final partiton (due to moving through the box quickly) while challenging cards are most
+likely to have been returned to the starting position.
 
 \vspace{0.5cm}
 
-As you can also see, there is a switch statement structure, based on whatever adornment is currently active. For all cases, \texttt{setSatisfied} informs the
+You can also see a switch statement structure based on whatever adornment is currently active. For all cases, \texttt{setSatisfied} informs the
 TGG whether or not the constraint (and by consequence, the rule) can be executed. For \texttt{BF}, it suggests that if a negative partition were to exist, to
-simply set its index value to 0. Similarily, if there was ever a partition more than 2 (i.e., \texttt{partition4}), to set its index to the highest difficulty
-level, 2. Otherwise, \texttt{BF} simply gets the index of the partition, assigns it so it becomes bound, and finishes. In the final case, where \texttt{level}
+simply set its index value to 0. Similarily, if there was ever a partition more than 2 (i.e., \texttt{partition4}), it would set its index to the highest
+difficulty level, 2. Otherwise, \texttt{BF} simply gets the index of the partition, assigns it so it becomes bound, and finishes. In the final case, where \texttt{level}
 is already known (i.e., transforming an \texttt{entry} into a \texttt{card}), if the String \texttt{level} cannot be matched to any of those in the list, state
 that it does not exist, and the rule cannot be completed. Otherwise, bind the value and complete the constraint.
 
