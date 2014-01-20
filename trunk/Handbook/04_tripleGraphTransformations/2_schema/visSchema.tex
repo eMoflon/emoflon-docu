@@ -45,7 +45,7 @@ type indicates to EA that the new package is a TGG Project.
 \end{figure}
 
 \item[$\blacktriangleright$] The structure of your TGG project should now resemble Fig.~\ref{fig:new_tgg_project}. Please note that a subpackage \texttt{Rules}
-and an underlying diagram with the same name are also generated. \update -- started from the wrong EAP
+and an underlying diagram with the same name are also generated.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -58,12 +58,15 @@ and an underlying diagram with the same name are also generated. \update -- star
 \clearpage
 
 Now it's time to insert classes from our source and target projects into our TGG project and declare our first \emph{correspondence type} between them.
-The classes \texttt{Box} and \texttt{Dictionary} are to be related to each other.
+The classes \texttt{Box} and \texttt{Dictionary} are to be related to each other. Please note that all other information in the source and target metamodels,
+such as attributes, methods, and references, are shown by default in the TGG schema.
 
 \begin{itemize}
-\item[$\blacktriangleright$] Hold \texttt{ctrl}, then drag-and-drop the \texttt{Box} class from \texttt{Learning\-Box\-Language} into the newly
-created TGG schema diagram, which should have automatically opened in the editor when you made it. Ensure that the class is pasted \texttt{as a simple link} into the
-diagram (Fig.~\ref{fig:TGGdragDrop})
+
+\item[$\blacktriangleright$] Confirm the TGG schema diagram is open in the editor and hold \texttt{ctrl}, then drag-and-drop the \texttt{Box} class from
+\texttt{Learning\-Box\-Language} into the window. Ensure that the class is pasted \texttt{as a simple link} into the diagram (Fig.~\ref{fig:TGGdragDrop})
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -73,9 +76,11 @@ diagram (Fig.~\ref{fig:TGGdragDrop})
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Note that you are able to set \texttt{Autosave Selection as default}. In fact, we did this in the previous Part! We'll need to
-switch drag types several times during this part however, so it's best to leave this unchecked if you do not want to hold \texttt{ctrl} each time you use this
-gesture.
+\item[$\blacktriangleright$] Note that you are able to set \texttt{Autosave Selection as default}. In fact, we did this in the previous part! We'll need to
+switch drag types several times during this part however, so it's best to leave this unchecked if you do not want to hold \texttt{ctrl} each time you use the
+drag-and-drop gesture.
+
+\vspace{0.5cm}
 
 \item[$\blacktriangleright$] With a class from both source and target metamodels, we can now create a correspondence type between them! Quick-link from
 \texttt{Box} to \texttt{Dictionary}, and select \texttt{Create TGG Corres\-pon\-dence Type} (Fig.~\ref{fig:create_correspondence}).
@@ -93,6 +98,7 @@ gesture.
 \item[$\blacktriangleright$] As you can see, a correspondence type has been created, visualised as an hexagonal shape (Fig.~\ref{fig:ea_firstCorrType}). It is
 automatically named \texttt{BoxToDiction\-ary}, and the relevant references have been generated.
 
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -102,8 +108,8 @@ automatically named \texttt{BoxToDiction\-ary}, and the relevant references have
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] You're done! To see how the source and target classes are specified, as well as the correspondence type between them, check out
-Fig.~\ref{fig:firstCorrType} found in the next section.
+\item[$\blacktriangleright$] You're done! To see how the source and target classes, along with the correspondence type between them are declared in the textual
+schema, check out Fig.~\ref{fig:firstCorrType} in the next section.
 
 % Can this be omitted? Users create a new one on the fly?
 % \item[$\blacktriangleright$] To finish our TGG schema, declare a second correspondence type in the same file between \texttt{Card} and \texttt{Entry}. You'll
