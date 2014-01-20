@@ -7,7 +7,9 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Right-click on \texttt{MyWorkingSet}, and navigate to ``New / TGG'' (Fig.~\ref{fig:contextTGG}).
+\item[$\blacktriangleright$] Right-click on the \texttt{MyWorkingSet} folder, and navigate to ``New / TGG'' (Fig.~\ref{fig:contextTGG}).
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -17,24 +19,25 @@
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Name it \texttt{LearningBoxToDictionaryIntegration}, setting the source as \texttt{LearningBoxLanguage} and the target as
+\item[$\blacktriangleright$] Name the TGG \texttt{LearningBoxToDictionaryIntegration}, setting the source as \texttt{LearningBoxLanguage} and target as
 \texttt{DictionaryLanguage} (Fig.~\ref{fig:newTGG}).
+
+\item[$\blacktriangleright$] A new \texttt{schema} file should now be active in the editor! This is the \emph{TGG Schema} which declares each
+\emph{correspondence type} as an \texttt{integration class}. Press \texttt{ctrl + space} and use the auto completion to generate a new class template.
+
+\newpage
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.9\textwidth]{eclipse_newTGG}
-  \caption{figureCaption}
+  \includegraphics[width=0.8\textwidth]{eclipse_newTGG}
+  \caption{figureCaption \update make smaller?}
   \label{fig:newTGG}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] A new \texttt{schema} file should now be active in the editor! This is the \emph{TGG Schema} which declares ever
-\emph{correspondence type} as \texttt{integration class}es. Press \texttt{ctrl + space} and use the auto completion to generate a new class template. \update
-review the thesis : get the right names
-
-\item[$\blacktriangleright$] Press \texttt{tab} to jump to each element, naming the class \texttt{BoxToDictionary}, and listing the source as \texttt{Box}
-and target as \texttt{Dictionary} (Fig.~\ref{fig:newTGG}). We have set these objects this way as they are each containers which hold the smaller \texttt{card}
-and \texttt{Entry} objects. In essence, these are the containers all new objects will be connected to.
+\item[$\blacktriangleright$] Note that you can press \texttt{tab} to quickly jump forward through each element. Name the class \texttt{BoxToDictionary}, and
+list the source as \texttt{Box} and target as \texttt{Dictionary} (Fig.~\ref{fig:newTGG}). In the TGG Dialogue, you set the source and target \emph{classes}.
+Here, you are creating the first object variables to represent them. 
 
 \begin{figure}[htbp]
 \begin{center}
@@ -44,7 +47,8 @@ and \texttt{Entry} objects. In essence, these are the containers all new objects
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] That's it! Your schema is now complete with connections to your \texttt{source} and \texttt{target} metamodels via a correspondence
-link. To see how this is done in the visual syntax, check out Fig.~\ref{fig:firstCorrType} from the previous section.
+\item[$\blacktriangleright$] Believe it or not, \emph{that's} your correspondence type! Your schema is now complete with connections to your \texttt{source} and
+\texttt{target} metamodels via a \emph{link} metamodel. To see the equivalent structure in the visual syntax, check out Fig.~\ref{fig:firstCorrType} from the
+previous section.
 
 \end{itemize}

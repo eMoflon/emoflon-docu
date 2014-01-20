@@ -1,19 +1,23 @@
 \newpage
+\hypertarget{multiEAP}{}
 \subsection{Importing and working with multiple EAPs}
 \visHeader
-\label{sec:multiEAP}
 
 Please note that the following instructions on how to properly export and import Enterprise Architect (EA) files is \emph{not} an eMoflon-exclusive feature!
-Instead of simply referring you to their instructions however, we have included them here in full for reference in future projects.
+Instead of simply referring you to their instructions, we have included them here as importing projects into the \emph{same} workspace is crucial for
+transformations to work.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] In the same \texttt{Part4.zip} folder you extracted this document from, open \texttt{DictionaryLanguageSource.eap} in EA.
+\item[$\blacktriangleright$] Open the folder where you extracted the contents of the \texttt{Part4.zip} download and open \texttt{DictionaryLanguageSource.eap}
+in EA.
+
+\vspace{0.5cm}
 
 \item[$\blacktriangleright$] Expand the root node and confirm its resemblance to Fig.~\ref{fig:dictionaryLangStart}. Feel free to inspect the main
-\texttt{DictionaryLanguage} diagram until you're familiar with what you'll be working with. We'll primarily be working with the \texttt{Dictionary} and
-\texttt{Entry} classes, where dictionaries are unsorted containers for an unlimited number of entries. Dictionaries can be assigned unique \texttt{title}s,
-and each entry will have some sort of \texttt{content} to be learned with a difficulty \texttt{level} of ``beginner,'' ``advanced,'' or ``master.''
+\texttt{DictionaryLanguage} diagram until you're familiar with the metamodel. We'll primarily be working with the \texttt{Dictionary} and
+\texttt{Entry} objects. You'll be able to see that dictionaries can be assigned unique \texttt{ESTring title}s, and each entry will have some sort of
+\texttt{content} matched with one of three difficulty \texttt{level}s.
 
 \vspace{0.5cm}
 
@@ -25,16 +29,18 @@ and each entry will have some sort of \texttt{content} to be learned with a diff
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] While you are able to copy and paste packages between multiple EAPs (i.e., copy \texttt{<<EPack\-age>>DictionaryLanguage} into the
-\texttt{MyWorkingSet} root note of \texttt{Leit\-nersLearningBox.eap}), if any of the copied packages have dependencies on other packages, it cannot be done so
-easily. All links would be destroyed! If you tried to copy \texttt{DictionaryLanguage}, for example, the receiving project would not be able to establish the
-neccesary links to eMoflon's \texttt{Moca Language}.
+\item[$\blacktriangleright$] It should be said that while you are able to copy and paste packages between multiple EAPs (i.e., copy
+\texttt{<<EPack\-age>>DictionaryLanguage} into the \texttt{MyWorkingSet} root note of your source metamodel), if any of the copied packages have dependencies on
+other packages, it cannot be done so easily. All links would be destroyed! If you tried to copy \texttt{DictionaryLanguage}, for example, the receiving project
+would not be able to establish the neccesary links to eMoflon's \texttt{Moca Language}.
 
 \clearpage
 
-\item[$\blacktriangleright$] Therefore, to migrate packages, you have to export a \emph{complete} node to an XMI file. Right-click on the
-\texttt{DictionaryLanguage} EPackage, then navigate to ``Import/Export / Export Model to XMI\ldots'' (Fig.~\ref{fig:contextExport}). Alternatively, select the
-root and press \texttt{Ctrl + Alt + E}.
+\item[$\blacktriangleright$] Therefore, to properly migrate packages, you have to export a \emph{complete} node to an XMI file. To do this, right-click on the
+\texttt{<<EPack\-age>>DictionaryLanguage} and navigate to ``Import/Export" and select \texttt{Export Model to XMI\ldots} (Fig.~\ref{fig:contextExport}).
+Alternatively, you can select the root in the project browser and press \texttt{Ctrl + Alt + E}.
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -44,8 +50,8 @@ root and press \texttt{Ctrl + Alt + E}.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Save the file somewhere easily accessible, such as your desktop, and change the export type to \texttt{XMI 2.1}. Press export,
-and close the window once the small green bar appears (Fig.~\ref{fig:export}).
+\item[$\blacktriangleright$] Change the export type to \texttt{XMI 2.1} and save the file somewhere easily accessible (such as your desktop). Press export, and
+close the window once the small green bar appears (Fig.~\ref{fig:export}).
 
 \vspace{0.5cm}
 
@@ -57,11 +63,11 @@ and close the window once the small green bar appears (Fig.~\ref{fig:export}).
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Now open \texttt{LeitnersLearningBox.eap} from Eclipse and right-click anywhere in the project browser. Navigate to ``Import
-Model from XMI\ldots''
+\item[$\blacktriangleright$] Open \texttt{LeitnersLearningBox.eap} from your Eclipse workspace and right-click anywhere in the project browser. Navigate to
+``Import Model from XMI\ldots''
 
-\item[$\blacktriangleright$] Find the \texttt{.xmi} file you just saved and press \texttt{import}. Press \texttt{OK} in the confirmation dialogue. Your project
-browser now resemble Fig.~\ref{fig:importProBrowser}.
+\item[$\blacktriangleright$] Find the \texttt{.xmi} file you just saved and press \texttt{import}. Press \texttt{OK} in the confirmation dialogue; Your project
+browser should now resemble Fig.~\ref{fig:importProBrowser}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -71,15 +77,16 @@ browser now resemble Fig.~\ref{fig:importProBrowser}.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] The final step is to validate and export both metamodels to Eclipse! First, use the eMolfon control panel to and under
-\texttt{Validate}, press \texttt{All}.\footnote{To review the details and how to use the eMoflon control panel, read Section 2.8 from Part II}
+\clearpage
 
-\item[$\blacktriangleright$] Switch back to Eclipse and refresh your package explorer. A new \texttt{DictionaryLanguage} project should have appeared under
-\texttt{My Working Set}.
+\item[$\blacktriangleright$] Confirm everything worked by validating and exporting the dual-metamodel project to Eclipse, refreshing the package explorer to
+build your workspace. You can do this with the eMolfon control panel, pressing \texttt{All} under \texttt{Validate}.\footnote{To review the details of how to
+use the eMoflon control panel, read Section 2.8 from Part II}
 
-\item[$\blacktriangleright$] Thats everything! You're now ready to start using your source and target metamodels with TGGs. If you've just joined us and are
-interested in the eMoflon project structure, or curious as to how Java code is generated from your visual metamodel, we invite you to read Part I, Section 4.1.
-Otherwise, continue with this part to start developing your TGG Schema.
+\item[$\blacktriangleright$] After the validation completes, switch back to Eclipse and refresh your package explorer by pressing \texttt{F5}. A new
+\texttt{DictionaryLanguage} project should have appeared under \texttt{My Working Set}.
+
+\item[$\blacktriangleright$] That's everything! You're now ready to start your first transformation using your source and target metamodels.
 
 \jumpSingle{TGGSchema}
 

@@ -1,23 +1,23 @@
 \newpage
 \hypertarget{TGGSchema}{}
-\section{Specifying a TGG schema}
+\section{Creating your TGG schema}
 \genHeader
 
-Now that we have the target and source components prepared in the workspace, the first proper step towards completing any TGG is to model the
-correspondence component of your triples.\define{Link \\ Metamodel}This correspondence or \emph{link metamodel}, is made up of \emph{correspondence
-types}\define{Correspondence Types}which connect classes between the source and target metamodels. These special types can be thought of as traceability
-links. They can help you understand why objects were created.
+With the target and source components prepared in the workspace, the first true step towards completing any TGG is to model the correspondence component of your
+future triple.\define{Link \\ Metamodel}This correspondence or \emph{link metamodel} helps to drive the forward transformation, and is made up of
+\emph{correspondence types}\define{Correspondence Types}which connect classes between the source and target metamodels. These special types can also be thought
+of as traceability links.
 
-While the link metamodel is really just a standard metamodel, we use a slightly different naming conventions and concrete syntax to represent it.\define{TGG
+While the link metamodel is really just a standard metamodel, we use slightly different naming conventions and concrete syntaxes to represent it.\define{TGG
 Schema} Together, the overall metamodel triple consisting of the relevant parts of the source, link, and target metamodels is called the \emph{TGG
 schema}.
 
-A TGG schema can be viewed as the (metamodel) triple to which all new triples must conform. In less technical lingo, it gives an abstract view on the
-relationships (\emph{correspondence}) between two metamodels or domains. A doman expert should be able to understand why certain connected elements are related,
-irrespective of how the relationship is actually established by TGG rules, just by looking at the TGG schema. Please note that all other information in the
-source and target metamodels, such as attributes, methods, and references, are shown by default in the TGG schema.
+A TGG schema can be viewed as the (metamodel) triple to which all \emph{new} triples must conform. In less technical lingo, it gives an abstract view on the
+relationships (correspondence) between two metamodels or domains. A domain expert should be able to understand why certain connected elements are related,
+irrespective of how the relationship is actually established by TGG rules, just by looking at the TGG schema. 
 
-In our example, we will create a link between our source \texttt{Box} and target \texttt{Dictionary}. This will enable us to\ldots
+
+In our example schema, we will create a link between our source \texttt{Box} and target \texttt{Dictionary}.
 
 \jumpDual{schema vis}{schema tex}
 
