@@ -5,14 +5,14 @@
 As you've discovered while making SDMs, eMoflon employs a simple context-sensitive expression language for specifying  values. We have intentionally avoided
 creating a full-blown sub-language, and limit expressions to a few simple types. The philosophy here is to keep things simple and concentrate on what SDMs are good for -- expressing structural
 changes. Our approach is to provide a clear and type-safe interface to a general purpose language (Java) and support a simple \emph{fallback} via calls to
-injected methods as soon as things get too low-level and difficult to express as a pattern.
+injected methods as soon as things get too low-level and difficult to express structurally as a pattern.
 
 The alternative approach to eMoflon would be to support arbitrary expressions, for example, in a script language like JavaScript or in an appropriate
 DSL\footnote{A DSL is a Domain Specific Language: a language designed for a specific task which is usually simpler than a general purpose language like Java and
 more suitable for the exact task.} designed for this purpose. 
 
 We've encountered several different expression types throughout our SDMs so far, and all of them can be used for binding expressions. Since each syntax has
-used at least three of these once, let's consider what each type would mean in the context on SDMs:
+used at least three of these once, let's consider what each type would mean:
 
 \begin{description}
   

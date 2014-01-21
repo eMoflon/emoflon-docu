@@ -1,11 +1,11 @@
 \newpage
 \hypertarget{sec:stringRep}{}
-\section{String representations}
+\section{A string representations of our learning box}
 \genHeader
 
 In the next SDM we shall create a string representation for all the contents in a single learning box. To accomplish this, we will have to iterate through 
 every card, in every partition. The concept is similar to \texttt{Partition}'s \texttt{empty} method, except we'll need to create a nested \emph{for each}
-loop (Fig.~\ref{fig:goal_stringRep}). Further still, we'll need to call a helper method to add the contents of each card to \texttt{stringRep}.
+loop (Fig.~\ref{fig:goal_stringRep}). Further still, we'll need to call a helper method to accumulate the contents of each card to a single string.
 
 \vspace{1cm}
 
@@ -18,14 +18,14 @@ loop (Fig.~\ref{fig:goal_stringRep}). Further still, we'll need to call a helper
 
 \vspace{1cm}
 
-As you can see, The first loop will match all partitions, while the second matches each card. Finally, each card uses a \emph{statement node} to invoke the
-\texttt{addToStringRep} method. In contrast to how they were used for conditional branching in \texttt{grow}, this statement node will simply invoke and
-complete a method.
+As you can see, The first loop will match all partitions, while the second matches each card. Finally, a \emph{statement node} is used to invoke the
+\texttt{addToStringRep} method. In contrast to how they were used for conditional branching in \texttt{grow}, this statement node will simply invoke a
+void method.
 
-Unlike \texttt{initializeBox} however, this method is actually better specified as an injection so, analogously to how you implemented
+Unlike \texttt{initializeBox} however, this helper method is actually better specified as an injection so, analogously to how you implemented
 \texttt{determineNextSize} for \texttt{box.grow()}, quickly edit \texttt{BoxImpl.java} by replacing the default code for \texttt{addToStringRep} with that
-in Fig.~\ref{code:addToStringRep_inject_file}. You can use Eclipse's built-in auto-completion to speed up this process. Save, rebuild, and confirm the changes
-in \texttt{BoxImpl.inject}.
+in Fig.~\ref{code:addToStringRep_inject_file}. You can use Eclipse's built-in auto-completion to speed up this process. Save, create the injection file, and
+confirm the contents of \texttt{BoxImpl.inject}.
 
 \newpage
 
@@ -50,7 +50,7 @@ public void addToStringRep(Card card) {
 	stringRep = sb.toString();
 	}
         \end{lstlisting}
-        \caption{Editing \texttt{addToStringRep}}
+        \caption{Implementation of \texttt{addToStringRep}}
         \label{code:addToStringRep_inject_file}
     \end{figure}
     \FloatBarrier

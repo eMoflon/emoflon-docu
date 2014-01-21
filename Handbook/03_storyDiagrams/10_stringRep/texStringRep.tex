@@ -1,6 +1,6 @@
 \newpage
 \hypertarget{stringRep tex}{}
-\subsection{Implementing stringRep}
+\subsection{Implementing toString for \texttt{Box}}
 \texHeader
 
 \vspace{0.5cm}
@@ -9,19 +9,20 @@
   
 \item[$\blacktriangleright$] Closely following Fig.~\ref{fig:goal_stringRep}, create a nested \texttt{forEach} loop in \texttt{Box.toString()}.
 Don't worry about invoking \texttt{addToStringRep} yet -- just make sure you return the \texttt{this.stringRep} attribute. It should resemble
-Fig.~\ref{fig:emptyLoops}.
+Fig.~\ref{fig:emptyLoops}. \texttt{this.stringRep} is referred to as an \emph{AttributeValueExpression}\define{AttributeValueExpression}as it accesses an
+attribute value of an object variable (\texttt{this}).
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_toStringNestedLoops}
-  \caption{Control flow for \texttt{toString}}
+  \caption{Control flow for \texttt{toString} with nested \emph{for each} loops}
   \label{fig:emptyLoops}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] In order to invoke \texttt{addToStringRep}, we need create another \emph{statement node}. Inside the second loop, write:
-\syntax{<@this.addToStringRepCard(card)>} 
-The correct \texttt{card} parameter will be matched by the \texttt{ForAllCards} pattern; We'll establish this next.
+\item[$\blacktriangleright$] In order to invoke \texttt{addToStringRep}, we need a \emph{statement node}. Remembering that statement nodes are enclosed in
+\texttt{< >}, write inside the second loop: \syntax{<@this.addToStringRepCard(card)>} 
+The correct \texttt{card} parameter will be matched by the \texttt{forAllCards} pattern. We'll establish this in a moment.
 
 \vspace{0.5cm}
 
@@ -32,14 +33,14 @@ The correct \texttt{card} parameter will be matched by the \texttt{ForAllCards} 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.6\textwidth]{eclipse_boxtoStringFlow}
-  \caption{Using a \emph{statement node} as part of the control flow}
+  \caption{Using a \emph{statement node} to invoke a void helper method}
   \label{fig:toStringFlow}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Don't forget that the aim of the activity is to access every item in \texttt{Box}. The control flow finishes when the helper
-method is able to called for all existing cards. This means the \texttt{forAllPartitions} and \texttt{forAllCards} patterns only need to match their
-namesake's object variable to ensure that all cards in all partitions are found.
+\item[$\blacktriangleright$] Don't forget that the aim of the activity is to access every card in \texttt{Box}. The control flow terminates when the helper
+method has been called for all existing cards. This means the \texttt{forAllPartitions} and \texttt{forAllCards} patterns must match all cards in all
+partitions.
 
 \clearpage
 

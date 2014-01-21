@@ -18,16 +18,16 @@ accept any parameters -- it'll use a bound \texttt{this} object variable.
 \end{figure}
 \FloatBarrier
 
-Something new that we'll use in this SDM are \emph{assignments}\define{Assignments}to set the set attributes of \texttt{temp} to \texttt{card} (switched), then
-again to actually swap the \texttt{card} values. An assignment is simply an attribute constraint\footnote{Which we first encountered in \texttt{check}} set via
-a \texttt{`:='} operator. Though it may be slightly confusing to refer to an assignment as a constraint, if you think about it, \emph{everything} can be
+Something new that we'll use in this SDM are \emph{assignments}\define{Assignments}to set the attributes of a \texttt{temp} object variable with \texttt{card},
+then again to actually swap the \texttt{card} values. An assignment is simply an attribute constraint\footnote{Which we first encountered in \texttt{check}}
+with a \texttt{`:='} operator. Though it may be slightly confusing to refer to an assignment as a constraint, if you think about it, \emph{everything} can be
 considered as a constraint that must be fulfilled using different strategies.
 
 With \texttt{invert}, a successful match is achieved not by searching as you would with a comparison (\texttt{==, >, <, \ldots}), but by \emph{performing} the
 above assignment. If the assignment cannot be completed, the match is invalid. Similarly, non-context elements (set to create or destroy) can be viewed as
 structural constraints that are fulfilled when the corresponding element is created or destroyed.  A constraint is therefore a unifying concept similar to
-``everything is an object'' from OO, and ``everything is a model'' from metamodelling.  If you're interested in why \emph{unification} is considered cool check
-out \cite{BEZ05}.
+``everything is an object'' from OO, and ``everything is a model'' from metamodelling.  If you're interested in why \emph{unification} is considered cool, check
+out~\cite{BEZ05}.
 
 \jumpDual{invertCard vis}{invertCard tex}
 

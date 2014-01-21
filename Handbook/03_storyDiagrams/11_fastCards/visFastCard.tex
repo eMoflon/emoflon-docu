@@ -43,10 +43,10 @@ Fig.~\ref{fig:extendCheck}.
 \end{center}
 \end{figure}
  
-\item[$\blacktriangleright$] As you can see, you have created two new story nodes, the \texttt{isFastCard} assertion, and the \texttt{promoteFastCard} movement.
+\item[$\blacktriangleright$] As you can see, you have created two new story nodes, \texttt{isFastCard}, and \texttt{promoteFastCard}.
  
 \item[$\blacktriangleright$] Next, in order to complete the newest conditional, create a bound \texttt{FastCard} object variable, named \texttt{fastcard} in
-\texttt{isFastCard}.
+\texttt{isFastCard} (Fig.~\ref{fig:fastCardBinding}).
  
 \item[$\blacktriangleright$] To check the dynamic type, we'll need to create a binding of \texttt{card} (of type \texttt{Card}) to \texttt{fastcard} (of
 type \texttt{FastCard}), so edit the \texttt{Binding} tab in the \texttt{Object Variable Properties} dialogue (Fig.~\ref{fig:fastCardBinding}). Please note that
@@ -64,12 +64,11 @@ pattern matcher to check for types, rather than \texttt{parameters} and \texttt{
  \clearpage
 
 In our case, we could use a \emph{ParameterExpression} or an \emph{ObjectVariableExpression} as \texttt{card} is indeed a parameter \emph{and} has already been
-used in \texttt{checkIfGuessIsCorrect}. We haven't tried it yet, so lets use \emph{ObjectVariableExpression}.
+used in \texttt{checkIfGuessIsCorrect}. We haven't tried the latter yet, so lets use \emph{ObjectVariableExpression}.
 
 \item[$\blacktriangleright$] \define{ObjectVariableExpression}Update the \texttt{fastcard} binding by switching the expression to 
-\texttt{Object\-Vari\-able\-Ex\-pres\-sion}, with \texttt{card} as the target.
-
-\vspace{0.5cm}
+\texttt{Object\-Vari\-able\-Ex\-pres\-sion}, with \texttt{card} as the target. Note that a binding could also use a \emph{MethodCallExpression} to invoke a
+method whose return value would be the bound value. This is very useful as it allows invoking helper methods directly in patterns.
 
 \item[$\blacktriangleright$] To finalize the SDM, extract the \texttt{promoteFastCard} story pattern and build the pattern according to
 Fig.~\ref{fig:promoteFastCardPattern}. Compare this pattern to Figs.~\ref{fig:sdm_check_complete_activity_node} and \ref{fig:sdm_check_complete_penalize}, the
@@ -86,7 +85,7 @@ original promotion and penalizing card movements. As you can see, they're very s
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Inspect Fig.~\ref{fig:promoFastCardFinal} to see how this is finalized in the textual syntax.
+\item[$\blacktriangleright$] Inspect Fig.~\ref{fig:promoFastCardFinal} to see how this is done in the textual syntax.
 
 \item[$\blacktriangleright$] You have now implemented every method using SDMs -- fantastic work! Save, validate, and build your metamodel to see some new code.
 Inspect the implementation for \texttt{check}.  Can you find the generated type casts for \texttt{fastcard}?

@@ -16,19 +16,19 @@ become the \texttt{next} reference of the current last partition, and its \textt
 \FloatBarrier
 
 SDMs provide a declarative means of identifying specific partitions via \emph{Negative Application Conditions}, simply referred to as
-\mbox{NAC}s.\footnote{Pronounced $\backslash 'nak \backslash$}\define{NAC}\mbox{NAC}s express structures that are forbidden to exist before or after applying a
+\mbox{NAC}s.\footnote{Pronounced $\backslash 'nak \backslash$}\define{NAC}\mbox{NAC}s express structures that are forbidden to exist before applying a
 transformation rule. In this SDM, the \mbox{NAC} will be an object variable that must not be assigned a value during pattern matching. In the theory of
 algebraic graph transformations \cite{EEPT06}, \mbox{NACs} can be arbitrarily complex graphs that are much more general and powerful than what we currently
 support in our implementation,\footnote{To be precise, in CodeGen2 from Fujaba} namely only single negative elements (object or link variables).
 
 As depicted in Fig.~\ref{fig:goal_grow}, to create an appropriate \mbox{NAC} that constrains possible matches, we'll need to check to see if the currently
 matched pattern can be extended to include the negative elements. Suppose the current potential last partition has a \texttt{nextPartition}. This means it
-is \emph{not} the absolute last partition, and so the match becomes invalid. We only want the pattern to insert a new partition when the \texttt{nextPartition}
-of the last partition is null. Similarly, if the current potential first partition has a \texttt{previousPartition}, the match is invalid. The complete match is
-therefore made unique through NACs and thus becomes \emph{deterministic} by construction. In other words, if you \emph{grow} the box with this method, there
+is \emph{not} the absolute last partition, and so the match becomes invalid. We only want to insert a new partition when the \texttt{nextPartition}
+of the current potential last partition is null. Similarly, if the current potential first partition has a \texttt{previousPartition}, the match is invalid. The
+complete match is therefore made unique through NACs and thus becomes \emph{deterministic} by construction. In other words, if you \emph{grow} the box with this method, there
 will always be exactly one first and one last partition of the box.
 
-Of course, to complete this method we still need to determine the size of the new partition! Since the size must be calculated depending on the
+Of course, to complete this method we still need to determine the size of the new partition. Since the size must be calculated depending on the
 rest of the partitions currently in the box (partitions usually get bigger) we'll need to call a helper method, \texttt{determineNextSize} via a
 \emph{MethodCallExpression}.\define{MethodCallExpression}As the name suggests, it is designed to access any method defined in \emph{any} class in the current project.
 
@@ -55,7 +55,7 @@ will likely add invisible characters to the code that eMoflon is unable to handl
 \end{figure}
 
 
-\item[$\blacktriangleright$] Save the file, then right-click either on file in the package explorer, or in the editor window, and choose ``eMoflon/
+\item[$\blacktriangleright$] Save the file, then right-click on it, either in the package explorer or in the editor window, and choose ``eMoflon/
 Create/Update Injection for class'' from the context menu. 
 
 \item[$\blacktriangleright$] Confirm the update in the new \texttt{BoxImpl.inject} file's partial class. \texttt{determineNextSize} is now ready to be used by

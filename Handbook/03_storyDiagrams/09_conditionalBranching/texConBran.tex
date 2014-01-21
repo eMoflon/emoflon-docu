@@ -5,32 +5,32 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Before doing anything else, let's declare the method that will insert two new partitions into \texttt{box} when the original
-pattern match fails. Open \texttt{Box.eclass} and add the following signature anywhere in the file: 
-\syntax{initializeBox() : EBoolean}
+\item[$\blacktriangleright$] Before doing anything else, let's declare the method that will insert two new partitions into \texttt{box} when the
+pattern in \texttt{grow} fails. Open \texttt{Box.eclass} and add the following signature: \syntax{initializeBox() : EBoolean}
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Now modify \texttt{Box.grow()} by adding a nested \emph{if/Else} construct, with \texttt{[addNewPartitionBox]} as the
-first conditional, and execute a \emph{statement node} if it fails. \texttt{grow} should now resemble Fig.~\ref{fig:updateGrow}.
+\item[$\blacktriangleright$] Now modify \texttt{Box.grow()} by adding a nested \emph{if/else} construct, with \texttt{[addNewPartitionBox]} as the
+first conditional, and a \emph{statement node} to invoke \texttt{initializeBox} if it fails. \texttt{grow} should now resemble Fig.~\ref{fig:updateGrow}.
 
 \vspace{0.5cm}
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_updateGrow}
-  \caption{Extending \texttt{Box} with a \emph{statement node}}
+  \caption{Extending \texttt{grow} with a \emph{statement node}}
   \label{fig:updateGrow}
 \end{center}
 \end{figure}
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Next, we want to specify our newest method. Create a new pattern called \texttt{buildPartitions} in its scope. Complete
+\item[$\blacktriangleright$] Next we have to specify our newest method. Create a new pattern called \texttt{buildPartitions} in its scope. Complete
 the pattern as illustrated in Fig.~\ref{fig:pattBuildParts}.
 
-\item[$\blacktriangleright$] As you can see, we have created a NAC that can only be fulfilled if the box has no lonely partition. In turn, this means that if a
-box is completely empty, it will be initialized for the first time with two partitions, and guaranteed to remain in a valid state if growing continues.
+\item[$\blacktriangleright$] As you can see, we have created a NAC that can only be fulfilled if the box has absolutely no partitions at all. This means that if
+a box is completely empty, it will be initialized for the first time with two partitions (according to \texttt{buildPartitions}), and is guaranteed to remain in
+a valid state via \texttt{grow}.
 
 \clearpage
 

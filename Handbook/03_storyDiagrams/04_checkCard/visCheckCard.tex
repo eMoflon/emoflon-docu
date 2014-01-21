@@ -24,7 +24,7 @@
 
 \item[$\blacktriangleright$] In \texttt{checkCard}, create an object variable that is bound to the parameter argument, \texttt{card} 
 (Fig.~\ref{fig:sdm_check_addCard}). This will represent the card the user picked from the learning box. Remember, the binding for this variable is implicitly
-defined when its name is the same as the argument's.
+defined because its name is the same as the argument's.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -38,7 +38,7 @@ defined when its name is the same as the argument's.
 
 \item[$\blacktriangleright$] Now that the pattern has the correct card to check, it needs to compare the user's guess against the unseen \texttt{face} value on
 the opposite side. To do this, we need to specify an \emph{attribute constraint}. Open the \texttt{attribute constraint} tab for \texttt{card} as depicted in
-Fig.~\ref{fig:sdmcheck_att_constraint}, and select the correct object \texttt{Attribute} and \texttt{Operator}.
+Fig.~\ref{fig:sdmcheck_att_constraint}, and select the correct \texttt{Attribute} and \texttt{Operator}.
 
 \vspace{0.5cm}
 
@@ -55,9 +55,10 @@ i.e., the user's EString input. Press \texttt{Add}, and admire your first condit
 
 \vspace{0.5cm}
 
-Before building the other two activity nodes, let's quickly return to the control flow. Currently, the pattern will branch off into two separate patterns after
-completing the initial check, then terminate the method based on whichever activity finishes first\ldots and that's not what we want at all! We need to add
-\emph{edge guards}\define{Edge Guards}to change this into an \emph{if/Else} construct based on the results of the attribute constraint.
+Before building the other two activity nodes, let's quickly return to the control flow. Currently, the pattern branches off into two separate patterns after
+completing the initial check, and it is unclear how to terminate the method. As the code generator does not know what to do here, this is flagged as a
+validation error (you're free to press the validation button and take cover) We need to add \emph{edge guards}\define{Edge Guards}to change this into an
+\emph{if/Else} construct based on the results of the attribute constraint.
 
 \newpage
 
@@ -133,11 +134,11 @@ into the new (extracted) pattern diagram (Fig.~\ref{fig:sdm_check_bound_card}).
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] A dialogue will appear asking what kind of variable should be created. You can create (1) a simple link (which would refer to and
-be represented by the class texttt{Card}), (2) create an instance of \texttt{Card} as an object variable, or (3) as an invocation (copy of a State Machine) and
-setting the source element as its classifier. Paste \texttt{Card} as an \texttt{Instance}, and select \texttt{Autosave Selection as Default} under ``Options" so
-option (2) will be used next time by default. You should also select \texttt{Use Ctrl + Mouse drag to show this Dialog}, so this dialogue doesn't appear every
-time you use this gesture. Don't worry -- if you ever need options (1) and (3), hold \texttt{Ctrl} when dragging to invoke the dialogue again.
+\item[$\blacktriangleright$] A dialogue will appear asking what kind of visual element should be created. You can create (1) a simple link (which would refer to
+and be represented by the class \texttt{Card}), (2) create an instance of \texttt{Card} as an object variable, or (3) as an invocation (which has no meaning
+for eMoflon diagrams). Paste \texttt{Card} as an \texttt{Instance}, and select \texttt{Autosave Selection as Default} under ``Options" so option (2) will be
+used next time by default. You should also select \texttt{Use Ctrl + Mouse drag to show this Dialog}, so this dialogue doesn't appear every time you use this
+gesture. Don't worry -- if you ever need option (1), hold \texttt{Ctrl} when dragging to invoke the dialogue again.
 
 \vspace{0.5cm}
 
@@ -171,13 +172,13 @@ An important point to note here is that \texttt{this} and \texttt{card} are visu
 their bold border lines. This is how we differentiate \emph{bound} from \emph{unbound} (\emph{free}) variables. We already know that matches for bound
 variables are completely determined by the current context. On the other hand, matches for unbound variables have to be determined by the pattern matcher. Such
 matches are ``found'' by navigating and searching the current model for possible matches that satisfy all specified constraints (i.e., type of the variable,
-links connecting it to other variables, and attribute constraints). In our case, \texttt{nextPartition} will have to be determined by navigating from
+links connecting it to other variables, and attribute constraints). In our case, \texttt{nextPartition} should be determined by navigating from
 \texttt{this} via the \texttt{next} link variable.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] To construct the this navigation, quick link from \texttt{this} to \texttt{nextPartition} (or vice-versa) to establish
-\texttt{next}, as shown in Fig.~\ref{fig:sdm_check_link_variable}. As you can see, there are several more property options than what was seen in
+\item[$\blacktriangleright$] To specify this, quick link from \texttt{this} to \texttt{nextPartition} (or vice-versa) to establish
+\texttt{next}, as shown in Fig.~\ref{fig:sdm_check_link_variable}. As you can see, there are several more options than what was seen in
 \texttt{removeCard}. The goal is to have the current partition to proceed (or point) to the \texttt{nextPartition} via the \texttt{next} reference, so select
 the second option. Alternatively, you could define the reference from \texttt{nextPartition} by setting the link variable \texttt{previous} to \texttt{this}.
 
@@ -191,7 +192,7 @@ the second option. Alternatively, you could define the reference from \texttt{ne
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Continue creating links between \texttt{card} and each partition. Remember - you want to \emph{destroy} the reference to
+\item[$\blacktriangleright$] Continue by creating links between \texttt{card} and each partition. Remember - you want to \emph{destroy} the reference to
 \texttt{this}, and \emph{create} a new connection to \texttt{nextPartition}. If everything is set up correctly, \texttt{promoteCard} should now closely resemble
 Fig.~\ref{fig:sdm_check_complete_activity_node}.
 
@@ -225,7 +226,7 @@ then create the necessary variables and links as depicted in Fig.~\ref{fig:sdm_c
 To complete the \texttt{check} activity, we need to signal (as a return value) the result of the check - was the card promoted or penalized? We have no object
 to return so instead, we need to edit the stop nodes so they return a\define{LiteralExpression}\emph{LiteralExpression}. This expression type can be used to
 specify arbitrary text, but should really only be used for true literals like 42, ``foo'' or \texttt{true}. It can be (mis)used for formulating any (Java)
-expression that will simply be transferred ``literally'' into the generated code, but this is obviously sort of dirty\footnote{It defeats, for example, any
+expression that will simply be transferred ``literally'' into the generated code, but this is obviously really dirty\footnote{It defeats, for example, any
 attempt to guarantee type safety} and should be avoided when possible.
 
 \vspace{0.5cm}

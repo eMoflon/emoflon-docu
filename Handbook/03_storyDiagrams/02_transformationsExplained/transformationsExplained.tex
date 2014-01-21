@@ -30,10 +30,9 @@ A rule, $r: (L,R)$, can be \emph{applied} to a model (a typed graph) $G$ by:
   from $G$ to form  $(G\setminus Destroy)$
   
   \item \emph{Pasting} or $Creating (R\setminus L)$ i.e., new elements that are present in the postcondition but not in the precondition and are to be created
-  in the hole left in $(G\setminus Destroy)$ to form a new graph, $H = (G\setminus Destroy) \cup Create$.
-\end{enumerate}
-
-Rule application is denoted as $G \stackrel{r}{\Rightarrow} H$ and is depicted schematically in Fig.\ref{fig:rule_application}. 
+  in the hole left in $(G\setminus Destroy)$ to form a new graph, $H = (G\setminus Destroy) \cup Create$ (Fig.\ref{fig:rule_application}). 
+  
+  \end{enumerate}
 
 \vspace{0.5cm}
 
@@ -49,8 +48,8 @@ Rule application is denoted as $G \stackrel{r}{\Rightarrow} H$ and is depicted s
 
 Let's review this application. 
 
-(1) is determined by a process called \emph{graph pattern matching},\define{Pattern Matching}i.e., finding an occurrence or \emph{match} of the precondition or
-\emph{pattern} in the model $G$.
+(1) is determined by a process called \emph{graph pattern matching},\define{Pattern Matching} i.e., finding an occurrence or
+\emph{match} of the precondition or \emph{pattern} in the model $G$.
 
 (2) is determined by building a \emph{push-out complement} $PC = (G\setminus Destroy)$, such that $L\cup PC = G$.
 
@@ -93,8 +92,8 @@ deleted, retained, and created. We can therefore apply $moveCard$ to a learning 
 Despite being able to merge rules together to form one story pattern, the individual rules still have to be applied in a suitable sequence to realise
 complex model transformations consisting of many steps! This can be specified with simplified activity diagrams, where every \emph{activity node} or
 \emph{story node} contains a single story pattern, and are combined with the usual imperative constructs to form a control flow structure. The entire
-transformation can therefore be viewed as two separate layers: an imperative layer to define the top-level control flow via activities (i.e., if/Else
-statements, loops, etc.), and a pattern layer comprised of story patterns where each activity node specifies (via a graph transformation rule) how the model is to be
+transformation can therefore be viewed as two separate layers: an imperative layer to define the top-level control flow via activities (i.e., if/else
+statements, loops, etc.), and a pattern layer where each story pattern specifies (via a graph transformation rule) how the model is to be
 manipulated.
 
 \pagebreak
