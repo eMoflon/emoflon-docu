@@ -6,7 +6,7 @@
 \begin{itemize}
 
 \item[$\blacktriangleright$] Open \texttt{Partition.eclass}, go to the \texttt{removeCard} signature and add a pair of curly brackets so that it looks like a
-proper method declaration. This entire space can be referred to the method's \emph{activity}, where the control flow (imperative top-layer) of a
+proper method declaration. This entire scope can be referred to as the method's \emph{activity}, where the control flow (imperative top-layer) of a
 transformation is defined.
 
 \item[$\blacktriangleright$] Complete the activity with a single pattern and return statement as depicted in Fig~\ref{fig:remCardDec}. Don't forget -- you can
@@ -14,7 +14,7 @@ use eMolfon's auto-complete feature here! Press \texttt{ctrl + space} on an empt
 
 \item[$\blacktriangleright$] Note that in this context, the \texttt{`@'} operator indicates an
 \emph{ObjectVariableExpression}.\define{ObjectVariable\-Expression}This expression implicitly refers to object variables from the preceding story
-node. In \texttt{removeCard}'s case, the returned object refers to the \texttt{card} determined in the pattern.
+node. In \texttt{removeCard}'s case, the returned object refers to the \texttt{card} from the pattern.
 
 \vspace{0.5cm}
 
@@ -26,12 +26,12 @@ node. In \texttt{removeCard}'s case, the returned object refers to the \texttt{c
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] It should be mentioned that MOSL limits method definitions exclusively to the method's control flow. All actual transformations are
-modeled in separate \emph{pattern} files. In this case, \texttt{removeCard}'s link deletion will be modeled in \texttt{[deleteSingleCard]}.
+\item[$\blacktriangleright$] It should be mentioned that MOSL limits method definitions exclusively to the method's control flow. All actual transformation
+rules are modeled in separate \emph{pattern} files. In this case, \texttt{removeCard}'s link deletion will be modeled in \texttt{[deleteSingleCard]}.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Save \texttt{Partition.eclass}. An error should immediately appear below the editor! In the ``Problems'' tab, the message
+\item[$\blacktriangleright$] Save \texttt{Partition.eclass}. An error should immediately appear below the editor. In the ``Problems'' tab, the message
 states that the builder cannot find the specified pattern file. Well, this makes sense. You haven't created it yet! Click this message and press \texttt{ctrl +
 1} to invoke a ``Quick Fix'' dialogue (Fig~\ref{fig:quixFix}). It offers to create a pattern file for you. Given that's exactly what you'd like, select the option
 and press \texttt{Finish}.
@@ -48,13 +48,13 @@ and press \texttt{Finish}.
 
 \item[$\blacktriangleright$] The new file will open in the editor, and you'll be able to see a new directory structure under ``LearningBoxLanguage/\_patterns''
 (Fig.~\ref{fig:pattStruct}). To explain, \texttt{deleteSingleCard.pattern} is invoked by the method \texttt{removeCard}, which is in the \texttt{Partition}
-EClass. \texttt{Partition} will eventually contain a folder for each method that needs a pattern.
+EClass. \texttt{Partition} will eventually contain a folder for each method that uses a pattern.
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] The content of any pattern file is simply a list \emph{object variable scopes}, and then,
-within those declarations, operations such as `delete this reference.' Remember - the main goal of SDMs is to focus here is not on \emph{how}, but
-\emph{what}.
+within such a scope, operations such as `delete/create/find' this outgoing reference. Remember - the main goal of SDMs is to focus here is not on \emph{how},
+but \emph{what}.
 
 \newpage
 
@@ -66,9 +66,9 @@ within those declarations, operations such as `delete this reference.' Remember 
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Create two object variables, \texttt{@this:Partition} and~\texttt{@card:Card} (Fig.~\ref{fig:remCardObjVar}). When working with
-MOSL patterns, \texttt{`@'} now simply indicates that the variable is \emph{bound}. \texttt{this} is bound to the object who invoked the method, while
-\texttt{card} is bound to the parameter value with the same name.
+\item[$\blacktriangleright$] Create two object variables,\texttt{@this:Partition } and \texttt{ @card:Card}\\ (Fig.~\ref{fig:remCardObjVar}). When working
+with MOSL patterns, \texttt{`@'} again indicates that the variable is \emph{bound}. \texttt{this} is bound to the object whose method is invoked,
+while \texttt{card} is bound to the value of the parameter with the same name.
 
 \begin{figure}[htp]
 \begin{center}
@@ -101,7 +101,7 @@ nameOfOutgoingLV := STRING\\
 targetOV := STRING
 }
 
-\item[$\blacktriangleright$] If you ever need to quickly remind yourself of specific navigation or attributes names, press \texttt{alt} and the \texttt{left}
+\item[$\blacktriangleright$] If you ever need to quickly remind yourself of specific reference or attribute names, press \texttt{alt} and the \texttt{left}
 arrow to jump back from your pattern to your EClass. Conversely, to quickly open or jump to a pattern, hover over the pattern name while holding \texttt{ctrl}
 until it's underlined, then click!
 

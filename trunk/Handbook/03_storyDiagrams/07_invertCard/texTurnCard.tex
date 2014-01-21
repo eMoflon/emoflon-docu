@@ -7,7 +7,7 @@
 
 \item[$\blacktriangleright$] You're no longer an SDM beginner, so create a simple control flow with two patterns for \texttt{card.invert()} named
 \texttt{initializeTemp} and \texttt{swapVariable}. First make sure they're presented in the right order, then confirm that you've included a return statement
-(Fig.~\ref{fig:eclipse_invert})!
+(Fig.~\ref{fig:eclipse_invert}).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -28,11 +28,11 @@ Fig.~\ref{fig:invertPatternsDecs}.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Notice that the binding operator on \texttt{temp} in \texttt{initializeTemp} is set to create! This is so that we actually
-\emph{make} a new object, and not pattern match to an existing one in the model. It won't be persisted in the model afterwards which truly makes this a
+\item[$\blacktriangleright$] Notice that the binding operator on \texttt{temp} in \texttt{initializeTemp} is set to create. This is so that we actually
+\emph{create} a new object, and do not pattern match to an existing one in the model. It won't be persisted in the model afterwards which truly makes this a
 \emph{temporary} variable.
 
-\item[$\blacktriangleright$] Next, we need to declare four assignments within the \texttt{temp} and \texttt{card} rules, the first pair to assign the values to
+\item[$\blacktriangleright$] Next, we need to declare four assignments within the \texttt{temp} and \texttt{card} scopes, the first pair to assign the values to
 \texttt{temp}, and the latter to actually switch the values. Your workspace should now resemble Fig.~\ref{fig:invertPatterns}.
 
 \vspace{0.5cm}

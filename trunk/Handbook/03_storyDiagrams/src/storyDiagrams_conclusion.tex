@@ -3,18 +3,18 @@
 
 \vspace{0.5cm}
 
-Congratulations -- you've reached the end of eMoflon's introduction to unidirectional model transformations! You've learnt that SDMs are declared as method
-\emph{activity nodes}, which can be made of different \emph{activities}, which are \emph{story pattern}s and \emph{statement nodes} (for method calls).
-\emph{Patterns} are made up of various \emph{object} and \emph{link variables} with appropriate attribute constraints. Each of these variables can be given
-different \emph{binding states}, binding operators (via \emph{expressions}), and can be marked as negative (NACs).
+Congratulations -- you've reached the end of eMoflon's introduction to unidirectional model transformations! You've learnt that SDMs are declared as
+\emph{activities}, which consist of \emph{activity nodes}, which are either \emph{story pattern}s or \emph{statement nodes} (for method calls).
+\emph{Patterns} are made up of \emph{object} and \emph{link variables} with appropriate attribute constraints. Each of these variables can be given
+different \emph{binding states}, binding operators, and can be marked as negative (for expressing NACs).
 
 \vspace{0.5cm}
 
-To test your amazing story driven modelling skills, challenge yourself by:
+To further test your amazing story driven modelling skills, challenge yourself by:
 \begin{itemize}
-\item Specifying a method to eject the card from the box if it is guessed correctly and contained in the last partition (to signal it's been learnt). Do you
-know how the current \texttt{Check} method handles this?
-\item Editing \texttt{Partition.empty()} to include a method call to \texttt{removeCard} thus reusing this previous SDM
+\item Adjusting \texttt{check} to eject the card from the box if it is guessed correctly and contained in the last partition (to signal it's been learnt). Do
+you know how \texttt{check} currently handles this?
+\item Editing \texttt{Partition.empty()} to include a method call to \texttt{removeCard}, thus reusing this previous SDM
 \item Modifying the GUI source files to execute all methods
 \end{itemize}
 

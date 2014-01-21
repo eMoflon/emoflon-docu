@@ -3,7 +3,7 @@
 \section{Checking a card}
 \genHeader
 
-The next method we shall model is probably the most important for our learning box! This method will be invoked when a user decides to test themselves on a card
+The next method we shall model is probably the most important for our learning box. This method will be invoked when a user decides to test themselves on a card
 in the learning box. They'll be able to see the \texttt{back} attribute of a card from the box, make a guess as to what's on the \texttt{face}, then 
 check their answer (Fig.~\ref{fig:goal_check}). Following our rules established in Fig.~\ref{fig:membox_depiction}, if their guess was correct the card will be
 \emph{promoted} to the next partition. If wrong, the card will be \emph{penalized} and returned to the first.
@@ -24,12 +24,12 @@ patterns. Fig.~\ref{fig:patterns_check} briefly shows the intended create and de
    \includegraphics[width=0.5\textwidth]{checkCard_promote.pdf}
    \\ \vspace{1cm}
     \includegraphics[width=0.5\textwidth]{checkCard_penalize.pdf}
- 	\caption{Promote (above) and penalize (below) card pattern concepts}
+ 	\caption{Promote (above) and penalize (below) card patterns}
  	\label{fig:patterns_check}
 \end{figure}
 \FloatBarrier
 
-Overall, this means the control flow must follow an \emph{if/Else} construct. The \texttt{guess} conditional also needs to be an \emph{attribute
+Overall, this means the control flow must utilize an \emph{if/else} construct. The \texttt{guess} conditional also needs to be an \emph{attribute
 constraint},\define{Attribute Constraint}a non-structural condition that must be satisfied in order for a story pattern to match. 
 
 \jumpDual{checkCard vis}{checkCard tex}

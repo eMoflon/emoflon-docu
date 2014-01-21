@@ -5,9 +5,8 @@
 
 \begin{itemize}
   
-\item[$\blacktriangleright$] Create a new eclass under ``LearningBoxLanguage" named
-\texttt{FastCard} which extends \texttt{Card}. It doesn't need any new attributes, so leave its specification empty. It should resemble
-Fig.~\ref{fig:fastClass}.
+\item[$\blacktriangleright$] Create a new \texttt{eclass} under ``LearningBoxLanguage" named \texttt{FastCard} which extends \texttt{Card}. It doesn't need any
+new attributes or methods, so leave its specification empty. It should resemble Fig.~\ref{fig:fastClass}.
 
 \vspace{0.5cm}
 
@@ -21,7 +20,7 @@ Fig.~\ref{fig:fastClass}.
 
 \item[$\blacktriangleright$] Open \texttt{Partition.eclass} once again, and find \texttt{check(card, guess)}. Edit the activity by adding a second
 \texttt{if/else} construct. Call the new assertion pattern \texttt{isFastCard}, and the action pattern \texttt{promoteFastCard}. Move the original
-\texttt{[promoteCard]} pattern into the \texttt{else} statement. The check method should now resemble Fig.~\ref{fig:isFastCard}.
+\texttt{[promoteCard]} pattern into the \texttt{else} branch. The check method should now resemble Fig.~\ref{fig:isFastCard}.
 
 \vspace{0.5cm}
 
@@ -33,24 +32,25 @@ Fig.~\ref{fig:fastClass}.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] \texttt{isFastCard} is a simple, one line statement pattern. You simply need to create a \emph{binding expression} to bind the
+\item[$\blacktriangleright$] \texttt{isFastCard} is a simple, one line pattern. You simply need to create a \emph{binding expression} to bind the
 object variable \texttt{fastCard} (of type \texttt{FastCard}), to \texttt{card} (of type \texttt{Card}) which was passed in as a parameter. Remember, to access
-parameter values, used a \emph{ParameterExpression} which prefixes the name with a `\$' symbol. Your workspace should now resemble
+parameter values, use a \emph{ParameterExpression} which prefixes the name with a `\$' symbol. Your workspace should now resemble
 Fig.~\ref{fig:isFastCardPattern}.
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_isFastCardPattern}
-  \caption{A \texttt{FastCard} attribute constraint}
+  \caption{Checking if a \texttt{card} is a \texttt{FastCard}}
   \label{fig:isFastCardPattern}
 \end{center}
 \end{figure}
 
 \newpage
 
-\item[$\blacktriangleright$] To establish \texttt{promoteFastCard}, first create the four main object variables: \texttt{@this} for the
+\item[$\blacktriangleright$] To establish \texttt{promoteFastCard}, first create four object variables: \texttt{@this} for the
 current partition of the card, \texttt{@fastCard} representing the card, \texttt{lastPartition} for the last partition in the box, and the \texttt{box}
-containing all partitions. Under \texttt{lastPartition}, also create a NAC \texttt{next}, to forbid that the last partition in the box has a next partition.
+containing all partitions. Under \texttt{lastPartition}, also create a NAC \texttt{next}, which we will use to forbid that the last partition in the box has a
+next partition.
 Your pattern should now resemble Fig.~\ref{fig:objVarFastCard}.
 
 \vspace{0.5cm}
