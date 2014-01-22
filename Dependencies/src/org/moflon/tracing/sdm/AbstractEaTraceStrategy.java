@@ -28,7 +28,9 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 	protected static final String LINE_SEPARATOR = System.lineSeparator();
 
 	protected Stack<EOperation> opStack = new Stack<EOperation>();
+	protected Stack<String> storyPatternStack = new Stack<String>();
 
+	
 	protected Writer out;
 	protected String storyPattern;
 
@@ -56,29 +58,32 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 	{
 		logStoryPattern(storyPatternName, op);
 		this.storyPattern = storyPatternName;
+		storyPatternStack.push(storyPatternName);
 	}
 
 	@Override
 	protected void logPatternExit(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op)
 	{
-		logStoryPattern(storyPatternName, op);
+		//logStoryPattern(storyPatternName, op);
 
 		if (this.storyPattern != null && this.storyPattern.equals(storyPatternName))
 			this.storyPattern = null;
+		if(storyPatternStack.peek().equals(storyPatternName))
+			storyPatternStack.pop();
 	}
 
 	@Override
 	protected void logBindObjVar(SDMTraceContext c, StackTraceWrapper stw, String objVarName, Class<?> objVarType, Object oldValue,
 			Object newValue)
 	{
-		logObjectVariable(objVarName, storyPattern, opStack.peek());
+		logObjectVariable(objVarName, storyPatternStack.peek(), opStack.peek());
 	}
 
 	@Override
 	protected void logUnbindObjVar(SDMTraceContext c, StackTraceWrapper stw, String objVarName, Class<?> objVarType, Object oldValue,
 			Object newValue)
 	{
-		logObjectVariable(objVarName, storyPattern, opStack.peek());
+		//logObjectVariable(objVarName, storyPatternStack.peek(), opStack.peek());
 		return;
 	}
 
@@ -129,13 +134,13 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 	@Override
 	protected void logObjectCreation(SDMTraceContext c, StackTraceWrapper stw, String objVarName, Class<?> objVarType, Object newObjectValue)
 	{
-		logObjectVariable(objVarName, storyPattern, opStack.peek());
+		logObjectVariable(objVarName, storyPatternStack.peek(), opStack.peek());
 	}
 
 	@Override
 	protected void logObjectDeletion(SDMTraceContext c, StackTraceWrapper stw, String objVarName, Class<?> objVarType, Object oldObjectValue)
 	{
-		logObjectVariable(objVarName, storyPattern, opStack.peek());
+		logObjectVariable(objVarName, storyPatternStack.peek(), opStack.peek());
 	}
 
 	@Override
@@ -229,7 +234,7 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 	
 	private String getFullEOperationString(EOperation op)
 	{
-		return getFullClassString(op) + DELIM + getEOperationString(op.getName()) + getEParameterString(op.getEParameters());
+		return getFullClassString(op) + DELIM + getEOperationString(op.getName()) + getEParameterString(op.getEParameters()) + ":EOperation";
 	}
 
 	private String getFullActivityString(EOperation op)
@@ -255,7 +260,7 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 	private void logLinkVariable(String sourceNodeName, String targetNodeName)
 	{
 		StringBuilder sb = new StringBuilder();
-		sb.append(getFullLinkVariableString(opStack.peek(),this.storyPattern, sourceNodeName, targetNodeName));
+		sb.append(getFullLinkVariableString(opStack.peek(), storyPatternStack.peek(), sourceNodeName, targetNodeName));
 		sb.append(LINE_SEPARATOR);
 
 		try
