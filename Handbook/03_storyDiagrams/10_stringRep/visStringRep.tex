@@ -9,8 +9,6 @@
 5.1} we used the \texttt{[end]} edge guard to terminate a loop. Now we'll use a new guard, the \texttt{[each time]}\define{[each time]} guard, to indicate control flow that is \emph{nested} and
 executed for each match. Go ahead and create the SDM for \texttt{Box::toString} until it closely resembles Fig.~\ref{fig:sdm_tostring_1}. 
 
-\vspace{0.5cm}
-
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{ea_toStringStart}
@@ -42,7 +40,7 @@ double-click the field to pop-up a new dialogue. This way, complex expressions c
 \end{figure}
 
 \item[$\blacktriangleright$] To complete the SDM, return the final string representation value of the box via an \emph{AttributeValueExpression} in
-the stop node (Fig.~\ref{fig:toStringStopNode}).\define{AttributeValue\-Expression}This is a new expression type we haven't encountered before. It simply
+the stop node (Fig.~\ref{fig:toStringStopNode})\define{AttributeValue\-Expression}. This is a new expression type we haven't encountered before. It simply
 binds the \texttt{stringRep} attribute of the box (\texttt{this}) to the return value in the stop node
 
 \newpage

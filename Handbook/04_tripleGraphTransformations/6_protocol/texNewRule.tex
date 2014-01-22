@@ -1,34 +1,45 @@
 \newpage
 \hypertarget{allCards tex}{}
-\subsection{Text new rule}
+\subsection{AllOtherCardsRule}
 \texHeader
 
-Create a new rule in the appropriate folder called \texttt{AllOtherCardsRule}
+\begin{itemize}
 
-% Object variables (pre condition)
-Lets think about what needs to be done: this will only be called if there is a fourth partition that can't be matched. That means we already know/have Box, an
-initial partition partition0, and a lst partition, partitionN.  Create each of these black object variables, then create one more for our fourth partition.
-name it partitionNN. We don't need a correspondence or target becazse.. (we're just accomodating this extra one.) no need to set up a NEW target - we're working exclusively within box to include this extra card in the pattern and assuming dictionary already exists. By
-consequence, we don't need to set up a NEW correspondence to Dictionary, just box <- allOtherCards : AllOtherCards -> dictionary
+\item[$\blacktriangleright$] Right click on the \texttt{rules} folder again and create \texttt{AllOtherCardsRule}. Complete the rule until your file resembles
+Fig.~\ref{fig:eclipse_allOtherCardsRule}.
 
-% Linkage
-We'll need to connect partitionN to partitionNN via the \texttt{next} attribute, and connect partitionN to partition0 via a \texttt{previous} reference
-
-% Attributes % constraint
-Knowing that our final matched partition will be of index 2 or greater, establish a binding operator of partitionN.index >= 2. This will ensure NN is our n+1th
-addition. contrain this in the final scope by adding: add(partitionN.index, 1, partitionNN). Syntax is: it should be explained that the syntax for this is
-x+y=z, where add(x,y,z).
-
-What are some other ways you could have constructed this same rule? i.e., does each reference you just declared HAVE to be in their current position?
-
-Your completed rule should now resemble Fig.~\ref{}
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_allOtherCardsRule}
   \caption{All Other Cards Rule Complete}
-  \label{fig:allOtherCardsRule}
+  \label{fig:eclipse_allOtherCardsRule}
 \end{center}
 \end{figure}
 
-Alles gut! Save and build. Make sure no errors in the generated files. (then move on)
+\item[$\blacktriangleright$] You'll notice that \texttt{box} and \texttt{partition0} have been established as `black' objects -- this rule may only be evaluated
+when these objects are already known (and simply need to be adjusted), so we can use their values from the context of the transformation.
+
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] A second partition, \texttt{partitionN}, has also been established fromt he context. It represents the \texttt{n}th or last
+partition in a \texttt{box} (with an index of 2 or higher), whose \texttt{next} reference will be updated in order to provide an access
+link to the newest element, \texttt{partitionNN}.
+
+\newpage
+
+\item[$\blacktriangleright$] Given that the \texttt{add(a,b,c)} syntax is \texttt{a+b=c}, the sole constraint of this rule sets the \texttt{index} of the
+\texttt{n+1}th partition so that the \texttt{partition}s are still listed in order.
+
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] That's it! Save and build your package explorer, then run the TGG again with the `extra' \texttt{partition} to confirm it worked!
+You are now free to add as many \texttt{partition}s and \texttt{card}s to \texttt{source.xmi} -- the transformation is now able to handle them all.
+
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] Be sure to check out how this rule is implemented in eMoflon's visual specification in Fig.~\ref{fig:ea_allOtherCardsRule} from the
+previous section.
+
+\end{itemize}

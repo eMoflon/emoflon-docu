@@ -86,11 +86,15 @@ effect on all link variables declared in its scope.
 
 \item[$\blacktriangleright$] We're not \emph{quite} done yet - our newest partition doesn't yet have a size. This means that not only do we need to make
 another attribute constraint to set its value, but \texttt{newPartition} needs to directly invoke a method in order to get the correct value. You can do this
-via a \emph{MethodCallExpression}. The structure of this expression is similar to Java where:
-\syntax{MethodCallExpression := (object\_variable\_expression | \\ parameter\_expression)`.'ID`('argument\_list `)'}
+via a \emph{MethodCallExpression}\index{MethodCallExpression}. The structure of this expression is similar to Java where:
+\syntax{\hspace{-2cm} MethodCallExpression := (object\_variable\_expression | \\ 
+\hspace*{-2cm} parameter\_expression)`.'ID`('argument\_list `)'\\
+\\
+With:\\
+}
 
 \item[$\blacktriangleright$] We've encountered both of these expression types already -- \texttt{`@'} in \texttt{removeCard} and \texttt{`\$'} in
-\texttt{check}. The latter doesn't apply to this pattern, so write: \syntax{@this.determineNextSize()}.
+\texttt{check}. The latter doesn't apply to this pattern, so write: \syntax{@this.determineNextSize()}
 
 \item[$\blacktriangleright$] Your workspace should now resemble Fig.~\ref{fig:patternComplete}.
 

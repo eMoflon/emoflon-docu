@@ -17,6 +17,10 @@
 \usepackage[usenames,dvipsnames,svgnames]{xcolor}
 \usepackage{listings}
 
+% INDEX SET UP
+\usepackage{makeidx}
+\makeindex
+\addto\captionsenglish{\renewcommand{\indexname}{MOSL Syntax Index}}
 
 \definecolor{codelightgray}{rgb}{0.87,0.87,0.87}
 
@@ -96,12 +100,21 @@
 	\renewcommand{\headrule}{\hbox to\headwidth{%
   		\color{CornflowerBlue}\leaders\hrule height \headrulewidth\hfill}}
 }
-% -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+% --- FORMATTING COMMANDS --------------------------------------------------------------------------------------------------------------------------------------
+% These words should appear in the glossary
+\newcommand{\define}[1]{\marginpar{\small\emph{#1}}}
 
+% These words will appear in margin and reference index
+\newcommand{\defineMOSL}[1]{\define{#1}\index{#1}}
+
+% Textual Syntax formatting (quote environment)
+\newcommand{\syntax}[1]{ \begin{quote} \small \texttt{#1} \end{quote}}
+
+% Required time for part (Should appear on introduction page)
 \newcommand{\requiredTime}[1]{ {\scriptsize \texttt{Approximate time to complete: #1} } }
 
-% Jump links 
+% Forward jump links to Visual/Textual sections
 \newcommand{\jumpSingle}[1]{
 \fancyfoot[OR]{$\triangleright$ \hyperlink{#1}{\texttt{Next}}}
 }
@@ -111,16 +124,11 @@
  \\ $\triangleright$ \hyperlink{#2}{\texttt{Next [textual]}}}
 }
 
-% These words should appear in the glossary
-\newcommand{\define}[1]{\marginpar{\small\emph{#1}} }
-
-% Text syntax/command format
-\newcommand{\syntax}[1]{ \begin{quote} \small \texttt{#1} \end{quote}}	
-
-% Quick author note; remove from final
+% -- Quick author editing mark; remove from final ---
 \newcommand{\update}{{\bf update }}
 
-% TODO: update download link (RE: part descriptions)
+
+% TODO: update download link (RE: part descriptions) ----------------------------------------------------------------------------------------------------------
 \newcommand{\dlPartZero}{\url{www.emoflon.org}}
 
 % TODO:  Update version number (Title Page Information)--------------------------------------------------------------------------------------------------------
@@ -157,7 +165,11 @@
 
 \input{storyDiagrams_glossary}
 
-\input{storyDiagrams_quickSyntaxReference}
+% TODO: Before release, make sure every term defined here can be found via INDEX
+% \input{storyDiagrams_quickSyntaxReference}
+
+% ! KNOWN TEXCLIPSE BUG: If you make edits to Index (i.e., add entries), may not load in pdf/sumatra until you clean the project.
+\printindex
 
 % -- References
 \newpage \genHeader
@@ -166,6 +178,5 @@
 \renewcommand*{\bibname}{References}
 \bibliographystyle{plain}  
 \bibliography{../../06_miscellaneous/commonFiles/references}
-
 
 \end{document}

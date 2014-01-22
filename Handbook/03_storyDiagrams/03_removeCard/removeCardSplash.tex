@@ -54,7 +54,7 @@ One of the goals of SDM is to allow you to focus less on \emph{how} a method wil
 Integrated as an atomic step in the overall control flow, a single graph transformation step (such as link deletion) can be embedded as a
 \emph{story pattern}.
 
-These patterns declare\define{Object \\ Variables}\emph{object variables}, place holders for actual objects in a model. During \emph{pattern matching}, objects
+These patterns declare \emph{object variables}\define{Object \\ Variable}, place holders for actual objects in a model. During \emph{pattern matching}, objects
 in the current model are assigned to the object variables in the pattern according to the indicated type and other conditions.\footnote{We shall learn what
 further conditions may be specified in later SDMs.}
 
@@ -63,16 +63,16 @@ further conditions may be specified in later SDMs.}
 In \texttt{removeCard}, the SDM requires just two object variables: a \texttt{this} partition (named according to Java convention) referring to the
 object whose method is invoked, and \texttt{card}, the parameter that will be removed.
 
-Patterns also declare \emph{link variables}\define{Link \\ Variables} to match references in the model. Given that
+Patterns also declare \emph{link variables}\define{Link \\ Variable} to match references in the model. Given that
 we're concerned with removing a certain card from a specific partition, \texttt{removeCard} will therefore have a single link variable that connects these two
 objects together.
 
 In general, pattern matching is non-deterministic, i.e., variables in the pattern are bound to \emph{any} objects that happen to match. How can this
 be influenced so that, as required for \texttt{removeCard}, the pattern matcher chooses the correct \texttt{card} (that which is passed in as a parameter)?
 
-The \emph{binding state}\define{Binding~State}of an object variable determines how it is found. By default, every object variable is \emph{unbound}, or a 
-\emph{free variable}.\define{Free \\ Variable}Values for these variables can be determined automatically by the pattern matcher. By declaring an
-object variable that is to be \emph{bound}\define{Bound}however, it will have a fixed value determined from previous activity nodes. The appropriate binding is
+The \emph{binding state}\define{Binding~State} of an object variable determines how it is found. By default, every object variable is \emph{unbound}, or a 
+\emph{free variable}\define{Free \\ Variable}. Values for these variables can be determined automatically by the pattern matcher. By declaring an
+object variable that is to be \emph{bound}\define{Bound} however, it will have a fixed value determined from previous activity nodes. The appropriate binding is
 implicitly determined via the \emph{name} of the bound object variable. As a rule, \texttt{this} variables, and any method parameters (i.e., \texttt{card}) are
 always bound.
 

@@ -53,14 +53,15 @@ Fig.~\ref{fig:sdmcheck_att_constraint}, and select the correct \texttt{Attribute
 \item[$\blacktriangleright$] Similar to how the return value was specified in the previous SDM, set the \texttt{ParameterExpression} to refer to \texttt{guess},
 i.e., the user's EString input. Press \texttt{Add}, and admire your first conditional.
 
-\vspace{0.5cm}
+\end{itemize}
 
 Before building the other two activity nodes, let's quickly return to the control flow. Currently, the pattern branches off into two separate patterns after
 completing the initial check, and it is unclear how to terminate the method. As the code generator does not know what to do here, this is flagged as a
-validation error (you're free to press the validation button and take cover) We need to add \emph{edge guards}\define{Edge Guards}to change this into an
-\emph{if/Else} construct based on the results of the attribute constraint.
+validation error (you're free to press the validation button and take cover) We need to add \emph{edge guards}\define{Edge Guards} to change this into an
+\emph{if/else} construct based on the results of the \emph{attribute constraint}.
 
 \newpage
+\begin{itemize}
 
 \item[$\blacktriangleright$] To add a guard to the edge leading from \texttt{check\-If\-Guess\-Is\-Correct} to \texttt{penalize\-Card}, double click the edge
 and set the \emph{Guard Type} to \texttt{Failure} (Fig.~\ref{fig:sdm_check_guard}). Repeat the process for the \texttt{Success} edge leading to
@@ -78,6 +79,8 @@ and set the \emph{Guard Type} to \texttt{Failure} (Fig.~\ref{fig:sdm_check_guard
 
 \vspace{0.5cm}
 
+\end{itemize}
+
 One great feature of eMolfon (with EA) is a means of coping with large patterns. It might be nice to visualise \emph{small} story patterns directly in their
 nodes (such as \texttt{removeCardFromPartition}), but for large patterns or complex control flow, such diagrams would get extremely cumbersome and unwieldy
 \emph{very} quickly! This is indeed a popular argument against visual languages and it might have already crossed your mind -- ``This is cute, but it'll
@@ -85,7 +88,8 @@ nodes (such as \texttt{removeCardFromPartition}), but for large patterns or comp
 their own diagrams, and unless the pattern is really concise with only 2 or 3 object variables, we recommend this course of action. In other words, eMoflon
 supports separating your transformation's pattern layer from its imperative control flow layer.
 
-\vspace{0.5cm}
+
+\begin{itemize}
 
 \item[$\blacktriangleright$] To try this, double-click the \texttt{promoteCard} story node and choose \texttt{Extract Story Pattern}
 (Fig.~\ref{fig:sdm_check_extract_storypattern}). Note the new diagram that is immediately created and opened in the project browser
@@ -224,7 +228,7 @@ then create the necessary variables and links as depicted in Fig.~\ref{fig:sdm_c
 \vspace{0.5cm}
 
 To complete the \texttt{check} activity, we need to signal (as a return value) the result of the check - was the card promoted or penalized? We have no object
-to return so instead, we need to edit the stop nodes so they return a\define{LiteralExpression}\emph{LiteralExpression}. This expression type can be used to
+to return so instead, we need to edit the stop nodes so they return a \emph{LiteralExpression}\define{LiteralExpression}. This expression type can be used to
 specify arbitrary text, but should really only be used for true literals like 42, ``foo'' or \texttt{true}. It can be (mis)used for formulating any (Java)
 expression that will simply be transferred ``literally'' into the generated code, but this is obviously really dirty\footnote{It defeats, for example, any
 attempt to guarantee type safety} and should be avoided when possible.

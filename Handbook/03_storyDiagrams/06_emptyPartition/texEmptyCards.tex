@@ -39,8 +39,8 @@ deletion -- no extra steps are required in this simple case!
 full destruction of \texttt{card}, instead of just deleting the link between the object variables. This means that in addition to destroying the link between
 the partition and \texttt{card}, we need to destroy the object variable \texttt{card} as well.
 
-\item[$\blacktriangleright$] Create a \texttt{@this} object variable, and delete its link to \texttt{card} via \syntax{-~- -> card:card}. Then create another
-object variable \texttt{card}, deleting it by prefixing its name with the same \texttt{`-~-'} operator.
+\item[$\blacktriangleright$] Create a \texttt{@this} object variable, and delete its link to \texttt{card} via \syntax{-- -> card:card}. Then create another
+object variable \texttt{card}, deleting it by prefixing its name with the same \texttt{`--'} operator.
 
 \vspace{0.5cm}
 

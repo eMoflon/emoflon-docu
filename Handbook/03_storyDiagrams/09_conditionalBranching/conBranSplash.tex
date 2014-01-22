@@ -13,7 +13,7 @@ with your SDM. We can invoke methods directly from an \emph{if} statement. The o
 during code generation (if you ignored the validation error).
 
 Unfortunately, you can't simply invoke a method from a standard activity node. Instead, you must use a new type of activity node, a \emph{statement
-node}.\define{Statement Node}Statement nodes can be used to invoke methods and provide a means of invoking libraries and
+node}\define{Statement Node}. Statement nodes can be used to invoke methods and provide a means of invoking libraries and
 arbitrary Java code from SDMs. Please note that we do not differentiate at this point between methods that are implemented by hand or via an SDM. Thus,
 statement nodes can of course be used to invoke other SDMs via a \emph{MethodCallExpression}. Most importantly, statement nodes enable \emph{recursion}, as the
 current SDM can be invoked on \texttt{this} with appropriate new arguments. In essence, this type of node is only used to guarantee a specific action

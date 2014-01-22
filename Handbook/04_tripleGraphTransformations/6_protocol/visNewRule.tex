@@ -1,20 +1,34 @@
 \newpage
 \hypertarget{allCards vis}{}
-\subsection{Vis new rule}
+\subsection{AllOtherCardsRule}
 \visHeader
 
-Lets correct this via.. using your smarts, build the \texttt{AllCardsRule} as depicted below. Think - is it possible to Dervie any of this?
-doesn't matter if you add more entries: you HAVE to give them a level which wil l fall between zero and two.
-So, create an extra partition in target.xmi.BWD.xmi (siurce)
+Please note that you can start any new rule (especially this one) in two different ways! You can either return to the \texttt{rules} diagram and use the toolbox
+there, or knowing that you need \texttt{box} and \texttt{partition0} from the context of the transformation, you can \emph{derive} this rule via
+\texttt{BoxToDictionaryRule}.
+
+\begin{itemize}
+
+\item[$\blacktriangleright$] Once you've initialized the \texttt{AllOtherCardsRule} diagram, build the rule until it matches
+Fig.~\ref{fig:ea_allOtherCardsRule}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{ea_allOtherCardsRule}
+  \includegraphics[width=0.75\textwidth]{ea_allOtherCardsRule}
   \caption{All Other Cards Rule Complete}
-  \label{fig:allOtherCardsRule}
+  \label{fig:ea_allOtherCardsRule}
 \end{center}
 \end{figure}
 
-When the \texttt{BoxToDictionary} doesn't work, this comes into play. It find the starter position then matches to a partition, n. You can see from the
-constraint that the index for the additional partition adds 1 to n, so that the newest partition becomes n+1. Remember, the black are things that are already
-established. The green indicates that there is no object like that currently in the transformation.
+\item[$\blacktriangleright$] As you can see, this rule doesn't assume to know the final \texttt{partition} in the transformation. It matches to some
+\texttt{n}th partition with an \texttt{index} 2 or more, then connects a new \texttt{n+1}th partition to \texttt{n} and \texttt{partition0}. 
+
+\item[$\blacktriangleright$] Save, validate, export, and refresh your Eclipse package explorer to generate code for this rule. Run the TGG again - it works! The
+transformation is now able to handle the troublesome \texttt{next} dangling edge from the third partition.
+
+\item[$\blacktriangleright$] Feel free to go ahead and add as many \texttt{partition}s and \texttt{card}s as you like. Your TGG is now able to handle a
+\texttt{box} with any number of \texttt{partition}s. 
+
+\item[$\blacktriangleright$] To see how this rule is specified in the textual syntax, check out Fig.~\ref{fig:eclipse_allOtherCardsRule} in the next section.
+
+\end{itemize}

@@ -15,7 +15,7 @@ partition (Fig.~\ref{fig:goal_empty}).
 \end{figure}
 \FloatBarrier
 
-In SDM, this\define{For Each}is accomplished via a \emph{for each} story node. It performs the specified actions for \emph{every} match of its
+In SDM, this \define{For Each} is accomplished via a \emph{for each} story node. It performs the specified actions for \emph{every} match of its
 pattern (i.e., every \texttt{Card} that matches the pattern will be deleted). This however, gives us two interesting points to discuss.
 Firstly, how would the pattern be interpreted if the story node were a normal, simple control flow node, not a \emph{for each} node?
 
@@ -27,10 +27,10 @@ matching, and it's something that takes time getting used to.  In general, there
 The second point is determining if we actually need to destroy the link between \texttt{this} and \texttt{card}. Would the pattern be interpreted differently if
  we destroyed \texttt{card} and left the link?
 
-The answer is no, the pattern would yield the same result, regardless of whether or not the link is explicitly destroyed!\define{Dangling Edges}This is due to
-the transformation engine eMoflon uses.\footnote{CodeGen2, a part of the Fujaba toolsuite \url{http://www.fujaba.de/}} It ensures that there are never any
-\emph{dangling edges} in a model. Since deleting just the \texttt{card} would result in a dangling edge attached to \texttt{this}, that link is deleted as well. Explicitly
-destroying the links as well is therefore a matter of taste, but \ldots why not be as explicit as possible?
+The answer is no, the pattern would yield the same result, regardless of whether or not the link is explicitly destroyed! This is due to
+the transformation engine eMoflon uses.\footnote{CodeGen2, a part of the Fujaba toolsuite \url{http://www.fujaba.de/}}\define{Dangling Edges} It ensures that
+there are never any \emph{dangling edges} in a model. Since deleting just the \texttt{card} would result in a dangling edge attached to \texttt{this}, that
+link is deleted as well. Explicitly destroying the links as well is therefore a matter of taste, but \ldots why not be as explicit as possible?
 
 \jumpDual{emptyPartition vis}{emptyPartition tex}
 

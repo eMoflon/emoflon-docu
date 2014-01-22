@@ -1,5 +1,5 @@
 \newpage
-\section{Extending our Functionality}
+\section{Extending the transformation}
 \genHeader
 
 % Remember, this is relevant for BOTH specifications.
@@ -18,11 +18,19 @@
 % Run it again! It works! BRILLIANT. Show in protocol.
 
 At this point, we now have a working TGG transformation for Dictionary into box with three partitions, and a box with \emph{precisely} three partitions into a
-Dictionary. The only potential problem here is that exactly three partitions in a LearningBox is rather unrealistic as a proper studying tool. After all, the
-more you need to practice a subject, the more cards and partitions you should have so you can be quizzed again and again.
+Dictionary. The only potential problem is that a learning box with only three partitions may not be the most useful studying too. After all, the more partitions
+you have, the more practice you'll have with the cards by being quizzed again and again.
 
-Given that we have three partition and a rule to transform these, lets add a fourth partition to our source graph and see if it our TGG will at least complete
-a partial transformation. Modify your \texttt{source.xmi} until it resembles Fig.~\ref{fig:fourthPartitionStart}.
+Let's try adding a fourth partition to \texttt{source.xmi} and run the TGG again. Given that we have a rule to transform three partitions, it should at least
+complete a partial transformation, right? 
+
+\begin{itemize}
+
+\item[$\blacktriangleright$] Add a single \texttt{partition3} to your source, and run \texttt{TGGMain} again.
+
+\item[$\blacktriangleright$] (What happened? It should have worked.) It worked, although .. Let's check out the integrator .. due to not setting the proper
+references! Open \texttt{source.xmi} again and update \texttt{partition3.previous} to \texttt{partition0}, and \texttt{partition2.next} to \texttt{partition3}.
+Add one more card until your source resembles Fig.~\ref{fig:fourthPartitionStart} and run the TGG once more.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -32,21 +40,25 @@ a partial transformation. Modify your \texttt{source.xmi} until it resembles Fig
 \end{center}
 \end{figure}
 
-Don't forget to set its \texttt{previous} value to \texttt{partition0}, and the \texttt{next} value of \texttt{Partition 2} to \texttt{Partition3}.
-
-Save and run TGGMain.
-
-%FailImage
-
-Doesn't work! Let's check the integrator.
-
-{\bf integrator stuff here; where does it fail}
+\item[$\blacktriangleright$] It didn't work! If you try to run the integrator, that won't work either.
 
 
-Doesn't help - let's check the protocol!
+\item[$\blacktriangleright$] Let's try inspecting the protocol file directly for more details. This will always be produced in \emph{every} transformation.
+Therefore, if the integrator doesn't work, you will always have THIS file for reference.
 
+\item[$\blacktriangleright$] Figure~\ref{fig:partition3comparison} to explain the look-ahead. (Let's compare the differences\ldots)
 
-{\bf protocol stuff here; precisely where/WHY it fails}
+\newpage
+
+\begin{figure}[htbp]
+ 	\centering
+   \includegraphics[width=0.7\textwidth]{partition3_noConnections}
+   \\ \vspace{1cm}
+    \includegraphics[width=0.7\textwidth]{partition3_connections}
+ 	\caption{Successful and Unsuccessful TGG}
+ 	\label{fig:partition3comparison}
+\end{figure}
+\FloatBarrier
 
 Even though there was a solution to the first threee, there was no way it could have connected number 4 successfully, resulting
 in a dangling edge, which fujaba does not allow \ldots why didn't at least the first set of card from partitions 0, 1, 2. Work? Dangling edges - predicts that there
@@ -57,8 +69,15 @@ actual object. Lets consider just extending our current rule so it could handle 
 another partition in our rule and connecting it proberly. But what if we wanted a fith? a sixth?  This obviously won't work -- there will always be an n+1
 partition that needs to be resolved.
 
-Instead, let's create a new rule so that the TGG can check both. After all, the protocol is bound to try EVERY possilbilty before continuing. that means, if
-the first rule fails, it will try to apply this one, and it will succeed.
+\item[$\blacktriangleright$] Let's extend our transformation by adding a third rule to take care of any situation where a \texttt{box} has more than three
+partitions. Note that this rule won't just be checked whenever the first rule fails - it'll always be tested, but only executed if its the best match for the
+situation (you may have to choose).
+
+Therefore, the main goal of this rule will be to update the structure of a \texttt{box} during the forward transformation so that the \texttt{CardToEntry} rule
+can be applied to any \texttt{card} found in a fourth, fifth, sixth, or greater \texttt{partition}. We therefore don't need to create any new \emph{correspondence
+types}  as the changes will only affect the link variables and \texttt{index} attributes of a few \texttt{partition}s.
+
+\end{itemize}
 
 \jumpDual{allCards vis}{allCards tex}
 
