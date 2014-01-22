@@ -37,7 +37,7 @@ public class EAInterfaceUriHelper {
 	   }
 	   
 	   public static String getEOperationString(String eOperationName) {
-		   return (eOperationName + ":EOperation");
+		   return (eOperationName);
 	   }
 	   
 	   public static String getEParameterString(EList<EParameter> eParameters)
