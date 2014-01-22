@@ -16,7 +16,7 @@ become the \texttt{next} reference of the current last partition, and its \textt
 \FloatBarrier
 
 SDMs provide a declarative means of identifying specific partitions via \emph{Negative Application Conditions}, simply referred to as
-\mbox{NAC}s.\footnote{Pronounced $\backslash 'nak \backslash$}\define{NAC}\mbox{NAC}s express structures that are forbidden to exist before applying a
+\mbox{NAC}s.\footnote{Pronounced $\backslash 'nak \backslash$}\define{NAC} \mbox{NAC}s express structures that are forbidden to exist before applying a
 transformation rule. In this SDM, the \mbox{NAC} will be an object variable that must not be assigned a value during pattern matching. In the theory of
 algebraic graph transformations \cite{EEPT06}, \mbox{NACs} can be arbitrarily complex graphs that are much more general and powerful than what we currently
 support in our implementation,\footnote{To be precise, in CodeGen2 from Fujaba} namely only single negative elements (object or link variables).
@@ -30,7 +30,8 @@ will always be exactly one first and one last partition of the box.
 
 Of course, to complete this method we still need to determine the size of the new partition. Since the size must be calculated depending on the
 rest of the partitions currently in the box (partitions usually get bigger) we'll need to call a helper method, \texttt{determineNextSize} via a
-\emph{MethodCallExpression}.\define{MethodCallExpression}As the name suggests, it is designed to access any method defined in \emph{any} class in the current project.
+\emph{MethodCallExpression}\define{MethodCallExpression}. As the name suggests, it is designed to access any method defined in \emph{any} class in the current
+project.
 
 Due to the algorithmic and non-structural nature of \texttt{determineNextSize}, it will be easier to implement this method via a Java \emph{injection}, rather
 than an SDM. We've already declared this method in our metamodel, so its signature will be available for editing in \texttt{BoxImpl.java}.

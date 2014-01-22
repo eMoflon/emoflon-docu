@@ -11,7 +11,13 @@ pattern in \texttt{grow} fails. Open \texttt{Box.eclass} and add the following s
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Now modify \texttt{Box.grow()} by adding a nested \emph{if/else} construct, with \texttt{[addNewPartitionBox]} as the
-first conditional, and a \emph{statement node} to invoke \texttt{initializeBox} if it fails. \texttt{grow} should now resemble Fig.~\ref{fig:updateGrow}.
+first conditional, and a \emph{statement node} to invoke \texttt{initializeBox} if it fails. \emph{Statement nodes}\index{Statement Nodes} are specified via:
+\syntax{`<' method\_call `>'\\
+\\
+With:\\}
+
+
+\texttt{grow} should now resemble Fig.~\ref{fig:updateGrow}.
 
 \vspace{0.5cm}
 

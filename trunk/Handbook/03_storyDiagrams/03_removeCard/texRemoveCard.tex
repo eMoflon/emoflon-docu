@@ -12,9 +12,9 @@ transformation is defined.
 \item[$\blacktriangleright$] Complete the activity with a single pattern and return statement as depicted in Fig~\ref{fig:remCardDec}. Don't forget -- you can
 use eMolfon's auto-complete feature here! Press \texttt{ctrl + space} on an empty line, then select the pattern template to establish \texttt{deleteSingleCard}.
 
-\item[$\blacktriangleright$] Note that in this context, the \texttt{`@'} operator indicates an
-\emph{ObjectVariableExpression}.\define{ObjectVariable\-Expression}This expression implicitly refers to object variables from the preceding story
-node. In \texttt{removeCard}'s case, the returned object refers to the \texttt{card} from the pattern.
+\item[$\blacktriangleright$] Note that in this context, the \texttt{`@'} operator indicates an \emph{ObjectVariableExpression}%
+\defineMOSL{ObjectVariable\-Expression}. This expression implicitly refers to object variables from the preceding story node. In \texttt{removeCard}'s case, the
+returned object refers to the \texttt{card} from the pattern.
 
 \vspace{0.5cm}
 
@@ -66,7 +66,7 @@ but \emph{what}.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Create two object variables,\texttt{@this:Partition } and \texttt{ @card:Card}\\ (Fig.~\ref{fig:remCardObjVar}). When working
+\item[$\blacktriangleright$] Create two object variables, \texttt{@this:Partition } and \texttt{ @card:Card}\\ (Fig.~\ref{fig:remCardObjVar}). When working
 with MOSL patterns, \texttt{`@'} again indicates that the variable is \emph{bound}. \texttt{this} is bound to the object whose method is invoked,
 while \texttt{card} is bound to the value of the parameter with the same name.
 
@@ -78,7 +78,7 @@ while \texttt{card} is bound to the value of the parameter with the same name.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Object variable scopes determine the changes to be applied to the \emph{outgoing link variables} of the variable. Therefore, add:
+\item[$\blacktriangleright$] Object variable scopes determine the changes to be applied to the any exiting references of the variable. Therefore, add:
 \syntax{-- -> card:card} to \texttt{@this} to destroy the \texttt{card} reference targeting the \texttt{card} object. Your pattern should now resemble
 Fig.~\ref{fig:deleteReference}. 
 
@@ -91,12 +91,12 @@ Fig.~\ref{fig:deleteReference}.
 \end{figure}
 \newpage
 
-\item[$\blacktriangleright$] In summary, any \emph{outgoing link variable} follows this syntax:
+\item[$\blacktriangleright$] In summary, any \emph{outgoing link variable}\defineMOSL{Outgoing~Link Var\-i\-able} follows this syntax:
 
 \syntax{[action]`->'nameOfOutgoingLV`:'targetOV\\
 \\
 With:\\
-action := `- -' | `++' | `!'\\
+action := `--' | `++' | `!'\\
 nameOfOutgoingLV := STRING\\
 targetOV := STRING
 }

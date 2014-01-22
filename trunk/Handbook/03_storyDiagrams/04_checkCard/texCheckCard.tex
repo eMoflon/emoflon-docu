@@ -42,9 +42,12 @@ between the \texttt{face} attribute of the current \texttt{card}, and the primit
 values.\footnote{See the \hyperlink{quickRef}{Quick Reference} at the end of this part for a listing of all operators}
 
 \item[$\blacktriangleright$] The tricky part of the overall statement is referencing the parameter value. Given that we have not created an object variable,
-we'll need to use another expression type, \texttt{ParameterExpression},\define{ParameterExpression}to access it. This type exclusively refers to parameter
+we'll need to use another expression type, \texttt{ParameterExpression}\defineMOSL{ParameterExpression}, to access it. This type exclusively refers to parameter
 values, and its syntax is as follows:
-\syntax{parameter\_expression := `\$'ID}
+\syntax{parameter\_expression := `\$'ID \\
+\\
+With:\\
+ID := STRING}
 
 \item[$\blacktriangleright$] Thus, the complete attribute constraint statement is: \syntax{card.face == \$guess} Your pattern should now resemble
 Fig.~\ref{fig:checkPattern}.
@@ -62,11 +65,9 @@ Fig.~\ref{fig:checkPattern}.
 \item[$\blacktriangleright$] Now let's specify the \texttt{promoteCard} pattern. It requires three object variables: the current partition (\texttt{this}),
 the card to be promoted, and the partition the card will move to. Open and edit so that it resembles Fig.~\ref{fig:promoteCardPattern}.
 
-\item[$\blacktriangleright$] Given that \texttt{this} is bound while \texttt{next} partition is free, we need to establish a link between the \texttt{box}
-and partition. This will allow the card to be moved around. Create an \emph{outgoing link variable}, \texttt{next},  with target object variable
+\item[$\blacktriangleright$] Given that \texttt{this} is bound while \texttt{next} partition is free, we need to establish a reference link between the
+\texttt{box} and partition. This will allow the card to be moved around. Create an \emph{outgoing link variable}, \texttt{next},  with target object variable
 \texttt{nextPartition}. Your file should now resemble Fig.~\ref{fig:promoteThisRule}.
-
-\newpage
 
 \begin{figure}[htbp]
 \begin{center}
@@ -108,10 +109,16 @@ resemble Fig.~\ref{fig:completedPatterns}.
 In general, it doesn't matter in which order object or variables are specified in patterns. Everything just needs to be correctly stated. 
 
 \item[$\blacktriangleright$] We nearly forgot to complete the control flow! We have specified the assertion and card movements, but we haven't returned a
-\texttt{EBoolean} result as the method requires.  We'll need to implement a new expression type, a \emph{LiteralExpression}.\define{LiteralExpression}This type
-can be used to specify arbitrary text, but should really only be used for true literals like 42, ``foo'' or \texttt{true}. The syntax for any LiteralExpression
+\texttt{EBoolean} result as the method requires.  We'll need to implement a new expression type, a \emph{LiteralExpression}\defineMOSL{LiteralExpression}. This
+type can be used to specify arbitrary text, but should really only be used for true literals like 42, ``foo'' or \texttt{true}. The syntax for any LiteralExpression
 is simply:
-\syntax{LiteralExpression := boolean\_literal | integer\_literal | any\_literal}
+\syntax{LiteralExpression := boolean\_literal | integer\_literal | any\_literal \\
+\\
+With:\\
+boolean\_literal := true, false\\
+integer\_literal := [`+' | `-'] ( `1' |\ldots| `9' ) \\
+boolean\_literal := STRING\\
+}
 
 \vspace{0.5cm}
 
@@ -121,6 +128,11 @@ should now resemble Fig.\ref{fig:finalMethod}.
 
 \vspace{0.5cm}
 
+\item[$\blacktriangleright$] Save and build your metamodel, then try viewing the changes in ``PartitionImpl.Java'' under \texttt{check}. You'll be able to
+see the \emph{if/else} construct, as well as the link manipulations. 
+
+\newpage
+
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_checkMethodFinal}
@@ -128,11 +140,6 @@ should now resemble Fig.\ref{fig:finalMethod}.
   \label{fig:finalMethod}
 \end{center}
 \end{figure}
-
-\item[$\blacktriangleright$] Save and build your metamodel, then try viewing the changes in ``PartitionImpl.Java'' under \texttt{check}. You'll be able to
-see the \emph{if/else} construct, as well as the link manipulations. 
-
-\vspace{0.5cm}
 
 \item[$\blacktriangleright$] Great job! You have just enabled checking a card with guesses via a new control flow construct, \emph{if/else}, and two patterns
 that move the cards appropriately. To see how this SDM is implemented visually, check out Fig.~\ref{fig:sdm_check_finish} for the control flow, and

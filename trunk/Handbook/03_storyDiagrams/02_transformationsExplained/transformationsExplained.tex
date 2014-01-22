@@ -48,7 +48,7 @@ A rule, $r: (L,R)$, can be \emph{applied} to a model (a typed graph) $G$ by:
 
 Let's review this application. 
 
-(1) is determined by a process called \emph{graph pattern matching},\define{Pattern Matching} i.e., finding an occurrence or
+(1) is determined by a process called \emph{graph pattern matching}\define{Pattern Matching} i.e., finding an occurrence or
 \emph{match} of the precondition or \emph{pattern} in the model $G$.
 
 (2) is determined by building a \emph{push-out complement} $PC = (G\setminus Destroy)$, such that $L\cup PC = G$.
@@ -89,12 +89,11 @@ pattern}\define{Story Pattern} composed of  $Destroy := (L\setminus R)$ in red, 
 As we shall see in a moment, this  representation is quite intuitive, as one can just forget the details of rule application and think in terms of what is to be
 deleted, retained, and created. We can therefore apply $moveCard$ to a learning box in terms of steps (1) -- (3), as depicted in Fig.~\ref{fig:rule_app_example}.
 
-Despite being able to merge rules together to form one story pattern, the individual rules still have to be applied in a suitable sequence to realise
-complex model transformations consisting of many steps! This can be specified with simplified activity diagrams, where every \emph{activity node} or
-\emph{story node} contains a single story pattern, and are combined with the usual imperative constructs to form a control flow structure. The entire
+Despite being able to merge rules together to form one story pattern, the individual rules still have to be applied in a suitable sequence to realise complex
+model transformations consisting of many steps! This can be specified with simplified activity diagrams, where every \emph{activity node}\define{Activity Node}
+or \emph{story node} contains a single \emph{story pattern}, and are combined with the usual imperative constructs to form a control flow structure. The entire
 transformation can therefore be viewed as two separate layers: an imperative layer to define the top-level control flow via activities (i.e., if/else
-statements, loops, etc.), and a pattern layer where each story pattern specifies (via a graph transformation rule) how the model is to be
-manipulated.
+statements, loops, etc.), and a pattern layer where each story pattern specifies (via a graph transformation rule) how the model is to be manipulated.
 
 \pagebreak
 
