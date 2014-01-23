@@ -105,7 +105,7 @@
 % These words should appear in the glossary
 \newcommand{\define}[1]{\marginpar{\small\emph{#1}}}
 
-% These words will appear in margin and reference index
+% These words should appear in glossary and will appear in reference index
 \newcommand{\defineMOSL}[1]{\define{#1}\index{#1}}
 
 % Textual Syntax formatting (quote environment)
@@ -165,11 +165,12 @@
 
 \input{storyDiagrams_glossary}
 
-% TODO: Before release, make sure every term defined here can be found via INDEX
+% Reference of all MOSL syntaxes used to date
 % \input{storyDiagrams_quickSyntaxReference}
 
 % ! KNOWN TEXCLIPSE BUG: If you make edits to Index (i.e., add entries), may not load in pdf/sumatra until you clean the project.
-\printindex
+% Small index list of eMoflon expression type defintions
+% \printindex
 
 % -- References
 \newpage \genHeader
