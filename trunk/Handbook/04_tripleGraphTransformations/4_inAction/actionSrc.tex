@@ -37,7 +37,7 @@ each \texttt{entry.content} in the \texttt{CardToEntryRule} when setting up the 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_targetThreeEntries}
-  \caption{Contents of the dictionary}
+  \caption{Fill a \texttt{Dictionary} for a transformation}
   \label{fig:dictionaryxmi}
 \end{center}
 \end{figure}
@@ -54,7 +54,7 @@ as\ldots/Java Application''
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_TGGError}
-  \caption{comment}
+  \caption{A single forward transformation}
   \label{fig:tggERROR}
 \end{center}
 \end{figure}
@@ -74,37 +74,35 @@ steps taken (as well as their results), and \texttt{target.xmi\_BWD}, the output
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_derivedSource}
-  \caption{our created box}
+  \caption{Result of a \emph{backwards} transformation}
   \label{fig:derivedBOX}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Don't forget about one of eMoflon coolest model visualizing features -- the graph viewer! This is an especially useful tool with
-TGGs when you need to do a quick confirmation that your transformation was successful. To practice, drag-and-drop \texttt{Box English Numbers} into the
-window.\footnote{If the feature window has been closed and is not active on your screen, right-click on the eMoflon perspective and press ``reset''} You can see
-the \texttt{partition}s properly connected via link variables, and you can see each \texttt{card} in its proper place (Fig.~\ref{fig:graphViewBox}). 
+\item[$\blacktriangleright$] Congratulations! You have successfully performed your first \emph{backward} transformation from your target model (dictionary) to
+your source (Learning box) using TGGs! 
 
-\begin{figure}[htb]
-\begin{center}
-  \includegraphics[width=0.6\textwidth]{eclipse_EngNumBoxGraphView}
-  \caption{dat graph view. hmmmm.}
-  \label{fig:graphViewBox}
-\end{center}
-\end{figure}
+\newpage
 
-Congratulations! You have successfully performed your first \emph{backward} transformation from your target model (dictionary) to your source (Learning box)
-using TGGs! To show that the transformation is actually bidirectional however, let's edit the source model (thus resolving the error), and run the TGG again to
-transform a \texttt{Box} forward into a \texttt{Dictionary}.
+\item[$\blacktriangleright$] Don't forget about one of eMoflon coolest model visualizing features -- the graph viewer.\footnote{Refer to Part 2, Section 4 to
+review how to open and use this tool} This is an especially useful tool with TGGs when you need to do a quick confirmation that your transformation was
+successful. To practice, drag-and-drop \texttt{Box English Numbers} into the window. You should be able to see each \texttt{Card}'s container
+\texttt{partition} and the edges on which they'll move between partitions with. 
 
+% \begin{figure}[htb]
+% \begin{center}
+%   \includegraphics[width=0.6\textwidth]{eclipse_EngNumBoxGraphView}
+%   \caption{Confirm the transformation with the Graph Viewer}
+%   \label{fig:graphViewBox}
+% \end{center}
+% \end{figure}
 
-\item[$\blacktriangleright$] Make a copy of \texttt{target.xmi\_BWD.xmi} (the result of the backward transformation)
-and rename it to \texttt{source.xmi}.
-  
-% \item[$\blacktriangleright$] Open \texttt{source.xmi} and create some new \texttt{Card} objects in the \texttt{Partition}s (e.g., create a new \texttt{Card}
-% with \texttt{Card.face = ``Question : two''}, \texttt{Card.back = ``Answer : zwei''} in \texttt{Partition 0}).
+\item[$\blacktriangleright$] To show that the transformation is actually bidirectional however, let's edit the source model (thus resolving the error), and run
+the TGG again to perform a \emph{forwards} transformation of a \texttt{Box} into a \texttt{Dictionary}. Make a copy of \texttt{target.xmi\_BWD.xmi} and rename
+it to \texttt{source.xmi}.
 
 \item[$\blacktriangleright$] Run the \texttt{TGGMain.java} again by pressing the green ``Run As\ldots'' icon on the toolbar. You should now have two success
 messages in the console window! Refresh the ``instances" folder and compare \texttt{source.xmi\_FWD.xmi} against the original target model. If everything was
-created and executed properly, they should look exactly the same. Great job!
+created and executed properly, they should look exactly the same. 
 
 \end{itemize}

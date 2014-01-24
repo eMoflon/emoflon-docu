@@ -3,8 +3,8 @@
 \subsection{Visual Rules}
 \visHeader
 
-It should be noted that each rule needs to define the actions of its \texttt{source}, \texttt{target}, and \texttt{correspondence} metamodels. These are
-differentiated in EA spatially.
+Before starting, it should be noted that EA defines the primary areas of each rule which distinct visual and spatial clues, rather than a strict structure. The
+correspondence, for example, will be depicted as a hexagonal box, while constraints will be in an indpendent box connecting to the relevant object elements.
 
 \subsection{BoxToDictionaryRule}
 
@@ -32,10 +32,10 @@ and \texttt{create}.
 
 \item[$\blacktriangleright$] Repeat the action to create an instance of \texttt{Dictionary}.
 
+\newpage
+
 \item[$\blacktriangleright$] Quick-link from \texttt{box} to \texttt{dictionary} and create a TGG Correspondence link. To keep things simple, keep the name 
 \texttt{boxToDictionary} and select the \texttt{BoxToDictionary} correspondence type from the drop-down list which you declared in the schema.
-
-\newpage
 
 Believe it or not, our rule \emph{already} creates a \texttt{Box}, \texttt{Dictionary}, and correspondence link between them at the same time, as-is!
 Unfortunately, this only creates the objects, and doesn't relate any of their attributes. Why don't we try to connect the \texttt{name} of the \texttt{box} to
@@ -126,7 +126,7 @@ this small example, but this could potentially be a real time-saver in a large t
 \begin{enumerate}
   
 \item[$\blacktriangleright$] First confirm that your eMoflon control panel window is open in the \texttt{Box\-To\-Dictionary\-Rule} diagram. Then hold
-\texttt{ctrl} and select \texttt{box}, \texttt{boxToDictionary}, \texttt{dictionary} and \texttt{partition0} simultaneously.
+\texttt{ctrl} and select \texttt{box}, \texttt{box\-To\-Dictionary}, \texttt{dictionary} and \texttt{partition0} simultaneously.
   
 \item[$\blacktriangleright$] Switch to the \texttt{eMoflon TGG Functions} tab on the control panel then press \texttt{Derive} as depicted in
 Fig.~\ref{fig:derive_from_tgg_rule}. In the dialogue that appears, enter \texttt{CardToEntryRule} as the name of the rule, and press \texttt{OK.} The new rule
@@ -144,16 +144,28 @@ will automatically open in a the editor window.
 \item[$\blacktriangleright$] Add green instances of \texttt{Card} and \texttt{Entry} to the rule, and link them to their respective \texttt{partition0} and
 \texttt{dictionary}. 
 
+\vspace{0.5cm}
+
 \item[$\blacktriangleright$] Quick-link from \texttt{card} to \texttt{entry} and create a new TGG Rule. You'll notice that the \texttt{correspondence type} menu
 is empty -- we haven't defined one yet on the schema! Luckily, we're able to create one here. Select \texttt{create new correspondence type}, naming it
-\texttt{CardToEntry} (Fig). 
+\texttt{CardToEntry} (Fig~\ref{fig:newCorrespondenceDialogue}). 
 
-Fig Here.
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
+\begin{center}
+ \includegraphics[width=0.8\textwidth]{ea_createNewCorrespondenceType}
+  \caption{Derive from an existing TGG rule}
+  \label{fig:newCorrespondenceDialogue}
+\end{center}
+\end{figure}
+
+\vspace{0.5cm}
 
 \item[$\blacktriangleright$] Your diagram skeleton should now resemble Fig.~\ref{fig:cardtoentry_1}. We're not done yet -- we still need to manipulate the
 attributes of each element!
 
-\vspace{0.5cm}
+\newpage
 
   \begin{figure}[htbp]
   \begin{center}
@@ -165,7 +177,7 @@ attributes of each element!
 
 \end{enumerate}
 
-We still need to create a series of constraints in order to specify how relevant attributes should be handled. Let's first define a construct for every
+We must create a series of constraints in order to specify how relevant attributes should be handled. Let's first define a construct for every
 \texttt{entry.content}, \texttt{card.back}, and \texttt{card.face} EString values so that it's easy to (temporarily) persist the values during the
 transformation. This will help us figure out how we should combine the front and back of each \texttt{card} as a single \texttt{content} attribute and,
 in the opposite direction, help to separate the contents so that they may be split into \texttt{card.back} and \texttt{card.face}. Except
@@ -215,7 +227,7 @@ drop-down menu to create a custom one. Name it \texttt{IndexToLevel}, and enter 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{ea_uniqueConstraint}
-  \caption{Create a user defined constraint \update}
+  \caption{Creating an unique constraint}
   \label{fig:create_new_constraint}
 \end{center}
 \end{figure}
