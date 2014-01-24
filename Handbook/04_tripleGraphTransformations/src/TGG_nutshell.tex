@@ -68,7 +68,7 @@ The second reason is more subtle, and difficult to explain without a concrete TG
 the forward transformation is \emph{not} injective and cannot be inverted! A function can only be inverted\define{Bijective}if it is \emph{bijective}, meaning
 it is both \emph{injective}\define{Injective}and \emph{surjective}.\define{Surjective}So how can we derive the backwards transformation?
 
-To accomodate the restriction, eMoflon sort of ``cheats'' when executing the forward transformation and, if a choice had to be made, remembers what target
+To accommodate the restriction, eMoflon sort of ``cheats'' when executing the forward transformation and, if a choice had to be made, remembers what target
 element was chosen.\footnote{It's `cheating' since this choice is what makes the transformation non-injective.} In this way, eMoflon \emph{bidirectionalize}s
 the transformation on-the-fly with correspondence links in the correspondence graph. The best part is that if the correspondence graph was somehow lost, there's
 no reason to worry because the \emph{same} TGG specification that was used to derive your forward transformation can also be used to reconstruct the

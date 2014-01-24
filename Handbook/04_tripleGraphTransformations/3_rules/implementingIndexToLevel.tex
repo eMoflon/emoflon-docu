@@ -3,21 +3,23 @@
 \subsection{Implementing IndexToLevel}
 \genHeader
 
-If you have done everything right up to this point, your project should save and build without error in Eclipse. In fact, there should now be three
+If everything has been done correctly up to this point, your project should save and build without error in Eclipse. In fact, there should now be three
 generated repository projects included in \texttt{MyWorkingSet}. We're most concerned with \texttt{LearningBox\-To\-Dictionary\-Integration}, which implements
-our TGG and its rules. Your folder should resemble Fig.~\ref{fig:tggGenerated}
+our TGG and its rules. Expand your folder so it resembles Fig.~\ref{fig:tggGenerated}
 
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_generatedTGG}
-  \caption{generated stuff}
+  \caption{Files generated from your correspondence metamodel}
   \label{fig:tggGenerated}
 \end{center}
 \end{figure}
 
-Despite all these files, our TGG isn't yet complete. While we set up and used the \texttt{IndexTolevel} attribute constraint, we haven't actually given it any
-implementation code yet. Let's quickly review each constraint before we do.
+Despite all these files, the TGG isn't yet complete. While we set up and used the \texttt{IndexTolevel} attribute constraint, we haven't actually
+implemented it yet. Let's quickly review the purpose of constraints before we do.
+
+\newpage
 
 Just like patterns describing \emph{structural} correspondence, \emph{attribute constraints} can be automatically \emph{operationalized} as required for
 the forward concrete transformations. Even more interesting, a set of constraints might have to be ordered in a specific way depending on
@@ -53,9 +55,9 @@ take? \texttt{partition2} set to \texttt{beginner}?).
 
 At compile time, the set of constraints (also called \emph{Constraint Satisfaction Problem} (CSP)) for every TGG rule is ``solved'' for each case by
 operationalizing all constraints and determining a feasible sequence in which the operations can be executed, compatible to the declared adornments of each
-constration. If the constraints cannot be solved, an exception is thrown, and the transformation does not complete.
+constraint. If the constraints cannot be solved, an exception is thrown, and the transformation does not complete.
 
-Now that we an understanding behind the construction of a new attribute constraint, let's implement \texttt{IndexToLevel}.
+Now that we have a better understanding behind the construction of a new attribute constraint, let's implement \texttt{IndexToLevel}.
 
 \begin{itemize}
 \item[$\blacktriangleright$] Locate and open \texttt{IndexToLevel.java} under ``src/csp.constraints'' in \texttt{LearningBoxToDictionaryIntegration}.
@@ -117,7 +119,7 @@ public class IndexToLevel extends ConstraintImpl {
 	}
 }
 \end{lstlisting}
-  \caption{Implementation of our custom attribute constraint}
+  \caption{Implementation of our custom \texttt{IndexToLevel} constraint}
   \label{fig:indexToLevel}
 \end{center}
 \end{figure}
@@ -125,7 +127,7 @@ public class IndexToLevel extends ConstraintImpl {
 \end{itemize}
 
 To briefly explain, the \texttt{levels} String list sets each \texttt{level} to 0, 1, or 2, which correspond to one partition's \texttt{index} attribute. You'll
-notice that instead of setting `master' to 2, it has been set to match the first 0 partition. Unlike an \texttt{entry} in \texttt{dictionary}, the postition of
+notice that instead of setting `master' to 2, it has been set to match the first 0 partition. Unlike an \texttt{entry} in \texttt{dictionary}, the position of
 each \texttt{card} in \texttt{box} is \emph{not} based on difficulty, but simply how it has been moved as a result of the user's guess. Easy cards are therefore
 more likely to be in the final partiton (due to moving through the box quickly) while challenging cards are most likely to have been returned to the starting
 position.
