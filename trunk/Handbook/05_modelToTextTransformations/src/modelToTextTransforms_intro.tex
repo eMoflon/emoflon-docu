@@ -1,66 +1,69 @@
 \genHeader
 
-When establishing a model-driven solution, \emph{model transformations}\define{Model~Trans\-form\-ation} usually play a central and important role. Be it for
-specifying dynamic semantics (like for our learning box) or, more generally, for transforming a certain model to another model to achieve some goal (consistency, adding or abstracting from
-platform details, \ldots).
+Welcome to Part V, an introduction to unidirectional model-to-text transformations via Triple Graph Grammars (TGGs). If you're just joining us in this part
+without completing any of the previous, be aware that while we do include references to relevant parts where required, we still reccommend working through Part
+I for the required set up and installation instructions (to ensure eMoflon is working correctly), and Part IV to learng the basics of TGGs that we'll be
+building on in this part.
+
+To briefly review what has been done in the handbook example so far, we have created a fully fuctioning \texttt{LeitnersLearningBox}, an effective studying
+tool.\footnote{Read the introduction of Part II for details on the device} It is complete with its \emph{abstract syntax} metamodel (Part II), its \emph{static
+semantics} implemented via Story Driven Modeling (SDMs) (Part III), and has already been used in a bidirectional model transformation forwards and backwards
+into a \texttt{Dictionary} using TGGs (Part IV). So what is there possibly left to do?
+
+When establishing a model-driven solution, \emph{model transformations}\define{Model~Transformation} usually play a central and important role. This could be
+for specifying dynamic semantics (as done with our learning box) or, more generally, for transforming a certain model to another model to achieve some goal
+(i.e., consistency, adding or abstracting from platform details, \ldots).
 
 There are many \emph{types} of model transformations and \cite{CH03,Mens_Gorp_2006} give a nice and detailed classification along a set of different
 dimensions.\define{Model-to-~Text~Trans\-form\-ations} In this chapter, we shall explore some of these dimensions and learn how \emph{model-to-text}
 transformations can be achieved with a nice mixture of \emph{string grammars} and \emph{graph grammars}.
 
-For the rest of the chapter a model transformation is to be regarded as:
+For the rest of the chapter a model transformation is to be denoted as:
 \begin{displaymath}
  	\Delta: m_{src} \rightarrow m_{trg}
 \end{displaymath}
-where the source model $m_{src}$ is to be transformed to the target model $m_{trg}$.
+where the source model $m_{src}$ is to be transformed to the target model $m_{trg}$. Let's review the four primary ways in which $\Delta$ can be classified.
 
-$\Delta$ is \emph{endogenous}\define{Endogenous~Model Trans\-form\-ation}, if $m_{src}$ and $m_{trg}$ conform to the same metamodel. All the SDMs we have
-treated in the tutorial till now (for our learning box) are examples of endogenous transformations.
+$\Delta$ is \emph{endogenous}\define{Endogenous}, if $m_{src}$ and $m_{trg}$ conform to the same metamodel. Each story driven model (SDM) built in Part III for
+the \texttt{LeitnersLearningBox} are examples of \emph{endogenous} transformations.
 
-$\Delta$ is \emph{exogenous}\define{Exogenous~Model Trans\-form\-ation}, if $m_{src}$ and $m_{trg}$ are instances of different metamodels. In this chapter, we
-shall complement our learning box with a simple language for \emph{dictionaries}. A dictionary is also used to learn new words but is more suitable to be used
-as a reference, i.e., one already knows most of the words and only specific words are looked-up now and then. A learning box, on the other hand, is more geared
-towards supporting the actual memorization process. Ergo?  One could start with a learning box and, when all words have been memorized, transform it to a
-personalized dictionary for future reference. If one notices that too many words have been forgotten (typically after a long break or a lazy spell) a dictionary
-can be transformed \emph{back} to a learning box. We shall see later on that this transformation is actually quite cool as one could, for example, use the
-history of cards or their difficulty level (fast cards are very simple) to either annotate entries in a dictionary or pre-place cards appropriately in a
-learning box.
+$\Delta$ is \emph{exogenous}\define{Exogenous}, if $m_{src}$ and $m_{trg}$ are instances of different metamodels. For example: A dictionary is used to learn new
+words (similar to a learning box), but is more suitable for use as a reference (i.e., one already knows the words, but may occasionally need a specific
+definition). In contrast, a learning box is geared towards the actual memorization process. Therefore, once could start with a learning box and, once all the
+words have been memorized, transform it into a personalised dictionary for future reference. It too many words become forgotten, the dictionary should be
+transformed \emph{back} to a learning box. The learning box to dictionary transformation and vice-versa are therefore examples of \emph{exogenous}
+transformations, and we will create this by complementing our \texttt{LeitnersLearningBox} with a simple language for \texttt{Dictionary}.
 
-The learning box to dictionary transformation and vice-versa are examples of exogenous transformations.
+$\Delta$ operates \emph{in-place}\define{In-place Model~Trans\-form\-ation} if $m_{src}$ is \emph{destructively} transformed to $m_{trg}$. The SDMs for our
+learning box (e.g. \texttt{grow} or \texttt{check}) are examples of \emph{in-place} transformations as they perform destructive changes directly to a source
+model, transforming it into the target model.
 
-$\Delta$ operates \emph{in-place}\define{In-place Model~Trans\-form\-ation}, if $m_{src}$ is destructively transformed to $m_{trg}$. The SDMs for our learning
-box (e.g. grow or check) are examples for in-place transformations as they perform changes directly to a source model, transforming it destructively into the
-target model.
+Finally, $\Delta$ is \emph{out-place}\define{Out-place Model~Trans\-form\-ation} if $m_{src}$ is left intact and is unchanged by the transformation which
+creates $m_{trg}$. The learning box to dictionary transformation and vice-versa (that we will implement in this part) are examples of \emph{out-place}
+transformations.
 
-$\Delta$ is \emph{out-place}\define{Out-place Model~Trans\-form\-ation}if $m_{src}$ is left intact and is not changed by the transformation that creates
-$m_{trg}$. The learning box to dictionary transformation and vice-versa are examples of out-place transformations.
-
-Although \emph{endogenous} + \emph{in-place} is the natural case for SDMs (like for our learning box), we shall see in a moment that \emph{exogenous} and/or
-\emph{out-place} transformations can also be specified with SDMs.
+Although \emph{endogenous} + \emph{in-place} is the natural case for SDMs (as was the case for our learning box), \emph{exogenous} and/or \emph{out-place}
+transformations can still be specified. Using the basics introduced in Part IV: Triple Graph Grammars however, we will implement this latter type with
+TGGs.
  
 To twist your brain a bit, here are a few interesting statements:
 \begin{enumerate}
 
 \item[$\blacktriangleright$] \emph{Out-place} transformations can be \emph{endogenous} or \emph{exogenous}.
 
-\item[$\blacktriangleright$] \emph{In-place} transformations can usually\footnote{One can always think up crazy examples right?} only be \emph{endogenous}. 
-\emph{Exogenous} transformations are, consequently, always out-place.  Why?
+\item[$\blacktriangleright$] \emph{In-place} transformations can usually only be \emph{endogenous}. \emph{Exogenous} transformations are consequently,
+always \emph{out-place}.  Why?
 
 \end{enumerate}  
 
-  
-$\Delta$ is further classified as \emph{horizontal} if $m_{src}$ and $m_{trg}$ are on the same \emph{abstraction level}\define{Abstraction Levels} or
-\emph{vertical} if they are not.
+\newpage
 
-This last abstraction-level dimension is unfortunately a bit fuzzy, but in a moment we shall explore and work on these different levels by establishing a
-textual concrete syntax for our \texttt{Dictionary}. In the process, we shall learn how graph transformations can be used, in combination with parser generators
-and template languages, to implement model-to-text and text-to-model transformations that are typically \emph{vertical} (text is normally on a lower
-abstraction level than a model).
-
-Our learning box to dictionary transformation is, on the other hand, probably \emph{horizontal} as the models represent the \emph{same} information, albeit
-differently, and can thus be considered to be on the same abstraction level.
-
-\vspace{1.5cm}
+It should be noted that $\Delta$ \define{Abstraction Levels}can be further classified as \emph{horizontal} if $m_{src}$ and $m_{trg}$ are on the same
+\emph{abstraction level}, or \emph{vertical} if they are not. Unfortunately, this \emph{abstraction level} dimension is a bit `fuzzy,' but we will explore and
+work on these different levels by establishing a textual concrete syntax for \texttt{Dictionary}. We shall learn how graph transformations can be used in
+combination with parser generators and template languages to implement model-to-text and text-to-model transformations that are typically \emph{vertical} (text
+is normally on a lower abstraction level than a model). On the other hand, the overall learning box to dictionary transformation is \emph{horizontal} as the
+models represent the \emph{same} information differently, and can thus be considered to be on the same abstraction level.
 
 In the following, the \emph{\bf Mo}flon \emph{\bf C}ode \emph{\bf A}dapter (\emph{Moca}) framework refers to:
 \begin{enumerate}
@@ -75,9 +78,9 @@ In the following, the \emph{\bf Mo}flon \emph{\bf C}ode \emph{\bf A}dapter (\emp
 
 \end{enumerate}
 
-Fig.~\ref{fig:moca-overview} gives a ``big picture'' of what we plan to achieve in this Part of the eMoflon handbook. ({\bf sideways. New way to present?? })All
-explanations are integrated right with the figure, so take your time and let it sink in. We'll be zooming in on bits and pieces in the following sections to
-clear up any confusion and to help solidy any new ideas.
+% Fig.~\ref{fig:moca-overview} gives a ``big picture'' of what we plan to achieve in this part of the eMoflon handbook. All explanations are integrated right with
+% the figure, so take your time to read it carefully and let it sink in. We'll be zooming in the bits and pieces of each step in the following sections to clear
+% up any confusion.
 
 % \begin{figure}[htp]
 % \begin{center}
@@ -87,4 +90,4 @@ clear up any confusion and to help solidy any new ideas.
 % \end{center}
 % \end{figure} 
 
-The goal of this Part is to\ldots It will need to use the Moca framework to\ldots
+Let's get started!
