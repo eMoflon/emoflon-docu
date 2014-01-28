@@ -1,6 +1,6 @@
 \newpage
 \hypertarget{M2TSettingUp vis}{}
-\subsection{Setting up the Parser}
+\subsection{Initializing the project}
 \visHeader
 
 \begin{enumerate}
@@ -37,23 +37,14 @@ demand a certain \emph{order} of nodes in an SDM, which is otherwise not guarant
  
 \newpage
 
-\item[$\blacktriangleright$] Add a package to your \texttt{My Working Set} node named \texttt{Dic\-tion\-ary\-Code\-Adapter}. Add a new \texttt{TGG Schema}
-diagram to it with the same name (Fig.~\ref{ea:tggDiagram}), and set its \texttt{Source Project} as \texttt{Dictionary Language}, and the \texttt{Target
-Project} as \texttt{MocaTree}. Your project browser should then closely resemble Fig.~\ref{ea:adapterPackageBrowser}. ({\bf WRONG TGG?})
+\item[$\blacktriangleright$] Add a package to your \texttt{My Working Set} node named \texttt{DictionaryCodeAdapter}. Then add an emptyEcore diagram
+with the same \texttt{DictionaryCodeAdpater} name (Fig.~\ref{ea:newTransformer}).
 
 \begin{figure}[htpb]
 \begin{center}
-  \includegraphics[width=0.9\textwidth]{ea_tggDiagram}
+  \includegraphics[width=0.8\textwidth]{ea_transformationLangDiagram}
   \caption{figureCaption}
-  \label{ea:tggDiagram}
-\end{center}
-\end{figure}
-
-\begin{figure}[htpb]
-\begin{center}
-  \includegraphics[width=0.45\textwidth]{ea_packageCodeAdapter}
-  \caption{figureCaption}
-  \label{ea:adapterPackageBrowser}
+  \label{ea:newTransformer}
 \end{center}
 \end{figure}
 
@@ -61,19 +52,10 @@ Our conventions and workflow state that this \emph{code adapter} is a package th
 directly in the corresponding metamodel (\texttt{Dic\-tion\-ary\-Language}), but here a separation makes sense as there could be \emph{different} code adapters
 for the \emph{same} language.
 
-\item[$\blacktriangleright$] Validate your entire project as usual\footnote{Refer to Part II, Section 2.8 for details} and ensure that your refreshed Eclipse
-workspace closely resembles Fig.~({\bf not sure yet.. we DO need some sort of diagram though}). Note especially the library nodes (\texttt{Moflon} and
-\texttt{Moca}) that reference jars for all required dependencies. 
+\item[$\blacktriangleright$] Save and validate your updated project from EA.\footnote{Refer to Part II, Section 2.8 if unsure} You can ignore the
+\texttt{EmptyPackageNotAllowed} error for now -- we'll complete the \texttt{Transformer} diagram in a moment. Our goal right now is to generate
+\texttt{DictionaryCodeAdapter}, so return to and refresh your Eclipse workspace. 
 
-\item[$\blacktriangleright$] Right-click on \texttt{DictionaryCodeAdapter} one more time and choose ``Add Parser/Unparser'', this time from the eMoflon context
-menu (Fig~ %\ref{fig:moca-1-AddParserAndUnparserWizard}).
- 
-\item[$\blacktriangleright$] In the wizard dialogue (Fig %\ref{fig:moca-2-AddParser}),
-enter ``dictionary'' as file extension, and check the boxes \texttt{Create Parser} and \texttt{Create Unparser} with \texttt{ANTLR} chosen as corresponding
- technology in both cases.  Click \texttt{Finish}.
+\jumpSingle{subSec:setupParser}
 
 \end{enumerate}
-
-If everything has been installed and set up properly, parser and unparser stubs should be generated and \texttt{ANTLR} should automatically build the
-corresponding Java code as depicted in Fig.~%\ref{fig:moca-3-WizardResult}.
-

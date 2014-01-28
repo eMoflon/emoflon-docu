@@ -2,31 +2,25 @@
 \section{Setting up the Model-to-Text workspace}
 \genHeader
 
-Nowadays, \emph{no one} really writes a complex parser completely by hand. Although this is sometimes still necessary,\footnote{Some languages are syntactically
-challenging} most parsers can be whipped up pretty quickly using context-free \emph{string grammars}\footnote{For simple cases, \emph{regular
-expressions} can also be used.} typically in EBNF.\footnote{Extended Backus-Naur Form}
-ANTLR~\cite{ANTLR} is a tool that can generate a parser from a compact EBNF specification for a host of target programming languages, including Java.
-Although ANTLR might not be the most efficient or powerful parser generator out there, it is open-source, well documented and supported, and allows for a
-pragmatic and quite elegant \emph{fallback} to Java when things get nasty and we have to resort to some dirty tricks.
+Nowadays, \emph{no one} really writes a complex parser completely by hand. Although this is sometimes still necessary for syntactically challenging languages,
+most parsers can be whipped up pretty quickly using context-free \emph{string grammars}.\footnote{For simple cases, \emph{regular expressions} can also be used}
+These are typically written in Extended Backus-Naur Form (EBNF)\define{EBNF}. ANTLR~\cite{ANTLR} is a tool that can generate a parser from this compact EBNF
+specification for a host of target programming languages, including Java. Although ANTLR might not be the most efficient or powerful parser generator out there,
+it is open-source, well documented and supported, and allows for a pragmatic and quite elegant \emph{fallback} to Java when things get nasty and we have to
+resort to some dirty tricks.
 
+Parsers, of course, are based on whatever model they will be transforming so before we even start, we need a model's abstract snytax already completely defined.
+You have a few different options here about how to load the \texttt{Dicionary} metamodel into your workspace.
 
-% --------------------------------------------------------------------------------------------------------------------------------------------------------
-% 	Does there need to be a 'fresh start section?' i.e, do we need to briefly explain/tell where to look for info? Does user need to download anything from
-% previous parts?
-% \subsection{A fresh start}
-% --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-For the next step, there are a couple of different thing you can do to build the actual \texttt{Dictionary} we wish to transform. You can\ldots
 \begin{description}
 
 % -- Metamodel Screenshots ---
-
-\item[Option 1:] Start a new metamodel project (Fig.~\ref{fig:startDictLang}), and build it yourself until it matches either Fig.~\ref{ea_dictLang} or
-Fig.~\ref{eclipse_dictLang} using what you learned in Part II.	
+\item[Option 1:] Start a new metamodel project (Fig.~\ref{fig:startDictLang}) in your preferred syntax and construct \texttt{Dictionary} yourself until it
+matches either Fig.~\ref{ea_dictLang} or Fig.~\ref{eclipse_dictLang}.\footnote{To review how to complete a metamodel, work through Part II: Ecore}
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.75\textwidth]{eclipse_startDictionary}
+  \includegraphics[width=0.65\textwidth]{eclipse_startDictionary}
   \caption{Begin parser project}
   \label{fig:startDictLang}
 \end{center}
@@ -58,7 +52,7 @@ Fig.~\ref{eclipse_dictLang} using what you learned in Part II.
 
 % -- Export/Import ----
 
-\item[Option 2:] Export, then import\footnote{To review how to import projects into a specific workspace, review Part IV, Section 2 for instructions.} the
+\item[Option 2:] Export, then import\footnote{To review how to import projects into a specific workspace, review Part IV, Section 2} the
 \texttt{DictionaryLanguage} metamodel used in Part IV: Triple Graph Transformations into a new metamodel project (Fig.~\ref{ea_expImp} or
 Fig.~\ref{eclipse_expImp})
 
@@ -83,7 +77,7 @@ Fig.~\ref{eclipse_expImp})
 \newpage
 
 % -- Cheat Package(s)
-\item[Option 3:] Download our cheat package using the Eclipse ``New" wizard to load a project with \texttt{DictionaryLanguage} fully prepared and ready to
+\item[Option 3:] Download a cheat package using the Eclipse ``New" wizard to load a project with \texttt{DictionaryLanguage} fully prepared and ready to
 go (Fig.~\ref{eclipse_cheatPackage}).
 
 \vspace{0.5cm}
@@ -98,10 +92,14 @@ go (Fig.~\ref{eclipse_cheatPackage}).
 
 \end{description} 
 
-Once your dictionary is loaded, be sure to save, validate, and build before moving on to creating your parser.
+% -- End
+No matter what you choose, once \texttt{Dictionary} is saved and built in Eclipse with error, inspect each of its files until you feel comfortable with what
+you'll be working with. To briefly explain\ldots
 
 \jumpDual{M2TSettngUp vis}{M2TSettngUp vis}
 
 \input{../1_settingWorkspace/vis_setWkspSrc}
 
 \input{../1_settingWorkspace/tex_setWkspSrc}
+
+\input{../1_settingWorkspace/addParserSrc}

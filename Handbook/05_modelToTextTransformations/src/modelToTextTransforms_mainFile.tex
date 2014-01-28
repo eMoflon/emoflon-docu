@@ -43,12 +43,13 @@
 
 \graphicspath{%
 {../../06_miscellaneous/commonFiles/}% Title image and memBox illustration
-{../1_settingWorkspace/setWkspImages/}{../1_settingWorkspace/visSWImages/}{../1_settingWorkspace/texSWImages/}
+{../1_settingWorkspace/setWkspImages/}{../1_settingWorkspace/visSWImages/}{../1_settingWorkspace/texSWImages/}{../1_settingWorkspace/addParserImages/}%
+{../2_textToTree/t2tImages/}%
+{../3_treeToModel/visToModelImages/}%
 }
 
 % Remove section numbers 0.1, 0.2 ..
 \renewcommand{\thesection}{\arabic{section}} 
-
 
 % --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
 % Default plain header; turn off all lines and colors; turn on page numbers for all
@@ -100,14 +101,13 @@
 }
 
 % These words should appear in the glossary
-\newcommand{\define}[1]{ \marginpar{\small\emph{#1}} }
+\newcommand{\define}[1]{\marginpar{\small\emph{#1}}}
 
 % Text syntax/command format
 \newcommand{\syntax}[1]{ \begin{quote} \small \texttt{#1} \end{quote}}	
 
 % Quick author note; remove from final
 \newcommand{\update}{{\bf update }}
-
 
 % TODO: Update version number (Title Page Information)
 % --- Title Page Information ----------------------------------------------------------------------------------------------------------------------------------
