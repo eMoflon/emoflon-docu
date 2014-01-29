@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
@@ -26,7 +27,6 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.emf.codegen.util.CodeGenUtil;
@@ -337,32 +337,41 @@ public class WorkspaceHelper
    {
       monitor.beginTask("", 2 * PROGRESS_SCALE);
 
-      // Get current entries on the classpath
-      Collection<IClasspathEntry> classpathEntries = new ArrayList<IClasspathEntry>();
-      Collection<IPath> pathsForProjects = new HashSet<IPath>();
+      // Helper collections to determine the current entries of the java project's classpath
+      List<IClasspathEntry> classpathEntries = new LinkedList<IClasspathEntry>();
+      Set<IPath> tempSetOfPathsForProjects = new HashSet<IPath>(); // used for filtering (s. below)
       
-      // Collect project paths in Set to get rid of duplicates
-      for (IClasspathEntry entry : javaProject.getRawClasspath()){
-         if(entry.getEntryKind() == IClasspathEntry.CPE_PROJECT)
-            pathsForProjects.add(entry.getPath());
-         else
+      // Collect project paths in list and filter out duplicates
+      for (IClasspathEntry entry : javaProject.getRawClasspath()) {
+         if (entry.getEntryKind() == IClasspathEntry.CPE_PROJECT) {
+            // we found a project dependency
+            IPath pathOfEntry = entry.getPath();
+            // if we have already encountered the entry (should not happen though [mw])
+            // do not add it again
+            if (!tempSetOfPathsForProjects.contains(pathOfEntry)) {
+               // we have found a new entry
+               // update the helper set
+               tempSetOfPathsForProjects.add(pathOfEntry);
+               // add the entry also to the classpath (to maintain the original ordering)
+               classpathEntries.add(entry);
+            }
+         } else {
+            // this classpathEntry does not reference another project
+            // so just add it (can this assumption potentially lead to an error? [mw])
             classpathEntries.add(entry);
+         }
       }
 
-      // Add new project path to set of project paths 
+      // Add new project path to list of project paths (if not already present) 
       if (dependency != null)
       {
          IClasspathEntry projectEntry = JavaCore.newProjectEntry(dependency.getPath());
-         pathsForProjects.add(projectEntry.getPath());
+         if (tempSetOfPathsForProjects.add(projectEntry.getPath()))
+            classpathEntries.add(projectEntry);
       }
-
-      // Add set projects to classpath entries
-      for (IPath iPath : pathsForProjects)
-         classpathEntries.add(JavaCore.newProjectEntry(iPath));
       
-      // Create new buildpath
-      IClasspathEntry[] newEntries = new IClasspathEntry[classpathEntries.size()];
-      classpathEntries.toArray(newEntries);
+      // Convert the collected entries to an array (represents the updated classpath entries)
+      final IClasspathEntry[] newEntries = classpathEntries.toArray(new IClasspathEntry[classpathEntries.size()]);
 
       monitor.worked(1 * PROGRESS_SCALE);
 
@@ -455,10 +464,16 @@ public class WorkspaceHelper
       return true;
    }
 
-   public static List<IProject> getProjectsOnBuildPath(IProject project)
+   public static List<IProject> getProjectsOnBuildPathInReversedOrder(IProject project)
    {
+      List<IProject> result = getProjectsOnBuildPath(project);
+      Collections.reverse(result);
+      return result;
+   }
+   
+   public static List<IProject> getProjectsOnBuildPath(IProject project) {
       IJavaProject javaProject = JavaCore.create(project);
-
+      
       // Get current entries on the classpath
       ArrayList<IProject> projectsOnBuildPath = new ArrayList<IProject>();
       try
@@ -475,8 +490,7 @@ public class WorkspaceHelper
          logger.error("Unable to determine projects on buildpath for: " + project.getName());
          e.printStackTrace();
       }
-
-      Collections.reverse(projectsOnBuildPath);
+      
       return projectsOnBuildPath;
    }
 
