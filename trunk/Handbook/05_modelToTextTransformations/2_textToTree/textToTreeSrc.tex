@@ -186,6 +186,7 @@ email: "contact@pons.de"
 \textbf{french/unknown.dictionary:}
 \begin{verbatim}
 title: "unknown"
+email: "unknown"
 {
   "unbekannt", beginner
 }
@@ -197,10 +198,12 @@ title: "unknown"
 
 \end{table}   
 
-After saving each of the dictionaries, right-click on \texttt{MocaMain.java} and navigate to ``Run As / Java Application.'' If any errors appear in the
-``Problems'' tab below the editor, double check that there are no extra spaces in any of the dictionary for lexer files. If everything succeeds, a
-\texttt{tree.xmi} file and an \texttt{out} folder (with the same directory structure as \texttt{in}) should be created in the \texttt{instances} directory after
-refreshing.
+After saving each of the dictionaries, right-click on \texttt{MocaMain.java} \texttt{\bf update starting directory}and navigate to ``Run As / Java
+Application.'' If any errors appear in the ``Problems'' tab below the editor, double check that there are no extra spaces in any of the dictionary for lexer
+files. If everything succeeds, a \texttt{tree.xmi} file and an \texttt{out} folder (with the same directory structure as \texttt{in}) should be created in the
+\texttt{instances} directory after refreshing.
+
+{\bf mention that we'll do the forwards/backwards transformations in pairs: text to model, model to text, using tree as a middle man?}
 
 \newpage
 
