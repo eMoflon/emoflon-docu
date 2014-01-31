@@ -1,8 +1,42 @@
 \newpage
 \section{Model To Tree with TGGs}
 
-All new!
+This is the second half of our round trip. You may have noticed after running \emph{TGGMain} in the forward direction, that the backwards transformation also
+succeeded. This transformation used the \texttt{tree.xmi\_fwd.xmi} model (generated from your original text) and drove it through another transformation to
+change it \emph{back} to a tree, where it will be transformed one more time by the ANTLR unparser to get back to our original text format.
 
+Lets compare this resulting file, \texttt{tree.xmi\_FWD.xmi\_BWD.xmi}, against our original \texttt{tree.xmi} model.
+
+%\usepackage{graphics} is needed for \includegraphics
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=\textwidth]{eclipse_generatedBackwardsModel}
+  \caption[labelInTOC]{needs refinement\ldots}
+  \label{eclipse:generatedBkwrdMdl}
+\end{center}
+\end{figure}
+
+You can see that some things need to be fixed up -- we're missing the ``DICTIONARY'' and ``ENTRY" headings of the major nodes. Obviously, some refinement is
+needed here..
+
+Note:: oarser requires that all attribute constraints are declared before link variables.
+
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=\textwidth]{eclipse_NodeToDictionaryRule_updated}
+  \caption[labelInTOC]{needs refinement\ldots}
+  \label{eclipse:generatedBkwrdMdl}
+\end{center}
+\end{figure}
+
+\begin{figure}[htp]
+\begin{center}
+  \includegraphics[width=\textwidth]{eclipse_ForAllEntryRule_updated}
+  \caption[labelInTOC]{needs refinement\ldots}
+  \label{eclipse:generatedBkwrdMdl}
+\end{center}
+\end{figure}
 \input{../4_modelToTree/vis_mtoTreeSrc}
 
 \input{../4_modelToTree/tex_mtoTreeSrc}
