@@ -3,35 +3,40 @@
 \subsection{Initializing the project}
 \texHeader
 
-{\bf update download so it includes a constraint file for \texttt{Dictionary}}
+{\bf SELF:: update download so it includes a constraint file for \texttt{Dictionary}}
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{eclipse_DOWNLOADUPDATE}
+  \caption{SELF SELF}
+\end{center}
+\end{figure}
 
 \begin{enumerate}
 
-\item[$\blacktriangleright$] Your expanded \texttt{Dictionary} metamodel MOSL structure should resemble that found in Fig.~\ref{eclipse:startDictionary}. You'll
-notice that it is accessing the \emph{Moca} framework by importing the \texttt{MocaTree} in \texttt{\_imports.mconf}.
+\item[$\blacktriangleright$] Your expanded \texttt{DictionaryLanguage} metamodel MOSL structure should resemble FIG. (starting point) You'll notice that it is
+accessing the \emph{Moca} framework by importing the \texttt{MocaTree} in \texttt{\_imports.mconf}. (Explain, no screenshot?)
 
-\begin{figure}[htpb]
+\item[$\blacktriangleright$] Right click on \texttt{MyWorkingSet} folder and create a new TGG. source: MocaTree. Target: DictionaryLanguage. FIG
+
+\begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_startingDictionary}
-  \caption{figureCaption}
-  \label{eclipse:startDictionary}
+  \includegraphics[width=0.9\textwidth]{eclipse_dictionaryCodeAdapterTGGProject}
+  \caption{create tgg}
+  \label{eclipse:newTGGProject}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Create a new \texttt{EPackage} named \texttt{DictionaryCodeAdpater}. It should include a \texttt{\_patterns} folder and
-\texttt{\_constraints} file.
 
-\item[$\blacktriangleright$] We'll need to create a metamodel to base our parser on, so create a new empty \texttt{EClass} in the new directory called
-\texttt{Transformer}. Confirm your workspace resembles Fig.~\ref{eclipse:updatedDictionary}, then build your project to finish initilization.
+\item[$\blacktriangleright$] Before saving and building, initialize the correct generated code type by establishing the schema below (default is..)
 
-\newpage
-
-\begin{figure}[htpb]
+\begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{eclipse_updatedDictionary}
-  \caption{figureCaption}
-  \label{eclipse:updatedDictionary}
+  \includegraphics[width=0.5\textwidth]{eclipse_schemaStart}
+  \caption{first rule}
+  \label{eclipse:firstSchema}
 \end{center}
 \end{figure}
+
+\item[$\blacktriangleright$] Save and build your project! Confirm a generated project was created in the \texttt{MyWorkingSet} node, and carry on!
 
 \end{enumerate}

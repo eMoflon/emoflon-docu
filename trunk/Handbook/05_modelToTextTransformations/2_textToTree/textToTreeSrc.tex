@@ -8,7 +8,7 @@ Figure \ref{fig:moca-4-Tokens} depicts a small sample of the textual syntax used
 \begin{figure}[!htbp]
 \begin{center}
  \includegraphics[width=0.7\textwidth]{4-tokens}
-  \caption{Identified tokens in a dictionary file.}
+  \caption{Identified tokens in a dictionary file \update}
   \label{fig:moca-4-Tokens}
 \end{center}
 \end{figure}
@@ -26,8 +26,7 @@ problems understanding the lexer grammar then make sure you at least go through 
 
 \begin{itemize}
   
-\item[$\blacktriangleright$] When you first open \texttt{DictionaryLexer.g} it will have some comments that may help you but that you are free to delete if you
-wish. In any case, Edit \texttt{DictionaryLexer.g} so it closely resembles Fig.~\ref{fig:moca-6-lexer}. You'll need to add the \texttt{import
+\item[$\blacktriangleright$] Edit \texttt{DictionaryLexer.g} so it closely resembles Fig.~\ref{fig:moca-6-lexer}. You'll need to add the \texttt{import
 org.moflon.moca.MocaUtil} statment to the header. For the rest of the file, be careful to avoid any typos and mistakes! Save the file to compile it, and ensure
 no errors persist.
 
@@ -36,7 +35,7 @@ no errors persist.
 
 \begin{figure}[!htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_dictionaryLexer}
+  \includegraphics[width=0.7\textwidth]{eclipse_dictionaryLexer}
   \caption{Lexer grammar}
   \label{eclipse:dictionaryLexer}
 \end{center}
@@ -57,9 +56,8 @@ meaning to the tree.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Open and edit \texttt{DictionaryParser.g} so it closely resembles Fig.~\ref{eclipse:dictParser}. It too has some comments that you
-may remove, but you won't need to make any changes this time to \texttt{@header}. As with the lexer, avoid typos and mistakes and ensure it compiles before
-proceeding.
+\item[$\blacktriangleright$] Open and edit \texttt{DictionaryParser.g} so it closely resembles Fig.~\ref{eclipse:dictParser}. You won't need to make any changes
+this time to \texttt{@header}. As with the lexer, avoid typos and mistakes and ensure it compiles before proceeding. Blue are rules, pinkish are values
 
 \end{itemize}
 
@@ -77,16 +75,30 @@ this context, content that is irrelevant for our model.} and (2) enrich the tree
 tree. Please refer to \cite{ANTLR} and online resources for a detailed explanation of the syntax and semantics of the parser grammar supported by
 \texttt{ANTLR}.
 
-Before we take our lexer and parser for a spin, navigate to the ``org.moflon.moca" package and open \texttt{MocaMain.java} to inspect it. If everything has gone
-correctly so far, it should bear a striking resemblance to Fig.~\ref{eclipse:mocaMain}. For the moment, please comment out line 24  as we shall define the
-unparser, i.e., model-to-text a bit later.\footnote{If you forget this the default implementation of the unparser will throw an exception} Do not change
-anything else and just note how the parser is added to the Moca framework (line 23) via an adapter (\texttt{Dictionary\-Parser\-Adapter}).
- 
+{\bf new content }
+\begin{enumerate}
+
+\item[$\blacktriangleright$] TGGMAIN: its not the same as it was: explain to users that in INSTANCES/IN source folder.. is the super folder. It will look for
+the intial model called tree.xmi. Output/stored files will be in /out. 
+
+\item[$\blacktriangleright$] ** comment out line 46
+
+\item[$\blacktriangleright$]  under //text to tree, the ``Folder folder = MocaMain.getCodeAdapter().parse(new File("instances/in/myLibrary"));'' command will be
+the library to be transformed. This may make more sense after working through the example, where you might have several libraries, such as one for languages,
+and one for maths.
+If you rename your tree.xmi file, this is where you'd have to make the change.
+
+\item[$\blacktriangleright$] To explain, ti takes tree.xmi into the transformer, which in turns creates tree.xmi\_FWD.xmi, an output tree model. This will drive
+the backwards transfiormation. (explain the driving process). in other words, this single main method drives the parser, forward transformation, backwards
+transformation, and unparser. Streamlined. All you need to start is that inital ``in'' folder with a library directory of some sort. Don't worry about
+commenting anything out.
+
+
 \begin{figure}[htp]
 \begin{center}
- \includegraphics[width=\textwidth]{eclipse_dictionaryMocaMain}
-  \caption{Generated main method}
-  \label{eclipse:mocaMain} 
+ \includegraphics[width=\textwidth]{eclipse_TGGMain}
+  \caption{Comment out line 46}
+  \label{eclipse:TGGMain} 
 \end{center}
 \end{figure}
 
@@ -95,37 +107,39 @@ to be used for (per default the adapter registers for \texttt{*.dictionary} file
 framework remains (parser) technology agnostic. If you decide to use a different parser generator or write the parser by hand you would need to implement a
 corresponding adapter from scratch.
 
-On line 27, the input for the framework is set, meaning that all folders in \texttt{./instances/in} are parsed.
+On line 27, the input for the framework is set, meaning that all folders in \texttt{./instances/in} are parsed. ((see original!!))
 In a nutshell, each folder is taken as a root of a tree and the folder and file structure is reflected as a hierarchy of (children) nodes in the tree.
 For each file, the framework searches for a registered parser that is responsible for the particular file, passes the content on to the parser and plugs in the
 tree from the parser as a single subtree of the corresponding file node in the overall tree.  
 
 \newpage
 
-The final step is now to prepare some input for the framework:
-\begin{enumerate}
+The final step is now to prepare some input for the framework ({\bf the in/library folder.}):
 
-\item[$\blacktriangleright$] Navigate to ``DictionaryCodeAdapter/instances/in'' and create the directory structure depicted in Fig.~\ref{}. You can create
-the \texttt{dictionary} files by right clicking its parent folder, going to ``new/File" and simply appending \texttt{.dictionary} to the end of the name.
+
+\item[$\blacktriangleright$] Navigate to ``DictionaryCodeAdapter/instances/in'' and create the directory structure depicted in Fig.~\ref{eclipse:textDirectory}. You can
+create the \texttt{dictionary} files by right-clicking its parent folder, going to ``new/File" and simply appending \texttt{.dictionary} to the end of the name.
 Complete each of the four files with the contents from Table~\ref{moca-inputdata}.\footnote{Please do not copy and paste this data as it your .pdf reader may
-add some invisible characters to the file that MOSL cannot detect}
+add some invisible characters to the file that MOSL will not detect}
  
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{inputData}
   \caption{Input directory structure.}
-  \label{fig:moca-inputdata}
+  \label{eclipse:textDirectory}
 \end{center}
 \end{figure}
 
 \end{enumerate}
+
+\newpage
 
 \begin{table}
 \begin{tabular}{p{6cm} p{6cm} }
 \footnotesize
 \textbf{english/numbers1-10.dictionary:}
 \begin{verbatim}
-title: "English Numbers 1-10"
+title: "numbers1-10"
 email: "contact@langenscheidt.de"	
 {
   "null : zero", beginner
@@ -145,7 +159,7 @@ email: "contact@langenscheidt.de"
 \footnotesize
 \textbf{french/numbers11-20.dictionary:}
 \begin{verbatim}
-title: "French Numbers 11-20"
+title: "numbers11-20"
 email: "contact@pons.de"	
 {
   "elf : onze", advanced
@@ -165,7 +179,7 @@ email: "contact@pons.de"
 \footnotesize
 \textbf{french/numbers1-10.dictionary:}
 \begin{verbatim}   
-title: "French Numbers 1-10"
+title: "numbers1-10"
 email: "contact@pons.de"	
 {
   "null : zero", beginner
@@ -186,9 +200,8 @@ email: "contact@pons.de"
 \textbf{french/unknown.dictionary:}
 \begin{verbatim}
 title: "unknown"
-email: "unknown"
 {
-  "unbekannt", beginner
+	"unbekannt : unknown", beginner
 }
 \end{verbatim}
   \\
@@ -198,42 +211,38 @@ email: "unknown"
 
 \end{table}   
 
-After saving each of the dictionaries, right-click on \texttt{MocaMain.java} \texttt{\bf update starting directory}and navigate to ``Run As / Java
-Application.'' If any errors appear in the ``Problems'' tab below the editor, double check that there are no extra spaces in any of the dictionary for lexer
-files. If everything succeeds, a \texttt{tree.xmi} file and an \texttt{out} folder (with the same directory structure as \texttt{in}) should be created in the
-\texttt{instances} directory after refreshing.
+\begin{enumerate}
 
-{\bf mention that we'll do the forwards/backwards transformations in pairs: text to model, model to text, using tree as a middle man?}
+\item[$\blacktriangleright$] As you can see, you're creating a single library (with the same name as specified in TGGMain) split into two categories, each
+containing a number of dictionaries. The syntax of the dictionaries correlate to the lexer/parser in this way..
 
-\newpage
-
-Inspect the folder contents and compare them to Fig.~\ref{eclipse_postParse}. The unparsed files are obviously empty as we haven't implemented an
-\emph{unparser} yet. Don't be irritated by the fact that an identical \texttt{out/in} pair is created -- this can all be configured in \texttt{MocaMain}. The
-default assumes \texttt{in} contains multiple folders (in our case, libraries) and is therefore treated as the root of the tree. One could unparse directly in
-\texttt{instances}, but the unparsed \texttt{in} would then have to be renamed in \texttt{MocaMain}.
-
-\vspace{0.5cm}
+\item[$\blacktriangleright$] After saving each dictionary, right click on \texttt{TGGMain} and press ``Run As / Java Application.''  you should have an
+\texttt{tree.xmi} file. Double-click this to open and inspect the contents FIG
 
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=0.4\textwidth]{eclipse_instancesPostParse}
-  \caption{Directory \texttt{instances} after parsing}
+ \includegraphics[width=0.4\textwidth]{eclipse_explorerPostGeneration}
+  \caption{new tgg file generation result}
   \label{eclipse_postParse}
 \end{center}
 \end{figure} 
 
-\begin{enumerate}
+\item[$\blacktriangleright$] \texttt{tree.xmi} file and an \texttt{out} folder (with the same directory structure as \texttt{in}) should be created in the
+\texttt{instances} directory after refreshing. EXPLAIN THE NODES AND STUFF HERE.
 
-\item[$\blacktriangleright$] Double-click \texttt{tree.xmi} and compare the contents to Fig.~\ref{eclipse:treeResult}. At this point, you can reflect on the
-structure of the tree and note the directory structure, file nodes and the subtrees from the parser. This file is important to understand; The directory
+{\bf mention that we'll do the forwards/backwards transformations in pairs: text to model, model to text, using tree as a middle man?}
+
+\item[$\blacktriangleright$] {\bf this is true}Double-click \texttt{tree.xmi} and compare the contents to Fig.~\ref{eclipse:treeResult}. At this point, you can
+reflect on the structure of the tree and note the directory structure, file nodes and the subtrees from the parser. This file is important to understand; The directory
 structure is transformed to a corresponding hierarchy of \texttt{Folders} and \texttt{Files}. The actual \emph{textual content} of each file is then transformed
 to a subtree using a registered, suitable parser. The resulting subtree from the parser is then plugged into the tree by setting its root as the single child
 node of a \texttt{File}.
 
 \end{enumerate}
 
-If everything worked out, well done! You now have a nicely structure tree that we'll be able to use with TGGs and transform in a few simple steps into an actual
-instance of our \texttt{Dictionary} metamodel.
+If everything worked out, well done! You've just completed the first step in the generation:: Text to tree. Now, tree to model to finish the forward
+direciton. It follows that it will end with model to tree, then tree to text. You now have a nicely structure tree that we'll be able to use with TGGs and
+transform in a few simple steps into an actual instance of our \texttt{Dictionary} metamodel.
 
 \newpage
 
@@ -241,7 +250,7 @@ instance of our \texttt{Dictionary} metamodel.
 
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=0.55\textwidth]{eclipse_treeParseResult}
+ \includegraphics[width=0.6\textwidth]{eclipse_textParsingGeneration}
   \caption{MocaTree created by the framework using our parser}
   \label{eclipse:treeResult}
 \end{center}
