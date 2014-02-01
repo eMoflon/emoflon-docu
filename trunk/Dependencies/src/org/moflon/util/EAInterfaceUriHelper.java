@@ -1,6 +1,9 @@
 package org.moflon.util;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 
 public class EAInterfaceUriHelper {
@@ -36,31 +39,62 @@ public class EAInterfaceUriHelper {
 		   return "Activity:Activity";
 	   }
 	   
-	   public static String getEOperationString(String eOperationName) {
+	   public static final String getEOperationString(EOperation eOperation) {
+		   final StringBuilder builder = new StringBuilder();
+		   builder.append(getEClassString(eOperation.getEContainingClass()));
+		   builder.append(DELIM);
+		   builder.append(getEOperationString(eOperation.getName()));
+		   builder.append(getEParameterString(eOperation.getEParameters()));
+		   builder.append("EOperation");
+		   return builder.toString();
+	   }
+	   
+	   public static final String getEOperationString(String eOperationName) {
 		   return (eOperationName);
 	   }
 	   
-	   public static String getEParameterString(EList<EParameter> eParameters)
-		{
-			String eParamString = "(";
-			for(EParameter eParam : eParameters)
-			{
-				eParamString += eParam.getName() + ":" + eParam.getEType().getName() + ",";
-			}
-			if(eParameters.size() > 0 )
-			{
-				eParamString = eParamString.substring(0,eParamString.length() - 1);
-			}
-			eParamString += ")";
-			return eParamString;
-			
-		}
+	   public static final String getEParameterString(EList<EParameter> eParameters) {
+		   final StringBuilder builder = new StringBuilder();
+		   builder.append("(");
+		   for (int i = 0; i < eParameters.size(); i++) {
+			   EParameter eParam = eParameters.get(i);
+			   if (i > 0) {
+				   builder.append(",");
+			   }
+			   builder.append(eParam.getName());
+			   builder.append(":");
+			   builder.append(eParam.getEType().getName());
+		   }
+		   builder.append(")");
+		   return builder.toString();
+	   }
 	   
-	   public static String getEClassString(String eClassName) {
+	   public static final String getEClassString(EClass eClass) {
+		   final StringBuilder builder = new StringBuilder();
+		   builder.append(getEPackageString(eClass.getEPackage()));
+		   builder.append(DELIM);
+		   builder.append(getEClassString(eClass.getName()));
+		   return builder.toString();
+	   }
+	   
+	   public static final String getEClassString(String eClassName) {
 		   return (eClassName + ":EClass");
 	   }
 	   
-	   public static String getEPackageString(String ePackageName) {
+	   public static final String getEPackageString(EPackage ePackage) {
+		   EPackage eParentPackage = ePackage.getESuperPackage();
+		   if (eParentPackage != null) {
+			   final StringBuilder builder = new StringBuilder();
+			   builder.append(getEPackageString(eParentPackage));
+			   builder.append(DELIM);
+			   builder.append(getEPackageString(ePackage.getName()));
+			   return builder.toString();
+		   } else {
+			   return getEPackageString(ePackage.getName());
+		   }
+	   }
+	   
+	   public static final String getEPackageString(String ePackageName) {
 		   return (ePackageName + ":EPackage");
 	   }
 }
