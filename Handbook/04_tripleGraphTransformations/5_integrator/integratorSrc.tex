@@ -9,14 +9,14 @@ integrator allows you to actually trace the transformation process. In other wor
 \begin{itemize}
 
 \item[$\blacktriangleright$] Right-click on \texttt{corr\_BWD.xmi} and choose ``eMoflon $\rightarrow$ Start Integrator'' which will open the window depicted in
-Fig.~\ref{fig:integrator_start}. This first window depicts your TGG Triple, showing how the \texttt{source}, and \texttt{target} metamodels are connected via
-the \texttt{link} (correspondence) metamodel.
+Fig.~\ref{eclipse:integrator_start}. This first window depicts your TGG Triple, showing how the \texttt{source}, and \texttt{target} metamodels are connected
+via the \texttt{link} (correspondence) metamodel.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_integratorStart}
   \caption{Default view of the integrator}
-  \label{fig:integrator_start}
+  \label{eclipse:integrator_start}
 \end{center}
 \end{figure}
 
@@ -36,8 +36,8 @@ result in the target model.
 \begin{figure}[h!]
 \begin{center}
   \includegraphics[width=0.75\textwidth]{eclipse_integratorPerformed}
-  \caption{Integrator after protocol insertion.}
-  \label{fig:integrator_after_protocol}
+  \caption{Integrator after the complete process}
+  \label{eclipse:integrator_after_protocol}
 \end{center}
 \end{figure} 
 
@@ -49,8 +49,12 @@ represent how the element is currently being processed, and have the following d
 \begin{description}
   \item[Blue] The element is currently being ``looked at," and is about to be processed.
   
+  \vspace{0.5cm}
+  
   \item[Yellow] The element cannot be transformed right now and has been queued for later transformation (i.e., when transforming the first
   \texttt{Entry} into a \texttt{Card}, the \texttt{Box} with each \texttt{partition} to store \texttt{card} must be translated first); ``Paused.''
+  
+  \vspace{0.5cm}
   
   \item[Green] The object has been created.
 

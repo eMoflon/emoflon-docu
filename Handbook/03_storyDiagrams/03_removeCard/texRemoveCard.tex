@@ -9,8 +9,8 @@
 proper method declaration. This entire scope can be referred to as the method's \emph{activity}, where the control flow (imperative top-layer) of a
 transformation is defined.
 
-\item[$\blacktriangleright$] Complete the activity with a single pattern and return statement as depicted in Fig~\ref{fig:remCardDec}. Don't forget -- you can
-use eMolfon's auto-complete feature here! Press \texttt{ctrl + space} on an empty line, then select the pattern template to establish \texttt{deleteSingleCard}.
+\item[$\blacktriangleright$] Complete the activity with a single pattern and return statement as depicted in Fig~\ref{eclipse:remCardDec}. Don't forget -- you
+can use eMolfon's auto-complete feature here! Press \texttt{ctrl + space} on an empty line, then select the pattern template to establish \texttt{deleteSingleCard}.
 
 \item[$\blacktriangleright$] Note that in this context, the \texttt{`@'} operator indicates an \emph{ObjectVariableExpression}%
 \defineMOSL{ObjectVariable\-Expression}. This expression implicitly refers to object variables from the preceding story node. In \texttt{removeCard}'s case, the
@@ -22,7 +22,7 @@ returned object refers to the \texttt{card} from the pattern.
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_removeCardDeclaration}
   \caption{Control flow for \texttt{removeCard}}
-  \label{fig:remCardDec}
+  \label{eclipse:remCardDec}
 \end{center}
 \end{figure}
 
@@ -33,8 +33,8 @@ rules are modeled in separate \emph{pattern} files. In this case, \texttt{remove
 
 \item[$\blacktriangleright$] Save \texttt{Partition.eclass}. An error should immediately appear below the editor. In the ``Problems'' tab, the message
 states that the builder cannot find the specified pattern file. Well, this makes sense. You haven't created it yet! Click this message and press \texttt{ctrl +
-1} to invoke a ``Quick Fix'' dialogue (Fig~\ref{fig:quixFix}). It offers to create a pattern file for you. Given that's exactly what you'd like, select the option
-and press \texttt{Finish}.
+1} to invoke a ``Quick Fix'' dialogue (Fig~\ref{eclipse:quickFix}). It offers to create a pattern file for you. Given that's exactly what you'd like, select the
+option and press \texttt{Finish}.
 
 \vspace{0.5cm}
 
@@ -42,12 +42,12 @@ and press \texttt{Finish}.
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_patternQuickFix}
   \caption{A quick fix to a missing pattern error}
-  \label{fig:quixFix}
+  \label{eclipse:quickFix}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] The new file will open in the editor, and you'll be able to see a new directory structure under ``LearningBoxLanguage/\_patterns''
-(Fig.~\ref{fig:pattStruct}). To explain, \texttt{deleteSingleCard.pattern} is invoked by the method \texttt{removeCard}, which is in the \texttt{Partition}
+(Fig.~\ref{eclipse:pattStruct}). To explain, \texttt{deleteSingleCard.pattern} is invoked by the method \texttt{removeCard}, which is in the \texttt{Partition}
 EClass. \texttt{Partition} will eventually contain a folder for each method that uses a pattern.
 
 \vspace{0.5cm}
@@ -62,11 +62,11 @@ but \emph{what}.
 \begin{center}
   \includegraphics[width=0.9\textwidth]{eclipse_patternStructure}
   \caption{Directory structure for a pattern}
-  \label{fig:pattStruct}
+  \label{eclipse:pattStruct}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Create two object variables, \texttt{@this:Partition } and \texttt{ @card:Card}\\ (Fig.~\ref{fig:remCardObjVar}). When working
+\item[$\blacktriangleright$] Create two object variables, \texttt{@this:Partition } and \texttt{ @card:Card}\\ (Fig.~\ref{eclipse:remCardObjVar}). When working
 with MOSL patterns, \texttt{`@'} again indicates that the variable is \emph{bound}. \texttt{this} is bound to the object whose method is invoked,
 while \texttt{card} is bound to the value of the parameter with the same name.
 
@@ -74,19 +74,19 @@ while \texttt{card} is bound to the value of the parameter with the same name.
 \begin{center}
   \includegraphics[width=0.6\textwidth]{eclipse_thisObjVar}
   \caption{Object variables for \texttt{removeCard}}
-  \label{fig:remCardObjVar}
+  \label{eclipse:remCardObjVar}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] Object variable scopes determine the changes to be applied to the any exiting references of the variable. Therefore, add:
 \syntax{-- -> card:card} to \texttt{@this} to destroy the \texttt{card} reference targeting the \texttt{card} object. Your pattern should now resemble
-Fig.~\ref{fig:deleteReference}. 
+Fig.~\ref{eclipse:deleteReference}. 
 
 \begin{figure}[htp]
 \begin{center}
     \includegraphics[width=0.6\textwidth]{eclipse_remCardObjVars}
   \caption{Destroy the link between a card and its partition}
-  \label{fig:deleteReference}
+  \label{eclipse:deleteReference}
 \end{center}
 \end{figure}
 \newpage
@@ -111,7 +111,7 @@ therefore, we don't need to worry about declaring \texttt{-- -> cardContainer:Ca
 
 \item[$\blacktriangleright$] Save and build your metamodel. If any errors occur, double check and make sure your activity and pattern match ours. 
 
-\item[$\blacktriangleright$] To see how the same method is crafted in the visual syntax, check out Fig.~\ref{fig:sdm_complete_control_flow} from the previous
+\item[$\blacktriangleright$] To see how the same method is crafted in the visual syntax, check out Fig.~\ref{ea:sdm_complete_control_flow} from the previous
 section.
 
 \end{itemize}

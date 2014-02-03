@@ -11,13 +11,13 @@ Since dictionaries are a much simpler structure, let's start with the backwards 
 
 \item[$\blacktriangleright$] Navigate to \texttt{Dictionary\-Language/model/} and open \texttt{Dictio\-nary\-Lang\-uage.ecore}. Create a new
 dynamic instance of a \texttt{Dictionary} named \texttt{target.xmi}. Don't quickly close the window by pressing \texttt{finish}! Make sure you persist the
-instance in \texttt{Learn\-ing\-Box\-To\-Dictionary\-In\-te\-gra\-tion/in\-stan\-ces/} (Fig.~\ref{fig:create_instance_dict}).
+instance in \texttt{Learn\-ing\-Box\-To\-Dictionary\-In\-te\-gra\-tion/in\-stan\-ces/} (Fig.~\ref{eclipse:create_instance_dict}).
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{eclipse_dictionaryInstance}
   \caption{Create a dynamic instance of \texttt{Dictionary}}
-  \label{fig:create_instance_dict}
+  \label{eclipse:create_instance_dict}
 \end{center}
 \end{figure}
 
@@ -30,7 +30,7 @@ Numbers} in the \texttt{Properties} tab below the window.
 
 \item[$\blacktriangleright$] Create three child \texttt{Entry} objects, giving each one a different difficulty level. Don't forget the syntax we created for
 each \texttt{entry.content} in the \texttt{CardToEntryRule} when setting up the constraints! Be sure to set this property as \texttt{<word>:<meaning>}. Your
-\texttt{target.xmi} should quickly resemble Fig.~\ref{fig:dictionaryxmi}.
+\texttt{target.xmi} should quickly resemble Fig.~\ref{eclipse:dictionaryxmi}.
 
 \vspace{0.5cm}
 
@@ -38,7 +38,7 @@ each \texttt{entry.content} in the \texttt{CardToEntryRule} when setting up the 
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_targetThreeEntries}
   \caption{Fill a \texttt{Dictionary} for a transformation}
-  \label{fig:dictionaryxmi}
+  \label{eclipse:dictionaryxmi}
 \end{center}
 \end{figure}
 
@@ -48,14 +48,14 @@ as\ldots/Java Application''
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Did you get one error message, followed by one success message in eMoflon console window below the editor?
-(Fig.~\ref{fig:tggERROR}) Perfect! Both of these statements make sense -- our TGG first attempted a forward transformation of \texttt{box} to
+(Fig.~\ref{eclipse:tggERROR}) Perfect! Both of these statements make sense -- our TGG first attempted a forward transformation of \texttt{box} to
 \texttt{dictionary} but, given that it was missing the source (\texttt{box}) instance, it was only able to perform a transformation in the backwards direction.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_TGGError}
   \caption{A single forward transformation}
-  \label{fig:tggERROR}
+  \label{eclipse:tggERROR}
 \end{center}
 \end{figure}
 
@@ -66,7 +66,7 @@ as\ldots/Java Application''
 steps taken (as well as their results), and \texttt{target.xmi\_BWD}, the output of the transformation. Open this file in the editor.
 
 \item[$\blacktriangleright$] Its a \texttt{Box} of \texttt{English Numbers}! Expand the tree and you'll see our \texttt{Dictionary} in its equivalent
-\texttt{Box} format containing three \texttt{Par\-ti\-tions} (Fig.~\ref{fig:derivedBOX}). Double click each \texttt{card} and observe how each
+\texttt{Box} format containing three \texttt{Par\-ti\-tions} (Fig.~\ref{eclipse:derivedBOX}). Double click each \texttt{card} and observe how each
 \texttt{entry.content} was split into two sides.
 
 \vspace{0.5cm}
@@ -75,7 +75,7 @@ steps taken (as well as their results), and \texttt{target.xmi\_BWD}, the output
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_derivedSource}
   \caption{Result of a \emph{backwards} transformation}
-  \label{fig:derivedBOX}
+  \label{eclipse:derivedBOX}
 \end{center}
 \end{figure}
 

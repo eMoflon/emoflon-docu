@@ -9,7 +9,7 @@
 action is determined as the result of a conditional statement, we need an \emph{if/else} construct.
 
 \item[$\blacktriangleright$] In the \texttt{check} method, create the basic \emph{if/else} construct with three patterns, as illustrated in
-Fig.~\ref{fig:checkDec}. Our auto completion feature includes a template for this.
+Fig.~\ref{eclipse:checkDec}. Our auto completion feature includes a template for this.
 
 \vspace{0.5cm}
 
@@ -17,18 +17,18 @@ Fig.~\ref{fig:checkDec}. Our auto completion feature includes a template for thi
 \begin{center}
   \includegraphics[width=0.65\textwidth]{eclipse_checkCardMethod}
   \caption{An if/else construct in \texttt{check}}
-  \label{fig:checkDec}
+  \label{eclipse:checkDec}
 \end{center}
 \end{figure} 
 
 \item[$\blacktriangleright$] Upon saving, use the ``Quick Fix'' wizard again to generate the required pattern files. Your package explorer should now resemble
-Fig.~\ref{fig:checkPatternsExplorer}.
+Fig.~\ref{eclipse:checkPatternsExplorer}.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.55\textwidth]{eclipse_checkPackageExplorer}
   \caption{Project directory after creating patterns}
-  \label{fig:checkPatternsExplorer}
+  \label{eclipse:checkPatternsExplorer}
 \end{center}
 \end{figure} 
 
@@ -50,7 +50,7 @@ With:\\
 ID := STRING}
 
 \item[$\blacktriangleright$] Thus, the complete attribute constraint statement is: \syntax{card.face == \$guess} Your pattern should now resemble
-Fig.~\ref{fig:checkPattern}.
+Fig.~\ref{eclipse:checkPattern}.
 
 \vspace{0.5cm}
 
@@ -58,22 +58,22 @@ Fig.~\ref{fig:checkPattern}.
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_checkPattern}
   \caption{Completed \texttt{checkCard} pattern}
-  \label{fig:checkPattern}
+  \label{eclipse:checkPattern}
 \end{center}
 \end{figure} 
 
 \item[$\blacktriangleright$] Now let's specify the \texttt{promoteCard} pattern. It requires three object variables: the current partition (\texttt{this}),
-the card to be promoted, and the partition the card will move to. Open and edit so that it resembles Fig.~\ref{fig:promoteCardPattern}.
+the card to be promoted, and the partition the card will move to. Open and edit so that it resembles Fig.~\ref{eclipse:promoteCardPattern}.
 
 \item[$\blacktriangleright$] Given that \texttt{this} is bound while \texttt{next} partition is free, we need to establish a reference link between the
 \texttt{box} and partition. This will allow the card to be moved around. Create an \emph{outgoing link variable}, \texttt{next},  with target object variable
-\texttt{nextPartition}. Your file should now resemble Fig.~\ref{fig:promoteThisRule}.
+\texttt{nextPartition}. Your file should now resemble Fig.~\ref{eclipse:promoteThisRule}.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_promoteCardPattern}
   \caption{Object variables for promoting a card}
-  \label{fig:promoteCardPattern}
+  \label{eclipse:promoteCardPattern}
 \end{center}
 \end{figure} 
 
@@ -81,7 +81,7 @@ the card to be promoted, and the partition the card will move to. Open and edit 
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_promoteCardThisRule}
   \caption{The \texttt{@this} object variable}
-  \label{fig:promoteThisRule}
+  \label{eclipse:promoteThisRule}
 \end{center}
 \end{figure} 
 
@@ -93,7 +93,7 @@ a new link to \texttt{nextPartition}.\footnote{There are several different ways 
 
 \item[$\blacktriangleright$] Compare the differences between the \texttt{promoteCard} and \texttt{penalizeCard} concepts. They both do the exact same thing,
 except the destination partition is different. Knowing this, try to complete \texttt{penalizeCard} entirely on your own. Your workspace should come to
-resemble Fig.~\ref{fig:completedPatterns}.
+resemble Fig.~\ref{eclipse:completedPatterns}.
 
 \newpage
 
@@ -101,7 +101,7 @@ resemble Fig.~\ref{fig:completedPatterns}.
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_movementPatternsCompleted}
   \caption{Both movement patterns completed}
-  \label{fig:completedPatterns}
+  \label{eclipse:completedPatterns}
 \end{center}
 \end{figure}
 
@@ -124,7 +124,7 @@ any\_literal := STRING\\
 
 \item[$\blacktriangleright$] Knowing this, and that \texttt{guess} was successful
 when the card was promoted, return \texttt{true} beneath \texttt{promoteCard}. If it was penalized, return \texttt{false}. Your \texttt{check} method
-should now resemble Fig.\ref{fig:finalMethod}.
+should now resemble Fig.\ref{eclipse:finalMethod}.
 
 \vspace{0.5cm}
 
@@ -137,13 +137,13 @@ see the \emph{if/else} construct, as well as the link manipulations.
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_checkMethodFinal}
   \caption{Completed control flow for \texttt{check}}
-  \label{fig:finalMethod}
+  \label{eclipse:finalMethod}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] Great job! You have just enabled checking a card with guesses via a new control flow construct, \emph{if/else}, and two patterns
-that move the cards appropriately. To see how this SDM is implemented visually, check out Fig.~\ref{fig:sdm_check_finish} for the control flow, and
-Figs.~\ref{fig:sdm_check_complete_activity_node} and \ref{fig:sdm_check_complete_penalize} for the movement patterns, all in the previous visual section.
+that move the cards appropriately. To see how this SDM is implemented visually, check out Fig.~\ref{ea:sdm_check_finish} for the control flow, and
+Figs.~\ref{ea:sdm_check_complete_activity_node} and \ref{ea:sdm_check_complete_penalize} for the movement patterns, all in the previous visual section.
 
 \end{itemize}
  

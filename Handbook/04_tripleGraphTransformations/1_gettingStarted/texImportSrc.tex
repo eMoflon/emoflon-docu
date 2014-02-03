@@ -3,54 +3,52 @@
 \subsection{Working with multple MOSL projects}
 \texHeader
 
-% Eclipse import instructions; all unconfirmed.
 \begin{itemize}
 
-\item[$\blacktriangleright$] Confirm your source metamodel \texttt{LeitnersLearningBox}, is in the current workspace prepared and right-click on
-\texttt{MyWorkingSet}. Select \texttt{Import\ldots} from the context menu (Fig.~\ref{fig:eclipseContextImport}).
-
-\vspace{0.25cm}
+\item[$\blacktriangleright$] Press the \texttt{new} button on the Eclipse toolbar and navigate to ``Examples/eMoflon Handbook Examples/''
+(Fig.~\ref{eclipse:dictionaryDownloadWizard}). Find and select \texttt{Visual Dictionary Language} to copy a new \texttt{Dictionary} metamodel project into your
+workspace.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.6\textwidth]{eclipse_contextImport}
-  \caption{Starting the import process in Eclipse}
-  \label{fig:eclipseContextImport}
+  \includegraphics[width=0.8\textwidth]{eclipse_part4DictionaryLanguageDownload}
+  \caption{Download the textual Dictionary project}
+  \label{eclipse:dictionaryDownloadWizard}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] In the first dialogue, set your import source by navigating to ``General/File System.'' This is the appropriate choice since
-we want to import the entire directory structure of the target metamodel, not a pre existing project.
+\item[$\blacktriangleright$] If successful, your workspace should resemble Fig.~\ref{eclipse:loadedDictionaryMetamodel}. It would be a good idea to inspect the
+metamodel until you feel comfortable with what you'll be working with. This transformation will be focusing on transformation on the \texttt{Dictionary} and
+\texttt{Entry} eclasses.
 
-\item[$\blacktriangleright$] Press \texttt{Browse\ldots} and navigate to the folder where you extracted the contents of the \texttt{Part4.zip} download file
-which included this document (Fig.~\ref{fig:importFileSys}). Press \texttt{Select All} to ensure you're importing all the necessary MOSL files for your TGG
-target metamodel. Affirm and close the dialogue by pressing \texttt{Finish}.
+\item[$\blacktriangleright$] While you now have your source and target metamodels in the same place, \texttt{LeitnersLearningBox} still needs to be told to
+access \texttt{DictionaryLanguage}. navigate to ``LeitnersLearningBox/MOSL/MyWorkingSet'' and open \texttt{\_imports.mconf}
+(Fig.~\ref{eclipse:importConfigFile}) and add the statement: 
+\syntax{import Dictionary}
 
 \newpage
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_importDialogue}
-  \caption{Importing the \texttt{target} metamodel into your workspace}
-  \label{fig:importFileSys}
+  \includegraphics[width=0.5\textwidth]{eclipse_loadDictionaryMetamodel}
+  \caption{\texttt{DictionaryLanguage}'s metamodel structure}
+  \label{eclipse:loadedDictionaryMetamodel}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] With your project now loaded, navigate to ``Build (Without Cleaning)'' on the toolbar to build both metamodels. Confirm with
-Fig.~\ref{fig:bothmetamodelstructures} that your MOSL directory is now populated with both metamodels, and notice that a second \texttt{Dictionary\-Language}
-folder appeared under the same node as the \texttt{LearningBoxLanguage} repository project. If you expand this folder, you'll be able to see that it has
-similar generated code for the imported metamodel.
+\vspace{1cm}
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{eclipse_metamodelStructures}
-  \caption{Fully loaded dual-metamodel structure}
-  \label{fig:bothmetamodelstructures}
+  \includegraphics[width=0.35\textwidth]{eclipse_learningBoxImportFile}
+  \caption{Importing \texttt{Dictionary} into the learning box}
+  \label{eclipse:importConfigFile}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Great work -- You're now ready to start using your metamodels in a TGG transformation! If you've just joined us and are interested
-in the eMoflon project structure, or curious as to how Java code is generated, we invite you to read Section 4.2 from Part I. Otherwise, continue to the next section to begin
-building your TGG Schema. 
+\vspace{1cm}
+
+\item[$\blacktriangleright$] Save and rebuild \texttt{LeitnersLearningBox}. You're ready to start a TGG transformation as soon as it completes! It should be
+mentioned that you could have achieved the equivalent result by copying the \texttt{DictionaryLanguage} folder into \texttt{LeitnersLearningBox}'s working set.
 
 \end{itemize}

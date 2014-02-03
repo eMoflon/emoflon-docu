@@ -6,7 +6,7 @@
 \begin{itemize}
   
 \item[$\blacktriangleright$] Create a new \texttt{eclass} under ``LearningBoxLanguage" named \texttt{FastCard} which extends \texttt{Card}. It doesn't need any
-new attributes or methods, so leave its specification empty. It should resemble Fig.~\ref{fig:fastClass}.
+new attributes or methods, so leave its specification empty. It should resemble Fig.~\ref{eclipse:fastClass}.
 
 \vspace{0.5cm}
 
@@ -14,13 +14,13 @@ new attributes or methods, so leave its specification empty. It should resemble 
 \begin{center}
   \includegraphics[width=0.45\textwidth]{eclipse_fastCardClass}
   \caption{\texttt{FastCard}s are a special type of \texttt{Card}}
-  \label{fig:fastClass}
+  \label{eclipse:fastClass}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] Open \texttt{Partition.eclass} once again, and find \texttt{check(card, guess)}. Edit the activity by adding a second
 \texttt{if/else} construct. Call the new assertion pattern \texttt{isFastCard}, and the action pattern \texttt{promoteFastCard}. Move the original
-\texttt{[promoteCard]} pattern into the \texttt{else} branch. The check method should now resemble Fig.~\ref{fig:isFastCard}.
+\texttt{[promoteCard]} pattern into the \texttt{else} branch. The check method should now resemble Fig.~\ref{eclipse:isFastCard}.
 
 \vspace{0.5cm}
 
@@ -28,20 +28,20 @@ new attributes or methods, so leave its specification empty. It should resemble 
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_isFastCardFlow}
   \caption{Checking for \texttt{FastCard}s}
-  \label{fig:isFastCard}
+  \label{eclipse:isFastCard}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] \texttt{isFastCard} is a simple, one line pattern. You simply need to create a \emph{binding expression} to bind the
 object variable \texttt{fastCard} (of type \texttt{FastCard}), to \texttt{card} (of type \texttt{Card}) which was passed in as a parameter. Remember, to access
 parameter values, use a \emph{ParameterExpression} which prefixes the name with a `\$' symbol. Your workspace should now resemble
-Fig.~\ref{fig:isFastCardPattern}.
+Fig.~\ref{eclipse:isFastCardPattern}.
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_isFastCardPattern}
   \caption{Checking if a \texttt{card} is a \texttt{FastCard}}
-  \label{fig:isFastCardPattern}
+  \label{eclipse:isFastCardPattern}
 \end{center}
 \end{figure}
 
@@ -51,7 +51,7 @@ Fig.~\ref{fig:isFastCardPattern}.
 current partition of the card, \texttt{@fastCard} representing the card, \texttt{lastPartition} for the last partition in the box, and the \texttt{box}
 containing all partitions. Under \texttt{lastPartition}, also create a NAC \texttt{next}, which we will use to forbid that the last partition in the box has a
 next partition.
-Your pattern should now resemble Fig.~\ref{fig:objVarFastCard}.
+Your pattern should now resemble Fig.~\ref{eclipse:objVarFastCard}.
 
 \vspace{0.5cm}
 
@@ -59,7 +59,7 @@ Your pattern should now resemble Fig.~\ref{fig:objVarFastCard}.
 \begin{center}
   \includegraphics[width=0.6\textwidth]{eclipse_promoteFastCardObjVars}
   \caption{Object variables for \texttt{promoteFastCard}}
-  \label{fig:objVarFastCard}
+  \label{eclipse:objVarFastCard}
 \end{center}
 \end{figure}
 
@@ -70,22 +70,22 @@ already been confirmed! This means that you'll want to:
 (3) confirm that \texttt{lastPartition} does not have a \texttt{next} partition, i.e., it really is the last partition in the box.\footnote{If you need help
 remembering how NACs work, review Section 7}
 
-\item[$\blacktriangleright$] Your final pattern should resemble Fig.~\ref{fig:promoFastCardFinal}. As you can see, this pattern is remarkably similar to the
-original movement patterns, \texttt{pro\-mote\-Card} and \texttt{pen\-a\-lize\-Card} (Fig.~\ref{fig:completedPatterns}). This of course makes sense -- the
+\item[$\blacktriangleright$] Your final pattern should resemble Fig.~\ref{eclipse:promoFastCardFinal}. As you can see, this pattern is remarkably similar to the
+original movement patterns, \texttt{pro\-mote\-Card} and \texttt{pen\-a\-lize\-Card} (Fig.~\ref{eclipse:completedPatterns}). This of course makes sense -- the
 target pattern is only now always the last partition in the box and no longer the current \texttt{next}.
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.6\textwidth]{eclipse_promoFastCardFinal}
   \caption{The completed fast card promotion pattern}
-  \label{fig:promoFastCardFinal}
+  \label{eclipse:promoFastCardFinal}
 \end{center}
 \end{figure}
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] You have now completed \emph{every} method signature using SDMs -- fantastic work! Build your project to
-confirm there aren't any errors, and review Fig.~\ref{fig:promoteFastCardPattern} to see how \texttt{FastCard}s are implemented in the visual syntax.
+confirm there aren't any errors, and review Fig.~\ref{ea:promoteFastCardPattern} to see how \texttt{FastCard}s are implemented in the visual syntax.
 
 \item[$\blacktriangleright$] You are encouraged to read the visual SDM sections on each method to understand the full scope of eMoflon's features (which start
 on page~\hyperlink{Page.9}{9}), but you are more than welcome to carry on and complete Part III.

@@ -21,7 +21,7 @@ keys. Try it out!
 \begin{itemize}
 
 \item[$\blacktriangleright$] Open \texttt{Box.eclass} in the editor and add a \emph{container reference} named \texttt{containedPartition} with a
-multiplicity of zero to infinity, from \texttt{Box} to \texttt{Partition} (Fig.~\ref{fig:cpartitionReference}). This EReference means a \texttt{Box}
+multiplicity of zero to infinity, from \texttt{Box} to \texttt{Partition} (Fig.~\ref{eclipse:cpartitionReference}). This EReference means a \texttt{Box}
 can hold an infinite number of partitions.
 
 \vspace{0.5cm}
@@ -30,7 +30,7 @@ can hold an infinite number of partitions.
 	\centering
   \includegraphics[width=0.6\textwidth]{eclass_box}
 	\caption{Creating a \emph{container reference} in \texttt{Box}}
-	\label{fig:cpartitionReference}
+	\label{eclipse:cpartitionReference}
 \end{figure} 
 
 \vspace{0.5cm}
@@ -40,7 +40,7 @@ can hold an infinite number of partitions.
 boxes at the same time.
 
 \item[$\blacktriangleright$] Congratulations, you have just built your first pair of EReferences! To see how this is depicted visually, check out
-Fig.~\ref{fig:ereference_completed} from the previous subsection.
+Fig.~\ref{ea:ereference_completed} from the previous subsection.
 
 \newpage
 
@@ -58,13 +58,13 @@ Fig.~\ref{fig:ereference_completed} from the previous subsection.
 \item[$\blacktriangleright$] Now, lets create another pair of EReferences between \texttt{Partition} and \texttt{Card}. If you think about it, it's really not
 all that different from the relation between \texttt{Box} and \texttt{Partition}. A \texttt{Partition} should be able to hold an unlimited amount of
 \texttt{Card}s, but a \texttt{Card} should only be allowed to belong to zero or one \texttt{Partition}s. Name the two new EReferences
-\texttt{card}, and \texttt{cardContainer}. Your EClasses should now closely resemble Fig.~\ref{fig:almostAllReferences}.
+\texttt{card}, and \texttt{cardContainer}. Your EClasses should now closely resemble Fig.~\ref{eclipse:almostAllReferences}.
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.58\textwidth]{eclipse_workspaceReferences}
 	\caption{Completed EReference pairs}
-	\label{fig:almostAllReferences}
+	\label{eclipse:almostAllReferences}
 \end{figure} 
 
 \newpage
@@ -74,7 +74,7 @@ partitions in the box. Create two new simple references, named \texttt{previous}
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] If you have done everything correctly, your EClasses should now resemble Fig.~\ref{fig:allReferences}. 
+\item[$\blacktriangleright$] If you have done everything correctly, your EClasses should now resemble Fig.~\ref{eclipse:allReferences}. 
 
 \vspace{0.5cm}
 
@@ -82,7 +82,7 @@ partitions in the box. Create two new simple references, named \texttt{previous}
 	\centering
   \includegraphics[width=0.6\textwidth]{eclipse_allReferences}
 	\caption{All EReferences for Leitner's learning box}
-	\label{fig:allReferences}
+	\label{eclipse:allReferences}
 \end{figure} 
 
 \clearpage
@@ -114,19 +114,19 @@ is slightly different than that of a standard EReference. Instead of the referen
 
 \item[$\blacktriangleright$] Reviewing the \texttt{Partition} EClass, its easy to see that \texttt{previous} and \texttt{next} are certainly not
 opposites,\footnote{Review the rules depicted in Fig.~\ref{fig:membox_illustration}} but we do need to establish an opposing link between
-\texttt{card} and its \texttt{cardContainer}. Follow the same steps until your constraint file resembles Fig.~\ref{fig:bothConstraints}.
+\texttt{card} and its \texttt{cardContainer}. Follow the same steps until your constraint file resembles Fig.~\ref{eclipse:bothConstraints}.
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.6\textwidth]{eclipse_workspaceBothConstraints}
 	\caption{The completed constraints file}
-	\label{fig:bothConstraints}
+	\label{eclipse:bothConstraints}
 \end{figure} 
 
 \newpage
 
 \item[$\blacktriangleright$] Now the EReferences for your learning box are complete! To see how each of the classes, attributes, and references
-are depicted in the visual syntax, check out Fig.~\ref{fig:ereferences_all} from \hyperlink{sec:static vis}{section 2.1}. Otherwise, build your project to
+are depicted in the visual syntax, check out Fig.~\ref{ea:ereferences_all} from \hyperlink{sec:static vis}{section 2.1}. Otherwise, build your project to
 make sure there are no errors, and continue to the next section to finalize the declaration of your EClasses.
 
 \jumpSingle{static:methods tex}

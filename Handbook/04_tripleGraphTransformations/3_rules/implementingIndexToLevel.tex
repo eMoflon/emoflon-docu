@@ -1,18 +1,18 @@
 \newpage
-\hypertarget{rules common}{}
+\hypertarget{subsec:IndexToLevel}{}
 \subsection{Implementing IndexToLevel}
 \genHeader
 
 If everything has been done correctly up to this point, your project should save and build without error in Eclipse. In fact, there should now be three
 generated repository projects included in \texttt{MyWorkingSet}. We're most concerned with \texttt{LearningBox\-To\-Dictionary\-Integration}, which implements
-our TGG and its rules. Expand your folder so it resembles Fig.~\ref{fig:tggGenerated}
+our TGG and its rules. Expand your folder so it resembles Fig.~\ref{eclipse:tggGenerated}
 
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_generatedTGG}
   \caption{Files generated from your correspondence metamodel}
-  \label{fig:tggGenerated}
+  \label{eclipse:tggGenerated}
 \end{center}
 \end{figure}
 
@@ -63,7 +63,7 @@ Now that we have a better understanding behind the construction of a new attribu
 \item[$\blacktriangleright$] Locate and open \texttt{IndexToLevel.java} under ``src/csp.constraints'' in \texttt{LearningBoxToDictionaryIntegration}.
 
 \item[$\blacktriangleright$] As you can see, code has been generated in order to handle the current unimplemented state of \texttt{IndexToLevel}. Use the
-Eclipse's built-in auto-complete feature to help implement the code in Fig.~\ref{fig:indexToLevel} and replace the default code.\footnote{Although tempting,
+Eclipse's built-in auto-complete feature to help implement the code in Fig.~\ref{code:indexToLevel} and replace the default code.\footnote{Although tempting,
 \emph{do not} copy and paste the contents from your pdf viewer into Eclipse. Invisible characters are likely to be added, and your code will not work!}
 
 \begin{figure}[htbp]
@@ -120,7 +120,7 @@ public class IndexToLevel extends ConstraintImpl {
 }
 \end{lstlisting}
   \caption{Implementation of our custom \texttt{IndexToLevel} constraint}
-  \label{fig:indexToLevel}
+  \label{code:indexToLevel}
 \end{center}
 \end{figure}
 

@@ -17,7 +17,7 @@ first conditional, and a \emph{statement node} to invoke \texttt{initializeBox} 
 With:\\}
 
 
-\texttt{grow} should now resemble Fig.~\ref{fig:updateGrow}.
+\texttt{grow} should now resemble Fig.~\ref{eclipse:updateGrow}.
 
 \vspace{0.5cm}
 
@@ -25,14 +25,14 @@ With:\\}
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_updateGrow}
   \caption{Extending \texttt{grow} with a \emph{statement node}}
-  \label{fig:updateGrow}
+  \label{eclipse:updateGrow}
 \end{center}
 \end{figure}
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Next we have to specify our newest method. Create a new pattern called \texttt{buildPartitions} in its scope. Complete
-the pattern as illustrated in Fig.~\ref{fig:pattBuildParts}.
+the pattern as illustrated in Fig.~\ref{eclipse:pattBuildParts}.
 
 \item[$\blacktriangleright$] As you can see, we have created a NAC that can only be fulfilled if the box has absolutely no partitions at all. This means that if
 a box is completely empty, it will be initialized for the first time with two partitions (according to \texttt{buildPartitions}), and is guaranteed to remain in
@@ -46,11 +46,11 @@ a valid state via \texttt{grow}.
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_buildPartitionsPattern}
   \caption{NAC initalizing an empty box}
-  \label{fig:pattBuildParts}
+  \label{eclipse:pattBuildParts}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] That's it! Save and build your metamodel to make sure no errors exist. To see how this is depicted in the visual syntax, check out
-Fig.~\ref{fig:newGrowControl} and Fig.~\ref{fig:buildPartitions}.
+Fig.~\ref{ea:newGrowControl} and Fig.~\ref{ea:buildPartitions}.
 
 \end{itemize}

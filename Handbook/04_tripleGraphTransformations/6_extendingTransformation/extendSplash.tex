@@ -12,14 +12,14 @@ complete a partial transformation on them, right?
 \begin{itemize}
 
 \item[$\blacktriangleright$] Add a \texttt{partition3} with one \texttt{card} to your \texttt{source.xmi} so that it resembles
-Fig.~\ref{fig:fourthPartitionStart}. Don't forget to set the partition's \texttt{previous} attribute to \texttt{partition0}, and \texttt{partition2.next} to
+Fig.~\ref{eclipse:fourthPartitionStart}. Don't forget to set the partition's \texttt{previous} attribute to \texttt{partition0}, and \texttt{partition2.next} to
 \texttt{partition3}.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_fillFourthPartition}
   \caption{Adding a fourth partition to \texttt{Box}}
-  \label{fig:fourthPartitionStart}
+  \label{eclipse:fourthPartitionStart}
 \end{center}
 \end{figure}
 
@@ -35,14 +35,14 @@ displayed here as the element is simply ignored} Instead, it goes ahead and trie
 \texttt{partition} element from the \texttt{partition} to complete.\footnote{Review the \texttt{source} of your rule if confused}
 
 \item[$\blacktriangleright$] Returning to \texttt{partition}, the transformation detects an endlessly repeating result of not finding a valid rule and so,
-terminates the action. Instead of canceling the entire transformation however, it takes an optimistic approach and tries to solve \texttt{Question Four}
-\emph{anyway}. The action succeeds!
+terminates the action (Fig.~\ref{eclipse:integrator_debugSuccess}). Instead of canceling the entire transformation however, it takes an optimistic approach and
+tries to solve \texttt{Question Four} \emph{anyway}. The action succeeds!
 
 \begin{figure}[htb]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_integratorDebug}
   \caption{Detecting errors with the integrator}
-  \label{fig:integrator_debugSuccess}
+  \label{eclipse:integrator_debugSuccess}
 \end{center}
 \end{figure}
 

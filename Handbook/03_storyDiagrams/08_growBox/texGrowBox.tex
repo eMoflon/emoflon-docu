@@ -7,19 +7,19 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] In \texttt{box.grow()}, create a simple control flow with one story pattern (Fig.~\ref{fig:growDecl}). 
+\item[$\blacktriangleright$] In \texttt{box.grow()}, create a simple control flow with one story pattern (Fig.~\ref{eclipse:growDecl}). 
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.4\textwidth]{eclipse_growDecl}
   \caption{Basic control flow to grow \texttt{box}}
-  \label{fig:growDecl}
+  \label{eclipse:growDecl}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] Create and open the new pattern. You'll want it to match the invoking box with \emph{any} two partitions, so create a bound
 \texttt{this} box, and the free variables \texttt{firstPartitionInBox} and \texttt{lastPartitionInBox}. You'll also need an object variable (set to create) to
-represent the new partition. The skeleton of your pattern should now resemble (Fig.~\ref{fig:growPattSkel}).
+represent the new partition. The skeleton of your pattern should now resemble (Fig.~\ref{eclipse:growPattSkel}).
 
 \vspace{0.5cm}
 
@@ -27,7 +27,7 @@ represent the new partition. The skeleton of your pattern should now resemble (F
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_growPatternSkeleton}
   \caption{The \texttt{addNewPartitionBox} skeleton}
-  \label{fig:growPattSkel}
+  \label{eclipse:growPattSkel}
 \end{center}
 \end{figure}
 
@@ -37,14 +37,14 @@ Create a negative \texttt{next\-Part\-it\-ion} object variable by using the nega
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Now add \texttt{`->next : nextPartition'} to \texttt{lastPartition}'s scope. This attempts to establish a \texttt{next} link from
-the last partition. Next, add \texttt{`++ ->next : newPartition'} (Fig.~\ref{fig:firstNAC}). This constraint will only be fulfilled if the NAC fails, and it
+the last partition. Next, add \texttt{`++ ->next : newPartition'} (Fig.~\ref{eclipse:firstNAC}). This constraint will only be fulfilled if the NAC fails, and it
 establishes the \texttt{newPartition} as the final partition.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_growLastNAC}
   \caption{Creating the first NAC}
-  \label{fig:firstNAC}
+  \label{eclipse:firstNAC}
 \end{center}
 \end{figure}
 
@@ -52,13 +52,13 @@ establishes the \texttt{newPartition} as the final partition.
 
 \item[$\blacktriangleright$] In a similar fashion, create a second NAC, \texttt{previousPartition}, for \texttt{firstPartitionInBox}. No new references have to
 be created here, so all you need to establish is the link connecting \texttt{firstPartitionInBox} to the negative element, \texttt{previousPartition}
-(Fig.~\ref{fig:growPatt}).
+(Fig.~\ref{eclipse:growPatt}).
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.55\textwidth]{eclipse_growFirstNAC}
   \caption{Pattern with both NACs}
-  \label{fig:growPatt}
+  \label{eclipse:growPatt}
 \end{center}
 \end{figure}
 
@@ -74,13 +74,13 @@ actually consists of two graphs: r = (L,R). A green node only belongs to R and n
 in R, however, L would have a link with an undefined target. This is not allowed (L is not a graph).} In other words, a `green' object variable has a global
 effect on all link variables declared in its scope.
 
-\item[$\blacktriangleright$] Your pattern should now resemble Fig~\ref{fig:growAllLinks}. 
+\item[$\blacktriangleright$] Your pattern should now resemble Fig~\ref{eclipse:growAllLinks}. 
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.65\textwidth]{eclipse_growLinks}
   \caption{Pattern  with deterministic choice of first and last partitions}
-  \label{fig:growAllLinks}
+  \label{eclipse:growAllLinks}
 \end{center}
 \end{figure}
 
@@ -96,7 +96,7 @@ With:\\
 \item[$\blacktriangleright$] We've encountered both of these expression types already -- \texttt{`@'} in \texttt{removeCard} and \texttt{`\$'} in
 \texttt{check}. The latter doesn't apply to this pattern, so write: \syntax{@this.determineNextSize()}
 
-\item[$\blacktriangleright$] Your workspace should now resemble Fig.~\ref{fig:patternComplete}.
+\item[$\blacktriangleright$] Your workspace should now resemble Fig.~\ref{eclipse:patternComplete}.
 
 \vspace{0.5cm}
 
@@ -104,14 +104,14 @@ With:\\
 \begin{center}
   \includegraphics[width=0.9\textwidth]{eclipse_growFinished}
   \caption{Complete pattern for adding a new \texttt{partition} to \texttt{Box}}
-  \label{fig:patternComplete}
+  \label{eclipse:patternComplete}
 \end{center}
 \end{figure}
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] \emph{Now} we're done! While NACs may be difficult to understand at first, as you can see, they're not hard to implement, and
-can be used in a wide variety of applications. To see how this method is implemented in the visual syntax, check out Fig.~\ref{fig:growComplete} in the
+can be used in a wide variety of applications. To see how this method is implemented in the visual syntax, check out Fig.~\ref{ea:growComplete} in the
 previous section.
 
 \end{itemize}

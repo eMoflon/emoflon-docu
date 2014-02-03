@@ -17,11 +17,6 @@
 \usepackage[usenames,dvipsnames,svgnames]{xcolor}
 \usepackage{listings}
 
-% INDEX SET UP
-\usepackage{makeidx}
-\makeindex
-\addto\captionsenglish{\renewcommand{\indexname}{MOSL Syntax Index}}
-
 \definecolor{codelightgray}{rgb}{0.87,0.87,0.87}
 
 \hypersetup{colorlinks=true,% 
@@ -105,8 +100,8 @@
 % These words should appear in the glossary
 \newcommand{\define}[1]{\marginpar{\small\emph{#1}}}
 
-% These words should appear in glossary and will appear in reference index
-\newcommand{\defineMOSL}[1]{\define{#1}\index{#1}}
+% These words should appear in glossary
+\newcommand{\defineMOSL}[1]{\define{#1}}
 
 % Textual Syntax formatting (quote environment)
 \newcommand{\syntax}[1]{ \begin{quote} \small \texttt{#1} \end{quote}}
