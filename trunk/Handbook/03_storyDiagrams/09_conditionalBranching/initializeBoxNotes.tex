@@ -5,25 +5,25 @@
 
 Pretend you've just updated the control flow in your \texttt{grow} SDM, and haven't specified \texttt{initializeBox} yet. After saving and building, you will be
 able to see the changes in \texttt{BoxImpl.java}, the source file containing the generated code. In fact, open this file now and navigate to \texttt{grow},
-which starts at (approximately) line 207 (Fig.~\ref{fig:initBoxImpl}). This is the generated \emph{statement node} code and, as you can see, all it does is
+which starts at (approximately) line 207 (Fig.~\ref{eclipse:initBoxImpl}). This is the generated \emph{statement node} code and, as you can see, all it does is
 invoke your method and branch based on its result. 
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_boxImplStatementNode}
   \caption{Code generated for branching with a statement node}
-  \label{fig:initBoxImpl}
+  \label{eclipse:initBoxImpl}
 \end{center}
 \end{figure}
 
 Hold \texttt{ctrl} while clicking on \texttt{initializeBox()} to automatically jump to its declaration. If you didn't complete the SDM, it
-would look like Fig.~\ref{fig:initBoxDecl}.
+would look like Fig.~\ref{eclipse:initBoxDecl}.
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_initializeBoxDeclaration}
   \caption{The \texttt{initializeBox} declaration}
-  \label{fig:initBoxDecl}
+  \label{eclipse:initBoxDecl}
 \end{center}
 \end{figure}
 

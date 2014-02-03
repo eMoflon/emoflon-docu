@@ -6,34 +6,34 @@
 \begin{itemize}
 
 \item[$\blacktriangleright$] A fundamental gesture in EA is \emph{Quick Link}. Quick Link is used to create EReferences between elements in a context-sensitive
-manner. To use quick link, choose an element and note the little black arrow in its top-right corner (Fig.~\ref{fig:quicklink}).
+manner. To use quick link, choose an element and note the little black arrow in its top-right corner (Fig.~\ref{ea:quicklink}).
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.4\textwidth]{ea_quickLink}
 	\caption{Quick Link is a central gesture in EA}
-	\label{fig:quicklink}
+	\label{ea:quicklink}
 \end{figure}
 \FloatBarrier
 
 \item[$\blacktriangleright$] Click this black arrow and `pull' to the element you wish to link to. To start, quick-link from \texttt{Box} to \texttt{Partition}.
-In the context menu that appears, select ``Create Bidirectional EReference'' (Fig.~\ref{fig:ereference}).
+In the context menu that appears, select ``Create Bidirectional EReference'' (Fig.~\ref{ea:ereference}).
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.6\textwidth]{ea_eReferenceBidirectional}
 	\caption{Create an EReference via Quick Link}
-	\label{fig:ereference}
+	\label{ea:ereference}
 \end{figure}
 \FloatBarrier
 
 \item[$\blacktriangleright$] Double click the EReference to invoke a dialogue. In this window you can adjust all relevant settings. Feel free to leave the
 \texttt{Name} value blank - this property is only used for documentation purposes, and is not relevant for code generation.
 
-\item[$\blacktriangleright$] Within this dialogue, go to ``Source Role,'' and compare the relevant values in Fig.~\ref{fig:role_source} for the \emph{source}
+\item[$\blacktriangleright$] Within this dialogue, go to ``Source Role,'' and compare the relevant values in Fig.~\ref{ea:role_source} for the \emph{source}
 end of the EReference (the \texttt{Box} role). As you can see, the default source is set to the EClass you linked from, while the default target
 is the EClass you linked to. In this window, do not forget to confirm and modify the \texttt{Role}, \texttt{Navigability}, \texttt{Multiplicity}, and
-\texttt{Aggregation} settings for the source as required. Repeat the process for the \texttt{Target Role} (Fig.~\ref{fig:role_target}).
+\texttt{Aggregation} settings for the source as required. Repeat the process for the \texttt{Target Role} (Fig.~\ref{ea:role_target}).
 
 \vspace{0.5cm}
 
@@ -41,14 +41,14 @@ is the EClass you linked to. In this window, do not forget to confirm and modify
 	\centering
     \includegraphics[width=0.9\textwidth]{ea_assocPropsSource}
 	\caption{Properties for the source role of an EReference}
-	\label{fig:role_source}
+	\label{ea:role_source}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering
 	  \includegraphics[width=0.9\textwidth]{ea_assocPropsTarget}
 	\caption{Properties for the target role of an EReference}
-	\label{fig:role_target}
+	\label{ea:role_target}
 \end{figure}
 
 \end{itemize}
@@ -76,7 +76,7 @@ consequently not.
 
 \begin{itemize}
 \item[$\blacktriangleright$] Take a moment to review how the \texttt{Aggregration} settings extend the \texttt{Multiplicity} rules. If you've done everything
-right, your metamodel should now resemble Fig.~\ref{fig:ereference_completed}, with a single \emph{bidirectional EReference} between \texttt{Box} and
+right, your metamodel should now resemble Fig.~\ref{ea:ereference_completed}, with a single \emph{bidirectional EReference} between \texttt{Box} and
 \texttt{Partition}.
 
 \vspace{1cm}
@@ -85,14 +85,14 @@ right, your metamodel should now resemble Fig.~\ref{fig:ereference_completed}, w
 	\centering
   \includegraphics[width=0.35\textwidth]{ea_relationBoxPartition.pdf}
 	\caption{\texttt{Box} contains \texttt{Partition}s}
-	\label{fig:ereference_completed}
+	\label{ea:ereference_completed}
 \end{figure}
 \FloatBarrier
 
 \item[$\blacktriangleright$] Following the same process, create two unidirectional self-EReferences for \texttt{Partition}, and then a second bidirectional
 EReference\footnote{To be precise, \emph{all} EReferences in Ecore are actually unidirectional. A ``bidirectional'' EReference in our metamodel is really two
 mapped EReferences that are opposites of each other. We however, believe it is simpler to handle these pairs as single EReferences, and prefer this
-concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\ref{fig:ereferences_all}). 
+concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\ref{ea:ereferences_all}). 
 
 \vspace{1cm}
 
@@ -100,7 +100,7 @@ concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\re
 	\centering
   \includegraphics[width=0.7\textwidth]{ea_classAttributes}
 	\caption{All relations in our metamodel}
-	\label{fig:ereferences_all}
+	\label{ea:ereferences_all}
 \end{figure}
 \FloatBarrier
 
@@ -111,7 +111,7 @@ concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\re
 
 \vspace{1cm}
 
-\item[$\blacktriangleright$] Export your diagram to Eclipse and refresh your workspace. Your Ecore file should now resemble Fig~\ref{fig:model_allClasses}.
+\item[$\blacktriangleright$] Export your diagram to Eclipse and refresh your workspace. Your Ecore file should now resemble Fig~\ref{eclipse:model_allClasses}.
 
 \vspace{1cm}
 
@@ -119,14 +119,14 @@ concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\re
 	\centering
   \includegraphics[width=0.7\textwidth]{eclipse_modelDeclaredClasses}
 	\caption{Refreshed Ecore file with all EReferences}
-	\label{fig:model_allClasses}
+	\label{eclipse:model_allClasses}
 \end{figure}
 
 \vspace{1cm}
 
 \item[$\blacktriangleright$] All the required attributes and references for your learning box have now been set up. We encourage you to see how these are
-declared in the textual syntax, starting on the immediate next page. In particular, check out Fig.~\ref{fig:allReferences}, where each EClass is fully
-declared, and Fig.~\ref{fig:bothConstraints}, where bidirectionality is explicitly specified as a constraint.
+declared in the textual syntax, starting on the immediate next page. In particular, check out Fig.~\ref{eclipse:allReferences}, where each EClass is fully
+declared, and Fig.~\ref{eclipse:bothConstraints}, where bidirectionality is explicitly specified as a constraint.
 
 \jumpSingle{static:methods vis}
 

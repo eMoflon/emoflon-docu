@@ -8,7 +8,7 @@
 \vspace{1cm}
 
 \item[$\blacktriangleright$] Since you're nearly an SDM wizard already, try using concepts we have already learnt to create the control flow for
-\texttt{Partition::check} as depicted in Fig.~\ref{fig:sdm_check_start}.
+\texttt{Partition::check} as depicted in Fig.~\ref{ea:sdm_check_start}.
 
 \vspace{1cm}
 
@@ -16,21 +16,21 @@
 \begin{center}
   \includegraphics[width=0.9\textwidth]{ea_activityCheck}
   \caption{Activity diagram for \texttt{Partition::check}}
-  \label{fig:sdm_check_start}
+  \label{ea:sdm_check_start}
 \end{center}
 \end{figure}
 
 \vspace{1cm}
 
 \item[$\blacktriangleright$] In \texttt{checkCard}, create an object variable that is bound to the parameter argument, \texttt{card} 
-(Fig.~\ref{fig:sdm_check_addCard}). This will represent the card the user picked from the learning box. Remember, the binding for this variable is implicitly
+(Fig.~\ref{ea:sdm_check_addCard}). This will represent the card the user picked from the learning box. Remember, the binding for this variable is implicitly
 defined because its name is the same as the argument's.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{ea_addObjVarCard}
   \caption{Creating the card variable}
-  \label{fig:sdm_check_addCard}
+  \label{ea:sdm_check_addCard}
 \end{center}
 \end{figure}
 
@@ -38,7 +38,7 @@ defined because its name is the same as the argument's.
 
 \item[$\blacktriangleright$] Now that the pattern has the correct card to check, it needs to compare the user's guess against the unseen \texttt{face} value on
 the opposite side. To do this, we need to specify an \emph{attribute constraint}. Open the \texttt{attribute constraint} tab for \texttt{card} as depicted in
-Fig.~\ref{fig:sdmcheck_att_constraint}, and select the correct \texttt{Attribute} and \texttt{Operator}.
+Fig.~\ref{ea:sdmcheck_att_constraint}, and select the correct \texttt{Attribute} and \texttt{Operator}.
 
 \vspace{0.5cm}
 
@@ -46,7 +46,7 @@ Fig.~\ref{fig:sdmcheck_att_constraint}, and select the correct \texttt{Attribute
 \begin{center}
   \includegraphics[width=0.6\textwidth]{ea_addAttConst}
   \caption{Creating an attribute constraint}
-  \label{fig:sdmcheck_att_constraint}
+  \label{ea:sdmcheck_att_constraint}
 \end{center}
 \end{figure}
 
@@ -64,7 +64,7 @@ validation error (you're free to press the validation button and take cover) We 
 \begin{itemize}
 
 \item[$\blacktriangleright$] To add a guard to the edge leading from \texttt{check\-If\-Guess\-Is\-Correct} to \texttt{penalize\-Card}, double click the edge
-and set the \emph{Guard Type} to \texttt{Failure} (Fig.~\ref{fig:sdm_check_guard}). Repeat the process for the \texttt{Success} edge leading to
+and set the \emph{Guard Type} to \texttt{Failure} (Fig.~\ref{ea:sdm_check_guard}). Repeat the process for the \texttt{Success} edge leading to
 \texttt{promoteCard}.
 
 \vspace{0.5cm}
@@ -73,7 +73,7 @@ and set the \emph{Guard Type} to \texttt{Failure} (Fig.~\ref{fig:sdm_check_guard
 \begin{center}
   \includegraphics[width=0.75\textwidth]{ea_addTransitionGuard}
   \caption{Add a transition with a guard}
-  \label{fig:sdm_check_guard}
+  \label{ea:sdm_check_guard}
 \end{center}
 \end{figure}
 
@@ -92,14 +92,14 @@ supports separating your transformation's pattern layer from its imperative cont
 \begin{itemize}
 
 \item[$\blacktriangleright$] To try this, double-click the \texttt{promoteCard} story node and choose \texttt{Extract Story Pattern}
-(Fig.~\ref{fig:sdm_check_extract_storypattern}). Note the new diagram that is immediately created and opened in the project browser
-(Fig.~\ref{fig:sdm_new_sub_diagram}).
+(Fig.~\ref{ea:sdm_check_extract_storypattern}). Note the new diagram that is immediately created and opened in the project browser
+(Fig.~\ref{ea:sdm_new_sub_diagram}).
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{ea_extractStoryPattern}
   \caption{Extract a story pattern for more space and a better overview}
-  \label{fig:sdm_check_extract_storypattern}
+  \label{ea:sdm_check_extract_storypattern}
 \end{center}
 \end{figure}
 
@@ -107,7 +107,7 @@ supports separating your transformation's pattern layer from its imperative cont
 \begin{center}
   \includegraphics[width=0.45\textwidth]{sdm_promoteCardProjBrowser}
   \caption{A new subdiagram is created automatically}
-  \label{fig:sdm_new_sub_diagram}
+  \label{ea:sdm_new_sub_diagram}
 \end{center}
 \end{figure}
 
@@ -126,7 +126,7 @@ not stick out over any edge.}
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] To put this into practice, create a new \texttt{Card} object variable by drag-and-dropping the class from the project browser
-into the new (extracted) pattern diagram (Fig.~\ref{fig:sdm_check_bound_card}).
+into the new (extracted) pattern diagram (Fig.~\ref{ea:sdm_check_bound_card}).
 
 \vspace{0.5cm}
 
@@ -134,7 +134,7 @@ into the new (extracted) pattern diagram (Fig.~\ref{fig:sdm_check_bound_card}).
 \begin{center}
   \includegraphics[width=\textwidth]{ea_dragDropDialogue}
   \caption{Add a new object variable per drag-and-drop}
-  \label{fig:sdm_check_bound_card}
+  \label{ea:sdm_check_bound_card}
 \end{center}
 \end{figure}
 
@@ -147,20 +147,20 @@ gesture. Don't worry -- if you ever need option (1), hold \texttt{Ctrl} when dra
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] After creating the object, the object properties dialogue will open.  Set the \texttt{Name} to \texttt{card} and confirm its
-\texttt{Binding State} is \texttt{Bound} (Fig.~\ref{fig:sdm_new_card_properties}).
+\texttt{Binding State} is \texttt{Bound} (Fig.~\ref{ea:sdm_new_card_properties}).
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{ea_addBoundObj}
   \caption{Object variable properties of the new card}
-  \label{fig:sdm_new_card_properties}
+  \label{ea:sdm_new_card_properties}
 \end{center}
 \end{figure}
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Currently, we have the single \texttt{card} that we want to promote through the box. Drag-and-drop two partition objects,
-\texttt{this}, and \texttt{nextPartition} as depicted in Fig.~\ref{fig:sdm_check_complete_sp}.
+\texttt{this}, and \texttt{nextPartition} as depicted in Fig.~\ref{ea:sdm_check_complete_sp}.
 
 \vspace{0.5cm}
 
@@ -168,7 +168,7 @@ gesture. Don't worry -- if you ever need option (1), hold \texttt{Ctrl} when dra
 \begin{center}
   \includegraphics[width=0.8\textwidth]{ea_promoteCardVariables}
   \caption{All object variables for story pattern \texttt{promoteCard}}
-  \label{fig:sdm_check_complete_sp}
+  \label{ea:sdm_check_complete_sp}
 \end{center}
 \end{figure}
 
@@ -182,7 +182,7 @@ links connecting it to other variables, and attribute constraints). In our case,
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] To specify this, quick link from \texttt{this} to \texttt{nextPartition} (or vice-versa) to establish
-\texttt{next}, as shown in Fig.~\ref{fig:sdm_check_link_variable}. As you can see, there are several more options than what was seen in
+\texttt{next}, as shown in Fig.~\ref{ea:sdm_check_link_variable}. As you can see, there are several more options than what was seen in
 \texttt{removeCard}. The goal is to have the current partition to proceed (or point) to the \texttt{nextPartition} via the \texttt{next} reference, so select
 the second option. Alternatively, you could define the reference from \texttt{nextPartition} by setting the link variable \texttt{previous} to \texttt{this}.
 
@@ -190,7 +190,7 @@ the second option. Alternatively, you could define the reference from \texttt{ne
 \begin{center}
   \includegraphics[width=0.85\textwidth]{ea_promoteLinkProperties}
   \caption{Possible links between \texttt{this} and \texttt{nextPartition}}
-  \label{fig:sdm_check_link_variable}
+  \label{ea:sdm_check_link_variable}
 \end{center}
 \end{figure}
 
@@ -198,20 +198,20 @@ the second option. Alternatively, you could define the reference from \texttt{ne
 
 \item[$\blacktriangleright$] Continue by creating links between \texttt{card} and each partition. Remember - you want to \emph{destroy} the reference to
 \texttt{this}, and \emph{create} a new connection to \texttt{nextPartition}. If everything is set up correctly, \texttt{promoteCard} should now closely resemble
-Fig.~\ref{fig:sdm_check_complete_activity_node}.
+Fig.~\ref{ea:sdm_check_complete_activity_node}.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{ea_promoteCardCompleted}
   \caption{Complete story pattern for \texttt{promoteCard}}
-  \label{fig:sdm_check_complete_activity_node}
+  \label{ea:sdm_check_complete_activity_node}
 \end{center}
 \end{figure}
 
 \clearpage
 
 \item[$\blacktriangleright$] Double click the anchor in the top left corner and repeat the process for \texttt{penalizeCard}: First extract the story pattern,
-then create the necessary variables and links as depicted in Fig.~\ref{fig:sdm_check_complete_penalize}. As you can see, this pattern is nearly identical to
+then create the necessary variables and links as depicted in Fig.~\ref{ea:sdm_check_complete_penalize}. As you can see, this pattern is nearly identical to
 \texttt{promoteCard}, except it moves \texttt{card} to a \texttt{previousPartition}.
 
 \vspace{0.5cm}
@@ -220,7 +220,7 @@ then create the necessary variables and links as depicted in Fig.~\ref{fig:sdm_c
 \begin{center}
   \includegraphics[width=0.8\textwidth]{ea_completeActivityPenalize.pdf}
   \caption{Complete story pattern for \texttt{penalizeCard}}
-  \label{fig:sdm_check_complete_penalize}
+  \label{ea:sdm_check_complete_penalize}
 \end{center}
 \end{figure}
 
@@ -236,15 +236,15 @@ attempt to guarantee type safety} and should be avoided when possible.
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] To implement a literal, double click the stop node stemming from  \texttt{promoteCard}, and change the expression type from
-\texttt{void} to \texttt{LiteralEx\-pression} (Fig.~\ref{fig:sdm_check_literal_exp}). Change the value in the window below to \texttt{true}. Press \texttt{OK},
+\texttt{void} to \texttt{LiteralEx\-pression} (Fig.~\ref{ea:sdm_check_literal_exp}). Change the value in the window below to \texttt{true}. Press \texttt{OK},
 then finish the SDM by returning \texttt{false} after \texttt{penalizeCard} in the same manner. Your diagram should now resemble
-Fig.~\ref{fig:sdm_check_finish}.
+Fig.~\ref{ea:sdm_check_finish}.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{ea_stopNodeLiteral}
   \caption{Add a return value with a literal expression}
-  \label{fig:sdm_check_literal_exp}
+  \label{ea:sdm_check_literal_exp}
 \end{center}
 \end{figure}
 
@@ -252,7 +252,7 @@ Fig.~\ref{fig:sdm_check_finish}.
 \begin{center}
   \includegraphics[width=\textwidth]{ea_sdmCheckComplete}
   \caption{Complete SDM for \texttt{Partition::check}}
-  \label{fig:sdm_check_finish}
+  \label{ea:sdm_check_finish}
 \end{center}
 \end{figure}
 
@@ -262,8 +262,8 @@ Fig.~\ref{fig:sdm_check_finish}.
 strongly recommend that you even write a simple JUnit test (take a look at our simple test case from Part I for inspiration) to take your brand new SDM for a
 test-spin.
 
-\item[$\blacktriangleright$] To see how this is implemented in the textual syntax, see Figs. \ref{fig:completedPatterns} and \ref{fig:finalMethod} in the
-following section.
+\item[$\blacktriangleright$] To see how this is implemented in the textual syntax, see Figs. \ref{eclipse:completedPatterns} and \ref{eclipse:finalMethod} in
+the following section.
 
 \jumpSingle{sec:extendGui}
 

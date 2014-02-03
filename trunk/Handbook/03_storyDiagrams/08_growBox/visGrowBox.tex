@@ -5,7 +5,7 @@
 
 \begin{itemize}
  
-\item[$\blacktriangleright$] Start by creating the simple story pattern depicted in Fig.~\ref{fig:sdm_grow_1}. This matches the box and \emph{any} two
+\item[$\blacktriangleright$] Start by creating the simple story pattern depicted in Fig.~\ref{ea:sdm_growContext}. This matches the box and \emph{any} two
 partitions.\footnote{Remember, the \emph{pattern matcher} is non-deterministic.}
 
 \vspace{0.5cm}
@@ -14,19 +14,19 @@ partitions.\footnote{Remember, the \emph{pattern matcher} is non-deterministic.}
 \begin{center}
   \includegraphics[width=\textwidth]{ea_elementsGrowBox}
   \caption{Context elements for SDM}  
-  \label{fig:sdm_grow_1}
+  \label{ea:sdm_growContext}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] To create an appropriate \mbox{NAC} to constrain the possible matches for \texttt{lastPartitionInBox},  create a new
-\texttt{Partition} object variable \texttt{next\-Part\-ition} and set its \emph{binding semantics} to \texttt{negative} (Fig.~\ref{fig:sdm_grow_2}). The object
+\texttt{Partition} object variable \texttt{next\-Part\-ition} and set its \emph{binding semantics} to \texttt{negative} (Fig.~\ref{ea:sdm_negOV}). The object
 variable should now be visualised as being cancelled or struck out.
  
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{ea_newNac}
   \caption{Adding a negative element}  
-  \label{fig:sdm_grow_2}
+  \label{ea:sdm_negOV}
 \end{center}
 \end{figure}
  
@@ -37,13 +37,13 @@ tells the pattern matcher that if the (assumed) last partition has an element co
 \item[$\blacktriangleright$] Great work -- the first NAC is complete! In a similar fashion, create the NAC for \texttt{firstPartitionInBox}. Name the
 negative element \texttt{previousPartition}, and again, be sure to double-check the link variable.
 
-\item[$\blacktriangleright$] Finally, complete the pattern so that it closely resembles Fig.~\ref{fig:sdm_grow_3}. 
+\item[$\blacktriangleright$] Finally, complete the pattern so that it closely resembles Fig.~\ref{ea:sdm_firstLastPartitions}. 
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{ea_NACComplete} 
   \caption{Determining the first and last partitions with NACs}  
-  \label{fig:sdm_grow_3}
+  \label{ea:sdm_firstLastPartitions}
 \end{center}
 \end{figure}
  
@@ -53,13 +53,13 @@ Fig.~\ref{fig:membox_depiction}). In other words, the new partition is appended 
 
 \item[$\blacktriangleright$] In order to complete \texttt{grow}, we need to set the size of the \texttt{newPartition}. Given that the new size is calculated
 via the helper function \texttt{det\-er\-mine\-Next\-Size}, we need to use a \emph{MethodCallExpression}. Go ahead and invoke the corresponding dialogue,
-activate the assignment (\texttt{:=}) operator, and match your values to Fig.~\ref{fig:sdm_grow_4}.
+activate the assignment (\texttt{:=}) operator, and match your values to Fig.~\ref{ea:sdm_methodCallExpr}.
  
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.6\textwidth]{ea_attributeMethodCall.png}
   \caption{Invoking a method via a \texttt{MethodCallExpression}}  
-  \label{fig:sdm_grow_4} 
+  \label{ea:sdm_methodCallExpr} 
 \end{center}
 \end{figure}
 
@@ -67,14 +67,14 @@ activate the assignment (\texttt{:=}) operator, and match your values to Fig.~\r
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] If you've done everything right, your SDM should now closely resemble Fig.~\ref{fig:growComplete}. As usual, try to export,
+\item[$\blacktriangleright$] If you've done everything right, your SDM should now closely resemble Fig.~\ref{ea:growComplete}. As usual, try to export,
 generate code, and inspect the method implementation in Eclipse.
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$]  That's it -- the \texttt{grow} SDM is complete! This was probably the most challenging SDM to build so give yourself a solid 
 pat on the back. If you found it easy, well then \ldots I guess I'm doing my job correctly. To see how this is done in the texual syntax, review
-Fig.~\ref{fig:patternComplete}.
+Fig.~\ref{eclipse:patternComplete}.
 
 \vspace{0.5cm}
 
@@ -82,7 +82,7 @@ Fig.~\ref{fig:patternComplete}.
 \begin{center}
   \includegraphics[width=\textwidth]{ea_growFinal}
   \caption{Complete SDM for \texttt{Box::grow}}  
-  \label{fig:growComplete}
+  \label{ea:growComplete}
 \end{center}
 \end{figure}
 \FloatBarrier

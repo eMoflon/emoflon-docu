@@ -8,30 +8,30 @@
 \hypertarget{simpleDemo common}{} 
 \item[$\blacktriangleright$] Open Eclipse to a clean, fresh workspace. Go to ``Window/Open Perspective/Other\ldots''\footnote{A path given as ``foo/bar''
 indicates how to navigate in a series of menus and toolbars. New definitions or concepts will be \emph{italicized}, and any data you're required to enter,
-open, or select will be given as \texttt{command}.} and choose \texttt{eMoflon} (Fig.~\ref{fig_eclipse}).
+open, or select will be given as \texttt{command}.} and choose \texttt{eMoflon} (Fig.~\ref{eclipse:openPerspective}).
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.5\textwidth]{eclipse_openPerspective}
 	\caption{Choose the eMoflon perspective}
-	\label{fig_eclipse}
+	\label{eclipse:openPerspective}
 \end{figure} 
 
 \item[$\blacktriangleright$] At either the far right or centre of the toolbar, a new action set should have appeared. Navigate to ``New Metamodel''
-(Fig.~\ref{fig_eclipseNewMetamodelButton}).
+(Fig.~\ref{eclipse:newMetamodel}).
 
 \vspace{0.5cm}
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width= 0.8\textwidth]{eclipse_newMetamodelButton}
 	\caption{Invoke the ``New Metamodel'' wizard}
-	\label{fig_eclipseNewMetamodelButton}
+	\label{eclipse:newMetamodel}
 \end{figure}
 
 \newpage
 
 \item[$\blacktriangleright$] A new dialogue should appear. This is the place where you officially decide which eMoflon syntax you'd like to use
-(Fig.~\ref{fig_chooseSyntax}). With the visual syntax, you'll be using Eclipse along with a UML tool, Enterprise Architect (EA). You'll use EA to specify
+(Fig.~\ref{eclipse:chooseSyntax}). With the visual syntax, you'll be using Eclipse along with a UML tool, Enterprise Architect (EA). You'll use EA to specify
 several types of diagrams, then export and refresh your workspace in Eclipse to generate the corresponding Java code. With the textual syntax
 (MOSL),\footnote{Moflon Specification Language} you'll be working entirely within the Eclipse IDE. No matter which syntax you choose however, give your project
 a name and make sure the \texttt{Add Demo Specification} button is selected. This will create all the files and tests required to ensure you've set up eMoflon
@@ -41,10 +41,10 @@ correctly.
 	\centering
   \includegraphics[width=0.8\textwidth]{eclipse_newMetamodelDialog}
 	\caption{Choose your syntax}
-	\label{fig_chooseSyntax}
+	\label{eclipse:chooseSyntax}
 \end{figure} 
 
-\item[$\blacktriangleright$]  Another button in the new action set is ``View and configure logging'' represented by an \texttt{L} (Fig.~\ref{fig_logger}).
+\item[$\blacktriangleright$]  Another button in the new action set is ``View and configure logging'' represented by an \texttt{L} (Fig.~\ref{eclipse:logger}).
 Clicking this icon will open a \texttt{log4jConfig.properties} file where you can silence certain loggers, set the level of loggers, or configure other
 settings.\footnote{If you're not sure how to do this, check out a short Log4j tutorial a \url{http://logging.apache.org/log4j/1.2/manual.html}} All of eMoflon's
 messages appear in our console window, just below your main editor. This is automatically opened when you selected the \texttt{eMoflon} perspective and
@@ -56,7 +56,7 @@ contains important information for us if something goes wrong!
 	\centering
   \includegraphics[width=1.0\textwidth]{eclipse_logger}
 	\caption{The eMoflon console with log messages}
-	\label{fig_logger}
+	\label{eclipse:logger}
 \end{figure} 
 \end{itemize}
 

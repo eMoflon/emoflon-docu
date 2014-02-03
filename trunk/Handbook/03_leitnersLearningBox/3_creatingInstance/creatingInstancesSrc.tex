@@ -31,7 +31,7 @@ For our example, right-click \texttt{Box}, and navigate to ``Create Dynamic Inst
 
 \item[$\blacktriangleright$] A dialogue should appear asking where the instance model file should be persisted. Save your instances according to convention in a
 folder named ``instances,'' which is automatically created in every new repository project. Last but not least, enter \texttt{Box.xmi} as the name of the
-instance model (Fig.~\ref{fig:store_dynamic_instance}).
+instance model (Fig.~\ref{eclipse:store_dynamic_instance}).
 
 \vspace{0.5cm}
 
@@ -39,7 +39,7 @@ instance model (Fig.~\ref{fig:store_dynamic_instance}).
 	\centering
   \includegraphics[width=0.6\textwidth]{eclipse_nameDynamicInstance}
 	\caption{Dialogue for creating a dynamic model instance}
-	\label{fig:store_dynamic_instance}
+	\label{eclipse:store_dynamic_instance}
 \end{figure}
 
 \item[$\blacktriangleright$] Press \texttt{Finish}, and a generic model editor should open for your new instance model. This editor works just like the
@@ -49,29 +49,29 @@ previous Ecore model editor except it's ``generic,'' meaning it allows you to cr
 \clearpage
 
 \item[$\blacktriangleright$] You can populate your instance by adding new children or siblings via a right-click of an element to invoke the
-context-menu depicted in Fig.~\ref{fig:create_instance}. Note that EMF supports you by respecting your metamodel, and reducing the choice of available elements
-to valid types only.\footnote{This depends on the current context. Try it out!}
+context-menu depicted in Fig.~\ref{eclipse:create_instance}. Note that EMF supports you by respecting your metamodel, and reducing the choice of available
+elements to valid types only.\footnote{This depends on the current context. Try it out!}
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.8\textwidth]{adjustModel}
 	\caption{Context menu for creating model elements}
-	\label{fig:create_instance}
+	\label{eclipse:create_instance}
 \end{figure}
 
 \item[$\blacktriangleright$] Let's try building a vocabulary set. Fill your box with three partitions, with two cards in each. Save your model by pressing
 \texttt{Ctrl+S} and confirm the save by closing it, then reloading via a simple double-click.
 
 \item[$\blacktriangleright$] Double click on one of the partitions to bring up the ``Properties'' tab in the window below the editor
-(Fig.~\ref{fig:properties_partition}). Here you'll see the attributes you defined earlier in each EClass. The \texttt{Box}, \texttt{Next}, and \texttt{Previous}
-values are its (undefined) EReferences,\footnote{Please note that the editor tab capitilizes the first letter of each property} while \texttt{Index} is a
+(Fig.~\ref{eclipse:properties_partition}). Here you'll see the attributes you defined earlier in each EClass. The \texttt{Box}, \texttt{Next}, and
+\texttt{Previous} values are its (undefined) EReferences,\footnote{Please note that the editor tab capitilizes the first letter of each property} while \texttt{Index} is a
 partition's unique idenfitication value, and \texttt{Partition Size} is the recommended number of cards the partition should contain before being tested.
 
 \begin{figure}[h]
 	\centering
   \includegraphics[width=0.6\textwidth]{eclipse_propertiesTab}
 	\caption{Change the \texttt{Index} value in the partition's property tab}
-	\label{fig:properties_partition}
+	\label{eclipse:properties_partition}
 \end{figure}
 \FloatBarrier
 
@@ -89,13 +89,13 @@ Similarly, only set the \texttt{Next} values for the first, and second partition
 with the \texttt{Face} attribute shortly, so provide a \texttt{1} value for that as well.
 
 \item[$\blacktriangleright$] Fill in the rest the cards with similar vocabulary-style words (such as two/2, three/3, \ldots) that you can `test' yourself on
-(Fig.~\ref{fig:finalXMI}). You now have a unique, customized learning box! Save your model, and ensure no errors exist before proceeding.
+(Fig.~\ref{eclipse:finalXMI}). You now have a unique, customized learning box! Save your model, and ensure no errors exist before proceeding.
 
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.7\textwidth]{eclipse_finalBoxXMI}
 	\caption{A vocabulary-style learning box}
-	\label{fig:finalXMI}
+	\label{eclipse:finalXMI}
 \end{figure}
 
 \end{itemize}

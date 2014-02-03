@@ -3,12 +3,10 @@
 \genHeader
 
 Triple graph grammars~\cite{tgg:schuerr_94,sk2008,Klar2010} are a declarative, rule-based technique of specifying the simultaneous evolution of three connected
-graphs.  Basically, they're structures made up of a bunch of rules. In fact, each rule set is quite similar to a \emph{story pattern}! They describe how a
-graph structure is to be built-up via preconditions (LHS) and postconditions (RHS). The key difference between them is that a TGG rule will always
-describe how a \emph{graph triple}\define{Graph Triple}evolves, where triples can be interpreted as consisting of a source, correspondence, and target
-component. SDMs however, only deal with a single target and source pair. This means that executing a sequence of TGG rules will result in a new source and
-target graphs, which are \emph{only} connected via nodes in a third (common) correspondence graph, while executing an SDM will result in a sole target
-structure.
+graphs. Basically, a TGG is just a bunch of rules. Each rule is quite similar to a \emph{story pattern} and describes how a graph structure is to be built-up
+via a precondition (LHS) and postcondition (RHS). The key difference is that a TGG rule will always describe how a \emph{graph triple}\define{Graph Triple}
+evolves, where triples consist of a source, correspondence, and target component. This means that executing a sequence of TGG rules will result in new source
+and target graphs connected via nodes in a third (common) correspondence graph.
 
 \vspace{0.25cm}
 
@@ -18,62 +16,59 @@ Please note that the names ``source'' and ``target'' are arbitrarily chosen and 
 \vspace{0.25cm}
 
 So far, so good! Except you may be now be asking yourself the following question: ``What on earth does all this have to do with bidirectional model
-transformation?'' We believe there are two main ideas behind understanding TGGs:
+transformation?'' There are two main ideas behind understanding TGGs:
 
 \begin{description}
 
 \item[(1) A TGG defines a consistency relation:]% 
-Given a TGG (a set of rul\-es), you can inspect a source graph $S$ with target graph $T$ and say if they are \emph{consistent} with respect to the TGG. How?
+Given a TGG (a set of rul\-es), you can inspect a source graph $S$ and a target graph $T$, and say if they are \emph{consistent} with respect to the TGG. How?
 Simply check if a triple ($S\leftarrow C\rightarrow T$) can be created using the rules of the TGG!
 
 \vspace{0.25cm}
 
-Given that $S$ is the source component, $T$ is its target component, and $C$ is the correspondence component~\cite{Hermann2011a}, $C$ would be known as the
-correspondence graph. If such a triple can be created, then the involved graphs are consistent, denoted by: $S \Leftrightarrow_{TGG} T$. This consistency
-relation can then be used immediately to check if a current bidirectional transformation (i.e., a pair unidirectional forward ($f$) and backward ($b$)
-transformations) is consistent. In summary, \emph{A TGG can be viewed as a specification of how the transformations \emph{should} behave ($S
-\Leftrightarrow_{TGG} f(S)$ and $b(T) \Leftrightarrow_{TGG} T$)}.
+If such a triple can be created, then the graphs are consistent, denoted by: $S \Leftrightarrow_{TGG} T$. This consistency relation can be used to check if a
+given bidirectional transformation (i.e., a unidirectional forward ($f$) and backward ($b$) transformation) is consistent. In summary, \emph{A TGG can be
+viewed as a specification of how the transformations \emph{should} behave ($S \Leftrightarrow_{TGG} f(S)$ and $b(T) \Leftrightarrow_{TGG} T$)}.
 	
 \item[(2) The consistency relation can be operationalized:]% 
 This is the surprising (and extremely cool) part of TGGs -- forward \emph{and} backward rules (i.e., $S$ or $T$) can be derived automatically from every TGG
 rule~\cite{Giese2010,Hermann2011a}! 
 
-To help you understand, the description of the simultaneous evolution of the source, correspondence, and target graph is \emph{sufficient} to derive a forward
-transformation. If you're given a source graph, for example, in addition to a consistent correspondence graph, target graph, and backward transformation rule,
-you'll be able to find the forward transform. Since these derived rules are always executed in order to perform forward and backward transformations, they are
-called \emph{operational} rules as opposed to the TGG \emph{declarative} rules. This derivation process is therefore also referred to as
-the\define{Operationalization}\emph{operationalization} of a TGG.
+\vspace{0.25cm}
+
+In other words, the description of the simultaneous evolution of the source, correspondence, and target graph is \emph{sufficient} to derive a forward and
+a backward transformation. As these derived rules explicitly state step-by-step how to perform forward and backward transformations, they are called
+\emph{operational} rules as opposed to the original TGG \emph{declarative} rules specified by the user. This derivation process is therefore also referred to
+as the\define{Operationalization}\emph{operationalization} of a TGG.
 	
 \end{description}
 
-\vspace{0.5cm}
-
-Before getting our hands dirty on with a concrete example, here are a few extra points for the interested reader:  
+Before getting our hands dirty with a concrete example, here are a few extra points for the interested reader:  
 
 \begin{itemize}
 
-\item Many more rules can be automatically derived from the $S \Leftrightarrow_{TGG} T$ consistency relation including inverse rules to \emph{undo} a step in a
-forward/backward transformation~\cite{LAVS_ICGT_2012},\footnote{Note
-that the TGGs are symmetric and forward/backward can be interchanged freely.  As it is cumbersome to always write forward/backward, we shall now simply say
-forward.} and rules that simply check the consistency of an existing graph triple.
+\item Many more operational rules can be automatically derived from the $S \Leftrightarrow_{TGG} T$ consistency relation including inverse rules to \emph{undo}
+a step in a forward/backward transformation~\cite{LAVS_ICGT_2012},\footnote{Note that the TGGs are symmetric and forward/backward can be interchanged freely.
+As it is cumbersome to always write forward/backward, we shall now simply say forward.} and rules that check the consistency of an existing graph triple.
 
-\item You might be wondering why we even need the correspondence graph to check consistencies -- Couldn't we just compare the differences between the target and
-source graphs?
+\item You might be wondering why we need the correspondence graph. The first reason is that the correspondence graph can be viewed as a set of explicit
+traceability links, which are nice to have in any transformation. With these you can, e.g., immediately see which elements are related after a forward
+transformation. There's no guessing, no heuristics, and no interpretation or ambiguity.
 
-Well, no. The first reason is that the correspondence graph can be viewed as explicit traceability links, which are nice to have in every transformation. With
-these you can, i.e., immediately see which elements are related after a forward transformation. There's no guessing, no heuristics, and no
-interpretation or ambivalence.
+\vspace{0.25cm}
 
-The second reason is more subtle, and difficult to explain without a concrete TGG, but we'll do our best and come back to this at the end. The key idea is that
-the forward transformation is \emph{not} injective and cannot be inverted! A function can only be inverted\define{Bijective}if it is \emph{bijective}, meaning
-it is both \emph{injective}\define{Injective}and \emph{surjective}.\define{Surjective}So how can we derive the backwards transformation?
+The second reason is more subtle, and difficult to explain without a concrete TGG, but we'll do our best and come back to this at the end. The
+key\define{Bijective} idea is that the forward transformation is very often actually \emph{not} injective\define{Injective} and cannot be inverted! A function
+can only be inverted if it is \emph{bijective}, meaning it is both \emph{injective} and \emph{surjective}.\define{Surjective}So how can we derive the backwards
+transformation?
 
-To accommodate the restriction, eMoflon sort of ``cheats'' when executing the forward transformation and, if a choice had to be made, remembers what target
-element was chosen.\footnote{It's `cheating' since this choice is what makes the transformation non-injective.} In this way, eMoflon \emph{bidirectionalize}s
-the transformation on-the-fly with correspondence links in the correspondence graph. The best part is that if the correspondence graph was somehow lost, there's
-no reason to worry because the \emph{same} TGG specification that was used to derive your forward transformation can also be used to reconstruct the
-correspondence model between two existing source and target models (to a certain degree).\footnote{We refer to this type of operational rule as \emph{link
-creation}}
+\vspace{0.25cm}
+
+eMoflon sort of ``cheats'' when executing the forward transformation and, if a choice had to be made, remembers what target element was chosen. In this way,
+eMoflon \emph{bidirectionalize}s the transformation on-the-fly with correspondence links in the correspondence graph. The best part is that if the
+correspondence graph was somehow lost, there's no reason to worry because the \emph{same} TGG specification that was used to derive your forward transformation
+can also be used to reconstruct a possible correspondence model between two existing source and target models.\footnote{We refer to this type of operational
+rule as \emph{link creation}}
 
 \end{itemize}
 This was a lot of information to absorb all at once, so it may make sense to re-read this section after working through the example. In any case, enough theory!

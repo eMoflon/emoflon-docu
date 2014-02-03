@@ -3,21 +3,21 @@
 \subsection{Tex Rules}
 \texHeader
 
-Rules in the texual syntax are clearly separated into three primary areas, the source, correspondence, and target, with an area for constraints, called CSP
-constraints, which can manipulate attribute based on the transformation direction.
+Rules in the texual syntax are clearly separated into the three primary areas - the source, correspondence, and target - along with an area for constraints
+which can manipulate attribute based on the transformation direction.
 
 \subsection{BoxToDictionaryRule}
 
 \begin{itemize}
 
 \item[$\blacktriangleright$] You may have noticed that a \texttt{Rules} folder was created and included in the TGG package when you first created it. Create
-your first one by right-clicking on the folder and navigating to ``New/TGG Rule.'' Name it \texttt{BoxToDictionaryRule}, and confirm the file opens in the
+your first TGG Rule by right-clicking on this folder and navigating to ``New/TGG Rule.'' Name it \texttt{BoxToDictionaryRule}, and confirm the file opens in the
 editor window.
 
-\item[$\blacktriangleright$] Lets first establish the \texttt{target} and \texttt{source} structures. Given that this is the first rule to be applied in a
+\item[$\blacktriangleright$] Lets first establish the \texttt{source} and \texttt{target}  structures. Given that this is the first rule to be applied in a
 transformation, we can assume there is no context to work with, so each of our objects will need to be set to `green' (create). In the \texttt{source} scope,
 create a \texttt{box} of type \texttt{Box}. Similarly, in the \texttt{target} scope, create a \texttt{dictionary} of type \texttt{Dictionary}. Your rule
-should now resemble Fig.~\ref{fig:textSourceRule}.
+should now resemble Fig.~\ref{eclipse:textSourceRule}.
 
 \vspace{0.5cm}
 
@@ -25,13 +25,13 @@ should now resemble Fig.~\ref{fig:textSourceRule}.
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_boxToDictionary_start}
   \caption{Setting the source and target objects}
-  \label{fig:textSourceRule}
+  \label{eclipse:textSourceRule}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] Now we can create our first TGG Correspondence link! In the \texttt{correspondence} scope, enter 
 \syntax{++ box <- boxToDictionary : BoxToDictionary -> dictionary}
-Please note that the structure of this statement creates \emph{one} link, named \texttt{boxToDictionary}, of correspondence type \texttt{BoxToDictionary} which
+Please note that the structure of this statement creates \emph{one} link, named \texttt{boxToDictionary}, of type \texttt{BoxToDictionary} which
 was declared in the schema.
 
 \end{itemize}
@@ -46,7 +46,7 @@ we can use in this application. These include stringToNumber, concatenate (conca
 
 \item[$\blacktriangleright$] Therefore, under the \texttt{constraints} scope, write:
 \syntax{eq(box.name, dictionary.title)}
-Your rule should now resemble Fig.~\ref{fig:ruleBasic}.
+Your rule should now resemble Fig.~\ref{eclipse:ruleBasic}.
 
 \vspace{0.5cm}
 
@@ -54,7 +54,7 @@ Your rule should now resemble Fig.~\ref{fig:ruleBasic}.
 \begin{center}
   \includegraphics[width=0.8\textwidth]{eclipse_boxToDictionary_firstElements}
   \caption{Create a correspondence link and constraint}
-  \label{fig:ruleBasic}
+  \label{eclipse:ruleBasic}
 \end{center}
 \end{figure}
 
@@ -71,7 +71,7 @@ store them in: \texttt{partition0}, \texttt{partition1}, and \texttt{partition2}
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Complete the rule by setting both the individual \texttt{index} values and appropriate \texttt{containedPartition},
-\texttt{next} and \texttt{previous} link variables so that your rule matches Fig.~\ref{fig:allReferences}.
+\texttt{next} and \texttt{previous} link variables so that your rule matches Fig.~\ref{eclipse:allReferences}.
 
 \end{itemize}
 
@@ -79,14 +79,14 @@ store them in: \texttt{partition0}, \texttt{partition1}, and \texttt{partition2}
 \begin{center}
   \includegraphics[width=0.8\textwidth]{eclipse_boxToDictionary_complete}
   \caption{\texttt{BoxToDictionaryRule} complete!}
-  \label{fig:allReferences}
+  \label{eclipse:allReferences}
 \end{center}
 \end{figure}
 
 \clearpage
 
 Great work! This finished rule is able to transform a \texttt{box} into a \texttt{dictionary} and vice versa. Unfortunately, it will only be able to handle
-completely \emph{empty} boxes and dictionaries -- you can see we haven't provided additional handling for \texttt{Card} or \texttt{Entry} items. If you're in a
+completely empty boxes and dictionaries -- you can see we haven't provided any additional handling for \texttt{Card} or \texttt{Entry} items. If you're in a
 hurry, feel free to jump ahead to Section 4: TGGs in Action, to try executing this rule anyway. Otherwise, the next rule we create will integrate itself with
 \texttt{BoxToDictionaryRule} to take care of this.
 
@@ -95,8 +95,8 @@ hurry, feel free to jump ahead to Section 4: TGGs in Action, to try executing th
 
 \begin{itemize} 
 
-\item[$\blacktriangleright$] Analogously to how you began the previous rule, return to the TGG schema and create a second \emph{Integration Class} called
-\texttt{CardToEntry} with a \texttt{Card} source and \texttt{Entry} target. Your updated file should now resemble Fig.~\ref{fig:updatedSchema}.
+\item[$\blacktriangleright$] Analogously to how you began the previous rule, return to the TGG schema and create a second correspondence type called
+\texttt{CardToEntry}, with a \texttt{Card} source and \texttt{Entry} target. Your updated file should now resemble Fig.~\ref{eclipse:updatedSchema}.
 
 \vspace{0.5cm}
 
@@ -104,28 +104,28 @@ hurry, feel free to jump ahead to Section 4: TGGs in Action, to try executing th
 \begin{center}
   \includegraphics[width=0.4\textwidth]{eclipse_updatedSchema}
   \caption{Updating the schema}
-  \label{fig:updatedSchema}
+  \label{eclipse:updatedSchema}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Right click on the \texttt{Rules} folder again, and create a \texttt{CardToEntryRule}.
+\item[$\blacktriangleright$] Right-click on the \texttt{Rules} folder again, and create the \texttt{CardToEntryRule}.
 
 \end{itemize}
 
-One of the key differences between this rule and the last is that \texttt{CardToEntryRule} will only be invoked within a certain context i.e.,
+One of the key differences between this rule and the last is that \texttt{CardToEntryRule} should only be invoked within a certain context i.e.,
 this will only be used if a preexisting \texttt{partition} has \texttt{card} elements that need to be transformed into entries in an established
 \texttt{dictionary}. In terms of MOSL, this means there will be both `black' and `green' elements.
 
 \begin{itemize}
 
 \item[$\blacktriangleright$] To begin, create three object variables in the \texttt{source} scope: \texttt{box}, \texttt{partition0}, and \texttt{card}. Which
-ones are already known from the context? Which element still needs to be made? Your rule should come to resemble Fig.~\ref{fig:c2eRuleSource}.
+ones are already known from the context? Which element still needs to be made? Your rule should come to resemble Fig.~\ref{eclipse:c2eRuleSource}.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.45\textwidth]{eclipse_cardToEntry_sourceOVs}
   \caption{The source language with both `black' and `green' elements}
-  \label{fig:c2eRuleSource}
+  \label{eclipse:c2eRuleSource}
 \end{center}
 \end{figure}
 
@@ -151,8 +151,8 @@ be created between \texttt{card} and \texttt{entry}. Use the correspondence type
 
 \item[$\blacktriangleright$] Finally, let's make sure the transformation is able to access the \texttt{card} and \texttt{entry} attributes. Complete each
 of your \texttt{box}, \texttt{partition0}, and \texttt{dictionary} object variable scopes with the relevant references until your rule matches
-Fig.~\ref{fig:c2eAllReferences}.\footnote{Don't forget that eMoflon's type completion can help you establish references here; Press \texttt{ctrl + space bar} after writing \texttt{->} for a list of available
-link variables from the relevant \texttt{eclass}.}
+Fig.~\ref{eclipse:c2eAllReferences}.\footnote{Don't forget that eMoflon's type completion can help you establish references here; Press \texttt{ctrl + space
+bar} after writing \texttt{->} for a list of available link variables from the relevant \texttt{eclass}.}
 
 \newpage
 
@@ -160,7 +160,7 @@ link variables from the relevant \texttt{eclass}.}
 \begin{center}
   \includegraphics[width=0.8\textwidth]{eclipse_cardToEntry_objectVariables}
   \caption{all object variables}
-  \label{fig:c2eAllReferences}
+  \label{eclipse:c2eAllReferences}
 \end{center}
 \end{figure}
 
@@ -179,13 +179,13 @@ a \texttt{card} into one \texttt{content} value, or split each \texttt{entry} in
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Now, using the preexisting String attribute constraint types, edit your \texttt{constraint} scope until it resembles
-Fig.~\ref{fig:contentConstraints}.
+Fig.~\ref{eclipse:contentConstraints}.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{eclipse_cardToEntry_firstConstraints}
   \caption{preexisting constraints}
-  \label{fig:contentConstraints}
+  \label{eclipse:contentConstraints}
 \end{center}
 \end{figure}
 
@@ -196,7 +196,7 @@ Fig.~\ref{fig:contentConstraints}.
 We're not quite done -- we need to add \emph{one} more constraint. Given that we have three partitions, and three difficulty levels for each \texttt{Entry}, why
 don't we have the transformation assign a level based on whatever partition a \texttt{card} is found in? Hard cards, for example, are more likely to be found in the first
 partition (due to being shifted backwards from wrong guesses), while easy cards will be near the end.  As you can imagine, there is no constraint type currently
-existing in eMoflon to manage this. We must first define our own!
+existing in eMoflon to manage this. We must define our own!
 
 \begin{itemize}
 
@@ -206,13 +206,13 @@ each of the options mean in a moment.
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] You can now invoke your rule with \texttt{indexToLevel(partition0.index, entry.level)} immediately below the declaration. Your
-completed \texttt{CardToEntryRule} should now resemble Fig.~\ref{fig:c2eDone}.
+completed \texttt{CardToEntryRule} should now resemble Fig.~\ref{eclipse:c2eDone}.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.9\textwidth]{eclipse_cardToEntry_complete}
   \caption{\texttt{CardToEntryRule complete!}}
-  \label{fig:c2eDone}
+  \label{eclipse:c2eDone}
 \end{center}
 \end{figure}
 
@@ -223,7 +223,7 @@ completed \texttt{CardToEntryRule} should now resemble Fig.~\ref{fig:c2eDone}.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] To see how \texttt{BoxToDictionaryRule} is implemented in the visual syntax, check out Fig.~\ref{fig:boxtodictionaryrule_complete}
-from Section 4.1. The \texttt{CardToEntryRule} is depicted in Fig.~\ref{fig:cardtoentry_complete} in Section 4.2.
+\item[$\blacktriangleright$] To see how \texttt{BoxToDictionaryRule} is implemented in the visual syntax, check out Fig.~\ref{ea:boxtodictionaryrule_complete}
+from Section 4.1. The \texttt{CardToEntryRule} is depicted in Fig.~\ref{ea:cardtoentry_complete} in Section 4.2.
 
 \end{itemize}

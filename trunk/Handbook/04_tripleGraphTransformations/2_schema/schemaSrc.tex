@@ -3,21 +3,21 @@
 \section{Creating your TGG schema}
 \genHeader
 
-With the target and source components prepared in the workspace, the first true step towards completing any TGG is to model the correspondence component of your
-future triple.\define{Link \\ Metamodel}This correspondence or \emph{link metamodel} helps to drive the forward transformation, and is made up of
-\emph{correspondence types}\define{Correspondence Types}which connect classes between the source and target metamodels. These special types can also be thought
-of as traceability links.
+Now that the necessary source and target components are prepared in the workspace, there are several different ways to begin a TGG. We're going to begin with
+modeling the correspondence component of your transformation triple. This correspondence or \emph{link metamodel}\define{Link \\ Metamodel} specifies
+\emph{correspondence types}\define{Correspondence Types} which will be used to connect specific elements between the source and target metamodels. These special
+types can also be thought of as \emph{traceability links}.
 
-While the link metamodel is really just a standard metamodel, we use slightly different naming conventions and concrete syntaxes to represent it.\define{TGG
-Schema} Together, the overall metamodel triple consisting of the relevant parts of the source, link, and target metamodels is called the \emph{TGG
-schema}.
+While the link metamodel is technically a standard metamodel, eMolfon uses a slightly different naming convention and concrete syntax to represent it.
+Together, the overall\define{TGG Schema} metamodel triple consisting of the relevant parts of the source, link, and target metamodels is called the \emph{TGG schema}.
 
 A TGG schema can be viewed as the (metamodel) triple to which all \emph{new} triples must conform. In less technical lingo, it gives an abstract view on the
 relationships (correspondence) between two metamodels or domains. A domain expert should be able to understand why certain connected elements are related,
 irrespective of how the relationship is actually established by TGG rules, just by looking at the TGG schema. 
 
 
-In our example schema, we will create a link between our source \texttt{Box} and target \texttt{Dictionary}.
+In our example schema, we will create a link between our source \texttt{Box} and target \texttt{Dictionary} to express that these two container elements will be
+related.
 
 \jumpDual{schema vis}{schema tex}
 

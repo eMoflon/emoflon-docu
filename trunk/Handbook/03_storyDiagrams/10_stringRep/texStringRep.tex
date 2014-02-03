@@ -9,14 +9,14 @@
   
 \item[$\blacktriangleright$] Closely following Fig.~\ref{fig:goal_stringRep}, create a nested \texttt{forEach} loop in \texttt{Box.toString()}.
 Don't worry about invoking \texttt{addToStringRep} yet -- just make sure you return the \texttt{this.stringRep} attribute. It should resemble
-Fig.~\ref{fig:emptyLoops}. \texttt{this.stringRep} is referred to as an \emph{AttributeValueExpression}\defineMOSL{AttributeValue\-Expression} as it accesses an
-attribute value of an object variable (\texttt{this}) via a `.' (dot) operator.
+Fig.~\ref{eclipse:emptyLoops}. \texttt{this.stringRep} is referred to as an \emph{AttributeValueExpression}\defineMOSL{AttributeValue\-Expression} as it
+accesses an attribute value of an object variable (\texttt{this}) via a `.' (dot) operator.
 
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_toStringNestedLoops}
   \caption{Control flow for \texttt{toString} with nested \emph{for each} loops}
-  \label{fig:emptyLoops}
+  \label{eclipse:emptyLoops}
 \end{center}
 \end{figure}
 
@@ -26,7 +26,7 @@ The correct \texttt{card} parameter will be matched by the \texttt{forAllCards} 
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] The completed \texttt{toString} activity should now resemble Fig.~\ref{fig:toStringFlow}.
+\item[$\blacktriangleright$] The completed \texttt{toString} activity should now resemble Fig.~\ref{eclipse:toStringFlow}.
 
 \vspace{0.5cm}
 
@@ -34,7 +34,7 @@ The correct \texttt{card} parameter will be matched by the \texttt{forAllCards} 
 \begin{center}
   \includegraphics[width=0.6\textwidth]{eclipse_boxtoStringFlow}
   \caption{Using a \emph{statement node} to invoke a void helper method}
-  \label{fig:toStringFlow}
+  \label{eclipse:toStringFlow}
 \end{center}
 \end{figure}
 
@@ -44,8 +44,8 @@ partitions.
 
 \clearpage
 
-\item[$\blacktriangleright$] Complete each pattern as depicted in Fig.~\ref{fig:toStringPatterns}. The \texttt{partition} in \texttt{forAllCards} is bound to
-the one matched in the current (first) loop iteration, but \texttt{card} is \emph{not} bound as it must be newly matched each time.
+\item[$\blacktriangleright$] Complete each pattern as depicted in Fig.~\ref{eclipse:toStringPatterns}. The \texttt{partition} in \texttt{forAllCards} is bound
+to the one matched in the current (first) loop iteration, but \texttt{card} is \emph{not} bound as it must be newly matched each time.
 
 \vspace{0.5cm}
 
@@ -53,12 +53,12 @@ the one matched in the current (first) loop iteration, but \texttt{card} is \emp
 \begin{center}
   \includegraphics[width=0.6\textwidth]{eclipse_toStringPatterns}
   \caption{Box traversal patterns}
-  \label{fig:toStringPatterns}
+  \label{eclipse:toStringPatterns}
 \end{center}
 \end{figure}
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] As crazy at it may seem, that's it!  To see how this SDM is represented visually, check out Fig.~\ref{fig:sdm_tostring_5}.
+\item[$\blacktriangleright$] As crazy at it may seem, that's it!  To see how this SDM is represented visually, check out Fig.~\ref{ea:sdm_tostringComplete}.
 
 \end{itemize}

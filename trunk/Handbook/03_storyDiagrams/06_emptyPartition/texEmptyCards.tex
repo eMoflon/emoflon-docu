@@ -6,7 +6,7 @@
 \begin{itemize}
  
 \item[$\blacktriangleright$] To initialize your new control flow, you can once again take advantage of eMolfon's auto completion. Inside the
-\texttt{empty} declaration, press  \texttt{ctrl + space} and select \texttt{forEach} from the menu (Fig.~\ref{fig:typeCompletion}).
+\texttt{empty} declaration, press  \texttt{ctrl + space} and select \texttt{forEach} from the menu (Fig.~\ref{eclipse:typeCompletion}).
 
 \vspace{1cm}
 
@@ -14,7 +14,7 @@
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_emptyTypeCompletion}
   \caption{eMoflon's auto completion}
-  \label{fig:typeCompletion}
+  \label{eclipse:typeCompletion}
 \end{center}
 \end{figure}
 
@@ -23,7 +23,7 @@
 \item[$\blacktriangleright$] Create a single pattern, \texttt{deleteCardsInPartition}. Remove the suggested second pattern as you only need to complete the
 deletion -- no extra steps are required in this simple case!
 
-\item[$\blacktriangleright$] Your activity should now resemble Fig.~\ref{fig:emptyControlFlow}.
+\item[$\blacktriangleright$] Your activity should now resemble Fig.~\ref{eclipse:emptyControlFlow}.
 
 \clearpage
 
@@ -31,12 +31,12 @@ deletion -- no extra steps are required in this simple case!
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_emptyControlFlow}
   \caption{Control flow for \texttt{partition.empty()}}
-  \label{fig:emptyControlFlow}
+  \label{eclipse:emptyControlFlow}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] While similar to \texttt{removeCard} (Fig.~\ref{fig:deleteReference}), this new pattern will go one step further by requesting a
-full destruction of \texttt{card}, instead of just deleting the link between the object variables. This means that in addition to destroying the link between
+\item[$\blacktriangleright$] While similar to \texttt{removeCard} (Fig.~\ref{eclipse:deleteReference}), this new pattern will go one step further by requesting
+a full destruction of \texttt{card}, instead of just deleting the link between the object variables. This means that in addition to destroying the link between
 the partition and \texttt{card}, we need to destroy the object variable \texttt{card} as well.
 
 \item[$\blacktriangleright$] Create a \texttt{@this} object variable, and delete its link to \texttt{card} via \syntax{-- -> card:card}. Then create another
@@ -44,7 +44,7 @@ object variable \texttt{card}, deleting it by prefixing its name with the same \
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Your pattern should now resemble Fig.~\ref{fig:emptyPattern}.
+\item[$\blacktriangleright$] Your pattern should now resemble Fig.~\ref{eclipse:emptyPattern}.
 
 \vspace{0.5cm}
 
@@ -52,14 +52,14 @@ object variable \texttt{card}, deleting it by prefixing its name with the same \
 \begin{center}
   \includegraphics[width=0.6\textwidth]{eclipse_emptyPattern}
   \caption{Destroying both \texttt{card} and the link variable}
-  \label{fig:emptyPattern}
+  \label{eclipse:emptyPattern}
 \end{center}
 \end{figure}
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] That's it! Look at you go\ldots you're just speeding through these SDMs now! To see how \texttt{empty} is specified in the visual
-syntax, review Fig.~\ref{fig:sdm_end} from the previous section.
+syntax, review Fig.~\ref{ea:sdm_end} from the previous section.
 
 \vspace{0.5cm}
 

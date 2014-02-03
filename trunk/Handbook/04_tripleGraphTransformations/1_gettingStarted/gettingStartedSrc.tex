@@ -2,55 +2,18 @@
 \section{Setting up your workspace}
 \genHeader
 
-Before starting any TGG transformation, you'll need to have the separate source and target metamodels already prepared. In our case, these will be
-\texttt{LeitnersLearningBox} and a new \texttt{DictionaryLanguage}. Don't worry - we have created this for you to import into your workspace. If you haven't
-completed the previous parts in the handbook series, work through Section~\ref{sec:loadSourceMeta} to load a pre prepared \texttt{LeitnersLearningBox}
-metamodel into your workspace. If your source metamodel is ready to go however, skip ahead to  either \texttt{\hyperlink{sec:multiEAP}{Section 2.2 (Visual)}}
-or \texttt{\hyperlink{sec:multiMOSL}{Section 2.3 (Textual)}}.
+To start any TGG Transformation, you need to have the source and target graphs already prepared. Our example will use the \texttt{LeitnersLearningBox}
+metamodel (as completed in Parts II and III) as the transformation's source, and a new \texttt{DictionaryLanguage} as its target. We have provided this
+second metamodel as a download.
 
+If you haven't worked through the previous parts of this handbook, complete Section~\ref{sec:loadSourceMeta} first to load a pre-prepared learning box into your
+workspace. If your source metamodel is ready however, skip ahead to either \texttt{\hyperlink{sec:multiEAP}{Section 2.2 (Visual)}} or
+\texttt{\hyperlink{sec:multiMOSL}{Section 2.3 (Textual)}} to begin.
 
-% --- NEW USER INSTRUCTIONS
-\subsection{Starting Fresh}
-\label{sec:loadSourceMeta}
-\begin{itemize}
-
-\item[$\blacktriangleright$] Press the \texttt{new} button on the toolbar and navigate to ``Examples/eMoflon Handbook Examples/''
-(Fig.~\ref{fig:downPartIV}).  We have created two cheat packages based on eMolfon's two specification types. For a brief discussion on the differences between
-the two, refer to Part I, Section I. They are both completed with all objects, references, and implemented SDMs.
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_downloadWizardPartIV}
-  \caption{Use the wizard to download your cheat package}
-  \label{fig:downPartIV}
-\end{center}
-\end{figure}
-
-\item[$\blacktriangleright$] After loading, if your package explorer does not resemble ours in Fig.~\ref{fig:workingSets} with at least two
-distinct nodes, select the small, downward facing arrow in the corner of the module window. Choose ``Working Sets/Top Level Elements.'' To review how these
-nodes are used to structure the workspace in Eclipse, check out Part I, Section 4.
-
-\vspace{0.5cm}
-
-% Forced placement so it would co-operate
-\begin{figure}[h!]
-	\centering
-  \includegraphics[width=0.9\textwidth]{eclipse_workingSets}
-	\caption{Setting your Package Explorer}
-	\label{fig:workingSets}
-\end{figure}
-
-\vspace{0.5cm}
-
-At this point we recommend reading the introduction to Part II for a detailed overview of \texttt{LeitnersLearningBox}, its purpose and goals, and how
-\texttt{card}s and \texttt{FastCards} are moved between each \texttt{partition}. It should only take a minute or two, and the background information may help
-you better understand the reasoning behind some steps in this part as we continue to build on the idea.
-
-\end{itemize}
+\input{../1_gettingStarted/1.1_startingFresh/startingFreshSrc}
 
 \jumpDual{multiEAP}{multiMOSL}
 
-% Instructions for loading target model
 \input{../1_gettingStarted/visImportSrc}
 
 \input{../1_gettingStarted/texImportSrc}
