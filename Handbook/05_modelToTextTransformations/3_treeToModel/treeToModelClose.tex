@@ -5,9 +5,7 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] What was original? Need to Update TGG main from \texttt{box} to \texttt{tree}?
-
-\item[$\blacktriangleright$] Navigate to ``src/org.moflon.tie'' right click and run TGGMain as application
+\item[$\blacktriangleright$] Navigate to ``src/org.moflon.tie'' right click and run TGGMain as application.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -18,9 +16,6 @@
 \end{figure}
 
 \item[$\blacktriangleright$] Awesome, it works BEAUTIFULLY! Lets examine the output, \texttt{tree.xmi\_FWD.xmi} a little closer.
-
-\item[$\blacktriangleright$] The transformation decided to take one rule - either create or use existing - based on a random choice. The current set up isn't
-dependable. 
 
 \item[$\blacktriangleright$] If you haven't already, read Section 6 from Part IV to learn how eMoflon's integrator feature can help you visualize how this
 transformation was completed. Run the integrator on \texttt{corr\_FWD.xmi} until you reach the first (english) author node (do this as proof).
@@ -33,16 +28,56 @@ transformation was completed. Run the integrator on \texttt{corr\_FWD.xmi} until
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] It had two choices and picked on at random. You, dear creator, have two choices on how to refine this. ``I don't care,
-\emph{always} make an author'' (duplicates), or no, ``I \emph{never} want there to be two of the same authors for one library.''
+\item[$\blacktriangleright$] The transformation decided to take one rule - either create or use existing - based on a random choice. The current set up isn't
+dependable. We need to force a decision.
+
+\item[$\blacktriangleright$] It had two choices and picked on at random. If you DO want to force a decision. You have two choices: ``I
+don't care, \emph{always} make an author'' (duplicates), or no, ``I \emph{never} want there to be two of the same authors for one library.'' There are two ways
+to define this: (Discuss options here?)
 
 \end{itemize}
 
 \begin{description}
 
-\item[option2: Design-time] Create a NAC in \texttt{ForAllNewAuthors}; force it to skip
-link1: textual, link 2: visual
+\item[option1: Run-time] Create a configuration file for your TGG;
 
-\item[option1: Run-time] Create a configuration file for your TGG; INCLUDE HERE
+First: define \texttt{AuthorConfiguator}. FIG. put in in the same pacakage as your TGG. Don't make errors.
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{eclipse_authorConfigurator}
+  \caption{comment}
+  \label{eclipse:authorConfig}
+\end{center}
+\end{figure}
+
+Second: call it from \texttt{TGGMain}. FIG. Only need it in the forward transformation, so only put it once\ldots
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{eclipse_editTGGMain}
+  \caption{comment on the edit}
+  \label{eclipse:editTGGMain}
+\end{center}
+\end{figure}
+
+\item[option2: Design-time] Create a NAC in \texttt{ForAllNewAuthors}; force it to skip
+\hyperlink{NAC vis}{link1: {\bf VISUAL}}
+\hyperlink{NAC tex}{link2: {\bf TEXTUAL}}
+
+\input{../3_treeToModel/vis_designTimeNAC}
+
+\input{../3_treeToModel/tex_designTimeNAC}
 
 \end{description}
+
+% Back together, run TGGMain again
+\newpage
+\begin{itemize}
+
+\item[$\blacktriangleright$] With your forced set up now constructed, Run TGGMain again. Use the integrator once more to see how it consistently chose your
+decision.
+
+\item[$\blacktriangleright$] Great work! You have now completed the first half of the complete round trip transformation, from Text to Model!
+
+\end{itemize}

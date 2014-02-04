@@ -19,16 +19,16 @@ recognizes whole words without ``seeing'' every individual character. This is th
 recognizes these chunks or \emph{tokens} and passes them on as a token stream to the \emph{parser} that does the actual work of recognizing complex
 hierarchical and recursive structures.
    
-To recognize the tokens as indicated in Fig.~\ref{fig:moca-4-Tokens}, \texttt{ANTLR} can automatically generate a lexer in Java from a compact specification as
-depicted in Fig.~\ref{fig:moca-6-lexer}. This is actually a DSL for lexing and is explained in detail in \cite{ANTLR}. If you do not know what EBNF is and have
-problems understanding the lexer grammar then make sure you at least go through the documentation on \url{www.antlr.org} or read relevant chapters in
-\cite{ANTLR}.
+To recognize the tokens as indicated in Fig.~\ref{fig:moca-4-Tokens}, \texttt{ANTLR} can automatically generate a lexer in Java from a compact specification.
+This is actually a DSL for lexing and is explained in detail in \cite{ANTLR}. If you are unfamiliar with EBNF, and have feel you may have problems understanding
+the lexer grammar, we suggest going through the documentation on on \url{www.antlr.org}, or reading the relevant chapters in \cite{ANTLR}. Otherwise, let's
+complete the \emph{lexer} and \texttt{parser} grammars that will handle our project instances.
 
 \begin{itemize}
   
-\item[$\blacktriangleright$] Edit \texttt{DictionaryLexer.g} so it closely resembles Fig.~\ref{fig:moca-6-lexer}. You'll need to add the \texttt{import
-org.moflon.moca.MocaUtil} statment to the header. For the rest of the file, be careful to avoid any typos and mistakes! Save the file to compile it, and ensure
-no errors persist.
+\item[$\blacktriangleright$] Navigate to ``DictionaryCodeAdapter/src/org.moflon.moca.dictionary.parser" and edit \texttt{DictionaryLexer.g} until it closely
+resembles Fig.~\ref{eclipse:dictionaryLexer}. Don't forget to add the \texttt{import org.moflon.moca.MocaUtil} statement to the header, and be vigilant to avoid
+any typos and mistakes! Save to compile the file, and ensure no errors persist before proceeding.
 
 \end{itemize}
 \newpage
@@ -41,10 +41,10 @@ no errors persist.
 \end{center}
 \end{figure}
 
-Now that we have our lexer built, the next step is to form the stream of tokens from the lexer into a \emph{tree}. In this context, a \emph{tree} is an acyclic,
-hierarchical, recursive structure as depicted in Fig.~\ref{eclipse:dictLexer}. Depending on what the tree is to be used for, it can be organized much differently
-with extra \emph{structural} nodes such as \texttt{DICTIONARY} or \texttt{ENTRY} that were not present in the textual syntax and are used to give additional
-meaning to the tree.
+With our lexer, we can now complete the next step of forming its stream of tokens into a \emph{tree}. In this context, a \emph{tree} is an acyclic,
+hierarchical, recursive structure (as depicted in Fig.~\ref{eclipse:dictLexer}). Depending on what the tree is to be used for, it can be organized much
+differently with extra \emph{structural} nodes such as \texttt{DICTIONARY} or \texttt{ENTRY} which were not present in the textual syntax, which can be used to
+give additional meaning to the tree.
 
 \begin{figure}[htp]
 \begin{center}
@@ -56,8 +56,8 @@ meaning to the tree.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Open and edit \texttt{DictionaryParser.g} so it closely resembles Fig.~\ref{eclipse:dictParser}. You won't need to make any changes
-this time to \texttt{@header}. As with the lexer, avoid typos and mistakes and ensure it compiles before proceeding. Blue are rules, pinkish are values
+\item[$\blacktriangleright$] Open and edit \texttt{DictionaryParser.g} from the same package until it closely resembles Fig.~\ref{eclipse:dictParser}. As with
+the lexer, avoid typos and mistakes and ensure it compiles before proceeding.
 
 \end{itemize}
 
@@ -69,59 +69,50 @@ this time to \texttt{@header}. As with the lexer, avoid typos and mistakes and e
 \end{center}
 \end{figure}
 
-As you can see, the parser grammar is quite similar to the lexer grammar, but there are \emph{parser actions} after the \texttt{->} symbol, which build up the
-tree. Using this simple tree language, one can (1) abstract from tokens like \texttt{\{} or \texttt{\}}, which are just \emph{syntactical noise}\footnote{In
-this context, content that is irrelevant for our model.} and (2) enrich the tree with structural nodes like \texttt{ENTRY}, which add explicit structure to the
-tree. Please refer to \cite{ANTLR} and online resources for a detailed explanation of the syntax and semantics of the parser grammar supported by
+\newpage
+
+You'll notice that the parser grammar is extremely similar to the lexer grammar, save for some \emph{parser actions} following the \texttt{`->'} symbol. These
+actions order the construction of the tree. Using this simple tree language, one can (1) abstract from tokens like \texttt{`\{'} or \texttt{`\}'}, which are
+just \emph{syntactical noise}\footnote{Irrelevant content for our model.} and (2) enrich the tree with structural nodes like \texttt{ENTRY}, which add explicit
+structure to the tree. Refer to \cite{ANTLR} and online resources for detailed explanations on the syntax and semantics of the parser grammar supported by
 \texttt{ANTLR}.
 
-{\bf new content }
-\begin{enumerate}
-
-\item[$\blacktriangleright$] TGGMAIN: its not the same as it was: explain to users that in INSTANCES/IN source folder.. is the super folder. It will look for
-the intial model called tree.xmi. Output/stored files will be in /out. 
-
-\item[$\blacktriangleright$] ** comment out line 46
-
-\item[$\blacktriangleright$]  under //text to tree, the ``Folder folder = MocaMain.getCodeAdapter().parse(new File("instances/in/myLibrary"));'' command will be
-the library to be transformed. This may make more sense after working through the example, where you might have several libraries, such as one for languages,
-and one for maths.
-If you rename your tree.xmi file, this is where you'd have to make the change.
-
-\item[$\blacktriangleright$] To explain, ti takes tree.xmi into the transformer, which in turns creates tree.xmi\_FWD.xmi, an output tree model. This will drive
-the backwards transfiormation. (explain the driving process). in other words, this single main method drives the parser, forward transformation, backwards
-transformation, and unparser. Streamlined. All you need to start is that inital ``in'' folder with a library directory of some sort. Don't worry about
-commenting anything out.
+\begin{itemize}
 
 
-\begin{figure}[htp]
+\item[$\blacktriangleright$] Before taking our lexer and parser out for a spin, navigate to ``src/org.moflon.tie" and open \texttt{TGGMain.java}. If everything
+has been generated properly so far, it should resemble Fig.~\ref{eclipse:defaultTGGMain}.
+
+\begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=\textwidth]{eclipse_TGGMain}
-  \caption{Comment out line 46}
-  \label{eclipse:TGGMain} 
+ \includegraphics[width=0.9\textwidth]{eclipse_TGGMainDefault}
+  \caption{Deafult TGG}
+  \label{eclipse:defaultTGGMain}
 \end{center}
 \end{figure}
 
-Go ahead and look at what this \texttt{codeAdapter} does. All the code can be adjusted and used, for example, to define which files the parser is
-to be used for (per default the adapter registers for \texttt{*.dictionary} files). The main job of the adapter is to hide \texttt{ANTLR} specifics so the
-framework remains (parser) technology agnostic. If you decide to use a different parser generator or write the parser by hand you would need to implement a
-corresponding adapter from scratch.
+\item[$\blacktriangleright$] You can see that this method is the driver for the program, executing each of the four pieces required for a full forward and
+backwards transformation. It begins the process by parsing the contents of the \texttt{myLibrary} folder, which we haven't created yet. 
 
-On line 27, the input for the framework is set, meaning that all folders in \texttt{./instances/in} are parsed. ((see original!!))
+\vspace{0.5cm}
+
 In a nutshell, each folder is taken as a root of a tree and the folder and file structure is reflected as a hierarchy of (children) nodes in the tree.
 For each file, the framework searches for a registered parser that is responsible for the particular file, passes the content on to the parser and plugs in the
 tree from the parser as a single subtree of the corresponding file node in the overall tree.  
 
 \newpage
 
-The final step is now to prepare some input for the framework ({\bf the in/library folder.}):
+\item[$\blacktriangleright$] We're not concerned with the final output right now however, so comment out line 45, which calls the unparser to generate an output
+directory structure. We will define this model-to-text unparser a bit later. It should be noted for future reference that if decided to experiment with multiple
+libraries (such as one for languages and one for sciences), this is the file where you'll need to update the appropriate information.
 
+\item[$\blacktriangleright$] The final step is now to prepare some input for the framework. Navigate to ``DictionaryCodeAdapter/instances/in'' and create the
+directory structure depicted in Fig.~\ref{eclipse:textDirectory}. You can create the \texttt{dictionary} files by right-clicking its parent folder, going to
+``new/File" and simply appending \texttt{.dictionary} to the end of the name. 
 
-\item[$\blacktriangleright$] Navigate to ``DictionaryCodeAdapter/instances/in'' and create the directory structure depicted in Fig.~\ref{eclipse:textDirectory}. You can
-create the \texttt{dictionary} files by right-clicking its parent folder, going to ``new/File" and simply appending \texttt{.dictionary} to the end of the name.
-Complete each of the four files with the contents from Table~\ref{moca-inputdata}.\footnote{Please do not copy and paste this data as it your .pdf reader may
-add some invisible characters to the file that MOSL will not detect}
- 
+\item[$\blacktriangleright$] Complete each of the four \texttt{.dictionary} files with the contents in Table~\ref{moca-inputdata}.\footnote{Please do not copy
+and paste this data as it your .pdf reader may add some invisible characters to the file that MOSL will not detect}
+
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{inputData}
@@ -130,7 +121,11 @@ add some invisible characters to the file that MOSL will not detect}
 \end{center}
 \end{figure}
 
-\end{enumerate}
+\item[$\blacktriangleright$] As you can see, this creates a single library split into two languages, each containing unique dictionaries. Reviewing
+Fig.~\ref{eclipse:dictParser}, you can see that the structure of these files conform to the parser's \texttt{main} command: it first lists the dictionary's
+\texttt{title}, may or may not contain a \texttt{author}, and contains all \texttt{entry} elements between the \texttt{OPEN} and \texttt{CLOSE} brackets.
+
+\end{itemize}
 
 \newpage
 
@@ -213,40 +208,37 @@ title: "unknown"
 
 \begin{enumerate}
 
-\item[$\blacktriangleright$] As you can see, you're creating a single library (with the same name as specified in TGGMain) split into two categories, each
-containing a number of dictionaries. The syntax of the dictionaries correlate to the lexer/parser in this way..
 
-\item[$\blacktriangleright$] After saving each dictionary, right click on \texttt{TGGMain} and press ``Run As / Java Application.''  you should have an
-\texttt{tree.xmi} file. Double-click this to open and inspect the contents FIG
+\item[$\blacktriangleright$] Before saving each dictionary file, double check and confirm that you have not missed any characters (such as colons or
+commans) -- parsing will not succeed to the files do not perfectly conform to the lexer. 
+
+\item[$\blacktriangleright$] One finished, right click on \texttt{TGGMain} and navigate to ``Run As / Java Application'' in the context menu. Refresh the
+\texttt{instances} folder. Several models have been created (Fig.~\ref{eclipse:postParse})! 
 
 \begin{figure}[!htbp]
 \begin{center}
  \includegraphics[width=0.4\textwidth]{eclipse_explorerPostGeneration}
   \caption{new tgg file generation result}
-  \label{eclipse_postParse}
+  \label{eclipse:postParse}
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] \texttt{tree.xmi} file and an \texttt{out} folder (with the same directory structure as \texttt{in}) should be created in the
-\texttt{instances} directory after refreshing. EXPLAIN THE NODES AND STUFF HERE.
+\item[$\blacktriangleright$] To explain, \texttt{tree.xmi} is the model generated directly from the \texttt{myLibrary} directory. \texttt{tree.xmi\_FWD.xmi} is
+the \texttt{Dictionary} result of the forward generation which also produced \texttt{corrFWD.xmi} and \texttt{protocol\_FWD.xmi}. This should be ?? EMPTY ??.
 
-{\bf mention that we'll do the forwards/backwards transformations in pairs: text to model, model to text, using tree as a middle man?}
+\item[$\blacktriangleright$] As you can probably assume, the backwards transformation generated \texttt{corrBWD.xmi}, \texttt{protocolBWD.xmi}, and
+\texttt{tree.xmi\_FWD.xmi\_BWD.xmi}, which will eventually resemble the original \texttt{tree.xmi} model.
 
-\item[$\blacktriangleright$] {\bf this is true}Double-click \texttt{tree.xmi} and compare the contents to Fig.~\ref{eclipse:treeResult}. At this point, you can
-reflect on the structure of the tree and note the directory structure, file nodes and the subtrees from the parser. This file is important to understand; The directory
-structure is transformed to a corresponding hierarchy of \texttt{Folders} and \texttt{Files}. The actual \emph{textual content} of each file is then transformed
-to a subtree using a registered, suitable parser. The resulting subtree from the parser is then plugged into the tree by setting its root as the single child
-node of a \texttt{File}.
+\item[$\blacktriangleright$] Open the generated \texttt{tree} model. \update EXPLAIN THE NODES HERE?
+compare the contents to Fig.~\ref{eclipse:treeResult}. At this point, you can reflect on the structure of the tree and note the directory structure, file nodes
+and the subtrees from the parser. This file is important to understand; The directory structure is transformed to a corresponding hierarchy of \texttt{Folders}
+and \texttt{Files}. The actual \emph{textual content} of each file is then transformed to a subtree using a registered, suitable parser. The resulting subtree
+from the parser is then plugged into the tree by setting its root as the single child node of a \texttt{File}.
+
+\item[$\blacktriangleright$] \update Mention that the reason why so many files were created were to go from text to model, model to text, we need a tree as a
+middle man??
 
 \end{enumerate}
-
-If everything worked out, well done! You've just completed the first step in the generation:: Text to tree. Now, tree to model to finish the forward
-direciton. It follows that it will end with model to tree, then tree to text. You now have a nicely structure tree that we'll be able to use with TGGs and
-transform in a few simple steps into an actual instance of our \texttt{Dictionary} metamodel.
-
-\newpage
-
-\vspace*{2cm}
 
 \begin{figure}[!htbp]
 \begin{center}
@@ -256,3 +248,6 @@ transform in a few simple steps into an actual instance of our \texttt{Dictionar
 \end{center}
 \end{figure}
 
+If everything worked out, well done! You've just completed the first step in the transformation: Text to tree. Now, to finish the forwards transformation,
+we'll need to go from the tree to a model. It follows that it will end with model to tree, then tree to text. You now have a nicely structured tree that we'll
+be able to use with TGGs and transform in a few simple steps into an actual instance of our \texttt{Dictionary} metamodel.

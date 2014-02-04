@@ -5,15 +5,15 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] So we've already established one schema. Plan : separate the transformation into smaller, modular steps. First: Transform the
-parent folder into a library. Then we want to establish every subfolder as a shelf  (i.e., english and french) We then want to take each dictionary file in
-those folders, and turn them into dictionary objects with a defined author and set of entries.
+\item[$\blacktriangleright$] Plan : separate the transformation into smaller, modular steps. So we've established one correspondence type. First: Transform the
+parent \texttt{myLibrary} \texttt{Folder} into a \texttt{Library}. Then we want to establish every subfolder as a \texttt{Shelf} (i.e., separate shelves
+for English and French). Finally, we then want to translate the dictionary file trees which have a defined \texttt{title}, \texttt{author}, and \texttt{content}
+node.
 
 \item[$\blacktriangleright$] Right-click on ``Rules/New TGG Rule" and create \texttt{FolderToLibrayRule}.
 
 \item[$\blacktriangleright$] This is a simple rule - all we need to do is create a folder and library object, create a link between them ( so that we're
 always within their context) and create a constraint equating the name of the folder to the name of the library. Build your rule until it resembles FIG
-(remember: target is MOCATREE, source is DICTIONARYLANGUAGE)
 
 \begin{figure}[htbp]
 \begin{center}
@@ -54,20 +54,49 @@ ahve different indexes in order to tell them apart. So, lets bind index0 to titl
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Now we have to deal with authors and entries. Let's build entries first.
+\item[$\blacktriangleright$] Now we have to deal with authors and entries. Let's build entries first. Do it as so below:
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_ForAllEntryRule}
-  \caption{NodeToDictionary complete}
+  \caption{ForAllEntry complete}
   \label{eclipse:NodeToDictionaryRule}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Now the challenge of an author. You'll notice we have three parts to this challenge: \texttt{unknown.dictioanry} doesn't even have
-one, so that means we'll definitely need to have it separated from \texttt{NodeToDictionary}. Then, we need to be able to provide the option of creating or
-ignoring a new author element in a library if one already existts (try and motivate better\ldots)
+\item[$\blacktriangleright$] We also need to add one more constraint to this rule. As you can see, we have matched the INDEXNODE and the AUTHORNODE to 0 and 1
+respectively, but what about the index levels for entries? In the forward direction, their index value will be parsed and \ldots add reasoning here. Make it
+look so:
 
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{eclipse_setDefaultNumberConstraint}
+  \caption{extra constraint}
+  \label{eclipse:newEntryConstraint}
+\end{center}
+\end{figure}
+
+% YO YO YO, DAWG, HOLD UP. THIS IS COMMON. MOVE AFTER?
+\item[$\blacktriangleright$] Now we need to establish the implementation code for this. Build the metamodel to generate a new \texttt{csp} pacakge in ``gen.''
+open the new \texttt{SetDefaultNumber.java} file and edit it as depicted below: (For an explanation about how this works, review\ldots)
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.9\textwidth]{eclipse_setDefaultNumberImplementation}
+  \caption{extra constraint impl}
+  \label{eclipse:setDefaultImpl}
+\end{center}
+\end{figure}
+
+\item[$\blacktriangleright$] Next up: manage authors. We need to pause and think about this rule. Transforming from DICTIONARY to FOLDER is simple: each time
+we encounter an anthor node, we simply create an author element of its connected dictionary. When transforming from FOLDER to DICTIONARY, however (text - to -
+model), you'll have to consider an already existing author element. You could simply create a new author element repeatedly, or you could refuse and tell
+the object to connect to whatever already exists. Again, like entries, this rule is context-based as (seen in \texttt{unknown.dictionary}), so we keep it
+spearate since we don't know if a dictionary will even have an author.
+
+Lets write the rules for both..
+
+%ForAllNewAuthors
 \item[$\blacktriangleright$] Lets create \texttt{ForAllNewAuthorRule} first
 
 \begin{figure}[htbp]
@@ -78,6 +107,7 @@ ignoring a new author element in a library if one already existts (try and motiv
 \end{center}
 \end{figure}
 
+% ForAllExistingAuthors
 \item[$\blacktriangleright$] now, \texttt{ForExistingAuthorRule}. The luck thing here is that you can copy/paste this file to get started. In fact, the only
 thing you need to change is two small characters.
 

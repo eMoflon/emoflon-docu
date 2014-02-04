@@ -1,28 +1,29 @@
 \newpage
-\section{Setting up the Model-to-Text workspace}
+\section{Setting up the workspace}
 \genHeader
 
-Nowadays, \emph{no one} really writes a complex parser completely by hand. Although this is sometimes still necessary for syntactically challenging languages,
-most parsers can be whipped up pretty quickly using context-free \emph{string grammars}.\footnote{For simple cases, \emph{regular expressions} can also be used}
-These are typically written in Extended Backus-Naur Form (EBNF)\define{EBNF}. ANTLR~\cite{ANTLR} is a tool that can generate a parser from this compact EBNF
-specification for a host of target programming languages, including Java. Although ANTLR might not be the most efficient or powerful parser generator out there,
-it is open-source, well documented and supported, and allows for a pragmatic and quite elegant \emph{fallback} to Java when things get nasty and we have to
-resort to some dirty tricks.
+Nowadays, \emph{no one} writes a complex parser completely by hand. Although this is sometimes still necessary for syntactically challenging languages, most
+parsers can be quickly whipped up using context-free \emph{string grammars}.\footnote{For simple cases, \emph{regular expressions} can also be used} These are
+typically written in Extended Backus-Naur Form (EBNF)\define{EBNF}. ANTLR~\cite{ANTLR} is a tool that can generate a parser from this compact specification for
+a host of target programming languages, including Java. Although ANTLR might not be the most efficient or powerful parser generator, it is open-source, well
+documented and supported, and allows for a pragmatic and elegant fallback to Java when things get nasty and we have to resort to some dirty tricks to get our
+job done.
 
-Parsers, of course, are based on whatever model they will be transforming so before we even start, we need a model's abstract snytax already completely defined.
-You have a few different options here about how to load the \texttt{Dicionary} metamodel into your workspace.
+A parser, of course, is based on whatever model it must work with. Given that we want to parse to and from a dictionary, we need to have the
+\texttt{DictionaryLanguage} metamodel defined before starting. The dictionary is a relatively simple device, so you have three options to loading this project
+into your workspace:
 
+% Options
 \begin{description}
-
 % -- Metamodel Screenshots ---
-\item[Option 1:] Start a new metamodel project (Fig.~\ref{fig:startDictLang}) in your preferred syntax and construct \texttt{Dictionary} yourself until it
-matches either Fig.~\ref{ea_dictLang} or Fig.~\ref{eclipse_dictLang}.\footnote{To review how to complete a metamodel, work through Part II: Ecore}
+\item[Option 1:] You can start a new metamodel project called \texttt{Dictionary} (Fig.~\ref{eclipse:startMetamodel}) and build the metamodel yourself until it
+matches either Fig.~\ref{ea:dictLang} or Fig.~\ref{eclipse:dictLang}.\footnote{Review metamodel construction by working through Part II: Ecore}
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.65\textwidth]{eclipse_startDictionary}
   \caption{Begin parser project}
-  \label{fig:startDictLang}
+  \label{eclipse:startMetamodel}
 \end{center}
 \end{figure}
 
@@ -33,8 +34,8 @@ matches either Fig.~\ref{ea_dictLang} or Fig.~\ref{eclipse_dictLang}.\footnote{T
 \begin{figure}[htb]
 \begin{center}
   \includegraphics[width=\textwidth]{ea_dictionaryMetamodel}
-  \caption{Build the \texttt{Dictionary} visual metamodel}
-  \label{ea_dictLang}
+  \caption{The visual \texttt{Dictionary} specification}
+  \label{ea:dictLang}
 \end{center}
 \end{figure}
 
@@ -43,60 +44,62 @@ matches either Fig.~\ref{ea_dictLang} or Fig.~\ref{eclipse_dictLang}.\footnote{T
 \begin{figure}[htb]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{eclipse_dictionaryMetamodel}
-  \caption{Build \texttt{Dictionary} in Eclipse}
-  \label{eclipse_dictLang}
-\end{center}
-\end{figure}
-
-\newpage
-
-% -- Export/Import ----
-
-\item[Option 2:] Export, then import\footnote{To review how to import projects into a specific workspace, review Part IV, Section 2} the
-\texttt{DictionaryLanguage} metamodel used in Part IV: Triple Graph Transformations into a new metamodel project (Fig.~\ref{ea_expImp} or
-Fig.~\ref{eclipse_expImp})
-
-\vspace{0.5cm}
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.65\textwidth]{ea_exportImport}
-  \caption{Exporting your \texttt{DictionaryLanguage}}
-  \label{ea_expImp}
-\end{center}
-\end{figure}
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.4\textwidth]{eclipse_exportImport}
-  \caption{Exporting your \texttt{DictionaryLanguage}}
-  \label{eclipse_expImp}
+  \caption{\texttt{Dictionary} constructed in Eclipse}
+  \label{eclipse:dictLang}
 \end{center}
 \end{figure}
 
 \newpage
 
 % -- Cheat Package(s)
-\item[Option 3:] Download a cheat package using the Eclipse ``New" wizard to load a project with \texttt{DictionaryLanguage} fully prepared and ready to
-go (Fig.~\ref{eclipse_cheatPackage}).
+\newpage
+\item[Option 2:] You can download our cheat package and load \texttt{Dictionary} into your workspace using the Eclipse ``New" wizard
+(Fig.~\ref{eclipse_cheatPackage}).
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_loadDictionaryProject}
+  \includegraphics[width=0.65\textwidth]{eclipse_loadDictionaryProject}
   \caption{Load \texttt{Dictionary} into your workspace}
   \label{eclipse_cheatPackage}
 \end{center}
 \end{figure}
 
+\item[$\blacktriangleright$] Pressing \texttt{Finish} will load either a MOSL directory or \texttt{DictionaryLanguage.eap} file into a working set, depending on
+your syntax choice (Fig.~\ref{ea:cheatLoaded} or Fig.~\ref{eclipse:cheatLoaded}).
+
+\begin{figure}[htbp]
+   \centering
+      \subfloat[comment 1 \update]{
+        \includegraphics[width=0.45\textwidth]{eclipse_loadedCheatPackageVisual}
+        \label{ea:cheatLoaded}
+      }
+      \subfloat[Bugger. Comment 2]{
+        \includegraphics[width=0.45\textwidth]{eclipse_loadedCheatPackageVisual}
+        \label{eclipse:cheatLoaded}
+      }
+      \caption{}
+\end{figure}
+
+
+\clearpage
+% -- Export/Import ----
+\item[Option 3:] You can simply use the same \texttt{Dictionary} you used in part IV.
+
 \end{description} 
-
 % -- End
-No matter what you choose, once \texttt{Dictionary} is saved and built in Eclipse with error, inspect each of its files until you feel comfortable with what
-you'll be working with. To briefly explain\ldots
 
-\jumpDual{M2TSettngUp vis}{M2TSettngUp vis}
+\vspace{0.5cm}
+
+This specification is one of two that we'll be using to specify the transformation. We recommend inspecting its metamodel until you feel comfortable with
+what you'll be working with. As you'll be able to see, a \texttt{Library} can contain an unlimited number of \texttt{Shelf} and \texttt{Author} elements. Both
+of these are connected to a \texttt{Dictionary} container which can also hold an unlimited number of \texttt{Entry} objects.
+
+Our second specification is eMoflon's included \texttt{MocaTree} language. This is automatically included in \emph{every} project, so we can skip ahead to the
+next task, which is initializing the \texttt{DictionaryCodeAdapter} TGG project that will drive our Model-to-Text transformation.
+
+\jumpDual{initialize vis}{initialize tex}
 
 \input{../1_settingWorkspace/vis_setWkspSrc}
 
