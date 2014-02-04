@@ -2,13 +2,12 @@
 
 Welcome to Part V, an introduction to unidirectional model-to-text transformations via Triple Graph Grammars (TGGs). If you're just joining us in this part
 without completing any of the previous, be aware that while we do include references to relevant parts where required, we still reccommend working through Part
-I for the required set up and installation instructions (to ensure eMoflon is working correctly), and Part IV to learng the basics of TGGs that we'll be
-building on in this part.
+I for the required set up and installation instructions to ensure eMoflon is working correctly, and through Part IV to master of basics of TGGs. 
 
-To briefly review what has been done in the handbook example so far, we have created a fully fuctioning \texttt{LeitnersLearningBox}, an effective studying
-tool.\footnote{Read the introduction of Part II for details on the device} It is complete with its \emph{abstract syntax} metamodel (Part II), its \emph{static
-semantics} implemented via Story Driven Modeling (SDMs) (Part III), and has already been used in a bidirectional model transformation forwards and backwards
-into a \texttt{Dictionary} using TGGs (Part IV). So what is there possibly left to do?
+Our goal in this part is to continue using TGGs, but in a different context. In the handbook so far, we have created a fully functioning
+\texttt{LeitnersLearningBox}, an effective memorisation study tool. It was used as a source metamodel in a \emph{bidirectional} transformation, where we
+transformed a box into a dictionary. Now, instead of needing to start with this box, we want to be able to start with a simple file directory
+containing some raw text files and transform them into a complete \texttt{Dictionary}.
 
 When establishing a model-driven solution, \emph{model transformations}\define{Model~Transformation} usually play a central and important role. This could be
 for specifying dynamic semantics (as done with our learning box) or, more generally, for transforming a certain model to another model to achieve some goal
