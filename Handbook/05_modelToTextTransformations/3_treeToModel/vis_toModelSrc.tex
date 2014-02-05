@@ -3,17 +3,15 @@
 \subsection{Vis Tree to Model Source}
 \visHeader
 
+First transformation: take the parent \texttt{myLibrary} folder and create a library from it.
+Second transformation: take the \emph{english} and \texttt{french} subfolders, and turn them into different shelves in the library.
+
 \begin{itemize}
 
-\item[$\blacktriangleright$] Be sure to mention how/why do the correspondence type (lock them together, remove a risk, etc etc)
-Before running \texttt{TGG.main}, change the instance it looks for from \texttt{box.xmi}\footnote{From Part IV}, to \texttt{tree}.
-Be working entirely within the \texttt{DictionaryCodeAdapter} -- drawing classes from \texttt{MocaTree} (parser) and \texttt{DictionaryLanguage}
-{\bf update the names of the functions? make them more informative?}
+\item[$\blacktriangleright$] Select the \texttt{Rules} folder in the project browser, and click to create a new rule. Name it \texttt{FolderToLibrary}, and
+complete it as depicted in Fig.~\ref{ea:FolderIntoLibrary_Complete} with the correspondence type established when we first created the TGG schema.
 
-
-\item[$\blacktriangleright$] already have the basic tgg and one corresp type.
-
-\item[$\blacktriangleright$] First: transform folders:: build \texttt{FolderIntoLibrary}
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -23,8 +21,11 @@ Be working entirely within the \texttt{DictionaryCodeAdapter} -- drawing classes
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Click each element and \emph{derive} \texttt{ForAllShelves}. We separated here because\ldots This rule therefore now assumes/won't
-run unless its invoked in the context of having an inputFolder and library established. This will create a shelf element for every shelf folder it finds in the tree.
+\item[$\blacktriangleright$] This rule will obviously need some context, or else every folder the transformation encounters may create a shelf instead of a
+library. As a trick to avoid recreating what you've already built, click each element and press \texttt{derive} in the \texttt{eMoflon TGG functions tab} of
+eMoflon's EA control panel. Name the new rule \texttt{ForAllShelf}.
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}

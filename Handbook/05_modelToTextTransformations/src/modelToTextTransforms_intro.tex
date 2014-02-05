@@ -5,7 +5,7 @@ without completing any of the previous, be aware that while we do include refere
 I for the required set up and installation instructions to ensure eMoflon is working correctly, and through Part IV to master of basics of TGGs. 
 
 Our goal in this part is to continue using TGGs, but in a different context. In the handbook so far, we have created a fully functioning
-\texttt{LeitnersLearningBox}, an effective memorisation study tool. It was used as a source metamodel in a \emph{bidirectional} transformation, where we
+\texttt{Leit\-ners\-Learn\-ing\-Box}, an effective memorisation study tool. It was used as a source metamodel in a \emph{bidirectional} transformation, where we
 transformed a box into a dictionary. Now, instead of needing to start with this box, we want to be able to start with a simple file directory
 containing some raw text files and transform them into a complete \texttt{Dictionary}.
 
@@ -89,4 +89,8 @@ In the following, the \emph{\bf Mo}flon \emph{\bf C}ode \emph{\bf A}dapter (\emp
 % \end{center}
 % \end{figure} 
 
-Let's get started!
+Before starting, let's quickly summarize the transformation we hope to complete. We want to be able to take a generic filesystem containing some plain text
+files and translate them into a new model. Not only will this require the contents of those files be to formatted a certain way so they may be parsed, the
+transformation will not be able to go directly from the files to a instance model. Instead, it will need to make tree structure as a middle-man. The files need
+to be translated into a standard model structure, before transforming into our custom model structure. Thus, our forward and backwards transformations will each
+be broken into two steps: text-to-tree, tree-to-model, and vice versa.
