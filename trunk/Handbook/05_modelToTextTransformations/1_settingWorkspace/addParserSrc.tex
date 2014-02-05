@@ -3,22 +3,15 @@
 \subsection{Setting up the Parser}
 \genHeader
 
-We need some content here so that we don't just dive right in\ldots explain how the parser works? (WITH ANTLR)
+The final workspace requirement that needs to be met is the creation of the ANTLR parser/unparser. Before anything else, we need to generate the Java code it
+will run from. In the next section, we'll create custom a \emph{lexer} and \emph{parser} for our \texttt{Dictionary}.
 
 \begin{itemize}
 
-% \item[$\blacktriangleright$] Expand each of cour generated folders, and take a look at each of the \texttt{Moflon} and \texttt{Moca} libraries which reference
-% the jars required for each of the project's dependencies (Fig.~\ref{eclipse:generatedAdapter}).
-% 
-% \begin{figure}[htpb]
-% \begin{center}
-%   \includegraphics[width=0.4\textwidth]{eclipse_generatedAdapter}
-%   \caption{figureCaption}
-%   \label{eclipse:generatedAdapter}
-% \end{center}
-% \end{figure}
+\item[$\blacktriangleright$] Right-click on the \texttt{DictionaryCodeAdapter} folder and navigate to ``eMolfon/ Add Parser/Unparser''
+(Fig~\ref{eclipse:contextParser}).
 
-\item[$\blacktriangleright$] Right-click on \texttt{DictionaryCodeAdapter} and navigate to ``eMolfon/ Add Parser/Unparser'' (Fig~\ref{eclipse:contextParser}).
+\vspace{0.5cm}
 
 \begin{figure}[htpb]
 \begin{center}
@@ -28,7 +21,7 @@ We need some content here so that we don't just dive right in\ldots explain how 
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] In the parser dialogue, enter ``dictionary'' as the \texttt{File extension}, and confirm \texttt{Create Parser} and \texttt{Create
+\item[$\blacktriangleright$] In the pop-up window, enter ``dictionary'' as the \texttt{File extension}, and confirm \texttt{Create Parser} and \texttt{Create
 Unparser} with \texttt{ANTLR} are selected as the corresponding technology in both cases (Fig~\ref{eclipse:wizardParser}). Affirm by pressing \texttt{Finish}.
 
 \begin{figure}[htpb]
@@ -52,6 +45,6 @@ Unparser} with \texttt{ANTLR} are selected as the corresponding technology in bo
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$]  {\bf self: update TGGMain and MocaMain (generated eMoflon files) so that tgg runs a round trip}
+% \item[$\blacktriangleright$]  {\bf self: update TGGMain and MocaMain (generated eMoflon files) so that tgg runs a round trip}
 
 \end{itemize}

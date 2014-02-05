@@ -16,8 +16,9 @@ into your workspace:
 % Options
 \begin{description}
 % -- Metamodel Screenshots ---
-\item[Option 1:] You can start a new metamodel project called \texttt{Dictionary} (Fig.~\ref{eclipse:startMetamodel}) and build the metamodel yourself until it
-matches either Fig.~\ref{ea:dictLang} or Fig.~\ref{eclipse:dictLang}.\footnote{Review metamodel construction by working through Part II: Ecore}
+\item[Option 1:] You can start a new metamodel project called \texttt{Dictionary} (Fig.~\ref{eclipse:startMetamodel}) and build the
+\texttt{DictionaryLanguage} metamodel yourself until it matches either Fig.~\ref{ea:dictLang} or Fig.~\ref{eclipse:dictLang}.\footnote{Review metamodel
+construction by working through Part II: Ecore}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -61,7 +62,7 @@ matches either Fig.~\ref{ea:dictLang} or Fig.~\ref{eclipse:dictLang}.\footnote{R
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.65\textwidth]{eclipse_loadDictionaryProject}
-  \caption{Load \texttt{Dictionary} into your workspace}
+  \caption{Load a \texttt{Dictionary} project into your workspace}
   \label{eclipse_cheatPackage}
 \end{center}
 \end{figure}
@@ -85,19 +86,27 @@ your syntax choice (Fig.~\ref{ea:cheatLoaded} or Fig.~\ref{eclipse:cheatLoaded})
 
 \clearpage
 % -- Export/Import ----
-\item[Option 3:] You can simply use the same \texttt{Dictionary} you used in part IV.
+\item[Option 3:] You can simply use the same \texttt{Dictionary} you used in part IV by exporting it to a new project. Read Part IV, Section 2 for detailed
+review on how to do this in either syntax.
 
 \end{description} 
 % -- End
 
 \vspace{0.5cm}
 
-This specification is one of two that we'll be using to specify the transformation. We recommend inspecting its metamodel until you feel comfortable with
-what you'll be working with. As you'll be able to see, a \texttt{Library} can contain an unlimited number of \texttt{Shelf} and \texttt{Author} elements. Both
-of these are connected to a \texttt{Dictionary} container which can also hold an unlimited number of \texttt{Entry} objects.
+This metamodel is one of two that we'll be using to specify the transformation. Afterall, as discussed in the introduction of Part IV, TGGs \emph{always}
+require a source and target graph, and this will represent our target. 
 
-Our second specification is eMoflon's included \texttt{MocaTree} language. This is automatically included in \emph{every} project, so we can skip ahead to the
-next task, which is initializing the \texttt{DictionaryCodeAdapter} TGG project that will drive our Model-to-Text transformation.
+We recommend inspecting \texttt{DictionaryLanguage} until you feel comfortable with what you'll be working with. As you'll be able to see, a \texttt{Library}
+can contain an unlimited number of \texttt{Shelf} and \texttt{Author} elements. Both of these are also connected to a \texttt{Dictionary} container which can
+hold an unlimited number of \texttt{Entry} objects.
+
+Our source metamodel is eMoflon's standard \texttt{MocaTree} language. It basically combines concepts from a filesystem (folders and files), XML concepts
+(text-only nodes and attributes), and a general indexed containment hierarchy.\footnote{This is done with an index attribute, which can be used to demand a
+certain \emph{order} of nodes in an SDM which are otherwise not guaranteed by default.} It models a generic directory structure with a \texttt{Folder} able to
+connect to other \texttt{Folders}, and may contain an unlimited number of \texttt{File} elements. Its Jaca code is provided by the Eclipse plugin and
+automatically added to the Java build path.  We'll go into more detail about this later, so let's skip ahead to the next task: initializing the TGG project that
+will drive our model-to-text transformation.
 
 \jumpDual{initialize vis}{initialize tex}
 

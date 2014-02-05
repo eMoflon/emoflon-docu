@@ -1,0 +1,17 @@
+% Intro :: separate?  Rename source files?? (Hard to read..)
+
+Review Part IV, Section 2: \emph{Triple Graph Grammars in a nutshell}, for a detailed and worthwhile overview on how and why TGGs are so useful. In summary,
+TGGs form \emph{graph triples} consisting of separate source, correspondence, and target components. They are a declarative, rule-based techinique of specifying
+the evolution of these three graphs. The correspondence component specifies links between specific elements, and can be used whenever you want to guarantee the
+source and target components remain consistent in the context of the rule.
+
+Our goal in this section is to break down the broad \texttt{MocaTree} to \texttt{Dictionary} transformation into smaller, modular steps. More specifically, we
+want separate rules for transforming folders into their container elements, then rules for some of the specific file nodes.
+
+// Figure of changing tree into dictionary? (see book)
+
+A key idea to keep in mind is the flexibility this transformation will require. In future \texttt{tree} instances, we may not know how many subfolders
+\texttt{myLibrary} will contain, whether or not each \texttt{.dictionary} file will even have an author (as seen in \texttt{unknown.dictionary}), or how many
+entries each \texttt{dictionary} will contain.
+
+\jumpDual{treeToModel vis}{treeToModel tex}
