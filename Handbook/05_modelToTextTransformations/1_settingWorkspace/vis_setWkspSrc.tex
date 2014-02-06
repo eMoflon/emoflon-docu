@@ -5,14 +5,13 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Double-click \texttt{Dict\-ion\-ary.eap} file to open it in Enterprise Architect (EA). The unexpanded project broswer should
-resemble Fig.~\ref{ea:mocaTagged}. As you can see, the project is already populated with the source \texttt{MocaTree} specification for a generic tree
-structure.
+\item[$\blacktriangleright$] If you haven't already, double-click \texttt{Dict\-ion\-ary.eap} to open it in Enterprise Architect (EA). The project broswer
+should resemble Fig.~\ref{ea:mocaTagged}. As you can see, the project is already populated with the source \texttt{MocaTree} specification for a generic tree structure.
 
 \begin{figure}[htpb]
 \begin{center}
   \includegraphics[width=0.4\textwidth]{ea_mocaTaggedValues}
-  \caption{figureCaption}
+  \caption{Preventing \texttt{MocaTree from exporting to Eclipse}}
   \label{ea:mocaTagged}
 \end{center}
 \end{figure}
@@ -29,7 +28,7 @@ EA project so that SDMs can refer to the classes defined in the package. As disc
 \item[$\blacktriangleright$] Go ahead and inspect the \texttt{MocaTree} metamodel diagram (Fig.~\ref{ea:mocaTree}). Make sure you understand which attributes
 each element contains and again, review it until you feel comfortable with what you'll be working with.
 
-\item[$\blacktriangleright$] Given that TGGs can only succeed when the involved metamodels are contained in the same working set, add a new package to the
+\item[$\blacktriangleright$] Given that TGGs can only succeed when the involved metamodels are contained in the same working set, add a new package to
 \texttt{My Working Set} node named \texttt{Dict\-ion\-ary\-Code\-Adap\-ter}.
 
 \newpage
@@ -44,8 +43,8 @@ each element contains and again, review it until you feel comfortable with what 
 
 \vspace{1cm}
 
-\item[$\blacktriangleright$] Add a new TGG schema diagram (Fig\texttt{ea:newTGGDiagram}) as depicted in Fig.~\ref{ea:newTGGDiagram}. Set the source project as
-\texttt{MocaTree}, and the target project as \texttt{Dict\-ion\-ary\-Lang\-uage}.
+\item[$\blacktriangleright$] Add a new TGG schema diagram as depicted in Fig.~\ref{ea:newTGGDiagram}. In the next dialogue that appears, set the source project
+as \texttt{MocaTree}, and the target project as \texttt{Dict\-ion\-ary\-Lang\-uage}.
 
 \vspace{1cm}
 
@@ -68,12 +67,9 @@ This could be integrated directly in the corresponding metamodel (\texttt{Dic\-t
 \begin{itemize}
 
 \item[$\blacktriangleright$] To ensure the package exports correctly to the Eclipse workspace as a TGG project, add a single correspondence type to the
-new \texttt{schema} diagram between \texttt{Folder} and \texttt{Library}. You can do this by drag-and-dropping each the elements the editor, then
-quick-linking a new TGG Correspondence type.\footnote{To review how to do this, refer to Part IV, Section \update.} 
-
-\vspace{0.5cm}
-
-\item[$\blacktriangleright$] Your diagram should now resemble Fig.~\ref{ea:firstCorrType}.
+your diagram (the \texttt{schema}) between \texttt{Folder} and \texttt{Library}. You can do this by drag-and-dropping each element into the diagram,
+then quick-linking a new TGG Correspondence type.\footnote{For details on how to do this, refer to Part IV, Section \update.} Your diagram should come to
+resemble Fig.~\ref{ea:firstCorrType}.
 
 \vspace{0.5cm}
 
@@ -87,9 +83,9 @@ quick-linking a new TGG Correspondence type.\footnote{To review how to do this, 
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Save and validate your file via the eMoflon control panel.\footnote{Introducted in Part \update, Section \update.} Switch back
-to Eclipse and refresh the package explorer. A new \texttt{Dict\-ion\-ary\-Code\-Adap\-ter} folder should be generated for the TGG EPackage -- Your
-workspace is nearly complete!
+\item[$\blacktriangleright$] Save and validate the project via the eMoflon control panel.\footnote{Introducted in Part \update, Section \update.} Switch back
+to Eclipse and refresh the package explorer. A new \texttt{Dict\-ion\-ary\-Code\-Adap\-ter} folder should be generated for the TGG EPackage in \texttt{My
+Working Set}; Your workspace is nearly complete!
 
 \jumpSingle{subSec:setupParser}
 

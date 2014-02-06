@@ -16,9 +16,9 @@ into your workspace:
 % Options
 \begin{description}
 % -- Metamodel Screenshots ---
-\item[Option 1:] You can start a new metamodel project called \texttt{Dictionary} (Fig.~\ref{eclipse:startMetamodel}) and build the
-\texttt{DictionaryLanguage} metamodel yourself until it matches either Fig.~\ref{ea:dictLang} or Fig.~\ref{eclipse:dictLang}.\footnote{Review metamodel
-construction by working through Part II: Ecore}
+\item[Option 1:] You can start a new metamodel project called \texttt{Dictionary} (Fig.~\ref{eclipse:startMetamodel}) and complete a
+\texttt{DictionaryLanguage} package until it matches either Fig.~\ref{ea:dictLang} or Fig.~\ref{eclipse:dictLang}.\footnote{Review metamodel construction by
+working through Part II: Ecore}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -35,7 +35,7 @@ construction by working through Part II: Ecore}
 \begin{figure}[htb]
 \begin{center}
   \includegraphics[width=\textwidth]{ea_dictionaryMetamodel}
-  \caption{The visual \texttt{Dictionary} specification}
+  \caption{TCreate the package in \texttt{My Working Set} with an eMoflon Ecore diagram of the same name.}
   \label{ea:dictLang}
 \end{center}
 \end{figure}
@@ -45,7 +45,7 @@ construction by working through Part II: Ecore}
 \begin{figure}[htb]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{eclipse_dictionaryMetamodel}
-  \caption{\texttt{Dictionary} constructed in Eclipse}
+  \caption{\texttt{Dictionary} constructed in Eclipse \update}
   \label{eclipse:dictLang}
 \end{center}
 \end{figure}
@@ -94,14 +94,14 @@ review on how to do this in either syntax.
 
 \vspace{0.5cm}
 
-This metamodel is one of two that we'll be using to specify the transformation. Afterall, as discussed in the introduction of Part IV, TGGs \emph{always}
+This metamodel is one of two that we'll be using to specify the transformation. After all, as discussed in the introduction of Part IV, TGGs \emph{always}
 require a source and target graph, and this will represent our target. 
 
 We recommend inspecting \texttt{DictionaryLanguage} until you feel comfortable with what you'll be working with. As you'll be able to see, a \texttt{Library}
 can contain an unlimited number of \texttt{Shelf} and \texttt{Author} elements. Both of these are also connected to a \texttt{Dictionary} container which can
 hold an unlimited number of \texttt{Entry} objects.
 
-Our source metamodel is eMoflon's standard \texttt{MocaTree} language. It basically combines concepts from a filesystem (folders and files), XML concepts
+Our source metamodel will be eMoflon's standard \texttt{MocaTree} language. It basically combines concepts from a filesystem (folders and files), XML concepts
 (text-only nodes and attributes), and a general indexed containment hierarchy.\footnote{This is done with an index attribute, which can be used to demand a
 certain \emph{order} of nodes in an SDM which are otherwise not guaranteed by default.} It models a generic directory structure with a \texttt{Folder} able to
 connect to other \texttt{Folders}, and may contain an unlimited number of \texttt{File} elements. Its Jaca code is provided by the Eclipse plugin and
