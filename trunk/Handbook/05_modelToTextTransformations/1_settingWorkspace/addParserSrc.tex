@@ -3,9 +3,7 @@
 \subsection{Setting up the Parser}
 \genHeader
 
-The final workspace requirement that needs to be met is the creation of the ANTLR parser/unparser. Before anything else, we need to generate the Java code it
-will run from. In the next section, we'll create custom a \emph{lexer} and \emph{parser} for our \texttt{Dictionary}.
-
+The final workspace requirement that needs to be met is the creation of our transformation's ANTLR parser/unparser.
 \begin{itemize}
 
 \item[$\blacktriangleright$] Right-click on the \texttt{DictionaryCodeAdapter} folder and navigate to ``eMolfon/ Add Parser/Unparser''
@@ -15,14 +13,16 @@ will run from. In the next section, we'll create custom a \emph{lexer} and \emph
 
 \begin{figure}[htpb]
 \begin{center}
-  \includegraphics[width=0.9\textwidth]{eclipse_contextAddParserUnparser}
+  \includegraphics[width=0.8\textwidth]{eclipse_contextAddParserUnparser}
   \caption{figureCaption}
   \label{eclipse:contextParser}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] In the pop-up window, enter ``dictionary'' as the \texttt{File extension}, and confirm \texttt{Create Parser} and \texttt{Create
-Unparser} with \texttt{ANTLR} are selected as the corresponding technology in both cases (Fig~\ref{eclipse:wizardParser}). Affirm by pressing \texttt{Finish}.
+
+\item[$\blacktriangleright$] In the parser settings window, enter \texttt{dictionary} as the \texttt{File extension}, and confirm the \texttt{Create Parser},
+\texttt{Create Unparser}, and \texttt{ANTLR} options are selected as the corresponding technology for each case (Fig~\ref{eclipse:wizardParser}). Affirm by
+pressing \texttt{Finish}.
 
 \begin{figure}[htpb]
 \begin{center}
@@ -32,10 +32,10 @@ Unparser} with \texttt{ANTLR} are selected as the corresponding technology in bo
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] If everything has been installed and completed without error, parser and unparser stubs should be generated under
-\texttt{DictionaryCodeAdapter}, where \texttt{ANTLR} automatically built the corresponding Java code as depicted in Fig.~\ref{eclipse:generatedParser}.
+\vspace{0.5cm}
 
-\item[$\blacktriangleright$] Your workspace is now fully prepared, and ready to start transforming from a textual file source into a \texttt{Dictionary} model!
+\item[$\blacktriangleright$] If everything was installed and completed without error, parser and unparser stubs should be generated under
+\texttt{DictionaryCodeAdapter}, where \texttt{ANTLR} automatically built the corresponding Java packages as depicted in Fig.~\ref{eclipse:generatedParser}.
 
 \begin{figure}[htpb]
 \begin{center}
@@ -45,6 +45,9 @@ Unparser} with \texttt{ANTLR} are selected as the corresponding technology in bo
 \end{center}
 \end{figure}
 
-% \item[$\blacktriangleright$]  {\bf self: update TGGMain and MocaMain (generated eMoflon files) so that tgg runs a round trip}
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] Your workspace is now fully prepared, and you're ready to start transforming a textual source into a \texttt{Dictionary}
+model!
 
 \end{itemize}

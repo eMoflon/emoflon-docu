@@ -2,13 +2,15 @@
 \section{Text-to-Tree transformation}
 \genHeader
 
+Some sort of nice seque..
+
 As we shall see in a moment, libraries and shelves correspond to a folder structure while the contents for a single dictionary are specified in a file.
 Figure \ref{fig:moca-4-Tokens} depicts a small sample of the textual syntax used to specify a dictionary. 
 
 \begin{figure}[!htbp]
 \begin{center}
  \includegraphics[width=0.7\textwidth]{4-tokens}
-  \caption{Identified tokens in a dictionary file \update}
+  \caption{Identified tokens in a dictionary file}
   \label{fig:moca-4-Tokens}
 \end{center}
 \end{figure}
@@ -87,7 +89,7 @@ has gone well, it should resemble Fig.~\ref{eclipse:defaultTGGMain}.
 \begin{figure}[!htbp]
 \begin{center}
  \includegraphics[width=\textwidth]{eclipse_TGGMainDefault}
-  \caption{Deafult TGG}
+  \caption{The TGG driver method}
   \label{eclipse:defaultTGGMain}
 \end{center}
 \end{figure}
@@ -114,7 +116,7 @@ filesystem depicted in Fig.~\ref{eclipse:textDirectory}.
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{inputData}
-  \caption{Input directory structure.}
+  \caption{Input directory structure}
   \label{eclipse:textDirectory}
 \end{center}
 \end{figure}
@@ -209,7 +211,7 @@ title: "unknown"
 \end{verbatim}
   \\
 \end{tabular}   
-\caption{Input files containing dictionaries.}
+\caption{Four input \texttt{.dictionary} files}
 \label{moca-inputdata}
 
 \end{table}
@@ -217,39 +219,38 @@ title: "unknown"
 
 \begin{enumerate} 
 
-\item[$\blacktriangleright$] One you have saved each file, right click on \texttt{TGGMain} and navigate to ``Run As/Java Application.'' Refresh the
-\texttt{instances} folder --  several new models have been created (Fig.~\ref{eclipse:postParse})!
+\item[$\blacktriangleright$] Once you have saved each file, right click on \texttt{TGGMain} and navigate to ``Run As/Java Application'' to run the
+transformation, then refresh the \texttt{instances} folder. Despite being primarily unimplemented, it still executed and generated several files
+(Fig.~\ref{eclipse:postParse}).
 
 \vspace{0.5cm}
 
 \begin{figure}[!htbp]
 \begin{center}
  \includegraphics[width=0.4\textwidth]{eclipse_explorerPostGeneration}
-  \caption{new tgg file generation result}
+  \caption{Result of the first TGG execution}
   \label{eclipse:postParse}
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] To explain, \texttt{tree.xmi} is the model generated directly from the \texttt{myLibrary} directory. \texttt{tree.xmi\_FWD.xmi} is
-the \texttt{Dictionary} result of the forward generation which also produced \texttt{corrFWD.xmi} and \texttt{protocol\_FWD.xmi}. This tree structure should
-currently be empty, as we havent't yet specified \emph{how} the forward generation will work.
+\item[$\blacktriangleright$] To explain, \texttt{tree.xmi} is the model generated directly from your \texttt{myLibrary} filesystem input. In fact, this is the
+result of the first step in the forward transformation, from text-to-tree!
 
-\vspace{0.5cm}
-
-\item[$\blacktriangleright$] Similarly the backwards transformation generated \texttt{corrBWD.xmi}, \texttt{protocolBWD.xmi}, and
-\texttt{tree.xmi\_FWD.xmi\_BWD.xmi} which should eventually resemble the original \texttt{tree.xmi} model after transforming the model back to text.
+\item[$\blacktriangleright$] \texttt{tree.xmi\_FWD.xmi} is the \texttt{Dictionary} result of the complete forward transformation. This second step, from
+tree-to-model also produced \texttt{corrFWD.xmi} and \texttt{protocol\_FWD.xmi}. Given that we haven't actually specified any rules yet, the model is simply an
+incomplete output container.
 
 \clearpage
 
-\item[$\blacktriangleright$] Open the generated \texttt{tree.xmi} and compare the contents to Fig.~\ref{eclipse:treeResult}. At this point, you can reflect on
-the structure of the tree and note the directory structure, file nodes and the subtrees from the parser. 
+\item[$\blacktriangleright$] Similarly first step in the  backwards transformation generated \texttt{corrBWD.xmi}, \texttt{protocolBWD.xmi}, and
+\texttt{tree.xmi\_FWD.xmi\_BWD.xmi}. Ideally, this file will resemble the original \texttt{tree.xmi} without loss of information. The final, tree-to-model files
+can't yet be found as we commented out the unparsing command that would have generated this.
 
-\vspace{0.5cm}
-
-\item[$\blacktriangleright$] This file is important to understand; The directory
-structure is transformed to a corresponding hierarchy of \texttt{Folders} and \texttt{Files}. The actual \emph{textual content} of each file is then transformed
-to a subtree using a registered, suitable parser. The resulting subtree from the parser is then plugged into the tree by setting its root as the single child
-node of a \texttt{File}.
+\item[$\blacktriangleright$] Open \texttt{tree.xmi} and compare the contents to Fig.~\ref{eclipse:treeResult}. Reflect on the directory-type structure of the
+tree, where each \texttt{File} and its contents appear as \texttt{Node}s. This file is important to understand; The filesystem was transformed into a
+corresponding hierarchy of \texttt{Folders} and \texttt{Files}. The actual \emph{text} content of each file is then transformed to a subtree using a registered,
+suitable parser. The resulting subtree from the parser is then connected to the existing tree by setting its \texttt{DICTIONARY} root as the single child node
+of a \texttt{File}.
 
 \end{enumerate}
 
@@ -265,5 +266,4 @@ node of a \texttt{File}.
 
 \vspace{0.5cm}
 
-If everything executed without error, well done! You've just completed the first step in the transformation. To finish the forwards transformation, we need to
-specify some rules that will transform this tree into in actual instance of our \texttt{Dictionary} metamodel.
+If everything has executed without error, well done! To complete this forward transformation, we need to specify some TGG rules.
