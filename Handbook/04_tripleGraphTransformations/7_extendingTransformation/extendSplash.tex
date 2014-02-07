@@ -1,0 +1,75 @@
+\newpage
+\section{Extending your transformation}
+\genHeader
+
+At this point, we now have a working TGG to transform a \texttt{Dictionary} into a \texttt{Box} with three \texttt{partition}s, and a \texttt{Box} with
+exactly three \texttt{Partition}s into a \texttt{Dictionary}. The only potential problem is that a learning box with only three partitions may not be the most
+useful studying tool. After all, the more partitions you have, the more practice you'll have with the cards by being quizzed again and again.
+
+Let's try adding a fourth partition to \texttt{source.xmi} and run the TGG again. Given that we have a rule to transform three partitions, it should at least
+complete a partial transformation, right? 
+
+\begin{itemize}
+
+\item[$\blacktriangleright$] Add a \texttt{partition3} with one \texttt{card} to your \texttt{source.xmi} so that it resembles
+Fig.~\ref{eclipse:fourthPartitionStart}. Don't forget to set the partition's \texttt{previous} attribute to \texttt{partition0}, and \texttt{partition2.next} to
+\texttt{partition3}.
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{eclipse_fillFourthPartition}
+  \caption{Adding a fourth partition to \texttt{Box}}
+  \label{eclipse:fourthPartitionStart}
+\end{center}
+\end{figure}
+
+\item[$\blacktriangleright$] An error should appear in the eMolfon console window stating that there was a problem translating your new partition, but the
+forward transformation was still able to finish. In fact, if you open \texttt{source\-.xmi\_FWD\-.xmi}, you'll be able to confirm the \texttt{Eng\-lish
+Numb\-ers Dict\-ion\-ary} was still created and even includes your newest card! Let's run the integrator on \texttt{corr\_fwd.xmi} once more to find out
+exactly how this worked.
+
+\item[$\blacktriangleright$] Start once again with \texttt{Box}, and proceed until the integrator reaches your fourth partition. You'll notice that it
+first delays processing the \texttt{partition} as it cannot find a valid rule candidate.\footnote{The message `Possible Rule Candidate(s): ' is not displayed
+as no rule can translate a partition with index 3.} Instead of terminating however, an exception is thrown and the translator tries its best to continue anyway,
+by going ahead and trying to process \texttt{card}.
+
+\item[$\blacktriangleright$] Here the transformation is able to find a valid rule but opts to delay the action as \texttt{CardToEntryRule} requires its
+\texttt{partition} element as context.\footnote{Review the source of your rule if confused}
+
+\item[$\blacktriangleright$] Returning to \texttt{partition}, the translator detects that it has already tried and failed to translate this element, so it
+terminates the action (Fig.~\ref{eclipse:integrator_debugSuccess}). Instead of canceling the entire transformation however, it continues with the optimistic
+approach and tries to translate \texttt{Question Four} even though its context could not be translated. The translation succeeds (we'll explain why in a
+moment)!
+
+\begin{figure}[htb]
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{eclipse_integratorDebug}
+  \caption{Detecting errors with the integrator}
+  \label{eclipse:integrator_debugSuccess}
+\end{center}
+\end{figure}
+
+\item[$\blacktriangleright$] The final task is to try to translate the remaining link variables, but it fails to find rule candidates for any of
+\texttt{previous}, \texttt{containedPartition}, or \texttt{next}, and so the transformation finally ends.
+
+\end{itemize}
+
+We're now presented with a dilemma. This rule, while giving us an error, \emph{works}! Our goal was never the to be able to put an \texttt{Entry} into
+partitions with indices greater than two,\footnote{As resolved in the \texttt{IndexTolevel} implementation} but simply to be able to put any \texttt{card} into
+a \texttt{Dictionary}. This means that such partitions are irrelevant for the dictionary and should be ignored. So why not leave our transformation like this?
+
+Although it works in this case, it is nonetheless a bit \emph{dirty}. In general, although we take an optimistic approach and always try to continue
+translating even though exceptions are flying about, we urge you to always be as explicit as possible in your TGGs. In this particular case, you should specify
+an extra rule that clearly states how such partitions should be ignored, i.e., be translated without affecting the dictionary. In this spirit, let's add a new
+rule to handle additional partitions. We could keep things simple by extending the existing \texttt{BoxToDictionaryRule} by connecting a fourth partition, but
+what if we wanted a fifth one? A sixth? As you can see, this obviously won't work -- there will always be the potential for a \texttt{n+1}th card in an \texttt{n}-sized box. 
+
+While building this so-called ignore rule, keep in mind that the goal is to handle any additional elements and their connecting link variables in \texttt{Box}.
+This means we don't need to create any new elements in the \texttt{Dictionary}.
+
+
+\jumpDual{allCards vis}{allCards tex}
+
+\input{../7_extendingTransformation/visNewRule}
+
+\input{../7_extendingTransformation/texNewRule}
