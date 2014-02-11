@@ -10,9 +10,11 @@ parent \texttt{myLibrary} \texttt{Folder} into a \texttt{Library}. Then we want 
 for English and French). Finally, we then want to translate the dictionary file trees which have a defined \texttt{title}, \texttt{author}, and \texttt{content}
 node.
 
-\item[$\blacktriangleright$] Right-click on ``Rules/New TGG Rule" and create \texttt{FolderToLibrayRule}.
+\subsubsection{FolderToLibraryRule} % ---------------------------------
 
-\item[$\blacktriangleright$] This is a simple rule - all we need to do is create a folder and library object, create a link between them ( so that we're
+\item[$\blacktriangleright$] Right-click on ``Rules/New TGG Rule" and create \texttt{Folder\-To\-Lib\-rary\-Rule}.
+
+\item[$\blacktriangleright$] This is a simple rule - all we need to do is create a folder and library object, create a link between them (so that we're
 always within their context) and create a constraint equating the name of the folder to the name of the library. Build your rule until it resembles FIG
 
 \begin{figure}[htbp]
@@ -22,6 +24,8 @@ always within their context) and create a constraint equating the name of the fo
   \label{eclipse:FolderToLibraryRule}
 \end{center}
 \end{figure}
+
+\subsubsection{ForAllShelfRule} % ---------------------------------
 
 \item[$\blacktriangleright$] Now we want \texttt{ForAllShelves}. A driving reason why this rule is independent and not included with \texttt{FolderToLibrary} is
 because we simply don't know how many subfolders the original library folder will have. This rule will invoked whenever there is the context of an input folder
@@ -36,6 +40,8 @@ and library already made. Build it until it resembles FIG
 \end{figure}
 
 \item[$\blacktriangleright$] Don't forget to update the schema with your newest correspondence! When you saved, you should have received an error about it.
+
+\subsubsection{NodeToDictionaryRule} % ---------------------------------
 
 \item[$\blacktriangleright$] Next, the third major part of our transformation: the dictionary files into the dictionary tree. If you look at the
 \texttt{tree.xmi}, you'll notice that each \texttt{.dictioanry} file is turned into a dictionary \texttt{Node} with at least three children - one node for the
@@ -53,6 +59,8 @@ ahve different indexes in order to tell them apart. So, lets bind index0 to titl
   \label{eclipse:NodeToDictionaryRule}
 \end{center}
 \end{figure}
+
+\subsubsection{ForAllEntryRule} % ---------------------------------
 
 \item[$\blacktriangleright$] Now we have to deal with authors and entries. Let's build entries first. Do it as so below:
 
@@ -77,7 +85,7 @@ look so:
 \end{figure}
 
 % YO YO YO, DAWG, HOLD UP. THIS IS COMMON. MOVE AFTER?
-\item[$\blacktriangleright$] Now we need to establish the implementation code for this. Build the metamodel to generate a new \texttt{csp} pacakge in ``gen.''
+\item[$\blacktriangleright$] Now we need to establish the implementation code for this. Build the metamodel to generate a new \texttt{csp} pacakge in ``.gen''
 open the new \texttt{SetDefaultNumber.java} file and edit it as depicted below: (For an explanation about how this works, review\ldots)
 
 \begin{figure}[htbp]
@@ -87,6 +95,9 @@ open the new \texttt{SetDefaultNumber.java} file and edit it as depicted below: 
   \label{eclipse:setDefaultImpl}
 \end{center}
 \end{figure}
+
+
+\subsubsection{ForAllNewAuthorRule} % ---------------------------------
 
 \item[$\blacktriangleright$] Next up: manage authors. We need to pause and think about this rule. Transforming from DICTIONARY to FOLDER is simple: each time
 we encounter an anthor node, we simply create an author element of its connected dictionary. When transforming from FOLDER to DICTIONARY, however (text - to -
@@ -107,7 +118,7 @@ Lets write the rules for both..
 \end{center}
 \end{figure}
 
-% ForAllExistingAuthors
+\subsubsection{ExistingAuthorRule} % ---------------------------------
 \item[$\blacktriangleright$] now, \texttt{ForExistingAuthorRule}. The luck thing here is that you can copy/paste this file to get started. In fact, the only
 thing you need to change is two small characters.
 
@@ -119,8 +130,7 @@ thing you need to change is two small characters.
 \end{center}
 \end{figure}
 
-
-\item[$\blacktriangleright$] Your final schema should now resemble..
+\item[$\blacktriangleright$] Your final schema should now resemble.. (Update with anything relevant..)
 
 \begin{figure}[htbp]
 \begin{center}

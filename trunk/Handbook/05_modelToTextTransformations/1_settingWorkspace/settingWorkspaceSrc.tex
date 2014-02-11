@@ -13,11 +13,11 @@ A parser, of course, is based on whatever model it must work with. Given that we
 \texttt{DictionaryLanguage} metamodel defined before starting. The dictionary is a relatively simple device, so you have three options to loading this project
 into your workspace:
 
-% Options
 \begin{description}
-% -- Metamodel Screenshots ---
-\item[Option 1:] You can start a new metamodel project called \texttt{Dictionary} (Fig.~\ref{eclipse:startMetamodel}) and complete a
-\texttt{DictionaryLanguage} package until it matches either Fig.~\ref{ea:dictLang} or Fig.~\ref{eclipse:dictLang}.\footnote{Review metamodel construction by
+
+% -- Develop Metamodel ---
+\item[Option 1: Develop] You can start a new metamodel project called \texttt{Dict\-ion\-aryLanguage} (Fig.~\ref{eclipse:startMetamodel}) and complete a
+\texttt{Dictionary} model until it matches either Fig.~\ref{ea:dictLang} or Fig.~\ref{eclipse:dictLang}.\footnote{Review metamodel construction by
 working through Part II: Ecore}
 
 \begin{figure}[htbp]
@@ -28,14 +28,14 @@ working through Part II: Ecore}
 \end{center}
 \end{figure}
 
-\newpage
+\newpage % ---
 
 \vspace*{1cm}
 
 \begin{figure}[htb]
 \begin{center}
   \includegraphics[width=\textwidth]{ea_dictionaryMetamodel}
-  \caption{TCreate the package in \texttt{My Working Set} with an eMoflon Ecore diagram of the same name.}
+  \caption{Create the package in \texttt{My Working Set} with an eMoflon Ecore diagram of the same name.}
   \label{ea:dictLang}
 \end{center}
 \end{figure}
@@ -45,17 +45,16 @@ working through Part II: Ecore}
 \begin{figure}[htb]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{eclipse_dictionaryMetamodel}
-  \caption{\texttt{Dictionary} constructed in Eclipse \update}
+  \caption{\texttt{Dictionary} constructed in Eclipse \update (constraints)}
   \label{eclipse:dictLang}
 \end{center}
 \end{figure}
 
-\newpage
+\newpage % ---
 
-% -- Cheat Package(s)
-\newpage
-\item[Option 2:] You can download our cheat package and load \texttt{Dictionary} into your workspace using the Eclipse ``New" wizard
-(Fig.~\ref{eclipse_cheatPackage}).
+% -- Download Cheat Package ---
+\item[Option 2: Download] You can download our cheat package and load a \texttt{Dictionary} specification into your workspace using
+the Eclipse ``New" wizard (Fig.~\ref{eclipse_cheatPackage}).
 
 \vspace{0.5cm}
 
@@ -67,8 +66,8 @@ working through Part II: Ecore}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Pressing \texttt{Finish} will load either a MOSL directory or \texttt{DictionaryLanguage.eap} file into a working set, depending on
-your syntax choice (Fig.~\ref{ea:cheatLoaded} or Fig.~\ref{eclipse:cheatLoaded}).
+\item[$\blacktriangleright$] Pressing \texttt{Finish} will load either a MOSL directory or \texttt{Dict\-ion\-ary\-Lang\-uage.eap} file into a working set,
+depending on your syntax choice (Fig.~\ref{ea:cheatLoaded} or Fig.~\ref{eclipse:cheatLoaded}).
 
 \begin{figure}[htbp]
    \centering
@@ -83,30 +82,27 @@ your syntax choice (Fig.~\ref{ea:cheatLoaded} or Fig.~\ref{eclipse:cheatLoaded})
       \caption{}
 \end{figure}
 
+\clearpage % ---
 
-\clearpage
-% -- Export/Import ----
-\item[Option 3:] You can simply use the same \texttt{Dictionary} you used in part IV by exporting it to a new project. Read Part IV, Section 2 for detailed
-review on how to do this in either syntax.
+% -- Export/Import ---
+\item[Option 3: Import] You can simply use the same files for \texttt{Dictionary} as you used in Part IV. Export the specification files, then import them
+into a new project in a fresh workspace. Read Part IV, Section 2 for a detailed review on how to do this in either syntax.
 
 \end{description} 
 % -- End
 
 \vspace{0.5cm}
 
-This metamodel is one of two that we'll be using to specify the transformation. After all, as discussed in the introduction of Part IV, TGGs \emph{always}
-require a source and target graph, and this will represent our target. 
+This metamodel is one of two that we'll be using to specify the transformation. After all, TGGs \emph{always} require a source and target graph, and this will
+represent our target. If you haven't already, we recommend inspecting \texttt{DictionaryLanguage} until you feel comfortable with what you'll be working with.
+Its important to understand which classes are connected.
 
-We recommend inspecting \texttt{DictionaryLanguage} until you feel comfortable with what you'll be working with. As you'll be able to see, a \texttt{Library}
-can contain an unlimited number of \texttt{Shelf} and \texttt{Author} elements. Both of these are also connected to a \texttt{Dictionary} container which can
-hold an unlimited number of \texttt{Entry} objects.
-
-Our source metamodel will be eMoflon's standard \texttt{MocaTree} language. It basically combines concepts from a filesystem (folders and files), XML concepts
+Our second metamodel will be eMoflon's standard \texttt{MocaTree} language. It basically combines concepts from a filesystem (folders and files), XML concepts
 (text-only nodes and attributes), and a general indexed containment hierarchy.\footnote{This is done with an index attribute, which can be used to demand a
 certain \emph{order} of nodes in an SDM which are otherwise not guaranteed by default.} It models a generic directory structure with a \texttt{Folder} able to
-connect to other \texttt{Folders}, and may contain an unlimited number of \texttt{File} elements. Its Jaca code is provided by the Eclipse plugin and
-automatically added to the Java build path.  We'll go into more detail about this later, so let's skip ahead to the next task: initializing the TGG project that
-will drive our model-to-text transformation.
+connect to other \texttt{Folders}, and may contain an unlimited number of \texttt{File} elements. Its Java code is provided by the Eclipse plugin and
+automatically added to the build path.  We'll go into more detail about this later, so let's begin the next task: initialize the TGG project that will drive our
+model-to-text transformation.
 
 \jumpDual{initialize vis}{initialize tex}
 

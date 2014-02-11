@@ -1,16 +1,15 @@
 \newpage
-\section{Model To Tree with TGGs}
+\section{Model-To-Tree with TGGs}
+\genHeader
 
-Bonus: we ALREADY have this!
+For those who have read Part IV, do you remember what one of the goals of using TGGs was? We hoped that, by specifying one direction of the transformation, we
+could get the other free. That is exactly what's happeded here! The final output of the forward transformation was the model specified in
+\texttt{tree.xmi\_fwd.xmi}. This was used as input in the reverse transformation, whose final tree output is \texttt{tree.xmi\_FWD.xmi\_BWD.xmi}. If our
+bidirectional transformation was successful, this tree should match the original text instance, \texttt{tree.xmi}. Let's compare the two.
 
-This is the second half of our trip. You may have noticed after running \emph{TGGMain} in the forward direction, that the backwards transformation also
-succeeded. This transformation used the \texttt{tree.xmi\_fwd.xmi} model (generated from your original text) and drove it through another transformation to
-change it \emph{back} to a tree, where it will be transformed one more time by the ANTLR unparser to get back to our original text format.
+\vspace{0.5cm}
 
-Lets compare this resulting file, \texttt{tree.xmi\_FWD.xmi\_BWD.xmi}, against our original \texttt{tree.xmi} model.
-
-%\usepackage{graphics} is needed for \includegraphics
-\begin{figure}[htp]
+\begin{figure}[htpb]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_generatedBackwardsModel}
   \caption{needs refinement\ldots}
@@ -18,8 +17,10 @@ Lets compare this resulting file, \texttt{tree.xmi\_FWD.xmi\_BWD.xmi}, against o
 \end{center}
 \end{figure}
 
-You can see that some things need to be fixed up -- we're missing the ``DICTIONARY'' and ``ENTRY" headings of the major nodes. Obviously, some refinement is
-needed here.. We need some attribute constraints!
+\vspace{0.5cm}
+
+It's close, but not perfect. You can see that some things need to be refined. The ``DICTIONARY'' and ``ENTRY'' labels, for example, are missing from the
+major nodes. Luckily, this is a very simple fix. We just need some more attribute constraints!
 
 \jumpDual{m2tvis}{m2ttex}
 

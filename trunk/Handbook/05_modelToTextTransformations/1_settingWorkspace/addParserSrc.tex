@@ -3,10 +3,11 @@
 \subsection{Setting up the Parser}
 \genHeader
 
-The final workspace requirement that needs to be met is the creation of our transformation's ANTLR parser/unparser.
+The final thing our transformation needs in order to translate from a textual instance into a model is an ANTLR parser/unparser tool.
+
 \begin{itemize}
 
-\item[$\blacktriangleright$] Right-click on the \texttt{DictionaryCodeAdapter} folder and navigate to ``eMolfon/ Add Parser/Unparser''
+\item[$\blacktriangleright$] Right-click on \texttt{DictionaryCodeAdapter} and navigate to ``eMolfon/ Add Parser/Unparser''
 (Fig~\ref{eclipse:contextParser}).
 
 \vspace{0.5cm}
@@ -34,8 +35,9 @@ pressing \texttt{Finish}.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] If everything was installed and completed without error, parser and unparser stubs should be generated under
-\texttt{DictionaryCodeAdapter}, where \texttt{ANTLR} automatically built the corresponding Java packages as depicted in Fig.~\ref{eclipse:generatedParser}.
+\item[$\blacktriangleright$] If everything was installed and completed without error, parser and unparser stubs should generate and appear in the \texttt{src}
+package, where \texttt{ANTLR} automatically built the corresponding Java packages as depicted in Fig.~\ref{eclipse:generatedParser}. In addition, a new
+\texttt{in} folder should appear under \texttt{instances} which will store any source text files.
 
 \begin{figure}[htpb]
 \begin{center}
@@ -47,7 +49,6 @@ pressing \texttt{Finish}.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Your workspace is now fully prepared, and you're ready to start transforming a textual source into a \texttt{Dictionary}
-model!
+\item[$\blacktriangleright$] Your workspace is now ready to go!
 
 \end{itemize}

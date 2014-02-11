@@ -7,43 +7,39 @@ To make use of this option, go to the model search dialog (\mbox{Ctrl+Alt+A}). C
 formulate any query on the underlying database. The SQL-editor helps you with syntax-highlighting and auto-completion. Here are some basic examples:
 
 \begin{enumerate}
-\item[$\blacktriangleright$]
-To find all eClasses
+\item[$\blacktriangleright$] To find all eClasses
 \begin{lstlisting}[frame=single,framerule=0pt]
 SELECT * FROM t_object
 WHERE Object_Type='Class' AND Stereotype='eclass';
 \end{lstlisting}
 
-\item[$\blacktriangleright$]
-To find all associations
+\newpage
+
+\item[$\blacktriangleright$] To find all associations
 \begin{lstlisting}[frame=single,framerule=0pt]
 SELECT * FROM t_connector
 WHERE Connector_Type='Association';
 \end{lstlisting}
 
-\item[$\blacktriangleright$]
-To find all inheritance relations
+\item[$\blacktriangleright$] To find all inheritance relations
 \begin{lstlisting}[frame=single,framerule=0pt]
 SELECT * FROM t_connector
 WHERE Connector_Type='Generalization';
 \end{lstlisting}
 
-\item[$\blacktriangleright$]
-To find all connectors attaching a note to an element
+\item[$\blacktriangleright$] To find all connectors attaching a note to an element
 \begin{lstlisting}[frame=single,framerule=0pt]
 SELECT * FROM t_connector
 WHERE Connector_Type='NoteLink';
 \end{lstlisting}
 
-\item[$\blacktriangleright$]
-To find all control flow edges (used in SDMs)
+\item[$\blacktriangleright$] To find all control flow edges (used in SDMs)
 \begin{lstlisting}[frame=single,framerule=0pt]
 SELECT * FROM t_connector
 WHERE Connector_Type='ControlFlow';
 \end{lstlisting}
 
-\item[$\blacktriangleright$]
-To find all associations connected to a class named ``EClass''
+\item[$\blacktriangleright$] To find all associations connected to a class named ``EClass''
 \begin{lstlisting}[frame=single,framerule=0pt]
 SELECT t_object.Name, t_connector.* FROM t_connector,t_object
 WHERE t_connector.Connector_Type='Association'
@@ -52,8 +48,7 @@ WHERE t_connector.Connector_Type='Association'
   AND t_object.Name='EClass';
 \end{lstlisting}
 
-\item[$\blacktriangleright$]
-To determine all subtypes of ``EClassifier''
+\item[$\blacktriangleright$] To determine all subtypes of ``EClassifier''
 \begin{lstlisting}[frame=single,framerule=0pt]
 SELECT a.Name FROM t_connector,t_object a,t_object b
 WHERE t_connector.Connector_Type='Generalization'
@@ -62,14 +57,14 @@ WHERE t_connector.Connector_Type='Generalization'
   AND b.Name = 'EClassifier';
 \end{lstlisting}
 
-\item[$\blacktriangleright$]
-To determine all supertypes of ``EClassifier'' (cf. above)
+\item[$\blacktriangleright$] To determine all supertypes of ``EClassifier'' (cf. above)
 \begin{lstlisting}[frame=single,framerule=0pt]
 ...
   AND t_connector.Start_Object_ID=b.Object_ID
   AND t_connector.End_Object_ID=a.Object_ID
 ...
 \end{lstlisting}
+
 \end{enumerate}
 
 To run the search, either hit the run button in the upper left corner of the editor (it shows a triangular shaped ``play'' pictogram) or punch \texttt{F5} on
