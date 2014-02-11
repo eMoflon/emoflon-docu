@@ -15,15 +15,9 @@ handle whatever \texttt{File} and \texttt{Node} elements they contain (such as t
 
 \vspace{0.5cm}
 
-Review Part IV, Section 2: \emph{Triple Graph Grammars in a nutshell}, for a detailed and worthwhile overview on how and why TGGs are so useful. In summary,
-TGGs form \emph{graph triples} consisting of a source, correspondence, and target component. They are a declarative, rule-based techinique for specifying
-the evolution of these three graphs, where the correspondence component can specify and guarantee consistency between elements in the target and source
-componenets.
-
-\vspace{0.5cm}
-
-A key idea to keep in mind while creating these rules is the flexibility that this transformation will require. In future \texttt{tree} instances, we may not
-know how many subfolders \texttt{myLibrary} will contain, whether or not each \texttt{.dictionary} file will have an author node (as seen in
-\texttt{unknown.dictionary}), or how many entries each \texttt{dictionary} will contain. We'll need to avoid situation-specific patterns.
+When creating \emph{any} rule, it's important to keep in mind any sort of flexibility the rule may require. In future \texttt{tree} instances for example, we
+may not know how many exactly subfolders \texttt{myLibrary} will contain, whether or not each \texttt{.dictionary} file will have an author node (as seen in
+\texttt{unknown.dictionary}), or how many entries each \texttt{dictionary} will contain. Just like SDMs, it's key to avoid situation-specific rules and
+patterns.
 
 \jumpDual{treeToModel vis}{treeToModel tex}

@@ -1,11 +1,14 @@
 \newpage
 \hypertarget{t2m close}{}
-\subsection{Tree To Model Close}
+\subsection{Additional \texttt{author} handling}
 \genHeader
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Navigate to ``src/org.moflon.tie'' right click and run TGGMain as application.
+\item[$\blacktriangleright$] If your project's build succeeded, run \texttt{TGGMain} one more time. Both transformation directions should succeed! Let's examine
+the forward direction's output,  \texttt{tree.xmi\_FWD.xmi}, a little closer (Fig.~\ref{eclipse:generatedFwdTrsfm}).
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -15,71 +18,103 @@
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Awesome, it works BEAUTIFULLY! Lets examine the output, \texttt{tree.xmi\_FWD.xmi} a little closer.
+\vspace{0.5cm}
 
-\item[$\blacktriangleright$] If you haven't already, read Section 6 from Part IV to learn how eMoflon's integrator feature can help you visualize how this
-transformation was completed. Run the integrator on \texttt{corr\_FWD.xmi} until you reach the first (english) author node (do this as proof).
+\item[$\blacktriangleright$] Your output may or may not resemble ours. In fact, there's a 50/50 chance the any of the \texttt{author} nodes were ever created!
+Let's run the eMoflon integrator on \texttt{corr\_FWD.xmi} to find out why.\footnote{If you haven't already, read Part IV, Section 6 for details on how this feature
+can help you visualise and debug a transformation}
+
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] Proceed through the transformation until you reach the first match to an author node (Fig.~\ref{eclipse:fwdIntegrator}). Keep an
+eye on the small window below -- it states that there are two possible rules that apply to the match!
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{eclipse_integratorAuthorChoice}
+  \includegraphics[width=0.8\textwidth]{eclipse_integratorAuthorChoice}
   \caption{completed forward transformation}
-  \label{eclipse:generatedFwdTrsfm}
+  \label{eclipse:fwdIntegrator}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] The transformation decided to take one rule - either create or use existing - based on a random choice. The current set up isn't
-dependable. We need to force a decision.
+\clearpage
 
-\item[$\blacktriangleright$] It had two choices and picked on at random. If you DO want to force a decision. You have two choices: ``I
-don't care, \emph{always} make an author'' (duplicates), or no, ``I \emph{never} want there to be two of the same authors for one library.'' There are two ways
-to define this: (Discuss options here?)
+\item[$\blacktriangleright$] The transformation is presented with, at run-time, a choice between two rules to apply to the matched \texttt{authorNode}.
+This setup isn't reliable -- the choice is entirely random, meaning that your output is likely to be different each time you run \texttt{TGGMain}. You therefore
+need to force a decision, and there are two ways to do this: at run-time, where users will be able to decide for themselves what they would prefer to use, or at
+design-time, where you make the decision a part of the rule.
 
 \end{itemize}
 
-\begin{description}
+\subsubsection{Option1: Run-time decision}
 
-\item[option1: Run-time] Create a configuration file for your TGG;
+The advantage with this option is that you leave users with the choice of what they would like to do. Some users don't mind having multiple authors,
+while others prefer a miniamlist design. They can easily change their preference here.
 
-First: define \texttt{AuthorConfiguator}. FIG. put in in the same pacakage as your TGG. Don't make errors.
+\begin{itemize}
+
+\item Create a configuration file for your TGG; First: define \texttt{Author\-Config\-ur\-at\-or}. FIG. put in in the same package as your TGG. Use Eclipse's
+auto-completion to help -- don't make errors.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{eclipse_authorConfigurator}
+  \includegraphics[width=\textwidth]{eclipse_authorConfigurator}
   \caption{comment}
   \label{eclipse:authorConfig}
 \end{center}
 \end{figure}
 
-Second: call it from \texttt{TGGMain}. FIG. Only need it in the forward transformation, so only put it once\ldots
+\clearpage
+
+\item Second: call it from \texttt{TGGMain}. FIG. Only need it in the forward transformation, so only put it once\ldots
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{eclipse_editTGGMain}
+  \includegraphics[width=\textwidth]{eclipse_editTGGMain}
   \caption{comment on the edit}
   \label{eclipse:editTGGMain}
 \end{center}
 \end{figure}
 
-\newpage
+\end{itemize}
 
-\item[option2: Design-time] Create a NAC in \texttt{ForAllNewAuthors}; force it to skip
-\hyperlink{NAC vis}{link1: {\bf VISUAL}}
-\hyperlink{NAC tex}{link2: {\bf TEXTUAL}}
+\subsubsection{Option 2: Design-time decision}
 
-\input{../3_treeToModel/vis_designTimeNAC}
+This deicion is the actual infastracture of the transformation -- users cannot modify this (built-in). Do this by building a NAC to check to see if there is a
+contextual author element \emph{with the same email}. You don't want to create this NAC without the attribute constraint or else the transformation will create
+only \emph{one} author per library, which is obviously not the case for the \texttt{french} shelf.
 
-\input{../3_treeToModel/tex_designTimeNAC}
-
-\end{description}
-
-% Back together, run TGGMain again
-\newpage
 \begin{itemize}
 
-\item[$\blacktriangleright$] With your forced set up now constructed, Run TGGMain again. Use the integrator once more to see how it consistently chose your
-decision.
+\item Depending on your syntax, either update the \texttt{NewAuthorRule} diagram (Visual; Fig.~\ref{ea:existingAuthorNAC}) or the \texttt{ForAllNewAuthor.tgg} 
+(Textual; Fig.~\ref{eclipse:existingAuthorNAC}).
 
-\item[$\blacktriangleright$] Great work! You have now completed the first half of the complete round trip transformation, from Text to Model!
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{ea_existingAuthorNAC}
+  \caption{comment}
+  \label{ea:existingAuthorNAC}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{eclipse_targetNAC}
+  \caption{comment}
+  \label{eclipse:existingAuthorNAC}
+\end{center}
+\end{figure}
+
+
+% Back together, run TGGMain again. 
+\newpage
+
+\item[$\blacktriangleright$] Save and rebuild the TGG. Run the transformation a few times, using the integrator to confirm that your preference is executed each
+time.
+
+\item[$\blacktriangleright$] Contratulations -- You have now completed a successful Tree-To-Model transformation! The next section begins the backwards
+transformation, from Model-To-Text.
 
 \end{itemize}

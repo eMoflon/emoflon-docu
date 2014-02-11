@@ -1,10 +1,9 @@
 \newpage
-\hypertarget{}{}
-\section{Tree To Text}
+\hypertarget{finalStep}{}
+\section{Tree-To-Text}
 \genHeader
 
-This is the FINAL step. Applies to both syntaxes since its based entirely within Eclipse..
-
+This is the FINAL step. (Unparsing)
 We're going to transform our generated tree (\texttt{tree.xmi\_FWD.xmi\_BWD.xmi}) into an actual folder sructures with files containing text. Ideally, these
 will be identical to our original input. One of the coolest things about ANTLR is that the same parsing technology that we used in Section 2 can be used to
 \emph{unparse} a tree. Analogously to parsing text with a lexer and parser grammar to produce a tree, a tree is unparsed to text using a \emph{tree grammar} and
@@ -14,8 +13,8 @@ the ANTLR website, \url{www.antlr.org}.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Expand ``src/org.moflon.moca.dictionary.unparser'' and open \texttt{DictionaryTreeGrammar.g} and edit the contents as depicted in
-FIG. 
+\item[$\blacktriangleright$] Expand ``src/org.moflon.moca.dictionary.unparser'' and open \texttt{Dict\-ion\-ary\-Tree\-Gram\-mar.g} and edit the contents as
+depicted in FIG. 
 
 \begin{figure}[htpb]
 \begin{center}
@@ -25,7 +24,7 @@ FIG.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] In the same folder, check out the generated \texttt{DictionaryUnparserAdapter.java} file (FIG). 
+\item[$\blacktriangleright$] In the same folder, check out the generated \texttt{Dict\-ion\-ary\-Un\-pars\-er\-Ad\-ap\-ter.java} file (FIG). 
 
 This file contains a \texttt{StringTemplateGroup} method for retrieving a group of templates and needs to be implemented. FIG shows the generated comments which
 explain how to use either a folder containing different template files, or a single file containing all templates. The latter is better for numerous small
@@ -34,14 +33,14 @@ templates, while the former makes sense when the template contains a lot of stat
 \begin{figure}[htpb]
 \begin{center}
   %\includegraphics[width=\textwidth]{eclipse_UnparserAdapterNotImplemented}
-  \caption{figureCaption}
+  \caption{figureCaption -- redo screenshot}
   \label{eclipse:unparserCommented}
 \end{center}
 \end{figure}
 
 
 \item[$\blacktriangleright$] For this our small example, a single file with all templates is ideal. Uncomment line 44 (the option for a group file) and remove
-the \texttt{UnsupportedOperationException} command.
+the \texttt{Un\-sup\-port\-ed\-Op\-er\-at\-ion\-Ex\-cep\-tion} command.
 
 \item[$\blacktriangleright$] Now we need to create this template. Navigate to the empty ``templates'' folder of your adapter project and create a new file
 called \texttt{Dictionary.stg}. Edit it with the stuff from FIG below.
