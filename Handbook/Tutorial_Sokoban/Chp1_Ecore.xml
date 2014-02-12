@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Chapter 1: Ecore">
+   <intro>
+      <description>
+         Welcome, and thank you for trying eMoflon!
+         <br/><br/>
+         This tutorial is designed to be completed in about <b>2 hours</b>, and will guide 
+         you step-by-step through the process of creating your first model-driven project
+         with eMolfon.
+         <br/><br/>
+         Our goal is to create Sokoban, a popular Japanese game which you can play. We'll
+         need to create the playing board, some figures, and define some rules describing
+         the behavior (actions) of the figures.
+         <br/><br/>
+         Let's get started!
+      </description>
+   </intro>
+   <item
+         title="Step 1 - Getting started">
+      <description>
+         Before anything else, please make sure you're starting this tutorial with an
+         empty workspace. Although eMolfon projects work perfectly fine in a workspace
+         containing other projects, experimenting with our textual syntax for the first
+         time will be much simpler this way.
+         <br/><br/>
+         Let's setup the eMolfon workspace. Navigate to
+         <br/>
+         "Window / Open Perspective / Other... / eMolfon / Ok"
+         <br/><br/>
+         Your toolbar should refresh and show some new buttons. The most important ones
+         for us right now are <b></b>New Metamodel and <b>Build (Without cleaning).</b>
+         Make sure you're able to find these.
+         <br/><br/>
+         Next, click the small upside-down arrow at the top right of your package
+         explorer and switch <b>Top Level Elements</b> to <b>Working Sets.</b>
+         These sets are used to structure your metamodel project.
+         <br/><br/>
+         Create a new project by pressing <b>New Metamodel.</b> Name it 
+         <b></b>SokobanTutorial, and select <b>Textual (MOSL) </b> as its concrete syntax. 
+         Don't choose "Add Demo Specification" - we're building a different example, and 
+         these files are unnecessary.
+         <br/><br/>
+         Inspect the new "Specifications Node" and find <b>MyWorkingSet.</b>
+         Right-click this and go to "New / Epackage." Name the package 
+         <b>SokobanLanguage</b>. This is the folder where all your game's project files 
+         will be stored.
+         <br/><br/>
+         To complete your project setup, press eMolfon's <b>Build</b> button in the toolbar.
+         Please note that the building process can last up to 30 seconds depending on
+         your hardware! Once successful, you're ready to start modelling!
+         <br/><br/>
+         Note: If you're ever feeling lazy and just want to see the results of each step
+         without doing anything, you can always take a shortcut by pressing 
+         <b>Click To Proceed</b> button at the end of most steps. At this point, the 
+         tutorial will load the solution for the current step into your workspace. Feel 
+         free to review the updated files for further comments and explanations of the
+         step.
+      </description>
+   </item>
+   <item
+         title="Step 2 - Creating classes">
+      <description>
+         Before starting the next task, can you find the green check mark icon in the 
+         title bar? This is a validation check you should press before moving on to 
+         confirm your previous work has been done correctly. Watch the console
+         window below the editor for any important messages. Press this now - you should
+         receive an 'Everything is Ok' message.
+         <br/><br/>
+         We can now create an EClass to represent the playing area of our game. This board
+         will contain all valid playing Fields. Right-click on <b>SokobanLanguage</b> and 
+         select "New / EClass." Name it <b>Board</b> and press Finish. It should 
+         automatically open in your editor.
+         <br/><br/>
+         We'll also need a <b>Field</b> and <b>Figure</b> class, so create two more classes
+         with those names in the same EPackage.
+      </description>
+   </item>
+   <item
+         title="Step 3 - Adding attributes">
+      <description>
+         Did you validate your previous work? Each step in this chapter should have a
+         validation option. If you're sure you've done everything correctly and the check
+         isn't working, double check to ensure you built the project - validation won't
+         work otherwise.
+         <br/><br/>
+         Open <b>Board</b>, and add two attributes:
+         <br/>
+         <b>width : EInt and height : EInt</b>
+         <br/><br/>
+         Did you notice that eMoflon provides an auto-completion feature? Press 
+         <b>ctrl + space</b> and select "Attribute" to generate a template for this 
+         statement.
+      </description>
+   </item>
+   <item
+         title="Step 4 - Remaining attributes">
+      <description>
+   		 Open <b>Field</b>, and add two more attributes there:
+   		 <br/>
+   		 <b>row : EInt</b> and <b>col:EInt</b>
+   		 This class will be used as a place holder for figures, and will be identified by 
+   		 these numbers.
+   		 <br/><br/>
+   		 There's no need to have any attributes in <b>Figure</b>. This class will later be 
+   		 used as an abstract superclass for Sokoban's three figure types - the character,
+   		 blocks, and boulders - used to implement behaviors, rather than characteristics. 
+   </description>
+   </item>
+   <item
+         title="Step 5 - Relations of &apos;Board&apos;">
+      <description>
+         Great work! You have just learnt how to model classes. We will now take a look
+         at how to specify associations between them. Our modelling language, MOSL, 
+         supports two different kinds of associations: <b>simple references</b>, which act 
+         like pointers from one object to another, and <b>container references</b>, where 
+         one class can have multiple instances of another. Don't forget about eMoflon's 
+         auto-completion. In this step you'll want to use the 'reference' template.
+         <br/><br/>
+         Open <b>Board</b> and add the following container reference:
+         <br/><b>
+         &lt;&gt;-&gt; fields(0..*) : Field
+         </b><br/><br/>
+         This states that <b></b>Board can have an unlimited number of <b>Fields.</b>
+         Now add the following simple reference:
+         <br/><b>
+         -> selectedFigure(0..1) : Figure
+         </b><br/><br/>
+         This states that <b>Board</b> may have either zero or one figure selected at any 
+         time.
+      </description>
+   </item>
+   <item
+         title="Step 6 - Complete &apos;Field&apos;">
+      <description>
+         Open <b></b>Field, and add the four simple references below. What do their 
+         multiplicities state?
+         <br/><b>
+         -> left(0..1) : Field   <br/>
+         -> right(0..1) : Field  <br/>
+         -> top(0..1) : Field    <br/>
+         -> bottom(0..1) : Field <br/>
+         </b><br/><br/>
+         Given that every Field can be either full or empty with one <b>Figure</b>, add 
+         one container reference:
+         <br/><b>
+         &lt;&gt;-&gt; figure(0..w) : Figure
+         </b><br/><br/>
+         Finally, add one more simple reference:
+         <br/><b>
+         -> board(0..1) : Board
+         </b>
+      </description>
+   </item>
+   <item
+         title="Step 7 - Complete &apos;Figure&apos;">
+      <description>
+         Open <b></b>Figure and add the sole reference:
+         <br/><b>
+         -> field(1..1) : Field
+         </b><br/><br/>
+         This is link between a <b>Figure</b> and the <b>Field</b> it stands on. Note the 
+         subtle difference between the board reference in the Field class: (0..1) implies 
+         that a Field SHOULD know the Board it belongs to, but (1..1) states that a Figure 
+         MUST know the Field it belongs to.
+      </description>
+   </item>
+   <item
+         title="Step 8 - Constraints">
+      <description>
+   	   	  If you have built without errors and passed the validation check, you have 
+   	   	  successfully declared a set of unidirectional references. In order to make them
+   	   	  bidirectional, we need to complete the game's static semantics with a set
+   	   	  of constraints.
+   	   	  <br/><br/>
+   	   	  You may have noticed that when you created the SokobanLanguage EPackage, a
+   	   	  <b></b>_constraints.mconf file was generated. Open this now, and notice the empty
+   	   	  scope. Add the following opposites: 
+   	   	  <br/><b>
+   	   	  figure : Field &lt;-&gt; field : Figure
+   	   	  fields : Board &lt;-&gt; board : Field
+   	   	  left : Field &lt;-&gt; right : Field
+   	   	  top : Field &lt;-&gt; bottom : Field
+   	   	  </b><br/><br/>
+   	   	  Each of these opposites state that, when a reference on one side is updated, the
+   	   	  other must be updated as well, thus representing one (the same) bidirectional
+   	   	  association. Ergo, a Figure is always on the Field that contains it, and a Field 
+   	   	  always knows if and what Figure it contains.
+   	   </description>
+   </item>
+   <item
+         title="Step 9 - Extending &apos;Figure&apos;">
+      <description>
+         When setting the class attributes, we mentioned that there are three Figure types 
+         in the game. Create new EClasses for each of <b>Sokoban</b>, <b>Block</b>, and 
+         <b>Boulder</b>.
+         <br/><br/>
+         Open each one, and add <b>extends Figure</b> to the heading of each class.
+         <br/><b>
+         Example: class Sokoban extends Figure { 
+         </b><br/><br/>
+         Now open <b>Figure</b>, and add an asbtraction statement so it resembles:
+         <br/><b>
+         abstract class Figure {
+         </b><br/><br/>
+         These modifications declare that whatever methods you create in <b>Figure</b> will 
+         be inherited and implemented by <b>Sokoban, Block</b>, and <b>Boulder</b> only. 
+         You won't be able to instantiate the Figure class directly.
+      </description>
+   </item>
+   <item
+         title="Step 10 - Functions of &apos;Board&apos;">
+      <description>
+      	  You're nearly finished declaring Sokoban's abstract syntax (a model's classes and
+      	  associations). In fact, with the static semantics (multiplicities and opposites)
+      	  now prepared, you're ready to implement the game's dynamic semantics. These will
+      	  be gameplay rules created via a set of methods.
+      	  <br/><br/>
+      	  Open <b>Board</b>, and add the following operation:
+      	  <br/><b>
+      	  clear() : void
+      	  </b><br/><br/>
+      	  This method will simply remove a Figure from any Field 
+      	  (i.e., when a figure moves forward, it will clear from its previous position.) 
+      	  <b>Note</b>: the actual implementation of each method will be provided in Chapter 
+      	  2 via SDMs.
+      	  <br/><br/>
+      	  Declare another void method, fieldSelected, with a single field parameter as
+      	  written below:
+      	  <br/><b>
+      	  fieldSelected(field:Field):void
+      	  </b><br/><br/>
+      	  Finally, add a third void method, create, which will handle creating new game
+      	  Boards. This will need two arguments: the width and height (number of 
+      	  <b>Fields</b>) of the new Board (see below.)
+      	  <br/><b>
+      	  create(width:EInt, height: EInt):void
+      	  </b><br/><br/>
+      </description>
+   </item>
+   <item
+         title="Step 11 - Functions of &apos;Field&apos; and &apos;Figure&apos;">
+      <description>
+      	  This one's easy: to start, <b>Field</b> doesn't need any methods. It doesn't have 
+      	  any behaviors to implement. Instead, open <b>Figure</b> and add the single method:
+      	  <br/><b>
+      	  moveTo(field:Field):void
+      	  </b><br/><br/>
+      	  This will handle removing a <b>Figure</b> from its current Field, and moving it
+      	  to its target <b>Field</b> specified as the parameter. Please note that since we 
+      	  abstracted <b>Figure</b>, this method must be implemented and overridden in each 
+      	  of its subclasses (we will do this in Chapter 2).
+      </description>
+   </item>
+   <item
+         title="Step 12 - Playing the game: The Sokoban GUI">
+      <description>
+         Let's carefully review what we've done so far: you are able to setup a new
+         metamodelling project, creating EPackages with various classes complete with 
+         attributes and method specifications. You are also able to complete the model
+         by declaring bidirectional references between classes by setting opposite links
+         in the constraints configuration file.
+         <br/><br/>
+         Let's see what you've modelled in action! Press <b>Click to Perform</b> at the end
+         of this step to load a preprepared Sokoban <b>GUI</b> into your workspace that 
+         operates on what you've established in your model. Start the game by selecting the 
+         generated <b>SokobanGUI</b> in the package explorer, then navigating to the green
+         <b>Run As...</b> icon in the toolbar (next to that funny-lookin' bug).
+         <br/><br/>
+         In the GUI, you'll be able to right-click on any field and create a figure. You 
+         can also clear each field. Finally, in the menu bar, you'll be able to save an 
+         instance of your board, and load any previous ones. Remember - figures cannot 
+         move yet as we haven't provided any implementation. Chapter 2 will bring them all 
+         to life.
+         <br/><br/>
+         Feel free to create your own figures by extending the appropriate class and adding
+         your own .png image with the same name to "SokobanGUI/images." The GUI instance
+         will automatically resize the icon to fit the Field requirements.
+      </description>
+   </item>
+   <item
+         title="End of Chapter 1">
+      <description>
+         Congratulations! You've just completed the tutorial's first chapter on static
+         structural aspects (abstract syntax and static semantics), creating your first
+         eMolfon model in the process. With this basic foundation with MOSL, we can now 
+         complete our game behaviors (Chapter 2), and transform SokobanLanguage to and from 
+         another model (Chapter 3).
+         <br/>
+         We hope you're enjoying using our tool! If you have any comments or suggestions,
+         feel free to contact us at contact@moflon.org.
+         <br/>
+         Be sure to also check out the official eMoflon handbook for more details at
+         www.emoflon.org.
+      </description>
+   </item>
+</cheatsheet>
