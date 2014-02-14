@@ -29,10 +29,9 @@ complete the \emph{lexer} and \emph{parser} grammars that will handle our projec
 \begin{itemize}
   
 \item[$\blacktriangleright$] Navigate to ``Diction\-ary\-Code\-Adap\-ter/src/org.moflon.moca.dict\-ion\-ary\-.pars\-er" and edit \texttt{DictionaryLexer.g}
-until it closely resembles Fig.~\ref{eclipse:dictionaryLexer}. Don't forget to add \texttt{import org.moflon.moca.MocaUtil} to \texttt{@header}, and be vigilant
-to avoid any typos and mistakes! Save to compile the file, and ensure no errors persist before proceeding.
+until it matches Fig.~\ref{eclipse:dictionaryLexer}. 
 
-\end{itemize}
+
 \newpage
 
 \begin{figure}[!htbp]
@@ -42,6 +41,12 @@ to avoid any typos and mistakes! Save to compile the file, and ensure no errors 
   \label{eclipse:dictionaryLexer}
 \end{center}
 \end{figure}
+
+\item[$\blacktriangleright$] Don't forget to add \texttt{import org.moflon.moca.MocaUtil} to \texttt{@header}, and be vigilant to avoid any typos and mistakes!
+
+\item[$\blacktriangleright$] Save to compile the file, and ensure no errors persist before proceeding.
+
+\end{itemize}
 
 With this lexer, we can now form its stream of tokens into a \emph{tree}. In this context, a \emph{tree} is an acyclic, hierarchical, recursive structure (as
 depicted in Fig.~\ref{eclipse:dictLexer}). Depending on what the tree is to be used for, it can be organized much differently with extra \emph{structural} nodes
@@ -57,8 +62,8 @@ such as \texttt{DICTIONARY} or \texttt{ENTRY} which were not present in the text
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Open and edit \texttt{DictionaryParser.g} until it closely resembles Fig.~\ref{eclipse:dictParser}. As with the lexer, avoid any
-mistakes, and ensure it compiles before proceeding.
+\item[$\blacktriangleright$] Open and edit \texttt{DictionaryParser.g} (in the same package) until it matches Fig.~\ref{eclipse:dictParser}. As with
+the lexer, avoid any mistakes, and ensure it compiles before proceeding.
 
 \end{itemize}
 
@@ -129,9 +134,9 @@ elements such as colons or commas! Parsing will not succeed if the files do not 
 
 \end{itemize}
 
-As you can see, this setup creates a single library split into two languages, each containing unique dictionaries. Reviewing
+As you can see, this input is structured as a single library split into two languages, each containing unique dictionaries. Reviewing
 Fig.~\ref{eclipse:dictParser}, you can see that the structure of these files conform to the parser's \texttt{main} command: it first lists the dictionary's
-\texttt{title}, may or may not contain a \texttt{author}, and contains all \texttt{entry} elements between the \texttt{OPEN} and \texttt{CLOSE} brackets.
+\texttt{title}, may or may not contain a \texttt{author}, and contains all \texttt{entry} elements between a pair of \texttt{OPEN} and \texttt{CLOSE} brackets.
 
 \newpage
 \begin{table}
@@ -217,11 +222,13 @@ title: "unknown"
 \end{table}
 \clearpage
 
-\begin{enumerate} 
+\begin{itemize} 
 
 \item[$\blacktriangleright$] Once you have saved each file, right click on \texttt{TGGMain} and navigate to ``Run As/Java Application'' to run the
-transformation, then refresh the \texttt{instances} folder. Despite being primarily unimplemented, it still executed and generated several files
-(Fig.~\ref{eclipse:postParse}).
+transformation.
+
+\item[$\blacktriangleright$] Refresh the \texttt{instances} folder. Despite being (mostly) unimplemented, the TGG still executed, generating several files in
+the process (Fig.~\ref{eclipse:postParse}).
 
 \vspace{0.5cm}
 
@@ -233,26 +240,31 @@ transformation, then refresh the \texttt{instances} folder. Despite being primar
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] To explain, \texttt{tree.xmi} is the model generated directly from your \texttt{my\-Lib\-rary} filesystem input. In fact, this is
-the result of the first step in the forward transformation, from text-to-tree!
+\end{itemize}
 
-\item[$\blacktriangleright$] \texttt{tree.xmi\_FWD.xmi} is the \texttt{Dictionary} result of the complete forward transformation. This second step, from
-tree-to-model also produced \texttt{corrFWD.xmi} and \texttt{protocol\_FWD.xmi}. Given that we haven't actually specified any rules yet, the model is simply an
-incomplete output container.
+Let's go over what each of these files are. First, \texttt{tree.xmi} is the direct result of the \texttt{my\-Lib\-rary} filesystem input, which was parsed into
+an \texttt{MocaTree} instance by ANTLR. 
+
+While the parser is the only implemented piece of our transformation, TGGMain still used \texttt{tree.xmi} in a forward transformation, producing
+the correspondence model \texttt{corrFWD.xmi} (which pairs with \texttt{protocol\_FWD.xmi}), and (empty) \texttt{Dictionary} target language result,
+\texttt{tree.xmi\_FWD.xmi}.
 
 \clearpage
 
-\item[$\blacktriangleright$] Similarly first step in the  backwards transformation generated \texttt{corr\-BWD\-.xmi}, \texttt{protocolBWD.xmi}, and
-\texttt{tree.xmi\_FWD.xmi\_BWD.xmi}. Ideally, this file will resemble the original \texttt{tree.xmi} without loss of information. The final, tree-to-model files
-can't yet be found as we commented out the unparsing command that would have generated this.
+The TGG also executed in the inverse direction; \texttt{tree.xmi\_FWD.xmi} was used next in the backwards direction, producing \texttt{corrBWD.xmi} (with
+\texttt{proto\-col\-\_BWD\-.xmi}) and \texttt{tree.xmi\_FWD.xmi\_BWD.xmi}. We removed the command to do so, but ANTLR will later attempt to unparse this model,
+which, if our TGG transformation was successful, will be identical to the input filesystem. In the meantime, we'll be able to compare this final tree to the original
+\texttt{tree.xmi} to determine accuracy.
+
+\begin{itemize}
 
 \item[$\blacktriangleright$] Open \texttt{tree.xmi} and compare the contents to Fig.~\ref{eclipse:treeResult}. Reflect on the directory-type structure of the
-tree, where each \texttt{File} and its contents appear as \texttt{Node}s. This file is important to understand; The filesystem was transformed into a
+tree, where each \texttt{File} and its contents appear as \texttt{Node}s. This file is important to understand -- The filesystem was transformed into a
 corresponding hierarchy of \texttt{Folders} and \texttt{Files}. The actual \emph{text} content of each file is then transformed to a subtree using a registered,
 suitable parser. The resulting subtree from the parser is then connected to the existing tree by setting its \texttt{DICTIONARY} root as the single child node
 of a \texttt{File}.
 
-\end{enumerate}
+\end{itemize}
 
 \vspace{0.5cm}
 
@@ -266,4 +278,4 @@ of a \texttt{File}.
 
 \vspace{0.5cm}
 
-If everything has executed without error, well done! To complete this forward transformation, we need to specify some TGG rules.
+If everything has executed without error, well done! Let's complete the forward direction (into a \texttt{Dictionary} instance) by specifiying some rules.
