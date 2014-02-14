@@ -1,5 +1,5 @@
 \newpage
-\section{Setting up the workspace}
+\section{Setting up the workspace \update check ALL loadings}
 \genHeader
 
 Nowadays, \emph{no one} writes a complex parser completely by hand. Although this is sometimes still necessary for syntactically challenging languages, most
@@ -17,7 +17,7 @@ into your workspace:
 
 % -- Develop Metamodel ---
 \item[Option 1: Develop] You can start a new metamodel project called \texttt{Dict\-ion\-aryLanguage} (Fig.~\ref{eclipse:startMetamodel}) and complete a
-\texttt{Dictionary} model until it matches either Fig.~\ref{ea:dictLang} or Fig.~\ref{eclipse:dictLang}.\footnote{Review metamodel construction by
+\texttt{Dictionary} package. until it matches either Fig.~\ref{ea:dictLang} or Fig.~\ref{eclipse:dictLang}.\footnote{Review metamodel construction by
 working through Part II: Ecore}
 
 \begin{figure}[htbp]
@@ -30,8 +30,6 @@ working through Part II: Ecore}
 
 \newpage % ---
 
-\vspace*{1cm}
-
 \begin{figure}[htb]
 \begin{center}
   \includegraphics[width=\textwidth]{ea_dictionaryMetamodel}
@@ -40,13 +38,21 @@ working through Part II: Ecore}
 \end{center}
 \end{figure}
 
-\vspace{1cm}
+\newpage % ---
 
 \begin{figure}[htb]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_dictionaryMetamodel}
-  \caption{\texttt{Dictionary} constructed in Eclipse \update (constraints)}
-  \label{eclipse:dictLang}
+  \includegraphics[width=0.5\textwidth]{eclipse_dictionaryExplorer}
+  \caption{Add a \texttt{DictionaryLanguage} EPackage to MyWorkingSet}
+  \label{eclipse:dictPackageExplorer}
+\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=\textwidth]{eclipse_dictionaryMetamodel}
+  \caption{Building your \texttt{Dictionary} metamodel}
+  \label{eclipse:dictLangMetamodel}
 \end{center}
 \end{figure}
 
@@ -66,23 +72,10 @@ the Eclipse ``New" wizard (Fig.~\ref{eclipse_cheatPackage}).
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Pressing \texttt{Finish} will load either a MOSL directory or \texttt{Dict\-ion\-ary\-Lang\-uage.eap} file into a working set,
-depending on your syntax choice (Fig.~\ref{ea:cheatLoaded} or Fig.~\ref{eclipse:cheatLoaded}).
+\item[$\blacktriangleright$] Depending on your syntax choice, pressing \texttt{Finish} will load the relevant files into a 
+\texttt{Dictionary} project in your workspace.
 
-\begin{figure}[htbp]
-   \centering
-      \subfloat[comment 1 \update]{
-        \includegraphics[width=0.45\textwidth]{eclipse_loadedCheatPackageVisual}
-        \label{ea:cheatLoaded}
-      }
-      \subfloat[Bugger. Comment 2]{
-        \includegraphics[width=0.45\textwidth]{eclipse_loadedCheatPackageVisual}
-        \label{eclipse:cheatLoaded}
-      }
-      \caption{}
-\end{figure}
-
-\clearpage % ---
+\vspace{2cm}
 
 % -- Export/Import ---
 \item[Option 3: Import] You can simply use the same files for \texttt{Dictionary} as you used in Part IV. Export the specification files, then import them
@@ -91,7 +84,7 @@ into a new project in a fresh workspace. Read Part IV, Section 2 for a detailed 
 \end{description} 
 % -- End
 
-\vspace{0.5cm}
+\newpage
 
 This metamodel is one of two that we'll be using to specify the transformation. After all, TGGs \emph{always} require a source and target graph, and this will
 represent our target. If you haven't already, we recommend inspecting \texttt{DictionaryLanguage} until you feel comfortable with what you'll be working with.

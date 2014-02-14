@@ -3,7 +3,11 @@
 \subsection{Setting up the Parser}
 \genHeader
 
-The final thing our transformation needs in order to translate from a textual instance into a model is an ANTLR parser/unparser tool.
+Before moving on, it should be quickly mentioned that our conventions and workflow state that the \emph{code adapter} package that we established in the
+previous step is a package that contains the tree-to-model transformation logic. This logic \emph{could} be integrated directly in the corresponding metamodel
+(\texttt{Dic\-tion\-ary\-Language}), but a separation makes sense here as there could be \emph{different} code adapters for the \emph{same} language.
+
+Anyway - The final thing our transformation needs in order to translate from a textual instance into a model is an ANTLR parser/unparser tool.
 
 \begin{itemize}
 
@@ -35,9 +39,9 @@ pressing \texttt{Finish}.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] If everything was installed and completed without error, parser and unparser stubs should generate and appear in the \texttt{src}
-package, where \texttt{ANTLR} automatically built the corresponding Java packages as depicted in Fig.~\ref{eclipse:generatedParser}. In addition, a new
-\texttt{in} folder should appear under \texttt{instances} which will store any source text files.
+\item[$\blacktriangleright$] If everything was completed without error, parser and unparser stubs should generate and appear in the \texttt{src}
+package, where \texttt{ANTLR} automatically built the corresponding Java packages (Fig.~\ref{eclipse:generatedParser}). In addition, a new
+\texttt{in} folder should appear under \texttt{instances} which will store any source text files. Your setup is now complete!
 
 \begin{figure}[htpb]
 \begin{center}
@@ -46,9 +50,5 @@ package, where \texttt{ANTLR} automatically built the corresponding Java package
   \label{eclipse:generatedParser}
 \end{center}
 \end{figure}
-
-\vspace{0.5cm}
-
-\item[$\blacktriangleright$] Your workspace is now ready to go!
 
 \end{itemize}

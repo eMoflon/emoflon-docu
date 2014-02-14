@@ -3,7 +3,7 @@
 \genHeader
 
 For those who have read Part IV, do you remember what one of the goals of using TGGs was? We hoped that, by specifying one direction of the transformation, we
-could get the other free. That is exactly what's happeded here! The final output of the forward transformation was the model specified in
+could get the other free. That is exactly what's happened here! The final output of the forward transformation was the model specified in
 \texttt{tree.xmi\_fwd.xmi}. This was used as input in the reverse transformation, whose final tree output is \texttt{tree.xmi\_FWD.xmi\_BWD.xmi}. If our
 bidirectional transformation was successful, this tree should match the original text instance, \texttt{tree.xmi}. Let's compare the two.
 
@@ -20,10 +20,15 @@ bidirectional transformation was successful, this tree should match the original
 \vspace{0.5cm}
 
 It's close, but not perfect. You can see that some things need to be refined. The ``DICTIONARY'' and ``ENTRY'' labels, for example, are missing from the
-major nodes. Luckily, this is a very simple fix. We just need some more attribute constraints!
+major nodes. You'll also notice that, as you scroll through each \texttt{Node}, the title and author have the correct \texttt{index} values of 0 and 1, but
+unfortunately, \emph{every} other node is also set to 0. We need to bind each \texttt{entry} to a value so avoid potential conflicts when executing our TGG
+transformation again, where our \texttt{NodeToDictionaryRule} assumes whatever node has this value must be the \texttt{authorNode}. Luckily, both of these are
+very simple, quick fixes. We just need some more attribute constraints!
 
 \jumpDual{m2tvis}{m2ttex}
 
 \input{../4_modelToTree/vis_mtoTreeSrc}
 
 \input{../4_modelToTree/tex_mtoTreeSrc}
+
+\input{../4_modelToTree/setDefaultNumberSrc}

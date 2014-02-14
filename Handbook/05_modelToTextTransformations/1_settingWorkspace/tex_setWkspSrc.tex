@@ -3,40 +3,52 @@
 \subsection{Initializing the project}
 \texHeader
 
-{\bf SELF:: update download so it includes a constraint file for \texttt{Dictionary}}
+
+
+After confirming your \texttt{Dictionary} package explorer resembles Fig.~\ref{eclipse:dictLangMetamodel}, open \texttt{\_imports.mconf}
+(Fig.~\ref{eclipse:standardImports}). You'll notice that it's already accessing our target \texttt{MocaTree} metamodel, but where is it?
+
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{eclipse_DOWNLOADUPDATE}
-  \caption{SELF SELF}
+  \includegraphics[width=0.4\textwidth]{eclipse_importsFile}
+  \caption{create tgg}
+  \label{eclipse:standardImports}
 \end{center}
 \end{figure}
 
+\texttt{MocaTree} is classified as a standard language, so every eMoflon project includes this specification as a hidden file. Therefore, you're not able to
+inspect your target domain directly in Eclipse. Instead, we reccommend reviewing Fig.~\ref{ea:mocaTree} which depicts \texttt{MocaTree} in the visual syntax. Do
+this until you feel familar with the attributes and references you'll be working with in this Part.
+
 \begin{enumerate}
 
-\item[$\blacktriangleright$] Your expanded \texttt{DictionaryLanguage} metamodel MOSL structure should resemble FIG. (starting point) You'll notice that it is
-accessing the \emph{Moca} framework by importing the \texttt{MocaTree} in \texttt{\_imports.mconf}. (Explain, no screenshot?)
+\item[$\blacktriangleright$] Let's establish the TGG we'll use to transform between \texttt{Dictionary} and \texttt{MocaTree}. Right-click on
+\texttt{MyWorkingSet}, and navigate to ``New/ TGG.''
 
-\item[$\blacktriangleright$] Right click on \texttt{MyWorkingSet} folder and create a new TGG. source: MocaTree. Target: DictionaryLanguage. FIG
+\item[$\blacktriangleright$] In the window that pops-up, name the package \texttt{DictionaryCodeAdapter}, setting the source as \texttt{MocaTree} and
+target as \texttt{DictionaryLanguage} as depicted in Fig.~\ref{eclipse:newTGGProject}.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.9\textwidth]{eclipse_dictionaryCodeAdapterTGGProject}
-  \caption{create tgg}
+  \caption{Settings for our TGG}
   \label{eclipse:newTGGProject}
 \end{center}
 \end{figure}
 
-
-\item[$\blacktriangleright$] Before saving and building, initialize the correct generated code type by establishing the schema below (default is..)
+\item[$\blacktriangleright$] A \texttt{schema.sch} file should have automatically opened in the editor. To ensure this TGG package is successfully generated as
+a TGG, let's add something to this by creating our first correspondence type. Specify one between a tree's \texttt{Folder} instance, and a dictionary's
+\texttt{Library} as depicted in Fig~\ref{eclipse:firstSchema}. Don't forget -- you can use our auto-completion feature here!
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_schemaStart}
-  \caption{first rule}
+  \caption{A first correspondence type links between domains}
   \label{eclipse:firstSchema}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Save and build your project! Confirm a generated project was created in the \texttt{MyWorkingSet} node, and carry on!
+\item[$\blacktriangleright$] Save and build your project! Confirm the generated project has a solid black hexagon symbol, not a plug icon
+overlaying the folder. This shape indicates the \texttt{Dictionary} is a TGG Package, and is not a standard ECore project (the default generation type).
 
 \end{enumerate}
