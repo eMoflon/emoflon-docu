@@ -2,28 +2,30 @@
 \section{Model-To-Tree with TGGs}
 \genHeader
 
-For those who have read Part IV, do you remember what one of the goals of using TGGs was? We hoped that, by specifying one direction of the transformation, we
-could get the other free. That is exactly what's happened here! The final output of the forward transformation was the model specified in
-\texttt{tree.xmi\_fwd.xmi}. This was used as input in the reverse transformation, whose final tree output is \texttt{tree.xmi\_FWD.xmi\_BWD.xmi}. If our
-bidirectional transformation was successful, this tree should match the original text instance, \texttt{tree.xmi}. Let's compare the two.
+One powerful benefit of working with TGG transformations is that by specifiying one transformation (i.e., a forward transformation), we're able to get the
+opposite direction for free! Our example used a \texttt{tree.xmi} (\texttt{MocaTree}
+instance) input, transformed it forward into \texttt{tree.xmi\_fwd.xmi} (\texttt{Dictionary} instance), and used that result file in a backwards
+transformation to create the final tree output, \texttt{tree.xmi\_FWD.xmi\_BWD.xmi}, all without error! If our TGG was truly successful however,
+the starting and final files should be identical. Let's compare the two (Fig.~\ref{eclipse:comparingTreeModels}).
 
 \vspace{0.5cm}
 
 \begin{figure}[htpb]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_generatedBackwardsModel}
-  \caption{needs refinement\ldots}
-  \label{eclipse:generatedBkwrdMdl}
+  \caption{Not yet identical trees}
+  \label{eclipse:comparingTreeModels}
 \end{center}
 \end{figure}
 
 \vspace{0.5cm}
 
 It's close, but not perfect. You can see that some things need to be refined. The ``DICTIONARY'' and ``ENTRY'' labels, for example, are missing from the
-major nodes. You'll also notice that, as you scroll through each \texttt{Node}, the title and author have the correct \texttt{index} values of 0 and 1, but
-unfortunately, \emph{every} other node is also set to 0. We need to bind each \texttt{entry} to a value so avoid potential conflicts when executing our TGG
-transformation again, where our \texttt{NodeToDictionaryRule} assumes whatever node has this value must be the \texttt{authorNode}. Luckily, both of these are
-very simple, quick fixes. We just need some more attribute constraints!
+major nodes. We need to include an attribute constraint to bind these specific EString values. You'll also notice that, as you scroll through each
+\texttt{Node}, the \texttt{title} and \texttt{author} nodes have the correct \texttt{index} values of 0 and 1, but the remaining \texttt{entry} indices are also
+set to 0.
+We were only concerned with binding the title and author nodes in the forward direction, as we could assume that any other node with any other index value (2 and greater) was an
+\texttt{entryNode}. In the backwards direction however, this distinction is lost, which means we must introduce a custom attribute constraint.
 
 \jumpDual{m2tvis}{m2ttex}
 

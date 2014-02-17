@@ -1,5 +1,5 @@
 \newpage
-\section{Setting up the workspace \update check ALL loadings}
+\section{Setting up the workspace}
 \genHeader
 
 Nowadays, \emph{no one} writes a complex parser completely by hand. Although this is sometimes still necessary for syntactically challenging languages, most
@@ -16,19 +16,21 @@ into your workspace:
 \begin{description}
 
 % -- Develop Metamodel ---
-\item[Option 1: Develop] You can start a new metamodel project called \texttt{Dict\-ion\-aryLanguage} (Fig.~\ref{eclipse:startMetamodel}) and complete a
-\texttt{Dictionary} package. until it matches either Fig.~\ref{ea:dictLang} or Fig.~\ref{eclipse:dictLang}.\footnote{Review metamodel construction by
-working through Part II: Ecore}
+\item[Option 1: Develop] Start a new metamodel project called \texttt{Dict\-ion\-ary} (Fig.~\ref{eclipse:startMetamodel}) and complete a
+\texttt{DictionaryLanguage} package until it matches either Fig.~\ref{ea:dictLang} (Visual), or Figs.~\ref{eclipse:dictLang} \&
+\ref{eclipse:dictLangMetamodel} (Textual).\footnote{Review metamodel construction by working through Part II: Ecore}
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.65\textwidth]{eclipse_startDictionary}
-  \caption{Begin parser project}
+  \caption{Starting a new metamodel project}
   \label{eclipse:startMetamodel}
 \end{center}
 \end{figure}
 
 \newpage % ---
+
+\vspace*{1cm}
 
 \begin{figure}[htb]
 \begin{center}
@@ -38,20 +40,24 @@ working through Part II: Ecore}
 \end{center}
 \end{figure}
 
-\newpage % ---
+\vspace{2cm}
 
 \begin{figure}[htb]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_dictionaryExplorer}
-  \caption{Add a \texttt{DictionaryLanguage} EPackage to MyWorkingSet}
-  \label{eclipse:dictPackageExplorer}
+  \caption{Add a \texttt{DictionaryLanguage} EPackage to \texttt{MyWorkingSet}}
+  \label{eclipse:dictLang}
 \end{center}
 \end{figure}
+
+\newpage % ---
+
+\vspace*{2cm}
 
 \begin{figure}[h!]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_dictionaryMetamodel}
-  \caption{Building your \texttt{Dictionary} metamodel}
+  \caption{Completing your \texttt{DictionaryLanguage} metamodel}
   \label{eclipse:dictLangMetamodel}
 \end{center}
 \end{figure}
@@ -59,7 +65,7 @@ working through Part II: Ecore}
 \newpage % ---
 
 % -- Download Cheat Package ---
-\item[Option 2: Download] You can download our cheat package and load a \texttt{Dictionary} specification into your workspace using
+\item[Option 2: Download] You can download our cheat package and load the \texttt{Dictionary} specification of your choice into your workspace using
 the Eclipse ``New" wizard (Fig.~\ref{eclipse_cheatPackage}).
 
 \vspace{0.5cm}
@@ -72,30 +78,32 @@ the Eclipse ``New" wizard (Fig.~\ref{eclipse_cheatPackage}).
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Depending on your syntax choice, pressing \texttt{Finish} will load the relevant files into a 
-\texttt{Dictionary} project in your workspace.
-
 \vspace{2cm}
 
 % -- Export/Import ---
 \item[Option 3: Import] You can simply use the same files for \texttt{Dictionary} as you used in Part IV. Export the specification files, then import them
 into a new project in a fresh workspace. Read Part IV, Section 2 for a detailed review on how to do this in either syntax.
 
+\vspace{0.5cm}
+
+Please note that, despite our efforts to ensure uniformity between each of the options, your workspace may look different than ours depicted in the
+screenshots. As long as you have the correct and non-conflicting files however, the steps are identical.
+
 \end{description} 
 % -- End
 
 \newpage
 
-This metamodel is one of two that we'll be using to specify the transformation. After all, TGGs \emph{always} require a source and target graph, and this will
-represent our target. If you haven't already, we recommend inspecting \texttt{DictionaryLanguage} until you feel comfortable with what you'll be working with.
-Its important to understand which classes are connected.
+This \texttt{dictionaryLanguage} metamodel is one of two that we'll be using to specify the TGG transformation. After all, TGGs \emph{always} require separate
+source and target metamodels. If you haven't already, we recommend inspecting the files until you feel comfortable with what you'll be
+working with. Its important to understand which classes are connected.
 
-Our second metamodel will be eMoflon's standard \texttt{MocaTree} language. It basically combines concepts from a filesystem (folders and files), XML concepts
-(text-only nodes and attributes), and a general indexed containment hierarchy.\footnote{This is done with an index attribute, which can be used to demand a
-certain \emph{order} of nodes in an SDM which are otherwise not guaranteed by default.} It models a generic directory structure with a \texttt{Folder} able to
-connect to other \texttt{Folders}, and may contain an unlimited number of \texttt{File} elements. Its Java code is provided by the Eclipse plugin and
-automatically added to the build path.  We'll go into more detail about this later, so let's begin the next task: initialize the TGG project that will drive our
-model-to-text transformation.
+The second metamodel involved in the transformation will be eMoflon's standard \texttt{MocaTree} language. It basically combines concepts from a filesystem
+(folders and files), XML concepts (text-only nodes and attributes), and a general indexed containment hierarchy.\footnote{This is done with an index attribute,
+which can be used to demand a certain \emph{order} of nodes in an SDM which are otherwise not guaranteed by default.} It models a generic directory structure
+with a \texttt{Folder} able to connect to other \texttt{Folders}, and may contain an unlimited number of \texttt{File} elements. Its Java code is provided by
+the Eclipse plugin and automatically added to the build path, so it won't actually appear anywhere in your workspace.  We'll go into more detail about this
+later, so let's begin the next task: initializing the TGG project that will drive our model-to-text transformation.
 
 \jumpDual{initialize vis}{initialize tex}
 
