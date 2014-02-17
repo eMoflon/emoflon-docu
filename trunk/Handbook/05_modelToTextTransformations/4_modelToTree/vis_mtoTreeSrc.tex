@@ -1,32 +1,54 @@
 \newpage
 \hypertarget{m2tvis}{}
-\subsection{Refining the TGG Transformation}
+\subsection{Polishing the TGG Transformation}
 \visHeader
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Open \texttt{NodeToDictionaryRule} and update as depicted below (via attribute constraint). Is this in the right place? Should this
-be done before??
+\item[$\blacktriangleright$] Return to EA and open the \texttt{NodeToDictionaryRule} diagram, and add a constraint to \texttt{dictionaryNode} as depicted in
+Fig.~\ref{ea:NodeToDictionaryRuleUpdated}.
+
+\vspace{0.5cm}
 
 \begin{figure}[htp]
-\begin{center}
-  \includegraphics[width=\textwidth]{ea_updateNodeToDictionary}
+ \hspace{-1.5cm}
+  \includegraphics[width=1.2\textwidth]{ea_NodeToDictionaryRuleUpdated}
   \caption{updated NodeToDictionary}
-  \label{ea:NodeToDictionary_updated}
-\end{center}
+  \label{ea:NodeToDictionaryRuleUpdated}
 \end{figure}
 
-\item[$\blacktriangleright$] Similarly, open \texttt{ForAllEntry} in EA and update like so:
+\item[$\blacktriangleright$] Similarly, open the \texttt{ForAllEntryRule}. Add a \texttt{``ENTRY''} constraint to \texttt{entryNode}, and add a new
+\texttt{setDefaultNumber} constraint by pressing \texttt{Add} in the TGG constraint dialogue window, and completing each field as shown in
+Fig.~\ref{ea:setDefaultConstraintDialogue}.\footnote{ To review the purpose of constraints and discuss the significance of each of the attribute options, refer
+to Part IV, Section 4.7.}
+
+\vspace{0.5cm}
 
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=\textwidth]{ea_updateForAllEntry}
-  \caption{updated ForAllEntry}
-  \label{ea:ForAllEntry_updated}
+  \includegraphics[width=\textwidth]{ea_SetDefaultNumberConstraint}
+  \caption{Creating a custom constraint}
+  \label{ea:setDefaultConstraintDialogue}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] End comment. -- Don't forget to add SetDefaultNumberConstraint (Forgot before)
+\newpage
+
+\item[$\blacktriangleright$] If successful, your diagram should be udpated with the changes as seen in Fig.~\ref{ea:ForAllEntryRuleUpdated}.
+
+\vspace{0.5cm}
+
+\begin{figure}[htp]
+ \hspace{-2cm}
+  \includegraphics[width=1.4\textwidth]{ea_ForAllEntryRuleUpdated}
+  \caption{New changes to \texttt{ForAllEntryRule}}
+  \label{ea:ForAllEntryRuleUpdated}
+\end{figure}
+
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] Save and validate your updated \texttt{DictionaryCodeAdapter}, but don't run the TGG -- we haven't included any
+implementation for your constraint yet!
 
 \jumpSingle{common cspConstraint}
 

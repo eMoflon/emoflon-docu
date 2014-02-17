@@ -7,7 +7,8 @@ Before moving on, it should be quickly mentioned that our conventions and workfl
 previous step is a package that contains the tree-to-model transformation logic. This logic \emph{could} be integrated directly in the corresponding metamodel
 (\texttt{Dic\-tion\-ary\-Language}), but a separation makes sense here as there could be \emph{different} code adapters for the \emph{same} language.
 
-Anyway - The final thing our transformation needs in order to translate from a textual instance into a model is an ANTLR parser/unparser tool.
+The final thing this TGG transformation needs in order to complete the first step of translating from a textual filesystem instance into a model is the ANTLR
+parser/unparser tool.
 
 \begin{itemize}
 
@@ -19,7 +20,7 @@ Anyway - The final thing our transformation needs in order to translate from a t
 \begin{figure}[htpb]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{eclipse_contextAddParserUnparser}
-  \caption{figureCaption}
+  \caption{Adding a new parser to a project}
   \label{eclipse:contextParser}
 \end{center}
 \end{figure}
@@ -32,7 +33,7 @@ pressing \texttt{Finish}.
 \begin{figure}[htpb]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{eclipse_wizardParser}
-  \caption{figureCaption}
+  \caption{Project parser settings}
   \label{eclipse:wizardParser}
 \end{center}
 \end{figure}
@@ -41,12 +42,13 @@ pressing \texttt{Finish}.
 
 \item[$\blacktriangleright$] If everything was completed without error, parser and unparser stubs should generate and appear in the \texttt{src}
 package, where \texttt{ANTLR} automatically built the corresponding Java packages (Fig.~\ref{eclipse:generatedParser}). In addition, a new
-\texttt{in} folder should appear under \texttt{instances} which will store any source text files. Your setup is now complete!
+\texttt{in} folder should appear under \texttt{instances}. We'll explain later why this will and  must be the source of any text files but for now, your setup
+is complete!
 
 \begin{figure}[htpb]
 \begin{center}
   \includegraphics[width=0.4\textwidth]{eclipse_generatedParser}
-  \caption{figureCaption}
+  \caption{Generated parser package and stubs}
   \label{eclipse:generatedParser}
 \end{center}
 \end{figure}

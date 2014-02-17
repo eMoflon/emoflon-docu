@@ -3,28 +3,29 @@
 \subsection{Implementing SetDefaultNumber}
 \genHeader
 
-We've declared and used our custom \texttt{SetDefaultNumber} constraint, but we haven't given it any implementation code yet. If you haven't yet, save and build
-\texttt{DictionaryCodeAdapter} before continuing.
-
 \begin{itemize}
 
-\item[$\blacktriangleright$] Navigate to ``/src,'' where a new \texttt{csp.constraints} package was generated, and open \texttt{SetDefaultNumber.java}. Edit
-this file until it matches Fig.~\ref{eclipse:setDefaultImpl}.
+\item[$\blacktriangleright$]  Navigate and expand ``DictionaryCodeAdapter/src/csp.constraints.'' Open \texttt{SetDefaultNumber.java} and edit this file until it
+matches Fig.~\ref{eclipse:setDefaultImpl}.
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.9\textwidth]{eclipse_setDefaultNumberImplementation}
-  \caption{extra constraint impl}
+  \caption{Completing the custom \texttt{setDefaultNumber} constraint}
   \label{eclipse:setDefaultImpl}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Save, build, and run \texttt{TGGMain} one more time. The inital and final \texttt{tree} variants should now be nearly identical! If
-you're worried about some of the nodes being in the wrong order (such as an author at the bottom of the list), double-click on them and check their
-\texttt{index} properties. If everything has been done correctly every \texttt{entry} should be 2, each \texttt{author} should be 1, and each \texttt{title}
-should be 0.
+\item[$\blacktriangleright$] After saving, and run \texttt{TGGMain} one more time. The initial and final \texttt{tree} variants should now be nearly
+identical! The only difference should be that, instead of each \texttt{entry.index} value increasing (as seen in \texttt{tree.xmi}), each value should now be
+set to exactly 2. Their order may be different, depending on how the transformation processed them, but their \texttt{index} values should all  be correct.
 
-\item[$\blacktriangleright$] On a final note to end the model-to-text step, wasn't it great how easy and short this was? If we were to use another
-transformation set up (such as SDMs), we would have had to create independent rules for this backwards direction. Instead, TGGs gave us this transform for free!
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] Your transformation is nearly complete! The only remaining step is to unparse this final tree structure into an output filesystem.
+Before we move on however, let's reflect on how easy and short it was to implement this `backwards' transformation. If we were to use another method (such as
+SDMs), we would have had to create at least six more independent rules to handle this. Instead, TGGs gave us this direction for free!
 
 \end{itemize}

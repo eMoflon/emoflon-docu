@@ -1,19 +1,19 @@
 \newpage
 \hypertarget{t2m close}{}
-\subsection{Additional \texttt{author} handling}
+\subsection{Additional author handling}
 \genHeader
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] If your project's build succeeded, run \texttt{TGGMain} one more time. Both transformation directions should succeed! Let's examine
-the forward direction's output,  \texttt{tree.xmi\_FWD.xmi}, a little closer (Fig.~\ref{eclipse:generatedFwdTrsfm}).
+\item[$\blacktriangleright$] If your project's build succeeded, run \texttt{TGGMain} again and examine the forward direction's output, 
+\texttt{tree.xmi\_FWD.xmi}, a little closer (Fig.~\ref{eclipse:generatedFwdTrsfm}).
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_generatedForwardTransformation}
-  \caption{completed forward transformation}
+  \caption{\texttt{Dictionary} result of the forward transformation}
   \label{eclipse:generatedFwdTrsfm}
 \end{center}
 \end{figure}
@@ -32,48 +32,53 @@ eye on the small window below -- it states that there are two possible rules tha
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{eclipse_integratorAuthorChoice}
-  \caption{completed forward transformation}
+  \caption{The transformation is able to find two possible rules}
   \label{eclipse:fwdIntegrator}
 \end{center}
 \end{figure}
 
 \clearpage
 
-\item[$\blacktriangleright$] The transformation is presented with, at run-time, a choice between two rules to apply to the matched \texttt{authorNode}.
-This setup isn't reliable -- the choice is entirely random, meaning that your output is likely to be different each time you run \texttt{TGGMain}. You therefore
-need to force a decision, and there are two ways to do this: at run-time, where users will be able to decide for themselves what they would prefer to use, or at
-design-time, where you make the decision a part of the rule.
+\item[$\blacktriangleright$] At run-time, the transformation is presented with a choice between two rules to apply to the matched \texttt{authorNode}. The
+resulting choice is entirely random, meaning that your output is likely to be different each time you run \texttt{TGGMain}. For a stable transformation, you
+therefore need to force a preferred decision. There are two ways to do this: (1) at run-time, where users will be able to decide for themselves what they would
+prefer to use, or (2) at design-time, where you make the decision a part of the rule.
 
 \end{itemize}
 
 \subsubsection{Option1: Run-time decision}
 
 The advantage with this option is that you leave users with the choice of what they would like to do. Some users don't mind having multiple authors,
-while others prefer a miniamlist design. They can easily change their preference here.
+while others prefer a minimalist design. They can easily change their preference here, in a configuration file.
 
 \begin{itemize}
 
-\item Create a configuration file for your TGG; First: define \texttt{Author\-Config\-ur\-at\-or}. FIG. put in in the same package as your TGG. Use Eclipse's
-auto-completion to help -- don't make errors.
+\item[$\blacktriangleright$] Navigate to ``DictionaryCodeAdapter/org.moflon.tie.'' Right-click this package and create
+\texttt{Author\-Config\-ur\-at\-or.java}. Complete the file as described in Fig.~\ref{eclipse:authorConfig}. Be careful not to make any mistakes -- Eclipse's
+auto-completion can help you here.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_authorConfigurator}
-  \caption{comment}
+  \caption{Setting a preference for \texttt{NewAuthorRule}}
   \label{eclipse:authorConfig}
 \end{center}
 \end{figure}
 
 \clearpage
 
-\item Second: call it from \texttt{TGGMain}. FIG. Only need it in the forward transformation, so only put it once\ldots
+\item[$\blacktriangleright$] As you can see on line 22, this configuration prefers to create a new author if there are two applicable results. Users can edit
+this value to ``ExistingAuthorRule'' if they don't want repeated entries.
+
+\item[$\blacktriangleright$] You still need to include the configuration as part of \texttt{TGGMain}'s execution. This decision will only arise in the forward
+direction, so declare it once in \texttt{performForward} as depicted in Fig.~\ref{eclipse:editTGGMain}.
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_editTGGMain}
-  \caption{comment on the edit}
+  \caption{Invoke the configuration file to force a run-time decision}
   \label{eclipse:editTGGMain}
 \end{center}
 \end{figure}
@@ -82,39 +87,34 @@ auto-completion to help -- don't make errors.
 
 \subsubsection{Option 2: Design-time decision}
 
-This deicion is the actual infastracture of the transformation -- users cannot modify this (built-in). Do this by building a NAC to check to see if there is a
-contextual author element \emph{with the same email}. You don't want to create this NAC without the attribute constraint or else the transformation will create
-only \emph{one} author per library, which is obviously not the case for the \texttt{french} shelf.
+This preference is built into the actual design of the transformation -- users will not be able to modify this. This decision is is implemented as a NAC,
+checking to see if there is a contextual author element with the same email already present and connected to a \texttt{library}. You don't want to create this
+NAC without the attribute constraint on \texttt{email} or else the transformation will create only \emph{one} author per library, which is obviously not the
+desired result for the \texttt{french} shelf.
 
 \begin{itemize}
 
-\item Depending on your syntax, either update the \texttt{NewAuthorRule} diagram (Visual; Fig.~\ref{ea:existingAuthorNAC}) or the \texttt{ForAllNewAuthor.tgg} 
-(Textual; Fig.~\ref{eclipse:existingAuthorNAC}).
+\item[$\blacktriangleright$] Open and update either \texttt{NewAuthorRule} (Visual) as shown in Fig.~\ref{ea:existingAuthorNAC} or edit the target in 
+\texttt{ForAllNewAuthorRule.tgg} (Textual) as depicted in Fig.~\ref{eclipse:existingAuthorNAC}.
+
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{ea_existingAuthorNAC}
-  \caption{comment}
+  \caption{Add a NAC to \texttt{NewAuthorRule}}
   \label{ea:existingAuthorNAC}
 \end{center}
 \end{figure}
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{eclipse_targetNAC}
-  \caption{comment}
+  \includegraphics[width=0.7\textwidth]{eclipse_ForAllNewAuthorNAC}
+  \caption{Add a NAC to \texttt{ForAllNewAuthorRule}}
   \label{eclipse:existingAuthorNAC}
 \end{center}
 \end{figure}
 
-
-% Back together, run TGGMain again. 
-\newpage
-
 \item[$\blacktriangleright$] Save and rebuild the TGG. Run the transformation a few times, using the integrator to confirm that your preference is executed each
-time.
-
-\item[$\blacktriangleright$] Contratulations -- You have now completed a successful Tree-To-Model transformation! The next section begins the backwards
-transformation, from Model-To-Text.
+time. 
 
 \end{itemize}
