@@ -1,27 +1,29 @@
 \genHeader
 
-Welcome to Part V, an introduction to unidirectional model-to-text transformations via Triple Graph Grammars (TGGs). If you're just joining us in this part
-without completing any of the previous, be aware that while we do include references to relevant parts where required, we recommend working through
-Part I for the required set up and installation instructions to ensure eMoflon is working correctly, and strong encourage completing Part IV to master
-of basics of TGGs. That Part will be a key reference if you're ever unsure how to complete something here.
+Welcome to Part V, an introduction to unidirectional transformations via Triple Graph Grammars (TGGs). If you're just joining our handbook in
+this part, and haven't completed any of the previous parts, we recommend working through at least Part I for the required setup and installation instructions to
+ensure eMoflon is working correctly, and strongly encourage finishing Part IV to master the basics of TGGs. That part will be a key reference if you're ever
+unsure how to use a TGG feature here. Otherwise, we have assumed as little as possible from previous parts before that and include appropriate
+references where necessary.
 
-As we've mentioned, the goal of Part V is to continue using TGGs, but in a different context. In previous parts, we created \texttt{LeitnersLearningBox}, a
-fully functioning memorization tool that stored cards (with keywords on the front, and definitions on the back) in different partitions, which could then move
-throughout the box based on a set of rules. This metamodel was used in Part IV as a source language in a \emph{bidirectional} TGG transformation, where
-each card was translated into an entry (with a sole content attribute storing all of a card's information) into a single dictionary container. In this part,
-instead of transforming elements from one instance model into another, we want to perform a \emph{unidirectional} transformation from a textual instance of a
-model into a \texttt{Dictionary}. We'll use a popular \texttt{ANTLR} parser and unparser, then define a set of rules to handle the information using eMolfon's
-standard \texttt{MocaTree} language.
+As we've mentioned, we introduced the basics of TGGs in Part IV and plan to expand that knowledge here. In parts before that, we created
+\texttt{LeitnersLearningBox}, a memorization tool that stored cards (with keywords on the front, and definitions on the back) in different partitions, which
+could then move throughout the box based on a set of rules. This metamodel was used in Part IV as a source language in a
+\emph{bidirectional}\define{Bidirectional Transformation}  TGG transformation, where each card was translated into an entry (with a sole content attribute
+storing all of a card's information) into a single dictionary container. In this part, instead of transforming elements from one instance model into another, we
+want to perform a \emph{unidirectional}\define{Unidirectional Trans\-form\-at\-ion} transformation from a textual instance of a model into a
+\texttt{Dictionary}. We'll use a popular \texttt{ANTLR} parser and unparser, then define a set of rules to handle the information using eMoflon's standard
+\texttt{MocaTree} language.
 
-When establishing a model-driven solution, \emph{model transformations}\define{Model~Transformation} usually play a central and important role. This could be
-for specifying dynamic semantics (as done with our learning box) or, more generally, for transforming a certain model to another model to achieve some goal
-(i.e., consistency, adding or abstracting from platform details, \ldots).
+When establishing a model-driven solution, \emph{model transformations} usually play a central and important role. They could be used for specifying dynamic
+semantics (as done with our learning box) or, more generally, for transforming a certain model to another model to achieve some goal (i.e., consistency, adding
+or abstracting from platform details, \ldots).
 
-There are many \emph{types} of model transformations and \cite{CH03,Mens_Gorp_2006} give a nice and detailed classification along a set of different
-dimensions.\define{Model-to-~Text~Trans\-form\-ations} In this chapter, we shall explore some of these dimensions and learn how \emph{model-to-text}
-transformations can be achieved with a nice mixture of \emph{string grammars} and \emph{graph grammars}.
+There are many \emph{types} of model transformations and \cite{CH03,Mens_Gorp_2006} give a nice and detailed classification along a set of different dimensions.
+In this part, we shall explore some of these dimensions and learn how \emph{model-to-text} transformations can be achieved with a nice mixture of \emph{string
+grammars} and \emph{graph grammars}.
 
-For the rest of the chapter a model transformation is to be denoted as:
+For the rest of this part, a model transformation is to be denoted as:
 \begin{displaymath}
  	\Delta: m_{src} \rightarrow m_{trg}
 \end{displaymath}
@@ -32,22 +34,20 @@ $\Delta$ is \emph{endogenous}\define{Endogenous}, if $m_{src}$ and $m_{trg}$ con
 
 $\Delta$ is \emph{exogenous}\define{Exogenous}, if $m_{src}$ and $m_{trg}$ are instances of different metamodels. For example: A dictionary is used to learn new
 words (similar to a learning box), but is more suitable for use as a reference (i.e., one already knows the words, but may occasionally need a specific
-definition). In contrast, a learning box is geared towards the actual memorization process. Therefore, once could start with a learning box and, once all the
-words have been memorized, transform it into a personalised dictionary for future reference. It too many words become forgotten, the dictionary should be
-transformed \emph{back} to a learning box. The learning box to dictionary transformation and vice-versa are therefore examples of \emph{exogenous}
-transformations, and we will create this by complementing our \texttt{LeitnersLearningBox} with a simple language for \texttt{Dictionary}.
+definition). In contrast, a learning box is geared towards the actual memorization process. Therefore, one could start with a learning box and, once all the
+words have been memorized, transform it into a personalised dictionary for future reference. If too many words become forgotten, the dictionary should be
+transformed back to a learning box. The learning box to dictionary transformation and vice-versa are therefore examples of \emph{exogenous}
+transformations, and we created this by complementing our \texttt{LeitnersLearningBox} with a simple language for \texttt{Dictionary} in Part IV.
 
-$\Delta$ operates \emph{in-place}\define{In-place Model~Trans\-form\-ation} if $m_{src}$ is \emph{destructively} transformed to $m_{trg}$. The SDMs for our
-learning box (e.g. \texttt{grow} or \texttt{check}) are examples of \emph{in-place} transformations as they perform destructive changes directly to a source
-model, transforming it into the target model.
+$\Delta$ operates \emph{in-place}\define{In-place} if $m_{src}$ is \emph{destructively} transformed to $m_{trg}$. The SDMs for our learning box (e.g.
+\texttt{grow} or \texttt{check}) are examples of \emph{in-place} transformations as they perform destructive changes directly to a source model, thus
+transforming it into the target model.
 
-Finally, $\Delta$ is \emph{out-place}\define{Out-place Model~Trans\-form\-ation} if $m_{src}$ is left intact and is unchanged by the transformation which
-creates $m_{trg}$. The learning box to dictionary transformation and vice-versa (that we will implement in this part) are examples of \emph{out-place}
-transformations.
+Finally, $\Delta$ is \emph{out-place}\define{Out-place} if $m_{src}$ is left intact and is unchanged by the transformation which creates $m_{trg}$. A file
+instance to dictionary transformation and vice-versa (which we will implement in this part) are examples of \emph{out-place} transformations.
 
 Although \emph{endogenous} + \emph{in-place} is the natural case for SDMs (as was the case for our learning box), \emph{exogenous} and/or \emph{out-place}
-transformations can still be specified. Using the basics introduced in Part IV: Triple Graph Grammars however, we will implement this latter type with
-TGGs.
+transformations can still be specified. Using the basics introduced in Part IV, we will implement this latter type with TGGs.
  
 \newpage
  
@@ -61,19 +61,19 @@ always \emph{out-place}.  Why?
 
 \end{enumerate}  
 
-It should be noted that $\Delta$ \define{Abstraction Levels}can be further classified as \emph{horizontal} if $m_{src}$ and $m_{trg}$ are on the same
-\emph{abstraction level}, or \emph{vertical} if they are not. Unfortunately, this \emph{abstraction level} dimension is a bit `fuzzy,' but we will explore and
-work on these different levels by establishing a textual concrete syntax for \texttt{Dictionary}. We shall learn how graph transformations can be used in
-combination with parser generators and template languages to implement model-to-text and text-to-model transformations that are typically \emph{vertical} (text
-is normally on a lower abstraction level than a model). On the other hand, the overall learning box to dictionary transformation is \emph{horizontal} as the
-models represent the \emph{same} information differently, and can thus be considered to be on the same abstraction level.
+It should be noted that $\Delta$ can be further classified as \emph{horizontal} if $m_{src}$ and $m_{trg}$ are on the same \emph{abstraction level}, or
+\emph{vertical} if they are not. Unfortunately, this \emph{abstraction level} dimension is a bit `fuzzy,' but we will explore and work on these different levels
+by establishing a textual concrete syntax for \texttt{Dictionary}. We shall learn how graph transformations can be used in combination with parser generators
+and template languages to implement model-to-text and text-to-model transformations that are typically \emph{vertical} (text is normally on a lower abstraction
+level than a model). On the other hand, the overall learning box to dictionary transformation completed in the previous part is \emph{horizontal} as the models
+represent the \emph{same} information differently, and can thus be considered to be on the same abstraction level.
 
 In the following, the \emph{\bf Mo}flon \emph{\bf C}ode \emph{\bf A}dapter (\emph{Moca}) framework refers to:
 \begin{enumerate}
 
  \item The approach we use to integrate string grammars, graph grammars and template languages, 
 
- \item how we separate the transformation into different modular steps, 
+ \item how we separate a transformation into different modular steps, 
 
  \item the use of a generic and simple tree to consolidate different platforms, and 
 
@@ -93,7 +93,7 @@ In the following, the \emph{\bf Mo}flon \emph{\bf C}ode \emph{\bf A}dapter (\emp
 % \end{center}
 % \end{figure} 
 
-Before starting, let's quickly summarise the transformation we hope to complete. We want to be able to take a generic filesystem containing some plain text
-files and translate them into a new model. Not only will this require the contents of those files be to formatted a certain way so they may be parsed, the
-transformation will not be able to go directly from the files to a instance model. Instead, it will need to be read to and from a tree structure. Thus, our forward and backwards transformations will each
-be broken into two steps: text-to-tree, tree-to-model, and vice versa.
+In summary, the goal of the model transformation we will complete in this part is to take a generic filesystem containing some plain text files and
+translate them exogenously into a new model. Not only will this require the contents of those files be to formatted a certain way so they may be parsed, the
+transformation will not be able to go shift directly from its concrete syntax into our desired dictionary model. First, we'll complete a vertical transformation
+from our input to a Moca tree, then complete a horizontal transformation from the tree to model, and vice versa.
