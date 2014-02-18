@@ -3,16 +3,15 @@
 \subsection{Setting up the Parser}
 \genHeader
 
-Before moving on, it should be quickly mentioned that our conventions and workflow state that the \emph{code adapter} package that we established in the
-previous step is a package that contains the tree-to-model transformation logic. This logic \emph{could} be integrated directly in the corresponding metamodel
+Before moving on, it should be quickly mentioned that our conventions and workflow state that the \emph{code adapter} package we established in the
+previous step is a package that contains tree-to-model transformation logic. This logic \emph{could} be integrated directly in the corresponding metamodel
 (\texttt{Dic\-tion\-ary\-Language}), but a separation makes sense here as there could be \emph{different} code adapters for the \emph{same} language.
 
-The final thing this TGG transformation needs in order to complete the first step of translating from a textual filesystem instance into a model is the ANTLR
-parser/unparser tool.
+The final thing our workspace needs in order to begin the transformation is to generate the ANTLR parser/unparser.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Right-click on \texttt{DictionaryCodeAdapter} and navigate to ``eMolfon/ Add Parser/Unparser''
+\item[$\blacktriangleright$] Right-click on \texttt{DictionaryCodeAdapter} and navigate to ``eMoflon/ Add Parser/Unparser''
 (Fig~\ref{eclipse:contextParser}).
 
 \vspace{0.5cm}
@@ -40,9 +39,9 @@ pressing \texttt{Finish}.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] If everything was completed without error, parser and unparser stubs should generate and appear in the \texttt{src}
+\item[$\blacktriangleright$] If everything executed without error, parser and unparser stubs should generate and appear in the \texttt{src}
 package, where \texttt{ANTLR} automatically built the corresponding Java packages (Fig.~\ref{eclipse:generatedParser}). In addition, a new
-\texttt{in} folder should appear under \texttt{instances}. We'll explain later why this will and  must be the source of any text files but for now, your setup
+\texttt{in} folder should appear under \texttt{instances}. We'll explain later why this will be the source of any text files but for now, your setup
 is complete!
 
 \begin{figure}[htpb]
