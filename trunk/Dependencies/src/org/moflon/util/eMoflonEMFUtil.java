@@ -456,7 +456,10 @@ public class eMoflonEMFUtil
       {
          object.eUnset(feature);
       }
-      for (Setting setting : getInverseReferences(object))
+      
+      ArrayList<Setting> settings = new ArrayList<>();
+      settings.addAll(getInverseReferences(object));
+      for (Setting setting : settings)
       {
          EStructuralFeature feature = setting.getEStructuralFeature();
          removeOppositeReference(setting.getEObject(), object, feature.getName());
