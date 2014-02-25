@@ -78,7 +78,12 @@ Export-Package: antlr,
  org.moflon.sdm.testing.testRequirementCoverage,
  org.moflon.tracing.sdm,
  org.moflon.tracing.sdm.events,
- org.moflon.util
+ org.moflon.util,
+ org.stringtemplate.v4,
+ org.stringtemplate.v4.compiler,
+ org.stringtemplate.v4.debug,
+ org.stringtemplate.v4.gui,
+ org.stringtemplate.v4.misc
 Bundle-ClassPath: lib/log4j.jar,
  .,
  lib/commons-io-2.0.jar,
@@ -86,7 +91,8 @@ Bundle-ClassPath: lib/log4j.jar,
  lib/RuntimeTools.jar,
  lib/commons-io-2.0-sources.jar,
  lib/commons-lang3-3.0-beta-sources.jar,
- lib/antlr-3.3-complete.jar
+ lib/antlr-3.3-complete.jar,
+ lib/antlr-4.1-complete.jar
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
  org.eclipse.jdt.core,
