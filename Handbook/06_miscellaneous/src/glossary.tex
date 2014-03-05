@@ -8,6 +8,7 @@
 {\Huge \bf Glossary}
 \vspace{1cm}
 
+\normalsize{}
 
 \begin{description}
 
@@ -28,6 +29,8 @@ Used to set attributes of object variables.
 
 \item[Attribute Constraint]
 A non-structural contraint that must be satisfied for a story pattern to match. Can be either an assertion or assignment.
+
+\item[Bidirectional Transformation]  Used in situations where two (or more) models of different types but same information must be kept consistent.
 
 \item[Binding State]
 Can be either \emph{bound} or \emph{unbound/free}. See \emph{Bound vs Unbound}.
@@ -62,8 +65,15 @@ Defines the dynamic behavior for members of a language.
 \item[EA]
 Enterprise Architect; The UML visual modeling tool used as our visual frontend.
 
+\item[EBNF] Extended Backus-Naur Form; Notation technique of context-free grammars, used to describe the syntax of a language exactly.
+
 \item[Edge Guards]
 Refine the control flow in an activity by guarding activity edges with a condition that must be satisfied for the activity edge to be taken.
+
+\item[Endogenous] Transformations between models expressed in the same language (i.e., same input/output metamodel). May only be an \emph{in-place}
+transformation.
+ 
+\item[Exogenous] Transformations between models expressed in different languages (i.e., unique metamodel instances). May only be \emph{out-place}.
 
 \item[Grammar] 
 A set of rules that can be used to generate a language. 
@@ -73,6 +83,8 @@ A grammar that describes a graph language. This can be used instead of a metamod
 
 \item[Graph Triples] 
 Consist of connected source, correspondence, and target components.
+
+\item[In-place Transformation] Perform destructive changes directly to the source model. May only be \emph{endogenous}.
 
 \item[Link or correspondence Metamodel] 
 Comprised of all correspondence types.
@@ -117,6 +129,8 @@ Used to reference other object variables.
 The process of deriving step-by-step executable instructions from a declarative specification that just states what the outcome should
 be but not how to achieve it.
 
+\item[Out-place Transformation] Source model is left intact by the transformation which creates the output model. Can be \emph{endogenous} or \emph{exogenous}.
+
 \item[Parameter Expression]
 Used to refer to method parameters.
 
@@ -144,6 +158,8 @@ The graph that defines all types and relations that form a language. Equivalent 
 
 \item[TGG Schema] 
 The metamodel triple consisting of the source, correspondence (link), and target metamodels.
+
+\item[Unidirectional Transformation] Takes a single input model type and produces the same output model type.
 
 \item[Unification]  
 An extension of the object oriented ``Everything is an object'' principle, where everything is regarded as a model, even the metamodel which defines other
