@@ -7,12 +7,12 @@ Before moving on, it should be quickly mentioned that our conventions and workfl
 previous step is a package that contains tree-to-model transformation logic. This logic \emph{could} be integrated directly in the corresponding metamodel
 (\texttt{Dic\-tion\-ary\-Language}), but a separation makes sense here as there could be \emph{different} code adapters for the \emph{same} language.
 
-The final thing our workspace needs in order to begin the transformation is to generate the ANTLR parser/unparser.
+With our graph grammar finally defined, we can finish setting up our transformation project by generating the ANTLR parser/unparser.
 
 \begin{itemize}
 
 \item[$\blacktriangleright$] Right-click on \texttt{DictionaryCodeAdapter} and navigate to ``eMoflon/ Add Parser/Unparser''
-(Fig~\ref{eclipse:contextParser}).
+(Fig~\ref{eclipse:contextParser}).\footnote{For presentation purposes, this context menu screenshot has been edited}
 
 \vspace{0.5cm}
 
@@ -37,7 +37,6 @@ pressing \texttt{Finish}.
 \end{center}
 \end{figure}
 
-\vspace{0.5cm}
 
 \item[$\blacktriangleright$] If everything executed without error, parser and unparser stubs should generate and appear in the \texttt{src}
 package, where \texttt{ANTLR} automatically built the corresponding Java packages (Fig.~\ref{eclipse:generatedParser}). In addition, a new

@@ -1,19 +1,35 @@
 \subsection{Advanced search}
 \label{sect:appendix_adv_search}
 
-EA offers an even more advanced search capability using SQL\footnote{For some detailed insights to the general database schema used by EA cf. \\
-\url{http://www.sparxsystems.com.au/downloads/corp/scripts/SQLServer_EASchema.sql}}.
-To make use of this option, go to the model search dialog (\mbox{Ctrl+Alt+A}). Click on the ``Builder'' button and switch to the SQL-tab. Here you can 
-formulate any query on the underlying database. The SQL-editor helps you with syntax-highlighting and auto-completion. Here are some basic examples:
+EA offers an even more advanced search capability using SQL.\footnote{For some detailed insights to the general database schema used by EA cf. \\
+\url{http://www.sparxsystems.com.au/downloads/corp/scripts/SQLServer_EASchema.sql}}
 
-\begin{enumerate}
+\begin{itemize}
+
+\item[$\blacktriangleright$] To use this, first open the model search window via either the menu bar or by pressing \texttt{ctrl + alt + A}.
+
+\item[$\blacktriangleright$] Click the ``Builder'' button, and switch to the \texttt{SQL} tab (Fig.~\ref{ea:builderSQLtab}). 
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=\textwidth]{ea_activateSQLSearch}
+  \caption{Advanced project search window}  
+  \label{ea:builderSQLtab}
+\end{center}
+\end{figure}
+
+\end{itemize}
+
+Here you can formulate any query on the underlying database. The SQL-editor helps you with syntax-highlighting and auto-completion. Here are some basic
+examples to get you started:
+
+\begin{itemize}
+
 \item[$\blacktriangleright$] To find all eClasses
 \begin{lstlisting}[frame=single,framerule=0pt]
 SELECT * FROM t_object
 WHERE Object_Type='Class' AND Stereotype='eclass';
 \end{lstlisting}
-
-\newpage
 
 \item[$\blacktriangleright$] To find all associations
 \begin{lstlisting}[frame=single,framerule=0pt]
@@ -65,9 +81,9 @@ WHERE t_connector.Connector_Type='Generalization'
 ...
 \end{lstlisting}
 
-\end{enumerate}
+\end{itemize}
 
-To run the search, either hit the run button in the upper left corner of the editor (it shows a triangular shaped ``play'' pictogram) or punch \texttt{F5} on
-your keyboard.
+To run the search, either hit the \texttt{Run SQL} button in the upper left corner of the editor toolbar (it shows a triangular shaped ``play'' icon), or
+press \texttt{F5} on your keyboard.
 
 \clearpage

@@ -2,35 +2,39 @@
 \section{Setting up your workspace}
 \genHeader
 
-The first thing we need to establish is the parser that will operate on our transformation's textual concrete syntax. Nowadays, \emph{no one} writes a complex
-parser completely by hand. Although this is sometimes still necessary for syntactically challenging languages, most parsers can be quickly whipped up using
-context-free \emph{string grammars}.\footnote{For simple cases, \emph{regular expressions} can also be used} These are typically written in Extended Backus-Naur
-Form (EBNF)\define{EBNF}. ANTLR~\cite{ANTLR} is a tool that can generate a parser from this compact specification for a host of target programming languages,
-including Java. Although ANTLR might not be the most efficient or powerful parser generator, it's open-source, well documented and supported, and allows for a
-pragmatic and elegant fallback to Java when things get nasty and we have to resort to some dirty tricks to get our job done.
+Nowadays, \emph{no one} writes a complex parser completely by hand. Although this is sometimes still necessary for syntactically challenging languages, most
+parsers can be quickly whipped up using context-free \emph{string grammars}.\footnote{For simple cases, \emph{regular expressions} can also be used} These are
+typically written in Extended Backus-Naur Form (EBNF)\define{EBNF}. ANTLR~\cite{ANTLR} is a tool that can generate a parser from this compact specification for
+a host of target programming languages, including Java. Although ANTLR might not be the most efficient or powerful parser generator, it's open-source, well
+documented and supported, and allows for a pragmatic and elegant fallback to Java when things get nasty and we have to resort to some dirty tricks to get our job done. 
 
-\vspace{0.5cm}
+Our example needs a parser to complete the transformation step between a concrete textual file instance and a standard model we'll discuss in a few moments.
+It can only generate an editable parser/lexer from an established grammar however, which means we need to initialize our TGG project. We begin by loading a
+\texttt{DictionaryLanguage} metamodel into the workspace. The dictionary is a relatively simple device, so you have three ways to do this:
 
-ANTLR generates its the parser from a predetermined grammar, so we need to have our \texttt{DictionaryLanguage} metamodel defined before attempting to handle
-our textual input. The dictionary is a relatively simple device, so you have three options for loading this metamodel into your workspace:
 
 \begin{description}
-
 % -- Develop Metamodel ---
-\item[Option 1: Develop] Open Eclipse in an empty workspace, and start a new metamodel project called \texttt{Dict\-ion\-ary}
+\item[Option 1: Develop] 
+
+
+\item[$\blacktriangleright$] \hspace{0.3cm} Open Eclipse in an empty workspace, and start a new metamodel project called \texttt{Dict\-ion\-ary}
 (Fig.~\ref{eclipse:startMetamodel}).\footnote{Refer to Part II to review metamodel construction} 
 
-Complete a \texttt{DictionaryLanguage} in the syntax you'd like to learn about until it matches either Fig.~\ref{ea:dictLang} (Visual), or
-Figs.~\ref{eclipse:dictLang} \& \ref{eclipse:dictLangMetamodel} (Textual).\footnote{Read Part I, Section 1 for a brief comparison of eMoflon's two
+
+\item[$\blacktriangleright$] \hspace{0.3cm} Complete a \texttt{DictionaryLanguage} in your preferred syntax until it matches either Fig.~\ref{ea:dictLang}
+(Visual), or Figs.~\ref{eclipse:dictLang} \& \ref{eclipse:dictLangMetamodel} (Textual).\footnote{Read Part I, Section 1 for a brief comparison of eMoflon's two
 speicification types}
+
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{eclipse_startDictionary}
+  \includegraphics[width=0.8\textwidth]{eclipse_startDictionary}
   \caption{Start a new \texttt{Dictionary} metamodel project}
   \label{eclipse:startMetamodel}
 \end{center}
 \end{figure}
+
 
 \begin{figure}[htbp]
   \hspace{-1cm}
@@ -60,9 +64,13 @@ speicification types}
 
 \newpage % ---
 
+
 % -- Download Cheat Package ---
-\item[Option 2: Download] You can download our cheat package and load the \texttt{Dictionary} specification of your choice into your workspace using
-the Eclipse ``New" wizard (Fig.~\ref{eclipse_cheatPackage}).
+\item[Option 2: Download] 
+
+
+\item[$\blacktriangleright$] \hspace{0.3cm} Download the Part V `cheat package' by selecting ``New" on the toolbar, and loading the \texttt{Dictionary} syntax
+of your choice into your workspace (Fig.~\ref{eclipse_cheatPackage}).
 
 \vspace{0.5cm}
 
@@ -76,30 +84,34 @@ the Eclipse ``New" wizard (Fig.~\ref{eclipse_cheatPackage}).
 
 \vspace{0.5cm}
 
+
 % -- Export/Import ---
-\item[Option 3: Import] You can simply use the same files for \texttt{Dictionary} as you used in Part IV. Export the specification files, then import them
-into a new project in a fresh workspace. Read Part IV, Section 2 for a detailed review on how to do this in either syntax.
+\item[Option 3: Import]
 
-\vspace{0.5cm}
 
-Please note that, despite our efforts to ensure uniformity between each of the options, your workspace may look different than ours depicted in the
-screenshots. As long as you have the correct and non-conflicting files however, the steps are identical.
+\item[$\blacktriangleright$] \hspace{0.3cm} Use the same files for \texttt{Dictionary} as completed in Part IV. Export the specification files from the existing
+project, then import them into a new one in a fresh workspace. Read Part IV, Section 2 for a detailed review on how to do this in either syntax.
 
-\end{description} 
 % -- End
+\end{description}
+
+We recommend reviewing the dictionary metamodel until you feel comfortable with what you'll be working with. It's important to understand how the classes are
+constructed and connected. 
+
+Please note that, despite our efforts to ensure uniformity between each of the options, your workspace may look different than ours
+depicted in the screenshots. As long as you have the correct and non-conflicting files however, the steps are identical.
+
 
 \newpage
 
-We're not quite done. This \texttt{dictionaryLanguage} metamodel is one of two that we'll be using to specify the TGG transformation. After all, TGGs
-\emph{always} require separate source and target metamodels. If you haven't already, we recommend inspecting the dictionary grammar until you feel comfortable
-with what you'll be working with. Its important to understand which classes are connected.
-
-The second metamodel involved in the transformation will be eMoflon's standard \texttt{MocaTree} language. It basically combines concepts from a filesystem
-(folders and files), XML concepts (text-only nodes and attributes), and a general indexed containment hierarchy.\footnote{This is done with an index attribute,
-which can be used to demand a certain \emph{order} of nodes in an SDM which are otherwise not guaranteed by default.} It models a generic directory structure
-with a \texttt{Folder} able to connect to other \texttt{Folders}, and may contain an unlimited number of \texttt{File} elements. Its Java code is provided by
-the Eclipse plugin and automatically added to the build path, so it won't actually appear anywhere in your workspace.  We'll go into more detail about this
-later, so let's begin the next task: initializing the TGG project that will drive our model-to-text transformation.
+The \texttt{dictionaryLanguage} metamodel is only one of two that we'll be using to specify the TGG transformation. After all, TGGs \emph{always} require
+separate source and target metamodels. The second metamodel involved in the transformation will be eMoflon's standard \texttt{MocaTree} language. It basically
+combines concepts from a filesystem (folders and files), XML concepts (text-only nodes and attributes), and a general indexed containment
+hierarchy.\footnote{This is done with an index attribute, which can be used to demand a certain \emph{order} of nodes in an SDM which are otherwise not
+guaranteed by default.} It models a generic directory structure with a \texttt{Folder} able to connect to other \texttt{Folders}, and may contain an unlimited
+number of \texttt{File} elements. Its Java code is provided by the Eclipse plugin and automatically added to the build path, so it won't actually appear
+anywhere in your workspace for you to inspect.  We'll go into more detail about this later, so let's officially initialize the TGG project that will drive our
+Model-to-Text transformation.
 
 \jumpDual{initialize vis}{initialize tex}
 

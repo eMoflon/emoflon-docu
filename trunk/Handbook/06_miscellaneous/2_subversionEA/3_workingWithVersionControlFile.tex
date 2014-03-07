@@ -1,0 +1,25 @@
+\subsection{Working with a version-controlled EAP file}
+
+\begin{enumerate}
+  \item[$\blacktriangleright$] A \texttt{Check Out} retrieves the lock for a certain package and gives you exclusive access, i.e., no one else can change the
+  package. Very important: if subpackages are also under version control, they are not affected by checking out the ``super''-package and remain locked.
+  A \texttt{Check Out} also updates the package to the latest version.
+
+\item[$\blacktriangleright$] A \texttt{Check In} commits your work to the server and gives up the lock on the package so others can work on it.
+If you do not want to commit your changes, you can just use \texttt{Undo Check Out...} to revert all local changes.
+
+\item[$\blacktriangleright$]  The corresponding \texttt{..Branch} options perform the actions for the current package and all subpackages.
+Please note, this has nothing to do with ``branching'' in normal SVN lingo.
+
+\item[$\blacktriangleright$] \texttt{Get Latest/Get All Latest} retrieves the latest version of the selected package / all packages.
+This is basically an update but does not retrieve the lock for any package.
+
+\item[$\blacktriangleright$] Conversely, \texttt{Put Latest} saves all your changes without giving up any locks.
+
+\item[$\blacktriangleright$] \texttt{Compare with controlled version} can be used to review incoming changes.
+Green elements will be added, red will be deleted.
+
+\item[$\blacktriangleright$] \texttt{File History} gives you a summary of all commits made while you were lying on the beach.
+For a useful file history, always use meaningful commit statements when checking in!
+A date stamp is created automatically.
+\end{enumerate}
