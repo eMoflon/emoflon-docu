@@ -1,32 +1,34 @@
 \newpage
 \subsection{Excluding certain projects from the export}
 
-Sometimes it might be necessary to be able to exclude projects from the export (\texttt{Export All to Workspace} option).
-This might be (i) because the project is still work in progress and simply not yet ready to be exported, (ii) because the complete project is present in your
-Eclipse workspace but has not been modelled completely in EA and you wish to do this gradually on demand (this is currently the recommended strategy as we do
-not have an import yet), (iii) because the project is not meant to be present in your Eclipse workspace as generated code and is instead provided via a plugin
-(this is usually the case for standard metamodels like Ecore, UML etc.), or (iv) because the project is rather large and pretty stable, and you do not want to
-wait each time for an unnecessary export (and you do not wish to click and export the other projects individually).
-Whatever the reason, you can achieve this by setting a certain \emph{tagged value} of the project to be ignored:
+You may find it sometimes necessary to exclude certain projects from your diagram export (such as the \texttt{MocaTree} model used in Part V).
+Some reasons for this could be (i) because the project is still a work in progress and simply not ready to be exported, (ii) because the
+complete project is present in the Eclipse workspace but has not been modelled completely in EA, and you wish to do this gradually on-demand, (iii) because the
+project is not meant to be present in your Eclipse workspace as generated code and is instead provided via a plugin (this is usually the case for standard
+metamodels like Ecore, UML etc.), or (iv) because the project is rather large and stable and you do not want to wait for EA to process a known, unchanging
+model. Whatever the reason, you can achieve prevent uneccessary exports by setting a certain \emph{tagged value} of the project.
 
 \begin{enumerate}
-\item[$\blacktriangleright$]Select ``View/Tagged Values'' from the menu bar (Fig.~\ref{fig_ignoreExportingProject01}).
+
+\item[$\blacktriangleright$] Open your project in EA, and navigate to ``View/Tagged Values'' from the menu bar (Fig.~\ref{ea:view/Taggedvalues}).
+
 \begin{figure}[htbp]
-\begin{center}  \includegraphics[width=0.55\textwidth]{ignoreExportingProject1}
-  \caption{view the TaggedValue}  
-  \label{fig_ignoreExportingProject01}
+\begin{center}  \includegraphics[width=0.55\textwidth]{ea_viewTaggedValues}
+  \caption{Opening the tagged values view}  
+  \label{ea:view/Taggedvalues}
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] A tagged value \emph{Moflon::Export} should already be present and be set to \texttt{true} per default
-(Fig.~\ref{fig_ignoreExportingProject02}). If this is not the case then create it afresh. If you want the project to be ignored by the export, change the value
-of Moflon::Export to \texttt{false} (and conversely back to \texttt{true} to export it again).
+\item[$\blacktriangleright$] The tagged value, \emph{Moflon::Export}, should already be present and be set to a default \texttt{true} value
+(Fig.~\ref{ea:moflonExportTG}). If you want the project to be ignored by the eMoflon's validation and/or export functions, change the value to
+\texttt{false} (and conversely back to \texttt{true} to export it again).
 
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{ignoreExportingProject2}
-  \caption{Tagged value Moflon::Export is used to ignore projects}  
-  \label{fig_ignoreExportingProject02}
+\includegraphics[width=0.5\textwidth]{ea_moflonExportTG}
+  \caption{The Moflon::Export setting determines ignored projects}  
+  \label{ea:moflonExportTG}
 \end{center}
 \end{figure}
+
 \end{enumerate}

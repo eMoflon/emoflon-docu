@@ -2,8 +2,9 @@
 \section{Text-to-Tree transformation}
 \genHeader
 
-As we shall see in a moment, libraries and shelves correspond to a folder structure while the contents for a single dictionary are specified in a file.
-Figure \ref{fig:moca-4-Tokens} depicts a small sample of the textual syntax used to specify a dictionary. 
+Let's discuss how the transformation will proceed. For reference, figure \ref{fig:moca-4-Tokens} depicts a small sample of the textual syntax that will specify
+a dictionary instance. As we shall see in a moment, the libraries and shelves containing each dictionary correspond to a folder structure, while the
+contents for a single dictionary are specified in a file.
 
 \begin{figure}[!htbp]
 \begin{center}
@@ -20,7 +21,7 @@ recognizes these chunks or \emph{tokens} and passes them on as a token stream to
 hierarchical and recursive structures.
    
 To recognize the tokens as indicated in Fig.~\ref{fig:moca-4-Tokens}, \texttt{ANTLR} can automatically generate a lexer in Java from a compact specification.
-This is actually a DSL for lexing and is explained in detail in \cite{ANTLR}. If you are unfamiliar with EBNF, and have feel you may have problems understanding
+This is actually a DSL for lexing and is explained in detail in \cite{ANTLR}. If you are unfamiliar with EBNF, and feel you may have problems understanding
 the lexer grammar, we suggest going through the documentation on on \url{www.antlr.org}, or reading the relevant chapters in \cite{ANTLR}. Otherwise, let's
 complete the \emph{lexer} and \emph{parser} grammars that will handle our project instances.
 
@@ -46,14 +47,14 @@ until it matches Fig.~\ref{eclipse:dictionaryLexer}.
 
 \end{itemize}
 
-With this lexer, we can now form its stream of tokens into a \emph{tree}. In this context, a \emph{tree} is an acyclic, hierarchical, recursive structure (as
-depicted in Fig.~\ref{eclipse:dictLexer}). Depending on what the tree is to be used for, it can be organized much differently with extra \emph{structural} nodes
-such as \texttt{DICTIONARY} or \texttt{ENTRY} which were not present in the textual syntax. These can be used to give additional meaning to the tree.
+With this lexer, we can now form a file's stream of tokens into a \emph{tree}. In this context, a \emph{tree} is an acyclic, hierarchical, recursive structure
+(as depicted in Fig.~\ref{eclipse:dictLexer}). Depending on what the tree is to be used for, it can be organized much differently with extra \emph{structural}
+nodes such as \texttt{DICTIONARY} or \texttt{ENTRY} which were not present in the textual syntax. These can be used to give additional meaning to the tree.
 
 \begin{figure}[htp]
 \begin{center}
  \includegraphics[width=\textwidth]{5-tree}
-  \caption{\texttt{MocaTree} structure}
+  \caption{Abstract Syntax Tree (AST) representation of an input stream}
   \label{eclipse:dictLexer}
 \end{center}
 \end{figure}
@@ -107,7 +108,7 @@ passes the content on to the parser and plugs in the tree from the parser as a s
 \begin{itemize}
 
 \item[$\blacktriangleright$] Comment out line 45, which calls the unparser to generate an output directory structure. This command is unnecessary at this point
-as we intend to define this model-to-text unparser a bit later. 
+as we intend to define this ``reverse" model-to-text unparser a bit later. 
 
 \newpage
 
