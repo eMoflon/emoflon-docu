@@ -1,6 +1,6 @@
 \newpage
 \hypertarget{treeToModel tex}{}
-\subsection{Tree To model text source}
+\subsection{The textual transformation rules}
 \texHeader
 
 Please note that we have presented the instructions for the visual specification's TGG transformation rules in the same headings construct as this section for
@@ -11,18 +11,17 @@ easy comparison. We suggest viewing your rule's visual equivalent in \hyperlink{
 \subsubsection{FolderToLibraryRule} % ---------------------------------
 
 \item[$\blacktriangleright$] Expand \texttt{DictionaryCodeAdapter}, right-click on the \texttt{Rules} folder. Navigate to ``New/TGG Rule," and name this
-initializing rule \texttt{Folder\-To\-Lib\-rary\-Rule}.
+first rule \texttt{Folder\-To\-Lib\-rary\-Rule}.
 
-\item[$\blacktriangleright$] All this simple rule needs to do is match to a \texttt{Folder} instance (i.e., ``myLibrary'') and create its equivalent
-\texttt{Library} instance, create a correspondence link between them to ensure they remain equivalent, and use a single constraint equating the \texttt{name} of
-the folder to the \texttt{name} of the library. Build your rule until it resembles Fig.~\ref{eclipse:FolderToLibraryRule}.
+\item[$\blacktriangleright$] All this rule needs to do is create a \texttt{Folder} (i.e., ``myLibrary'') together with its equivalent \texttt{Library}, and a
+correspondence link between them. Edit your rule until it resembles Fig.~\ref{eclipse:FolderToLibraryRule}.
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_FolderToLibraryRule}
-  \caption{The TGG transformation will begin with this rule.}
+  \caption{The TGG transformation begins with this rule.}
   \label{eclipse:FolderToLibraryRule}
 \end{center}
 \end{figure}
@@ -32,41 +31,40 @@ the folder to the \texttt{name} of the library. Build your rule until it resembl
 \subsubsection{ForAllShelfRule} % ---------------------------------
 
 \item[$\blacktriangleright$] Let's use some elements from the previous rule to help us define how to handle creating shelves for our library. Copy and paste the
-elements from each correspondence to a new \texttt{FolderToLibraryRule}, adding a \texttt{shelfFolder} and \texttt{shelf} and described in
-Fig.~\ref{eclipse:ForAllShelvesRule}.
+required context elements from \texttt{FolderToLibraryRule} in a new \texttt{ForAllShelfRule}, adding a new \texttt{shelfFolder} and \texttt{shelf} as depicted
+in Fig.~\ref{eclipse:ForAllShelvesRule}.
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.9\textwidth]{eclipse_ForAllShelfRule}
-  \caption{Completed \texttt{ForAllShelfRule}}
+  \caption{\texttt{ForAllShelfRule}}
   \label{eclipse:ForAllShelvesRule}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Don't forget that in order to successfully create the correspondence link between these elements, you need to add the
-correspondence type to your \texttt{schema} (Fig.~\ref{eclipse:updatedSchema}).
+\item[$\blacktriangleright$] Don't forget to add the new correspondence type to your \texttt{schema} (Fig.~\ref{eclipse:updatedSchema}).
 
 \vspace{0.5cm}
 
 \begin{figure}[h!]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_updatedSchema}
-  \caption{Update the TGG \texttt{schema} with any new correspondence types}
+  \caption{Updated TGG \texttt{schema}}
   \label{eclipse:updatedSchema}
 \end{center}
 \end{figure}
 
 \newpage
 
-Now that we have the containers, we can handle the dictionary \texttt{File} elements. We know from our generated tree model that each dictionary will always
-have a title node, but we're unsure if an author will be included, and we won't know how many entries are involved. Therefore, we should create at least three
+Now that we have the containers all set up, we can handle the dictionary \texttt{File} elements. We know from our generated tree model that each dictionary will
+always have a title node, but we're unsure if an author will be included, and we won't know how many entries are involved. Therefore, we should create at least three
 different rules to handle this stage of the transformation. 
 
 \subsubsection{NodeToDictionaryRule} % ---------------------------------
 
-\item[$\blacktriangleright$] Create a rule name \texttt{NodeToDictionaryRule}, and build it as indicated in Fig.~\ref{eclipse:NodeToDictionaryRule}.
+\item[$\blacktriangleright$] Create a rule name \texttt{NodeToDictionaryRule} as indicated in Fig.~\ref{eclipse:NodeToDictionaryRule}.
 
 \vspace{0.5cm}
 
@@ -84,39 +82,36 @@ different rules to handle this stage of the transformation.
 rule can only be called after executing \texttt{ForAllShelfRule}. An attribute constraint is used with \texttt{titleNode} to ensure that the correct child
 \texttt{Node} is matched from \texttt{dictionaryNode}, and not accidentally to an author or entry node, which will have different indices.
 
-\item[$\blacktriangleright$] This rule also imposes two constraints, one for each direction. In the forward transformation, we want to add the name of
-the shelf to the dictionary file's title (i.e., ``english'' and ``numbers1-10'') and set it as the target's \texttt{name}. Though this may be somewhat abstract
-at first, imagine this constraint is actually called ``add/remove Suffix'' since, during the inverse transformation, this constraint also will ensure the name
-of the shelf is not present. Similarly, in the backwards transformation, the transformation needs to generate a valid \texttt{dictionaryFile} name, and it does
-so by appending \texttt{.dictionary} to the end of \texttt{titleNode.name}.
+\item[$\blacktriangleright$] This rule also imposes two constraints for attribute manipulation. We need to add the name of the shelf as a prefix to the title
+node's name to get the dictionarys' title (i.e., ``english'' + ``numbers1-10''). Similarly, the second constraint appends \texttt{.dictionary} to
+\texttt{titleNode.name} to get the file name of the dictionary.
 
 \subsubsection{ForAllEntryRule} % ---------------------------------
 
-\item[$\blacktriangleright$] Let's handle the \texttt{Entry} elements next. We can demand \texttt{Node\-To\-Dict\-ion\-ary\-Rule} be executed first by needing
-context information from \texttt{dictionaryNode}. Create \texttt{ForAllEntryRule}, and build it so it matches
-Fig.~\ref{eclipse:ForAllEntryRule}. Each \texttt{entryNode} will have a child \texttt{indexNode} and \texttt{contentNode} whose attribute constraints, and
-transformation constraint ensure the correct information is set to its equivalent \texttt{entry} instance.
+\item[$\blacktriangleright$] Let's handle \texttt{Entry} elements next. Create \texttt{ForAllEntryRule} so that it closely resembles
+Fig.~\ref{eclipse:ForAllEntryRule}. Each \texttt{entryNode} has a child \texttt{contentNode} and \texttt{indexNode} whose attributes correspond to
+those of the \texttt{entry} in the target model.
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_ForAllEntryRule}
-  \caption{Completed \texttt{ForAllEntryRule}}
+  \caption{\texttt{ForAllEntryRule}}
   \label{eclipse:ForAllEntryRule}
 \end{center}
 \end{figure}
 
 \newpage
 
-
-The last thing we need to specify is how to handle \texttt{author}s. Transforming forwards from a \texttt{authorNode} to an \texttt{author} isn't as simple as
-an \texttt{entryNode}, where you create an \texttt{entry} every time you find a valid match. Instead, we have to account for the possibility of a single author
-for multiple dictionaries in a \texttt{Library}. While some users may not care about duplicate information, why not also provide a rule for the case when the
-library needs to be optimized with only unique authors in a single \texttt{Library} instance?
+The last thing we need to specify is how to handle \texttt{author}s. Transforming an \texttt{authorNode} to an \texttt{author} isn't as simple as
+an \texttt{entryNode}, where you create an \texttt{entry} every time. Instead, we have to account for the possibility of a single author
+for multiple dictionaries in a \texttt{Library}. While some users may not care about having redunant information, why not also provide a rule for users
+who want unique authors in a \texttt{Library}?
 
 \subsubsection{ForAllNewAuthorRule} % ---------------------------------
 
 \item[$\blacktriangleright$] Create \texttt{ForAllNewAuthorRule}, and complete it as depicted in Fig.~\ref{eclipse:ForAllNewAuthorRule}. This is our one-to-one
-correspondence rule, where every \texttt{authorNode} instance the rule is able to find, an equivalent \texttt{author} is created.
+correspondence rule, where every \texttt{authorNode} corresponds to a new \texttt{author}. If this rule is used in a transformation, one might end up with
+multiple authors with the same email address.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -130,8 +125,7 @@ correspondence rule, where every \texttt{authorNode} instance the rule is able t
 
 \item[$\blacktriangleright$] Similarly, create \texttt{ForExistingAuthorRule} as specified in Fig.~\ref{eclipse:ForExistingAuthorRule}. You should be able to
 copy and paste the majority of the previous rule. In fact, the only thing you need to change are two small characters in front of \texttt{author} and its
-\texttt{dictionary} reference, forcing the rule to assume and match to some context \texttt{author}, but still create a new link between the current dictionary
-file and previous author.
+\texttt{dictionary} reference, forcing the rule to find an existing \texttt{author}, if possible.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -143,8 +137,8 @@ file and previous author.
 
 \newpage
 
-\item[$\blacktriangleright$] Great work! You have now specified six different rules (with a focus on the forward direction) to perform a text-to-model
-transformation! For confirmation, your final schema and package explorer should now resemble Fig.~\ref{eclipse:schemaFinal}.
+\item[$\blacktriangleright$] Great work! You have now specified six different rules to handle a bidirectional text-to-model transformation! For confirmation,
+your final schema and package explorer should now resemble Fig.~\ref{eclipse:schemaFinal}.
 
 \vspace{0.5cm}
 
@@ -158,7 +152,7 @@ transformation! For confirmation, your final schema and package explorer should 
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Given that everything has been done correctly, and MOSL hasn't reported any errors, build your TGG transformation. If
-problems arise, be sure to double-check your files for spelling or character symbol mistakes.
+\item[$\blacktriangleright$] Given that everything has been done correctly, and MOSL hasn't reported any errors, build your TGG transformation. If problems
+arise, be sure to double-check your files for spelling or other mistakes.
 
 \end{itemize}

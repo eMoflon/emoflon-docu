@@ -9,19 +9,21 @@
 
 \begin{description}
 
-\item[Bidirectional Transformation]  Used in situations where two (or more) models of different types but same information must be kept consistent.
+\item[Bidirectional Model Transformation]  Consists of two unidirectional model transformations, which are consistent to each other. This requirement of
+consistency can be defined in many ways, including using a TGG.
 
-\item[EBNF] Extended Backus-Naur Form; Notation technique of context-free grammars, used to describe the syntax of a language exactly.
+\item[EBNF] Extended Backus-Naur Form; Concrete syntax for specifying context-free string grammars, used to describe the context-free syntax of a
+string language.
 
-\item[Endogenous] Transformations between models expressed in the same language (i.e., same input/output metamodel). May only be an \emph{in-place}
-transformation.
+\item[Endogenous] Transformations between models in the same language (i.e., same input/output metamodel). 
  
-\item[Exogenous] Transformations between models expressed in different languages (i.e., unique metamodel instances). May only be \emph{out-place}.
+\item[Exogenous] Transformations between models in different languages (i.e., different input/output metamodels). 
 
-\item[In-place Transformation] Perform destructive changes directly to the source model. May only be \emph{endogenous}.
+\item[In-place Transformation] Performs destructive changes directly to the input model, thus transforming it into the output model. Typically
+\emph{endogenous}.
 
-\item[Out-place Transformation] Source model is left intact by the transformation which creates the output model. Can be \emph{endogenous} or \emph{exogenous}.
+\item[Out-place Transformation] Source model is left intact by the transformation that creates the output model. Can be \emph{endogenous} or \emph{exogenous}.
 
-\item[Unidirectional Transformation] Takes a single input model type and produces the same output model type.
+\item[Unidirectional Model Transformation] Takes an input model and produces the an output model.
 
 \end{description}
