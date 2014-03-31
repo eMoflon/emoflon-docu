@@ -20,9 +20,9 @@
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Your output may or may not resemble ours. In fact, there's a 50/50 chance the any of the \texttt{author} nodes were ever created!
-Let's run the eMoflon integrator on \texttt{corr\_FWD.xmi} to find out why.\footnote{If you haven't already, read Part IV, Section 6 for details on how this feature
-can help you visualise and debug a transformation}
+\item[$\blacktriangleright$] Your output may or may not resemble ours. In fact, there's a 50/50 chance that some of the \texttt{author} nodes ever created!
+Let's run the eMoflon integrator on \texttt{corr\_FWD.xmi} to find out why.\footnote{If you haven't already, read Part IV, Section 6 for details on how the
+integrator can help you visualise and debug a transformation}
 
 \vspace{0.5cm}
 
@@ -40,16 +40,16 @@ eye on the small window below -- it states that there are two possible rules tha
 \clearpage
 
 \item[$\blacktriangleright$] At run-time, the transformation is presented with a choice between two rules to apply to the matched \texttt{authorNode}. The
-resulting choice is entirely random, meaning that your output is likely to be different each time you run \texttt{TGGMain}. For a stable transformation, you
-therefore need to force a preferred decision. There are two ways to do this: (1) at run-time, where users will be able to decide for themselves what they would
-prefer to use, or (2) at design-time, where you make the decision a part of the rule.
+resulting choice is entirely random, meaning that your output is likely to be different each time you run \texttt{TGGMain}. For a deterministic transformation,
+you therefore need to force a preferred decision. There are two ways to do this: (1) at run-time, where users will be able to decide for themselves what they would
+prefer to use, or (2) at design-time, where you make the decision a part of the TGG.
 
 \end{itemize}
 
-\subsubsection{Option1: Run-time decision}
+\subsubsection{Option 1: Run-time decision}
 
-The advantage with this option is that you leave users with the choice of what they would like to do. Some users don't mind having multiple authors,
-while others prefer a minimalist design. They can easily change their preference here, in a configuration file.
+The advantage with this option is that you give users the choice of what they prefer. Some users don't mind having multiple authors, while others might prefer a
+minimalist design. They can easily change their preference possibly on a case-by-case basis, by implementing a TGG rule configurator.
 
 \begin{itemize}
 
@@ -67,18 +67,18 @@ auto-completion can help you here.
 
 \clearpage
 
-\item[$\blacktriangleright$] As you can see on line 22, this configuration prefers to create a new author if there are two applicable results. Users can edit
-this value to ``ExistingAuthorRule'' if they don't want repeated entries.
+\item[$\blacktriangleright$] As you can see on Line 22, this simple configurator prefers to create a new author every time there is a choice. Users can
+edit this value to ``ExistingAuthorRule'' to avoid redundant authors.
 
-\item[$\blacktriangleright$] You still need to include the configuration as part of \texttt{TGGMain}'s execution. This decision will only arise in the forward
-direction, so declare it once in \texttt{performForward} as depicted in Fig.~\ref{eclipse:editTGGMain}.
+\item[$\blacktriangleright$] You still need to set the configurator to be used for the transformation. This decision will only arise in the forward
+direction, so declare it once in \texttt{TGGMain/performForward} as depicted in Fig.~\ref{eclipse:editTGGMain} on Line 59.
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_editTGGMain}
-  \caption{Invoke the configuration file to force a run-time decision}
+  \caption{Setting the configurator to control the run-time decision \update}
   \label{eclipse:editTGGMain}
 \end{center}
 \end{figure}
@@ -87,21 +87,19 @@ direction, so declare it once in \texttt{performForward} as depicted in Fig.~\re
 
 \subsubsection{Option 2: Design-time decision}
 
-This preference is built into the actual design of the transformation -- users will not be able to modify this. This decision is is implemented as a NAC,
-checking to see if there is a contextual author element with the same email already present and connected to a \texttt{library}. You don't want to create this
-NAC without the attribute constraint on \texttt{email} or else the transformation will create only \emph{one} author per library, which is obviously not the
-desired result for the \texttt{french} shelf.
+It is also possible to set a preference as part of the actual design of the transformation -- users will not be able to modify this. In our example, this
+preference can be enforced using a NAC which checks to see if there is already an author with the same email in the library.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Open and update either \texttt{NewAuthorRule} (Visual) as shown in Fig.~\ref{ea:existingAuthorNAC} or edit the target in 
-\texttt{ForAllNewAuthorRule.tgg} (Textual) as depicted in Fig.~\ref{eclipse:existingAuthorNAC}.
+\item[$\blacktriangleright$] Open and update either \texttt{NewAuthorRule} (visual) as shown in Fig.~\ref{ea:existingAuthorNAC} or edit the target domain in 
+\texttt{ForAllNewAuthorRule.tgg} (textual) as depicted in Fig.~\ref{eclipse:existingAuthorNAC}.
 
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{ea_existingAuthorNAC}
-  \caption{Add a NAC to \texttt{NewAuthorRule}}
+  \caption{Refine \texttt{AuthorRule} by adding a NAC in \texttt{NewAuthorRule} \update}
   \label{ea:existingAuthorNAC}
 \end{center}
 \end{figure}
@@ -114,7 +112,7 @@ desired result for the \texttt{french} shelf.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Save and rebuild the TGG. Run the transformation a few times, using the integrator to confirm that your preference is executed each
-time. 
+\item[$\blacktriangleright$] Save and rebuild the TGG. Run the transformation a few times, using the integrator to confirm that your preference (no redudant
+authors are created) is enforced each time. 
 
 \end{itemize}

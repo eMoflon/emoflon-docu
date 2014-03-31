@@ -3,54 +3,28 @@
 \genHeader
 
 Nowadays, \emph{no one} writes a complex parser completely by hand. Although this is sometimes still necessary for syntactically challenging languages, most
-parsers can be quickly whipped up using context-free \emph{string grammars}.\footnote{For simple cases, \emph{regular expressions} can also be used} These are
+parsers can be quickly whipped up using context-free \emph{string grammars}\footnote{For simple cases, \emph{regular expressions} can also be used} that are
 typically written in Extended Backus-Naur Form (EBNF)\define{EBNF}. ANTLR~\cite{ANTLR} is a tool that can generate a parser from this compact specification for
 a host of target programming languages, including Java. Although ANTLR might not be the most efficient or powerful parser generator, it's open-source, well
-documented and supported, and allows for a pragmatic and elegant fallback to Java when things get nasty and we have to resort to some dirty tricks to get our job done. 
+documented and supported, and allows for a pragmatic and elegant fallback to Java if things get nasty and we have to resort to some dirty tricks to get the job
+done.
 
-Our example needs a parser to complete the transformation step between a concrete textual file instance and a standard model we'll discuss in a few moments.
-It can only generate an editable parser/lexer from an established grammar however, which means we need to initialize our TGG project. We begin by loading a
-\texttt{DictionaryLanguage} metamodel into the workspace. The dictionary is a relatively simple device, so you have three ways to do this:
+To set up your workspace for the model-to-text transformation, you have two options: (1) Import a cheat package with everything already
+prepared,\footnote{Useful if you're just joining us in this part} or (2) continue working with your existing workspace if you've worked through the previous
+part.
 
+Both options will work, but note that all of our screenshots from now on assume that you chose Option (1), so don't let that irritate you.
 
-\begin{description}
-% -- Develop Metamodel ---
-\item[Option 1: Develop] 
+As some of you are just reading this handbook without actually getting your hands dirty with an implementation (beware: no pain, no gain!), we have included a
+screenshot of the dictionary metamodel that you get with both options in our visual (Fig.~\ref{ea:dictLang}) and textual (Fig.~\ref{eclipse:dictLangMetamodel})
+concrete syntax.
 
-
-\item[$\blacktriangleright$] \hspace{0.3cm} Open Eclipse in an empty workspace, and start a new metamodel project called \texttt{Dict\-ion\-ary}
-(Fig.~\ref{eclipse:startMetamodel}).\footnote{Refer to Part II to review metamodel construction} 
-
-
-\item[$\blacktriangleright$] \hspace{0.3cm} Complete a \texttt{DictionaryLanguage} in your preferred syntax until it matches either Fig.~\ref{ea:dictLang}
-(Visual), or Figs.~\ref{eclipse:dictLang} \& \ref{eclipse:dictLangMetamodel} (Textual).\footnote{Read Part I, Section 1 for a brief comparison of eMoflon's two
-speicification types}
-
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_startDictionary}
-  \caption{Start a new \texttt{Dictionary} metamodel project}
-  \label{eclipse:startMetamodel}
-\end{center}
-\end{figure}
-
-
+% --- Dictionary metamodels --
 \begin{figure}[htbp]
   \hspace{-1cm}
   \includegraphics[width=1.3\textwidth]{ea_dictionaryMetamodel}
-  \caption{Create a \texttt{DictionaryLanguage} package in \texttt{My Working Set} with an eMoflon Ecore diagram of the same name.}
+  \caption{Metamodel for dictionaries (visual concrete syntax)}
   \label{ea:dictLang}
-\end{figure}
-
-\newpage
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{eclipse_dictionaryExplorer}
-  \caption{Add a \texttt{DictionaryLanguage} EPackage to \texttt{MyWorkingSet}}
-  \label{eclipse:dictLang}
-\end{center}
 \end{figure}
 
 \vspace{0.5cm}
@@ -58,62 +32,68 @@ speicification types}
 \begin{figure}[h!]
   \hspace{-1cm}
   \includegraphics[width=1.2\textwidth]{eclipse_dictionaryMetamodel}
-  \caption{Completing your \texttt{DictionaryLanguage} metamodel}
+  \caption{Metamodel for dictionaries (textual concrete syntax)}
   \label{eclipse:dictLangMetamodel}
 \end{figure}
 
-\newpage % ---
 
+% --- Option descriptions --
+\begin{description}
 
-% -- Download Cheat Package ---
-\item[Option 2: Download] 
+\item[Option 1: Import a complete cheat package]
 
-
-\item[$\blacktriangleright$] \hspace{0.3cm} Download the Part V `cheat package' by selecting ``New" on the toolbar, and loading the \texttt{Dictionary} syntax
-of your choice into your workspace (Fig.~\ref{eclipse_cheatPackage}).
+\item[$\blacktriangleright$] \hspace{0.3cm} Import the Part V `cheat package' by selecting ``New" in the toolbar, and the cheat package in the concrete syntax
+of your choice (Fig.~\ref{eclipse_cheatPackage}).
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.65\textwidth]{eclipse_loadDictionaryProject}
-  \caption{Load a \texttt{Dictionary} project into your workspace}
+  \caption{Load the cheat package for Part V into your workspace}
   \label{eclipse_cheatPackage}
 \end{center}
 \end{figure}
 
 \vspace{0.5cm}
 
-
 % -- Export/Import ---
-\item[Option 3: Import]
+\item[Option 2: Continue with the workspace from Part IV]
 
 
-\item[$\blacktriangleright$] \hspace{0.3cm} Use the same files for \texttt{Dictionary} as completed in Part IV. Export the specification files from the existing
-project, then import them into a new one in a fresh workspace. Read Part IV, Section 2 for a detailed review on how to do this in either syntax.
+\item[$\blacktriangleright$] \hspace{0.3cm} Use the same metamodel for \texttt{Dictionary} as completed in Part IV. Just make sure you haven't radically changed
+the dictionary metamodel (i.e., it still closely resembles the metamodel in either Fig.~\ref{ea:dictLang} or Fig.~\ref{eclipse:dictLangMetamodel}). Everything
+else should work fine using the exact same workspace but remember, your screen may look different than our screenshots.
 
-% -- End
 \end{description}
 
-We recommend reviewing the dictionary metamodel until you feel comfortable with what you'll be working with. It's important to understand how the classes are
-constructed and connected. 
 
-Please note that, despite our efforts to ensure uniformity between each of the options, your workspace may look different than ours
-depicted in the screenshots. As long as you have the correct and non-conflicting files however, the steps are identical.
-
+We recommend reviewing the dictionary metamodel until you feel comfortable with what you'll be working with. 
 
 \newpage
 
-The \texttt{dictionaryLanguage} metamodel is only one of two that we'll be using to specify the TGG transformation. After all, TGGs \emph{always} require
-separate source and target metamodels. The second metamodel involved in the transformation will be eMoflon's standard \texttt{MocaTree} language. It basically
-combines concepts from a filesystem (folders and files), XML concepts (text-only nodes and attributes), and a general indexed containment
-hierarchy.\footnote{This is done with an index attribute, which can be used to demand a certain \emph{order} of nodes in an SDM which are otherwise not
-guaranteed by default.} It models a generic directory structure with a \texttt{Folder} able to connect to other \texttt{Folders}, and may contain an unlimited
-number of \texttt{File} elements. Its Java code is provided by the Eclipse plugin and automatically added to the build path, so it won't actually appear
-anywhere in your workspace for you to inspect.  We'll go into more detail about this later, so let's officially initialize the TGG project that will drive our
-Model-to-Text transformation.
+The \texttt{dictionaryLanguage} metamodel is only one of two that we'll be using to specify the TGG transformation. After all, TGGs typically require separate
+source and target metamodels. The second metamodel involved in the transformation will be eMoflon's standard \texttt{MocaTree} language
+(Fig.~\ref{mocaTreeMetamodel}).\footnote{MOCA stands for Moflon Code Adapter (Not coffee, sorry.)} It basically combines concepts from a filesystem (folders and
+files), XML (text-only nodes and attributes), and a general indexed containment hierarchy.\footnote{This is done with an index attribute, which can be used to
+demand a certain \emph{order} of nodes in a tree which is otherwise not guaranteed by default.} It is provided by our Eclipse plugin and is automatically added
+to the build path, so it won't actually appear anywhere in your Eclipse workspace. For starters, let's create the TGG project that will implement our
+model-to-text transformation.
+
+\newpage
+
+\update : describe mocatree visual metamodel\ldots everyone needs to understand moca tree; BEAUTIFY
+
+\begin{figure}[htbp]
+  \hspace{-3cm}
+  \includegraphics[width=1.5\textwidth]{ea_metamodelMocaTree}
+  \caption{Visual depiction of the MocaTree metamodel}
+  \label{mocaTreeMetamodel}
+\end{figure}
 
 \jumpDual{initialize vis}{initialize tex}
+
+\newpage
 
 \input{../1_settingWorkspace/vis_setWkspSrc}
 
