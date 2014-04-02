@@ -4,20 +4,20 @@
 
 Nowadays, \emph{no one} writes a complex parser completely by hand. Although this is sometimes still necessary for syntactically challenging languages, most
 parsers can be quickly whipped up using context-free \emph{string grammars}\footnote{For simple cases, \emph{regular expressions} can also be used} that are
-typically written in Extended Backus-Naur Form (EBNF)\define{EBNF}. ANTLR~\cite{ANTLR} is a tool that can generate a parser from this compact specification for
+typically written in Extended Backus-Naur Form (EBNF)\define{EBNF}. ANTLR is a tool that can generate a parser from this compact specification for
 a host of target programming languages, including Java. Although ANTLR might not be the most efficient or powerful parser generator, it's open-source, well
 documented and supported, and allows for a pragmatic and elegant fallback to Java if things get nasty and we have to resort to some dirty tricks to get the job
 done.
 
 To set up your workspace for the model-to-text transformation, you have two options: (1) Import a cheat package with everything already
-prepared,\footnote{Useful if you're just joining us in this part} or (2) continue working with your existing workspace if you've worked through the previous
-part.
-
-Both options will work, but note that all of our screenshots from now on assume that you chose Option (1), so don't let that irritate you.
+prepared,\footnote{Useful if you're just joining us in this part} or (2) if you've worked through the previous part, continue with your existing
+workspace. Both options will work, but note that all of our screenshots from now on assume that you chose Option (1), so don't let that irritate you.
 
 As some of you are just reading this handbook without actually getting your hands dirty with an implementation (beware: no pain, no gain!), we have included a
 screenshot of the dictionary metamodel that you get with both options in our visual (Fig.~\ref{ea:dictLang}) and textual (Fig.~\ref{eclipse:dictLangMetamodel})
 concrete syntax.
+
+\vspace{0.5cm}
 
 % --- Dictionary metamodels --
 \begin{figure}[htbp]
@@ -27,7 +27,7 @@ concrete syntax.
   \label{ea:dictLang}
 \end{figure}
 
-\vspace{0.5cm}
+\newpage
 
 \begin{figure}[h!]
   \hspace{-1cm}
@@ -36,6 +36,7 @@ concrete syntax.
   \label{eclipse:dictLangMetamodel}
 \end{figure}
 
+\vspace{0.5cm}
 
 % --- Option descriptions --
 \begin{description}
@@ -44,8 +45,6 @@ concrete syntax.
 
 \item[$\blacktriangleright$] \hspace{0.3cm} Import the Part V `cheat package' by selecting ``New" in the toolbar, and the cheat package in the concrete syntax
 of your choice (Fig.~\ref{eclipse_cheatPackage}).
-
-\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -73,23 +72,35 @@ We recommend reviewing the dictionary metamodel until you feel comfortable with 
 \newpage
 
 The \texttt{dictionaryLanguage} metamodel is only one of two that we'll be using to specify the TGG transformation. After all, TGGs typically require separate
-source and target metamodels. The second metamodel involved in the transformation will be eMoflon's standard \texttt{MocaTree} language
-(Fig.~\ref{mocaTreeMetamodel}).\footnote{MOCA stands for Moflon Code Adapter (Not coffee, sorry.)} It basically combines concepts from a filesystem (folders and
-files), XML (text-only nodes and attributes), and a general indexed containment hierarchy.\footnote{This is done with an index attribute, which can be used to
-demand a certain \emph{order} of nodes in a tree which is otherwise not guaranteed by default.} It is provided by our Eclipse plugin and is automatically added
-to the build path, so it won't actually appear anywhere in your Eclipse workspace. For starters, let's create the TGG project that will implement our
-model-to-text transformation.
+source and target metamodels. The second metamodel involved in the transformation will be eMoflon's standard \texttt{MocaTree} language.\footnote{MOCA stands
+for Moflon Code Adapter (Not coffee, sorry.)} It basically combines concepts from a filesystem (folders and files), XML (text-only nodes and attributes), and a
+general indexed containment hierarchy. It is provided by our Eclipse plugin and is automatically added to the build path, so it won't actually appear
+anywhere in your Eclipse workspace.
+
+Figure~\ref{mocaTreeMetamodel} is a visual depiction of this MocaTree model.\footnote{If you are using the visual syntax, feel free to view a detailed metamodel
+by opening your dictionary.eap, and navigating to the \texttt{MocaTree} EPackage, and opening it's title diagram.} As you can see, the most important element is
+\texttt{Node}. First, you'll notice that each \texttt{Attribute}, \texttt{Text}, and \texttt{File} element must be represented in the tree by a single
+\texttt{Node}. In turn, a single \texttt{Node} can store any number of \texttt{Attribute} or \texttt{Text} elements (subnodes), but only one \texttt{File}. If
+you look closer at \texttt{File}, you'll also notice that while it must be represented as a \texttt{Node}, it must also contain a single \texttt{Folder}
+instance to store its contents. \texttt{Folder} is able to store any number of further \texttt{File}s or subfolders.
 
 \newpage
 
-\update : describe mocatree visual metamodel\ldots everyone needs to understand moca tree; BEAUTIFY
+You'll also notice that all elements inherit an \texttt{index} and \texttt{name} attribute. \texttt{Index} can be used in order to demand a certain \emph{order}
+of nodes in a tree, otherwise not guaranteed by deafult (i.e., to enforce a hierarchy), while \texttt{name} can be any arbitrary string value. 
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
   \hspace{-3cm}
-  \includegraphics[width=1.5\textwidth]{ea_metamodelMocaTree}
+  \includegraphics[width=1.5\textwidth]{MocaTreeMetamodel}
   \caption{Visual depiction of the MocaTree metamodel}
   \label{mocaTreeMetamodel}
 \end{figure}
+
+\vspace{0.5cm}
+
+Let's finally start and create the TGG project that will implement our model-to-text transformation.
 
 \jumpDual{initialize vis}{initialize tex}
 

@@ -14,13 +14,15 @@ in the \texttt{eMoflon Languages} working set.
 \begin{figure}[htpb]
 \begin{center}
   \includegraphics[width=0.4\textwidth]{ea_mocaTaggedValues}
-  \caption{\texttt{MocaTree} is one of eMolfons' internal metamodels}
+  \caption{\texttt{MocaTree} is one of eMoflons' internal metamodels}
   \label{ea:mocaTagged}
 \end{center}
 \end{figure}
 
 \end{itemize}
+
 \vspace{-0.5cm}
+
 If you inspect the tagged values\footnote{The ``Tagged Values'' window can be opened by going to ``View/Tagged Values'' or by hovering over the \texttt{Tagged
 Values} tab immediately to the right of the project browser.} for these built-in languages, you'll notice that the \texttt{MocaTree} package has the
 \texttt{Moflon::Export} value set to \texttt{false}. This ensures that the package is \emph{ignored} when exporting. As with all such standard metamodels (e.g.,
@@ -30,11 +32,10 @@ the classes defined in the package.
 \begin{itemize}
 
 \item[$\blacktriangleright$] Despite \texttt{DictionaryLanguage} being contained in a different working set than \texttt{MocaTree}, the two
-metamodels are contained within the same EA project (EAP) so you can create a new TGG by adding a package to \texttt{My Working Set}. Name it
-\texttt{Dict\-ion\-ary\-Code\-Adap\-ter}.
+metamodels are contained within the same EA project (EAP) which means you are able to create a new TGG using them both. Add a new package to \texttt{My
+Working Set} named \texttt{Dict\-ion\-ary\-Code\-Adap\-ter}.
 
-
-\item[$\blacktriangleright$] Select the package and add a new TGG schema diagram as depicted in Fig.~\ref{ea:newTGGDiagram}. In the next dialogue,
+\item[$\blacktriangleright$] Select the package and add a new TGG schema diagram as depicted in Fig.~\ref{ea:newTGGDiagram}. In the next dialogue window,
 set the source project as \texttt{MocaTree}, and the target project as \texttt{Dict\-ion\-ary\-Lang\-uage}.
 
 \begin{figure}[h!]
@@ -45,15 +46,9 @@ set the source project as \texttt{MocaTree}, and the target project as \texttt{D
 \end{center}
 \end{figure}
 
-\end{itemize}
-
-\clearpage
-
-\begin{itemize}
-
-\item[$\blacktriangleright$] For the moment, add a single correspondence type to your new diagram (the TGG \texttt{schema}) between \texttt{Folder} and
-\texttt{Library}. Remember -- you can get the classes by drag-and-dropping each element into the diagram, then quick-creating a new \texttt{TGG Correspondence
-Type} between them.\footnote{For details on the correspondence metamodel and how to create types, refer to Part IV, Section 3.} Your diagram
+\item[$\blacktriangleright$] For the moment, add a single correspondence type to the new diagram now active in the editor (the TGG \texttt{schema}) between
+\texttt{Folder} and \texttt{Library}. Remember, you can get the classes by drag-and-dropping each element into the diagram, then quick-creating a new
+\texttt{TGG Correspondence Type} between them.\footnote{For details on the correspondence metamodel and how to create types, refer to Part IV, Section 3.} Your diagram
 should come to resemble Fig.~\ref{ea:firstCorrType}.
 
 \vspace{0.5cm}
@@ -66,7 +61,9 @@ should come to resemble Fig.~\ref{ea:firstCorrType}.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Your project browser should now resemble Fig.~\ref{ea:TGGProjBrow}, where \texttt{Dict\-ion\-ary\-Code\-Adap\-ter} is
+\newpage
+
+\item[$\blacktriangleright$] Your complete project browser should now resemble Fig.~\ref{ea:TGGProjBrow}, where \texttt{Dict\-ion\-ary\-Code\-Adap\-ter} is now
 explicitly listed as a \texttt{TGGSchemaPackage}.
 
 \vspace{0.5cm}

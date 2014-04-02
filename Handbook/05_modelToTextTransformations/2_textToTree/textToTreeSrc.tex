@@ -47,10 +47,19 @@ until it matches Fig.~\ref{eclipse:dictionaryLexer}.
 
 \end{itemize}
 
-With a parser, we can now form a file's stream of tokens created by the lexer into a \emph{tree}. In this context, a \emph{tree} is an acyclic, hierarchical,
-recursive structure (as depicted in Fig.~\ref{eclipse:dictLexer}). Depending on what the tree is to be used for, it can be organized differently using extra
+To briefly explain two of the key Lexer rules, note that the \texttt{WS} rule is used to ignore white space. The \texttt{`skip()'} statement simply
+throws the tokens away every time they're found in a stream. Next, in \texttt{QUOTED\_STRING}, \texttt{`MocaUtil.trim(\ldots)'} trims a recognized token by
+removing the specified number of characters at the beginning and end of a token. Finally, \texttt{`.*'} swallows (and stores) everything until the Lexer `hits'
+the character specified next which in this case, is `\texttt{''}.'
+
+\newpage
+
+The next step is to establish a parser to form a file's stream of tokens created by the lexer into a \emph{tree}. In this context, a tree
+is an acyclic, hierarchical, recursive structure (as depicted in Fig.~\ref{eclipse:dictLexer}). Depending on what the tree is to be used for, it can be organized differently using extra
 \emph{structural} nodes such as \texttt{DICTIONARY} or \texttt{ENTRY} which were not present in the textual syntax. These can be used to give additional
 meaning to the tree.
+
+\vspace{0.5cm}
 
 \begin{figure}[htp]
 \begin{center}
@@ -62,8 +71,8 @@ meaning to the tree.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Open and edit \texttt{DictionaryParser.g} (in the same package) until it matches Fig.~\ref{eclipse:dictParser}. As with
-the lexer, avoid any mistakes, and ensure it compiles before proceeding.
+\item[$\blacktriangleright$] From the same package, open and edit \texttt{DictionaryParser.g} until it matches Fig.~\ref{eclipse:dictParser}. As with the lexer,
+avoid any mistakes, and ensure it compiles before proceeding.
 
 \end{itemize}
 
@@ -75,25 +84,25 @@ the lexer, avoid any mistakes, and ensure it compiles before proceeding.
 \end{center}
 \end{figure}
 
-\newpage
-
 You'll notice that the parser grammar is extremely similar to the lexer grammar, save for some \emph{parser actions} following the \texttt{`->'} symbol. These
 actions control the construction of the resulting tree. Using this simple tree language, one can (1) abstract from tokens like \texttt{`\{'} or \texttt{`\}'},
 which are just \emph{syntactical noise}\footnote{Irrelevant content for our model} and (2) enrich the tree with structural nodes such as \texttt{ENTRY}, which
 add explicit structure to the tree. Refer to \cite{ANTLR} and online resources for detailed explanations on the syntax and semantics of the parser grammar
 supported by \texttt{ANTLR}.
 
+\newpage
+
 \begin{itemize}
 
-
-\item[$\blacktriangleright$] Before taking our lexer and parser for a spin, navigate to \\ ``src/org.moflon.tie" and open \texttt{TGGMain.java}
-(Fig.~\ref{eclipse:defaultTGGMain}).
+\item[$\blacktriangleright$] Before taking our lexer and parser for a spin, navigate to \\ ``src/org.moflon.tie" and open \texttt{TGGMain.java}. We need to
+update the file so that it will work with our specific project, so edit the highlighted ares of the file as shown in Fig.~\ref{eclipse:defaultTGGMain}.
+Everything else can remain as generated.
 
 \vspace{0.5cm}
 
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=\textwidth]{eclipse_TGGMainDefault}
+ \includegraphics[width=\textwidth]{eclipse_TGGMainEdits}
   \caption{The TGG driver method}
   \label{eclipse:defaultTGGMain}
 \end{center}
@@ -101,7 +110,7 @@ supported by \texttt{ANTLR}.
 
 \end{itemize}
 
-You can see that this main method is essentially the driver for the transformation, executing each of the four stages of a full forward and backwards
+You can see that this main method is essentially the driver for the transformation, executing each of the four stages for a full forward and backwards
 transformation. In a nutshell, each folder in \texttt{instances/in/myLibrary} is taken as the root of a tree, and their folder and file structures are reflected
 as a hierarchy of (children) nodes in the tree. For each file, the framework searches for a registered parser that is responsible for the particular file,
 passes the content on to the parser and plugs in the tree from the parser as a single subtree of the corresponding file node in the overall tree.
@@ -111,12 +120,8 @@ passes the content on to the parser and plugs in the tree from the parser as a s
 % \item[$\blacktriangleright$] Comment out line 45, which calls the unparser to generate an output directory structure. This command is unnecessary at this
 % point as we intend to define this ``reverse" model-to-text unparser a bit later. 
 
-\newpage
-
 \item[$\blacktriangleright$] To prepare some input for the framework, navigate to ``DictionaryCodeAdapter/instances/in'' and create the
 filesystem depicted in Fig.~\ref{eclipse:textDirectory}. 
-
-\vspace{1cm}
 
 \begin{figure}[htp]
 \begin{center}
@@ -126,15 +131,13 @@ filesystem depicted in Fig.~\ref{eclipse:textDirectory}.
 \end{center}
 \end{figure}
 
-\vspace{1cm}
-
 \item[$\blacktriangleright$] Complete each of the four \texttt{.dictionary} files with the contents in Table~\ref{moca-inputdata}.\footnote{If you copy and
 paste this data, be careful as your .pdf reader may add some invisible characters to the file that ANTLR will not detect and ignore as white space.} Be sure
 that there are no mistakes with symbols such as colons or commas!
 
 \end{itemize}
 
-As you can see, the input is structured as a single library, \texttt{myLibrary}, and split into two languages, english and french, each containing
+As you can see, the input folder is structured as a single library, \texttt{myLibrary}, and split into two languages, english and french, each containing
 some dictionaries. Reviewing Fig.~\ref{eclipse:dictParser}, you can see that the structure of these files conforms to the parser's \texttt{main} rule: it
 first lists the dictionary's \texttt{title}, may or may not contain an \texttt{author}, and contains all \texttt{entry} elements between a pair of \texttt{OPEN}
 and \texttt{CLOSE} brackets.
@@ -226,7 +229,8 @@ title: "unknown"
 \begin{itemize} 
 
 \item[$\blacktriangleright$] Once you have saved each file, right click on \texttt{TGGMain} and navigate to ``Run As/Java Application'' to run the
-transformation.
+transformation. Don't worry about the exception that's raised -- it stems from the unparser tree grammar which we haven't implemented yet. Your tranformation
+won't be affected.
 
 \item[$\blacktriangleright$] Refresh the \texttt{instances} folder. Despite being (mostly) unimplemented, the TGG still executed, generating several files in
 the process (Fig.~\ref{eclipse:postParse}).
@@ -236,7 +240,7 @@ the process (Fig.~\ref{eclipse:postParse}).
 \begin{figure}[!htbp]
 \begin{center}
  \includegraphics[width=0.4\textwidth]{eclipse_explorerPostGeneration}
-  \caption{Result of the first TGG execution \update -- unparser}
+  \caption{Result of the first TGG execution}
   \label{eclipse:postParse}
 \end{center}
 \end{figure} 
@@ -262,10 +266,10 @@ The TGG also executed in the inverse direction; \texttt{tree.xmi\_FWD.xmi} was u
 \begin{itemize}
 
 \item[$\blacktriangleright$] Open \texttt{tree.xmi} and compare the contents to Fig.~\ref{eclipse:treeResult}. Reflect on the directory-type structure of the
-tree, where each \texttt{File} and its contents appear as \texttt{Node}s. This file is important to understand -- The filesystem was transformed into a
-corresponding hierarchy of \texttt{Folders} and \texttt{Files}. The actual \emph{text} content of each file is then transformed to a subtree using a registered,
-suitable parser. The resulting subtree from the parser is then connected to the existing tree by setting its \texttt{DICTIONARY} root as the single child node
-of a \texttt{File}.
+tree, where each \texttt{File} and its contents appear as \texttt{Node}s.\footnote{Refer to Fig~\ref{mocaTreeMetamodel} for the metamodel of this structure}
+This file is important to understand -- The filesystem was transformed into a corresponding hierarchy of \texttt{Folders} and \texttt{Files}. The actual
+\emph{text} content of each file is then transformed to a subtree using a registered, suitable parser. The resulting subtree from the parser is then connected
+to the existing tree by setting its \texttt{DICTIONARY} root as the single child node of a \texttt{File}.
 
 \end{itemize}
 
@@ -279,7 +283,5 @@ of a \texttt{File}.
 \end{center}
 \end{figure}
 
-\vspace{0.5cm}
-
-If everything has executed without errors, well done! Let's continue with the forward direction (to get a \texttt{Dictionary} instance) by specifiying some
+If everything executed without errors, well done! Let's continue with the transformation and get a \texttt{Dictionary} instance by specifiying some
 TGG rules.

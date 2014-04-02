@@ -3,15 +3,15 @@
 \subsection{The visual transformation rules}
 \visHeader
 
-A quick note before you start -- we have presented these TGG transformations rules in the same headings format for both syntaxes for easy comparison. We
-reccommend viewing your visual rule's textual equivalent in \hyperlink{treeToModel tex}{Section 3.2} after completing this section.
+A quick note before you start -- we assume a basic understanding of TGGs and the different ways of using EA productively to create rules. If you find this
+section challenging, we recommend first working through Part IV to cover TGG fundamentals.
 
 \begin{itemize}
 
 \subsubsection{FolderToLibraryRule} % ---------------------------------
 
-\item[$\blacktriangleright$] Expand the \texttt{<<Rules Package>>} node in EA and open the \texttt{Rules} diagram. Create a new rule named
-\texttt{FolderToLibraryRule}, then double-click the new diagram element to open its diagram. Complete the rule as depicted in
+\item[$\blacktriangleright$] Return to EA and expand code adapter's \texttt{<<Rules Package>>}, then open the \texttt{Rules} diagram. Create a new rule
+named \texttt{FolderToLibraryRule} and double-click the new diagram element to open its diagram. Complete the rule as depicted in
 Fig.~\ref{ea:FolderIntoLibrary_Complete}. We established the \texttt{FolderToLibrary} correspondence type when creating the TGG schema in Section 1.
 
 \vspace{0.5cm}
@@ -24,9 +24,9 @@ Fig.~\ref{ea:FolderIntoLibrary_Complete}. We established the \texttt{FolderToLib
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] We're able to use this entire rule as context for the next rule to handle the creation of shelves. Select
-\texttt{inputFolder}, \texttt{in\-put\-Fol\-der\-To\-Lib\-rary,} and \texttt{library}, then use the eMoflon control panel to \texttt{derive} a new rule
-(Fig.~\ref{ea:controlPanel}).
+\item[$\blacktriangleright$] This is a simple rule that creates and connects equivalent \texttt{Folder} and \texttt{Library} instances and we're able to use
+this entire rule as context for the next rule, which will handle the creation of shelves. Select \texttt{inputFolder},
+\texttt{in\-put\-Fol\-der\-To\-Lib\-rary,} and \texttt{library}, then use the eMoflon control panel to \texttt{derive} a new rule (Fig.~\ref{ea:controlPanel}).
 Name this \texttt{ForAllShelfRule}.
 
 \vspace{0.5cm}
@@ -43,12 +43,12 @@ Name this \texttt{ForAllShelfRule}.
 
 \subsubsection{ForAllShelfRule} % ---------------------------------
 
-\item[$\blacktriangleright$] The derivation procedure will open a new diagram with context elements from the first rule. This rule is remarkably similar to
-\texttt{FolderToLibraryRule}, except that it connects the new elements to existing (black) containers.
+\item[$\blacktriangleright$] The derivation procedure will open a new diagram with context elements from the first rule. This rule is similar to
+\texttt{FolderToLibraryRule}, except that it will connect new (green) elements to existing (black) containers. Complete it as depicted in
+Fig.~\ref{ea:ForAllShelves_Complete}.
 
-\item[$\blacktriangleright$] Complete \texttt{ForAllShelfRule} as depicted in Fig.~\ref{ea:ForAllShelves_Complete}; You'll need to create a new correspondence
-type in either the schema (as we did in the beginning), or on-the-fly by selecting \texttt{Create New Correspondence Type} in the quick-link dialogue
-(Fig.~\ref{ea:corrOnTheFly}).
+\item[$\blacktriangleright$] You'll need to create a new \texttt{FolderToShelf} correspondence type in either the schema (as we did in the beginning), or
+on-the-fly by selecting \texttt{Create New Correspondence Type} in the quick-link dialogue (Fig.~\ref{ea:corrOnTheFly}).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -78,7 +78,7 @@ element is used to correctly set the \texttt{dictionary} and \texttt{dictionaryF
 \begin{figure}[htbp]
   \hspace{-0.7cm}
   \includegraphics[width=1.2\textwidth]{ea_NodeToDictionaryRule}
-  \caption{\texttt{NodeToDictionaryRule} \update}
+  \caption{\texttt{NodeToDictionaryRule}}
   \label{ea:NodeToDictionary_Complete}
 \end{figure}
 
@@ -100,7 +100,7 @@ Fig.~\ref{ea:ForAllEntry_Complete}. Each \texttt{entryNode} will contain a \text
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=1.1\textwidth]{ea_ForAllEntryRule}
-  \caption{\texttt{ForAllEntryRule}}
+  \caption{\texttt{ForAllEntryRule} \update (``ENTRY'' and constraint)}
   \label{ea:ForAllEntry_Complete}
 \end{center}
 \end{figure}
@@ -112,12 +112,10 @@ handle authors next. We can begin our rule by deriving from \texttt{DictionaryNo
 context element, \texttt{library}, in accordance with the \texttt{Dictionary} metamodel, where each \texttt{author} is connected to its \texttt{dictionary} and
 the \texttt{library} instance. Therefore, derive and create \texttt{AuthorRule} as shown in Fig.~\ref{ea:AuthorRule}.
 
-\newpage
-
 \begin{figure}[h]
   \hspace{-2cm}
   \includegraphics[width=1.3\textwidth]{ea_AuthorRule}
-  \caption{\texttt{AuthorRule} \update}
+  \caption{\texttt{AuthorRule}}
   \label{ea:AuthorRule}
 \end{figure}
 
@@ -141,7 +139,7 @@ exactly what we need.
 \item[$\blacktriangleright$] Return to the \texttt{Rules} diagram. Since we're no longer implementing \texttt{AuthorRule} directly, we need to make it
 \texttt{abstract}. Select the rule, then hit \texttt{alt + enter} to open its properties dialogue.
 
-\item[$\blacktriangleright$] Switch to the \texttt{details} tab, and select \texttt{Abstract} from the list of properties (Fig.~\ref{ea:abstractDetails}). 
+\item[$\blacktriangleright$] Switch to the \texttt{Details} tab, and select \texttt{Abstract} from the list of properties (Fig.~\ref{ea:abstractDetails}). 
 Affirm and close by pressing \texttt{OK}.
 
 \begin{figure}[htbp]
@@ -194,28 +192,41 @@ Fig.~\ref{ea:existingAuthorRule}.
 \end{center}
 \end{figure}
 
+\item[$\blacktriangleright$] \update Include a paragraph about how the rule would have looked w/o refinements (i.e., before the bug). Would be big. (Check
+downloads folder; file prepared). Would have exact same semantics as our refinement(s).
+
+\item[$\blacktriangleright$] Mention that, if you want to populate your refinement a little bit more without actually changing anything, EA allows you to drag
+and drop all elements from the basis/source rule as links, so they're represented in the diagram. (include screenshot here? it may emphasize the overlay idea..)
+
 \subsubsection{NewAuthorRule} % ---------------------------------
 
 \item[$\blacktriangleright$] Return to \texttt{AuthorRule}. For reasons that will be explained shortly in the next section, derive a copy of \texttt{authorNode}
-and \texttt{library} in a rule called \texttt{NewAuthorRule}, but don't modify either variable. Since we have now defined \texttt{AuthorRule} as an abstract
-class, it needs this concrete rule to execute it. Your rule should have the two elements shown in Fig.~\ref{ea:NewAuthorRule}.\footnote{For presentation
-purposes, we have reduced the white space between these elements. In your rule they will be in their original places, far apart.}
+and \texttt{library} in a rule called \texttt{NewAuthorRule}. Specify it as completely empty, not changing either of the variables for now. It should come to
+resemble Fig.~\ref{ea:NewAuthorRule}.\footnote{For presentation purposes, we have reduced the white space between these elements. In your rule they
+will be in their original places, far apart.} Since we have defined \texttt{AuthorRule} as abstract, it needs this concrete rule to execute it. 
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{ea_NewAuthorRule}
+  \includegraphics[width=0.6\textwidth]{ea_NewAuthorRule}
   \caption{Completed \texttt{NewAuthorRule}}
   \label{ea:NewAuthorRule}
 \end{center}
 \end{figure}
 
+\item[$\blacktriangleright$] Of course, we could have left \texttt{AuthorRule} concrete and used just the two rules, but having an explicit abstract rule, with
+two concrete implementations of the possibilities, is clearer.
+
 \item[$\blacktriangleright$] Return to the \texttt{Rules} diagram one last time. In order to ensure the new rules will refine \texttt{AuthorRule},
 quick-link from each to the root rule, choosing \texttt{Create Refinement Link} from the context menu. Your diagram should now resemble
 Fig.~\ref{ea:refinementClasses}.
 
-\vspace{0.5cm}
+\item[$\blacktriangleright$] You're nearly done! Make sure everything is saved, and validate your TGG. 
+
+\newpage
+
+\vspace*{2cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -224,9 +235,6 @@ Fig.~\ref{ea:refinementClasses}.
   \label{ea:refinementClasses}
 \end{center}
 \end{figure}
-
-
-\item[$\blacktriangleright$] You're nearly done! Make sure everything is saved, and validate your TGG. 
 
 %If a dialogue appears saying the attempt was
 %unsuccessful, you may simply need to update the schema diagram which may not contain the new correspondence types you created on the fly. To do so, open the
