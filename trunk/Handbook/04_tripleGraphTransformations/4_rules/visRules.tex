@@ -27,7 +27,7 @@ the diagram window (Fig.~\ref{ea:create_tgg_rule}). Press \texttt{alt + enter} t
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Double click the element to open its rule diagram. Drag-and-drop \texttt{Box} from the project browser into the diagram once
+\item[$\blacktriangleright$] Double-click the element to open its rule diagram. Drag-and-drop \texttt{Box} from the project browser into the diagram once
 again, choosing to paste the element as an \texttt{instance}.\footnote{If the `Paste Element' dialogue doesn't appear, hold \texttt{ctrl} while dragging and
 dropping and confirm you haven't selected the autosave option under \texttt{options}.} The \texttt{name} and \texttt{binding operator} should already be set to
 \texttt{box} and \texttt{create}. Repeat the action to create an instance of \texttt{Dictionary}.
@@ -85,7 +85,7 @@ constraint, then \texttt{OK} to affirm and close the window.
 
 \begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=0.9\textwidth]{ea_TGGConstraintDependency}
+  \includegraphics[width=0.9\textwidth]{ea_BoxToDictionaryRuleConstraint}
   \caption{A TGG rule with an attribute constraint}
   \label{ea:tgg_rule_with_constraint}
   \end{center}
@@ -106,11 +106,10 @@ should come to resemble Fig.~\ref{ea:boxtodictionaryrule_complete}.
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=\textwidth]{ea_BoxToDictionaryComplete}
+\hspace{-2cm}
+  \includegraphics[width=1.2\textwidth]{ea_BoxToDictionaryRuleComplete}
   \caption{Complete TGG rule diagram for \texttt{BoxToDictionaryRule}}
   \label{ea:boxtodictionaryrule_complete}
-\end{center}
 \end{figure}
 
 \end{enumerate}
@@ -155,7 +154,7 @@ new rule will automatically open in a new window.
 
 \item[$\blacktriangleright$] Quick-link from \texttt{card} to \texttt{entry} and create another TGG correspondence link. You'll notice that the
 \texttt{select correspondence link} drop-down menu is empty -- we haven't defined one between these types yet in the schema. Luckily, we're able to create one
-here on-the-fly. Select \texttt{create new link} and name it \texttt{CardToEntry} (Fig~\ref{ea:newCorrespondenceDialogue}). 
+here on-the-fly. Select \texttt{Create new correspondence type} and name it \texttt{CardToEntry} (Fig~\ref{ea:newCorrespondenceDialogue}). 
 
 \vspace{0.5cm}
 
@@ -169,7 +168,6 @@ here on-the-fly. Select \texttt{create new link} and name it \texttt{CardToEntry
 
 \item[$\blacktriangleright$] Your diagram should now resemble Fig.~\ref{ea:cardtoentry_1}. We're not done yet though -- we still need to handle attributes!
 
-% \newpage
 \vspace{0.5cm}
 
   \begin{figure}[htbp]
@@ -199,9 +197,9 @@ similarly, \texttt{card\-.face} should be \texttt{Ans\-wer:<mean\-ing>}.
 
 \vspace{0.5cm}
 
-  \item \texttt{addPrefix(``Question '', word, card.face)}  
+  \item \texttt{addPrefix(``Question '', word, card.back)}  
   
-  \item \texttt{addPrefix(``Answer'', meaning, card.back)}
+  \item \texttt{addPrefix(``Answer'', meaning, card.face)}
   
   \item \texttt{concat(``:'', word, meaning, entry.content)}
 
@@ -217,7 +215,7 @@ patterns).
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{ea_cardToEntryRuleFirstConstraints}
+  \includegraphics[width=\textwidth]{ea_CardToEntryRuleFirstConstraints}
   \caption{Attribute manipulation for \texttt{card} and \texttt{entry}}
   \label{ea:cardtoentry_2}
 \end{center}
@@ -268,11 +266,10 @@ syntax, or Fig.~\ref{eclipse:c2eDone} in Section 4.4 for the \texttt{CardToEntry
 \vspace*{3cm}
 
 \begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=\textwidth]{ea_CardToEntryRuleComplete}
+\hspace{-2cm}
+  \includegraphics[width=1.2\textwidth]{ea_CardToEntryRuleComplete}
   \caption{\texttt{CardToEntryRule} with complete attribute manipulation}
   \label{ea:cardtoentry_complete}
-\end{center}
 \end{figure}
 
 \jumpSingle{subsec:IndexToLevel}

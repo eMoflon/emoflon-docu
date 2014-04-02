@@ -3,10 +3,7 @@
 \subsection{Polishing the TGG Transformation}
 \texHeader
 
-\begin{itemize}
-
-\item[$\blacktriangleright$] Open \texttt{NodeToDictionaryRule}, and add the following constraint to \texttt{dictionaryNode} as shown in
-Fig.~\ref{eclipse:NodeToDictionaryRuleUpdated}.
+{\huge REMOVE}
 
 \vspace{0.5cm}
 
@@ -18,12 +15,6 @@ Fig.~\ref{eclipse:NodeToDictionaryRuleUpdated}.
 \end{center}
 \end{figure}
 
-
-\item[$\blacktriangleright$] Similarly, open \texttt{ForAllEntryRule} and edit \texttt{entryNode} (Fig.~\ref{eclipse:ForAllEntryRuleUpdated}).\footnote{Please
-note that the MOSL parser requires all attribute constraints to be declared before link variables.}
-
-\vspace{0.5cm}
-
 \begin{figure}[htp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_ForAllEntryRuleUpdated}
@@ -31,6 +22,8 @@ note that the MOSL parser requires all attribute constraints to be declared befo
   \label{eclipse:ForAllEntryRuleUpdated}
 \end{center}
 \end{figure} 
+
+\begin{itemize}
 
 \item[$\blacktriangleright$] Now let's introduce our custom constraint to handle each \texttt{entryNode.index}
 value. Update the \texttt{constraints} scope in \texttt{ForAllEntryRule} as shown in Fig.~\ref{eclipse:newEntryConstraint}.\footnote{ To review the purpose of
@@ -45,8 +38,5 @@ constraints and discuss the significance of each of the attribute options, refer
   \label{eclipse:newEntryConstraint}
 \end{center}
 \end{figure}
-
-\item[$\blacktriangleright$] That's everything! Save and build your updated \texttt{DictionaryCodeAdapter}, but don't run the TGG yet -- we haven't provided any
-implementation for \texttt{setDefaultNumber}.
 
 \end{itemize}

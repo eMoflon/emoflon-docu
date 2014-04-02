@@ -3,11 +3,12 @@
 \subsection{Setting up the parser}
 \genHeader
 
-Our convention is that the \emph{code adapter} project we just established in the previous step contains all the tree-to-model transformation logic. Although
-the transformation \emph{could} be integrated directly in the corresponding metamodel (\texttt{Dic\-tion\-ary\-Language}), a separation makes sense here as
-there could be \emph{different} code adapters for the \emph{same} language.
+Our convention is that the \emph{code adapter} project we established in the previous step contains all tree-to-model transformation logic for the project.
+Although the transformation \emph{could} be integrated directly in the corresponding metamodel (\texttt{Dic\-tion\-ary\-Language}), a separation makes sense here as
+there could be \emph{different} code adapters for the \emph{same} language. 
 
-Let's now set up an ANTLR parser/unparser.
+To continue setting up the framework for our transformation, let's establish an ANTLR parser/unparser which will enable us to change from model-to-text (and
+vice versa).
 
 \begin{itemize}
 
@@ -39,7 +40,7 @@ Affirm by pressing \texttt{Finish}.
 
 
 \item[$\blacktriangleright$] If everything executed without error, parser and unparser stubs should be generated in the \texttt{src} package
-(Fig.~\ref{eclipse:generatedParser}). In addition, a new \texttt{in} folder should appear under \texttt{instances}.
+(Fig.~\ref{eclipse:generatedParser}). In addition, a new \texttt{in} folder should appear under \texttt{instances}. Great work!
 
 \begin{figure}[htpb]
 \begin{center}

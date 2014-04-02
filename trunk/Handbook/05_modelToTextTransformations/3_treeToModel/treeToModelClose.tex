@@ -53,13 +53,13 @@ minimalist design. They can easily change their preference possibly on a case-by
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Navigate to ``DictionaryCodeAdapter/org.moflon.tie.'' Right-click this package and create
-\texttt{Author\-Config\-ur\-at\-or.java}. Complete the file as described in Fig.~\ref{eclipse:authorConfig}. Be careful not to make any mistakes -- Eclipse's
-auto-completion can help you here.
+\item[$\blacktriangleright$] Navigate to ``DictionaryCodeAdapter/src/org.moflon.tie.'' Right-click this package and create a new java class named
+\texttt{Author\-Config\-ur\-at\-or}, then complete the override as described in Fig.~\ref{eclipse:authorConfig}. Be careful not to make any mistakes --
+Eclipse's auto-completion can help you here.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{eclipse_authorConfigurator}
+  \includegraphics[width=\textwidth]{eclipse_authorConfiguratorClass}
   \caption{Setting a preference for \texttt{NewAuthorRule}}
   \label{eclipse:authorConfig}
 \end{center}
@@ -77,8 +77,8 @@ direction, so declare it once in \texttt{TGGMain/performForward} as depicted in 
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{eclipse_editTGGMain}
-  \caption{Setting the configurator to control the run-time decision \update}
+  \includegraphics[width=\textwidth]{eclipse_authorConfiguratorTGGMain}
+  \caption{Setting the configurator to control the run-time decision}
   \label{eclipse:editTGGMain}
 \end{center}
 \end{figure}
@@ -98,7 +98,7 @@ preference can be enforced using a NAC which checks to see if there is already a
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{ea_existingAuthorNAC}
+  \includegraphics[width=\textwidth]{ea_NewAuthorRuleNAC}
   \caption{Refine \texttt{AuthorRule} by adding a NAC in \texttt{NewAuthorRule} \update}
   \label{ea:existingAuthorNAC}
 \end{center}
