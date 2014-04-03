@@ -4,7 +4,12 @@
 
 \genHeader
 
-For the interested reader, we have included some content on the details of the protocol file that's generated in pair with the correspondence file with every
-TGG transformation. A protocol lists every small detail involved in the transformation process, listing its history of elements checked, listing the possible
-transformations, attempting each one, and describing the result. While similar to the integrator which we learnt how to use in Part 3, Section 6, the protocol
-contains more information than the visualisation, and can be extremely useful when debugging your project.
+In Part IV, Section 6, we reviewed how to use the integrator feature to visually trace the transformation process. It's based on the correspondence metamodel,
+but actually runs off the relevant \texttt{protocol.xmi}, which is a tree you are able to view directly. This file is a listing of each attempted, successful,
+and failed step in the transformation process. More than that, it includes detailed notes on the object it was operating on, and instead of just indicating that
+something has gone wrong, it lists the reason why. This file can be a useful debugging tool for when you're \emph{really} stuck.
+
+To help explain, we will refer to the forward protocol file generated in Part V, when translating from the MocaTree to the dictionary model. More
+specfically, we'll compare what we're able to see using the integrator as shown section 3.3, when the construction of the transformation at that time presented
+a choice between two valid rules for handling authors.
+

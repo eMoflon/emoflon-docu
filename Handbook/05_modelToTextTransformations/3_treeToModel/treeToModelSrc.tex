@@ -7,21 +7,13 @@ want separate rules for transforming a \texttt{Folder} into its appropriate cont
 to handle whatever \texttt{File} and \texttt{Node} elements they contain (such as transforming each of the \texttt{.dictionary} files into \texttt{dictionary},
 \texttt{author}, and \texttt{entry} elements).
 
-\vspace{0.5cm}
-
-\begin{figure}[htp]
-\begin{center}
-  \includegraphics[width=0.7\textwidth]{goal}
-  \caption{Transforming a tree into an instance model}
-  \label{fig:treeToDictionary}
-\end{center}
-\end{figure}
-
-\vspace{0.5cm}
+{\bf include graph view comparison (top \& bottom) of what we're going FROM to what we're going TO (images already in the right folder)}
 
 When specifying \emph{any} rule, it's important to keep in mind how flexibile the rule should be. In future \texttt{tree} instances for example, we
 can not know exactly how many subfolders \texttt{myLibrary} will contain, whether or not each \texttt{.dictionary} file will have an author node (as
 seen in \texttt{unknown.dictionary}), or how many entries each \texttt{dictionary} will contain. 
+
+{\bf Also, this is rather dry, its alot of copying what you see here in the text, so get those tunes blasting}
 
 \jumpDual{treeToModel vis}{treeToModel tex}
 

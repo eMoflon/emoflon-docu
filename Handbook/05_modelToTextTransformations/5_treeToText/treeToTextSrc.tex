@@ -18,8 +18,6 @@ website \url{www.antlr.org}.
 \item[$\blacktriangleright$] Expand ``src/org.moflon.moca.dictionary.unparser'', open \texttt{Dict\-ion\-ary\-Tree\-Gram\-mar.g}, and edit the contents as
 depicted in Fig.~\ref{eclipse:treeGrammar}. 
 
-\vspace{0.5cm}
-
 \begin{figure}[htpb]
 \begin{center}
   \includegraphics[width=0.8\textwidth]{eclipse_dictionaryTreeGrammar}
@@ -27,9 +25,6 @@ depicted in Fig.~\ref{eclipse:treeGrammar}.
   \label{eclipse:treeGrammar}
 \end{center}
 \end{figure}
-
-\newpage
-
 
 \item[$\blacktriangleright$] Next, open \texttt{Dict\-ion\-ary\-Un\-pars\-er\-Ad\-ap\-ter.java} (Fig~\ref{eclipse:unparserCommented}). You'll notice that this
 file contains a (commented) \texttt{StringTemplateGroup} method for retrieving a group of templates and needs to be implemented. The comments explain how to use
@@ -67,8 +62,8 @@ Fig.~\ref{eclipse:dictionaryTemplate}.
 % \item[$\blacktriangleright$] Remember how you removed the unparsing command from \texttt{TGGMain.java} at the start of this part? Return to the file and
 % uncomment line 46.  As you can see, it will create and place the results of this action into a single \texttt{out} folder in the instance directory. 
 
-\item[$\blacktriangleright$] Save and run your transformation again. Inspect and compare your input and output files (Fig.~\ref{eclipse:unparseResult}). Are
-they the same?
+\item[$\blacktriangleright$] Save and run your transformation again -- there should no longer be any errors. Inspect and compare your input and
+output folders and their containing files (Fig.~\ref{eclipse:unparseResult}). Are they the same?
 
 \vspace{0.5cm}
 
