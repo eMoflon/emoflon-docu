@@ -1,8 +1,6 @@
 \newpage
-\section{Model Synchronization**}
+\section{Model Synchronization}
 \genHeader
-
-{\bf Under Construction}
 
 At this point you have successfully created a trio of rules that can transform a \texttt{box} (with an undetermined number of \texttt{partition}s which can
 contain an unknown number of \texttt{card}s) \emph{forwards} into a single \texttt{dictionary} able to store an unlimited number of \texttt{entry} elements.
@@ -13,10 +11,55 @@ Suppose you first ran the TGG on a \texttt{source.xmi} graph with five \texttt{p
 nine ``master'' entries. If you were to now run the TGG on the generated \texttt{target} graph and inspect the output, you would have a \texttt{box} with
 only three partitions of size nine, three, and three, respectively. There is no possible way to achieve the original construction of the other two partitions!
 
-\vspace{1cm}
-
-TASKS:
+Just to show how synch works, in the forward direction, from a Box to a Dictionary, let's add a fourth card to partition2. We don't want to run the ENTIRE
+transformation again, we only want to do a minor update.
 
 \begin{itemize}
-  \item example to find out/explain/resolve model synchronization
+
+\item example to find out/explain/resolve model synchronization
+  
+\item[$\blacktriangleright$] (in performForward) Run on the original (load source)
+  
+\item[$\blacktriangleright$] Load correspondence (corr FWD; to grab original structure)
+    
+\item[$\blacktriangleright$] load existing target (source.xmi\_FWD.xmi)
+
+\item[$\blacktriangleright$] then, integrate forward (w.e. that means)
+
+\item[$\blacktriangleright$] save src (since you're modying it, different locations [it's always good to compare])
+
+\item[$\blacktriangleright$] save target (that's where the end result will be)
+
+\item[$\blacktriangleright$] save the synchronization correspondence
+
+\item[$\blacktriangleright$] Finall, save the protocol. Will be smaller than the original FWD (just like the corr) because it focuses EXCLUSIVELY on one thing,
+i.e., only makes the minor change
+
+\item[$\blacktriangleright$] in SYNCH, open source\_FWD. You'll notice the fourth card! Compared to the original source xmi, partition 2 only had one.
+Similarly, open target\_FWD. It has the fourth card! They match!
+
+\item[$\blacktriangleright$] In fact, run the integrator on the correspondence. You'll notice that you can't go very far. in fact, the ONLY thing the corr will
+show is the creation of this single card. It doesn't run through the entire transformation because the only thing that was modified or changed was this.
+
+\item[$\blacktriangleright$] Now, lets update the backwards direction, from dictionary to Box. In dictionary, the current target found in LOCATION has three
+entries, not four! This is because we separated the original and the new. Let's remove `One: Eins' in index 0, and add a new `Five: fuenf'
+
+\item[$\blacktriangleright$] (In performBackwards) load original target
+
+\item[$\blacktriangleright$] load correspondence BWD
+
+\item[$\blacktriangleright$] load src (will save to)
+
+\item[$\blacktriangleright$] integrate back
+
+\item[$\blacktriangleright$] Can copy/paste at this point, but save target (since that's what you changed)
+
+\item[$\blacktriangleright$] save src (results)
+
+\item[$\blacktriangleright$] save updated/minor correspondence and finally it's paired protocol.
+
+\item[$\blacktriangleright$] Run the integrator. Notice how it doesn't show the deletion of the first card? As mentioned before (LOCATION), TGGs are only used
+to build up or construct models - a separate compiler/construction/thing entirely makes destructive changes. So the card is essentially `gone,' not even
+appearing in the correspondence.
+
 \end{itemize}

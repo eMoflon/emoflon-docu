@@ -116,3 +116,8 @@ preference can be enforced using a NAC which checks to see if there is already a
 authors are created) is enforced each time. 
 
 \end{itemize}
+
+Let's examine the results! First, You'll notice that, as you scroll through each \texttt{Node}, the \texttt{title} and \texttt{author} nodes have the correct
+\texttt{index} values of 0 and 1, but the remaining \texttt{entry} indices are also set to 0. We were only concerned with binding the title and author nodes in
+the forward direction, as we could assume that any other node with any other index value (2 and greater) was an \texttt{entryNode}. In the backwards direction
+however, this distinction is lost, which means we must introduce a custom attribute constraint.

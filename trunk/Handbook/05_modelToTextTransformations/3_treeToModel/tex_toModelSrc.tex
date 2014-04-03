@@ -10,8 +10,8 @@ recommend first working through Part IV to cover TGG fundamentals.
 
 \subsubsection{FolderToLibraryRule} % ---------------------------------
 
-\item[$\blacktriangleright$] Expand \texttt{DictionaryCodeAdapter}, right-click on the \texttt{Rules} folder. Navigate to ``New/TGG Rule," and name this
-first rule \texttt{Folder\-To\-Lib\-rary\-Rule}.
+\item[$\blacktriangleright$] Return and expand the \texttt{DictionaryCodeAdapter} TGG package you created earlier and right-click on the \texttt{Rules} folder.
+Navigate to ``New/TGG Rule," and name this first rule \texttt{Folder\-To\-Lib\-rary\-Rule}.
 
 \item[$\blacktriangleright$] All this rule needs to do is create a \texttt{Folder} (i.e., ``myLibrary'') together with its equivalent \texttt{Library}, and a
 correspondence link between them. Edit your rule until it resembles Fig.~\ref{eclipse:FolderToLibraryRule}.
@@ -124,8 +124,8 @@ multiple authors with the same email address.
 \subsubsection{ExistingAuthorRule} % ---------------------------------
 
 \item[$\blacktriangleright$] Similarly, create \texttt{ForExistingAuthorRule} as specified in Fig.~\ref{eclipse:ForExistingAuthorRule}. You should be able to
-copy and paste the majority of the previous rule. In fact, the only thing you need to change are two small characters in front of \texttt{author} and its
-\texttt{dictionary} reference, forcing the rule to find an existing \texttt{author}, if possible.
+copy and paste the majority of the previous rule.\footnote{Be sure to leave the new rule name as 'ForExistingAuthorRule' or else your build will fail} In fact,
+the only thing you need to change are two small characters in front of \texttt{author} and its \texttt{dictionary} reference, forcing the rule to find an existing \texttt{author}, if possible.
 
 \begin{figure}[htbp]
 \begin{center}
