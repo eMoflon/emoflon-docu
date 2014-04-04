@@ -3,63 +3,116 @@
 \genHeader
 
 At this point you have successfully created a trio of rules that can transform a \texttt{box} (with an undetermined number of \texttt{partition}s which can
-contain an unknown number of \texttt{card}s) \emph{forwards} into a single \texttt{dictionary} able to store an unlimited number of \texttt{entry} elements.
-Unfortunately, there would be unavoidable data loss if you attempted transform data \emph{backwards} from \texttt{dictionary}.
+contain an unknown number of \texttt{card}s) \emph{forwards} into a single \texttt{dictionary} able to store an unlimited number of \texttt{entry} elements. 
+But what if you wanted to quickly made a change to either model, such as adding a \texttt{card} in a \texttt{partition}, or removing an \texttt{entry} from a
+\texttt{Dictionary}? You don't want to have to run the ENTIRE transformation again. After all, you're only changing one small thing - the rest of the model
+doesn't need to be updated.
 
-Suppose you first ran the TGG on a \texttt{source.xmi} graph with five \texttt{partition}s, each containing three \texttt{Card}s. According to our
-\texttt{IndexToLevel} implementation, the \texttt{card}s would be transformed as (1) three ``beginner'' entries, (2) three ``advanced'' entries, and (3)
-nine ``master'' entries. If you were to now run the TGG on the generated \texttt{target} graph and inspect the output, you would have a \texttt{box} with
-only three partitions of size nine, three, and three, respectively. There is no possible way to achieve the original construction of the other two partitions!
+This is where synchronization comes in handy. It uses the graph triple derived from the original transformation - the source, correspondence, and target
+metamodels - and updates all three as needed. It can be used in either direction. Let's try this out. In the forward direction, from \texttt{Box} to
+\texttt{Dictionary}, let's add a fourth paritition to \texttt{Partition 2}.
 
-Just to show how synch works, in the forward direction, from a Box to a Dictionary, let's add a fourth card to partition2. We don't want to run the ENTIRE
-transformation again, we only want to do a minor update.
+Now, we don't want to change the source model directly. Instead, we want to load it first, make the modification, and go from there. We want to generate a new,
+updated instance of source.
 
 \begin{itemize}
 
-\item example to find out/explain/resolve model synchronization
-  
-\item[$\blacktriangleright$] (in performForward) Run on the original (load source)
-  
-\item[$\blacktriangleright$] Load correspondence (corr FWD; to grab original structure)
-    
-\item[$\blacktriangleright$] load existing target (source.xmi\_FWD.xmi)
+\item[$\blacktriangleright$] You are able to implement any updates/changes via SDMs, but here we'll just use basic java implementation, so complete the empty
+override \texttt{changeSrc} method as depicted in Fig.~\ref{eclipse:changeSrc}.
 
-\item[$\blacktriangleright$] then, integrate forward (w.e. that means)
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{eclipse_changeSrc}
+  \caption{changing the source model}
+  \label{eclipse:changeSrc}
+\end{center}
+\end{figure}
 
-\item[$\blacktriangleright$] save src (since you're modying it, different locations [it's always good to compare])
+\item[$\blacktriangleright$] As you can see, \texttt{root} refers to the original root structure of the source model we loaded, which is a \texttt{Box}. We also
+initalize partition2 so that we can make changes. We match to the correct one (for:each). Factory handles everything there is to do with box, so create a new
+card, and set its values. Add the card to the partition, and you're done!
 
-\item[$\blacktriangleright$] save target (that's where the end result will be)
+\item[$\blacktriangleright$] Add a new method, \texttt{synchForward}, and complete it as depicted in Fig.~\ref{eclipse:SynchForwardMethod}. 
 
-\item[$\blacktriangleright$] save the synchronization correspondence
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=\textwidth]{eclipse_synchForwardMethod}
+  \caption{forward synchronization}
+  \label{eclipse:SynchForwardMethod}
+\end{center}
+\end{figure}
 
-\item[$\blacktriangleright$] Finall, save the protocol. Will be smaller than the original FWD (just like the corr) because it focuses EXCLUSIVELY on one thing,
-i.e., only makes the minor change
+\item[$\blacktriangleright$] You'll notice that its nearly identical to the original \texttt{performForward}. The difference here however is that you're loading
+the original triple, \texttt{source.xmi}, and its generated \texttt{corr\_FWD.xmi} and \texttt{target\_FWD.xmi} in order to keep them consistent.
 
-\item[$\blacktriangleright$] in SYNCH, open source\_FWD. You'll notice the fourth card! Compared to the original source xmi, partition 2 only had one.
-Similarly, open target\_FWD. It has the fourth card! They match!
+\item[$\blacktriangleright$] We'll come back to the command in a moment, but \texttt{integrateForward} commits any changes, and you'll need to persist all
+changes in each piece, needing to save the source, target, and the minor update's relevant correspondence and protocol. These files will be significantly
+smaller than the originals as they only reflect the immediate changes you made. Here we save them in a different location so that you may compare the
+differences, and understand how synchronization works but you can, of course, decide to overwrite the original files. 
 
-\item[$\blacktriangleright$] In fact, run the integrator on the correspondence. You'll notice that you can't go very far. in fact, the ONLY thing the corr will
-show is the creation of this single card. It doesn't run through the entire transformation because the only thing that was modified or changed was this.
 
-\item[$\blacktriangleright$] Now, lets update the backwards direction, from dictionary to Box. In dictionary, the current target found in LOCATION has three
-entries, not four! This is because we separated the original and the new. Let's remove `One: Eins' in index 0, and add a new `Five: fuenf'
+\item[$\blacktriangleright$] Finally, add the the following statements to \texttt{main}, then run \texttt{TGGMain}.
 
-\item[$\blacktriangleright$] (In performBackwards) load original target
+\begin{figure}[htbp]
+\begin{center}
+\begin{lstlisting}[language=Java,backgroundcolor=\color{white}, keywordstyle={\bfseries\color{purple}}]
+helper = new TGGMain();
+helper.synchForward();
+\end{lstlisting}
+\caption{add this to \texttt{main}}
+  \label{code:synchForward}
+\end{center}
+\end{figure}
 
-\item[$\blacktriangleright$] load correspondence BWD
+\item[$\blacktriangleright$] Navigate to ``instances/synch/FWD/'' and inspect the new \texttt{source} and \texttt{target} models. 
+Is the fifth Card now in both source and target?
 
-\item[$\blacktriangleright$] load src (will save to)
+\item[$\blacktriangleright$] Compare these two new models to the original source and targets in ``instances/'' You'll notice they don't match. The new card was
+added to source, but persisted in this other folder. 
 
-\item[$\blacktriangleright$] integrate back
+\item[$\blacktriangleright$] Run the integrator on the correspondence. You'll notice that you can't go very far. in fact, the ONLY thing the corr will
+show is the creation of this single card. It doesn't run through the entire transformation because the only thing that was modified or changed was this. Only
+the items reflected are re-generated.
 
-\item[$\blacktriangleright$] Can copy/paste at this point, but save target (since that's what you changed)
+\item[$\blacktriangleright$] Lets try synchronizing in the opposite direction, from Dictionary to Box. Let's remove \texttt{Entry} `One: Eins,' and add `Five:
+Feunf.' complete \texttt{changeTrg()} as shown in Fig.~\ref{eclipse:changeTrg}.
 
-\item[$\blacktriangleright$] save src (results)
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{eclipse_changeTrg}
+  \caption{Modifying target model}
+  \label{eclipse:changeTrg}
+\end{center}
+\end{figure}
 
-\item[$\blacktriangleright$] save updated/minor correspondence and finally it's paired protocol.
+\item[$\blacktriangleright$] Nearly identical to \texttt{synchForward}, create a new method \texttt{synchBackwards} and complete it as depicted in
+Fig.~\ref{eclipse:SynchBackwardMethod}.
 
-\item[$\blacktriangleright$] Run the integrator. Notice how it doesn't show the deletion of the first card? As mentioned before (LOCATION), TGGs are only used
-to build up or construct models - a separate compiler/construction/thing entirely makes destructive changes. So the card is essentially `gone,' not even
-appearing in the correspondence.
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=\textwidth]{eclipse_synchBackwardMethod}
+  \caption{synch backwards}
+  \label{eclipse:SynchBackwardMethod}
+\end{center}
+\end{figure}
+
+\item[$\blacktriangleright$] Finally, analogously to how you did in the forward direction, re-initalize \texttt{helper} and call
+\texttt{helper.synchBackward()}. Your final \texttt{Main} method should come to resemble Fig.
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=\textwidth]{eclipse_TGGSynchMain}
+  \caption{Final Main method}
+  \label{eclipse:TGGSynchMain}
+\end{center}
+\end{figure}
+
+\item[$\blacktriangleright$] Inspect the new files in ``instances/synch/BWD/.'' You'll notice in \texttt{target.xmi} that the \texttt{one} entry was removed,
+and \texttt{Five} was added, but there's no \texttt{four}. this is because you ran off the ORIGINAL, non-updated target. We encourage you to experiment and try
+to create a streamlined process, from original transformation to any synchronization updates you may make, forwards or backwards.
+
+\item[$\blacktriangleright$] On a final note, lets run the integrator one more time. Notice how it doesn't show the deletion of the first card? Recall that
+the rules of any TGG are by definition, monotoic. They only speciy the consistency relation, which is why it's permitted here. An entirely separate compiler
+makes destructive changes. The card therefore essentially disappears from all models, not even appearing in the correspondence.
 
 \end{itemize}

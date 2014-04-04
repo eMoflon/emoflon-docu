@@ -36,9 +36,9 @@ Create a negative \texttt{next\-Part\-it\-ion} object variable by using the nega
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Now add \texttt{`->next : nextPartition'} to \texttt{lastPartition}'s scope. This attempts to establish a \texttt{next} link from
-the last partition. Next, add \texttt{`++ ->next : newPartition'} (Fig.~\ref{eclipse:firstNAC}). This constraint will only be fulfilled if the NAC fails, and it
-establishes the \texttt{newPartition} as the final partition.
+\item[$\blacktriangleright$] Now add \texttt{`-> next : nextPartition'} to \texttt{lastPartition}'s scope. This attempts to establish a \texttt{next} link from
+the last partition. Next, add \texttt{`++ -> next : newPartition'} (Fig.~\ref{eclipse:firstNAC}). This constraint will only be fulfilled if the NAC fails, and
+it establishes the \texttt{newPartition} as the final partition.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -89,9 +89,10 @@ another attribute constraint to set its value, but \texttt{newPartition} needs t
 via a \emph{MethodCallExpression}\index{MethodCallExpression}. The structure of this expression is similar to Java where:
 \syntax{\hspace{-2cm} MethodCallExpression := (object\_variable\_expression | \\ 
 \hspace*{-2cm} parameter\_expression)`.'ID`('argument\_list `)'\\
-\\
-With:\\
 }
+% \\
+% With:\\
+% }
 
 \item[$\blacktriangleright$] We've encountered both of these expression types already -- \texttt{`@'} in \texttt{removeCard} and \texttt{`\$'} in
 \texttt{check}. The latter doesn't apply to this pattern, so write: \syntax{@this.determineNextSize()}

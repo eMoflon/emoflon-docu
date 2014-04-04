@@ -2,7 +2,58 @@
 \section{MOSL syntax}
 \texHeader
 
-Throughout the handbook series, we have described our Moflon Syntax Language (MOSL) using detailed context-free EBNF. In an effort to keep this section as a
-quick-reference document and not as a teaching tool, we have summarized all in the following. Not only will this reference help remind how to define a
-metamodel, it will be useful when writing your own ANTLR parser/unparser for any future unidirectional TGG transformation projects with
-eMoflon.
+We have created this sheet for you to keep handy while working on your own projects. It describes many key statements in context-free EBNF grammar that you'll
+need to use when building metamodels, SDM patterns, and TGG rules.
+
+Please keep in mind that this has been designed as a quick-reference page, and is not intended to be a teaching tool. If you are unsure how to use any
+of the following statements, the best reference for you will be the explanations in Part II, III, IV, or V where they are all introduced and described in the
+context of an example.
+
+\begin{figure}[htbp]
+Basics
+\begin{lstlisting}[backgroundcolor=\color{codelightgray}]
+attribute_constraints := '==' | '!=' | '<=' | '>=' | '<' | '>'
+binding_operator 			:= '++' | '--'
+binding_semantics 		:= '!' | '?'
+binding_state 				:= '@'
+multiplicity 					:= `0..1' | `0..*' | `1' | ...
+\end{lstlisting}
+
+Metamodels
+\begin{lstlisting}[backgroundcolor=\color{codelightgray}]
+attribute		:=	attribute_name : type
+link				:=	reference_name : target_type
+operation		:=	operation_name'('param_list')' ':' return_type
+opposites		:=	link '<->' link
+parameter		:=	parameter_name : type
+param_list	:=	parameter*
+reference		:=	[binding_operator] ['<>'] '->' reference_name 
+								'('multiplicity')' ':' target_type
+
+attribute_name, ov_name, parameter_name, reference_name, return_type, 
+	target_type, type := STRING
+\end{lstlisting}
+
+SDM Patterns and TGG Rules
+\begin{lstlisting}[backgroundcolor=\color{codelightgray}]
+assignment			:= ov_name'.'attribute_name ':=' expression
+statement_node	:= '<'method_call'>'
+link_variable 	:= [binding_operator] '->' reference_name ':' source_type
+object_variable := [binding_semantics] [binding_operator] [binding_state] 
+										ov_name ':' type_reference
+										
+AttributeValueExpression 	:= ov_name`.'attribute_name
+LiteralExpression 				:= boolean_literal | integer_literal | any_literal
+ObjectVariableExpression 	:= `@'ov_name
+ParameterExpression 			:= `$'parameter_name
+MethodCallExpression 			:= (objectVariableExpression | ParameterExpression)
+															`.'ID`('argument_list`)'
+
+boolean_literal := true, false
+integer_literal := [`+' | `-'] ( `1' | ... | `9' )
+any_literal 		:= STRING
+
+attribute_name, method_call, ov_name, parameter_name,reference_name, 
+	source_type, type_reference := STRING
+\end{lstlisting}
+\end{figure}
