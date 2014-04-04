@@ -24,9 +24,11 @@ Fig.~\ref{eclipse:fourthPartitionStart}. Don't forget to set the partition's \te
 \end{figure}
 
 \item[$\blacktriangleright$] An error should appear in the eMoflon console window stating that there was a problem translating your new partition, but the
-forward transformation was still able to finish. In fact, if you open \texttt{source\-.xmi\_FWD\-.xmi}, you'll be able to confirm the \texttt{Eng\-lish
-Numb\-ers Dict\-ion\-ary} was still created and even includes your newest card! Let's run the integrator on \texttt{corr\_fwd.xmi} once more to find out
-exactly how this worked.
+transformation were still able to finish. in fact, if you open \texttt{target\_FWD.xmi}, you'll be able to confirm your dictionary was still created and even
+contains your newest card!
+%forward transformation was still able to finish. In fact, if you open \texttt{source\-.xmi\_FWD\-.xmi}, you'll be able to confirm the \texttt{Eng\-lish
+% Numb\-ers Dict\-ion\-ary} was still created and even includes your newest card! 
+Let's run the integrator on \texttt{corr\_fwd.xmi} once more to find out exactly how this worked.
 
 \item[$\blacktriangleright$] Start once again with \texttt{Box}, and proceed until the integrator reaches your fourth partition. You'll notice that it
 first delays processing the \texttt{partition} as it cannot find a valid rule candidate.\footnote{The message `Possible Rule Candidate(s): ' is not displayed
@@ -54,7 +56,7 @@ moment)!
 
 \end{itemize}
 
-We're now presented with a dilemma. This rule, while giving us an error, \emph{works}! Our goal was never the to be able to put an \texttt{Entry} into
+We're now presented with a dilemma. This rule, while giving us an error, \emph{works}! Our goal was never to be able to put an \texttt{Entry} into
 partitions with indices greater than two,\footnote{As resolved in the \texttt{IndexTolevel} implementation} but simply to be able to put any \texttt{card} into
 a \texttt{Dictionary}. This means that such partitions are irrelevant for the dictionary and should be ignored. So why not leave our transformation like this?
 
