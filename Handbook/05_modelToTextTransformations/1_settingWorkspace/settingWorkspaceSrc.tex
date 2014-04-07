@@ -10,7 +10,7 @@ documented and supported, and allows for a pragmatic and elegant fallback to Jav
 done.
 
 To set up your workspace for the model-to-text transformation, you have two options: (1) Import a cheat package with everything already
-prepared,\footnote{Useful if you're just joining us in this part} or (2) if you've worked through the previous part, continue with your existing
+prepared (useful if you're just joining us), or (2) if you've worked through the previous part, continue with your existing
 workspace. Both options will work, but note that all of our screenshots from now on assume that you chose Option (1), so don't let that irritate you.
 
 As some of you are just reading this handbook without actually getting your hands dirty with an implementation (beware: no pain, no gain!), we have included a
@@ -21,7 +21,7 @@ concrete syntax.
 
 % --- Dictionary metamodels --
 \begin{figure}[htbp]
-  \hspace{-1cm}
+  \hspace{-1.5cm}
   \includegraphics[width=1.3\textwidth]{ea_dictionaryMetamodel}
   \caption{Metamodel for dictionaries (visual concrete syntax)}
   \label{ea:dictLang}
@@ -30,7 +30,7 @@ concrete syntax.
 \newpage
 
 \begin{figure}[h!]
-  \hspace{-1cm}
+  \hspace{-1.5cm}
   \includegraphics[width=1.2\textwidth]{eclipse_dictionaryMetamodel}
   \caption{Metamodel for dictionaries (textual concrete syntax)}
   \label{eclipse:dictLangMetamodel}
@@ -78,18 +78,18 @@ general indexed containment hierarchy. It is provided by our Eclipse plugin and 
 anywhere in your Eclipse workspace.
 
 Figure~\ref{mocaTreeMetamodel} is a visual depiction of this MocaTree model.\footnote{If you are using the visual syntax, feel free to view a detailed metamodel
-by opening your dictionary.eap, and navigating to the \texttt{MocaTree} EPackage, and opening it's title diagram.} As you can see, the most important element is
-\texttt{Node}. First, you'll notice that each \texttt{Attribute}, \texttt{Text}, and \texttt{File} element must be represented in the tree by a single
+by opening \texttt{dictionary.eap}, navigating to the \texttt{MocaTree} EPackage, and opening its title diagram.} As you can see, the most important
+element is \texttt{Node}. First, you'll notice that each \texttt{Attribute}, \texttt{Text}, and \texttt{File} element must be represented in the tree by a single
 \texttt{Node}. In turn, a single \texttt{Node} can store any number of \texttt{Attribute} or \texttt{Text} elements (subnodes), but only one \texttt{File}. If
 you look closer at \texttt{File}, you'll also notice that while it must be represented as a \texttt{Node}, it must also contain a single \texttt{Folder}
 instance to store its contents. \texttt{Folder} is able to store any number of further \texttt{File}s or subfolders.
 
 \newpage
 
-You'll also notice that all elements inherit an \texttt{index} and \texttt{name} attribute. \texttt{Index} can be used in order to demand a certain \emph{order}
+You can see that all elements inherit an \texttt{index} and \texttt{name} attribute. \texttt{Index} can be used in order to demand a certain \emph{order}
 of nodes in a tree, otherwise not guaranteed by deafult (i.e., to enforce a hierarchy), while \texttt{name} can be any arbitrary string value. 
 
-\vspace{0.5cm}
+\vspace{1cm}
 
 \begin{figure}[htbp]
   \hspace{-3cm}
@@ -98,9 +98,9 @@ of nodes in a tree, otherwise not guaranteed by deafult (i.e., to enforce a hier
   \label{mocaTreeMetamodel}
 \end{figure}
 
-\vspace{0.5cm}
+\vspace{1cm}
 
-Let's finally start and create the TGG project that will implement our model-to-text transformation.
+Enough chatting -- let's begin by creating the TGG project that will implement our model-to-text transformation.
 
 \jumpDual{initialize vis}{initialize tex}
 

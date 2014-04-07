@@ -2,18 +2,46 @@
 \section{Tree-to-model transformation with TGGs}
 \genHeader
 
-Our goal in this section is to break down the \texttt{MocaTree} to \texttt{Dictionary} transformation into smaller, modular steps. More specifically, we
+Our goal in this section is to break down the \texttt{MocaTree} to \texttt{Dictionary} transformation into smaller, modular steps. More precisely, we
 want separate rules for transforming a \texttt{Folder} into its appropriate container element (i.e., \texttt{Library} or \texttt{Shelf}), then individual rules
-to handle whatever \texttt{File} and \texttt{Node} elements they contain (such as transforming each of the \texttt{.dictionary} files into \texttt{dictionary},
-\texttt{author}, and \texttt{entry} elements).
+to handle whatever \texttt{File} and \texttt{Node} elements they contain.
 
-{\bf include graph view comparison (top \& bottom) of what we're going FROM to what we're going TO (images already in the right folder)}
+\vspace{0.5cm}
 
-When specifying \emph{any} rule, it's important to keep in mind how flexibile the rule should be. In future \texttt{tree} instances for example, we
-can not know exactly how many subfolders \texttt{myLibrary} will contain, whether or not each \texttt{.dictionary} file will have an author node (as
-seen in \texttt{unknown.dictionary}), or how many entries each \texttt{dictionary} will contain. 
+Let's briefly look at the models we'll be working with. We start with Fig.~\ref{eclipse:treeStart},\footnote{You can view this model in your Eclipse editor by
+placing the contents of \texttt{tree.xmi} into eMoflon's Graph Viewer, as introduced in Part II, Section 4.} where our root input folder, \texttt{MyLibrary},
+contains two subfolders with at least one dictionary \texttt{File} each. Each dictionary has one equivalent dictionary root \texttt{Node} with at least two
+children representing the title and first \texttt{ENTRY}, along with an unknown number of additional nodes. Of the remaining nodes, there may be one that stores
+the dictionary author's contact information. All the rest will be \texttt{ENTRY} nodes with two children representing its content and level information.
 
-{\bf Also, this is rather dry, its alot of copying what you see here in the text, so get those tunes blasting}
+\vspace{1cm}
+
+\begin{figure}[htbp]
+\hspace{-1.5cm}
+ 	\includegraphics[width=1.2\textwidth]{eclipse_TreeStartMetamodel}
+ 	\caption{caption1}
+ 	\label{eclipse:treeStart}
+\end{figure}
+
+\newpage
+
+Our transformation intends to finish with a \texttt{Library} model resembling Fig.~\ref{eclipse:dictionaryStart}, where the root \texttt{MyLibrary} node has
+four subfolders, one for each shelf and author. These subfolders will likely pair up, sharing a child \texttt{Dictionary} element containing an unknown number
+of entries.
+
+\vspace{1cm}
+
+\begin{figure}[htbp]
+\hspace{-1.5cm}
+    \includegraphics[width=1.2\textwidth]{eclipse_DictionaryResultMetamodel}
+ 	\caption{caption2}
+ 	\label{eclipse:dictionaryStart}
+\end{figure}
+
+\vspace{1cm}
+
+As you can see, it's important to keep in mind the flexibilty that the rules for this transformation will require. While our example model is small
+enough to count, future models may not be so forgiving. Just like SDM patterns, it's key to avoid situation-specific TGG rules.
 
 \jumpDual{treeToModel vis}{treeToModel tex}
 

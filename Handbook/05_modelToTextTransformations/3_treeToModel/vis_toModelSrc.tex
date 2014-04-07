@@ -3,16 +3,16 @@
 \subsection{The visual transformation rules}
 \visHeader
 
-A quick note before you start -- we assume a basic understanding of TGGs and the different ways of using EA productively to create rules. If you find this
-section challenging, we recommend first working through Part IV to cover TGG fundamentals.
+As quick note before you start, remember that we have assumed a basic understanding of TGGs and the different ways of using EA productively to create rules. If
+you find this section challenging, we recommend first working through Part IV to cover TGG fundamentals.
 
 \begin{itemize}
 
 \subsubsection{FolderToLibraryRule} % ---------------------------------
 
-\item[$\blacktriangleright$] Return to EA and expand code adapter's \texttt{<<Rules Package>>}, then open the \texttt{Rules} diagram. Create a new rule
-named \texttt{FolderToLibraryRule} and double-click the new diagram element to open its diagram. Complete the rule as depicted in
-Fig.~\ref{ea:FolderIntoLibrary_Complete}. We established the \texttt{FolderToLibrary} correspondence type when creating the TGG schema in Section 1.
+\item[$\blacktriangleright$] Return to your open project in EA and expand the \texttt{<<Rules Package>>}, then open the \texttt{Rules} diagram.
+Create a new rule named \texttt{Fol\-der\-To\-Lib\-rar\-y\-Rule} and double-click its element to open the rule diagram. Complete it as depicted in
+Fig.~\ref{ea:FolderIntoLibrary_Complete}.
 
 \vspace{0.5cm}
 
@@ -24,9 +24,9 @@ Fig.~\ref{ea:FolderIntoLibrary_Complete}. We established the \texttt{FolderToLib
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] This is a simple rule that creates and connects equivalent \texttt{Folder} and \texttt{Library} instances and we're able to use
-this entire rule as context for the next rule, which will handle the creation of shelves. Select \texttt{inputFolder},
-\texttt{in\-put\-Fol\-der\-To\-Lib\-rary,} and \texttt{library}, then use the eMoflon control panel to \texttt{derive} a new rule (Fig.~\ref{ea:controlPanel}).
+\item[$\blacktriangleright$] This is a simple rule that creates and connects equivalent \texttt{Folder} and \texttt{Library} instances. We're able to use this
+entire rule as context for the next rule, which will handle the creation of shelves. Select \texttt{inputFolder}, \texttt{in\-put\-Fol\-der\-To\-Lib\-rary,} and
+\texttt{library}, then use the eMoflon control panel to \texttt{derive} a new rule (Fig.~\ref{ea:controlPanel}).
 Name this \texttt{ForAllShelfRule}.
 
 \vspace{0.5cm}
@@ -43,12 +43,12 @@ Name this \texttt{ForAllShelfRule}.
 
 \subsubsection{ForAllShelfRule} % ---------------------------------
 
-\item[$\blacktriangleright$] The derivation procedure will open a new diagram with context elements from the first rule. This rule is similar to
-\texttt{FolderToLibraryRule}, except that it will connect new (green) elements to existing (black) containers. Complete it as depicted in
-Fig.~\ref{ea:ForAllShelves_Complete}.
+The derivation procedure will open a new diagram with context elements from the first rule. This new rule is similar to
+\texttt{FolderToLibraryRule}, except that it will connect new (green) elements to existing (black) containers. 
 
-\item[$\blacktriangleright$] You'll need to create a new \texttt{FolderToShelf} correspondence type in either the schema (as we did in the beginning), or
-on-the-fly by selecting \texttt{Create New Correspondence Type} in the quick-link dialogue (Fig.~\ref{ea:corrOnTheFly}).
+\item[$\blacktriangleright$] Complete the rule as depicted in Fig.~\ref{ea:ForAllShelves_Complete}. You'll need to create a new \texttt{FolderToShelf}
+correspondence type in either the schema (as we did in the beginning), or on-the-fly by selecting \texttt{Create New Correspondence Type} in the quick-link
+dialogue (Fig.~\ref{ea:corrOnTheFly}).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -68,12 +68,17 @@ on-the-fly by selecting \texttt{Create New Correspondence Type} in the quick-lin
 
 \subsubsection{NodeToDictionaryRule} % ---------------------------------
 
-\item[$\blacktriangleright$] We are now ready to handle the dictionary \texttt{File} elements. Analogously to how you began the previous rule, select
-\texttt{shelfFolder}, \texttt{FolderToShelf}, and \texttt{shelf}, and derive \texttt{NodeToDictionaryRule} with this context.
+\item[$\blacktriangleright$] With the container \texttt{shelf} now assumed to exist, we are now ready to handle the dictionary \texttt{File} elements.
+Analogously to how you began the previous rule, select \texttt{shelfFolder}, \texttt{FolderToShelf}, and \texttt{shelf}, and derive
+\texttt{NodeToDictionaryRule} with this context.
+
+\vspace{0.5cm}
 
 \item[$\blacktriangleright$] Complete it as depicted in Fig.~\ref{ea:NodeToDictionary_Complete}. As you can see, this rule creates a 
 \texttt{dictionaryNode} and and its equivalent \texttt{dictionary}, and handles the first node in the tree structure. Nearly every
 element is used to correctly set the \texttt{dictionary} and \texttt{dictionaryFile} names in two constraints.
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
   \hspace{-0.7cm}
@@ -82,18 +87,21 @@ element is used to correctly set the \texttt{dictionary} and \texttt{dictionaryF
   \label{ea:NodeToDictionary_Complete}
 \end{figure}
 
+\vspace{0.5cm}
+
 \item[$\blacktriangleright$] Please note that the attribute constraint in \texttt{titleNode} is required in order to ensure that the node
 with the title information is always the first child in the tree (index = 0). 
 
-\item[$\blacktriangleright$] Note that we could have also included another \texttt{node} here to handle the author, then a third, fourth, or even tenth
-\texttt{node} for the entries, but that would mean the pattern would absolutely have to match to a single author and ten entry elements, which
+\newpage
+
+\item[$\blacktriangleright$] Note that we could have also included another \texttt{node} here to handle the author, along with a third, fourth, or even
+tenth \texttt{node} for a dictionary's entries, but that would mean the pattern would absolutely have to match to a single author and ten entry elements, which
 may not always exist. Instead, we'll create separate rules for each of these which can be called as many (or as few) times as necessary.
 
 \subsubsection{ForAllEntryRule} % ---------------------------------
 
 \item[$\blacktriangleright$] Let's handle the \texttt{entry node}s first. Create and complete \texttt{For\-All\-Ent\-ry\-Rule} as depicted in
-Fig.~\ref{ea:ForAllEntry_Complete}. Each \texttt{entryNode} will contain a \texttt{contentNode} and \texttt{indexNode}, whose order is given by their
-\texttt{index} values, and constraints ensure the correct values are set to the equivalent \texttt{entry}'s \texttt{content} and \texttt{level} attributes.
+Fig.~\ref{ea:ForAllEntry_Complete}. 
 
 \vspace{0.5cm}
 
@@ -105,12 +113,28 @@ Fig.~\ref{ea:ForAllEntry_Complete}. Each \texttt{entryNode} will contain a \text
 \end{center}
 \end{figure}
 
+You can see that for every \texttt{entryNode}, \texttt{contentNode} and \texttt{indexNode} child elements are also created. When transforming from a tree to
+dictionary, these are identified by their 0 and 1 indices. As such, the rule's first two constraints are used to ensure that this information is not
+lost, guaranteeing their correct positions in the tree when transforming back.
+
+\vspace{0.5cm}
+
+The final constraint however, is a one that we haven't used before. If you re-examine your source \texttt{tree.xmi} model, you'll notice that every entry has a
+different \texttt{index} value. This prevented us from setting an attribute constraint on \texttt{entryNode}, but, as long as its index wasn't 0 indicating a
+\texttt{titleNode} (as constrained in the previous \texttt{NodeToDictionaryRule}), it didn't matter. Unfortunately, this missing information means any new
+\texttt{entryNode}s created in the backward transformation have a free index value, and \emph{could} be mistaken by the rule. By introducing
+\texttt{setDefaultNumber}, we have declared that any empty \texttt{index} attributes will be set to 2.
+
 \subsubsection{AuthorRule} % ---------------------------------
 
-\item[$\blacktriangleright$] Double-click the anchor in the top left of the diagram to return to \texttt{NodeToDictionaryRule}. We want to create a rule to
-handle authors next. We can begin our rule by deriving from \texttt{DictionaryNode}, \texttt{dictionary}, and \texttt{shelf}, but we'll need to add a fourth
-context element, \texttt{library}, in accordance with the \texttt{Dictionary} metamodel, where each \texttt{author} is connected to its \texttt{dictionary} and
+\item[$\blacktriangleright$] We want to create a rule to handle authors next, so double-click the anchor in the top left of the diagram to return to
+\texttt{NodeToDictionaryRule}.
+
+\item[$\blacktriangleright$] We can begin this rule by deriving from \texttt{DictionaryNode}, \texttt{dictionary}, and \texttt{shelf}, but we'll need to add a
+fourth context element, \texttt{library}, in accordance with the \texttt{Dictionary} metamodel, where each \texttt{author} is connected to its \texttt{dictionary} and
 the \texttt{library} instance. Therefore, derive and create \texttt{AuthorRule} as shown in Fig.~\ref{ea:AuthorRule}.
+
+\vspace{0.5cm}
 
 \begin{figure}[h]
   \hspace{-2cm}
@@ -121,18 +145,18 @@ the \texttt{library} instance. Therefore, derive and create \texttt{AuthorRule} 
 
 \end{itemize}
 
-Handling each \texttt{author} instance, however, can't be realized with a single rule. Right now, we have specified that for every \texttt{authorNode} the
-rule finds, an \texttt{author} instance is created. This would be fine if we had unique authors for \emph{every} dictionary \texttt{File}, but if you take look
-at both of the french \texttt{numbers} files, you'll notice they both have the same contact information. This means that our \texttt{Dictionary} will have two
-identical \texttt{author} instances for one \texttt{library}.
+Handling all \texttt{author} instances however, can't be realised with a single rule. Here we have specified that, for every \texttt{authorNode} the rule
+finds, an \texttt{author} instance should be created. This would be fine if we had unique authors for \emph{every} dictionary \texttt{File}, but if you take
+look at both of the french \texttt{numbers} files, you'll notice they both have the same contact information. This means that our \texttt{Dictionary} will have
+two identical \texttt{author} instances for one \texttt{library}.
 
-Some users may be okay with this, and not care about redundant information so long as all the correct information is there, while others would prefer a
+Some users may be okay with this, and not care about redundant information so long as all the correct information is there, but others may prefer a
 more concise structure. How can we refine this rule so that it's easy to handle both cases?
 
-eMoflon's visual syntax has a cool \emph{refinement} feature which enables you to adjust specific elements in a rule, without having to redraw a
-diagram exactly as before, except for one or two small differences. Our rules to handle either \emph{always} creating an \texttt{author}, or checking for an
-existing one first are nearly identical to \texttt{AuthorRule}, save for the binding and reference links on the matched \texttt{authorNode}, so this feature is
-exactly what we need.
+eMoflon's visual syntax has a cool \emph{refinement} feature which enables you to adjust specific elements in a rule, without having to redraw an entire
+diagram exactly as before, save for one or two minor differences. Given that we want rules to handle either \emph{always} creating an \texttt{author}, or
+checking for an existing one first, (both which will be identical to \texttt{AuthorRule} except for the binding and reference links on the matched
+\texttt{authorNode}), this feature is exactly what we need.
 
 \begin{itemize}
 
@@ -141,6 +165,8 @@ exactly what we need.
 
 \item[$\blacktriangleright$] Switch to the \texttt{Details} tab, and select \texttt{Abstract} from the list of properties (Fig.~\ref{ea:abstractDetails}). 
 Affirm and close by pressing \texttt{OK}.
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -152,11 +178,13 @@ Affirm and close by pressing \texttt{OK}.
 
 \end{itemize}
 
-Now we can develop our two rules. The key idea when building refinements is to imagine the rules are being placed directly over the pattern they inherit from,
-similar to a transparency sheet. These rules execute \texttt{AuthorRule} exactly, except for whatever modifications you make (which ``cover'' the original
-element).
+\newpage
 
-Let's make a rule to handle an already existing author first. Inspecting \texttt{AuthorRule}, we still want the rule to match a new \texttt{authorNode}
+Now we can develop our two rules. The key idea when building refinements is to imagine the new rules being placed directly over the pattern they inherit
+from, similar to a transparency sheet. These rules will execute \texttt{AuthorRule} exactly, except for whatever modifications you make (which ``cover'' the
+original element).
+
+Let's make the rule that handles an already existing author first. Inspecting \texttt{AuthorRule}, we still want the rule to match a new \texttt{authorNode}
 and create a link between \texttt{author} and \texttt{dictionary}, but the \texttt{author} element, and the link connecting it to \texttt{library} should
 already exist, (i.e., be `black').
 
@@ -167,8 +195,6 @@ already exist, (i.e., be `black').
 \item[$\blacktriangleright$] In \texttt{AuthorRule}'s diagram, select \texttt{authorNode} and \texttt{library}, and press \texttt{Derive}. Enter
 \texttt{ExistingAuthorRule} as the rule's name but given that we want to refine the selected elements, not use them as context elements,
 be sure to select the \texttt{exact copy} option (Fig.~\ref{ea:deriveRefinement}).
-
-\item[$\blacktriangleright$]
 
 \begin{figure}[htbp]
 \begin{center}

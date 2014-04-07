@@ -5,8 +5,8 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] If your project's build succeeded, run \texttt{TGGMain} again and examine the forward direction's output, 
-\texttt{tree.xmi\_FWD.xmi}, a little closer (Fig.~\ref{eclipse:generatedFwdTrsfm}).
+\item[$\blacktriangleright$] If your project's build succeeded, run \texttt{TGGMain} again and examine the successful forward output, 
+\texttt{target.xmi}, a little closer (Fig.~\ref{eclipse:generatedFwdTrsfm}).
 
 \vspace{0.5cm}
 
@@ -58,11 +58,9 @@ minimalist design. They can easily change their preference possibly on a case-by
 Eclipse's auto-completion can help you here.
 
 \begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=\textwidth]{eclipse_authorConfiguratorClass}
+  \includegraphics[width=1.1\textwidth]{eclipse_authorConfiguratorClass}
   \caption{Setting a preference for \texttt{NewAuthorRule}}
   \label{eclipse:authorConfig}
-\end{center}
 \end{figure}
 
 \clearpage
@@ -95,6 +93,7 @@ preference can be enforced using a NAC which checks to see if there is already a
 \item[$\blacktriangleright$] Open and update either \texttt{NewAuthorRule} (visual) as shown in Fig.~\ref{ea:existingAuthorNAC} or edit the target domain in 
 \texttt{ForAllNewAuthorRule.tgg} (textual) as depicted in Fig.~\ref{eclipse:existingAuthorNAC}.
 
+\newpage
 
 \begin{figure}[htbp]
 \begin{center}
@@ -104,6 +103,8 @@ preference can be enforced using a NAC which checks to see if there is already a
 \end{center}
 \end{figure}
 
+\vspace{0.5cm}
+
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_ForAllNewAuthorNAC}
@@ -112,12 +113,9 @@ preference can be enforced using a NAC which checks to see if there is already a
 \end{center}
 \end{figure}
 
+\vspace{0.5cm}
+
 \item[$\blacktriangleright$] Save and rebuild the TGG. Run the transformation a few times, using the integrator to confirm that your preference (no redudant
 authors are created) is enforced each time. 
 
 \end{itemize}
-
-Let's examine the results! First, You'll notice that, as you scroll through each \texttt{Node}, the \texttt{title} and \texttt{author} nodes have the correct
-\texttt{index} values of 0 and 1, but the remaining \texttt{entry} indices are also set to 0. We were only concerned with binding the title and author nodes in
-the forward direction, as we could assume that any other node with any other index value (2 and greater) was an \texttt{entryNode}. In the backwards direction
-however, this distinction is lost, which means we must introduce a custom attribute constraint.

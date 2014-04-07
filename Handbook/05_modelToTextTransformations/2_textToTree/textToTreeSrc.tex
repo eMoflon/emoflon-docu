@@ -2,8 +2,8 @@
 \section{Text-to-tree transformation}
 \genHeader
 
-Let's discuss how the transformation will proceed. For reference, Fig.~\ref{fig:moca-4-Tokens} depicts a small sample of the textual syntax that will specify
-a dictionary instance. As we shall see in a moment, the libraries and shelves containing each dictionary correspond to a folder structure, while the
+Now that our workspace is successfully prepared, let's discuss how the transformation will proceed. For reference, Fig.~\ref{fig:moca-4-Tokens} depicts a small
+sample of the textual syntax that will specify a dictionary instance. As we shall see in a moment, the libraries and shelves containing each dictionary correspond to a folder structure, while the
 contents for a single dictionary are specified in a file.
 
 \begin{figure}[!htbp]
@@ -43,21 +43,25 @@ until it matches Fig.~\ref{eclipse:dictionaryLexer}.
 
 \item[$\blacktriangleright$] Don't forget to add \texttt{import org.moflon.moca.MocaUtil} to \texttt{@header}. Be vigilant to avoid any typos and mistakes!
 
+\vspace{0.5cm}
+
 \item[$\blacktriangleright$] Save to compile the file, and ensure no errors persist before proceeding.
 
 \end{itemize}
 
-To briefly explain two of the key Lexer rules, note that the \texttt{WS} rule is used to ignore white space. The \texttt{`skip()'} statement simply
-throws the tokens away every time they're found in a stream. Next, in \texttt{QUOTED\_STRING}, \texttt{`MocaUtil.trim(\ldots)'} trims a recognized token by
-removing the specified number of characters at the beginning and end of a token. Finally, \texttt{`.*'} swallows (and stores) everything until the Lexer `hits'
-the character specified next which in this case, is `\texttt{''}.'
+\vspace{0.25cm}
+
+To briefly explain the two complicated-looking rules, note that the \texttt{WS} rule simply ignores white space. The \texttt{`skip()'} statement throws away the
+tokens desribed just before each time they're found in a stream. Similarly, \texttt{QUOTED\_STRING} calls \texttt{`MocaUtil.trim(\ldots)'}, which trims a
+recognized token by removing the specified number of characters at its beginning and end. In this case, the token is everything between the `\texttt{''}'
+characters, as indicated by the \texttt{`.*'} symbol.
 
 \newpage
 
-The next step is to establish a parser to form a file's stream of tokens created by the lexer into a \emph{tree}. In this context, a tree
-is an acyclic, hierarchical, recursive structure (as depicted in Fig.~\ref{eclipse:dictLexer}). Depending on what the tree is to be used for, it can be organized differently using extra
-\emph{structural} nodes such as \texttt{DICTIONARY} or \texttt{ENTRY} which were not present in the textual syntax. These can be used to give additional
-meaning to the tree.
+Now let's establish a parser to form a file's stream of tokens (as created by the lexer) into a \emph{tree}. In this context, a tree is an acyclic,
+hierarchical, recursive structure as depicted in Fig.~\ref{fig:dictLexer}. Depending on what the tree is to be used for, it can be organized differently
+using extra \emph{structural} nodes such as \texttt{DICTIONARY} or \texttt{ENTRY} which were not present in the textual syntax. These can be used to give
+additional meaning to the tree.
 
 \vspace{0.5cm}
 
@@ -65,7 +69,7 @@ meaning to the tree.
 \begin{center}
  \includegraphics[width=\textwidth]{5-tree}
   \caption{Abstract Syntax Tree (AST) representation of an input token stream}
-  \label{eclipse:dictLexer}
+  \label{fig:dictLexer}
 \end{center}
 \end{figure}
 
@@ -95,10 +99,8 @@ supported by \texttt{ANTLR}.
 \begin{itemize}
 
 \item[$\blacktriangleright$] Before taking our lexer and parser for a spin, navigate to \\ ``src/org.moflon.tie" and open \texttt{TGGMain.java}. We need to
-update the file so that it will work with our specific project, so edit the highlighted ares of the file as shown in Fig.~\ref{eclipse:defaultTGGMain}.
-Everything else can remain as generated.
-
-\vspace{0.5cm}
+update the file so that it will work with our specific project, so edit the highlighted ares of the file as shown in Fig.~\ref{eclipse:defaultTGGMain}. Confirm
+the generated \texttt{performForward} and \texttt{peformBackwards} methods also match.
 
 \begin{figure}[!htbp]
 \begin{center}
@@ -110,15 +112,18 @@ Everything else can remain as generated.
 
 \end{itemize}
 
-You can see that this main method is essentially the driver for the transformation, executing each of the four stages for a full forward and backwards
-transformation. In a nutshell, each folder in \texttt{instances/in/myLibrary} is taken as the root of a tree, and their folder and file structures are reflected
-as a hierarchy of (children) nodes in the tree. For each file, the framework searches for a registered parser that is responsible for the particular file,
-passes the content on to the parser and plugs in the tree from the parser as a single subtree of the corresponding file node in the overall tree.
+\newpage
+
+You can see that this main method is essentially the driver for a complete transformation, executing four stages for a forward and backward transform. In a
+nutshell, each folder in ``instances/in/myLibrary'' is taken as the root of a tree, and their folder and file structures will be reflected as a hierarchy of
+(children) nodes in the tree. For each file, the framework will search for a registered parser that is responsible for the particular file, pass the content
+onto the parser, then plug in the tree generated from the parser as a single subtree of the corresponding file node in the overall tree.
+
+In this example, the framework uses our parser on \texttt{.dictionary} files, the file extension we specified when creating the lexer and parser stubs
+(Fig.~\ref{eclipse:generatedParser}). Of course, this method (in the generated \texttt{parserAdapter}) can be overridden to register e.g., multiple
+file extensions, or peek into the actual file content and base its parsing decision on what it finds.
 
 \begin{itemize}
-
-% \item[$\blacktriangleright$] Comment out line 45, which calls the unparser to generate an output directory structure. This command is unnecessary at this
-% point as we intend to define this ``reverse" model-to-text unparser a bit later. 
 
 \item[$\blacktriangleright$] To prepare some input for the framework, navigate to ``DictionaryCodeAdapter/instances/in'' and create the
 filesystem depicted in Fig.~\ref{eclipse:textDirectory}. 
@@ -132,8 +137,8 @@ filesystem depicted in Fig.~\ref{eclipse:textDirectory}.
 \end{figure}
 
 \item[$\blacktriangleright$] Complete each of the four \texttt{.dictionary} files with the contents in Table~\ref{moca-inputdata}.\footnote{If you copy and
-paste this data, be careful as your .pdf reader may add some invisible characters to the file that ANTLR will not detect and ignore as white space.} Be sure
-that there are no mistakes with symbols such as colons or commas!
+paste this data, be careful as your .pdf reader may add some invisible characters to the file that ANTLR will not detect and ignore as white space.} 
+Be vigilant to ensure there are no mistakes with symbols such as colons or commas!
 
 \end{itemize}
 

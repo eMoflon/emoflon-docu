@@ -3,18 +3,18 @@
 \subsection{The textual transformation rules}
 \texHeader
 
-Please note that we have assumed a basic understanding of TGGs, specifically those about each component of a rule. If you find this section challenging, we
-recommend first working through Part IV to cover TGG fundamentals.
+Please note that we have assumed a basic understanding of TGGs, specifically those about constructing each scope in a rule, and how to use Eclipse efficiently
+with eMoflon's auto-correct feature. If you find this section challenging, we recommend first working through Part IV to cover TGG fundamentals.
 
 \begin{itemize}
 
 \subsubsection{FolderToLibraryRule} % ---------------------------------
 
-\item[$\blacktriangleright$] Return and expand the \texttt{DictionaryCodeAdapter} TGG package you created earlier and right-click on the \texttt{Rules} folder.
-Navigate to ``New/TGG Rule," and name this first rule \texttt{Folder\-To\-Lib\-rary\-Rule}.
+\item[$\blacktriangleright$] Return and expand the \texttt{DictionaryCodeAdapter} TGG package and right-click on the \texttt{Rules} folder. Create your first
+rule by navigating to ``New/TGG Rule," naming it \texttt{Folder\-To\-Lib\-rary\-Rule}.
 
-\item[$\blacktriangleright$] All this rule needs to do is create a \texttt{Folder} (i.e., ``myLibrary'') together with its equivalent \texttt{Library}, and a
-correspondence link between them. Edit your rule until it resembles Fig.~\ref{eclipse:FolderToLibraryRule}.
+\item[$\blacktriangleright$] All this rule needs to do is create a \texttt{Folder} (i.e., ``myLibrary'') together with its equivalent \texttt{Library}, and
+establish a correspondence link between them. Edit your rule until it resembles Fig.~\ref{eclipse:FolderToLibraryRule}.
 
 \vspace{0.5cm}
 
@@ -58,9 +58,9 @@ in Fig.~\ref{eclipse:ForAllShelvesRule}.
 
 \newpage
 
-Now that we have the containers all set up, we can handle the dictionary \texttt{File} elements. We know from our generated tree model that each dictionary will
-always have a title node, but we're unsure if an author will be included, and we won't know how many entries are involved. Therefore, we should create at least three
-different rules to handle this stage of the transformation. 
+Now that we can assume the primary library and shelf containers exist, we can handle the dictionary \texttt{File} elements. We know from our generated
+tree model that a dictionary will always have a title node, but we're unsure if an author will be included, and there's no was to know how many entries are
+involved. Therefore, we should create at least three different rules to handle this stage of the transformation. 
 
 \subsubsection{NodeToDictionaryRule} % ---------------------------------
 
@@ -89,8 +89,22 @@ node's name to get the dictionarys' title (i.e., ``english'' + ``numbers1-10'').
 \subsubsection{ForAllEntryRule} % ---------------------------------
 
 \item[$\blacktriangleright$] Let's handle \texttt{Entry} elements next. Create \texttt{ForAllEntryRule} so that it closely resembles
-Fig.~\ref{eclipse:ForAllEntryRule}. Each \texttt{entryNode} has a child \texttt{contentNode} and \texttt{indexNode} whose attributes correspond to
-those of the \texttt{entry} in the target model.
+Fig.~\ref{eclipse:ForAllEntryRule}.
+
+\vspace{0.5cm}
+
+You can see that this rule has three attribute constraints, one of which we haven't encountered before. The first two \texttt{eq} constraints guarantee that
+an \texttt{entryNode}'s content and index values remain consistent with its equivalent \texttt{entry} in a \texttt{dictionary}. The final constraint is to
+ensure that any new \texttt{entryNode}s created in the backward transformation, into a tree, have index values set to 2. 
+
+\vspace{0.5cm}
+
+If you review your original source model,
+\texttt{tree.xmi}, you'll notice that every entry has a different index value. This prevented us from setting a constraint (such as in \texttt{indexNode}),
+therefore preserving information about its position in the tree. Without this final constraint, all new \texttt{entryNodes} would have a free index value, and
+could be mistaken as a \texttt{titleNode} as described in the previous \texttt{NodeToDictionaryRule}, causing the entire transformation to fail.
+
+\newpage
 
 \begin{figure}[htbp]
 \begin{center}
@@ -100,7 +114,7 @@ those of the \texttt{entry} in the target model.
 \end{center}
 \end{figure}
 
-\newpage
+\vspace{0.5cm}
 
 The last thing we need to specify is how to handle \texttt{author}s. Transforming an \texttt{authorNode} to an \texttt{author} isn't as simple as
 an \texttt{entryNode}, where you create an \texttt{entry} every time. Instead, we have to account for the possibility of a single author
@@ -109,9 +123,11 @@ who want unique authors in a \texttt{Library}?
 
 \subsubsection{ForAllNewAuthorRule} % ---------------------------------
 
-\item[$\blacktriangleright$] Create \texttt{ForAllNewAuthorRule}, and complete it as depicted in Fig.~\ref{eclipse:ForAllNewAuthorRule}. This is our one-to-one
-correspondence rule, where every \texttt{authorNode} corresponds to a new \texttt{author}. If this rule is used in a transformation, one might end up with
+\item[$\blacktriangleright$] Create \texttt{ForAllNewAuthorRule}, and complete it as depicted in Fig.~\ref{eclipse:ForAllNewAuthorRule}. This is a one-to-one
+correspondence rule, where every \texttt{authorNode} creates a new \texttt{author}. If this rule is used in a transformation, one might end up with
 multiple authors with the same email address.
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -124,8 +140,10 @@ multiple authors with the same email address.
 \subsubsection{ExistingAuthorRule} % ---------------------------------
 
 \item[$\blacktriangleright$] Similarly, create \texttt{ForExistingAuthorRule} as specified in Fig.~\ref{eclipse:ForExistingAuthorRule}. You should be able to
-copy and paste the majority of the previous rule.\footnote{Be sure to leave the new rule name as 'ForExistingAuthorRule' or else your build will fail} In fact,
-the only thing you need to change are two small characters in front of \texttt{author} and its \texttt{dictionary} reference, forcing the rule to find an existing \texttt{author}, if possible.
+copy and paste the majority of the previous rule. In fact, the only thing you need to change are two small characters in front of \texttt{author} and its
+\texttt{dictionary} reference, forcing the rule to find an existing \texttt{author}, if possible.
+
+\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
