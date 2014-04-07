@@ -3,14 +3,19 @@
 \section{Integrator Breakpoints}
 \genHeader
 
-Now that we have two rules to handle partitions, there'S the potential for things to go wrong. Suppose you're debugging, and want to know when in the
-transformation, you start to handle any extra partitions, outside of the three permitted in \texttt{BoxToDictionaryRule}. As we saw in the previous sections, it
-can sometimes take a long time to run through the integrator step by step, especially so if you have a solid number of rules.  Lets finally discuss the
-\texttt{BreakPointSet.xmi} file that's created when you run the integrator for the first time.
+When we introduced the integrator in \hyperlink{sec:app_integrator}{Part 6}, we showed you how it could be used to proceed through your transformation
+incrementally. It shows the start point, possible rule candidates, and rule execution for every element the transformation triple. As you saw, this process is
+great for a small transformation with only a few objects and rules as it doesn't take that long to run from start to finish. But what if you had a
+transformation with 1000 objects, or 100 rules, and suspected there may be an error? As you can imagine, it could potentially take a long time to find a
+specific process or repeated execution.
+
+Luckily, this visualized debugger is also able to implement a breakpoint model to pause the execution at any place! We extended our transformation in
+the previous section with two rules able to handle partitions, so let's try implementing a breakpoint to pause the process before one of them is executed.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Double-click the file to open it, and create a new \texttt{Rule Name} break point (Fig.~\ref{eclipse:breakpointChild}).
+\item[$\blacktriangleright$] You may have noticed when you ran the integrator for the first time that a new \texttt{BreakPointSet.xmi} file was created in
+``instances/.'' Double-click this model, expand the tree, and create a new breakpoint (Fig.~\ref{eclipse:breakpointChild}).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -20,8 +25,8 @@ can sometimes take a long time to run through the integrator step by step, espec
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Edit its \texttt{Rule Name} property below the editor to \texttt{AllOtherCardsRule} (Fig.~\ref{eclipse:bpProps}). This will create
-a breakpoint and stop the integrator/transformation when it's about to apply the rule. Save the file.
+\item[$\blacktriangleright$] Edit its \texttt{Rule Name} property below the editor to \texttt{AllOtherCardsRule} (Fig.~\ref{eclipse:bpProps}).\footnote{Be sure
+there are no mistakes in the spelling} This will pause the transformation before it applies this rule. Save the file.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -31,14 +36,14 @@ a breakpoint and stop the integrator/transformation when it's about to apply the
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Run the integrator on \texttt{corr\_FWD} and drag in the breakpoint model before \texttt{protocol\_FWD}. A small note will appear
-stating that it is setting the breakpoints.
+\item[$\blacktriangleright$] Right-click on \texttt{corr\_FWD}, start the integrator, and drag-and-drop the breakpoint model into the main window. A small
+message should appear confirming that it is setting breakpoints. 
 
-\item[$\blacktriangleright$] Drag in \texttt{protocol\_FWD}. You are now able to quickly run forwards through the transformation by pressing
-\texttt{alt+shift+ctrl+RIGHT} or backwards with \texttt{alt+shift+ctrl+LEFT}. This may be useful for both debugging or testing. 
-
-\item[$\blacktriangleright$] Note that this breakpoint doesn't stop the integrator when used on the backward correspondence. This is because
-\texttt{AllOtherCardsRule} only operates in the source domain, and is never called in the reverse direction. If you edit the rule name to
-\texttt{BoxToDictionaryRule}, it will work in both directions, as that rules edits the file in both directions.
+\item[$\blacktriangleright$] Finally, drag \texttt{protocol\_FWD} into the same window. You are now able to quickly skip between breakpoints by pressing
+\texttt{alt+shift+ctrl+RIGHT}, or backwards with \texttt{alt+shift+ctrl+LEFT}.
 
 \end{itemize}
+
+Please note that this particular breakpoint model will not stop the integrator if used on \texttt{corr\_BWD}. \texttt{AllOtherCardsRule} was only built to
+operate on the source \texttt{Box} model, which means it will never be a valid candidate when transforming from \texttt{Dictionary}. Try experimenting with
+\texttt{BoxToDictionaryRule} to see the single breakpoint model work in both directions.

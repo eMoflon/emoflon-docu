@@ -1,15 +1,15 @@
 \genHeader
 
 Welcome to Part V of the eMoflon handbook, an introduction to bidirectional model-to-text transformations using Triple Graph Grammars (TGGs). If you're just
-joining us, and haven't completed any of the previous parts, we recommend working through at least Part I for the required setup and installation instructions
+joining us and haven't completed any of the previous parts, we recommend working through at least Part I for the required setup and installation instructions
 to ensure eMoflon is working correctly, and strongly encourage finishing Part IV to master the basics of TGGs. That part will be a key reference if you're ever
 unsure how to use a TGG feature. Apart from TGG fundamentals however, we have assumed as little as possible from any of the previous parts and
 include appropriate references where necessary.
 
-Up until now in the handbook, we created \texttt{LeitnersLearningBox}, a memorization tool that stored cards (with keywords on the front, and definitions on the
-back) in different partitions, which could then move throughout the box based on a set of rules simulating how our short and long-term memory works. This
+Up until now in the handbook, we have created \texttt{LeitnersLearningBox}, a memorization tool that stores cards (with keywords on the front, and definitions
+on the back) in different partitions, which then move throughout the box based on a set of rules simulating how our short and long-term memory works. This
 metamodel was used in Part IV as a source language in a \emph{bidirectional}\define{Bidirectional Transformation}  TGG transformation, where each card was
-translated into an entry (with a sole content attribute storing all of a card's information) of a dictionary. In this part, we shall implement a second
+translated into an dictionary entry (with a sole content attribute storing all its information). In this part, we shall implement a second
 bidirectional transformation, from model-to-text, using a textual representation of a dictionary to a \texttt{Dictionary} metamodel.
 We'll use an \texttt{ANTLR}~\cite{ANTLR} parser and unparser, and TGGs to transform the parsed tree from ANTLR to an instance of the \texttt{Dictionary}
 metamodel.
