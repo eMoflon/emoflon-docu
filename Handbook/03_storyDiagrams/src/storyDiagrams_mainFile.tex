@@ -36,7 +36,6 @@
     morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
 }
 
-% Set TOC Depth
 \setcounter{tocdepth}{1}
 
 \setlength{\parindent}{0pt} 
@@ -97,19 +96,7 @@
 }
 
 % --- FORMATTING COMMANDS --------------------------------------------------------------------------------------------------------------------------------------
-% These words should appear in the glossary
-\newcommand{\define}[1]{\marginpar{\small\emph{#1}}}
-
-% These words should appear in glossary
-\newcommand{\defineMOSL}[1]{\define{#1}}
-
-% Textual Syntax formatting (quote environment)
-\newcommand{\syntax}[1]{ \begin{quote} \small \texttt{#1} \end{quote}}
-
-% Required time for part (Should appear on introduction page)
-\newcommand{\requiredTime}[1]{ {\scriptsize \texttt{Approximate time to complete: #1} } }
-
-% Forward jump links to Visual/Textual sections
+% 'Next..' jump links (bottom right)
 \newcommand{\jumpSingle}[1]{
 \fancyfoot[OR]{$\triangleright$ \hyperlink{#1}{\texttt{Next}}}
 }
@@ -119,9 +106,14 @@
  \\ $\triangleright$ \hyperlink{#2}{\texttt{Next [textual]}}}
 }
 
-% -- Quick author editing mark; remove from final ---
-\newcommand{\update}{{\bf update }}
+% These words should appear in the glossary
+\newcommand{\define}[1]{\marginpar{\small\emph{#1}}}
 
+% Textual syntax EBNF statement format
+\newcommand{\syntax}[1]{ \begin{quote} \small \texttt{#1} \end{quote}}
+
+% Required time for part (Should appear on introduction page)
+\newcommand{\requiredTime}[1]{ {\scriptsize \texttt{Approximate time to complete: #1} } }
 
 % TODO: update download link (RE: part descriptions) ----------------------------------------------------------------------------------------------------------
 \newcommand{\dlPartZero}{\url{www.emoflon.org}}
@@ -130,6 +122,8 @@
 \def\partTitle{Part III: Story Driven Modelling}
 \def\versionNumber{0.1}
 \input{../../06_miscellaneous/commonFiles/titlepage}
+% Version 0.1:	initial release
+% version 0.2:	minor spelling/formatting edits, etc.
 % -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 \begin{document}
@@ -137,14 +131,11 @@
 \frontmatter
 \noHeader
 
-% Title Page without trailing blank page
 {\let\newpage\relax\maketitle}
 
-% Copyright notice
 \input{../../06_miscellaneous/commonFiles/copyright}
 \let\cleardoublepage\clearpage
 
-% TOC
 \tableofcontents
 
 % Store page counter
@@ -153,19 +144,12 @@
 
 \mainmatter
 
-% Main content for this Part 
+% Main content for this Part; handles all inputs
 \include{storyDiagrams_source}
 
 \input{storyDiagrams_conclusion}
 
 \input{storyDiagrams_glossary}
-
-% Reference of all MOSL syntaxes used to date
-% \input{storyDiagrams_quickSyntaxReference}
-
-% ! KNOWN TEXCLIPSE BUG: If you make edits to Index (i.e., add entries), may not load in pdf/sumatra until you clean the project.
-% Small index list of eMoflon expression type defintions
-% \printindex
 
 % -- References
 \newpage \genHeader

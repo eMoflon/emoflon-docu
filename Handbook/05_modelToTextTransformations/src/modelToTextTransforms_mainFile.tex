@@ -89,11 +89,9 @@
 	\renewcommand{\headrule}{\hbox to\headwidth{%
   		\color{CornflowerBlue}\leaders\hrule height \headrulewidth\hfill}}
 }
-% -------------------------------------------------------------------------------------------------------------------------------------------------------------
+% --- FORMATTING COMMANDS --------------------------------------------------------------------------------------------------------------------------------------
 
-\newcommand{\requiredTime}[1]{ {\scriptsize \texttt{Approximate time to complete: #1} } }
-
-% Jump links 
+% Jump links (bottom right)
 \newcommand{\jumpSingle}[1]{
 \fancyfoot[OR]{$\triangleright$ \hyperlink{#1}{\texttt{Next}}}
 }
@@ -103,10 +101,13 @@
  \\ $\triangleright$ \hyperlink{#2}{\texttt{Next [textual]}}}
 }
 
+% Required time for part (Should appear on introduction page)
+\newcommand{\requiredTime}[1]{ {\scriptsize \texttt{Approximate time to complete: #1} } }
+
 % These words should appear in the glossary
 \newcommand{\define}[1]{\marginpar{\small\emph{#1}}}
 
-% Text syntax/command format
+% Textual syntax EBNF statement format
 \newcommand{\syntax}[1]{ \begin{quote} \small \texttt{#1} \end{quote}}	
 
 % Quick author note; remove from final
@@ -116,6 +117,8 @@
 % --- Title Page Information ----------------------------------------------------------------------------------------------------------------------------------
 \def\partTitle{Part V: Model-to-text Transformations}
 \def\versionNumber{0.1}
+% version 0.1:	initial release
+% -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 \input{../../06_miscellaneous/commonFiles/titlepage}
 
@@ -124,14 +127,11 @@
 \frontmatter 
 \noHeader
 
-% Title Page without following blank page
 {\let\newpage\relax\maketitle}
 
-% Copyright notice
 \input{../../06_miscellaneous/commonFiles/copyright}
 \let\cleardoublepage\clearpage
 
-% TOC
 \tableofcontents
 
 % Store page counter
@@ -140,13 +140,11 @@
 
 \mainmatter
 
-% Main content for this Part 
+% Main content for this Part; handles all inputs
 \include{modelToTextTransforms_source}
 
-% Conclusion to forward users onto other parts
 \input{modelToTextTransforms_conclusion}
 
-% Glossary
 \include{modelToTextTransforms_glossary}
 
 % -- References

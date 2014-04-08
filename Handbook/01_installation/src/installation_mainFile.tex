@@ -36,14 +36,13 @@
     morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
 }
 
-% Set TOC depth
 \setcounter{tocdepth}{1}
 
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
 \graphicspath{%
-{../../06_miscellaneous/commonFiles/}% Title image and memBox illustration
+{../../06_miscellaneous/commonFiles/} % Title image and memBox illustration
 {../1_installation/}{../1_installation/installPlugin/}{../1_installation/installEA/iea_images/}%
 {../2_simpleDemo/sd_images/}{../2_simpleDemo/EADemo/images/}{../2_simpleDemo/eclipseDemo/}%
 {../3_validate/va_images/}%
@@ -88,13 +87,10 @@
   		\color{CornflowerBlue}\leaders\hrule height \headrulewidth\hfill}}
   	\fancyfoot{}
 }
-% --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-\newcommand{\requiredTime}[1]{
-	{\scriptsize \texttt{Approximate time to complete: #1} }
-}
+% --- FORMATTING COMMANDS --------------------------------------------------------------------------------------------------------------------------------------
 
-% Jump links 
+% 'Next..' jump links (bottom right)
 \newcommand{\jumpSingle}[1]{
 \fancyfoot[OR]{$\triangleright$ \hyperlink{#1}{\texttt{Next}}}
 }
@@ -103,6 +99,10 @@
 \fancyfoot[RO]{ $\triangleright$ \hyperlink{#1}{\texttt{Next [visual]\hspace{0.2cm}}}%
  \\ $\triangleright$ \hyperlink{#2}{\texttt{Next [textual]}}}
 }
+
+% Required time for part (Should appear on introduction page)
+\newcommand{\requiredTime}[1]{ {\scriptsize \texttt{Approximate time to complete: #1} }}
+
 
 % TODO: Update download links and version information ---------------------------------------------------------------------------------------------------------
 \newcommand{\EclipseVersion}{Kepler}
@@ -130,10 +130,8 @@
 \frontmatter 
 \noHeader
 
-% Title Page without trailing blank page
 {\let\newpage\relax\maketitle}
 
-% Copyright notice
 \input{../../06_miscellaneous/commonFiles/copyright}
 \let\cleardoublepage\clearpage
 
@@ -145,7 +143,7 @@
 
 \mainmatter
 
-% Main content for this Part
+% Main content for this Part; handles all inputs
 \input{installation_source}
 
 \input{installation_conclusion}

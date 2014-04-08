@@ -233,7 +233,7 @@ drop-down menu to create a custom one. Name it \texttt{IndexToLevel}, and enter 
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{ea_uniqueConstraint}
+  \includegraphics[width=0.9\textwidth]{ea_uniqueConstraint}
   \caption{Creating an unique constraint}
   \label{ea:create_new_constraint}
 \end{center}
@@ -244,17 +244,11 @@ drop-down menu to create a custom one. Name it \texttt{IndexToLevel}, and enter 
 finishing this TGG rule however, let's finish and export what we've made to Eclipse before doing so. We'll explain the exact meaning of the mysterious
 adornments and parameters of the constraint in a moment. For now, just make sure you enter the exact values in Fig.~\ref{ea:create_new_constraint}. 
 
-\vspace{0.5cm}
-
 \item[$\blacktriangleright$] Save the new constraint, then select it from the drop-down menu in the TGG Constraint Dialog. Enter \texttt{partition0.index} as an
 \texttt{EInt} value, and \texttt{entry.level} as an \texttt{EString}.
 
-\vspace{0.5cm}
-
 \item[$\blacktriangleright$] Your completed TGG rule should resemble Fig.~\ref{ea:cardtoentry_complete}. Great work! All that's left to do is implement the
 \texttt{IndexToLevel} constraint, and give your transformation a test run.
-
-\vspace{0.5cm}
 
 \item[$\blacktriangleright$] Check out Fig.~\ref{eclipse:allReferences} in Section 4.3 to see how \texttt{BoxToDictionaryRule} is specified in the textual
 syntax, or Fig.~\ref{eclipse:c2eDone} in Section 4.4 for the \texttt{CardToEntryRule}.

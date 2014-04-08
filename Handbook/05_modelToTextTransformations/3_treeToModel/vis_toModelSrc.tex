@@ -44,7 +44,7 @@ Name this \texttt{ForAllShelfRule}.
 \subsubsection{ForAllShelfRule} % ---------------------------------
 
 The derivation procedure will open a new diagram with context elements from the first rule. This new rule is similar to
-\texttt{FolderToLibraryRule}, except that it will connect new (green) elements to existing (black) containers. 
+\texttt{Fold\-er\-To\-Lib\-rar\-y\-Rule}, except that it will connect new (green) elements to existing (black) containers. 
 
 \item[$\blacktriangleright$] Complete the rule as depicted in Fig.~\ref{ea:ForAllShelves_Complete}. You'll need to create a new \texttt{FolderToShelf}
 correspondence type in either the schema (as we did in the beginning), or on-the-fly by selecting \texttt{Create New Correspondence Type} in the quick-link
@@ -106,11 +106,10 @@ Fig.~\ref{ea:ForAllEntry_Complete}.
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
-\begin{center}
+\hspace{-0.5cm}
   \includegraphics[width=1.1\textwidth]{ea_ForAllEntryRule}
   \caption{\texttt{ForAllEntryRule}}
   \label{ea:ForAllEntry_Complete}
-\end{center}
 \end{figure}
 
 You can see that for every \texttt{entryNode}, \texttt{contentNode} and \texttt{indexNode} child elements are also created. When transforming from a tree to
@@ -204,11 +203,8 @@ be sure to select the \texttt{exact copy} option (Fig.~\ref{ea:deriveRefinement}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] The rule diagram will open in the editor, with the elements in the same place you copied them from. You can of course rearrange as
-you wish, but the overlay idea will  be much easier to visualise if you leave the elements exactly where they are.
-
-\item[$\blacktriangleright$] Complete the rule by changing \texttt{author} and the link to \texttt{library} to \texttt{Check Only} as depicted in
-Fig.~\ref{ea:existingAuthorRule}.
+\item[$\blacktriangleright$] The rule diagram will open in the editor, with the elements in the same place you copied them from. Complete the rule by changing
+\texttt{author} and the link to \texttt{library} to \texttt{Check Only} as depicted in Fig.~\ref{ea:existingAuthorRule}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -218,18 +214,29 @@ Fig.~\ref{ea:existingAuthorRule}.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] \update Include a paragraph about how the rule would have looked w/o refinements (i.e., before the bug). Would be big. (Check
-downloads folder; file prepared). Would have exact same semantics as our refinement(s).
+\item[$\blacktriangleright$] If you're having difficulty visualising the entire rule with this minor modification, note that EA allows you to drag and drop all
+elements from the basis rule as links so they're represented in the diagram. Figure~\ref{ea:existingAuthorRuleComplete} represents the entire
+\texttt{ExistingAuthorRule}. This how the rule would have looked like if there was no refinement.
 
-\item[$\blacktriangleright$] Mention that, if you want to populate your refinement a little bit more without actually changing anything, EA allows you to drag
-and drop all elements from the basis/source rule as links, so they're represented in the diagram. (include screenshot here? it may emphasize the overlay idea..)
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=\textwidth]{ea_ExistingAuthorRuleComplete}
+  \caption{\texttt{ExistingAuthorRule}}
+  \label{ea:existingAuthorRuleComplete}
+\end{center}
+\end{figure}
+
+\vspace{-0.5cm}
 
 \subsubsection{NewAuthorRule} % ---------------------------------
 
-\item[$\blacktriangleright$] Return to \texttt{AuthorRule}. For reasons that will be explained shortly in the next section, derive a copy of \texttt{authorNode}
-and \texttt{library} in a rule called \texttt{NewAuthorRule}. Specify it as completely empty, not changing either of the variables for now. It should come to
-resemble Fig.~\ref{ea:NewAuthorRule}.\footnote{For presentation purposes, we have reduced the white space between these elements. In your rule they
-will be in their original places, far apart.} Since we have defined \texttt{AuthorRule} as abstract, it needs this concrete rule to execute it. 
+\item[$\blacktriangleright$] Return to \texttt{AuthorRule} and derive another copy of \texttt{authorNode} and \texttt{library} into a rule called
+\texttt{NewAuthorRule}. We'll explain why further in the next section, but for now specifiy it as completely empty, and don't change either of the variables for
+now. Since we have defined \texttt{AuthorRule} as abstract, it needs this concrete rule to execute it. It should come to resemble
+Fig.~\ref{ea:NewAuthorRule}.\footnote{For presentation purposes, we have reduced the white space between these elements. In your rule they will be in their
+original places, far apart.}
 
 \vspace{0.5cm}
 

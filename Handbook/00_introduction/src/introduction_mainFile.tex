@@ -36,7 +36,6 @@
     morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
 }
 
-% Set TOC depth
 \setcounter{tocdepth}{2}
 
 \setlength{\parindent}{0pt} 
@@ -74,7 +73,7 @@
 \newcommand{\dlPartFive}{\rootLink{part5.pdf}}
 \newcommand{\dlPartSix}{\rootLink{part6.pdf}}
 
-% TODO:	Set time it takes to complete each part
+% TODO:	Set time it takes to complete each part (make sure they match the Part introductions)
 \newcommand{\timeTwo}{1h}
 \newcommand{\timeThree}{3h}
 \newcommand{\timeFour}{1h 30min}
@@ -92,10 +91,8 @@
 \frontmatter
 \noHeader
 
-% Title Page without trailing blank page
 {\let\newpage\relax\maketitle}
 
-% Copyright notice
 \input{../../06_miscellaneous/commonFiles/copyright}
 \let\cleardoublepage\clearpage
 
