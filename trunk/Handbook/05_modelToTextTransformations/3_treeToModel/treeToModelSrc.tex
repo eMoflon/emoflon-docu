@@ -19,13 +19,13 @@ the dictionary author's contact information. All the rest will be \texttt{ENTRY}
 \begin{figure}[htbp]
 \hspace{-1.5cm}
  	\includegraphics[width=1.2\textwidth]{eclipse_TreeStartMetamodel}
- 	\caption{caption1}
+ 	\caption{The \texttt{MocaTree} model of our input directory}
  	\label{eclipse:treeStart}
 \end{figure}
 
 \newpage
 
-Our transformation intends to finish with a \texttt{Library} model resembling Fig.~\ref{eclipse:dictionaryStart}, where the root \texttt{MyLibrary} node has
+Our transformation intends to finish with a \texttt{Dictionary} model resembling Fig.~\ref{eclipse:dictionaryStart}, where the root \texttt{MyLibrary} node has
 four subfolders, one for each shelf and author. These subfolders will likely pair up, sharing a child \texttt{Dictionary} element containing an unknown number
 of entries.
 
@@ -34,14 +34,15 @@ of entries.
 \begin{figure}[htbp]
 \hspace{-1.5cm}
     \includegraphics[width=1.2\textwidth]{eclipse_DictionaryResultMetamodel}
- 	\caption{caption2}
+ 	\caption{The final \texttt{Dictionary} target model}
  	\label{eclipse:dictionaryStart}
 \end{figure}
 
 \vspace{1cm}
 
-As you can see, it's important to keep in mind the flexibilty that the rules for this transformation will require. While our example model is small
-enough to count, future models may not be so forgiving. Just like SDM patterns, it's key to avoid situation-specific TGG rules.
+As you can see, it's important to keep in mind the flexibility that the rules for this transformation will require. While our example model is small
+enough to count the number of entries our rules will need to account for, future models may not be so forgiving. Just like SDM patterns, it's key to avoid
+situation-specific TGG rules.
 
 \jumpDual{treeToModel vis}{treeToModel tex}
 

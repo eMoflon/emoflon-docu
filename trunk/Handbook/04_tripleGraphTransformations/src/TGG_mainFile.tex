@@ -36,7 +36,6 @@
     morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
 }
 
-% TOC depth
 \setcounter{tocdepth}{1}
 
 \setlength{\parindent}{0pt} 
@@ -92,11 +91,9 @@
 	\renewcommand{\headrule}{\hbox to\headwidth{%
   		\color{CornflowerBlue}\leaders\hrule height \headrulewidth\hfill}}
 }
-% -------------------------------------------------------------------------------------------------------------------------------------------------------------
+% --- FORMATTING COMMANDS --------------------------------------------------------------------------------------------------------------------------------------
 
-\newcommand{\requiredTime}[1]{ {\scriptsize \texttt{Approximate time to complete: #1} } }
-
-% Jump links 
+% Jump links (Bottom right)
 \newcommand{\jumpSingle}[1]{
 \fancyfoot[OR]{$\triangleright$ \hyperlink{#1}{\texttt{Next}}}
 }
@@ -106,13 +103,16 @@
  \\ $\triangleright$ \hyperlink{#2}{\texttt{Next [textual]}}}
 }
 
+% Required time for part (Should appear on introduction page)
+\newcommand{\requiredTime}[1]{ {\scriptsize \texttt{Approximate time to complete: #1} } }
+
 % These words should appear in the glossary
 \newcommand{\define}[1]{ \marginpar{\small\emph{#1}} }
 
-% Text syntax/command format
+% Textual syntax EBNF statement format
 \newcommand{\syntax}[1]{ \begin{quote} \small \texttt{#1} \end{quote}}	
 
-% Quick author note; remove from final
+% TODO: Quick author note; remove from final
 \newcommand{\update}{{\bf update }}
 
 % TODO: update description download link
@@ -122,22 +122,20 @@
 \def\partTitle{Part IV: Triple Graph Grammars}
 \def\versionNumber{0.2}
 \input{../../06_miscellaneous/commonFiles/titlepage}
-% version 0.1 : intial release
-% version 0.1 : added sychronization content
+% version 0.1:	initial release
+% version 0.2:	added sychronization and breakpoint content
+% -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 \begin{document}
 
 \frontmatter 
 \noHeader
 
-% Title Page without following blank page
 {\let\newpage\relax\maketitle}
 
-% Copyright notice
 \input{../../06_miscellaneous/commonFiles/copyright}
 \let\cleardoublepage\clearpage
 
-% TOC
 \tableofcontents
 
 % Store page counter
@@ -146,23 +144,18 @@
 
 \mainmatter
 
-% Main content for this Part 
+% Main content for this Part; Handles all inputs
 \include{TGG_source}
 
-% Conclusion to forward users onto other parts
 \input{TGG_conclusion}
 
 \input{TGG_glossary}
 
-% -- References
 \newpage \genHeader
 \phantomsection
 \addcontentsline{toc}{section}{References}
 \renewcommand*{\bibname}{References}
 \bibliographystyle{plain}  
 \bibliography{../../06_miscellaneous/commonFiles/references}
-
-% Glossary?
-% \include{TGG_glossary}
 
 \end{document}

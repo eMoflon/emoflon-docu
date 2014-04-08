@@ -36,7 +36,6 @@
     morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
 }
 
-% Set TOC depth
 \setcounter{tocdepth}{1}
 
 \setlength{\parindent}{0pt} 
@@ -93,11 +92,9 @@
 	\renewcommand{\headrule}{\hbox to\headwidth{%
   		\color{CornflowerBlue}\leaders\hrule height \headrulewidth\hfill}}
 }
-% -------------------------------------------------------------------------------------------------------------------------------------------------------------
+% --- FORMATTING COMMANDS --------------------------------------------------------------------------------------------------------------------------------------
 
-\newcommand{\requiredTime}[1]{{\scriptsize \texttt{Approximate time to complete: #1} }}
-
-% Jump links 
+% 'Next..' jump links (bottom right)
 \newcommand{\jumpSingle}[1]{
 \fancyfoot[OR]{$\triangleright$ \hyperlink{#1}{\texttt{Next}}}
 }
@@ -107,13 +104,15 @@
  \\ $\triangleright$ \hyperlink{#2}{\texttt{Next [textual]}}}
 }
 
+% Required time for part (Should appear on introduction page)
+\newcommand{\requiredTime}[1]{{\scriptsize \texttt{Approximate time to complete: #1} }}
+
 % These words should appear in the glossary
 \newcommand{\define}[1]{\marginpar{\small\emph{#1}}}
 
-% Text EBNF syntax/command format
+% Textual syntax EBNF statement format
 \newcommand{\syntax}[1]{ \begin{quote} \small \texttt{#1} \end{quote}}	
 
-% TODO: Set download links 
 \newcommand{\dlPartZero}{\url{www.emoflon.org}}
 
 % TODO:  Update version number (Title Page Information)
@@ -128,14 +127,11 @@
 \frontmatter 
 \noHeader
 
-% Title Page without trailing blank page
 {\let\newpage\relax\maketitle}
 
-% Copyright notice
 \input{../../06_miscellaneous/commonFiles/copyright}
 \let\cleardoublepage\clearpage
 
-% TOC
 \tableofcontents
 
 % Store page counter
@@ -144,13 +140,11 @@
 
 \mainmatter
 
-% Main content for this Part
+% Main content for this Part; handles all inputs
 \include{learningBox_source}
 
-% Conclusion to forward users onto other parts
 \input{learningBox_conclusion}
 
-% Glossary
 \include{learningBox_glossary}
 
 \end{document}

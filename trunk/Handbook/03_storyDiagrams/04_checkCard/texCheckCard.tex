@@ -42,7 +42,7 @@ between the \texttt{face} attribute of the current \texttt{card}, and the primit
 values.\footnote{See the \hyperlink{quickRef}{Quick Reference} at the end of this part for a listing of all operators}
 
 \item[$\blacktriangleright$] The tricky part of the overall statement is referencing the parameter value. Given that we have not created an object variable,
-we'll need to use another expression type, \texttt{ParameterExpression}\defineMOSL{ParameterExpression}, to access it. This type exclusively refers to parameter
+we'll need to use another expression type, \texttt{ParameterExpression}\define{ParameterExpression}, to access it. This type exclusively refers to parameter
 values, and its syntax is as follows:
 \syntax{parameter\_expression := `\$'ID \\
 \\
@@ -109,7 +109,7 @@ resemble Fig.~\ref{eclipse:completedPatterns}.
 In general, it doesn't matter in which order object or variables are specified in patterns. Everything just needs to be correctly stated. 
 
 \item[$\blacktriangleright$] We nearly forgot to complete the control flow! We have specified the assertion and card movements, but we haven't returned a
-\texttt{EBoolean} result as the method requires.  We'll need to implement a new expression type, a \emph{LiteralExpression}\defineMOSL{LiteralExpression}. This
+\texttt{EBoolean} result as the method requires.  We'll need to implement a new expression type, a \emph{LiteralExpression}\define{LiteralExpression}. This
 type can be used to specify arbitrary text, but should really only be used for true literals like 42, ``foo'' or \texttt{true}. The syntax for any LiteralExpression
 is simply:
 \syntax{LiteralExpression := boolean\_literal | integer\_literal | any\_literal \\
