@@ -1,32 +1,20 @@
-\newpage
-
 \subsection{Modelling relevant aspects in EA}
 \visHeader
 
 The first step is to get the existing metamodel into EA. A complete and automatic import of existing Ecore files in EA is currently not possible and, therefore,
-\emph{relevant parts} of the existing metamodel (\texttt{GenModel}) have to be modelled manually in EA.
-Although this might sound frightening (especially for large complex metamodels), the emphasis here on \emph{relevant} indicates that only elements that are used
-for the transformation have to be present in EA and can be added iteratively as the transformation grows.
+\emph{relevant parts} of the existing metamodel (\texttt{GenModel}) have to be modelled manually in EA. Although this might sound frightening (especially for
+large complex metamodels), the emphasis here on \emph{relevant} indicates that only elements that are used for the transformation have to be present in EA and
+can be added iteratively as the transformation grows.
 
 \begin{enumerate}
 \item[$\blacktriangleright$] To specify our example transformation, create a new metamodel project \texttt{EcoreToGenModel} in Eclipse, check the option
 \texttt{Add eMoflon languages} in the wizard, and switch to EA by double-clicking the created \texttt{Ecore\-To\-Gen\-Model.eap} file.
 
-\item[$\blacktriangleright$] Note the packages already present in EA (eMoflon Languages), especially \textsf{Ecore}, which we shall use for the transformation.
+\item[$\blacktriangleright$] Note the packages already present in EA (eMoflon Languages), especially \texttt{Ecore}, which we shall use for the transformation.
 
 \item[$\blacktriangleright$] Create a new package \texttt{GenModel} and model the elements as depicted in Fig.~\ref{fig_gMM}.
 The actual \texttt{GenModel} metamodel contains lots more elements, but this subset is sufficient for our task.
-\end{enumerate}
 
-\begin{figure}[htbp]
-\begin{center}  
-	\includegraphics[width=1.0\textwidth]{CDGenmodel.pdf}
-	\caption{MetaModel of GenModel}  
-\label{fig_gMM}
-\end{center}
-\end{figure} 
-
-\begin{enumerate}  
 \item[$\blacktriangleright$] Create another package \texttt{Ecore2GenModel} to contain the \texttt{Transformer} class with the methods as depicted in
 Fig.~\ref{fig_e2gm}.
 
@@ -35,15 +23,23 @@ Fig.~\ref{fig_e2gm}.
 
 \begin{figure}[htbp]
 \begin{center}  
+	\includegraphics[width=1.0\textwidth]{CDGenmodel.pdf}
+	\caption{Metamodel of \texttt{GenModel}}  
+\label{fig_gMM}
+\end{center}
+\end{figure} 
+
+\begin{figure}[htbp]
+\begin{center}  
 \includegraphics[width=0.8\textwidth]{CDTransformer.pdf}
-\caption{Methods in \textsf{Transformer}}  
+\caption{Methods in \texttt{Transformer}}  
 \label{fig_e2gm}
 \end{center}
 \end{figure} 
 
 \begin{figure}[htbp]
 \begin{center}  \includegraphics[width=0.8\textwidth]{SDMePackageToGenModel.pdf}
-        \caption{Main method for \textsf{EPackage} to \textsf{GenModel} transformation}  
+        \caption{Main method for \texttt{EPackage} to \texttt{GenModel} transformation}  
   \label{fig_pack2gm}
 \end{center}
 \end{figure} 
@@ -51,7 +47,7 @@ Fig.~\ref{fig_e2gm}.
 \begin{figure}[htbp]
 \begin{center}  
 \includegraphics[width=1.0\textwidth]{SDMtransformEpackageToGenPackage.pdf}
-\caption{Helper function to transform all \textsf{EPackages} to \textsf{GenPackages}}  
+\caption{Helper function to transform all \texttt{EPackages} to \texttt{GenPackages}}  
 \label{fig_transf}
 \end{center}
 \end{figure} 

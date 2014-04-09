@@ -21,7 +21,7 @@ depicted in Fig.~\ref{eclipse:changeSrc}.
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_changeSrc}
-  \caption{Declaring changes to the source \texttt{Box} model}
+  \caption{Small update to the source \texttt{Box} model}
   \label{eclipse:changeSrc}
 \end{center}
 \end{figure}
@@ -29,14 +29,15 @@ depicted in Fig.~\ref{eclipse:changeSrc}.
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] As you're completing \texttt{changeSrc}, you'll notice several error messages appear. A few additional classes need to be directly
-imported from \texttt{LearningBoxLanguage}, so add the import statements in Fig.~\ref{eclipse:changeSrcImports}.
+imported from \texttt{LearningBoxLanguage}. If Eclipse doesn't handle it for you automatically, add the import statements in
+Fig.~\ref{eclipse:changeSrcImports}.
 
 \newpage
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_changeSrcImports}
-  \caption{caption}
+  \includegraphics[width=0.7\textwidth]{eclipse_changeSrcImports}
+  \caption{Importing \texttt{Box} object classes}
   \label{eclipse:changeSrcImports}
 \end{center}
 \end{figure}
@@ -55,8 +56,8 @@ complete it as depicted in Fig.~\ref{eclipse:SynchForwardMethod}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{eclipse_synchForwardMethod}
-  \caption{forward synchronization}
+  \includegraphics[width=0.9\textwidth]{eclipse_synchForwardMethod}
+  \caption{Executing the forward synchronization}
   \label{eclipse:SynchForwardMethod}
 \end{center}
 \end{figure}
@@ -75,10 +76,12 @@ TGG transformation will still run.}
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_helperFWDSynch}
-  \caption{comment}
+  \caption{Adding your triple updates from \texttt{TGGMain}}
   \label{eclipse:helperFWD}
 \end{center}
 \end{figure}
+
+\vspace{-0.5cm}
 
 \item[$\blacktriangleright$] Navigate to ``instances/synch/FWD/'' and open \texttt{source\_FWD.xmi}. Is there now a fifth card in \texttt{parition2}? How about
 a fifth \texttt{entry} in \texttt{target\_FWD} ? If your synchronization was successful, both of these should exist!
@@ -86,22 +89,13 @@ a fifth \texttt{entry} in \texttt{target\_FWD} ? If your synchronization was suc
 \item[$\blacktriangleright$] Compare these two new models to the original source and targets in ``instances/.'' You'll notice they don't match -- perfect! While
 the synchronization started and changed these original files, the newest triple was saved in the ``FWD'' directory.
 
-\item[$\blacktriangleright$] Let's check out what was created in \texttt{corr\_FWD.xmi}. Running the integrator on the file and proceeding as far as you can,
-you'll notice that it doesn't take very long. In fact, only one thing happens! If you inspect the window, you'll be able to see that the only thing this
-correspondence model shows is the creation of a single card. Because the models never had to be created from scratch, the correspondence only shows trace
-information for the elements you updated.
-
-\newpage
-
 \item[$\blacktriangleright$] Now let's try synchronizing in the opposite direction, from Dictionary to Box. We want to remove \texttt{Entry} `One: Eins,' and
 add `Six: Sechs.' Complete \texttt{changeTrg()} as shown in Fig.~\ref{eclipse:changeTrg}.
 
-\vspace{0.5cm}
-
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{eclipse_changeTrg}
-  \caption{Modifying target model}
+  \includegraphics[width=0.9\textwidth]{eclipse_changeTrg}
+  \caption{Small update to the target \texttt{dictionary} model}
   \label{eclipse:changeTrg}
 \end{center}
 \end{figure}
@@ -112,8 +106,8 @@ add `Six: Sechs.' Complete \texttt{changeTrg()} as shown in Fig.~\ref{eclipse:ch
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_changeTrgImports}
-  \caption{comment}
+  \includegraphics[width=0.7\textwidth]{eclipse_changeTrgImports}
+  \caption{Importing \texttt{dictionary} object classes}
   \label{eclipse:changeTrgImports}
 \end{center}
 \end{figure}
@@ -121,10 +115,12 @@ add `Six: Sechs.' Complete \texttt{changeTrg()} as shown in Fig.~\ref{eclipse:ch
 \item[$\blacktriangleright$] Nearly identical to \texttt{synchForward}, create a new method \texttt{synchBackwards} and complete it as depicted in
 Fig.~\ref{eclipse:SynchBackwardMethod}.
 
+\vspace{0.5cm}
+
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.9\textwidth]{eclipse_synchBackwardMethod}
-  \caption{synch backwards}
+  \includegraphics[width=0.85\textwidth]{eclipse_synchBackwardMethod}
+  \caption{Executing the backward synchronization}
   \label{eclipse:SynchBackwardMethod}
 \end{center}
 \end{figure}
@@ -134,8 +130,8 @@ should then resemble Fig.~\ref{eclipse:TGGSynchMain}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.9\textwidth]{eclipse_TGGSynchMain}
-  \caption{Final Main method}
+  \includegraphics[width=0.8\textwidth]{eclipse_TGGSynchMain}
+  \caption{Complete driver method}
   \label{eclipse:TGGSynchMain}
 \end{center}
 \end{figure}
@@ -159,7 +155,7 @@ the card essentially `disappears' from all models.
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.9\textwidth]{eclipse_integratorCorrBWD}
-  \caption{comment}
+  \caption{Synchronization correspondence metamodel}
   \label{eclipse:synchBwdIntegrator}
 \end{center}
 \end{figure}

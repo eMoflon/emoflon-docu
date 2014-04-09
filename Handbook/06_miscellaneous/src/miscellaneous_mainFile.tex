@@ -29,17 +29,17 @@
 }
 
 \lstset{language=,
-    %keywordstyle=\color{blue},
+    % keywordstyle=\color{blue},
     basicstyle=\scriptsize\ttfamily,
-    %morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
+    % morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
     showstringspaces=false,
     backgroundcolor=\color{codelightgray},
     frame=single,
+    framerule=0pt,
     tabsize=2,
     linewidth=14cm,
 }
 
-% Set TOC Depth
 \setcounter{tocdepth}{1}
 
 \setlength{\parindent}{0pt} 
@@ -103,14 +103,11 @@
 \frontmatter 
 \noHeader
 
-% Title Page without trailing blank page
 {\let\newpage\relax\maketitle}
 
-% Copyright notice
 \input{../commonFiles/copyright}
 \let\cleardoublepage\clearpage
 
-% TOC
 \tableofcontents
 
 % Store page counter
@@ -119,10 +116,9 @@
 
 \mainmatter
 
-% Main content
+% Main content; Includes all (TOC) input files
 \include{miscellaneous_source}
 
-% -- References
 \newpage \genHeader
 \phantomsection
 \addcontentsline{toc}{section}{References}
