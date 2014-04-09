@@ -33,8 +33,8 @@ should now resemble Fig.~\ref{eclipse:textSourceRule}.
 
 \syntax{++ box <- boxToDictionary : BoxToDictionary -> dictionary}
 
-Please note that this statement creates \emph{one} link, named \texttt{box\-To\-Dict\-ion\-ary}, of type \texttt{Box\-To\-Dict\-ion\-ary} which was declared in
-the schema.
+\item[$\blacktriangleright$] Please note that this statement creates \emph{one} link, named \texttt{box\-To\-Dict\-ion\-ary}, of type
+\texttt{Box\-To\-Dict\-ion\-ary} which was declared in the schema.
 
 \end{itemize}
 
@@ -64,8 +64,9 @@ Your rule should now resemble Fig.~\ref{eclipse:ruleBasic}.
 
 \end{itemize}
 
-Switch back to \texttt{BoxToDictionaryRule}. What's missing from our rule? We have created the primary container structures for the \texttt{target} and
-\texttt{source}, but \texttt{cards} cannot be stored directly in \texttt{box}! We therefore need to create some \texttt{partition} objects. 
+We're nearly done, but what's missing from this first rule? We've created the primary container structures for the \texttt{target} and \texttt{source}, and
+knowing that entires can be stored directly in \texttt{dictionary}, we know the target scope can remain empty. \texttt{cards} however must be contained within
+\texttt{partitions}, so our source scope is till incomplete!
 
 \begin{itemize}
 
@@ -133,8 +134,8 @@ ones are already known from the context? Which element still needs to be made? Y
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Similarly, in the \texttt{target} scope, you can declare \texttt{dictionary} from the context, but also need to create a new
-entry object via \texttt{++ entry:Entry}. 
+\item[$\blacktriangleright$] Similarly, in the \texttt{target} scope, you can demand a `black' \texttt{dic\-tion\-ary:Dic\-tion\-ary} element from the context,
+but will need to create a new entry object via \texttt{++ entry:Entry}. 
 
 \vspace{0.5cm}
 
@@ -173,8 +174,8 @@ a \texttt{card} into one \texttt{content} value, or split each \texttt{entry} in
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Now, using the pre-existing String attribute constraint types, edit your \texttt{constraint} scope until it resembles
-Fig.~\ref{eclipse:contentConstraints}.
+\item[$\blacktriangleright$] Using the pre-existing String attribute constraints \texttt{addPrefix} and \texttt{contact} to edit your
+\texttt{constraint} scope until it resembles Fig.~\ref{eclipse:contentConstraints}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -200,8 +201,9 @@ each of the options mean in a moment.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] You can now invoke your rule with \texttt{indexToLevel(partition0.index, entry.level)} immediately below the declaration. Your
-completed \texttt{CardToEntryRule} should now resemble Fig.~\ref{eclipse:c2eDone}.
+\item[$\blacktriangleright$] You can now invoke your rule with an \texttt{indexToLevel(partition0.index, entry.level)} statement immediately below the
+declaration. Your completed \texttt{CardToEntryRule} should now resemble Fig.~\ref{eclipse:c2eDone}, where every new \texttt{card} will have an equivalent
+(and consistent) \texttt{entry} element.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -214,11 +216,11 @@ completed \texttt{CardToEntryRule} should now resemble Fig.~\ref{eclipse:c2eDone
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Awesome work! If you haven't already, save the file and confirm the MOSL parser hasn't raised any errors. Press \texttt{Build
-(Without Cleaning)}, and admire your two TGG transformation rules. 
+(Without Cleaning)} and admire your two TGG transformation rules. 
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] To see how \texttt{BoxToDictionaryRule} is implemented in the visual syntax, check out Fig.~\ref{ea:boxtodictionaryrule_complete}
-from Section 4.1. The \texttt{CardToEntryRule} is depicted in Fig.~\ref{ea:cardtoentry_complete} in Section 4.2.
+from Section 4.1. Similarly, \texttt{CardToEntryRule} is depicted in Fig.~\ref{ea:cardtoentry_complete} in Section 4.2.
 
 \end{itemize}
