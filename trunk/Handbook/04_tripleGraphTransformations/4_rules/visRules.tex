@@ -93,7 +93,7 @@ constraint, then \texttt{OK} to affirm and close the window.
 
 \newpage
 
-Our first TGG rule is not yet complete though. Our goal is to transform a \texttt{Box} into a \texttt{Dictionary}, so we still need to create the initial
+Our first TGG rule is not yet complete. Our goal is to transform a \texttt{Box} into a \texttt{Dictionary}, so we still need to create the initial
 structure of the learning box. In contrast to the rather simple dictionary, where \texttt{Dictionary} is a direct container for every \texttt{Entry} object, we
 have to create a number of connected \texttt{Partitions} to hold the \texttt{Cards}.
 
@@ -101,15 +101,16 @@ have to create a number of connected \texttt{Partitions} to hold the \texttt{Car
 
 \item[$\blacktriangleright$] Given that there are three valid difficulty levels for every \texttt{Entry} we create three \texttt{Partition} object variables,
 complete with appropriate link variables that satisfy the Leitner's Box rules (the \texttt{next}, \texttt{previous}, and \texttt{box} references). Your TGG rule
-should come to resemble Fig.~\ref{ea:boxtodictionaryrule_complete}.
+should come to resemble Fig.~\ref{ea:boxtodictionaryrule_complete}.\footnote{To review how to set object attribute constraints, review Part III, Section 4}
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
-\hspace{-2cm}
-  \includegraphics[width=1.2\textwidth]{ea_BoxToDictionaryRuleComplete}
+\begin{center}
+  \includegraphics[width=\textwidth]{ea_BoxToDictionaryRuleComplete}
   \caption{Complete TGG rule diagram for \texttt{BoxToDictionaryRule}}
   \label{ea:boxtodictionaryrule_complete}
+  \end{center}
 \end{figure}
 
 \end{enumerate}
@@ -140,21 +141,21 @@ new rule will automatically open in a new window.
 
 \begin{figure}[htbp]
 \begin{center}
- \includegraphics[width=0.9\textwidth]{ea_deriveCardToEntry}
+ \includegraphics[width=0.7\textwidth]{ea_deriveCardToEntry}
   \caption{Derive a new rule from an existing one}
   \label{ea:derive_from_tgg_rule}
 \end{center}
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] Add green instances of \texttt{Card} and \texttt{Entry} to the rule, and link them to their respective \texttt{partition0} and
+\item[$\blacktriangleright$] Add green instances of \texttt{Card} and \texttt{Entry} to the new rule, and link them to their respective \texttt{partition0} and
 \texttt{dictionary} elements. 
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Quick-link from \texttt{card} to \texttt{entry} and create another TGG correspondence link. You'll notice that the
 \texttt{select correspondence link} drop-down menu is empty -- we haven't defined one between these types yet in the schema. Luckily, we're able to create one
-here on-the-fly. Select \texttt{Create new correspondence type} and name it \texttt{CardToEntry} (Fig~\ref{ea:newCorrespondenceDialogue}). 
+here on-the-fly. Select \texttt{Create New Correspondence Type} and name it \texttt{CardToEntry} (Fig~\ref{ea:newCorrespondenceDialogue}). 
 
 \vspace{0.5cm}
 
@@ -168,7 +169,17 @@ here on-the-fly. Select \texttt{Create new correspondence type} and name it \tex
 
 \item[$\blacktriangleright$] Your diagram should now resemble Fig.~\ref{ea:cardtoentry_1}. We're not done yet though -- we still need to handle attributes!
 
-\vspace{0.5cm}
+\end{enumerate}
+
+We must create a series of constraints in order to specify how relevant attributes should be handled. Let's first define a construct for every
+\texttt{entry\-.cont\-ent}, \texttt{card.back}, and \texttt{card.face} EString values so that it's easy to (temporarily) persist the values during the
+transformation. This will help us figure out how we should combine the front and back of each \texttt{card} as a single \texttt{content} attribute and,
+in the opposite direction, help to separate the contents so that they may be split into \texttt{card.back} and \texttt{card.face}.
+
+Let's define \texttt{entry\-.cont\-ent} as: \texttt{<word>:<mean\-ing>}. \texttt{card\-.back} should therefore be \texttt{Quest\-ion:<word>} and
+similarly, \texttt{card\-.face} should be \texttt{Ans\-wer:<mean\-ing>}. 
+
+\newpage
 
   \begin{figure}[htbp]
   \begin{center}
@@ -178,24 +189,11 @@ here on-the-fly. Select \texttt{Create new correspondence type} and name it \tex
   \end{center}
   \end{figure}
 
-\end{enumerate}
-
-We must create a series of constraints in order to specify how relevant attributes should be handled. Let's first define a construct for every
-\texttt{entry\-.cont\-ent}, \texttt{card.back}, and \texttt{card.face} EString values so that it's easy to (temporarily) persist the values during the
-transformation. This will help us figure out how we should combine the front and back of each \texttt{card} as a single \texttt{content} attribute and,
-in the opposite direction, help to separate the contents so that they may be split into \texttt{card.back} and \texttt{card.face}.
-
-\vspace{0.5cm}
-
-Let's define \texttt{entry\-.cont\-ent} as: \texttt{<word>:<mean\-ing>}. \texttt{card\-.back} should therefore be \texttt{Quest\-ion:<word>} and
-similarly, \texttt{card\-.face} should be \texttt{Ans\-wer:<mean\-ing>}. 
 
 \begin{itemize}
 
 \item[$\blacktriangleright$] We can now define three \emph{attribute constraints} to implement this. Luckily, we have two predefined constraints,
 \texttt{addPrefix} and \texttt{concat} to help us. Use the toolbox again to create a new TGG constraint, and add the following to your diagram:
-
-\vspace{0.5cm}
 
   \item \texttt{addPrefix(``Question '', word, card.back)}  
   
@@ -205,13 +203,9 @@ similarly, \texttt{card\-.face} should be \texttt{Ans\-wer:<mean\-ing>}.
 
 \end{itemize}
 
-\vspace{0.5cm}
-
 Your rule should now resemble Fig.~\ref{ea:cardtoentry_2}, where ``Question'' and ``Answer'' are EString literals, \texttt{word} and \texttt{meaning} are
 temporary variables, and \texttt{card.face}, \texttt{card.back}, and \texttt{entry.content} are attribute expressions (this should be familiar from SDM story
 patterns).
-
-\vspace{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -222,7 +216,7 @@ patterns).
 \end{figure}
 \FloatBarrier
 
-Our final task is to specify where a new \texttt{card} (when transformed from \texttt{entry} to \texttt{card}) will be placed.  We purposefully created three
+Our final task is to specify where a new \texttt{card} (when transformed from an \texttt{entry}) will be placed.  We purposefully created three
 partitions to match the three difficulty levels, but if you check the constraints drop-down menu, there is nothing that can implement this specific kind of
 mapping. We will therefore need to create our own constraint to handle this.
 
