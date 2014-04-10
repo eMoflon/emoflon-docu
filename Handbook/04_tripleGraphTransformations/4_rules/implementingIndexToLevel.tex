@@ -5,7 +5,7 @@
 
 If everything has been done correctly up to this point, your project should save and build without errors in Eclipse. In fact, there should now be three
 generated repository projects included in \texttt{MyWorkingSet}. We're most concerned with \texttt{LearningBox\-To\-Dictionary\-Integration}, which implements
-our TGG and its rules. Expand your folder so it resembles Fig.~\ref{eclipse:tggGenerated}
+our TGG and its rules. Expand your folder so it resembles Fig.~\ref{eclipse:tggGenerated}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -54,7 +54,7 @@ and might even make sense for some applications, it does not in the context of p
 
 At compile time, the set of constraints (also called \emph{Constraint Satisfaction Problem} (CSP)) for every TGG rule is ``solved'' for each case by
 operationalizing all constraints and determining a feasible sequence in which the operations can be executed, compatible to the declared adornments of each
-constraint. If the CSP cannot be solved, an exception is thrown at compile time
+constraint. If the CSP cannot be solved, an exception is thrown at compile time.
 
 Now that we have a better understanding behind the construction of attribute constraints, let's implement \texttt{IndexToLevel}.
 
@@ -133,7 +133,7 @@ most likely to have been returned to the starting position.
 
 In the \texttt{solve} method, there is a switch statement based on whichever adornment is currently active. For all cases, \texttt{setSatisfied}
 informs the TGG whether or not the constraint (and by consequence, the precondition of the rule) can be satisfied. For \texttt{BF}, it suggests that if a
-negative partition were to exist, to simply set its index value to 0. Similarily, if there was ever a partition more than 2 (i.e., \texttt{partition4}), it
+negative partition were to exist, to simply set its index value to 0. Similarly, if there was ever a partition more than 2 (i.e., \texttt{partition4}), it
 would set its index to the highest difficulty level, 2. Otherwise, \texttt{BF} simply gets the index of the partition, assigns it so it becomes bound, and
 terminates. In the final case, where \texttt{level} is already known (i.e., transforming an \texttt{entry} into a \texttt{card}), if the String \texttt{level}
 cannot be matched to any of those in the list, the constraint cannot be fulfilled, and the rule cannot be completed.
