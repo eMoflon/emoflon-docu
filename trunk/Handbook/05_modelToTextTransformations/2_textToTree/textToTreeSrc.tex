@@ -15,7 +15,7 @@ contents for a single dictionary are specified in a file.
 \end{figure}
 
 On the way to an instance model of our dictionary metamodel, the very first step is to create nice \emph{chunks} of characters. This step is called
-\emph{lexing} and it simplifies the actual comprehension of the complete text. Interestingly, human beings actually comprehend text in a similar manner; one
+\emph{lexing} and it simplifies the comprehension of the complete text. Interestingly, human beings actually comprehend text in a similar manner; one
 recognizes whole words without ``seeing'' every individual character. This is the reason why you can siltl raed tihs sneentce alsomt eforftlsesly. A lexer
 recognizes these chunks or \emph{tokens} and passes them on as a token stream to the \emph{parser} that does the actual work of recognizing complex
 hierarchical and recursive structures.
@@ -52,7 +52,7 @@ until it matches Fig.~\ref{eclipse:dictionaryLexer}.
 \vspace{0.25cm}
 
 To briefly explain the two complicated-looking rules, note that the \texttt{WS} rule simply ignores white space. The \texttt{`skip()'} statement throws away the
-tokens desribed just before each time they're found in a stream. Similarly, \texttt{QUOTED\_STRING} calls \texttt{`MocaUtil.trim(\ldots)'}, which trims a
+tokens matched as white space each time they're found in a stream. Similarly, \texttt{QUOTED\_STRING} calls \texttt{`MocaUtil.trim(\ldots)'}, which trims a
 recognized token by removing the specified number of characters at its beginning and end. In this case, the token is everything between the `\texttt{''}'
 characters, as indicated by the \texttt{`.*'} symbol.
 
@@ -61,14 +61,14 @@ characters, as indicated by the \texttt{`.*'} symbol.
 Now let's establish a parser to form a file's stream of tokens (as created by the lexer) into a \emph{tree}. In this context, a tree is an acyclic,
 hierarchical, recursive structure as depicted in Fig.~\ref{fig:dictLexer}. Depending on what the tree is to be used for, it can be organized differently
 using extra \emph{structural} nodes such as \texttt{DICTIONARY} or \texttt{ENTRY} which were not present in the textual syntax. These can be used to give
-additional meaning to the tree.
+additional semantics to the tree.
 
 \vspace{0.5cm}
 
 \begin{figure}[htp]
 \begin{center}
  \includegraphics[width=\textwidth]{5-tree}
-  \caption{Abstract Syntax Tree (AST) representation of an input token stream}
+  \caption{Abstract Syntax Tree (AST) of an input token stream}
   \label{fig:dictLexer}
 \end{center}
 \end{figure}
@@ -89,26 +89,36 @@ avoid any mistakes, and ensure it compiles before proceeding.
 \end{figure}
 
 You'll notice that the parser grammar is extremely similar to the lexer grammar, save for some \emph{parser actions} following the \texttt{`->'} symbol. These
-actions control the construction of the resulting tree. Using this simple tree language, one can (1) abstract from tokens like \texttt{`\{'} or \texttt{`\}'},
-which are just \emph{syntactical noise}\footnote{Irrelevant content for our model} and (2) enrich the tree with structural nodes such as \texttt{ENTRY}, which
-add explicit structure to the tree. Refer to \cite{ANTLR} and online resources for detailed explanations on the syntax and semantics of the parser grammar
-supported by \texttt{ANTLR}.
+actions control the construction of the resulting tree. Using this simple tree language, one can (1) abstract from tokens such as \texttt{`\{'} or
+\texttt{`\}'}, which are just \emph{syntactical noise}\footnote{Irrelevant content for our model} and (2) enrich the tree with structural nodes such as
+\texttt{ENTRY}, which add explicit structure to the tree. Refer to \cite{ANTLR} and online resources for detailed explanations on the syntax and semantics of
+the parser grammar supported by \texttt{ANTLR}.
 
 \newpage
 
 \begin{itemize}
 
 \item[$\blacktriangleright$] Before taking our lexer and parser for a spin, navigate to ``src\-/org\-.mof\-lon\-.tie" and open \texttt{TGGMain.java}. We need to
-update the file so that it will work with our specific project, so edit the highlighted ares of the file as shown in Fig.~\ref{eclipse:defaultTGGMain}. Confirm
-the generated \texttt{performForward} and \texttt{peformBackwards} methods also match.
+update the file so that it will work with our specific project, so edit the highlighted areas of the file as shown in Fig.~\ref{eclipse:defaultTGGMain}. 
+% Confirm the generated \texttt{performForward} and \texttt{peformBackwards} methods also match.
+
+\vspace{0.5cm}
 
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=\textwidth]{eclipse_TGGMainEdits}
+%  \includegraphics[width=\textwidth]{eclipse_TGGMainEdits}
+ \includegraphics[width=\textwidth]{eclipse_TGGMain_generated}
   \caption{Edit \texttt{TGGMain} to run the transformation}
   \label{eclipse:defaultTGGMain}
 \end{center}
 \end{figure}
+
+
+\item[$\blacktriangleright$] Expand \texttt{performForward} and \texttt{peformBackwards} and confirm \texttt{saveTrg} (approximately line 57) matches:
+\syntax{saveTrg("target\_FWD.xmi");}
+
+and \texttt{saveSrc} (approximately line 73) matches:
+\syntax{saveSrc("source\_BWD.xmi");}
 
 \end{itemize}
 
@@ -288,5 +298,5 @@ to the existing tree by setting its \texttt{DICTIONARY} root as the single child
 \end{center}
 \end{figure}
 
-If everything executed without errors, well done! Let's continue with the transformation and get a \texttt{Dictionary} instance by specifiying some
+If everything executed without errors, well done! Let's continue with the transformation to a \texttt{Dictionary} instance by specifiying some
 TGG rules.

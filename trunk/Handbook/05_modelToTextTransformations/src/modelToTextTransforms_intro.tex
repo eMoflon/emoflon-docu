@@ -7,10 +7,10 @@ unsure how to use a TGG feature. Apart from TGG fundamentals however, we have as
 include appropriate references where necessary.
 
 Up until now in the handbook, we have created \texttt{LeitnersLearningBox}, a memorization tool that stores cards (with keywords on the front, and definitions
-on the back) in different partitions, which then move throughout the box based on a set of rules simulating how our short and long-term memory works. This
+on the back) in different partitions, which then move through the box based on a set of rules simulating how our short and long-term memory works. This
 metamodel was used in Part IV as a source language in a \emph{bidirectional}\define{Bidirectional Transformation}  TGG transformation, where each card was
-translated into an dictionary entry (with a sole content attribute storing all its information). In this part, we shall implement a second
-bidirectional transformation, from model-to-text, using a textual representation of a dictionary to a \texttt{Dictionary} metamodel.
+translated into an entry (with a sole content attribute storing all its information) in a \texttt{Dictionary} metamodel. In this part, we shall implement a
+second bidirectional transformation, this time a model-to-text transformation to establish a textual representation of the  \texttt{Dictionary} metamodel.
 We'll use an \texttt{ANTLR}~\cite{ANTLR} parser and unparser, and TGGs to transform the parsed tree from ANTLR to an instance of the \texttt{Dictionary}
 metamodel.
 
