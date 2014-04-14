@@ -4,13 +4,13 @@
 \label{sect:TGGs_in_Action}
 
 Before we can execute our rules, we need to create something for the TGG to transform. In other words, we need to create an instance model\footnote{For a
-detailed review of instances and how to create instances, refer to Part II, Section 3} of either our target or our source metamodel! Since dictionaries are of a
-much simpler structure, let's start with the backwards transformation.
+detailed review how to create instances, refer to Part~II, Section~3} of either our target or our source metamodel! Since dictionaries are
+of a much simpler structure, let's start with the backwards transformation.
 
 \begin{itemize}
 
 \item[$\blacktriangleright$] Navigate to \texttt{Dictionary\-Language/model/} and open \texttt{Dictio\-nary\-Lang\-uage.ecore}. Expand the tree and create a new
-dynamic instance of a \texttt{Dictionary} named \texttt{target.xmi}. Don't quickly close the window by pressing \texttt{finish}! Make sure you persist the instance in
+dynamic instance of a \texttt{Dictionary} named \texttt{target.xmi}. Make sure you persist the instance in
 \texttt{Learn\-ing\-Box\-To\-Dictionary\-In\-te\-gra\-tion/in\-stan\-ces/} (Fig.~\ref{eclipse:create_instance_dict}).
 
 \begin{figure}[htbp]
@@ -43,26 +43,16 @@ each \texttt{entry.content} in the \texttt{CardToEntryRule} when setting up the 
 \end{figure}
 
 \item[$\blacktriangleright$] Let's check out the file that will actually execute our transformation. Navigate to
-``LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/src'' and click to open \texttt{TGGMain.java}. Confirm that your class resembles Fig.~\ref{eclipse:firstTGG}
--- you may have to edit the graph triple save destinations in \texttt{performForward} and \texttt{performBackward}.
+``LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/src'' and click to open \texttt{TGGMain.java}. 
 
 \item[$\blacktriangleright$] As you can see, this file is the driver which runs the complete transformation, first transforming forward from a
-source \texttt{box} to a target \texttt{dictionary}, then backward from \texttt{dictionary} to \texttt{box}.
+source \texttt{box} to a target \texttt{dictionary}, then backward from \texttt{dictionary} to \texttt{box}. As this is plain Java, you can adjust everything
+freely as you wish.
 
 \item[$\blacktriangleright$] Right-click the file in the Package Explorer and got to ``Run as\ldots/Java Application'' to execute the file.
 
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=\textwidth]{eclipse_firstTGG}
-  \caption{Your TGG transformation executable file}
-  \label{eclipse:firstTGG}
-\end{center}
-\end{figure}
-
-\newpage
-
-\item[$\blacktriangleright$] Did you get one error message, followed by one success message in eMoflon console window (Fig.~\ref{eclipse:tggERROR}) below the
-editor? Perfect! Both of these statements make sense -- our TGG first attempted the forward transformation but, given that it was missing the source
+\item[$\blacktriangleright$] Did you get one error message, followed by one success message in the eMoflon console window (Fig.~\ref{eclipse:tggERROR}) below
+the editor? Perfect! Both of these statements make sense -- our TGG first attempted the forward transformation but, given that it was missing the source
 (\texttt{box}) instance, it was only able to perform a transformation in the backwards direction.
 
 \vspace{0.5cm}
@@ -70,7 +60,7 @@ editor? Perfect! Both of these statements make sense -- our TGG first attempted 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{eclipse_TGGError}
-  \caption{A single forward transformation}
+  \caption{Running the backward transformation}
   \label{eclipse:tggERROR}
 \end{center}
 \end{figure}
@@ -120,7 +110,7 @@ Drag-and-drop \texttt{Box English Numbers} into the graph view (Fig.~\ref{eclips
 
 \item[$\blacktriangleright$] To show that the transformation is actually bidirectional, let's create a source model (thus resolving the error), and run
 the TGG again to perform a \emph{forwards} transformation of a \texttt{Box} into a \texttt{Dictionary}. Make a copy of \texttt{source\_BWD.xmi} and rename
-it \texttt{source.xmi}.
+it to \texttt{source.xmi}.
 
 \newpage
 

@@ -4,7 +4,7 @@
 \texHeader
 
 Please note that we have assumed a basic understanding of TGGs, specifically those about constructing each scope in a rule, and how to use Eclipse efficiently
-with eMoflon's auto-correct feature. If you find this section challenging, we recommend first working through Part IV to cover TGG fundamentals.
+with eMoflon's auto-completion feature. If you find this section challenging, we recommend first working through Part IV to cover TGG fundamentals.
 
 \begin{itemize}
 
@@ -44,7 +44,7 @@ in Fig.~\ref{eclipse:ForAllShelvesRule}.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Don't forget to add the new correspondence type to your \texttt{schema} (Fig.~\ref{eclipse:updatedSchema}).
+\item[$\blacktriangleright$] Add the new correspondence type to your \texttt{schema} (Fig.~\ref{eclipse:updatedSchema}).
 
 \vspace{0.5cm}
 
@@ -59,7 +59,7 @@ in Fig.~\ref{eclipse:ForAllShelvesRule}.
 \newpage
 
 Now that we can assume the primary library and shelf containers exist, we can handle the dictionary \texttt{File} elements. We know from our generated
-tree model that a dictionary will always have a title node, but we're unsure if an author will be included, and there's no was to know how many entries are
+tree model that a dictionary will always have a title node, but we're unsure if an author will be included, and there's no way to know how many entries are
 involved. Therefore, we should create at least three different rules to handle this stage of the transformation. 
 
 \subsubsection{NodeToDictionaryRule} % ---------------------------------
@@ -95,14 +95,12 @@ Fig.~\ref{eclipse:ForAllEntryRule}.
 
 You can see that this rule has three attribute constraints, one of which we haven't encountered before. The first two \texttt{eq} constraints guarantee that
 an \texttt{entryNode}'s content and index values remain consistent with its equivalent \texttt{entry} in a \texttt{dictionary}. The final constraint is to
-ensure that any new \texttt{entryNode}s created in the backward transformation, into a tree, have index values set to 2. 
+ensure that any new \texttt{entryNode}s created in the backward transformation have index values set to 2. 
 
 \vspace{0.5cm}
 
-If you review your original source model,
-\texttt{tree.xmi}, you'll notice that every entry has a different index value. This prevented us from setting a constraint (such as in \texttt{indexNode}),
-therefore preserving information about its position in the tree. Without this final constraint, all new \texttt{entryNodes} would have a free index value, and
-could be mistaken as a \texttt{titleNode} as described in the previous \texttt{NodeToDictionaryRule}, causing the entire transformation to fail.
+Without this final constraint, all new \texttt{entryNodes} would have a default 0 index value, and
+could be mistaken as \texttt{titleNodes} as described in the previous \texttt{NodeToDictionaryRule}, causing the entire transformation to fail.
 
 \newpage
 
@@ -118,12 +116,12 @@ could be mistaken as a \texttt{titleNode} as described in the previous \texttt{N
 
 The last thing we need to specify is how to handle \texttt{author}s. Transforming an \texttt{authorNode} to an \texttt{author} isn't as simple as
 an \texttt{entryNode}, where you create an \texttt{entry} every time. Instead, we have to account for the possibility of a single author
-for multiple dictionaries in a \texttt{Library}. While some users may not care about having redunant information, why not also provide a rule for users
-who want unique authors in a \texttt{Library}?
+for multiple dictionaries in a \texttt{Library}. While some users may not care about having redundant information, why not also provide a rule for users
+who want to enforce unique authors in a \texttt{Library}?
 
-\subsubsection{ForAllNewAuthorRule} % ---------------------------------
+\subsubsection{NewAuthorRule} % ---------------------------------
 
-\item[$\blacktriangleright$] Create \texttt{ForAllNewAuthorRule}, and complete it as depicted in Fig.~\ref{eclipse:ForAllNewAuthorRule}. This is a one-to-one
+\item[$\blacktriangleright$] Create \texttt{NewAuthorRule}, and complete it as depicted in Fig.~\ref{eclipse:ForAllNewAuthorRule}. This is a one-to-one
 correspondence rule, where every \texttt{authorNode} creates a new \texttt{author}. If this rule is used in a transformation, one might end up with
 multiple authors with the same email address.
 
@@ -131,15 +129,17 @@ multiple authors with the same email address.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{eclipse_ForAllNewAuthorRule}
-  \caption{Creating new authors in \texttt{ForAllNewAuthorRule}}
+  \includegraphics[width=\textwidth]{eclipse_NewAuthorRule}
+  \caption{Creating new authors in \texttt{NewAuthorRule}}
   \label{eclipse:ForAllNewAuthorRule}
 \end{center}
 \end{figure}
 
+\newpage
+
 \subsubsection{ExistingAuthorRule} % ---------------------------------
 
-\item[$\blacktriangleright$] Similarly, create \texttt{ForExistingAuthorRule} as specified in Fig.~\ref{eclipse:ForExistingAuthorRule}. You should be able to
+\item[$\blacktriangleright$] Similarly, create \texttt{ExistingAuthorRule} as specified in Fig.~\ref{eclipse:ForExistingAuthorRule}. You should be able to
 copy and paste the majority of the previous rule. In fact, the only thing you need to change are two small characters in front of \texttt{author} and its
 \texttt{dictionary} reference, forcing the rule to find an existing \texttt{author}, if possible.
 
@@ -147,15 +147,15 @@ copy and paste the majority of the previous rule. In fact, the only thing you ne
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{eclipse_ForExistingAuthorRule}
-  \caption{Checking for existing authors in \texttt{ForExistingAuthorRule}}
+  \includegraphics[width=\textwidth]{eclipse_ExistingAuthorRule}
+  \caption{Checking for existing authors in \texttt{ExistingAuthorRule}}
   \label{eclipse:ForExistingAuthorRule}
 \end{center}
 \end{figure}
 
 \newpage
 
-\item[$\blacktriangleright$] Great work! You have now specified six different rules to handle a bidirectional text-to-model transformation! For confirmation,
+\item[$\blacktriangleright$] Great work! You have now specified five different rules to handle a bidirectional text-to-model transformation! For confirmation,
 your final schema and package explorer should now resemble Fig.~\ref{eclipse:schemaFinal}.
 
 \vspace{0.5cm}

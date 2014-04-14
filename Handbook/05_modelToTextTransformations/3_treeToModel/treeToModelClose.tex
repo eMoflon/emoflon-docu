@@ -20,7 +20,7 @@
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Your output may or may not resemble ours. In fact, there's a 50/50 chance that some of the \texttt{author} nodes ever created!
+\item[$\blacktriangleright$] Your output may or may not resemble ours. In fact, there's a 50/50 chance that some of the \texttt{author} nodes are ever created!
 Let's run the eMoflon integrator on \texttt{corr\_FWD.xmi} to find out why.\footnote{If you haven't already, read Part IV, Section 6 for details on how the
 integrator can help you visualise and debug a transformation}
 
@@ -37,12 +37,15 @@ eye on the small window below -- it states that there are two possible rules tha
 \end{center}
 \end{figure}
 
-\clearpage
+% \clearpage
+\vspace{0.5cm}
 
 \item[$\blacktriangleright$] At run-time, the transformation is presented with a choice between two rules to apply to the matched \texttt{authorNode}. The
 resulting choice is entirely random, meaning that your output is likely to be different each time you run \texttt{TGGMain}. For a deterministic transformation,
 you therefore need to force a preferred decision. There are two ways to do this: (1) at run-time, where users will be able to decide for themselves what they would
 prefer to use, or (2) at design-time, where you make the decision a part of the TGG.
+
+\vfill
 
 \end{itemize}
 
@@ -63,23 +66,26 @@ Eclipse's auto-completion can help you here.
   \label{eclipse:authorConfig}
 \end{figure}
 
-\clearpage
-
 \item[$\blacktriangleright$] As you can see on Line 22, this simple configurator prefers to create a new author every time there is a choice. Users can
 edit this value to ``ExistingAuthorRule'' to avoid redundant authors.
 
 \item[$\blacktriangleright$] You still need to set the configurator to be used for the transformation. This decision will only arise in the forward
-direction, so declare it once in \texttt{TGGMain/performForward} as depicted in Fig.~\ref{eclipse:editTGGMain} on Line 59.
+direction, so declare it once in \texttt{TGGMain/performForward} as depicted in Fig.~\ref{eclipse:editTGGMain} on Line 57.
 
-\vspace{0.5cm}
+\newpage
+
+\vspace*{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{eclipse_authorConfiguratorTGGMain}
+  \includegraphics[width=0.8\textwidth]{eclipse_authorConfiguratorTGGMain}
   \caption{Setting the configurator to control the run-time decision}
   \label{eclipse:editTGGMain}
 \end{center}
 \end{figure}
+
+\item[$\blacktriangleright$] Save and run \texttt{TGGMain}. Run the transformation a few times, using the integrator to confirm your preference is enforced each
+time.
 
 \end{itemize}
 
@@ -91,14 +97,16 @@ preference can be enforced using a NAC which checks to see if there is already a
 \begin{itemize}
 
 \item[$\blacktriangleright$] Open and update either \texttt{NewAuthorRule} (visual) as shown in Fig.~\ref{ea:existingAuthorNAC} or edit the target domain in 
-\texttt{ForAllNewAuthorRule.tgg} (textual) as depicted in Fig.~\ref{eclipse:existingAuthorNAC}.
+Eclipse (textual) as depicted in Fig.~\ref{eclipse:existingAuthorNAC}.
 
 \newpage
+
+\vspace*{0.5cm}
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=\textwidth]{ea_NewAuthorRuleNAC}
-  \caption{Refine \texttt{AuthorRule} by adding a NAC in \texttt{NewAuthorRule}}
+  \caption{Adjust \texttt{NewAuthorRule} by adding a NAC}
   \label{ea:existingAuthorNAC}
 \end{center}
 \end{figure}
@@ -108,14 +116,14 @@ preference can be enforced using a NAC which checks to see if there is already a
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.7\textwidth]{eclipse_ForAllNewAuthorNAC}
-  \caption{Add a NAC to \texttt{ForAllNewAuthorRule}}
+  \caption{Add a NAC to \texttt{NewAuthorRule}}
   \label{eclipse:existingAuthorNAC}
 \end{center}
 \end{figure}
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Save and rebuild the TGG. Run the transformation a few times, using the integrator to confirm that your preference is enforced each
-time.
+\item[$\blacktriangleright$] Save and rebuild the TGG, then run the transformation a few times. Confirm your preference is enforced each time -- With this NAC,
+the configurator won't be given the chance to decide anymore!
 
 \end{itemize}
