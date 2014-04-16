@@ -1,12 +1,12 @@
 \newpage
 
-\section{The transformation protocol}
+\section{The TGG transformation protocol}
 
 \genHeader
 
 If you worked through Part IV of the handbook, you'll remember that we introduced \emph{bidirectional model transformations} via Triple Graph Grammars
 (TGGs). These take an instance input model and apply a series of rules to generate a transformed output model and correspondence (or link) metamodel.
-Together, these three files form the transformation's \emph{graph triple}. You might also remember that we introduced an integrator in
+Together, these three files form the transformation's output \emph{graph triple}. You might also remember that we introduced an integrator in
 Section 6, a visualizing tool that can help you trace a transformation via the correspondence model. 
 
 While the integrator's display structure is based on the entire graph triple, its purpose is to interpret the key parts of the transformation's co-generated
@@ -14,7 +14,7 @@ While the integrator's display structure is based on the entire graph triple, it
 integrator alone. While both list the current step, element, rule candidates, and their results, the protocol includes properties of each step such as the
 current element's full name, a listing of the created and/or translated elements, the reasons for a rule's success for failure, and other information.
 
-To help us explain, let's revisit the running example as it was in Part IV, Section 7, where a fourth partition and card were added to a forward
+To explain, let's revisit the running example as it was in Part IV, Section 7, where a fourth partition and card were added to a forward
 transformation only able to handle three partitions. Let's start by reviewing the integrator as shown in Fig.~\ref{eclipse:integratorFWD}.
 
 \begin{figure}[htbp]
@@ -39,7 +39,7 @@ Now let's see the equivalent transformation in the protocol file as depicted in 
 \begin{figure}[htbp]
 \begin{center} 
   \includegraphics[width=0.9\textwidth]{eclipse_successBoxToDictionaryProtocol}
-  \caption{Protocol file of successful \texttt{BoxToDictionaryRule}}  
+  \caption{Protocol file showing successful \texttt{BoxToDictionaryRule}}  
   \label{eclipse:protocolFWD}
 \end{center}
 \end{figure}
@@ -65,10 +65,10 @@ Let's skip ahead to something more interesting. Let's examine the place where th
 If you ran the integrator up to this point and finished the transformation, all you would see are indications that something has gone wrong -- the primary
 window will highlight problematic elements in yellow, failed ones in red, and the message window below will list each step attempted but offer no
 information. Examining the protocol however, we can see that the transformation isn't able to find any rule that can handle \texttt{partition3} (as indicated by
-the lack of a `Candidate Protocol' process beneath `Start Translation'). It's designed to follow an optimistic approach however, so the translation chooses to
+the lack of a `Candidate Protocol' beneath `Start Translation'). It's designed to follow an optimistic approach however, so the translation chooses to
 simply ignore the element and try to translate its containing card first.
 
 Sure enough, \texttt{CardToEntryRule}\footnote{Refer to Part IV, Section 4, Fig. 34 (Visual) and Fig. 41 (Textual)} is valid for \texttt{Question Four}, but
 this rule's protocol requires it to try and establish the context partition. Once again, it tries to find a rule for \texttt{partition3}. At this point, the
-transformation realizes it's doing the same thing over again and chooses to ignore the partition a final time and proceeds to finish the rule, successfully
-creating \texttt{Entry Four: Vier}. Finally, it tries to establish the edges connected to the failed partition with no luck.
+transformation realizes it's doing the same thing over again (cyclic context detected) and chooses to ignore the partition a final time and proceeds to finish
+the rule, successfully creating \texttt{Entry Four: Vier}. Finally, it tries to establish the edges connected to the failed partition with no luck.

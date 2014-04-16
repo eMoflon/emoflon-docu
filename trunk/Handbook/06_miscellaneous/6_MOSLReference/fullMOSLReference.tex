@@ -16,7 +16,7 @@ attribute_constraints := '==' | '!=' | '<=' | '>=' | '<' | '>'
 binding_operator 			:= '++' | '--'
 binding_semantics 		:= '!' | '?'
 binding_state 				:= '@'
-multiplicity 					:= `0..1' | `0..*' | `1' | ...
+multiplicity 					:= '0..1' | '0..*' | '1' | ...
 \end{lstlisting}
 
 Metamodels
@@ -42,15 +42,15 @@ link_variable 	:= [binding_operator] '->' reference_name ':' source_type
 object_variable := [binding_semantics] [binding_operator] [binding_state] 
 										ov_name ':' type_reference
 										
-AttributeValueExpression 	:= ov_name`.'attribute_name
+AttributeValueExpression 	:= ov_name'.'attribute_name
 LiteralExpression 				:= boolean_literal | integer_literal | any_literal
-ObjectVariableExpression 	:= `@'ov_name
-ParameterExpression 			:= `$'parameter_name
+ObjectVariableExpression 	:= '@'ov_name
+ParameterExpression 			:= '$'parameter_name
 MethodCallExpression 			:= (objectVariableExpression | ParameterExpression)
-															`.'ID`('argument_list`)'
+															'.'ID'('argument_list')'
 
 boolean_literal := true, false
-integer_literal := [`+' | `-'] ( `1' | ... | `9' )
+integer_literal := ['+' | '-'] ( '1' | ... | '9' )
 any_literal 		:= STRING
 
 attribute_name, method_call, ov_name, parameter_name,reference_name, 
