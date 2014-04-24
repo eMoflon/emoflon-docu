@@ -3,8 +3,8 @@
 \section{Tree-to-text transformation}
 \genHeader
 
-We've finally reached the last step, transforming our resulting tree, \texttt{tree\-.xmi\-\_FWD\-.xmi\-\_BWD\-.xmi} back into a filesystem with
-\texttt{.dictionary} files identical to our original input, the \texttt{myLibrary} filesystem. 
+We've finally reached the last step, transforming our tree result, \texttt{fwd.trg.xmi} back into a filesystem with \texttt{.dictionary} files identical to our
+original input, the \texttt{myLibrary} filesystem.
 
 Note that in an actual application, we would do something useful with the model before transforming it back to text, or the dictionary might have been produced
 from a learning box, i.e., the textual syntax representation wouldn't exist yet. One of the coolest things about ANTLR is that the same parsing technology that
@@ -23,7 +23,7 @@ depicted in Fig.~\ref{eclipse:treeGrammar}.
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Next, open \texttt{Dict\-ion\-ary\-Un\-pars\-er\-Ad\-ap\-ter.java} (Fig~\ref{eclipse:unparserCommented}). You'll notice that this
-file contains a (commented) \texttt{StringTemplateGroup} method for retrieving a group of templates and needs to be implemented. The comments explain how to
+file contains a (commented) \texttt{StringTemplateGroup} meth\-od for retrieving a group of templates and needs to be implemented. The comments explain how to
 use either a folder containing different template files, or a single file containing all templates. The latter is better for numerous small templates, while the
 former makes sense when the templates contain a lot of static text.
 
@@ -70,11 +70,11 @@ Fig.~\ref{eclipse:dictionaryTemplate}.
 \end{center}
 \end{figure}
 
-% \item[$\blacktriangleright$] Remember how you removed the unparsing command from \texttt{TGGMain.java} at the start of this part? Return to the file and
-% uncomment line 46.  As you can see, it will create and place the results of this action into a single \texttt{out} folder in the instance directory. 
+\item[$\blacktriangleright$] Copy and paste \texttt{fwd.trg.xmi} into ``instances," naming the new file \texttt{bwd.src.xmi}. This will be the backward
+transformation's input file.
 
-\item[$\blacktriangleright$] Save and run your transformation again -- there should no longer be any errors. Inspect and compare your input and
-output folders and their containing files (Fig.~\ref{eclipse:unparseResult}). Are they the same?
+\item[$\blacktriangleright$] Save and run your transformation again -- there should no longer be an error message in the console. Inspect and compare your input
+and output folders and their containing files (Fig.~\ref{eclipse:unparseResult}). Are they the same?
 
 \vspace{0.5cm}
 

@@ -98,31 +98,21 @@ the parser grammar supported by \texttt{ANTLR}.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Before taking our lexer and parser for a spin, navigate to ``src\-/org\-.mof\-lon\-.tie" and open \texttt{TGGMain.java}. We need to
-update the file so that it will work with our specific project, so edit the highlighted areas of the file as shown in Fig.~\ref{eclipse:defaultTGGMain}. 
-% Confirm the generated \texttt{performForward} and \texttt{peformBackwards} methods also match.
+\item[$\blacktriangleright$] Before taking our lexer and parser for a spin, navigate to ``src\-/org\-.mof\-lon\-.tie" and open
+\texttt{DictionaryCodeAdapterTrafo.java}. We need to update the file so that it will work with our specific project, so add the highlighted areas in
+Fig.~\ref{eclipse:defaultTGGMain} to the file.
 
 \vspace{0.5cm}
 
 \begin{figure}[!htbp]
 \begin{center}
-%  \includegraphics[width=\textwidth]{eclipse_TGGMainEdits}
- \includegraphics[width=\textwidth]{eclipse_TGGMain_generated}
+ \includegraphics[width=\textwidth]{eclipse_editTrafo}
   \caption{Edit \texttt{TGGMain} to run the transformation}
   \label{eclipse:defaultTGGMain}
 \end{center}
 \end{figure}
 
-
-\item[$\blacktriangleright$] Expand \texttt{performForward} and \texttt{peformBackwards} and confirm \texttt{saveTrg} (approximately line 57) matches:
-\syntax{saveTrg("target\_FWD.xmi");}
-
-and \texttt{saveSrc} (approximately line 73) matches:
-\syntax{saveSrc("source\_BWD.xmi");}
-
 \end{itemize}
-
-\newpage
 
 You can see that this main method is essentially the driver for a complete transformation, executing four stages for a forward and backward transform. In a
 nutshell, each folder in ``instances/in/myLibrary'' is taken as the root of a tree, and their folder and file structures will be reflected as a hierarchy of
@@ -243,18 +233,18 @@ title: "unknown"
 
 \begin{itemize} 
 
-\item[$\blacktriangleright$] Once you have saved each file, right click on \texttt{TGGMain} and navigate to ``Run As/Java Application'' to run the
-transformation. Don't worry about the exception that's raised -- it stems from the unparser tree grammar which we haven't implemented yet. Your tranformation
-won't be affected.
+\item[$\blacktriangleright$] Once you have saved each file, right click on \texttt{Dict\-ion\-ar\-y\-Code\-Ad\-ap\-ter\-Traf\-o.\-java} and navigate to ``Run
+As/Java Application'' to run the transformation. Don't worry about the error messages -- they're related to the unparser which we haven't implemented yet; You
+should have received at least one success message indicating your transformation worked.
 
-\item[$\blacktriangleright$] Refresh the \texttt{instances} folder. Despite being (mostly) unimplemented, the TGG still executed, generating several files in
-the process (Fig.~\ref{eclipse:postParse}).
+\item[$\blacktriangleright$] Refresh the \texttt{instances} folder. Despite being (mostly) unimplemented, the transformation still partly completed, generating
+several files in the process (Fig.~\ref{eclipse:postParse}).
 
 \vspace{0.5cm}
 
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=0.4\textwidth]{eclipse_explorerPostGeneration}
+ \includegraphics[width=0.5\textwidth]{eclipse_explorerPostGeneration}
   \caption{Result of the first TGG execution}
   \label{eclipse:postParse}
 \end{center}
@@ -262,25 +252,21 @@ the process (Fig.~\ref{eclipse:postParse}).
 
 \end{itemize}
 
-Let's go over what each of these files are. First, \texttt{tree.xmi} is the direct result of the \texttt{my\-Lib\-rary} filesystem input, which was parsed into
-a \texttt{MocaTree} instance by our ANTLR parser. 
+Let's go over what each of these files are. First, \texttt{fwd.src.xmi} is the direct result of the \texttt{my\-Lib\-rary} filesystem input, which was parsed
+into a \texttt{MocaTree} instance by our ANTLR parser. 
 
-While the parser is the only implemented piece of our transformation, TGGMain still used \texttt{tree.xmi} in a forward transformation, producing
-the correspondence model \texttt{corrFWD.xmi} (paired with \texttt{protocol\_FWD.xmi}), and the (currently empty) \texttt{Dictionary} target result,
-\texttt{tree.xmi\_FWD.xmi}.
+While the parser is the only implemented piece of our transformation, TGGMain still used \texttt{fwd.src.xmi} in a forward transform, producing
+the correspondence model \texttt{fwd.corr.xmi} (paired with \texttt{fwd.protocol.xmi}), and the (currently empty) \texttt{Dictionary} target result,
+\texttt{fwd.trg.xmi}.
 
 \clearpage
 
-The TGG also executed in the inverse direction; \texttt{tree.xmi\_FWD.xmi} was used in the backwards direction, producing \texttt{corrBWD.xmi} (with
-\texttt{proto\-col\-\_BWD\-.xmi}) and \texttt{tree.xmi\_FWD.xmi\_BWD.xmi}. 
-
-% We removed the command to do so, but ANTLR will later attempt to unparse this model,
-% which, if our TGG transformation was successful, will be identical to the input filesystem. In the meantime, we'll be able to compare this final tree to the
-% original \texttt{tree.xmi} to determine accuracy.
+%The TGG also executed in the inverse direction; \texttt{tree.xmi\_FWD.xmi} was used in the backwards direction, producing \texttt{corrBWD.xmi} (with
+%\texttt{proto\-col\-\_BWD\-.xmi}) and \texttt{tree.xmi\_FWD.xmi\_BWD.xmi}. 
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Open \texttt{tree.xmi} and compare the contents to Fig.~\ref{eclipse:treeResult}. Reflect on the directory-type structure of the
+\item[$\blacktriangleright$] Open \texttt{fwd.src.xmi} and compare the contents to Fig.~\ref{eclipse:treeResult}. Reflect on the directory-type structure of the
 tree, where each \texttt{File} and its contents appear as \texttt{Node}s.\footnote{Refer to Fig~\ref{mocaTreeMetamodel} for the metamodel of this structure}
 This file is important to understand -- The filesystem was transformed into a corresponding hierarchy of \texttt{Folders} and \texttt{Files}. The actual
 \emph{text} content of each file is then transformed to a subtree using a registered, suitable parser. The resulting subtree from the parser is then connected
