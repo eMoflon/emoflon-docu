@@ -652,7 +652,7 @@ public class eMoflonEMFUtil
          Object obj = eObject.eGet(feature);
          if (obj == null)
             continue;
-         if (tmp.equals("java.lang.String"))
+         if (obj instanceof String)
          {
             stringName = (String) obj;
             break;
