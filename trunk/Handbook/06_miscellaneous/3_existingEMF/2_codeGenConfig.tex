@@ -1,80 +1,115 @@
 \newpage
 
 \subsection{Configuration for code generation in Eclipse}
-\visHeader
+\genHeader
 
-As there is already generated code (provided via a plugin in Eclipse) for the existing \texttt{GenModel} metamodel, we do \emph{not} want to export our
-incomplete subset of \texttt{GenModel} in EA.
+Since there is already generated code for the existing \texttt{GenModel} metamodel (provided via the Eclipse plugin), we do \emph{not} want to export our
+incomplete subset of \texttt{GenModel} from EA. Instead, we need to configure Eclipse to access the elements specified in our partial metamodel from the
+complete metamodel.
 
 \begin{enumerate}
-\item[$\blacktriangleright$] To prevent this, right-click the \texttt{GenModel} package in EA and select ``Properties/Moflon'' and change the tagged value
-\texttt{Moflon::Export} to \texttt{false} (Fig.~\ref{fig_customNS}).
-\end{enumerate}
+
+\item[$\blacktriangleright$] In EA, right-click your \texttt{GenModelLanguage} package and select ``Properties\ldots'' 
+
+\item[$\blacktriangleright$] Navigate to ``Properties/Moflon'' in the dialogue window and update the tagged \texttt{Moflon::Export} value to \texttt{false}
+(Fig.~\ref{fig_customNS}).
+
+\vspace{0.5cm}
 
 \begin{figure}[htb]
-\begin{center}  \includegraphics[width=\textwidth]{8_nsUriPre_edited}
-  \caption{Update the \texttt{GenMode} export option and create custom tags}  
+\begin{center}  \includegraphics[width=\textwidth]{ea_genModelExportFalse}
+  \caption{Update the \texttt{GenModel} export option and create custom tags}  
   \label{fig_customNS}
 \end{center}
 \end{figure}
 
-Furthermore, we have to set the ``real'' name and URI of the project to be used in Eclipse so that references are exported properly. 
+\newpage
 
-\begin{enumerate}
+\item[$\blacktriangleright$] Next we have to set the ``real'' name and URI of the project to be used in Eclipse so that the relevant references are exported
+properly. In the same window, create new tagged values \texttt{Moflon::CustomNsPrefix} and \texttt{Moflon::CustomNsUri}.
 
-\item[$\blacktriangleright$] In the ``Properties/Moflon" dialogue for \texttt{GenModel}, create the new tagged values \texttt{Moflon::CustomNsPrefix} and
-\texttt{Moflon::CustomNsUri} and set them according to Fig.~\ref{fig_customNS}. These values can be determined by inspecting the corresponding values in the
-existing .ecore file (i.e.,~the existing metamodel).
+\item[$\blacktriangleright$] Set their values to \texttt{genmodel} and \texttt{http://\-www.\-eclipse.\-org/\-emf/\-2002/\-GenModel} respectively, as shown in
+Fig.~\ref{fig_customNS}. These values can be determined by inspecting the corresponding values in the existing .ecore file (i.e.,~the existing metamodel).
 
-\item[$\blacktriangleright$] Export all projects as usual to your Eclipse workspace and update the metamodel project by pressing \texttt{F5}.
+\item[$\blacktriangleright$] Validate and export all projects as usual to your Eclipse workspace, and update the metamodel project by pressing \texttt{F5} in
+the package explorer.
 
-\item[$\blacktriangleright$] Convert the generated Eclipse project \texttt{Ecore2GenModel} to a \emph{plugin project} by right-clicking the project and
-selecting ``Configure/Convert to Plug-in Projects...''. This makes it easier to set the required dependencies for code generation.
+\item[$\blacktriangleright$] In order to simplify setting the required dependencies for code generation,  convert the generated Eclipse project
+\texttt{Ecore2GenModel} to a \emph{plug-in project} by right-clicking the project and selecting ``Configure/Convert to Plug-in Projects...''
 
-\item[$\blacktriangleright$] Now right-click \texttt{Ecore2GenModel} and choose ``Plug-in Tools/Open Manifest''. In the window that opens up, choose the
-\texttt{Dependencies} tab, click \texttt{Add}, and type in \texttt{org.eclipse.emf.codegen.ecore} (which includes both the \texttt{Ecore} and \texttt{GenModel}
-libraries as required).
+\item[$\blacktriangleright$] Right-click \texttt{Ecore2GenModel} once more and navigate to ``Plug-in Tools/Open Manifest.'' The plug-in manager should have
+opened in the editor with a series of tabs at the bottom for each option.
+
+\item[$\blacktriangleright$] Switch to the \texttt{Dependencies} tab. Press \texttt{Add} and enter \texttt{org.\-eclipse.\-emf.\-codegen.\-ecore}. This plug-in
+includes both the \texttt{Ecore} and \texttt{Gen\-Mod\-el} libraries we require.
 
 \end{enumerate}
 
-Although we have already specified the name and URI of the existing project (in our case \texttt{GenModel}) in EA, we now have to tell eMoflon where to find the
-implementation (generated code) for the existing project.
+Although we have already specified the name and URI of the existing project (in this example, \texttt{GenModel}) as tagged project values, we now have to tell
+eMoflon where to find the correct implementation (generated code) of the existing project.
 
 \begin{enumerate}
-\item[$\blacktriangleright$] Open the \texttt{moflon.properties} file located in your project folder and insert the following lines:\\
+  
+\item[$\blacktriangleright$] Expand the \texttt{Ecore2GenModel} project folder and open the \texttt{mof\-lon.\-prop\-er\-ties.\-xmi} file tree. Right-click the
+properties container, and create a new \texttt{Add\-it\-ion\-al Dep\-en\-den\-cies} child. Double click the element to open its properties tab below the
+editor, and as shown in Fig.~\ref{eclipse:addDepChild}, update its \texttt{Value} to:\\
 \end{enumerate}
 
 \vspace{-1cm}
-{\small \ttfamily \hspace{-2.5cm} ADDITIONAL\_DEPENDENCIES=platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.ecore} \\
-\vspace{0.75cm}%
-{\small \ttfamily \hspace{-2.5cm} ADDITIONAL\_USED\_GEN\_PACKAGES=platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel}
+{\small \ttfamily  platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.ecore} \\
+\vspace{-0.5cm}
 
-Finally, to compenstate for some cases where our naming conventions were violated, add the following mappings as corrections:
+\begin{figure}[htbp]
+\begin{centering}
+\includegraphics[width=\textwidth]{eclipse_additDepProps}
+  \caption{Setting properties for the correct implementation code}  
+  \label{eclipse:addDepChild}
+\end{centering}
+\end{figure} 
 
 \begin{enumerate}
-\item[$\blacktriangleright$] An \emph{import mapping} for correct generation of the required import:
 
-{\small \ttfamily IMPORT\_MAPPINGS=genmodel-> org.eclipse.emf.codegen.ecore.genmodel}
-
-
-\item [$\blacktriangleright$] A \emph{factory mapping} to ensure that \texttt{GenModelFactory} is used as the factory for creating elements in the
-transformation instead of \texttt{Genmodel\-Factory}, which would be the default convention:
-
-{\small \ttfamily FACTORY\_MAPPING=genmodel-> GenModelFactory}
-
+\item[$\blacktriangleright$] Similarly, add a second \texttt{Additional Used Gen Packages} child and set its value to: \\
 \end{enumerate}
 
+\vspace{-1cm}
+{\small \ttfamily platform:\-/\-plugin/\-org.\-eclipse.\-emf.\-codegen.\-ecore/\-model/\-GenModel.\-genmodel}
 
 \newpage
+Finally, to compenstate for some cases where our naming conventions were violated, analogously add the following mapping as corrections:
 
-Your \texttt{moflon.properties} file should now closely resemble Fig.~\ref{fig_mofProp}. Generate code one more time for the project and ensure (with a JUnit
-test) that the transformation behaves as expected.
+\begin{enumerate}
+\item[$\blacktriangleright$] Add an \emph{import mapping} child for correct generation of the required import, setting the key as \texttt{genmodel} (as
+depicted in Fig.~\ref{eclipse:impMapValues}) and value to: \\
+{\small \ttfamily \hspace*{1.5cm} org.\-eclipse.\-emf.\-codegen.\-ecore.\-genmodel}
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
-\hspace*{-2cm}
-\includegraphics[width=1.5\textwidth]{9_mofProperties}
-  \caption{Additional properties for code generation}  
-  \label{fig_mofProp}
+\begin{centering}
+\includegraphics[width=0.9\textwidth]{eclipse_importMappingValues}
+  \caption{Mapping properties from our metamodel to the existing \texttt{GenModel}}  
+  \label{eclipse:impMapValues}
+\end{centering}
 \end{figure} 
+
+\item [$\blacktriangleright$] Finally, add a \emph{factory mapping} to ensure that \texttt{GenModelFactory} is used as the factory for creating elements in the
+transformation instead of \texttt{Genmodel\-Factory}, which would be the default convention. Set its key as \texttt{genmodel}, and its value to:
+{\small \ttfamily GenModelFactory}.
+
+\item [$\blacktriangleright$] Your completed \texttt{moflon.properties.xmi} file should now closely resemble Fig.~\ref{eclipse:finalPropTree}. Refresh your
+workspace one more time to generate code for the project and ensure that the transformation behaves as expected via a JUnit test.
+
+\newpage
+
+\vspace*{2cm}
+
+\begin{figure}[htbp]
+\begin{centering}
+\includegraphics[width=\textwidth]{eclipse_finalPropTree}
+  \caption{Additional properties for code generation}  
+  \label{eclipse:finalPropTree}
+\end{centering}
+\end{figure} 
+
+\end{enumerate}
