@@ -6,13 +6,13 @@ At this point, we now have a working TGG to transform a \texttt{Dictionary} into
 exactly three \texttt{Partition}s into a \texttt{Dictionary}. The only potential problem is that a learning box with only three partitions may not be the most
 useful studying tool. After all, the more partitions you have, the more practice you'll have with the cards by being quizzed again and again.
 
-Let's try adding a fourth partition (and card) to \texttt{source.xmi} and run the TGG again. Given that we have a rule to transform three partitions, it should
+Let's try adding a fourth partition (and card) to \texttt{fwd.src.xmi} and run the TGG again. Given that we have a rule to transform three partitions, it should
 at least complete a partial transformation, right? 
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Complete \texttt{partition3} in \texttt{source.xmi} so that the model resembles Fig.~\ref{eclipse:fourthPartitionStart}. Don't
-forget to set the partition's \texttt{previous} attribute to \texttt{partition0}, and \texttt{partition2.next} to \texttt{partition3}.
+\item[$\blacktriangleright$] Complete \texttt{Partition 3} in \texttt{fwd.src.xmi} so that the Box model resembles Fig.~\ref{eclipse:fourthPartitionStart}.
+Don't forget to set the partition's \texttt{previous} attribute to \texttt{partition0}, and \texttt{partition2.next} to \texttt{partition3}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -23,8 +23,8 @@ forget to set the partition's \texttt{previous} attribute to \texttt{partition0}
 \end{figure}
 
 \item[$\blacktriangleright$] An error should appear in the eMoflon console window stating that there was a problem translating your new partition, but the
-transformations still completed. In fact, if you open \texttt{target\_FWD.xmi}, you'll be able to confirm your dictionary was still created and even
-contains your newest card! Let's run the integrator on \texttt{corr\_FWD.xmi} once more to find out exactly how this worked.
+transformations still completed. In fact, if you open \texttt{fwd.trg.xmi}, you'll be able to confirm your dictionary was still created and even
+contains your newest card! Let's run the integrator on \texttt{fwd.corr.xmi} once more to find out exactly how this worked.
 
 \item[$\blacktriangleright$] Start once again with \texttt{Box}, and proceed until the integrator reaches your fourth partition. You'll notice that it
 first delays processing the \texttt{partition} as it cannot find a valid rule candidate.\footnote{The message `Possible Rule Candidate(s): ' is not displayed

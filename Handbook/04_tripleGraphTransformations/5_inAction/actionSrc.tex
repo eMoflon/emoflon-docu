@@ -10,7 +10,7 @@ of a much simpler structure, let's start with the backwards transformation.
 \begin{itemize}
 
 \item[$\blacktriangleright$] Navigate to \texttt{Dictionary\-Language/model/} and open \texttt{Dictio\-nary\-Lang\-uage.ecore}. Expand the tree and create a new
-dynamic instance of a \texttt{Dictionary} named \texttt{target.xmi}. Make sure you persist the instance in
+dynamic instance of a \texttt{Dictionary} named \texttt{bwd.src.xmi}. Make sure you persist the instance in
 \texttt{Learn\-ing\-Box\-To\-Dictionary\-In\-te\-gra\-tion/in\-stan\-ces/} (Fig.~\ref{eclipse:create_instance_dict}).
 
 \begin{figure}[htbp]
@@ -30,7 +30,7 @@ Numbers} in the \texttt{Properties} tab below the window.
 
 \item[$\blacktriangleright$] Create three child \texttt{Entry} objects, giving each one a different difficulty level. Don't forget the syntax we created for
 each \texttt{entry.content} in the \texttt{CardToEntryRule} when setting up the constraints! Be sure to set this property as \texttt{<word>:<meaning>}. Your
-\texttt{target.xmi} should resemble Fig.~\ref{eclipse:dictionaryxmi}.
+instance should resemble Fig.~\ref{eclipse:dictionaryxmi}.
 
 \vspace{0.5cm}
 
@@ -43,11 +43,12 @@ each \texttt{entry.content} in the \texttt{CardToEntryRule} when setting up the 
 \end{figure}
 
 \item[$\blacktriangleright$] Let's check out the file that will actually execute our transformation. Navigate to
-``LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/src'' and click to open \texttt{TGGMain.java}. 
+``LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/\-src/\-org.\-mof\-lon.\-tie'' and click to open
+\texttt{Learn\-ing\-Box\-To\-Dict\-ion\-ary\-Int\-e\-grat\-ion\-Trafo.\-java}.
 
-\item[$\blacktriangleright$] As you can see, this file is the driver which runs the complete transformation, first transforming forward from a
-source \texttt{box} to a target \texttt{dictionary}, then backward from \texttt{dictionary} to \texttt{box}. As this is plain Java, you can adjust everything
-freely as you wish.
+\item[$\blacktriangleright$] As you can see, this file is the driver which runs the complete transformation, first transforming forward from a source
+\texttt{box} to a target \texttt{dictionary}, then backward from \texttt{dictionary} to \texttt{box}. As this is plain Java, you can adjust everything freely as
+you wish.
 
 \item[$\blacktriangleright$] Right-click the file in the Package Explorer and got to ``Run as\ldots/Java Application'' to execute the file.
 
@@ -67,13 +68,14 @@ the editor? Perfect! Both of these statements make sense -- our TGG first attemp
 
 \vspace{-0.5cm}
 
-\item[$\blacktriangleright$] Refresh the integration's \texttt{instances} folder. There three new \texttt{.xmi} files should have appeared. While you created
-\texttt{target}, the TGG generated \texttt{corr\_BWD}, the correspondence graph between target and source, \texttt{protocol\_BWD}, a listing of the attempted
-steps taken (as well as their results), and \texttt{source\_BWD}, the output of the transformation. Open this last file in the editor.
+\item[$\blacktriangleright$] Refresh the integration's \texttt{instances} folder. Three new \texttt{.xmi} files should have appeared representing your backward
+triple. While you created the \texttt{bwd.src.xmi} instance, the TGG generated \texttt{bwd.corr.xmi}, the correspondence graph between target and source,
+\texttt{bwd.protocol.xmi}, a listing of the attempted steps taken (as well as their results), and \texttt{bwd.trg.xmi}, the output of the transformation. Open
+this last file in the editor.
 
 \item[$\blacktriangleright$] It's a \texttt{Box} of \texttt{English Numbers}! Expand the tree and you'll see our \texttt{Dictionary} in its equivalent
 \texttt{Box} format containing three \texttt{Par\-ti\-tions} (Fig.~\ref{eclipse:derivedBOX}). Double click each \texttt{card} and observe how each
-\texttt{entry.content} was split into two sides.
+\texttt{entry.content} was successfully split into two sides.
 
 \vspace{0.5cm}
 
@@ -109,13 +111,13 @@ Drag-and-drop \texttt{Box English Numbers} into the graph view (Fig.~\ref{eclips
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] To show that the transformation is actually bidirectional, let's create a source model (thus resolving the error), and run
-the TGG again to perform a \emph{forwards} transformation of a \texttt{Box} into a \texttt{Dictionary}. Make a copy of \texttt{source\_BWD.xmi} and rename
-it to \texttt{source.xmi}.
+the TGG again to perform a \emph{forwards} transformation of a \texttt{Box} into a \texttt{Dictionary}. Make a copy of \texttt{bwd.trg.xmi} and rename
+it to \texttt{fwd.src.xmi}.
 
 \newpage
 
-\item[$\blacktriangleright$] Run \texttt{TGGMain} again by pressing the green ``Run As\ldots'' icon on the toolbar. You should now have two success
-messages in the console window! Refresh the ``instances" folder and compare the output \texttt{tar\-get\-\_FWD.xmi} against the original target model. If
-everything executed properly, they should look exactly the same.
+\item[$\blacktriangleright$] Run \texttt{LearningBoxToDictionaryIntegrationTrafo} again by pressing the green ``Run As\ldots'' icon on the toolbar. You should
+now have two success messages in the console window! Finally, refresh the ``instances" folder and compare the output \texttt{fwd.trg.xmi} against the original
+\texttt{bwd.src.xmi} Dictionary model. If everything executed properly, they should look exactly the same.
 
 \end{itemize}

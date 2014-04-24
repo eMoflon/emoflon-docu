@@ -5,8 +5,8 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] If your project's build succeeded, run \texttt{TGGMain} again and examine the successful forward output, 
-\texttt{target.xmi}, a little closer (Fig.~\ref{eclipse:generatedFwdTrsfm}).
+\item[$\blacktriangleright$] If your project's build succeeded, run the transformation file again and examine the successful forward output, 
+\texttt{fwd.trg.xmi}, a little closer (Fig.~\ref{eclipse:generatedFwdTrsfm}).
 
 \vspace{0.5cm}
 
@@ -21,7 +21,7 @@
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Your output may or may not resemble ours. In fact, there's a 50/50 chance that some of the \texttt{author} nodes are ever created!
-Let's run the eMoflon integrator on \texttt{corr\_FWD.xmi} to find out why.\footnote{If you haven't already, read Part IV, Section 6 for details on how the
+Let's run the integrator on \texttt{fwd.corr.xmi} to find out why.\footnote{If you haven't already, read Part IV, Section 6 for details on how the
 integrator can help you visualise and debug a transformation}
 
 \vspace{0.5cm}
@@ -41,9 +41,9 @@ eye on the small window below -- it states that there are two possible rules tha
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] At run-time, the transformation is presented with a choice between two rules to apply to the matched \texttt{authorNode}. The
-resulting choice is entirely random, meaning that your output is likely to be different each time you run \texttt{TGGMain}. For a deterministic transformation,
-you therefore need to force a preferred decision. There are two ways to do this: (1) at run-time, where users will be able to decide for themselves what they would
-prefer to use, or (2) at design-time, where you make the decision a part of the TGG.
+resulting choice is entirely random, meaning that your output is likely to be different each time you run the transformation. For a deterministic
+transformation, you therefore need to force a preferred decision. There are two ways to do this: (1) at run-time, where users will be able to decide for
+themselves what they would prefer to use, or (2) at design-time, where you make the decision a part of the TGG.
 
 \vfill
 
@@ -66,11 +66,11 @@ Eclipse's auto-completion can help you here.
   \label{eclipse:authorConfig}
 \end{figure}
 
-\item[$\blacktriangleright$] As you can see on Line 22, this simple configurator prefers to create a new author every time there is a choice. Users can
+\item[$\blacktriangleright$] As you can see on Line 21, this simple configurator prefers to create a new author every time there is a choice. Users can
 edit this value to ``ExistingAuthorRule'' to avoid redundant authors.
 
-\item[$\blacktriangleright$] You still need to set the configurator to be used for the transformation. This decision will only arise in the forward
-direction, so declare it once in \texttt{TGGMain/performForward} as depicted in Fig.~\ref{eclipse:editTGGMain} on Line 57.
+\item[$\blacktriangleright$] You still need to set the configurator to be used for the transformation. This decision will only arise in the forward direction,
+so declare it once in \texttt{Dict\-ion\-ar\-y\-Code\-Ad\-ap\-ter\-Traf\-o/\-per\-form\-For\-ward} as depicted in Fig.~\ref{eclipse:editTGGMain} (on Line 59).
 
 \newpage
 
@@ -84,8 +84,7 @@ direction, so declare it once in \texttt{TGGMain/performForward} as depicted in 
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Save and run \texttt{TGGMain}. Run the transformation a few times, using the integrator to confirm your preference is enforced each
-time.
+\item[$\blacktriangleright$] Save and run the transformation a few times, using the integrator to confirm your preference is enforced each time.
 
 \end{itemize}
 
