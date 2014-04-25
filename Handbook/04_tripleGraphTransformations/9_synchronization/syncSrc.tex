@@ -55,12 +55,12 @@ shown in Fig.~\ref{eclipse:changeSrc}.
 \item[$\blacktriangleright$] Save and run the file. You'll notice that even though no changes were specified for the backward synchronization, both directions
 completed without error.
 
-\item[$\blacktriangleright$] View the results of your changes by first opening your learning box in \texttt{synch.fwd.src.xmi}. Expand \texttt{Partition 3} --
+\item[$\blacktriangleright$] View the results of your changes by first opening your learning box in \texttt{sync.fwd.src.xmi}. Expand \texttt{Partition 3} --
 is there now a fifth \texttt{Card} inside? As you can see, the synchronization saved your changes to this new file, rather than overwriting the original
 instance model.
 
-\item[$\blacktriangleright$] Open the synchronization's output file, \texttt{synch.bwd.src.xmi}. If it was successful there should be a fifth \texttt{Entry} in
-the Dictionary. Together with \texttt{synch.fwd.corr.xmi} and \texttt{synch.fwd.protocol.xmi}, this files form a new triple and will remain consistent with one
+\item[$\blacktriangleright$] Open the synchronization's output file, \texttt{sync.bwd.src.xmi}. If it was successful there should be a fifth \texttt{Entry} in
+the Dictionary. Together with \texttt{sync.fwd.corr.xmi} and \texttt{sync.fwd.protocol.xmi}, this files form a new triple and will remain consistent with one
 another!
 
 \item[$\blacktriangleright$] What if we wanted to make a change in the other direction? Let's try deleting an entry while keeping all four partitions. Open
@@ -76,24 +76,24 @@ the synchronization's Java file again and locate \texttt{changeTrg}. Complete it
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Run the synchronization a final time, and refresh the ``instances'' folder. Open and inspect both \texttt{synch.bwd.src.xmi} and
-\texttt{synch.\-bwd.\-trg.\-xmi}. If everything has executed correctly, \texttt{Card Question One} should be missing from \texttt{partition0}, and
-\texttt{partition3} still exists! Equivalently, there should only be four \texttt{Entry} elements in the output \texttt{Dictionary}.
+\item[$\blacktriangleright$] Run the synchronization a final time, and refresh the ``instances'' folder. Open and inspect both \texttt{sync.bwd.src.xmi} and
+\texttt{sync.\-bwd.\-trg.\-xmi}. If everything has executed correctly, \texttt{Card Question One} should be missing from \texttt{partition0}, and
+\texttt{partition3} still exists! Equivalently, there should only be four \texttt{Entry} elements in the output \texttt{Dict\-ion\-ar\-y}.
 
 \item[$\blacktriangleright$] You may have noticed that there is no \texttt{Entry Five}, which we added to \texttt{partition3} in the forward
 synchronization. Recall that the process loads and makes changes to the \emph{original} triple, not the most recent copies. The files are simple Java code, so
 you are invited to modify them as you wish for your own projects.
 
-\item[$\blacktriangleright$] Let's try running the integrator on \texttt{synch.fwd.corr.xmi} with \texttt{synch.\-fwd.\-prot\-o\-col.\-xmi}.
+\item[$\blacktriangleright$] Let's try running the integrator on \texttt{sync.fwd.corr.xmi} with \texttt{sync.\-fwd.\-prot\-o\-col.\-xmi}.
 
 \item[$\blacktriangleright$] Proceed through the synchronization step-by-step as far as possible. It takes hardly any time at all! In fact, all it shows is the
 green creation of \texttt{Five : Feunf} and its link. Recall that this visualization is based on the protocol process, which for this synchronization, only
 added a new card. The four partitions or dictionary container already existed. Their creation is included in the \texttt{fwd.protocol.xmi} generated
 after running \texttt{LearningBoxToDictionaryIntegrationTrafo.java}.
 
-\item[$\blacktriangleright$] As a final point, run the integrator on \texttt{synch.bwd.corr.xmi} with \texttt{synch.bwd.protocol.xmi} and try to step through.
-No, it isn't a bug -- you can't do anything because the only update in the backward direction was a deletion of an element, now missing from the correspondence
-model. Remember from the discussion in Section 4 that TGGs are by definition, monotonic. This means TGGs may only specify the build-up of models; A different
+\item[$\blacktriangleright$] As a final point, run the integrator on \texttt{sync.bwd.corr.xmi} with \texttt{sync.\-bwd.\-pro\-to\-col.\-xmi} and try to step
+through. No, it isn't a bug -- you can't do anything because the only update in the backward direction was a deletion of an element, now missing from the
+correspondence model. Remember from the discussion in Section 4 that TGGs are by definition, monotonic. This means TGGs may only specify the build-up of models; A different
 process takes care of an element's deletion.
 
 \end{itemize}
