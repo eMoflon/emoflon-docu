@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -188,6 +189,7 @@ public class eMoflonEMFUtil
          } catch (Exception e)
          {
             e.printStackTrace();
+            logger.debug(Arrays.toString(e.getStackTrace()));
          }
       }
 
