@@ -45,6 +45,7 @@ public class EAInterfaceUriHelper {
 		   builder.append(DELIM);
 		   builder.append(getEOperationString(eOperation.getName()));
 		   builder.append(getEParameterString(eOperation.getEParameters()));
+		   builder.append(":");
 		   builder.append("EOperation");
 		   return builder.toString();
 	   }
