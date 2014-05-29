@@ -77,9 +77,10 @@ method whose return value would be the bound value. This is very useful as it al
 \item[$\blacktriangleright$] To finalize the SDM, extract the \texttt{promoteFastCard} story pattern and build the pattern according to
 Fig.~\ref{ea:promoteFastCardPattern}. Compare this pattern to Figs.~\ref{ea:sdm_check_complete_activity_node} and \ref{ea:sdm_check_complete_penalize}, the
 original promotion and penalizing card movements. As you can see, they're very similar, except \texttt{fastCard} is transferred from the current partition
-(\texttt{this}) immediately to the last partition in \texttt{box}, identified as having no \texttt{nextPartition} with an appropriate NAC.
+(\texttt{this}) immediately to the last partition in \texttt{box}, identified as having no next \texttt{Partition} with an appropriate NAC.
+Note that a second NAC is used to handle the case where \texttt{this} would be the next \texttt{Partition}, which is also not want we want.
 
-\begin{figure}[htbp]
+\begin{figure}[htbp] 
 \begin{center}
   \includegraphics[width=\textwidth]{ea_promoteFastCardPattern}
   \caption{Story pattern for handling fast cards.}  
