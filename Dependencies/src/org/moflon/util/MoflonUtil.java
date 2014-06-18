@@ -124,14 +124,14 @@ public class MoflonUtil
 	}
 	
 	/**
-	 * Determine fully qualified name of given eclassifier by iterating through package hierarchy.
-	 * @param eClass
+	 * Determine fully qualified name of given element by iterating through package hierarchy.
+	 * @param ENamedElement
 	 * @return
 	 */
-	public static String getFQN(ENamedElement eClass) {
-		String fqn = eClass.getName();
+	public static String getFQN(ENamedElement element) {
+		String fqn = element.getName();
 
-		ENamedElement e = eClass;
+		ENamedElement e = element;
 
 		while (e.eContainer() != null) {
 			e = (ENamedElement) e.eContainer();
