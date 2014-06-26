@@ -1,0 +1,53 @@
+\newpage
+\section{Tree-to-model transformation with TGGs}
+\genHeader
+
+Our goal in this section is to break down the \texttt{MocaTree} to \texttt{Dictionary} transformation into smaller, modular steps. More precisely, we
+want separate rules for transforming a \texttt{Folder} into its appropriate container element (i.e., \texttt{Library} or \texttt{Shelf}), then individual rules
+to handle whatever \texttt{File} and \texttt{Node} elements they contain.
+
+\vspace{0.5cm}
+
+Let's briefly look at the models we'll be working with. We start with Fig.~\ref{eclipse:treeStart},\footnote{You can view this model in your Eclipse editor by
+placing the contents of \texttt{fwd.src.xmi} into eMoflon's Graph Viewer, as introduced in Part II, Section 4.} where our root input folder, \texttt{MyLibrary},
+contains two subfolders with at least one dictionary \texttt{File} each. Each dictionary has one equivalent dictionary root \texttt{Node} with at least two
+children representing the title and first \texttt{ENTRY}, along with an unknown number of additional nodes. Of the remaining nodes, there may be one that stores
+the dictionary author's contact information. All the rest will be \texttt{ENTRY} nodes with two children representing its content and level information.
+
+\vspace{1cm}
+
+\begin{figure}[htbp]
+\hspace{-1.5cm}
+ 	\includegraphics[width=1.2\textwidth]{eclipse_TreeStartMetamodel}
+ 	\caption{The \texttt{MocaTree} model of our input directory}
+ 	\label{eclipse:treeStart}
+\end{figure}
+
+\newpage
+
+Our transformation intends to finish with a \texttt{Dictionary} model resembling Fig.~\ref{eclipse:dictionaryStart}, where the root \texttt{MyLibrary} has
+four children, one for each shelf and author. These elements will likely pair up, sharing a child \texttt{Dictionary} element containing an unknown number
+of entries.
+
+\vspace{1cm}
+
+\begin{figure}[htbp]
+\hspace{-1.5cm}
+    \includegraphics[width=1.2\textwidth]{eclipse_DictionaryResultMetamodel}
+ 	\caption{The final \texttt{Dictionary} target model}
+ 	\label{eclipse:dictionaryStart}
+\end{figure}
+
+\vspace{1cm}
+
+As you can see, it's important to keep in mind the flexibility that the rules for this transformation will require. While our example model is small
+enough to count the number of entries our rules will need to account for, future models may of course vary. Just like SDM patterns, it's key to avoid
+situation-specific TGG rules.
+
+\jumpDual{treeToModel vis}{treeToModel tex}
+
+\input{../3_treeToModel/vis_toModelSrc}
+
+\input{../3_treeToModel/tex_toModelSrc}
+
+\input{../3_treeToModel/treeToModelClose}

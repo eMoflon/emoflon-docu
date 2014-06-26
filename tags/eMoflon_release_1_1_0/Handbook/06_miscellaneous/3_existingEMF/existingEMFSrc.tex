@@ -1,0 +1,17 @@
+\newpage
+
+\section{Using existing EMF projects in eMoflon}
+\visHeader
+
+This chapter contains stepwise instructions on how to use existing \mbox{EMF}/Ecore projects with an eMoflon project specified using the visual syntax via EA.
+We will present an an example of an existing metamodel which must be integrated with eMoflon before, for example, its transformation using SDMs can be
+specified. The basic workflow for using an existing EMF project in eMoflon is described in the following and may of course be similarly applied to a metamodel
+specified in the textual syntax via MOSL. 
+
+We will begin by implementing a small subset of the \texttt{Ecore -> GenModel} transformation, where \texttt{GenModel} is part of the EMF/Ecore standard. The
+\emph{GenModel} for a given Ecore model can be viewed as a \emph{wrapper} that contains additional generation-specific Java code details. These details are
+separated from the Ecore model to keep it free of such ``low-level'' information and settings.
+
+\input{../3_existingEMF/1_aspectsInEA}
+
+\input{../3_existingEMF/2_codeGenConfig}

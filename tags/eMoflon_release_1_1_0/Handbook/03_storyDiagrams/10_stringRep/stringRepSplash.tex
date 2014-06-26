@@ -1,0 +1,62 @@
+\newpage
+\hypertarget{sec:stringRep}{}
+\section{A string representation of our learning box}
+\genHeader
+
+In the next SDM we shall create a string representation for all the contents in a single learning box. To accomplish this, we will have to iterate through 
+every card, in every partition. The concept is similar to \texttt{Partition}'s \texttt{empty} method, except we'll need to create a nested \emph{for each}
+loop (Fig.~\ref{fig:goal_stringRep}). Further still, we'll need to call a helper method to accumulate the contents of each card to a single string.
+
+\vspace{1cm}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.3\textwidth]{goal_stringRep.pdf}
+	\caption{Nested \emph{For Each} loops}
+	\label{fig:goal_stringRep}
+\end{figure}
+
+\vspace{1cm}
+
+As you can see, The first loop will match all partitions, while the second matches each card. Finally, a \emph{statement node} is used to invoke the
+\texttt{addToStringRep} method. In contrast to how they were used for conditional branching in \texttt{grow}, this statement node will simply invoke a
+void method.
+
+Unlike \texttt{initializeBox} however, this helper method is actually better specified as an injection so, analogously to how you implemented
+\texttt{deter\-mine\-Next\-Size} for \texttt{box.grow()}, quickly edit \texttt{BoxImpl.java} by replacing the default code for \texttt{addToStringRep} with that
+in Fig.~\ref{code:addToStringRep_inject_file}. You can use Eclipse's built-in auto-completion to speed up this process. Save, create the injection file, and
+confirm the contents of \texttt{BoxImpl.inject}.
+
+\newpage
+
+\vspace*{3cm}
+
+\begin{figure}[h!]
+\centering
+\begin{lstlisting}[language=Java, keywordstyle={\bfseries\color{purple}}, backgroundcolor=\color{white}]
+public void addToStringRep(Card card) {
+	// [user code injected with eMoflon]
+	StringBuilder sb = new StringBuilder();
+	if (stringRep == null) {
+		sb.append("BoxContent: [");
+	} else {
+		sb.append(stringRep);
+		sb.append(", [");
+	}
+	sb.append(card.getFace());
+	sb.append(", ");
+	sb.append(card.getBack());
+	sb.append("]");
+	stringRep = sb.toString();
+	}
+        \end{lstlisting}
+        \caption{Implementation of \texttt{addToStringRep}}
+        \label{code:addToStringRep_inject_file}
+    \end{figure}
+    \FloatBarrier
+
+\jumpDual{stringRep vis}{stringRep tex}
+
+\input{../10_stringRep/visStringRep}
+
+\input{../10_stringRep/texStringRep}

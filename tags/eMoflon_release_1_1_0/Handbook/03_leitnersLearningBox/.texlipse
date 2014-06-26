@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Thu Nov 07 13:41:54 CET 2013
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=learningBox_mainFile.tex
+outputFile=02_leitnersLearningBox.pdf
+langSpell=en
+markDer=true
+srcDir=src/

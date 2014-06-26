@@ -1,0 +1,134 @@
+\documentclass[11pt, a4paper, oneside]{book}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage[colorlinks,hyperindex,plainpages=false,breaklinks]{hyperref}
+\usepackage{amssymb}
+\usepackage{wasysym} 
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{placeins} % Necessary for \FloatBarrier
+\usepackage{subfig}   % Necessary for subfloat (images next to each other)
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames]{xcolor}
+\usepackage{listings}
+\usepackage{upquote}
+
+\definecolor{codelightgray}{rgb}{0.87,0.87,0.87}
+
+\hypersetup{colorlinks=true,% 
+	linkcolor=black,%
+	citecolor=red,%
+	filecolor=blue,% 
+	menucolor=black,% 
+	pagecolor=black,%
+	urlcolor=black
+}
+
+\lstset{language=,
+    % keywordstyle=\color{blue},
+    basicstyle=\scriptsize\ttfamily,
+    % morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
+    showstringspaces=false,
+    backgroundcolor=\color{codelightgray},
+    frame=single,
+    framerule=0pt,
+    tabsize=2,
+    linewidth=14cm,
+    upquote=true,
+}
+
+\setcounter{tocdepth}{1}
+
+\setlength{\parindent}{0pt} 
+\setlength{\parskip}{0.3cm}
+
+% Remove section numbers 0.1, 0.2 ..
+\renewcommand{\thesection}{\arabic{section}} 
+
+\graphicspath{%
+{../commonFiles/} % Title page and membox illustration
+{../1_grokkingEA/01_layOutElements/}{../1_grokkingEA/02_bendingLines/}{../1_grokkingEA/03_delVSRem/}{../1_grokkingEA/04_exclusion/}%
+{../1_grokkingEA/05_verbose/}{../1_grokkingEA/06_duplicating/}{../1_grokkingEA/07_seek/}{../1_grokkingEA/08_advSearch/}%
+{../1_grokkingEA/09_multiEAPs/}%
+{../2_subversionEA/}{../3_existingEMF/emfImages/}%
+{../4_protocol/pImages/}%
+}
+
+% --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
+% Default plain header; turn off all lines and colors; turn on page numbers for all
+\newcommand{\noHeader}{
+	\fancyfoot{}
+ 	\fancyhead[R]{\thepage}
+	\fancyhead[L]{}
+	\renewcommand{\headrulewidth}{0pt}
+}
+
+% Common instruction Header; Black
+\newcommand{\genHeader}{
+	\fancyfoot{}
+	\fancyhead[L]{}
+	\renewcommand{\headrulewidth}{1.5pt}
+ 	\renewcommand{\headrule}{\hbox to\headwidth{%
+  		\color{Black}\leaders\hrule height \headrulewidth\hfill}}
+}
+
+% Visual instructions; Red header
+\newcommand{\visHeader}{
+	\fancyfoot{}
+	\fancyhead[L]{\color{RedOrange}\tiny \bf VISUAL}
+	\renewcommand{\headrulewidth}{1.5pt}
+	\renewcommand{\headrule}{\hbox to\headwidth{%
+  		\color{RedOrange}\leaders\hrule height \headrulewidth\hfill}}
+}
+
+% Text instructions; Blue header
+\newcommand{\texHeader}{
+	\fancyfoot{}
+	\fancyhead[L]{\color{CornflowerBlue}\tiny \bf TEXTUAL}
+	\renewcommand{\headrulewidth}{1.5pt}
+	\renewcommand{\headrule}{\hbox to\headwidth{%
+  		\color{CornflowerBlue}\leaders\hrule height \headrulewidth\hfill}}
+}
+
+% TODO: update version (Title Page Information) ---------------------------------------------------------------------------------------------------------------
+\def\partTitle{Part VI: Miscellaneous}
+\def\versionNumber{0.1}
+\input{../commonFiles/titlepage}
+% -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\begin{document}
+
+\frontmatter 
+\noHeader
+
+{\let\newpage\relax\maketitle}
+
+\input{../commonFiles/copyright}
+\let\cleardoublepage\clearpage
+
+\tableofcontents
+
+% Store page counter
+\newcounter{romanpages}
+\setcounter{romanpages}{\value{page}}
+
+\mainmatter
+
+% Main content;
+\include{miscellaneous_source}
+
+\newpage \genHeader
+\phantomsection
+\addcontentsline{toc}{section}{References}
+\renewcommand*{\bibname}{References}
+\bibliographystyle{plain}
+\normalsize
+\nocite{*}  
+\bibliography{../commonFiles/references}
+
+\end{document}

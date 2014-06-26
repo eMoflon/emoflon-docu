@@ -1,0 +1,71 @@
+\newpage
+\section{Growing the box}
+\genHeader
+
+Ok, back to business. In this SDM, we shall explicitly specify how our learning box is to be built up. We create a specific pattern that will append new
+partition elements to the end of a \texttt{Box} that follow our established movement rules (Fig.~\ref{fig:membox_depiction}). This means the new partition will
+become the \texttt{next} reference of the current last partition, and its \texttt{previous} reference must be connected to the first partition in the box
+(Fig.~\ref{fig:goal_grow}).
+
+\begin{figure}[htbp]
+ 	\centering
+  	\includegraphics[width=0.7\textwidth]{growBoxNACGoal.pdf}
+	\caption{Growing a box by inserting a new partition}
+	\label{fig:goal_grow}
+\end{figure}
+\FloatBarrier
+
+SDMs provide a declarative means of identifying specific partitions via \emph{Negative Application Conditions}, simply referred to as
+\mbox{NAC}s.\footnote{Pronounced $\backslash 'nak \backslash$}\define{NAC} \mbox{NAC}s express structures that are forbidden to exist before applying a
+transformation rule. In this SDM, the \mbox{NAC} will be an object variable that must not be assigned a value during pattern matching. In the theory of
+algebraic graph transformations \cite{EEPT06}, \mbox{NACs} can be arbitrarily complex graphs that are much more general and powerful than what we currently
+support in our implementation,\footnote{To be precise, in CodeGen2 from Fujaba} namely only single negative elements (object or link variables).
+
+As depicted in Fig.~\ref{fig:goal_grow}, to create an appropriate \mbox{NAC} that constrains possible matches, we'll need to check to see if the currently
+matched pattern can be extended to include the negative elements. Suppose the current potential last partition has a \texttt{nextPartition}. This means it
+is \emph{not} the absolute last partition, and so the match becomes invalid. We only want to insert a new partition when the \texttt{nextPartition}
+of the current potential last partition is null. Similarly, if the current potential first partition has a \texttt{previousPartition}, the match is invalid. The
+complete match is therefore made unique through NACs and thus becomes \emph{deterministic} by construction. In other words, if you \emph{grow} the box with this method, there
+will always be exactly one first and one last partition of the box.
+
+Of course, to complete this method we still need to determine the size of the new partition. Since the size must be calculated depending on the
+rest of the partitions currently in the box (partitions usually get bigger) we'll need to call a helper method, \texttt{determineNextSize} via a
+\emph{MethodCallExpression}\define{MethodCallExpression}. As the name suggests, it is designed to access any method defined in \emph{any} class in the current
+project.
+
+Due to the algorithmic and non-structural nature of \texttt{determineNextSize}, it will be easier to implement this method via a Java \emph{injection}, rather
+than an SDM. We've already declared this method in our metamodel, so its signature will be available for editing in \texttt{BoxImpl.java}.
+
+\begin{itemize}
+
+\item[$\blacktriangleright$] Open ``gen/LearningBoxLanguage.impl/BoxImpl.java.'' Scroll to the method declaration, and replace the contents with the code in
+Fig.~\ref{code:determineNextSize_impl}. Remember not to remove the first comment, which is necessary to indicate that the code is handwritten and needs to be
+extracted automatically as an injection. Please do not copy and paste the following code -- the copying process from your pdf viewer to the Eclipse IDE
+will likely add invisible characters to the code that eMoflon is unable to handle.
+
+\begin{figure}[htbp]
+        \centering
+        \begin{lstlisting}[language=Java, keywordstyle={\bfseries\color{purple}}, backgroundcolor=\color{white}]
+    public int determineNextSize() {
+    	// [user code injected with eMoflon]
+        return getContainedPartition().size()*10;
+    }
+        \end{lstlisting}
+        \caption{Implementation of \texttt{removeCard}}
+        \label{code:determineNextSize_impl}
+\end{figure}
+
+
+\item[$\blacktriangleright$] Save the file, then right-click on it, either in the package explorer or in the editor window, and choose ``eMoflon/
+Create/Update Injection for class'' from the context menu. 
+
+\item[$\blacktriangleright$] Confirm the update in the new \texttt{BoxImpl.inject} file's partial class. \texttt{determineNextSize} is now ready to be used by
+your metamodel!
+
+\jumpDual{growBox vis}{growBox tex}
+
+\end{itemize}
+
+\input{../08_growBox/visGrowBox}
+
+\input{../08_growBox/texGrowBox}
