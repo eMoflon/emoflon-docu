@@ -82,6 +82,10 @@ public class WorkspaceHelper
    public static final String REPOSITORY_NATURE_ID = "org.moflon.ide.ui.runtime.natures.RepositoryNature";
    
    public static final String INTEGRATION_NATURE_ID = "org.moflon.ide.ui.runtime.natures.IntegrationNature";
+   
+   public static final String ANTLR_3 = "/lib/antlr-3.5.2-complete.jar";
+   
+   public static final String SUFFIX_GEN_ECORE = ".gen.ecore";
 
    /**
     * Checks if given name is a valid name for a new project in the current workspace.
@@ -648,8 +652,6 @@ public class WorkspaceHelper
    public static SubProgressMonitor createSubMonitor(IProgressMonitor monitor, int ticks) {
       return new SubProgressMonitor(monitor, ticks*PROGRESS_SCALE);
    }
-
-   public static final String SUFFIX_GEN_ECORE = ".gen.ecore";
    
    public static boolean isMoflonProject(IProject dependencyProject) throws CoreException {
 		return dependencyProject.hasNature(REPOSITORY_NATURE_ID) || dependencyProject.hasNature(INTEGRATION_NATURE_ID);
