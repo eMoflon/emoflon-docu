@@ -12,6 +12,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.DailyRollingFileAppender;
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Logger;
@@ -140,4 +141,52 @@ public class MoflonUtil
 
 		return fqn;
 	}
+
+	/**
+	 * This method realizes our convention for determining the package name of a given EPackage.name
+	 * In the future this could be replaced by using the genmodel.
+	 * 
+	 * @param packageName
+	 * @return
+	 */
+   public static String determinePackageName(String packageName)
+   {
+      switch (packageName)
+      {
+      case "uml":
+         return "UMLPackage";
+         
+      default:
+         return packageName.substring(0, 1).toUpperCase() + packageName.substring(1) + "Package";
+      }  
+   }
+   
+   public static boolean toBePluralized(String roleName, String packageName, String typeName, boolean toOne)
+   {
+      switch (packageName)
+      {
+      case "uml":
+         // For UML, toMany links are pluralized!
+         return !toOne;
+         
+      default:
+         return false;
+      }
+   }
+
+   public static String handlePrefixForBooleanAttributes(String packageName, String attribute)
+   {
+      final String is = "is";
+      final String prefix = ".is" + StringUtils.capitalize(attribute);
+      
+      switch (packageName)
+      {
+      case "uml":
+         // For UML only return prefix if the attribute does not already start with an "is"
+         return attribute.startsWith(is)? "." + attribute : prefix;
+         
+      default:
+         return prefix;
+      }
+   }
 }
