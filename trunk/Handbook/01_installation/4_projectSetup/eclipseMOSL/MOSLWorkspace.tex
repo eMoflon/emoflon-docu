@@ -40,8 +40,9 @@ exclusively for control flow (i.e., sequences, branches, and loops).
 \end{figure}
 
 After many long discussions, it was decided that patterns should always be implemented in separate files. Inspect Fig.~\ref{eclipse:modelSpecification} again,
-and observe the locations where the patterns are placed. You'll notice that there is a folder for the \texttt{Node} eclass, and a subfolder for each method. There's
-no folder for \texttt{List} because it never calls a pattern.
+and observe the locations where the patterns are placed. You'll notice that
+there is a folder for the \texttt{Node} EClass, and a subfolder for each method.
+There's no folder for \texttt{List} because it never calls a pattern.
 
 Check out the \texttt{deleteNode} pattern (Fig ~\ref{eclipse:patternDeleteNode}). You can see that there is a destroy command on \texttt{@this}, denoted by
 \texttt{-~-}. It gets rid of the node, but it doesn't do anything about the previous and next references defined on it (remember that we're dealing with a
