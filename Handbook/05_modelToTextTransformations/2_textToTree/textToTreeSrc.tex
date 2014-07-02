@@ -98,9 +98,10 @@ the parser grammar supported by \texttt{ANTLR}.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Before taking our lexer and parser for a spin, navigate to ``src\-/org\-.mof\-lon\-.tie" and open
-\texttt{DictionaryCodeAdapterTrafo.java}. We need to update the file so that it will work with our specific project, so add the highlighted areas in
-Fig.~\ref{eclipse:defaultTGGMain} to the file.
+\item[$\blacktriangleright$] Before taking our lexer and parser for a spin,
+navigate to ``src\-/org\-.mof\-lon\-.tie"\footnote{TIE stands for \emph{Tool
+Integration Environment}} and open \texttt{DictionaryCodeAdapterTrafo.java}. We
+need to update the file so that it will work with our specific project, so add the highlighted areas in Fig.~\ref{eclipse:defaultTGGMain} to the file.
 
 \vspace{0.5cm}
 
@@ -114,9 +115,9 @@ Fig.~\ref{eclipse:defaultTGGMain} to the file.
 
 \end{itemize}
 
-You can see that this main method is essentially the driver for a complete transformation, executing four stages for a forward and backward transform. In a
-nutshell, each folder in ``instances/in/myLibrary'' is taken as the root of a tree, and their folder and file structures will be reflected as a hierarchy of
-(children) nodes in the tree. For each file, the framework will search for a registered parser that is responsible for the particular file, pass the content
+You can see that this main method is essentially the driver for a complete
+transformation, executing four stages for a forward and backward transformation.
+In a nutshell, each folder in ``instances/in/myLibrary'' is taken as the root of a tree, and their folder and file structures will be reflected as a hierarchy of (children) nodes in the tree. For each file, the framework will search for a registered parser that is responsible for the particular file, pass the content
 onto the parser, then plug in the tree generated from the parser as a single subtree of the corresponding file node in the overall tree.
 
 In this example, the framework uses our parser on \texttt{.dictionary} files, the file extension we specified when creating the lexer and parser stubs
@@ -268,9 +269,9 @@ the correspondence model \texttt{fwd.corr.xmi} (paired with \texttt{fwd.protocol
 
 \item[$\blacktriangleright$] Open \texttt{fwd.src.xmi} and compare the contents to Fig.~\ref{eclipse:treeResult}. Reflect on the directory-type structure of the
 tree, where each \texttt{File} and its contents appear as \texttt{Node}s.\footnote{Refer to Fig~\ref{mocaTreeMetamodel} for the metamodel of this structure}
-This file is important to understand -- The filesystem was transformed into a corresponding hierarchy of \texttt{Folders} and \texttt{Files}. The actual
-\emph{text} content of each file is then transformed to a subtree using a registered, suitable parser. The resulting subtree from the parser is then connected
-to the existing tree by setting its \texttt{DICTIONARY} root as the single child node of a \texttt{File}.
+This file is important to understand!
+The filesystem was transformed into a corresponding hierarchy of
+\texttt{Folders} and \texttt{Files}. The actual \emph{text} content of each file is then transformed to a subtree using a registered, suitable parser. The resulting subtree from the parser is then connected to the existing tree by setting its \texttt{DICTIONARY} root as the single child node of a \texttt{File}.
 
 \end{itemize}
 

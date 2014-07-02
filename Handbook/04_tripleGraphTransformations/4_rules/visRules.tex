@@ -133,7 +133,8 @@ small example, but this could potentially be a real time-saver in a large projec
 \begin{enumerate}
   
 \item[$\blacktriangleright$] First confirm that your eMoflon control panel window is open in the \texttt{Box\-To\-Dictionary\-Rule} diagram. Then hold
-\texttt{ctrl} and select \texttt{box}, \texttt{box\-To\-Dictionary}, \texttt{dictionary} and \texttt{partition0} simultaneously.
+\texttt{Ctrl} and select \texttt{box}, \texttt{box\-To\-Dictionary},
+\texttt{dictionary} and \texttt{partition0} simultaneously.
   
 \item[$\blacktriangleright$] Switch to the \texttt{eMoflon TGG Functions} tab on the control panel and press \texttt{Derive} (
 Fig.~\ref{ea:derive_from_tgg_rule}). In the dialogue that appears, enter \texttt{Card\-To\-Ent\-ry\-Rule} as the name of the rule, and press \texttt{OK.} The
@@ -195,11 +196,11 @@ similarly, \texttt{card\-.face} should be \texttt{Ans\-wer:<mean\-ing>}.
 \item[$\blacktriangleright$] We can now define three \emph{attribute constraints} to implement this. Luckily, we have two predefined constraints,
 \texttt{addPrefix} and \texttt{concat} to help us. Use the toolbox again to create a new TGG constraint, and add the following to your diagram:
 
-  \item \texttt{addPrefix(``Question '', word, card.back)}  
+  \item \verb|addPrefix("Question", word, card.back)|  
   
-  \item \texttt{addPrefix(``Answer'', meaning, card.face)}
+  \item \verb|addPrefix("Answer", meaning, card.face)|
   
-  \item \texttt{concat(``:'', word, meaning, entry.content)}
+  \item \verb|concat(":", word, meaning, entry.content)|
 
 \end{itemize}
 

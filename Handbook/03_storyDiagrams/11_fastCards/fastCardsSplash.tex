@@ -21,8 +21,8 @@ depicted below with a marker to show it behaves differently (Fig.~\ref{fig:goal_
 \end{figure}
 \FloatBarrier
 
-In addition to creating a new \texttt{eclass}, we also need to extend the existing \texttt{check} method to check for this special card type once a guess is
-determined to be correct. Now \texttt{check} needs to decide, based on the dynamic type\footnote{In a statically typed language like Java, every
+In addition to creating a new \texttt{EClass}, we also need to extend the
+existing \texttt{check} method to check for this special card type once a guess is determined to be correct. Now \texttt{check} needs to decide, based on the dynamic type\footnote{In a statically typed language like Java, every
 object has a static type (determined at compile time) and a dynamic type (that can only be determined at runtime).} of \texttt{card}, if it needs to handle this special fast card. This
 can be expressed in SDMs with a \emph{BindingExpression} (or just \emph{Binding})\define{Binding}. A binding can be specified for a \emph{bound} object variable
 and is the final case in which an object variable can be marked as being bound.
