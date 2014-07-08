@@ -68,7 +68,7 @@ public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 
 		if (this.storyPattern != null && this.storyPattern.equals(storyPatternName))
 			this.storyPattern = null;
-		if(storyPatternStack.peek().equals(storyPatternName))
+		if(!storyPatternStack.isEmpty() && storyPatternStack.peek().equals(storyPatternName))
 			storyPatternStack.pop();
 	}
 
