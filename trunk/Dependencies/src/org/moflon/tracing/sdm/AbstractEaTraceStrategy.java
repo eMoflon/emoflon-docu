@@ -4,22 +4,18 @@ import static org.moflon.util.EAInterfaceUriHelper.getActivityString;
 import static org.moflon.util.EAInterfaceUriHelper.getEClassString;
 import static org.moflon.util.EAInterfaceUriHelper.getEOperationString;
 import static org.moflon.util.EAInterfaceUriHelper.getEPackageString;
-import static org.moflon.util.EAInterfaceUriHelper.getObjVarString;
-import static org.moflon.util.EAInterfaceUriHelper.getStoryNodeString;
 import static org.moflon.util.EAInterfaceUriHelper.getEParameterString;
 import static org.moflon.util.EAInterfaceUriHelper.getLinkVarString;
+import static org.moflon.util.EAInterfaceUriHelper.getObjVarString;
+import static org.moflon.util.EAInterfaceUriHelper.getStoryNodeString;
 
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Stack;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EParameter;
-
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
 
 public abstract class AbstractEaTraceStrategy extends SDMTraceStrategy
 {

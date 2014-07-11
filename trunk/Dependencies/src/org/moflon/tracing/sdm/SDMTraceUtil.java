@@ -46,7 +46,7 @@ import org.moflon.tracing.sdm.events.UnbindObjectVarEvent;
 public class SDMTraceUtil {	
 	
 	public final static String DISABLE_TRACING_SYS_PROP = "org.moflon.tracing.sdm.SDMTraceUtil.disableTracing";
-	public final static String SELECTED_TACING_STRATEGY_SYS_PROP = "org.moflon.tracing.sdm.SDMTraceUtil.tracingStrategies";
+	public final static String SELECTED_TRACING_STRATEGY_SYS_PROP = "org.moflon.tracing.sdm.SDMTraceUtil.tracingStrategies";
 	
 	private final static List<SDMTraceStrategy> STRATS = new ArrayList<SDMTraceStrategy>(1);
 	private final static SDMTraceStrategy DEFAULT_STRATEGY = EADebuggingSocketTraceStrategy.getInstance();  
@@ -55,7 +55,7 @@ public class SDMTraceUtil {
 	private final static HashMap<String, SDMTraceContext> CONTEXTS = new HashMap<String, SDMTraceContext>(4, 0.75f);
 	private final static SDMTraceContext GLOBAL_CONTEXT = new SDMTraceContext();
 	
-	private static boolean disableTracing = false;
+	private static boolean tracingDisabled = false;
 	private static boolean initialized = false;	
 	
 	public static void reset() {
@@ -74,10 +74,10 @@ public class SDMTraceUtil {
 		if (System.getProperties().containsKey(DISABLE_TRACING_SYS_PROP)) {
 			String value = System.getProperty(DISABLE_TRACING_SYS_PROP);
 			boolean parsedBoolean = Boolean.parseBoolean(value);
-			disableTracing = parsedBoolean;
+			tracingDisabled = parsedBoolean;
 		}
-		if (System.getProperties().containsKey(SELECTED_TACING_STRATEGY_SYS_PROP)) {
-			String value = System.getProperty(SELECTED_TACING_STRATEGY_SYS_PROP);
+		if (System.getProperties().containsKey(SELECTED_TRACING_STRATEGY_SYS_PROP)) {
+			String value = System.getProperty(SELECTED_TRACING_STRATEGY_SYS_PROP);
 			StringTokenizer tokenizer = new StringTokenizer(value, ",");
 			ClassLoader classLoader = SDMTraceUtil.class.getClassLoader();
 			while (tokenizer.hasMoreTokens()) {
@@ -130,7 +130,7 @@ public class SDMTraceUtil {
 	
 	public static void logOperationEnter(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, Object[] parameterValues) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (eThis == null)
@@ -212,14 +212,10 @@ public class SDMTraceUtil {
 		}
 		return null;
 	}
-	
-	private static boolean isCompatible(Class<? extends EClass> c1, Class<?> c2) {
-		return c1.getCanonicalName().equals(c2.getCanonicalName());		
-	}
-	
+		
 	protected static void logOperationEnter(SDMTraceContext c, StackTraceWrapper stw, EOperation op, Object[] parameterValues) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (c == null || stw == null || op == null || parameterValues == null)
@@ -236,7 +232,7 @@ public class SDMTraceUtil {
 	
 	public static void logOperationExit(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, Object result) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (eThis == null)
@@ -251,7 +247,7 @@ public class SDMTraceUtil {
 	
 	protected static void logOperationExit(SDMTraceContext c, StackTraceWrapper stw, EOperation op, Object result) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (c == null || stw == null || op == null)
@@ -268,7 +264,7 @@ public class SDMTraceUtil {
 	
 	public static void logPatternEnter(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, String patternName) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (eThis == null)
@@ -283,7 +279,7 @@ public class SDMTraceUtil {
 	
 	protected static void logPatternEnter(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (c == null || stw == null || storyPatternName == null || storyPatternName.length() == 0 || op == null)
@@ -300,7 +296,7 @@ public class SDMTraceUtil {
 	
 	public static void logLightweightPatternEnter(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, String patternName, String uniqueId) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (eThis == null)
@@ -315,7 +311,7 @@ public class SDMTraceUtil {
 	
 	protected static void logLightweightPatternEnter(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op, String uniqueId) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (c == null || stw == null || storyPatternName == null || storyPatternName.length() == 0 || op == null || uniqueId == null)
@@ -332,7 +328,7 @@ public class SDMTraceUtil {
 	
 	public static void logPatternExit(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, String patternName) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (eThis == null)
@@ -347,7 +343,7 @@ public class SDMTraceUtil {
 	
 	protected static void logPatternExit(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (c == null || stw == null || storyPatternName == null || storyPatternName.length() == 0 || op == null)
@@ -364,7 +360,7 @@ public class SDMTraceUtil {
 	
 	public static void logLightweightPatternExit(SDMTraceContext c, StackTraceWrapper stw, EObject eThis, Method method, String patternName, String uniqueId) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (eThis == null)
@@ -379,7 +375,7 @@ public class SDMTraceUtil {
 	
 	protected static void logLightweightPatternExit(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op, String uniqueId) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (c == null || stw == null || storyPatternName == null || storyPatternName.length() == 0 || op == null || uniqueId == null)
@@ -396,7 +392,7 @@ public class SDMTraceUtil {
 	
 	public static void logBindObjVar(SDMTraceContext c, StackTraceWrapper stw, String objVarName, Class<?> objVarType, Object oldValue, Object newValue) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (c == null || stw == null || objVarName == null || objVarName.length() == 0 || objVarType == null || newValue == null)
@@ -413,7 +409,7 @@ public class SDMTraceUtil {
 	
 	public static void logUnbindObjVar(SDMTraceContext c, StackTraceWrapper stw, String objVarName, Class<?> objVarType, Object oldValue, Object newValue) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (c == null || stw == null || objVarName == null || objVarName.length() == 0 || objVarType == null)
@@ -430,7 +426,7 @@ public class SDMTraceUtil {
 	
 	public static void logCheckIsomorphicBinding(SDMTraceContext c, StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type, Object objVar1Value, String objVar2Name, Class<?> objVar2Type, Object objVar2Value) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
@@ -445,7 +441,7 @@ public class SDMTraceUtil {
 	
 	public static void logSuccessIsomorphicBinding(SDMTraceContext c, StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type, Object objVar1Value, String objVar2Name, Class<?> objVar2Type, Object objVar2Value) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
@@ -460,7 +456,7 @@ public class SDMTraceUtil {
 	
 	public static void logFailedIsomorphicBinding(SDMTraceContext c, StackTraceWrapper stw, String objVar1Name, Class<?> objVar1Type, Object objVar1Value, String objVar2Name, Class<?> objVar2Type, Object objVar2Value) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
@@ -475,7 +471,7 @@ public class SDMTraceUtil {
 	
 	public static void logCheckLinkExistence(SDMTraceContext c) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c))
@@ -486,7 +482,7 @@ public class SDMTraceUtil {
 	
 	public static void logSuccessLinkExistence(SDMTraceContext c) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c))
@@ -497,7 +493,7 @@ public class SDMTraceUtil {
 	
 	public static void logFailedLinkExistence(SDMTraceContext c) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c))
@@ -508,7 +504,7 @@ public class SDMTraceUtil {
 	
 	public static void logCheckAttributeConstraint(SDMTraceContext c) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c))
@@ -519,7 +515,7 @@ public class SDMTraceUtil {
 	
 	public static void logSuccessAttributeConstraint(SDMTraceContext c) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c))
@@ -530,7 +526,7 @@ public class SDMTraceUtil {
 	
 	public static void logFailedAttributeConstraint(SDMTraceContext c) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c))
@@ -541,7 +537,7 @@ public class SDMTraceUtil {
 	
 	public static void logMethodCallExpression(SDMTraceContext c) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c))
@@ -552,7 +548,7 @@ public class SDMTraceUtil {
 	
 	public static void logAttributeAssignment(SDMTraceContext c) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c))
@@ -563,7 +559,7 @@ public class SDMTraceUtil {
 	
 	public static void logMatchFound(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EObject eThis, Method method, Object...paramValues) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (eThis == null)
@@ -578,7 +574,7 @@ public class SDMTraceUtil {
 	
 	protected static void logMatchFound(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op, Object... paramValues) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
@@ -593,7 +589,7 @@ public class SDMTraceUtil {
 	
 	public static void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EObject eThis, Method method, Object...paramValues) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (eThis == null)
@@ -608,7 +604,7 @@ public class SDMTraceUtil {
 	
 	protected static void logNoMatchFound(SDMTraceContext c, StackTraceWrapper stw, String storyPatternName, EOperation op, Object... paramValues) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
@@ -623,7 +619,7 @@ public class SDMTraceUtil {
 	
 	public static void logObjCreation(SDMTraceContext c, StackTraceWrapper stw, String objVarName, Class<?> objVarType, Object newObjectValue) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
@@ -638,7 +634,7 @@ public class SDMTraceUtil {
 	
 	public static void logObjDeletion(SDMTraceContext c, StackTraceWrapper stw, String objVarName, Class<?> objVarType, Object oldObjectValue) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
@@ -653,7 +649,7 @@ public class SDMTraceUtil {
 	
 	public static void logLinkCreation(SDMTraceContext c, StackTraceWrapper stw, String sourceNodeName, Class<?> sourceNodeType, Object sourceNodeValue, String sourceRoleName, String targetNodeName, Class<?> targetNodeType, Object targetNodeValue, String targetRoleName) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
@@ -668,7 +664,7 @@ public class SDMTraceUtil {
 	
 	public static void logLinkDeletion(SDMTraceContext c, StackTraceWrapper stw, String sourceNodeName, Class<?> sourceNodeType, Object sourceNodeValue, String sourceRoleName, String targetNodeName, Class<?> targetNodeType, Object targetNodeValue, String targetRoleName) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
@@ -683,7 +679,7 @@ public class SDMTraceUtil {
 	
 	public static void logNoMoreLinkEndOptions(SDMTraceContext c, StackTraceWrapper stw, String linkName, String srcObjName, String trgtObjName) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
@@ -698,7 +694,7 @@ public class SDMTraceUtil {
 	
 	public static void logCommenceOfGraphRewriting(SDMTraceContext c, StackTraceWrapper stw, String patternName) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
@@ -713,7 +709,7 @@ public class SDMTraceUtil {
 	
 	public static void logBeginNACEvaluation(SDMTraceContext c, StackTraceWrapper stw, String patternName) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
@@ -728,7 +724,7 @@ public class SDMTraceUtil {
 	
 	public static void logEndOfNACEvaluation(SDMTraceContext c, StackTraceWrapper stw, String patternName) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
@@ -743,7 +739,7 @@ public class SDMTraceUtil {
 	
 	public static void logNACNotSatisfied(SDMTraceContext c, StackTraceWrapper stw, String patternName) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {
@@ -758,7 +754,7 @@ public class SDMTraceUtil {
 	
 	public static void logNACSatisfied(SDMTraceContext c, StackTraceWrapper stw, String patternName) {
 		init();
-		if (disableTracing)
+		if (tracingDisabled)
 			return;
 		
 		if (!GLOBAL_CONTEXT.equals(c)) {

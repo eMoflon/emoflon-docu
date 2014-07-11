@@ -6,7 +6,6 @@ import java.util.List;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.compare.EMFCompare;
-import org.eclipse.emf.compare.Match;
 import org.eclipse.emf.compare.diff.DefaultDiffEngine;
 import org.eclipse.emf.compare.diff.DiffBuilder;
 import org.eclipse.emf.compare.diff.FeatureFilter;
@@ -14,9 +13,7 @@ import org.eclipse.emf.compare.diff.IDiffEngine;
 import org.eclipse.emf.compare.diff.IDiffProcessor;
 import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
 
 /**
  * Collection of useful methods for EMFCompare

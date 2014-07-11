@@ -44,11 +44,7 @@ public class PatternExitEventTester {
 	public void test_getOperationDescription() {
 		String operationDesctiption = e.getOperationDesctiption();
 		assertNotNull(operationDesctiption);
-		assertTrue(operationDesctiption.length() > 0);
+		assertTrue(operationDesctiption.length() == 0);
 	}
 	
-	@Test
-	public void test_toString() {
-		String s = e.toString();
-	}
 }

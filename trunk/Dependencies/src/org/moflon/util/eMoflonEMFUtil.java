@@ -29,8 +29,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
@@ -73,18 +73,22 @@ public class eMoflonEMFUtil
       m.put("*", new XMIResourceFactoryImpl());
    }
 
-   public static final void installCrossReferencers(ResourceSet resourceSet) {
+   public static final void installCrossReferencers(ResourceSet resourceSet)
+   {
       // Add adapter for reverse navigation along unidirectional links
       ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
-      if (adapter == null) {
-         try {
+      if (adapter == null)
+      {
+         try
+         {
             resourceSet.eAdapters().add(new ECrossReferenceAdapter());
-         } catch (Exception e) {
+         } catch (Exception e)
+         {
             e.printStackTrace();
          }
       }
    }
-   
+
    /**
     * Use this method to initialize the given EPackage. This is required before loading/saving or working with the
     * package. In a plugin context, this might be automatically carried out via an appropriate extension point.
@@ -347,8 +351,7 @@ public class eMoflonEMFUtil
     *           the type of the opposite objects you are looking for
     * @return a list of all opposite objects
     */
-   public static List<?> getOppositeReference(EObject target, @SuppressWarnings("rawtypes")
-   Class sourceType, String targetRoleName)
+   public static List<?> getOppositeReference(EObject target, Class<?> sourceType, String targetRoleName)
    {
       Collection<Setting> settings = getInverseReferences(target);
 
@@ -372,7 +375,7 @@ public class eMoflonEMFUtil
       return returnList;
    }
 
-   private static EObject getCandidateObject(Class sourceType, String targetRoleName, Setting setting)
+   private static EObject getCandidateObject(Class<?> sourceType, String targetRoleName, Setting setting)
    {
       if (setting.getEStructuralFeature().getName().equals(targetRoleName))
       {
@@ -404,7 +407,7 @@ public class eMoflonEMFUtil
       return clazzName;
    }
 
-   public static boolean checkInheritance(Class superclass, EClassifier subclass)
+   public static boolean checkInheritance(Class<?> superclass, EClassifier subclass)
    {
       for (EClass sup : ((EClass) subclass).getEAllSuperTypes())
       {
@@ -458,7 +461,7 @@ public class eMoflonEMFUtil
       {
          object.eUnset(feature);
       }
-      
+
       ArrayList<Setting> settings = new ArrayList<>();
       settings.addAll(getInverseReferences(object));
       for (Setting setting : settings)
@@ -474,7 +477,7 @@ public class eMoflonEMFUtil
 
    }
 
-   @SuppressWarnings({ "unchecked", "rawtypes" })
+   @SuppressWarnings({ "unchecked"})
    public static void addOppositeReference(EObject source, EObject target, String targetRole)
    {
       EStructuralFeature reference = source.eClass().getEStructuralFeature(targetRole);
@@ -482,10 +485,9 @@ public class eMoflonEMFUtil
       {
          source.eSet(reference, target);
       } else
-         ((Collection) source.eGet(reference)).add(target);
+         ((Collection<EObject>) source.eGet(reference)).add(target);
    }
 
-   @SuppressWarnings({ "rawtypes" })
    public static void removeOppositeReference(EObject source, EObject target, String targetRole)
    {
       EStructuralFeature reference = source.eClass().getEStructuralFeature(targetRole);
@@ -493,13 +495,15 @@ public class eMoflonEMFUtil
       {
          source.eSet(reference, null);
       } else
-         ((Collection) source.eGet(reference)).remove(target);
+      {
+         ((Collection<?>) source.eGet(reference)).remove(target);
+      }
 
    }
 
    public static EStructuralFeature getReference(EObject obj, String name)
    {
-      for (EContentsEList.FeatureIterator featureIterator = (EContentsEList.FeatureIterator) obj.eCrossReferences().iterator(); featureIterator.hasNext();)
+      for (EContentsEList.FeatureIterator<?> featureIterator = (EContentsEList.FeatureIterator<?>) obj.eCrossReferences().iterator(); featureIterator.hasNext();)
       {
          featureIterator.next();
          EReference eReference = (EReference) featureIterator.feature();
@@ -512,7 +516,7 @@ public class eMoflonEMFUtil
 
    public static EStructuralFeature getContainment(EObject container, String name)
    {
-      for (EContentsEList.FeatureIterator featureIterator = (EContentsEList.FeatureIterator) container.eContents().iterator(); featureIterator.hasNext();)
+      for (EContentsEList.FeatureIterator<?> featureIterator = (EContentsEList.FeatureIterator<?>) container.eContents().iterator(); featureIterator.hasNext();)
       {
          featureIterator.next();
          EReference eReference = (EReference) featureIterator.feature();
@@ -532,12 +536,13 @@ public class eMoflonEMFUtil
    public static Set<EStructuralFeature> getAllReferences(EObject object)
    {
       EList<EStructuralFeature> references = new BasicEList<EStructuralFeature>();
-      for (EContentsEList.FeatureIterator featureIterator = (EContentsEList.FeatureIterator) object.eCrossReferences().iterator(); featureIterator.hasNext();)
+      for (EContentsEList.FeatureIterator<?> featureIterator = (EContentsEList.FeatureIterator<?>) object.eCrossReferences().iterator(); featureIterator
+            .hasNext();)
       {
          featureIterator.next();
          references.add(featureIterator.feature());
       }
-      for (EContentsEList.FeatureIterator featureIterator = (EContentsEList.FeatureIterator) object.eContents().iterator(); featureIterator.hasNext();)
+      for (EContentsEList.FeatureIterator<?> featureIterator = (EContentsEList.FeatureIterator<?>) object.eContents().iterator(); featureIterator.hasNext();)
       {
          featureIterator.next();
          references.add(featureIterator.feature());
@@ -650,7 +655,6 @@ public class eMoflonEMFUtil
       String stringName = null;
       for (EAttribute feature : attributes)
       {
-         String tmp = feature.getEType().getInstanceClassName();
          Object obj = eObject.eGet(feature);
          if (obj == null)
             continue;
@@ -686,11 +690,11 @@ public class eMoflonEMFUtil
 
       resource.getContents().add(object);
       set.getResources().add(resource);
-      
+
       return resource;
    }
 
-   public static List shuffle(List in)
+   public static List<Object> shuffle(List<Object> in)
    {
       final int size = in.size();
       if (size == 0 || size == 1)
