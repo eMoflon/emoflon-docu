@@ -13,107 +13,120 @@ import org.moflon.tracing.sdm.SDMTraceUtil;
 import org.moflon.tracing.sdm.events.TraceEvent;
 
 import static org.mockito.Mockito.*;
-
 import static org.junit.Assert.*;
 
+public class SDMTraceContextTester
+{
 
-public class SDMTraceContextTester {
+   private SDMTraceContext traceContext;
 
-	private SDMTraceContext traceContext;
-	private static EOperation op;
-	
-	@BeforeClass
-	public static void initClass() {
-		op = mock(EOperation.class); 
-	}
-	
-	@Before
-	public void initTest() {
-		traceContext = SDMTraceUtil.getTraceContext("foobar");
-		traceContext.reset();
-	}
-	
-	private void addEventsInOtherContext() throws NoSuchMethodException, SecurityException {
-		Method m = this.getClass().getDeclaredMethod("addEventsInOtherContext", new Class[]{});
-		m.setAccessible(true);
-		EOperation mockedOperation = mock(EOperation.class);
-		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m, mockedOperation);
-		SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[]{});
-		SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
-	}
-	
-	@Test
-	public void test_getTrace() throws NoSuchMethodException, SecurityException {
-		Method m = this.getClass().getDeclaredMethod("test_getTrace", new Class<?>[]{});
-		m.setAccessible(true);
-		EOperation mockedOperation = mock(EOperation.class);
-		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m, mockedOperation);
-		SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[]{});
-		addEventsInOtherContext();
-		SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
-		
-		TraceEvent[] trace = traceContext.getTrace(stw);
-		assertNotNull(trace);
-		assertTrue(trace.length > 0);
-		assertTrue(trace.length == 2);
-	}
-	
-	@Test
-	public void test_getFlatTrace() throws NoSuchMethodException, SecurityException {
-		Method m = this.getClass().getDeclaredMethod("test_getTrace", new Class<?>[]{});
-		m.setAccessible(true);
-		EOperation mockedOperation = mock(EOperation.class);
-		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m, mockedOperation);
-		SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[]{});
-		addEventsInOtherContext();
-		SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
-		
-		TraceEvent[] trace = traceContext.getFlatTrace();
-		assertNotNull(trace);
-		assertTrue(trace.length > 0);
-		assertTrue(trace.length == 4);
-	}
-	
-	@Test
-	public void test_getAllTraces() throws NoSuchMethodException, SecurityException {
-		Method m = this.getClass().getMethod("test_getTrace", new Class<?>[]{});
-		EOperation mockedOperation = mock(EOperation.class);
-		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m, mockedOperation);
-		SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[]{});
-		addEventsInOtherContext();
-		SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
-		
-		Map<StackTraceWrapper, TraceEvent[]> allTraces = traceContext.getAllTraces();
-		assertNotNull(allTraces);
-		assertTrue(allTraces.keySet().size() == 2);
-		
-		Iterator<TraceEvent[]> it = allTraces.values().iterator();		
-		TraceEvent[] next = it.next();
-		assertNotNull(next);
-		assertTrue(next.length == 2);
-		
-		next = it.next();
-		assertNotNull(next);
-		assertTrue(next.length == 2);
-		assertFalse(it.hasNext());
-	}
-	
-	@Test
-	public void test_getPseudoFlatTraceForMethod() throws NoSuchMethodException, SecurityException {
-		Method m1 = this.getClass().getDeclaredMethod("test_getPseudoFlatTraceForMethod", new Class<?>[]{});
-		EOperation mockedOperation = mock(EOperation.class);
-		StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m1, mockedOperation);
-		
-		Method m2 = this.getClass().getDeclaredMethod("test_getAllTraces", new Class<?>[]{});
-		
-		SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[]{});
-		addEventsInOtherContext();
-		SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
-		
-		TraceEvent[] pseudoFlatTraceForMethod = traceContext.getPseudoFlatTraceForMethod(m1);
-		assertNotNull(pseudoFlatTraceForMethod);
-		assertTrue(pseudoFlatTraceForMethod.length == 2);
-		
-		pseudoFlatTraceForMethod = traceContext.getPseudoFlatTraceForMethod(m2);
-	}
+   private static EOperation op;
+
+   @BeforeClass
+   public static void initClass()
+   {
+      op = mock(EOperation.class);
+   }
+
+   @BeforeClass
+   public static void setDefaultTracingStrategy() throws Exception
+   {
+      System.setProperty(SDMTraceUtil.SELECTED_TRACING_STRATEGY_SYS_PROP, "org.moflon.tracing.sdm.DefaultSDMTraceStrategy");
+   }
+
+   @Before
+   public void initTest()
+   {
+      traceContext = SDMTraceUtil.getTraceContext("foobar");
+      traceContext.reset();
+   }
+
+   private void addEventsInOtherContext() throws NoSuchMethodException, SecurityException
+   {
+      Method m = this.getClass().getDeclaredMethod("addEventsInOtherContext", new Class[] {});
+      m.setAccessible(true);
+      EOperation mockedOperation = mock(EOperation.class);
+      StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m, mockedOperation);
+      SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[] {});
+      SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
+   }
+
+   @Test
+   public void test_getTrace() throws NoSuchMethodException, SecurityException
+   {
+      Method m = this.getClass().getDeclaredMethod("test_getTrace", new Class<?>[] {});
+      m.setAccessible(true);
+      EOperation mockedOperation = mock(EOperation.class);
+      StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m, mockedOperation);
+      SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[] {});
+      addEventsInOtherContext();
+      SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
+
+      TraceEvent[] trace = traceContext.getTrace(stw);
+      assertNotNull(trace);
+      assertTrue(trace.length > 0);
+      assertTrue(trace.length == 2);
+   }
+
+   @Test
+   public void test_getFlatTrace() throws NoSuchMethodException, SecurityException
+   {
+      Method m = this.getClass().getDeclaredMethod("test_getTrace", new Class<?>[] {});
+      m.setAccessible(true);
+      EOperation mockedOperation = mock(EOperation.class);
+      StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m, mockedOperation);
+      SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[] {});
+      addEventsInOtherContext();
+      SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
+
+      TraceEvent[] trace = traceContext.getFlatTrace();
+      assertNotNull(trace);
+      assertTrue(trace.length > 0);
+      assertTrue(trace.length == 4);
+   }
+
+   @Test
+   public void test_getAllTraces() throws NoSuchMethodException, SecurityException
+   {
+      Method m = this.getClass().getMethod("test_getTrace", new Class<?>[] {});
+      EOperation mockedOperation = mock(EOperation.class);
+      StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m, mockedOperation);
+      SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[] {});
+      addEventsInOtherContext();
+      SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
+
+      Map<StackTraceWrapper, TraceEvent[]> allTraces = traceContext.getAllTraces();
+      assertNotNull(allTraces);
+      assertTrue(allTraces.keySet().size() == 2);
+
+      Iterator<TraceEvent[]> it = allTraces.values().iterator();
+      TraceEvent[] next = it.next();
+      assertNotNull(next);
+      assertTrue(next.length == 2);
+
+      next = it.next();
+      assertNotNull(next);
+      assertTrue(next.length == 2);
+      assertFalse(it.hasNext());
+   }
+
+   @Test
+   public void test_getPseudoFlatTraceForMethod() throws NoSuchMethodException, SecurityException
+   {
+      Method m1 = this.getClass().getDeclaredMethod("test_getPseudoFlatTraceForMethod", new Class<?>[] {});
+      EOperation mockedOperation = mock(EOperation.class);
+      StackTraceWrapper stw = SDMTraceUtil.getStackTraceWrapper(m1, mockedOperation);
+
+      Method m2 = this.getClass().getDeclaredMethod("test_getAllTraces", new Class<?>[] {});
+
+      SDMTraceUtil.logOperationEnter(traceContext, stw, op, new Object[] {});
+      addEventsInOtherContext();
+      SDMTraceUtil.logOperationExit(traceContext, stw, op, null);
+
+      TraceEvent[] pseudoFlatTraceForMethod = traceContext.getPseudoFlatTraceForMethod(m1);
+      assertNotNull(pseudoFlatTraceForMethod);
+      assertTrue(pseudoFlatTraceForMethod.length == 2);
+
+      pseudoFlatTraceForMethod = traceContext.getPseudoFlatTraceForMethod(m2);
+   }
 }

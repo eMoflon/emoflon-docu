@@ -14,8 +14,6 @@ import org.osgi.framework.BundleContext;
 public class Activator extends Plugin
 {
 
-   public static final String PLUGIN_ID = "org.moflon.dependencies";
-
    // The shared instance
    private static Activator plugin;
 
@@ -30,15 +28,15 @@ public class Activator extends Plugin
     * 
     * @param filePath
     *           Must be relative to the plugin root and indicate an existing resource (packaged in build)
-    * @param PLUGIN_ID
+    * @param pluginId
     *           The id of the plugin bundle to be searched
     * @return URL to the resource or null if nothing was found (URL because resource could be inside a jar).
     */
-   public static URL getPathRelToPlugIn(String filePath, String PLUGIN_ID)
+   public static URL getPathRelToPlugIn(String filePath, String pluginId)
    {
       try
       {
-         return FileLocator.resolve(Platform.getBundle(PLUGIN_ID).getEntry(filePath));
+         return FileLocator.resolve(Platform.getBundle(pluginId).getEntry(filePath));
       } catch (Exception e)
       {
          e.printStackTrace();
