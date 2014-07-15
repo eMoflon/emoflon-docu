@@ -89,7 +89,7 @@ public class WorkspaceHelper
    
    public static final String SUFFIX_GEN_ECORE = ".gen.ecore";
    
-   public static final String DEPENDENCIES_PLUGIN_NAME = "org.moflon.dependencies";
+   public static final String PLUGIN_ID_MOFLON_DEPENDENCIES = "org.moflon.dependencies";
 
    /**
     * Checks if given name is a valid name for a new project in the current workspace.
