@@ -13,11 +13,11 @@ public final class AntlrUtil
 
    public static URL getAntrlPathUrl()
    {
-      final URL url = Activator.getPathRelToPlugIn(WorkspaceHelper.ANTLR_3, WorkspaceHelper.DEPENDENCIES_PLUGIN_NAME);
+      final URL url = Activator.getPathRelToPlugIn(WorkspaceHelper.ANTLR_3, WorkspaceHelper.PLUGIN_ID_MOFLON_DEPENDENCIES);
       if (url == null)
       {
          throw new IllegalStateException(String.format("Could not find Antlr at expected location [path=%s, plugin=%s]", WorkspaceHelper.ANTLR_3,
-               WorkspaceHelper.DEPENDENCIES_PLUGIN_NAME));
+               WorkspaceHelper.PLUGIN_ID_MOFLON_DEPENDENCIES));
       }
       return url;
    }
