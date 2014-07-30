@@ -56,6 +56,8 @@ public class WorkspaceHelper
    public final static String DEBUG_FOLDER = "debug";
 
    public final static String TEMP_FOLDER = ".temp";
+   
+   public final static String SNAPSHOT_FOLDER = "snapshot";
 
    public final static int PROGRESS_SCALE = 1000;
 
