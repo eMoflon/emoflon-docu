@@ -181,6 +181,7 @@ public class eMoflonEMFUtil
          dependencies = new ResourceSetImpl();
 
       // Get the resource (load on demand)
+      dependencies.createResource(uriToModelResource);
       Resource resource = dependencies.getResource(uriToModelResource, true);
 
       // Add adapter for reverse navigation along unidirectional links
