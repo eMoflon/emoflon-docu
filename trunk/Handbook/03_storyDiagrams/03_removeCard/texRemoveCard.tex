@@ -80,7 +80,7 @@ while \texttt{card} is bound to the value of the parameter with the same name.
 \end{figure}
 
 \item[$\blacktriangleright$] Object variable scopes determine the changes to be applied to the any exiting references of the variable. Therefore, add:
-\syntax{-- -> card:card} to \texttt{@this} to destroy the \texttt{card} reference targeting the \texttt{card} object. Your pattern should now resemble
+\syntax{-- -card-> card} to \texttt{@this} to destroy the \texttt{card} reference targeting the \texttt{card} object. Your pattern should now resemble
 Fig.~\ref{eclipse:deleteReference}. 
 
 \begin{figure}[htp]
