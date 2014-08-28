@@ -12,7 +12,8 @@ all, a model that only stores attributes and references is a bit boring, right?
 \syntax{name `(' argument* `)' `:' return\_type \\
 \\
 With:\\
-name, arguments, return\_type := STRING}
+argument := param\_name : param\_type\\
+name, return\_type, param\_name, param\_type := STRING}
 
 \item[$\blacktriangleright$] Starting with the \texttt{Partition} EClass, we want a partition to be able to do three things: compare the answer on a
 \texttt{Card} with a guess and return a true/false response, remove a specific card from the partition, or empty itself of all cards.
