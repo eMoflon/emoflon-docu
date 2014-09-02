@@ -51,7 +51,7 @@ MethodCallExpression 			:= (objectVariableExpression | ParameterExpression)
 
 boolean_literal := true, false
 integer_literal := ['+' | '-'] ( '1' | ... | '9' )
-any_literal 		:= STRING
+any_literal	    := SINGLE_QUOTED_STRING
 
 attribute_name, method_call, ov_name, parameter_name,reference_name, 
 	source_type, type_reference := STRING
