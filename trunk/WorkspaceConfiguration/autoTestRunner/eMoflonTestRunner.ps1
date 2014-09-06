@@ -2,7 +2,7 @@ $OLD_DIR = $(get-location).Path
 $OUTPUT_DIRECTORY="$HOME\emoflon_autotest_tmp_dir"
 
 # List of all test workspaces
-$WORKSPACES = "TestWorkspace_Democles_0",
+$WORKSPACES = "TestWorkspace_Democles_0"#,
  	"TestWorkspace_Misc",
 	"TestWorkspace_TGG_0",
 	"TestWorkspace_TGG_1",
@@ -27,7 +27,11 @@ while(Test-Path $OUTPUT_DIRECTORY) {
 	
 	Remove-Item -Recurse -Force "$OUTPUT_DIRECTORY"
 	$i = $i + 1
-	if($i -gt 10) {break}
+	if($i -gt 10) {
+		echo "Maximum number of trials reached. Please try to clean the output directory, manually."
+		echo "Will now stop."
+		exit
+	}
 }  	
 echo ""
 echo "Cleaning output directory done."
@@ -38,12 +42,12 @@ echo "Changing to output directory"
 cd $OUTPUT_DIRECTORY
 
 
+echo "Starting Eclipse instances..."
 # Start Eclipse for all workspaces			  
 foreach ($WORKSPACE in $WORKSPACES) {
-  	echo "Checking out workspace '$WORKSPACE'"
-  	& $ECLIPSE_HOME\eclipse.exe -data $WORKSPACE -application org.moflon.testapplication -showLocation
+  	$eclipse = Start-Process -FilePath $ECLIPSE_HOME\eclipse.exe -ArgumentList '-data',$WORKSPACE,'-application','org.moflon.testapplication','-showLocation'   -PassThru
+  	echo "    [$($eclipse.Id)] Workspace '$WORKSPACE'"
 }
-
 
 
 cd $OLD_DIR
