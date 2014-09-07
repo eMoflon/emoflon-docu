@@ -47,6 +47,7 @@ echo "Starting Eclipse instances..."
 foreach ($WORKSPACE in $WORKSPACES) {
   	$eclipse = Start-Process -FilePath $ECLIPSE_HOME\eclipse.exe -ArgumentList '-data',$WORKSPACE,'-application','org.moflon.testapplication','-showLocation'   -PassThru
   	echo "    [$($eclipse.Id)] Workspace '$WORKSPACE'"
+  	$eclipse.Id >> "$OUTPUT_DIRECTORY\pids.txt"
 }
 
 
