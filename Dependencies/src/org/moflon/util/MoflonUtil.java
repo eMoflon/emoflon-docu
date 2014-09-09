@@ -25,14 +25,8 @@ import org.eclipse.emf.ecore.EcorePackage;
  */
 public class MoflonUtil
 {
-   public static final String MEMBERS_END = "// [user code injected with eMoflon] -->";
-   public static final String MEMBERS_BEGIN = "// <-- [user code injected with eMoflon]";
-   public static final String IMPORT_END = "// [user defined imports] -->";
-   public static final String IMPORT_BEGIN = "// <-- [user defined imports]";
-   public static final String MODEL_COMMENT = "// [user code injected with eMoflon]";
    
-   
-   public static String getMoflonDefaultURIForProject(String projectName){
+   public static String getMoflonDefaultURIForProject(final String projectName){
       return "http://www.moflon.org." + projectName;
    }
 
@@ -47,7 +41,7 @@ public class MoflonUtil
     *           Specifies what file/subdirectories are to be ignored
     * @throws IOException
     */
-   public static void copyDirToDir(URL sourceDir, File destination, FileFilter filter) throws IOException
+   public static void copyDirToDir(final URL sourceDir, final File destination, final FileFilter filter) throws IOException
    {
       if ("file".equals(sourceDir.getProtocol()))
       {
@@ -95,7 +89,7 @@ public class MoflonUtil
 	 * @param eCoreType the name of the Ecore data type class (e.g. EString)
 	 * @return the name of the java type class (e.g. String)
 	 */
-	public static String eCoreTypeToJavaType(String eCoreType, boolean numericalToNumber) throws IllegalArgumentException 
+	public static String eCoreTypeToJavaType(final String eCoreType, final boolean numericalToNumber) throws IllegalArgumentException 
 	{
 		String javaType = "";
 		List<String> primitiveNumberTypes = Arrays.asList(new String[] {
@@ -123,7 +117,7 @@ public class MoflonUtil
 	 * @param ENamedElement
 	 * @return
 	 */
-	public static String getFQN(ENamedElement element) {
+	public static String getFQN(final ENamedElement element) {
 		String fqn = element.getName();
 
 		ENamedElement e = element;
@@ -143,7 +137,7 @@ public class MoflonUtil
 	 * @param packageName
 	 * @return
 	 */
-   public static String determinePackageName(String packageName)
+   public static String determinePackageName(final String packageName)
    {
       switch (packageName)
       {
@@ -155,7 +149,7 @@ public class MoflonUtil
       }  
    }
    
-   public static boolean toBePluralized(String roleName, String packageName, String typeName, boolean toOne)
+   public static boolean toBePluralized(final String roleName, final String packageName, final String typeName, final boolean toOne)
    {
       switch (packageName)
       {
@@ -168,7 +162,7 @@ public class MoflonUtil
       }
    }
 
-   public static String handlePrefixForBooleanAttributes(String packageName, String attribute)
+   public static String handlePrefixForBooleanAttributes(final String packageName, final String attribute)
    {
       final String is = "is";
       final String prefix = ".is" + StringUtils.capitalize(attribute);
