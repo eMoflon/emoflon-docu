@@ -1,0 +1,13 @@
+#TeXlipse project settings
+#Sat Mar 31 20:02:55 CEST 2012
+builderNum=2
+outputDir=src/
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=eMoflonTutorial.tex
+outputFile=eMoflonTutorial.pdf
+langSpell=en
+markDer=true
+srcDir=src/

@@ -1,0 +1,107 @@
+\documentclass[11pt, oneside, a4paper]{book}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage[colorlinks,hyperindex,plainpages=false,breaklinks]{hyperref}
+\usepackage{amssymb}
+\usepackage{wasysym} 
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{placeins} % Necessary for \FloatBarrier
+\usepackage{subfig}   % Necessary for subfloat (images next to each other)
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames]{xcolor}
+\usepackage{listings}
+\usepackage{fancyhdr}
+
+\definecolor{codelightgray}{rgb}{0.87,0.87,0.87}
+
+\hypersetup{colorlinks=true,% 
+	linkcolor=black,%
+	citecolor=red,%
+	filecolor=blue,% 
+	menucolor=black,% 
+	pagecolor=black,%
+	urlcolor=black}
+		
+\lstset{language=,
+    keywordstyle=\color{blue},
+    basicstyle=\scriptsize\ttfamily,
+    showstringspaces=false,
+    backgroundcolor=\color{codelightgray},
+    morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
+}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt} 
+\setlength{\parskip}{0.3cm}
+
+\graphicspath{{../introduction_images/}{../../06_miscellaneous/commonFiles/}}
+
+% --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
+% Default plain header; turn off all lines and colors; turn on page numbers for all headers
+\newcommand{\noHeader}{
+ 	\fancyhead[OR]{\thepage}
+	\fancyhead[OL]{}
+ 	\fancyhead[EL]{\thepage}
+	\fancyhead[ER]{}
+	\renewcommand{\headrulewidth}{0pt}
+}
+
+% Common instruction Header; Black
+\newcommand{\genHeader}{
+	\fancyhead[OL]{}
+	\fancyhead[ER]{}
+	\renewcommand{\headrulewidth}{1.5pt}
+ 	\renewcommand{\headrule}{\hbox to\headwidth{%
+  		\color{Black}\leaders\hrule height \headrulewidth\hfill}}
+}
+% -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+% TODO:  Set individual handbook download links (appears on description page)
+% Custom links created at: http://tinyurl.com/
+\newcommand{\rootLink}[1]{\url{http://tinyurl.com/emoflon-docs/#1}}
+\newcommand{\dlPartOne}{\rootLink{part1.pdf}}
+\newcommand{\dlPartTwo}{\rootLink{part2.pdf}}
+\newcommand{\dlPartThree}{\rootLink{part3.pdf}}
+\newcommand{\dlPartFour}{\rootLink{part4.pdf}}
+\newcommand{\dlPartFive}{\rootLink{part5.pdf}}
+\newcommand{\dlPartSix}{\rootLink{part6.pdf}}
+
+% TODO:	Set time it takes to complete each part (make sure they match the Part introductions)
+\newcommand{\timeTwo}{1h}
+\newcommand{\timeThree}{3h}
+\newcommand{\timeFour}{1h 30min}
+\newcommand{\timeFive}{2h}
+\newcommand{\timeSix}{30 min}
+
+% TODO:  Update version number (Title Page Information)
+\def\partTitle{Part 0: Introduction}
+\input{../../06_miscellaneous/commonFiles/titlepage}
+% -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\begin{document}
+
+\frontmatter
+\noHeader
+
+{\let\newpage\relax\maketitle}
+
+\input{../../06_miscellaneous/commonFiles/copyright}
+\let\cleardoublepage\clearpage
+
+% Store page counter
+\newcounter{romanpages}
+\setcounter{romanpages}{\value{page}}
+
+\mainmatter
+
+% Main content for this part
+\input{introduction_source}
+
+\end{document}

@@ -1,0 +1,13 @@
+1.  Text editor framework for textual dsl
+
+2.  Integrator with protocol and break points
+
+3.  Lexer and parser grammars cannot be copy and pasted
+
+4.  Update TGG sections to reflect new GUI and conventions (IntegrationHelper etc.)
+
+5.  Binding expressions
+
+6.  Ignore rules
+
+7.  Edge rules
