@@ -102,7 +102,7 @@ public class WorkspaceHelper
     *           ID of bundle
     * @return A status object indicating success or failure and a relevant message.
     */
-   public static IStatus validateProjectName(String projectName, String pluginId)
+   public static IStatus validateProjectName(final String projectName, final String pluginId)
    {
       // Check if anything was entered at all
       if (projectName.length() == 0)
@@ -137,7 +137,7 @@ public class WorkspaceHelper
     * @return handle to newly created project
     * @throws CoreException
     */
-   public static IProject createProject(String projectName, String pluginId, IProgressMonitor monitor) throws CoreException
+   public static IProject createProject(final String projectName, final String pluginId, final IProgressMonitor monitor) throws CoreException
    {
       monitor.beginTask("", 2 * PROGRESS_SCALE);
 
@@ -176,7 +176,7 @@ public class WorkspaceHelper
     * @return newly created folder
     * @throws CoreException
     */
-   public static IFolder addFolder(IProject project, String folderName, IProgressMonitor monitor) throws CoreException
+   public static IFolder addFolder(final IProject project, final String folderName, final IProgressMonitor monitor) throws CoreException
    {
       monitor.beginTask("", 1 * PROGRESS_SCALE);
 
@@ -204,7 +204,7 @@ public class WorkspaceHelper
     * @throws URISyntaxException
     * @throws IOException
     */
-   public static void addFile(IProject project, String fileName, URL pathToContent, String pluginID, IProgressMonitor monitor) throws CoreException,
+   public static void addFile(final IProject project, final String fileName, final URL pathToContent, final String pluginID, final IProgressMonitor monitor) throws CoreException,
          URISyntaxException, IOException
    {
       monitor.beginTask("", 1 * PROGRESS_SCALE);
@@ -229,7 +229,7 @@ public class WorkspaceHelper
     *           Monitor to indicate progress
     * @throws CoreException
     */
-   public static void addFile(IProject project, String fileName, String contents, IProgressMonitor monitor) throws CoreException
+   public static void addFile(final IProject project, final String fileName, final String contents, final IProgressMonitor monitor) throws CoreException
    {
       monitor.beginTask("", 1 * PROGRESS_SCALE);
       IFile projectFile = project.getFile(fileName);
@@ -249,7 +249,7 @@ public class WorkspaceHelper
     *           a progress monitor, or null if progress reporting is not desired
     * @throws JavaModelException
     */
-   public static void setAsSourceFolderInBuildpath(IJavaProject javaProject, IFolder[] folderNames, IProgressMonitor monitor) throws JavaModelException
+   public static void setAsSourceFolderInBuildpath(final IJavaProject javaProject, final IFolder[] folderNames, final IProgressMonitor monitor) throws JavaModelException
    {
       monitor.beginTask("", 2 * PROGRESS_SCALE);
 
@@ -294,7 +294,7 @@ public class WorkspaceHelper
     * @throws CoreException
     *            if unable to add nature
     */
-   public static void addNature(IProject project, String natureId, IProgressMonitor monitor) throws CoreException
+   public static void addNature(final IProject project, final String natureId, final IProgressMonitor monitor) throws CoreException
    {
       monitor.beginTask("", 2 * PROGRESS_SCALE);
 
@@ -315,7 +315,7 @@ public class WorkspaceHelper
       monitor.done();
    }
 
-   public static void setJarAsLibOnBuildpath(IJavaProject javaProject, IFile jar, IProgressMonitor monitor) throws JavaModelException
+   public static void setJarAsLibOnBuildpath(final IJavaProject javaProject, final IFile jar, final IProgressMonitor monitor) throws JavaModelException
    {
       monitor.beginTask("", 2 * PROGRESS_SCALE);
 
@@ -343,7 +343,7 @@ public class WorkspaceHelper
       monitor.done();
    }
 
-   public static void setProjectOnBuildpath(IJavaProject javaProject, IJavaProject dependency, IProgressMonitor monitor) throws JavaModelException
+   public static void setProjectOnBuildpath(final IJavaProject javaProject, final IJavaProject dependency, final IProgressMonitor monitor) throws JavaModelException
    {
       monitor.beginTask("", 2 * PROGRESS_SCALE);
 
@@ -400,7 +400,7 @@ public class WorkspaceHelper
     *           a progress monitor, or null if progress reporting is not desired
     * @return
     */
-   public static IJavaProject setUpAsJavaProject(IProject project, final IProgressMonitor monitor)
+   public static IJavaProject setUpAsJavaProject(final IProject project, final IProgressMonitor monitor)
    {
       monitor.beginTask("", 1 * PROGRESS_SCALE);
 
@@ -408,6 +408,7 @@ public class WorkspaceHelper
       final IJavaProject javaProject = JavaCore.create(project);
 
       PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
+         @Override
          public void run()
          {
             jcpage.init(javaProject, null, null, true);
@@ -431,7 +432,7 @@ public class WorkspaceHelper
     * 
     * @return
     */
-   public static boolean addEMFDependenciesToClassPath(IProgressMonitor monitor, IProject iproject)
+   public static boolean addEMFDependenciesToClassPath(final IProgressMonitor monitor, final IProject iproject)
    {
       monitor.beginTask("", 1 * WorkspaceHelper.PROGRESS_SCALE);
 
@@ -474,14 +475,14 @@ public class WorkspaceHelper
       return true;
    }
 
-   public static List<IProject> getProjectsOnBuildPathInReversedOrder(IProject project)
+   public static List<IProject> getProjectsOnBuildPathInReversedOrder(final IProject project)
    {
       List<IProject> result = getProjectsOnBuildPath(project);
       Collections.reverse(result);
       return result;
    }
    
-   public static List<IProject> getProjectsOnBuildPath(IProject project) {
+   public static List<IProject> getProjectsOnBuildPath(final IProject project) {
       IJavaProject javaProject = JavaCore.create(project);
       
       // Get current entries on the classpath
@@ -504,7 +505,7 @@ public class WorkspaceHelper
       return projectsOnBuildPath;
    }
 
-   public static void setContainerOnBuildPath(Collection<IClasspathEntry> classpathEntries, String container)
+   public static void setContainerOnBuildPath(final Collection<IClasspathEntry> classpathEntries, final String container)
    {
       IClasspathEntry entry = JavaCore.newContainerEntry(new Path(container));
       for (IClasspathEntry iClasspathEntry : classpathEntries)
@@ -518,11 +519,11 @@ public class WorkspaceHelper
       classpathEntries.add(entry);
    }
 
-   public static void setContainerOnBuildPath(IProject project, String container) {
+   public static void setContainerOnBuildPath(final IProject project, final String container) {
       setContainerOnBuildPath(JavaCore.create(project), container);
    }
    
-   public static void transferContainersOnBuildPath(IJavaProject from, IJavaProject to) {
+   public static void transferContainersOnBuildPath(final IJavaProject from, final IJavaProject to) {
       try
       {
          for (IClasspathEntry iClasspathEntry : from.getRawClasspath())
@@ -538,7 +539,7 @@ public class WorkspaceHelper
       }      
    }
    
-   public static void setContainerOnBuildPath(IJavaProject iJavaProject, String container)
+   public static void setContainerOnBuildPath(final IJavaProject iJavaProject, final String container)
    {
       try
       {
@@ -562,7 +563,7 @@ public class WorkspaceHelper
       }
    }
 
-   public static void removeProjectFromBuildPath(IJavaProject iJavaProject, IProject project)
+   public static void removeProjectFromBuildPath(final IJavaProject iJavaProject, final IProject project)
    {      
       try
       {
@@ -587,7 +588,7 @@ public class WorkspaceHelper
       }
    }
 
-   public static boolean isContainerOnBuildPath(IProject project, String container)
+   public static boolean isContainerOnBuildPath(final IProject project, final String container)
    {
       IJavaProject iJavaProject = JavaCore.create(project);
       
@@ -608,7 +609,7 @@ public class WorkspaceHelper
       return false;
    }
 
-   public static void addAllFolders(IProject project, String path, IProgressMonitor monitor) throws CoreException
+   public static void addAllFolders(final IProject project, final String path, final IProgressMonitor monitor) throws CoreException
    {
       String[] folders = path.split(SEPARATOR);
       String currentFolder = "";
@@ -619,7 +620,7 @@ public class WorkspaceHelper
       }
    }
 
-   public static void addFile(IFile file, String contents, IProgressMonitor monitor) throws CoreException
+   public static void addFile(final IFile file, final String contents, final IProgressMonitor monitor) throws CoreException
    {
       ByteArrayInputStream source = new ByteArrayInputStream(contents.getBytes());
       file.create(source, true, new SubProgressMonitor(monitor, 1 * PROGRESS_SCALE));
@@ -639,7 +640,7 @@ public class WorkspaceHelper
     * @param monitor
     * @throws CoreException
     */
-   public static void addAllFoldersAndFile(IProject project, IPath pathToFile, String fileContent, IProgressMonitor monitor) throws CoreException
+   public static void addAllFoldersAndFile(final IProject project, final IPath pathToFile, final String fileContent, final IProgressMonitor monitor) throws CoreException
    {
       // Remove file segment
       IPath folders = pathToFile.removeLastSegments(1);
@@ -651,17 +652,27 @@ public class WorkspaceHelper
       addFile(project.getFile(pathToFile), fileContent, monitor);
    }
    
-   public static SubProgressMonitor createSubMonitor(IProgressMonitor monitor){
+   public static SubProgressMonitor createSubMonitor(final IProgressMonitor monitor){
       return createSubMonitor(monitor, 1);
    }
    
-   public static SubProgressMonitor createSubMonitor(IProgressMonitor monitor, int ticks) {
+   public static SubProgressMonitor createSubMonitor(final IProgressMonitor monitor, final int ticks) {
       return new SubProgressMonitor(monitor, ticks*PROGRESS_SCALE);
    }
    
-   public static boolean isMoflonProject(IProject dependencyProject) throws CoreException {
-		return dependencyProject.hasNature(REPOSITORY_NATURE_ID) || dependencyProject.hasNature(INTEGRATION_NATURE_ID);
+   public static boolean isMoflonProject(final IProject project) throws CoreException {
+		return isRepositoryProject(project) || isIntegrationProject(project);
 	}
+
+   public static boolean isIntegrationProject(final IProject project) throws CoreException
+   {
+      return project.hasNature(INTEGRATION_NATURE_ID);
+   }
+
+   public static boolean isRepositoryProject(final IProject project) throws CoreException
+   {
+      return project.hasNature(REPOSITORY_NATURE_ID);
+   }
 
 
 }
