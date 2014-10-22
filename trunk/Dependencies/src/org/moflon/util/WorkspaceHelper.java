@@ -40,57 +40,60 @@ import org.eclipse.ui.PlatformUI;
 
 /**
  * A collection of useful helper methods when dealing with a workspace in an eclipse plugin.
- * 
- * @author anjorin
- * @author (last editor) $Author: mwieber $
- * @version $Revision: 1995 $ $Date: 2013-06-25 15:58:55 +0200 (Di, 25 Jun 2013) $
  */
 public class WorkspaceHelper
 {
+
    private static final Logger logger = Logger.getLogger(WorkspaceHelper.class);
 
-   public final static String SEPARATOR = "/"; 
-   
+   public final static String PATH_SEPARATOR = "/";
+
    public final static String MODEL_FOLDER = "model";
-   
+
    public final static String DEBUG_FOLDER = "debug";
 
+   public static final String LIB_FOLDER = "lib";
+
+   public static final String GEN_FOLDER = "gen";
+
    public final static String TEMP_FOLDER = ".temp";
-   
+
    public final static String SNAPSHOT_FOLDER = "snapshot";
 
    public final static int PROGRESS_SCALE = 1000;
 
    public static final String ECORE_FILE_EXTENSION = ".ecore";
-   
+
    public static final String TGG_FILE_EXTENSION = ".tgg.xmi";
 
-   public static final String INSTANCES_FOLDER = "instances";
-
-   public static final String LIB_FOLDER = "lib";
+   public static final String INJECTION_FOLDER = "injection";
    
-   public static final String GEN_FOLDER = "gen";
+   public static final String INJECTION_FILE_EXTENSION = "inject";
+
+   public static final String JAVA_FILE_EXTENSION = "java";
+   
+   public static final String INSTANCES_FOLDER = "instances";
 
    public static final String GEN_MODEL_EXT = ".genmodel";
 
    public static final String MOCA_CONTAINER = "org.moflon.moca.MOCA_CONTAINER";
 
-   public static final String MOFLON_CONTAINER =  "org.moflon.ide.MOFLON_CONTAINER";
+   public static final String MOFLON_CONTAINER = "org.moflon.ide.MOFLON_CONTAINER";
 
    public static final String TIE_CONTAINER = "org.moflon.tie.TIE_CONTAINER";
 
    public static final String MOSL_CONTAINER = "org.moflon.ide.MOSL";
-   
+
    public static final String REPOSITORY_NATURE_ID = "org.moflon.ide.ui.runtime.natures.RepositoryNature";
-   
+
    public static final String INTEGRATION_NATURE_ID = "org.moflon.ide.ui.runtime.natures.IntegrationNature";
-   
+
    public static final String ANTLR_3 = "/lib/antlr-3.5.2-complete.jar";
 
    public static final String LOG4J_JAR = "/lib/log4j-1.2.17.jar";
-   
+
    public static final String SUFFIX_GEN_ECORE = ".gen.ecore";
-   
+
    public static final String PLUGIN_ID_MOFLON_DEPENDENCIES = "org.moflon.dependencies";
 
    /**
@@ -181,7 +184,7 @@ public class WorkspaceHelper
       monitor.beginTask("", 1 * PROGRESS_SCALE);
 
       IFolder projFolder = project.getFolder(folderName);
-      if(!projFolder.exists())
+      if (!projFolder.exists())
          projFolder.create(true, true, new SubProgressMonitor(monitor, 1 * PROGRESS_SCALE));
       monitor.done();
       return projFolder;
@@ -204,8 +207,8 @@ public class WorkspaceHelper
     * @throws URISyntaxException
     * @throws IOException
     */
-   public static void addFile(final IProject project, final String fileName, final URL pathToContent, final String pluginID, final IProgressMonitor monitor) throws CoreException,
-         URISyntaxException, IOException
+   public static void addFile(final IProject project, final String fileName, final URL pathToContent, final String pluginID, final IProgressMonitor monitor)
+         throws CoreException, URISyntaxException, IOException
    {
       monitor.beginTask("", 1 * PROGRESS_SCALE);
 
@@ -249,7 +252,8 @@ public class WorkspaceHelper
     *           a progress monitor, or null if progress reporting is not desired
     * @throws JavaModelException
     */
-   public static void setAsSourceFolderInBuildpath(final IJavaProject javaProject, final IFolder[] folderNames, final IProgressMonitor monitor) throws JavaModelException
+   public static void setAsSourceFolderInBuildpath(final IJavaProject javaProject, final IFolder[] folderNames, final IProgressMonitor monitor)
+         throws JavaModelException
    {
       monitor.beginTask("", 2 * PROGRESS_SCALE);
 
@@ -343,43 +347,48 @@ public class WorkspaceHelper
       monitor.done();
    }
 
-   public static void setProjectOnBuildpath(final IJavaProject javaProject, final IJavaProject dependency, final IProgressMonitor monitor) throws JavaModelException
+   public static void setProjectOnBuildpath(final IJavaProject javaProject, final IJavaProject dependency, final IProgressMonitor monitor)
+         throws JavaModelException
    {
       monitor.beginTask("", 2 * PROGRESS_SCALE);
 
       // Helper collections to determine the current entries of the java project's classpath
       List<IClasspathEntry> classpathEntries = new LinkedList<IClasspathEntry>();
       Set<IPath> tempSetOfPathsForProjects = new HashSet<IPath>(); // used for filtering (s. below)
-      
+
       // Collect project paths in list and filter out duplicates
-      for (IClasspathEntry entry : javaProject.getRawClasspath()) {
-         if (entry.getEntryKind() == IClasspathEntry.CPE_PROJECT) {
+      for (IClasspathEntry entry : javaProject.getRawClasspath())
+      {
+         if (entry.getEntryKind() == IClasspathEntry.CPE_PROJECT)
+         {
             // we found a project dependency
             IPath pathOfEntry = entry.getPath();
             // if we have already encountered the entry (should not happen though [mw])
             // do not add it again
-            if (!tempSetOfPathsForProjects.contains(pathOfEntry)) {
+            if (!tempSetOfPathsForProjects.contains(pathOfEntry))
+            {
                // we have found a new entry
                // update the helper set
                tempSetOfPathsForProjects.add(pathOfEntry);
                // add the entry also to the classpath (to maintain the original ordering)
                classpathEntries.add(entry);
             }
-         } else {
+         } else
+         {
             // this classpathEntry does not reference another project
             // so just add it (can this assumption potentially lead to an error? [mw])
             classpathEntries.add(entry);
          }
       }
 
-      // Add new project path to list of project paths (if not already present) 
+      // Add new project path to list of project paths (if not already present)
       if (dependency != null)
       {
          IClasspathEntry projectEntry = JavaCore.newProjectEntry(dependency.getPath());
          if (tempSetOfPathsForProjects.add(projectEntry.getPath()))
             classpathEntries.add(projectEntry);
       }
-      
+
       // Convert the collected entries to an array (represents the updated classpath entries)
       final IClasspathEntry[] newEntries = classpathEntries.toArray(new IClasspathEntry[classpathEntries.size()]);
 
@@ -426,7 +435,7 @@ public class WorkspaceHelper
 
       return javaProject;
    }
-   
+
    /**
     * Add dependencies of generated EMF code to classpath
     * 
@@ -439,7 +448,7 @@ public class WorkspaceHelper
       try
       {
          IJavaProject project = JavaCore.create(iproject);
-         
+
          List<IClasspathEntry> classpathEntries = new UniqueEList<IClasspathEntry>();
          classpathEntries.addAll(Arrays.asList(project.getRawClasspath()));
 
@@ -449,7 +458,7 @@ public class WorkspaceHelper
          CodeGenUtil.EclipseUtil.addClasspathEntries(classpathEntries, "EMF_COMMON", "org.eclipse.emf.common");
          CodeGenUtil.EclipseUtil.addClasspathEntries(classpathEntries, "EMF_ECORE", "org.eclipse.emf.ecore");
          CodeGenUtil.EclipseUtil.addClasspathEntries(classpathEntries, "EMF_ECORE_XMI", "org.eclipse.emf.ecore.xmi");
-         
+
          // Remove duplicate entries
          List<IClasspathEntry> filteredEntries = new ArrayList<IClasspathEntry>();
          HashSet<IPath> pathes = new HashSet<IPath>();
@@ -481,10 +490,11 @@ public class WorkspaceHelper
       Collections.reverse(result);
       return result;
    }
-   
-   public static List<IProject> getProjectsOnBuildPath(final IProject project) {
+
+   public static List<IProject> getProjectsOnBuildPath(final IProject project)
+   {
       IJavaProject javaProject = JavaCore.create(project);
-      
+
       // Get current entries on the classpath
       ArrayList<IProject> projectsOnBuildPath = new ArrayList<IProject>();
       try
@@ -501,7 +511,7 @@ public class WorkspaceHelper
          logger.error("Unable to determine projects on buildpath for: " + project.getName());
          e.printStackTrace();
       }
-      
+
       return projectsOnBuildPath;
    }
 
@@ -510,25 +520,29 @@ public class WorkspaceHelper
       IClasspathEntry entry = JavaCore.newContainerEntry(new Path(container));
       for (IClasspathEntry iClasspathEntry : classpathEntries)
       {
-         if(iClasspathEntry.getPath().equals(entry.getPath())){
+         if (iClasspathEntry.getPath().equals(entry.getPath()))
+         {
             // No need to add variable - already on classpath
             return;
          }
       }
-      
+
       classpathEntries.add(entry);
    }
 
-   public static void setContainerOnBuildPath(final IProject project, final String container) {
+   public static void setContainerOnBuildPath(final IProject project, final String container)
+   {
       setContainerOnBuildPath(JavaCore.create(project), container);
    }
-   
-   public static void transferContainersOnBuildPath(final IJavaProject from, final IJavaProject to) {
+
+   public static void transferContainersOnBuildPath(final IJavaProject from, final IJavaProject to)
+   {
       try
       {
          for (IClasspathEntry iClasspathEntry : from.getRawClasspath())
          {
-            if (iClasspathEntry.getEntryKind() == IClasspathEntry.CPE_CONTAINER){
+            if (iClasspathEntry.getEntryKind() == IClasspathEntry.CPE_CONTAINER)
+            {
                setContainerOnBuildPath(to, iClasspathEntry.getPath().toString());
             }
          }
@@ -536,9 +550,9 @@ public class WorkspaceHelper
       {
          logger.error("Unable to get classpath of source(from) IJavaProject");
          e.printStackTrace();
-      }      
+      }
    }
-   
+
    public static void setContainerOnBuildPath(final IJavaProject iJavaProject, final String container)
    {
       try
@@ -564,7 +578,7 @@ public class WorkspaceHelper
    }
 
    public static void removeProjectFromBuildPath(final IJavaProject iJavaProject, final IProject project)
-   {      
+   {
       try
       {
          // Get current entries on the classpath and filter project out
@@ -591,7 +605,7 @@ public class WorkspaceHelper
    public static boolean isContainerOnBuildPath(final IProject project, final String container)
    {
       IJavaProject iJavaProject = JavaCore.create(project);
-      
+
       try
       {
          // Get current entries on the classpath and filter project out
@@ -609,17 +623,32 @@ public class WorkspaceHelper
       return false;
    }
 
+   /**
+    * Creates a folder denoted by the path inside the given project.
+    * 
+    * @param project
+    * @param path the path, separated with {@link WorkspaceHelper#PATH_SEPARATOR}
+    * @param monitor
+    * @throws CoreException
+    */
    public static void addAllFolders(final IProject project, final String path, final IProgressMonitor monitor) throws CoreException
    {
-      String[] folders = path.split(SEPARATOR);
-      String currentFolder = "";
+      String[] folders = path.split(PATH_SEPARATOR);
+      StringBuilder currentFolder = new StringBuilder();
       for (String folder : folders)
       {
-         currentFolder += SEPARATOR + folder;
-         addFolder(project, currentFolder, monitor);
+         currentFolder.append(PATH_SEPARATOR).append(folder);
+         addFolder(project, currentFolder.toString(), monitor);
       }
    }
 
+   /**
+    * Creates the given file and stores the given contents in it.
+    * @param file
+    * @param contents
+    * @param monitor the monitor that reports on the progress
+    * @throws CoreException
+    */
    public static void addFile(final IFile file, final String contents, final IProgressMonitor monitor) throws CoreException
    {
       ByteArrayInputStream source = new ByteArrayInputStream(contents.getBytes());
@@ -640,7 +669,8 @@ public class WorkspaceHelper
     * @param monitor
     * @throws CoreException
     */
-   public static void addAllFoldersAndFile(final IProject project, final IPath pathToFile, final String fileContent, final IProgressMonitor monitor) throws CoreException
+   public static void addAllFoldersAndFile(final IProject project, final IPath pathToFile, final String fileContent, final IProgressMonitor monitor)
+         throws CoreException
    {
       // Remove file segment
       IPath folders = pathToFile.removeLastSegments(1);
@@ -651,18 +681,21 @@ public class WorkspaceHelper
       // Create file
       addFile(project.getFile(pathToFile), fileContent, monitor);
    }
-   
-   public static SubProgressMonitor createSubMonitor(final IProgressMonitor monitor){
+
+   public static SubProgressMonitor createSubMonitor(final IProgressMonitor monitor)
+   {
       return createSubMonitor(monitor, 1);
    }
-   
-   public static SubProgressMonitor createSubMonitor(final IProgressMonitor monitor, final int ticks) {
-      return new SubProgressMonitor(monitor, ticks*PROGRESS_SCALE);
+
+   public static SubProgressMonitor createSubMonitor(final IProgressMonitor monitor, final int ticks)
+   {
+      return new SubProgressMonitor(monitor, ticks * PROGRESS_SCALE);
    }
-   
-   public static boolean isMoflonProject(final IProject project) throws CoreException {
-		return isRepositoryProject(project) || isIntegrationProject(project);
-	}
+
+   public static boolean isMoflonProject(final IProject project) throws CoreException
+   {
+      return isRepositoryProject(project) || isIntegrationProject(project);
+   }
 
    public static boolean isIntegrationProject(final IProject project) throws CoreException
    {
@@ -674,5 +707,32 @@ public class WorkspaceHelper
       return project.hasNature(REPOSITORY_NATURE_ID);
    }
 
+   public static boolean isInjectionFile(final IFile file)
+   {
+      return file != null && file.getName().endsWith(INJECTION_FILE_EXTENSION);
+   }
+
+   public static boolean isJavaFile(final IFile file)
+   {
+      return file != null && file.getName().endsWith(".java");
+   }
+
+   public static IPath getPathToInjection(final IFile javaFile)
+   {
+      final IPath packagePath = javaFile.getProjectRelativePath().removeFirstSegments(1);
+      final IPath pathToInjection = packagePath.removeFileExtension().addFileExtension(INJECTION_FILE_EXTENSION);
+      final IFolder injectionFolder = javaFile.getProject().getFolder(WorkspaceHelper.INJECTION_FOLDER);
+      final IPath fullInjectionPath = injectionFolder.getProjectRelativePath().append(pathToInjection);
+      return fullInjectionPath;
+   }
+
+   public static IPath getPathToJavaFile(final IFile file)
+   {
+      final IPath packagePath = file.getProjectRelativePath().removeFirstSegments(1);
+      final IPath pathToJavaFile = packagePath.removeFileExtension().addFileExtension(JAVA_FILE_EXTENSION);
+      final IFolder genFolder = file.getProject().getFolder(WorkspaceHelper.GEN_FOLDER);
+      final IPath fullJavaPath = genFolder.getProjectRelativePath().append(pathToJavaFile);
+      return fullJavaPath;
+   }
 
 }
