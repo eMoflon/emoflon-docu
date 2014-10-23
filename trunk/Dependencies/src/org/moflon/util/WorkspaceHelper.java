@@ -750,4 +750,14 @@ public class WorkspaceHelper
       return fullJavaPath;
    }
 
+   public static IProject getProjectRoot(final String projectName)
+   {
+      return ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+   }
+
+   public static boolean isPdfFile(final IResource resource)
+   {
+      return resource.getName().endsWith(".pdf");
+   }
+
 }
