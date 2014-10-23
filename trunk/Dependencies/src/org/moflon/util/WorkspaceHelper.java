@@ -67,11 +67,11 @@ public class WorkspaceHelper
    public static final String TGG_FILE_EXTENSION = ".tgg.xmi";
 
    public static final String INJECTION_FOLDER = "injection";
-   
+
    public static final String INJECTION_FILE_EXTENSION = "inject";
 
    public static final String JAVA_FILE_EXTENSION = "java";
-   
+
    public static final String INSTANCES_FOLDER = "instances";
 
    public static final String GEN_MODEL_EXT = ".genmodel";
@@ -87,6 +87,8 @@ public class WorkspaceHelper
    public static final String REPOSITORY_NATURE_ID = "org.moflon.ide.ui.runtime.natures.RepositoryNature";
 
    public static final String INTEGRATION_NATURE_ID = "org.moflon.ide.ui.runtime.natures.IntegrationNature";
+
+   public static final String METAMODEL_NATURE_ID = "org.moflon.ide.ui.runtime.natures.MetamodelNature";
 
    public static final String ANTLR_3 = "/lib/antlr-3.5.2-complete.jar";
 
@@ -627,7 +629,8 @@ public class WorkspaceHelper
     * Creates a folder denoted by the path inside the given project.
     * 
     * @param project
-    * @param path the path, separated with {@link WorkspaceHelper#PATH_SEPARATOR}
+    * @param path
+    *           the path, separated with {@link WorkspaceHelper#PATH_SEPARATOR}
     * @param monitor
     * @throws CoreException
     */
@@ -644,9 +647,11 @@ public class WorkspaceHelper
 
    /**
     * Creates the given file and stores the given contents in it.
+    * 
     * @param file
     * @param contents
-    * @param monitor the monitor that reports on the progress
+    * @param monitor
+    *           the monitor that reports on the progress
     * @throws CoreException
     */
    public static void addFile(final IFile file, final String contents, final IProgressMonitor monitor) throws CoreException
@@ -697,6 +702,11 @@ public class WorkspaceHelper
       return isRepositoryProject(project) || isIntegrationProject(project);
    }
 
+   public static boolean isMoflonOrMetamodelProject(final IProject project) throws CoreException
+   {
+      return isMoflonProject(project) || isMetamodelProject(project);
+   }
+
    public static boolean isIntegrationProject(final IProject project) throws CoreException
    {
       return project.hasNature(INTEGRATION_NATURE_ID);
@@ -705,6 +715,11 @@ public class WorkspaceHelper
    public static boolean isRepositoryProject(final IProject project) throws CoreException
    {
       return project.hasNature(REPOSITORY_NATURE_ID);
+   }
+
+   public static boolean isMetamodelProject(final IProject project) throws CoreException
+   {
+      return project.hasNature(METAMODEL_NATURE_ID);
    }
 
    public static boolean isInjectionFile(final IFile file)
