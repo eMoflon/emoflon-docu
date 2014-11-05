@@ -31,6 +31,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.jdt.core.IClasspathAttribute;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
@@ -250,19 +251,17 @@ public class WorkspaceHelper
     *           java project whose build path will be modified
     * @param folderNames
     *           source folder names to add to build path of project javaProject
+    * @param extraAttributes 
     * @param monitor
     *           a progress monitor, or null if progress reporting is not desired
     * @throws JavaModelException
     */
-   public static void setAsSourceFolderInBuildpath(final IJavaProject javaProject, final IFolder[] folderNames, final IProgressMonitor monitor)
+   public static void setAsSourceFolderInBuildpath(final IJavaProject javaProject, final IFolder[] folderNames, final IClasspathAttribute[] extraAttributes, final IProgressMonitor monitor)
          throws JavaModelException
    {
       monitor.beginTask("", 2 * PROGRESS_SCALE);
 
-      // Get current entries on the classpath
-      Collection<IClasspathEntry> entries = new HashSet<IClasspathEntry>();
-      for (IClasspathEntry entry : javaProject.getRawClasspath())
-         entries.add(entry);
+      Collection<IClasspathEntry> entries = getClasspathEntries(javaProject);
 
       // Add new entries for the classpath
       if (folderNames != null)
@@ -271,14 +270,14 @@ public class WorkspaceHelper
          {
             if (folder != null)
             {
-               IClasspathEntry prjEntry = JavaCore.newSourceEntry(folder.getFullPath());
+               IClasspathEntry prjEntry = JavaCore.newSourceEntry(folder.getFullPath(), null, null, null, extraAttributes);
                entries.add(prjEntry);
             }
          }
       }
       monitor.worked(1 * PROGRESS_SCALE);
 
-      // Fill new classpath (must be an array)
+      // Fill new classpath
       IClasspathEntry[] newEntries = new IClasspathEntry[entries.size()];
       entries.toArray(newEntries);
 
@@ -286,6 +285,17 @@ public class WorkspaceHelper
       javaProject.setRawClasspath(newEntries, new SubProgressMonitor(monitor, 1 * PROGRESS_SCALE));
 
       monitor.done();
+   }
+
+   /**
+    * Returns the set of classpath entries of the given Java project
+    */
+   public static Collection<IClasspathEntry> getClasspathEntries(final IJavaProject javaProject) throws JavaModelException
+   {
+      Collection<IClasspathEntry> entries = new HashSet<IClasspathEntry>();
+      for (IClasspathEntry entry : javaProject.getRawClasspath())
+         entries.add(entry);
+      return entries;
    }
 
    /**
