@@ -491,6 +491,10 @@ public class eMoflonEMFUtil
 
    public static void removeOppositeReference(EObject source, EObject target, String targetRole)
    {
+      removeEdge(source, target, targetRole);
+   }
+   
+   public static void removeEdge(EObject source, EObject target, String targetRole){
       EStructuralFeature reference = source.eClass().getEStructuralFeature(targetRole);
       if (!reference.isMany())
       {
@@ -498,8 +502,7 @@ public class eMoflonEMFUtil
       } else
       {
          ((Collection<?>) source.eGet(reference)).remove(target);
-      }
-
+      }      
    }
 
    public static EStructuralFeature getReference(EObject obj, String name)
