@@ -36,8 +36,8 @@ Create a negative \texttt{next\-Part\-it\-ion} object variable by using the nega
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Now add \texttt{`-> next : nextPartition'} to \texttt{lastPartition}'s scope. This attempts to establish a \texttt{next} link from
-the last partition. Next, add \texttt{`++ -> next : newPartition'} (Fig.~\ref{eclipse:firstNAC}). This constraint will only be fulfilled if the NAC fails, and
+\item[$\blacktriangleright$] Now add \texttt{`-next-> nextPartition'} to \texttt{lastPartition}'s scope. This attempts to establish a \texttt{next} link from
+the last partition. Next, add \texttt{`++ -next-> newPartition'} (Fig.~\ref{eclipse:firstNAC}). This constraint will only be fulfilled if the NAC fails, and
 it establishes the \texttt{newPartition} as the final partition.
 
 \begin{figure}[htbp]
@@ -68,7 +68,7 @@ reference names!
 \newpage
 
 \item[$\blacktriangleright$] The next step is to establish the \texttt{box} and \texttt{previous} references in our newly created object variable,
-\texttt{newPartition}. While you could of course write \texttt{`++ ->box : this'}, any link variables established here are automatically set to `green,' and do
+\texttt{newPartition}. While you could of course write \texttt{`++ -box-> this'}, any link variables established here are automatically set to `green,' and do
 not need to be explicitly set with an \texttt{++} operator. This is because you cannot connect a `black' link to a `green' node.\footnote{Remember that a rule
 actually consists of two graphs: r = (L,R). A green node only belongs to R and not to L, while a black link is in L and in R. If the target of the link is only
 in R, however, L would have a link with an undefined target. This is not allowed (L is not a graph).} In other words, a `green' object variable has a global
