@@ -6,8 +6,7 @@
 \begin{itemize}
  
 \item[$\blacktriangleright$] To initialize your new control flow, you can once again take advantage of eMoflon's auto completion. Inside the
-\texttt{empty} declaration, press  \texttt{Ctrl + Space} and select
-\texttt{forEach} from the menu (Fig.~\ref{eclipse:typeCompletion}).
+\texttt{empty} declaration, press  \texttt{Ctrl + spacebar} and select \texttt{forEach} from the menu (Fig.~\ref{eclipse:typeCompletion}).
 
 \vspace{1cm}
 
@@ -40,7 +39,7 @@ deletion -- no extra steps are required in this simple case!
 a full destruction of \texttt{card}, instead of just deleting the link between the object variables. This means that in addition to destroying the link between
 the partition and \texttt{card}, we need to destroy the object variable \texttt{card} as well.
 
-\item[$\blacktriangleright$] Create a \texttt{@this} object variable, and delete its link to \texttt{card} via \syntax{-- -> card:card} Then create another
+\item[$\blacktriangleright$] Create a \texttt{@this} object variable, and delete its link to \texttt{card} via \syntax{-- -card-> card} Then create another
 object variable \texttt{card}, deleting it by prefixing its name with the same \texttt{`--'} operator.
 
 \vspace{0.5cm}
