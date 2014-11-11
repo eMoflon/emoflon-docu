@@ -662,7 +662,7 @@ public class WorkspaceHelper
    public static void addFile(final IFile file, final String contents, final IProgressMonitor monitor) throws CoreException
    {
       ByteArrayInputStream source = new ByteArrayInputStream(contents.getBytes());
-      file.create(source, true, new SubProgressMonitor(monitor, 1 * PROGRESS_SCALE));
+      file.create(source, true, createSubMonitor(monitor));
       monitor.done();
    }
 
