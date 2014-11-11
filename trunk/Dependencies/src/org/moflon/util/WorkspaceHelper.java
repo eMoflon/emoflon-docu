@@ -162,8 +162,8 @@ public class WorkspaceHelper
       }
 
       // Create project
-      newProject.create(description, new SubProgressMonitor(monitor, 1 * PROGRESS_SCALE));
-      newProject.open(new SubProgressMonitor(monitor, 1 * PROGRESS_SCALE));
+      newProject.create(description, createSubMonitor(monitor));
+      newProject.open(createSubMonitor(monitor));
 
       monitor.done();
 
@@ -188,7 +188,7 @@ public class WorkspaceHelper
 
       IFolder projFolder = project.getFolder(folderName);
       if (!projFolder.exists())
-         projFolder.create(true, true, new SubProgressMonitor(monitor, 1 * PROGRESS_SCALE));
+         projFolder.create(true, true, createSubMonitor(monitor));
       monitor.done();
       return projFolder;
    }
@@ -217,7 +217,7 @@ public class WorkspaceHelper
 
       IFile projectFile = project.getFile(fileName);
       InputStream contents = pathToContent.openStream();
-      projectFile.create(contents, true, new SubProgressMonitor(monitor, 1 * PROGRESS_SCALE));
+      projectFile.create(contents, true, createSubMonitor(monitor));
 
       monitor.done();
    }
@@ -240,7 +240,7 @@ public class WorkspaceHelper
       monitor.beginTask("", 1 * PROGRESS_SCALE);
       IFile projectFile = project.getFile(fileName);
       ByteArrayInputStream source = new ByteArrayInputStream(contents.getBytes());
-      projectFile.create(source, true, new SubProgressMonitor(monitor, 1 * PROGRESS_SCALE));
+      projectFile.create(source, true, createSubMonitor(monitor));
       monitor.done();
    }
 
@@ -251,13 +251,13 @@ public class WorkspaceHelper
     *           java project whose build path will be modified
     * @param folderNames
     *           source folder names to add to build path of project javaProject
-    * @param extraAttributes 
+    * @param extraAttributes
     * @param monitor
     *           a progress monitor, or null if progress reporting is not desired
     * @throws JavaModelException
     */
-   public static void setAsSourceFolderInBuildpath(final IJavaProject javaProject, final IFolder[] folderNames, final IClasspathAttribute[] extraAttributes, final IProgressMonitor monitor)
-         throws JavaModelException
+   public static void setAsSourceFolderInBuildpath(final IJavaProject javaProject, final IFolder[] folderNames, final IClasspathAttribute[] extraAttributes,
+         final IProgressMonitor monitor) throws JavaModelException
    {
       monitor.beginTask("", 2 * PROGRESS_SCALE);
 
@@ -277,12 +277,7 @@ public class WorkspaceHelper
       }
       monitor.worked(1 * PROGRESS_SCALE);
 
-      // Fill new classpath
-      IClasspathEntry[] newEntries = new IClasspathEntry[entries.size()];
-      entries.toArray(newEntries);
-
-      // Set new classpath with added entries
-      javaProject.setRawClasspath(newEntries, new SubProgressMonitor(monitor, 1 * PROGRESS_SCALE));
+      setBuildPath(javaProject, entries, monitor);
 
       monitor.done();
    }
@@ -292,10 +287,7 @@ public class WorkspaceHelper
     */
    public static Collection<IClasspathEntry> getClasspathEntries(final IJavaProject javaProject) throws JavaModelException
    {
-      Collection<IClasspathEntry> entries = new HashSet<IClasspathEntry>();
-      for (IClasspathEntry entry : javaProject.getRawClasspath())
-         entries.add(entry);
-      return entries;
+      return new HashSet<>(Arrays.asList(javaProject.getRawClasspath()));
    }
 
    /**
@@ -326,7 +318,7 @@ public class WorkspaceHelper
 
       // Set new list of natures
       description.setNatureIds(newNatures);
-      project.setDescription(description, new SubProgressMonitor(monitor, 1 * PROGRESS_SCALE));
+      project.setDescription(description, createSubMonitor(monitor));
 
       monitor.done();
    }
@@ -336,25 +328,20 @@ public class WorkspaceHelper
       monitor.beginTask("", 2 * PROGRESS_SCALE);
 
       // Get current entries on the classpath
-      LinkedList<IClasspathEntry> entries = new LinkedList<IClasspathEntry>();
+      LinkedList<IClasspathEntry> classpathEntries = new LinkedList<IClasspathEntry>();
       for (IClasspathEntry entry : javaProject.getRawClasspath())
-         entries.add(entry);
+         classpathEntries.add(entry);
 
       // Add new entry for the classpath
       if (jar != null)
       {
          IClasspathEntry libEntry = JavaCore.newLibraryEntry(jar.getFullPath(), null, null);
-         entries.add(libEntry);
+         classpathEntries.add(libEntry);
       }
 
-      // Fill new classpath (must be an array)
-      IClasspathEntry[] newEntries = new IClasspathEntry[entries.size()];
-      entries.toArray(newEntries);
-
+      setBuildPath(javaProject, classpathEntries, monitor);
+      
       monitor.worked(1 * PROGRESS_SCALE);
-
-      // Set new classpath with added entries
-      javaProject.setRawClasspath(newEntries, new SubProgressMonitor(monitor, 1 * PROGRESS_SCALE));
 
       monitor.done();
    }
@@ -365,8 +352,8 @@ public class WorkspaceHelper
       monitor.beginTask("", 2 * PROGRESS_SCALE);
 
       // Helper collections to determine the current entries of the java project's classpath
-      List<IClasspathEntry> classpathEntries = new LinkedList<IClasspathEntry>();
-      Set<IPath> tempSetOfPathsForProjects = new HashSet<IPath>(); // used for filtering (s. below)
+      List<IClasspathEntry> classpathEntries = new LinkedList<>();
+      Set<IPath> tempSetOfPathsForProjects = new HashSet<>(); // used for filtering (s. below)
 
       // Collect project paths in list and filter out duplicates
       for (IClasspathEntry entry : javaProject.getRawClasspath())
@@ -401,13 +388,9 @@ public class WorkspaceHelper
             classpathEntries.add(projectEntry);
       }
 
-      // Convert the collected entries to an array (represents the updated classpath entries)
-      final IClasspathEntry[] newEntries = classpathEntries.toArray(new IClasspathEntry[classpathEntries.size()]);
-
+      setBuildPath(javaProject, classpathEntries, monitor);
+      
       monitor.worked(1 * PROGRESS_SCALE);
-
-      // Set new classpath with added entries
-      javaProject.setRawClasspath(newEntries, new SubProgressMonitor(monitor, 1 * PROGRESS_SCALE));
 
       monitor.done();
    }
@@ -435,7 +418,7 @@ public class WorkspaceHelper
             jcpage.init(javaProject, null, null, true);
             try
             {
-               jcpage.configureJavaProject(new SubProgressMonitor(monitor, 1 * PROGRESS_SCALE));
+               jcpage.configureJavaProject(createSubMonitor(monitor));
             } catch (Exception e)
             {
                e.printStackTrace();
@@ -449,11 +432,11 @@ public class WorkspaceHelper
    }
 
    /**
-    * Add dependencies of generated EMF code to classpath
+    * Add dependencies of generated EMF code to the build path
     * 
     * @return
     */
-   public static boolean addEMFDependenciesToClassPath(final IProgressMonitor monitor, final IProject iproject)
+   public static boolean addEMFDependenciesToBuildPath(final IProgressMonitor monitor, final IProject iproject)
    {
       monitor.beginTask("", 1 * WorkspaceHelper.PROGRESS_SCALE);
 
@@ -496,6 +479,9 @@ public class WorkspaceHelper
       return true;
    }
 
+   /**
+    * Reversed list of {@link #getProjectsOnBuildPath(IProject)}
+    */
    public static List<IProject> getProjectsOnBuildPathInReversedOrder(final IProject project)
    {
       List<IProject> result = getProjectsOnBuildPath(project);
@@ -503,12 +489,16 @@ public class WorkspaceHelper
       return result;
    }
 
+   /**
+    * Returns a list of all classpath entries of type {@link IClasspathEntry#CPE_PROJECT} of the given project.
+    */
    public static List<IProject> getProjectsOnBuildPath(final IProject project)
    {
+      // Fetch or create java project view of the given project
       IJavaProject javaProject = JavaCore.create(project);
 
       // Get current entries on the classpath
-      ArrayList<IProject> projectsOnBuildPath = new ArrayList<IProject>();
+      ArrayList<IProject> projectsOnBuildPath = new ArrayList<>();
       try
       {
          for (IClasspathEntry entry : javaProject.getRawClasspath())
@@ -527,7 +517,10 @@ public class WorkspaceHelper
       return projectsOnBuildPath;
    }
 
-   public static void setContainerOnBuildPath(final Collection<IClasspathEntry> classpathEntries, final String container)
+   /**
+    * Adds the given container to the list of build path entries (if not included, yet)
+    */
+   public static void addContainerToBuildPath(final Collection<IClasspathEntry> classpathEntries, final String container)
    {
       IClasspathEntry entry = JavaCore.newContainerEntry(new Path(container));
       for (IClasspathEntry iClasspathEntry : classpathEntries)
@@ -542,46 +535,27 @@ public class WorkspaceHelper
       classpathEntries.add(entry);
    }
 
-   public static void setContainerOnBuildPath(final IProject project, final String container)
+   /**
+    * Adds the given container to the build path of the given project.
+    */
+   public static void addContainerToBuildPath(final IProject project, final String container)
    {
-      setContainerOnBuildPath(JavaCore.create(project), container);
+      addContainerToBuildPath(JavaCore.create(project), container);
    }
 
-   public static void transferContainersOnBuildPath(final IJavaProject from, final IJavaProject to)
-   {
-      try
-      {
-         for (IClasspathEntry iClasspathEntry : from.getRawClasspath())
-         {
-            if (iClasspathEntry.getEntryKind() == IClasspathEntry.CPE_CONTAINER)
-            {
-               setContainerOnBuildPath(to, iClasspathEntry.getPath().toString());
-            }
-         }
-      } catch (JavaModelException e)
-      {
-         logger.error("Unable to get classpath of source(from) IJavaProject");
-         e.printStackTrace();
-      }
-   }
-
-   public static void setContainerOnBuildPath(final IJavaProject iJavaProject, final String container)
+   /**
+    * Adds the given container to the build path of the given java project.
+    */
+   public static void addContainerToBuildPath(final IJavaProject iJavaProject, final String container)
    {
       try
       {
          // Get current entries on the classpath
-         Collection<IClasspathEntry> classpathEntries = new ArrayList<IClasspathEntry>();
-         for (IClasspathEntry iClasspathEntry : iJavaProject.getRawClasspath())
-            classpathEntries.add(iClasspathEntry);
+         Collection<IClasspathEntry> classpathEntries = new ArrayList<>(Arrays.asList(iJavaProject.getRawClasspath()));
 
-         setContainerOnBuildPath(classpathEntries, container);
+         addContainerToBuildPath(classpathEntries, container);
 
-         // Create new buildpath
-         IClasspathEntry[] newEntries = new IClasspathEntry[classpathEntries.size()];
-         classpathEntries.toArray(newEntries);
-
-         // Set new classpath with added entries
-         iJavaProject.setRawClasspath(newEntries, null);
+         setBuildPath(iJavaProject, classpathEntries);
       } catch (JavaModelException e)
       {
          logger.error("Unable to set classpath variable");
@@ -589,24 +563,27 @@ public class WorkspaceHelper
       }
    }
 
-   public static void removeProjectFromBuildPath(final IJavaProject iJavaProject, final IProject project)
+   /**
+    * Removes a project from the build path of another project
+    * 
+    * @param javaProject
+    *           the project whose build path is manipulated
+    * @param toBeRemovedProject
+    *           the project to be removed
+    */
+   public static void removeProjectFromBuildPath(final IJavaProject javaProject, final IProject toBeRemovedProject)
    {
       try
       {
          // Get current entries on the classpath and filter project out
-         Collection<IClasspathEntry> classpathEntries = new ArrayList<IClasspathEntry>();
-         for (IClasspathEntry iClasspathEntry : iJavaProject.getRawClasspath())
+         Collection<IClasspathEntry> classpathEntries = new ArrayList<>();
+         for (IClasspathEntry iClasspathEntry : javaProject.getRawClasspath())
          {
-            if (!(iClasspathEntry.getPath().equals(project.getFullPath()) && iClasspathEntry.getEntryKind() == IClasspathEntry.CPE_PROJECT))
+            if (!(iClasspathEntry.getPath().equals(toBeRemovedProject.getFullPath()) && iClasspathEntry.getEntryKind() == IClasspathEntry.CPE_PROJECT))
                classpathEntries.add(iClasspathEntry);
          }
 
-         // Create new buildpath
-         IClasspathEntry[] newEntries = new IClasspathEntry[classpathEntries.size()];
-         classpathEntries.toArray(newEntries);
-
-         // Set new classpath
-         iJavaProject.setRawClasspath(newEntries, null);
+         setBuildPath(javaProject, classpathEntries);
       } catch (JavaModelException e)
       {
          logger.error("Unable to set classpath variable");
@@ -614,6 +591,9 @@ public class WorkspaceHelper
       }
    }
 
+   /**
+    * Returns whether the given container appears on the build path of the given project.
+    */
    public static boolean isContainerOnBuildPath(final IProject project, final String container)
    {
       IJavaProject iJavaProject = JavaCore.create(project);
@@ -633,6 +613,21 @@ public class WorkspaceHelper
       }
 
       return false;
+   }
+
+   private static void setBuildPath(final IJavaProject javaProject, final Collection<IClasspathEntry> entries, final IProgressMonitor monitor) throws JavaModelException
+   {
+      // Create new buildpath
+      IClasspathEntry[] newEntries = new IClasspathEntry[entries.size()];
+      entries.toArray(newEntries);
+
+      // Set new classpath with added entries
+      javaProject.setRawClasspath(newEntries, monitor != null ? createSubMonitor(monitor) : null);
+   }
+   
+   private static void setBuildPath(final IJavaProject javaProject, final Collection<IClasspathEntry> entries) throws JavaModelException
+   {
+      setBuildPath(javaProject, entries, null);
    }
 
    /**
@@ -697,11 +692,17 @@ public class WorkspaceHelper
       addFile(project.getFile(pathToFile), fileContent, monitor);
    }
 
+   /**
+    * Creates a submonitor of the given monitor with 1 tick length.
+    */
    public static SubProgressMonitor createSubMonitor(final IProgressMonitor monitor)
    {
       return createSubMonitor(monitor, 1);
    }
 
+   /**
+    * Creates a submonitor of the given monitor with the given number of ticks.
+    */
    public static SubProgressMonitor createSubMonitor(final IProgressMonitor monitor, final int ticks)
    {
       return new SubProgressMonitor(monitor, ticks * PROGRESS_SCALE);
@@ -732,14 +733,48 @@ public class WorkspaceHelper
       return project.hasNature(METAMODEL_NATURE_ID);
    }
 
-   public static boolean isInjectionFile(final IFile file)
+   public static boolean isInjectionFile(final IResource resource)
    {
-      return file != null && file.getName().endsWith(INJECTION_FILE_EXTENSION);
+      return resource != null && isFile(resource) && resource.getName().endsWith(INJECTION_FILE_EXTENSION);
    }
 
-   public static boolean isJavaFile(final IFile file)
+   public static boolean isJavaFile(final IResource resource)
    {
-      return file != null && file.getName().endsWith(".java");
+      return resource != null && isFile(resource) && resource.getName().endsWith(".java");
+   }
+
+   /**
+    * Returns the project in the workspace with the given project name.
+    * 
+    * The returned project has to be checked for existence
+    */
+   public static IProject getProjectRoot(final String projectName)
+   {
+      return ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+   }
+
+   /**
+    * Returns whether the given file has a name that ends with 'pdf'
+    */
+   public static boolean isPdfFile(final IResource resource)
+   {
+      return isFile(resource) && resource.getName().endsWith(".pdf");
+   }
+
+   /**
+    * Returns whether the given resource is of type {@link IResource#FILE}
+    */
+   public static boolean isFile(final IResource resource)
+   {
+      return resource != null && resource.getType() == IResource.FILE;
+   }
+
+   /**
+    * Returns whether the given resource is of type {@link IResource#FOLDER}
+    */
+   public static boolean isFolder(final IResource resource)
+   {
+      return resource.getType() == IResource.FOLDER;
    }
 
    public static IPath getPathToInjection(final IFile javaFile)
@@ -759,15 +794,4 @@ public class WorkspaceHelper
       final IPath fullJavaPath = genFolder.getProjectRelativePath().append(pathToJavaFile);
       return fullJavaPath;
    }
-
-   public static IProject getProjectRoot(final String projectName)
-   {
-      return ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-   }
-
-   public static boolean isPdfFile(final IResource resource)
-   {
-      return resource.getName().endsWith(".pdf");
-   }
-
 }
