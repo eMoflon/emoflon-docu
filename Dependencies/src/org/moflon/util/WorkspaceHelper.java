@@ -318,6 +318,7 @@ public class WorkspaceHelper
 
       // Set new list of natures
       description.setNatureIds(newNatures);
+      //TODO[rkluge] This should be set only once when creating a project
       project.setDescription(description, createSubMonitor(monitor));
 
       monitor.done();
