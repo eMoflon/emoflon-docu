@@ -73,7 +73,7 @@ public class eMoflonEMFUtil
       m.put("*", new XMIResourceFactoryImpl());
    }
 
-   public static final void installCrossReferencers(ResourceSet resourceSet)
+   public static final void installCrossReferencers(final ResourceSet resourceSet)
    {
       // Add adapter for reverse navigation along unidirectional links
       ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
@@ -93,7 +93,7 @@ public class eMoflonEMFUtil
     * Use this method to initialize the given EPackage. This is required before loading/saving or working with the
     * package. In a plugin context, this might be automatically carried out via an appropriate extension point.
     */
-   public static void init(EPackage metamodel)
+   public static void init(final EPackage metamodel)
    {
       registerXMIFactoryAsDefault();
       metamodel.getName();
@@ -108,7 +108,7 @@ public class eMoflonEMFUtil
     *           Absolute or relative path to XMI file.
     * @return the root element of the loaded model
     */
-   public static EObject loadModel(String pathToXMIFile)
+   public static EObject loadModel(final String pathToXMIFile)
    {
       return loadModelWithDependencies(pathToXMIFile, null);
    }
@@ -123,7 +123,7 @@ public class eMoflonEMFUtil
     *           Contains other models to resolve dependencies.
     * @return the root element of the loaded model with resolved dependencies.
     */
-   public static EObject loadModelWithDependencies(String pathToXMIFile, ResourceSet dependencies)
+   public static EObject loadModelWithDependencies(final String pathToXMIFile, final ResourceSet dependencies)
    {
       return loadModelWithDependenciesAndCrossReferencer(createFileURI(pathToXMIFile, true), dependencies);
    }
@@ -138,7 +138,7 @@ public class eMoflonEMFUtil
     * 
     * @return the root element of the loaded model
     */
-   public static EObject loadAndInitModel(EPackage metamodel, String pathToXMIFile)
+   public static EObject loadAndInitModel(final EPackage metamodel, final String pathToXMIFile)
    {
       init(metamodel);
       return loadModelWithDependencies(pathToXMIFile, null);
@@ -155,7 +155,7 @@ public class eMoflonEMFUtil
     *           Contains other models to resolve dependencies.
     * @return the root element of the loaded model
     */
-   public static EObject loadAndInitModelWithDependencies(EPackage metamodel, String pathToXMIFile, ResourceSet dependencies)
+   public static EObject loadAndInitModelWithDependencies(final EPackage metamodel, final String pathToXMIFile, final ResourceSet dependencies)
    {
       init(metamodel);
       return loadModelWithDependencies(pathToXMIFile, dependencies);
@@ -172,7 +172,7 @@ public class eMoflonEMFUtil
     *           Contains other models to resolve dependencies
     * @return the root element of the loaded model
     */
-   public static EObject loadModelWithDependenciesAndCrossReferencer(URI uriToModelResource, ResourceSet dependencies)
+   public static EObject loadModelWithDependenciesAndCrossReferencer(final URI uriToModelResource, ResourceSet dependencies)
    {
       registerXMIFactoryAsDefault();
 
@@ -217,7 +217,7 @@ public class eMoflonEMFUtil
     * @throws IllegalStateException
     *            if something else goes wrong (e.g. xmi document could not be parsed correctly)
     */
-   public static EObject loadModelAndAddUriMapping(String pathToXMIFile, ResourceSet dependencies) throws IOException
+   public static EObject loadModelAndAddUriMapping(final String pathToXMIFile, final ResourceSet dependencies) throws IOException
    {
 
       File file = new File(pathToXMIFile);
@@ -267,7 +267,7 @@ public class eMoflonEMFUtil
     * @param pathToXMIFile
     *           Absolute or relative path to XMI file in which to save the model.
     */
-   static public void saveModel(EObject rootElementOfModel, String pathToXMIFile)
+   static public void saveModel(final EObject rootElementOfModel, final String pathToXMIFile)
    {
       saveModel(rootElementOfModel, createFileURI(pathToXMIFile, false), new ResourceSetImpl());
    }
@@ -281,7 +281,7 @@ public class eMoflonEMFUtil
     * @param dependencies
     *           Contains other models to resolve dependencies.
     */
-   static public void saveModelWithDependencies(EObject rootElementOfModel, String pathToXMIFile, ResourceSet dependencies)
+   static public void saveModelWithDependencies(final EObject rootElementOfModel, final String pathToXMIFile, final ResourceSet dependencies)
    {
       saveModel(rootElementOfModel, createFileURI(pathToXMIFile, false), dependencies);
    }
@@ -295,7 +295,7 @@ public class eMoflonEMFUtil
     * @param dependencies
     *           Contains other models to resolve dependencies.
     */
-   static public void saveModel(EObject rootElementOfModel, URI uriToModelResource, ResourceSet dependencies)
+   static public void saveModel(final EObject rootElementOfModel, final URI uriToModelResource, final ResourceSet dependencies)
    {
       if (rootElementOfModel == null)
          throw new IllegalArgumentException("The model to be saved cannot be null");
@@ -332,7 +332,7 @@ public class eMoflonEMFUtil
     *           Set true when loading (the file must exist) and false when saving (file can be newly created).
     * @return
     */
-   static public URI createFileURI(String pathToXMIFile, boolean mustExist)
+   static public URI createFileURI(final String pathToXMIFile, final boolean mustExist)
    {
       File filePath = new File(pathToXMIFile);
       if (!filePath.exists() && mustExist)
@@ -352,7 +352,7 @@ public class eMoflonEMFUtil
     *           the type of the opposite objects you are looking for
     * @return a list of all opposite objects
     */
-   public static List<?> getOppositeReference(EObject target, Class<?> sourceType, String targetRoleName)
+   public static List<?> getOppositeReference(final EObject target, final Class<?> sourceType, final String targetRoleName)
    {
       Collection<Setting> settings = getInverseReferences(target);
 
@@ -376,7 +376,7 @@ public class eMoflonEMFUtil
       return returnList;
    }
 
-   private static EObject getCandidateObject(Class<?> sourceType, String targetRoleName, Setting setting)
+   private static EObject getCandidateObject(final Class<?> sourceType, final String targetRoleName, final Setting setting)
    {
       if (setting.getEStructuralFeature().getName().equals(targetRoleName))
       {
@@ -390,13 +390,13 @@ public class eMoflonEMFUtil
       return null;
    }
 
-   private static Collection<Setting> getInverseReferences(EObject target)
+   private static Collection<Setting> getInverseReferences(final EObject target)
    {
       ECrossReferenceAdapter adapter = getCRAdapter(target);
       return adapter.getNonNavigableInverseReferences(target, true);
    }
 
-   public static String getClazzNameWithPackagePrefix(EClassifier clazz)
+   public static String getClazzNameWithPackagePrefix(final EClassifier clazz)
    {
       String clazzName = clazzNames.get(clazz);
 
@@ -408,7 +408,7 @@ public class eMoflonEMFUtil
       return clazzName;
    }
 
-   public static boolean checkInheritance(Class<?> superclass, EClassifier subclass)
+   public static boolean checkInheritance(final Class<?> superclass, final EClassifier subclass)
    {
       for (EClass sup : ((EClass) subclass).getEAllSuperTypes())
       {
@@ -419,7 +419,7 @@ public class eMoflonEMFUtil
       return false;
    }
 
-   private static ECrossReferenceAdapter getCRAdapter(EObject target)
+   private static ECrossReferenceAdapter getCRAdapter(final EObject target)
    {
       // Determine context
       Notifier context = null;
@@ -448,7 +448,7 @@ public class eMoflonEMFUtil
       return adapter;
    }
 
-   public static void remove(EObject object)
+   public static void remove(final EObject object)
    {
       EcoreUtil.delete(object, true);
    }
@@ -456,7 +456,7 @@ public class eMoflonEMFUtil
    /*
     * This method is thought to be a more efficient way to delete objects from a model than remove(EObject)
     */
-   public static void unsetAllReferences(EObject object)
+   public static void unsetAllReferences(final EObject object)
    {
       for (EStructuralFeature feature : getAllReferences(object))
       {
@@ -479,7 +479,7 @@ public class eMoflonEMFUtil
    }
 
    @SuppressWarnings({ "unchecked"})
-   public static void addOppositeReference(EObject source, EObject target, String targetRole)
+   public static void addOppositeReference(final EObject source, final EObject target, final String targetRole)
    {
       EStructuralFeature reference = source.eClass().getEStructuralFeature(targetRole);
       if (!reference.isMany())
@@ -489,12 +489,12 @@ public class eMoflonEMFUtil
          ((Collection<EObject>) source.eGet(reference)).add(target);
    }
 
-   public static void removeOppositeReference(EObject source, EObject target, String targetRole)
+   public static void removeOppositeReference(final EObject source, final EObject target, final String targetRole)
    {
       removeEdge(source, target, targetRole);
    }
    
-   public static void removeEdge(EObject source, EObject target, String targetRole){
+   public static void removeEdge(final EObject source, final EObject target, final String targetRole){
       EStructuralFeature reference = source.eClass().getEStructuralFeature(targetRole);
       if (!reference.isMany())
       {
@@ -505,7 +505,7 @@ public class eMoflonEMFUtil
       }      
    }
 
-   public static EStructuralFeature getReference(EObject obj, String name)
+   public static EStructuralFeature getReference(final EObject obj, final String name)
    {
       for (EContentsEList.FeatureIterator<?> featureIterator = (EContentsEList.FeatureIterator<?>) obj.eCrossReferences().iterator(); featureIterator.hasNext();)
       {
@@ -518,7 +518,7 @@ public class eMoflonEMFUtil
       return null;
    }
 
-   public static EStructuralFeature getContainment(EObject container, String name)
+   public static EStructuralFeature getContainment(final EObject container, final String name)
    {
       for (EContentsEList.FeatureIterator<?> featureIterator = (EContentsEList.FeatureIterator<?>) container.eContents().iterator(); featureIterator.hasNext();)
       {
@@ -537,7 +537,7 @@ public class eMoflonEMFUtil
     * @param object
     * @return set of references
     */
-   public static Set<EStructuralFeature> getAllReferences(EObject object)
+   public static Set<EStructuralFeature> getAllReferences(final EObject object)
    {
       EList<EStructuralFeature> references = new BasicEList<EStructuralFeature>();
       for (EContentsEList.FeatureIterator<?> featureIterator = (EContentsEList.FeatureIterator<?>) object.eCrossReferences().iterator(); featureIterator
@@ -554,11 +554,11 @@ public class eMoflonEMFUtil
       return new HashSet<EStructuralFeature>(references);
    }
 
-   public static String getName(EObject child)
+   public static String getName(final EObject child)
    {
       Object name = "";
 
-      EStructuralFeature nameFeature = (EStructuralFeature) child.eClass().getEStructuralFeature("name");
+      EStructuralFeature nameFeature = child.eClass().getEStructuralFeature("name");
 
       if (nameFeature != null)
          name = child.eGet(nameFeature);
@@ -578,7 +578,7 @@ public class eMoflonEMFUtil
     * If the EObject does not have any attributes or all attributes have the value null, this function will only return
     * the type of the EObject.
     */
-   public static String getIdentifier(EObject eObject)
+   public static String getIdentifier(final EObject eObject)
    {
       boolean success = false;
       List<EAttribute> attributes = eObject.eClass().getEAllAttributes();
@@ -606,7 +606,7 @@ public class eMoflonEMFUtil
     *           it returns false, nothing happened.
     * @return Indicates the success of this function and if the last parameter contains output.
     */
-   private static boolean tryGetSingleAttribute(EObject eObject, List<EAttribute> attributes, StringBuilder name)
+   private static boolean tryGetSingleAttribute(final EObject eObject, final List<EAttribute> attributes, final StringBuilder name)
    {
       boolean success = false;
       if (attributes.size() == 1)
@@ -627,7 +627,7 @@ public class eMoflonEMFUtil
     *           it returns false, nothing happened.
     * @return Indicates the success of this function and if the last parameter contains output.
     */
-   private static boolean tryGetNameAttribute(EObject eObject, List<EAttribute> attributes, StringBuilder name)
+   private static boolean tryGetNameAttribute(final EObject eObject, final List<EAttribute> attributes, final StringBuilder name)
    {
       boolean success = false;
       for (EAttribute feature : attributes)
@@ -652,7 +652,7 @@ public class eMoflonEMFUtil
     *           it returns false, nothing happened.
     * @return Indicates the success of this function and if the last parameter contains output.
     */
-   private static boolean tryGetAnyAttribute(EObject eObject, List<EAttribute> attributes, StringBuilder name)
+   private static boolean tryGetAnyAttribute(final EObject eObject, final List<EAttribute> attributes, final StringBuilder name)
    {
       boolean success = false;
       String nonStringName = null;
@@ -683,7 +683,7 @@ public class eMoflonEMFUtil
       return success;
    }
 
-   public static Resource addToResourceSet(ResourceSet set, EObject object)
+   public static Resource addToResourceSet(final ResourceSet set, final EObject object)
    {
       Resource resource = object.eResource();
       if (resource == null)
@@ -698,8 +698,9 @@ public class eMoflonEMFUtil
       return resource;
    }
 
-   public static List<Object> shuffle(List<Object> in)
+   public static List<Object> shuffle(final List<Object> in)
    {
+      //TODO[rkluge] Why not use Collections.shuffle(in); ?
       final int size = in.size();
       if (size == 0 || size == 1)
          return in; // nothing to shuffle
