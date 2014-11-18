@@ -795,4 +795,10 @@ public class WorkspaceHelper
       final IPath fullJavaPath = genFolder.getProjectRelativePath().append(pathToJavaFile);
       return fullJavaPath;
    }
+
+   public static IFile getProjectEcoreFile(final IProject repositoryProject)
+   {
+      return repositoryProject.getFile(MODEL_FOLDER + PATH_SEPARATOR + repositoryProject.getName()
+            + ECORE_FILE_EXTENSION);
+   }
 }
