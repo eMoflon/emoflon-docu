@@ -162,8 +162,8 @@ public class WorkspaceHelper
       }
 
       // Create project
-      newProject.create(description, createSubMonitor(monitor));
-      newProject.open(createSubMonitor(monitor));
+      newProject.create(description, createSubmonitorWith1Tick(monitor));
+      newProject.open(createSubmonitorWith1Tick(monitor));
 
       monitor.done();
 
@@ -188,7 +188,7 @@ public class WorkspaceHelper
 
       IFolder projFolder = project.getFolder(folderName);
       if (!projFolder.exists())
-         projFolder.create(true, true, createSubMonitor(monitor));
+         projFolder.create(true, true, createSubmonitorWith1Tick(monitor));
       monitor.done();
       return projFolder;
    }
@@ -217,7 +217,7 @@ public class WorkspaceHelper
 
       IFile projectFile = project.getFile(fileName);
       InputStream contents = pathToContent.openStream();
-      projectFile.create(contents, true, createSubMonitor(monitor));
+      projectFile.create(contents, true, createSubmonitorWith1Tick(monitor));
 
       monitor.done();
    }
@@ -240,7 +240,7 @@ public class WorkspaceHelper
       monitor.beginTask("", 1 * PROGRESS_SCALE);
       IFile projectFile = project.getFile(fileName);
       ByteArrayInputStream source = new ByteArrayInputStream(contents.getBytes());
-      projectFile.create(source, true, createSubMonitor(monitor));
+      projectFile.create(source, true, createSubmonitorWith1Tick(monitor));
       monitor.done();
    }
 
@@ -291,6 +291,30 @@ public class WorkspaceHelper
    }
 
    /**
+    * Returns the description of the given project with the given nature ID added to the project's list of natures
+    */
+   public static IProjectDescription getDescriptionWithAddedNature(final IProject project, final String natureId, final IProgressMonitor monitor)
+         throws CoreException
+   {
+      monitor.beginTask("Create description with added natures", 1);
+
+      IProjectDescription description = project.getDescription();
+
+      List<String> natures = new ArrayList<>(Arrays.asList(description.getNatureIds()));
+
+      if (!natures.contains(natureId))
+      {
+         natures.add(natureId);
+         description.setNatureIds(natures.toArray(new String[natures.size()]));
+      }
+
+      monitor.worked(1);
+      monitor.done();
+
+      return description;
+   }
+
+   /**
     * Adds natureId to project
     * 
     * @param project
@@ -304,22 +328,10 @@ public class WorkspaceHelper
     */
    public static void addNature(final IProject project, final String natureId, final IProgressMonitor monitor) throws CoreException
    {
-      monitor.beginTask("", 2 * PROGRESS_SCALE);
+      monitor.beginTask("Add nature to project", 2);
 
-      // Get existing natures
-      IProjectDescription description = project.getDescription();
-      String[] natures = description.getNatureIds();
-
-      // Postpend our new nature
-      String[] newNatures = new String[natures.length + 1];
-      System.arraycopy(natures, 0, newNatures, 0, natures.length);
-      newNatures[natures.length] = natureId;
-      monitor.worked(1 * PROGRESS_SCALE);
-
-      // Set new list of natures
-      description.setNatureIds(newNatures);
-      //TODO[rkluge] This should be set only once when creating a project
-      project.setDescription(description, createSubMonitor(monitor));
+      IProjectDescription description = getDescriptionWithAddedNature(project, natureId, createSubmonitorWith1Tick(monitor));
+      project.setDescription(description, createSubmonitorWith1Tick(monitor));
 
       monitor.done();
    }
@@ -341,7 +353,7 @@ public class WorkspaceHelper
       }
 
       setBuildPath(javaProject, classpathEntries, monitor);
-      
+
       monitor.worked(1 * PROGRESS_SCALE);
 
       monitor.done();
@@ -390,7 +402,7 @@ public class WorkspaceHelper
       }
 
       setBuildPath(javaProject, classpathEntries, monitor);
-      
+
       monitor.worked(1 * PROGRESS_SCALE);
 
       monitor.done();
@@ -419,7 +431,7 @@ public class WorkspaceHelper
             jcpage.init(javaProject, null, null, true);
             try
             {
-               jcpage.configureJavaProject(createSubMonitor(monitor));
+               jcpage.configureJavaProject(createSubmonitorWith1Tick(monitor));
             } catch (Exception e)
             {
                e.printStackTrace();
@@ -616,16 +628,17 @@ public class WorkspaceHelper
       return false;
    }
 
-   private static void setBuildPath(final IJavaProject javaProject, final Collection<IClasspathEntry> entries, final IProgressMonitor monitor) throws JavaModelException
+   private static void setBuildPath(final IJavaProject javaProject, final Collection<IClasspathEntry> entries, final IProgressMonitor monitor)
+         throws JavaModelException
    {
       // Create new buildpath
       IClasspathEntry[] newEntries = new IClasspathEntry[entries.size()];
       entries.toArray(newEntries);
 
       // Set new classpath with added entries
-      javaProject.setRawClasspath(newEntries, monitor != null ? createSubMonitor(monitor) : null);
+      javaProject.setRawClasspath(newEntries, monitor != null ? createSubmonitorWith1Tick(monitor) : null);
    }
-   
+
    private static void setBuildPath(final IJavaProject javaProject, final Collection<IClasspathEntry> entries) throws JavaModelException
    {
       setBuildPath(javaProject, entries, null);
@@ -663,7 +676,7 @@ public class WorkspaceHelper
    public static void addFile(final IFile file, final String contents, final IProgressMonitor monitor) throws CoreException
    {
       ByteArrayInputStream source = new ByteArrayInputStream(contents.getBytes());
-      file.create(source, true, createSubMonitor(monitor));
+      file.create(source, true, createSubmonitorWith1Tick(monitor));
       monitor.done();
    }
 
@@ -693,12 +706,20 @@ public class WorkspaceHelper
       addFile(project.getFile(pathToFile), fileContent, monitor);
    }
 
-   /**
-    * Creates a submonitor of the given monitor with 1 tick length.
-    */
-   public static SubProgressMonitor createSubMonitor(final IProgressMonitor monitor)
+   public static SubProgressMonitor createSubmonitorWith1Tick(final IProgressMonitor monitor)
    {
       return createSubMonitor(monitor, 1);
+   }
+
+   /**
+    * Creates a submonitor of the given monitor with 1 tick length.
+    * 
+    * @deprecated use createSubmonitorWith1Tick instead (since 1.6b2)
+    */
+   @Deprecated
+   public static SubProgressMonitor createSubMonitor(final IProgressMonitor monitor)
+   {
+      return createSubmonitorWith1Tick(monitor);
    }
 
    /**
@@ -798,7 +819,11 @@ public class WorkspaceHelper
 
    public static IFile getProjectEcoreFile(final IProject repositoryProject)
    {
-      return repositoryProject.getFile(MODEL_FOLDER + PATH_SEPARATOR + repositoryProject.getName()
-            + ECORE_FILE_EXTENSION);
+      return repositoryProject.getFile(MODEL_FOLDER + PATH_SEPARATOR + repositoryProject.getName() + ECORE_FILE_EXTENSION);
+   }
+
+   public static IFile getProjectGenmodelFile(final IProject repositoryProject)
+   {
+      return repositoryProject.getFile(MODEL_FOLDER + PATH_SEPARATOR + repositoryProject.getName() + GEN_MODEL_EXT);
    }
 }

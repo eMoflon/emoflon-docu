@@ -1,5 +1,6 @@
 package org.moflon.util;
 
+import java.awt.geom.GeneralPath;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.util.jar.JarFile;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -140,6 +142,25 @@ public class MoflonUtil
       {
          e = (ENamedElement) e.eContainer();
          fqn = e.getName() + "." + fqn;
+      }
+
+      return fqn;
+   }
+   
+   /**
+    * Determine fully qualified name of given GenPackage by iterating through package hierarchy.
+    * 
+    */
+   public static String getFQN(final GenPackage genPackage)
+   {
+      String fqn = genPackage.getPackageName();
+
+      GenPackage p = genPackage;
+
+      while (p.getSuperGenPackage() != null)
+      {
+         p = p.getSuperGenPackage();
+         fqn = p.getPackageName() + "." + fqn;
       }
 
       return fqn;
