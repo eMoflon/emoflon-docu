@@ -15,7 +15,9 @@ public class MoflonUtilTest
       
       GenPackage topPackage = createGenPackage("1");
       GenPackage mediumPackage = createGenPackage("2");
+      topPackage.getEcorePackage().getESubpackages().add(mediumPackage.getEcorePackage());
       GenPackage lowestPackage = createGenPackage("3");
+      mediumPackage.getSubGenPackages().add(lowestPackage);
       Assert.assertEquals("1.2.3", MoflonUtil.getFQN(lowestPackage));
    }
 
