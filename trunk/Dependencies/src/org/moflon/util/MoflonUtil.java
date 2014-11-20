@@ -38,6 +38,7 @@ public class MoflonUtil
    public final static String DEFAULT_METHOD_BODY = "\n" + EOPERATION_MODEL_COMMENT
          + "\n\n// TODO: implement this method here but do not remove the injection marker \nthrow new UnsupportedOperationException();";
 
+   @Deprecated
    public static String getMoflonDefaultURIForProject(final String projectName)
    {
       return "http://www.moflon.org." + projectName;
