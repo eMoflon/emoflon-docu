@@ -213,4 +213,20 @@ public class MoflonUtil
          return prefix;
       }
    }
+   
+   public static String lastSegmentOf(String name)
+   {
+      int startOfLastSegment = name.lastIndexOf(".");
+      
+      if(startOfLastSegment == -1)
+         startOfLastSegment = 0;
+      else
+         startOfLastSegment++;
+      
+      return name.substring(startOfLastSegment);
+   }
+   
+   public static String lastCapitalizedSegmentOf(String name){
+      return StringUtils.capitalize(lastSegmentOf(name));
+   }
 }
