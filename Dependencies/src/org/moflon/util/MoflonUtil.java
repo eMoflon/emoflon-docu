@@ -1,6 +1,5 @@
 package org.moflon.util;
 
-import java.awt.geom.GeneralPath;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
@@ -14,9 +13,15 @@ import java.util.jar.JarFile;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
+import org.eclipse.pde.core.plugin.PluginRegistry;
 
 /**
  * A collection of useful helper methods.
@@ -42,6 +47,19 @@ public class MoflonUtil
    public static String getMoflonDefaultURIForProject(final String projectName)
    {
       return "http://www.moflon.org." + projectName;
+   }
+   
+   public static URI getDefaultPluginURIEcore(final String pluginID){
+      return getDefaultPluginURI(pluginID, ".ecore");
+   }
+   
+   public static URI getDefaultPluginURIGenModel(final String pluginID){
+      return getDefaultPluginURI(pluginID, ".genmodel");
+   }
+   
+   private static URI getDefaultPluginURI(final String pluginID, final String ending){
+      String filePath = "/model/" + MoflonUtil.lastCapitalizedSegmentOf(pluginID) + ending;
+      return URI.createPlatformPluginURI(pluginID + filePath, true);
    }
 
    /**
@@ -229,5 +247,18 @@ public class MoflonUtil
    
    public static String lastCapitalizedSegmentOf(String name){
       return StringUtils.capitalize(lastSegmentOf(name));
+   }
+
+   public static final void calculatePluginToResourceMap(final ResourceSet set) {
+      for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
+   	   if (project.isAccessible()) {
+   		   IPluginModelBase pluginModel = PluginRegistry.findModel(project);
+   		   if (pluginModel != null) {
+   			   URI pluginURI = URI.createPlatformPluginURI(pluginModel.getBundleDescription().getSymbolicName() + "/", true);
+   			   URI resourceURI = URI.createPlatformResourceURI(project.getName() + "/", true);
+   			   set.getURIConverter().getURIMap().put(pluginURI, resourceURI);
+   		   }
+   	   }
+      }
    }
 }
