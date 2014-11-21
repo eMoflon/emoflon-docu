@@ -730,11 +730,17 @@ public class WorkspaceHelper
       return new SubProgressMonitor(monitor, ticks * PROGRESS_SCALE);
    }
 
+   /**
+    * Returns whether the given project is (1) a repository project or (2) an integration project
+    */
    public static boolean isMoflonProject(final IProject project) throws CoreException
    {
       return isRepositoryProject(project) || isIntegrationProject(project);
    }
 
+   /**
+    * Returns whether the given project is (1) a repository project, (2) an integration project, or (3) a metamodel project
+    */
    public static boolean isMoflonOrMetamodelProject(final IProject project) throws CoreException
    {
       return isMoflonProject(project) || isMetamodelProject(project);
