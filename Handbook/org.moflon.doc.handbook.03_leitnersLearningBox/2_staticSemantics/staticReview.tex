@@ -1,0 +1,36 @@
+\newpage 
+\genHeader
+\subsection{Reviewing your metamodel}
+\hypertarget{static review}{}
+
+Before moving on, lets take a step back and review what we have accomplished. We have modelled a \texttt{Box} that can contain an arbitrary amount of
+\texttt{Partition}s. A \texttt{Partition} in the \texttt{Box} has a \texttt{next} and \texttt{previous} \texttt{Partition} that can be set. Finally,
+\texttt{Partition}s contain \texttt{Card}s.
+
+A \texttt{Box} has a \texttt{name}, and can be extended by calling \texttt{grow}. A \texttt{Box} can print out its contents via the \texttt{toString} method.
+
+The main method of the learning box is \texttt{Partition::check}, which takes a \texttt{Card} and the user's \texttt{EString} guess, and returns a \texttt{true}
+or \texttt{false} value.
+
+A \texttt{Partition} can also \texttt{remove} a specific \texttt{Card}, or empty itself of all  existing \texttt{Cards}. Last but not least, a
+\texttt{Partition} has a \texttt{partitionSize} to indicate how many cards it should hold. Too many cards in the first partition could indicate that not
+enough time has been dedicated to learning the terms. Too many near the end of the box could show that the vocabulary set is too easy, and probably
+already mastered.
+
+A \texttt{Card} contains the actual content to be learned as a question on the card's \texttt{face} and the answer on the card's \texttt{back}. \texttt{Card}s
+also maintain a \texttt{partition\-History}, which can be used to keep track of how often a \texttt{Card} has been answered incorrectly.
+This may indicate how difficult the \texttt{Card} is for a specific user, and remind them to spend more time on it. When learning a language, it makes
+sense to be able to swap the target and source language and this is supported by \texttt{Card} via \texttt{invert} (turns the card around).
+
+Examine the generated files in ``gen'', especially the default implementation for those methods that currently just throw an \texttt{OperationNotSupported}
+exception. We shall see in later parts of this handbook how our code generator supports injecting hand-written implementation of methods into generated methods
+and classes. With eMoflon however, we can actually model a large part of the dynamic semantics with ease, and only need to implement small helper methods (such
+as those for string manipulation) by hand.
+
+On a final note, we encourage you to review how the metamodel was constructed in the alternative syntax to the one you primarily used. Compare the
+differences between modelling classes and references visually using a separate program (Enterprise Architect), then exporting to Eclipse to build, versus
+modelling textually entirely within Eclipse. Which do you find easier to work with?
+
+If you have had problems with this section, and, despite firmly believing everything is correct, things \emph{still} don't work, feel free to contact us at:\\ 
+\eMoflonContact.
+
