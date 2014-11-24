@@ -1,0 +1,36 @@
+\input{../../org.moflon.doc.handbook.00_common/src/common_preamble}
+
+\graphicspath{
+{../introduction_images/}
+{../../org.moflon.doc.handbook.00_common/images/}%
+}
+
+% -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\def\partTitle{Part 0: Introduction}
+\input{../../org.moflon.doc.handbook.00_common/src/titlepage}
+% -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+% Specific settings:
+\setcounter{tocdepth}{2}
+
+\begin{document}
+
+\frontmatter
+\noHeader
+
+{\let\newpage\relax\maketitle}
+
+\input{../../org.moflon.doc.handbook.00_common/src/copyright}
+\let\cleardoublepage\clearpage
+
+% Store page counter
+\newcounter{romanpages}
+\setcounter{romanpages}{\value{page}}
+
+\mainmatter
+
+% Main content for this part
+\input{introduction_source}
+
+\end{document}
