@@ -1,0 +1,17 @@
+\newpage
+\texHeader
+
+\hypertarget{validation tex}{} 
+\subsection{eMoflon support with the MOSL Builder }
+
+Our MOSL language is accompanied with its own builder that proves support for validating your metamodel.
+Integrated with the Eclipse IDE, if there's an error in your files when you save, a message will appear in the console. Lets try to make an error, just to
+see how this works.
+
+Go to your \texttt{Partition} EClass and change the parameter type in \texttt{removeCard} from \texttt{Card} to \texttt{card}. Press save. An error should
+immediately appear below the editor to inform you of your terrible mistake. Change your file back to the way it was, and the message should disappear.
+
+In addition to validation on saving files, MOSL also lets you know whether or not your project has
+recently been built (if code has been generated from the metamodels). You may have noticed this feature in the previous sections. Similar to how Eclipse
+informs you that your file has changed by placing a \texttt{*} beside the name in the editor tab, MOSL places a \texttt{***} symbol beside your metamodel folder
+title in the package explorer to remind you to build your project.
