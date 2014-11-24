@@ -1,0 +1,38 @@
+\newpage
+\hypertarget{sec:conBran}{}
+\section{Conditional branching}
+\genHeader
+
+When working with SDMs, you'll often find yourself needing to decide which statement(s) to execute based on the return value of an arbitrary (black box)
+operation, as we saw in \texttt{check}. In our example so far, we have implemented these constructs via SDM \emph{pattern matching}. 
+
+With eMoflon however, there is an alternate way to construct these black boxes.
+In fact, this feature is yet another way of integrating handwritten Java code with your SDM. We can invoke methods directly from an \emph{if} statement. The only ``rule'' of this feature is that the method must return an
+\texttt{EBoolean} to indicate \texttt{Success} or \texttt{Failure}, corresponding to \texttt{true} or \texttt{false}, respectively. Any other types imply
+\texttt{Failure} if the return value of the method is \texttt{null}. It follows that void methods cannot be used for branching -- an exception will be thrown
+during code generation (if you ignored the validation error).
+
+Unfortunately, you can't simply invoke a method from a standard activity node. Instead, you must use a new type of activity node, a \emph{statement
+node}\define{Statement Node}. Statement nodes can be used to invoke methods and provide a means of invoking libraries and
+arbitrary Java code from SDMs. Please note that we do not differentiate at this point between methods that are implemented by hand or via an SDM. Thus,
+statement nodes can of course be used to invoke other SDMs via a \emph{MethodCallExpression}. Most importantly, statement nodes enable \emph{recursion}, as the
+current SDM can be invoked on \texttt{this} with appropriate new arguments. In essence, this type of node is only used to guarantee a specific action
+between \emph{activity nodes}, and does not extend the current set of matched variables. They can however, be used as a conditional by branching on
+whatever value the method returns.
+
+Let's reconsider \texttt{grow}, the method we just completed that adds a new partition to our box. Reviewing either Fig.~\ref{ea:growComplete} (Visual) or
+Fig.~\ref{eclipse:patternComplete} (Textual), the current pattern assumes there are already at least two partitions in \texttt{box} (the
+\texttt{firstPartitionInBox} and \texttt{lastPartitionInBox}). What would happen
+if \texttt{box} had only one, or even no partitions at all? The pattern would \emph{never} find a match!
+
+To fix this problem, let's modify \texttt{grow} so that if the original match fails, we initialize two new partitions (the first and last), but \emph{only} if
+it failed due to the box being completely empty. In other words, if \texttt{box} has e.g., only one partition (an invalid state that cannot be reached by
+growing from zero partitions), it is considered invalid and no longer be grown.
+
+\jumpDual{conBran vis}{conBran tex}
+
+\input{../09_conditionalBranching/visConBran}
+
+\input{../09_conditionalBranching/texConBran}
+
+\input{../09_conditionalBranching/initializeBoxNotes}
