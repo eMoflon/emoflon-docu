@@ -549,7 +549,7 @@ public class WorkspaceHelper
    }
 
    /**
-    * Adds the given container to the build path of the given project.
+    * Adds the given container to the build path of the given project if it contains no entry with the same name, yet.
     */
    public static void addContainerToBuildPath(final IProject project, final String container)
    {
