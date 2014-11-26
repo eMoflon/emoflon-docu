@@ -250,15 +250,27 @@ public class MoflonUtil
    }
 
    public static final void calculatePluginToResourceMap(final ResourceSet set) {
-      for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
-   	   if (project.isAccessible()) {
-   		   IPluginModelBase pluginModel = PluginRegistry.findModel(project);
-   		   if (pluginModel != null) {
-   			   URI pluginURI = URI.createPlatformPluginURI(pluginModel.getBundleDescription().getSymbolicName() + "/", true);
-   			   URI resourceURI = URI.createPlatformResourceURI(project.getName() + "/", true);
-   			   set.getURIConverter().getURIMap().put(pluginURI, resourceURI);
-   		   }
-   	   }
-      }
+	   for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
+		   if (project.isAccessible()) {
+			   IPluginModelBase pluginModel = PluginRegistry.findModel(project);
+			   if (pluginModel != null) {
+				   URI pluginURI = URI.createPlatformPluginURI(pluginModel.getBundleDescription().getSymbolicName() + "/", true);
+				   URI resourceURI = URI.createPlatformResourceURI(project.getName() + "/", true);
+				   set.getURIConverter().getURIMap().put(pluginURI, resourceURI);
+			   }
+		   }
+	   }
+   }
+   
+   public static final URI lookupProjectURI(final IProject project) {
+	   IPluginModelBase pluginModel = PluginRegistry.findModel(project);
+	   if (pluginModel != null) {
+		   // Plugin projects in the workspace
+		   return URI.createPlatformPluginURI(pluginModel
+				   .getBundleDescription().getSymbolicName() + "/", true);
+	   } else {
+		   // Regular projects in the workspace
+		   return URI.createPlatformResourceURI(project.getName() + "/", true);
+	   }
    }
 }
