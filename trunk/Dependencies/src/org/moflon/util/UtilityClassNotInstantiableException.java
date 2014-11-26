@@ -1,10 +1,13 @@
 package org.moflon.util;
 
+/**
+ * This exception may be thrown in constructors of utility classes.
+ */
 public class UtilityClassNotInstantiableException extends RuntimeException
 {
-   private static final long serialVersionUID = -4283010951140137990L;
-
    public UtilityClassNotInstantiableException() {
       super("Invalid trial to instantiate a utility class.");
    }
+   
+   private static final long serialVersionUID = -4283010951140137990L;
 }
