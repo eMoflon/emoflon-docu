@@ -15,6 +15,8 @@ import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+
+//TODO anjorin: TransformationTest is the only user of this class. Will you still need it?
 /**
  * Collection of useful methods for EMFCompare
  * 
@@ -37,7 +39,7 @@ public class EmfCompareUtil
     * @throws IOException
     * @throws InterruptedException
     */
-   public static List<Diff> compareAndFilter(EObject actual, EObject expected, final boolean ignoreReferenceOrder) throws InterruptedException
+   public static List<Diff> compareAndFilter(final EObject actual, final EObject expected, final boolean ignoreReferenceOrder) throws InterruptedException
    {
       IDiffProcessor diffProcessor = new DiffBuilder();
       IDiffEngine diffEngine = new DefaultDiffEngine(diffProcessor) {
@@ -46,7 +48,7 @@ public class EmfCompareUtil
          {
             return new FeatureFilter() {
                @Override
-               public boolean checkForOrderingChanges(EStructuralFeature feature)
+               public boolean checkForOrderingChanges(final EStructuralFeature feature)
                {
                   return !ignoreReferenceOrder;
                }
