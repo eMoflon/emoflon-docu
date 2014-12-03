@@ -222,6 +222,18 @@ public class WorkspaceHelper
       monitor.done();
    }
 
+   public static void clearFolder(final IProject project, final String folder, final IProgressMonitor monitor) throws CoreException, URISyntaxException, IOException
+   {
+      monitor.beginTask("", 1 * PROGRESS_SCALE);
+
+      IFolder folderInProject = project.getFolder(folder);
+      
+      for (IResource member : folderInProject.members())
+         member.delete(true, createSubmonitorWith1Tick(monitor));
+      
+      monitor.done();
+   }
+
    /**
     * Adds a file to project root, containing specified contents as a string
     * 
@@ -739,7 +751,8 @@ public class WorkspaceHelper
    }
 
    /**
-    * Returns whether the given project is (1) a repository project, (2) an integration project, or (3) a metamodel project
+    * Returns whether the given project is (1) a repository project, (2) an integration project, or (3) a metamodel
+    * project
     */
    public static boolean isMoflonOrMetamodelProject(final IProject project) throws CoreException
    {

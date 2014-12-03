@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.osgi.service.resolver.BundleSpecification;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 
@@ -31,8 +32,7 @@ public class MoflonUtil
 {
 
    /**
-    * Marker for code passages generated through eMoflon/EMF that are eligible for 
-    * extracting injections.
+    * Marker for code passages generated through eMoflon/EMF that are eligible for extracting injections.
     */
    public static final String EOPERATION_MODEL_COMMENT = "// [user code injected with eMoflon]";
 
@@ -48,18 +48,20 @@ public class MoflonUtil
    {
       return "http://www.moflon.org." + projectName;
    }
-   
-   public static URI getDefaultPluginURIEcore(final String pluginID){
-      return getDefaultPluginURI(pluginID, ".ecore");
+
+   public static String getDefaultPathToEcoreFileInProject(final String projectName)
+   {
+      return getDefaultPathToFileInProject(projectName, ".ecore");
    }
-   
-   public static URI getDefaultPluginURIGenModel(final String pluginID){
-      return getDefaultPluginURI(pluginID, ".genmodel");
+
+   public static String getDefaultPathToGenModelInProject(final String projectName)
+   {
+      return getDefaultPathToFileInProject(projectName, ".genmodel");
    }
-   
-   private static URI getDefaultPluginURI(final String pluginID, final String ending){
-      String filePath = "/model/" + MoflonUtil.lastCapitalizedSegmentOf(pluginID) + ending;
-      return URI.createPlatformPluginURI(pluginID + filePath, true);
+
+   private static String getDefaultPathToFileInProject(final String projectName, final String ending)
+   {
+      return "model/" + MoflonUtil.lastCapitalizedSegmentOf(projectName) + ending;
    }
 
    /**
@@ -165,7 +167,7 @@ public class MoflonUtil
 
       return fqn;
    }
-   
+
    /**
     * Determine fully qualified name of given GenPackage by iterating through package hierarchy.
     * 
@@ -232,45 +234,77 @@ public class MoflonUtil
          return prefix;
       }
    }
-   
+
    public static String lastSegmentOf(String name)
    {
       int startOfLastSegment = name.lastIndexOf(".");
-      
-      if(startOfLastSegment == -1)
+
+      if (startOfLastSegment == -1)
          startOfLastSegment = 0;
       else
          startOfLastSegment++;
-      
+
       return name.substring(startOfLastSegment);
    }
-   
-   public static String lastCapitalizedSegmentOf(String name){
+
+   public static String lastCapitalizedSegmentOf(String name)
+   {
       return StringUtils.capitalize(lastSegmentOf(name));
    }
 
-   public static final void calculatePluginToResourceMap(final ResourceSet set) {
-	   for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
-		   if (project.isAccessible()) {
-			   IPluginModelBase pluginModel = PluginRegistry.findModel(project);
-			   if (pluginModel != null) {
-				   URI pluginURI = URI.createPlatformPluginURI(pluginModel.getBundleDescription().getSymbolicName() + "/", true);
-				   URI resourceURI = URI.createPlatformResourceURI(project.getName() + "/", true);
-				   set.getURIConverter().getURIMap().put(pluginURI, resourceURI);
-			   }
-		   }
-	   }
+   public static final void calculatePluginToResourceMap(final ResourceSet set)
+   {
+      for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects())
+         createMapping(set, project);
+   }
+
+   public static void createMapping(final ResourceSet set, final String projectName){
+      IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+      createMapping(set, project);
    }
    
-   public static final URI lookupProjectURI(final IProject project) {
-	   IPluginModelBase pluginModel = PluginRegistry.findModel(project);
-	   if (pluginModel != null) {
-		   // Plugin projects in the workspace
-		   return URI.createPlatformPluginURI(pluginModel
-				   .getBundleDescription().getSymbolicName() + "/", true);
-	   } else {
-		   // Regular projects in the workspace
-		   return URI.createPlatformResourceURI(project.getName() + "/", true);
-	   }
+   public static void createMapping(final ResourceSet set, final IProject project)
+   {
+      if (project.isAccessible())
+      {
+         IPluginModelBase pluginModel = PluginRegistry.findModel(project);
+         if (pluginModel != null)
+         {
+            URI pluginURI = URI.createPlatformPluginURI(pluginModel.getBundleDescription().getSymbolicName() + "/", true);
+            URI resourceURI = URI.createPlatformResourceURI(project.getName() + "/", true);
+            set.getURIConverter().getURIMap().put(pluginURI, resourceURI);
+         }
+      }
+   }
+   
+   public static final URI lookupProjectURI(final IProject project)
+   {
+      IPluginModelBase pluginModel = PluginRegistry.findModel(project);
+      if (pluginModel != null)
+      {
+         // Plugin projects in the workspace
+         return URI.createPlatformPluginURI(pluginModel.getBundleDescription().getSymbolicName() + "/", true);
+      } else
+      {
+         // Regular projects in the workspace
+         return URI.createPlatformResourceURI(project.getName() + "/", true);
+      }
+   }
+
+   public static final boolean isAPluginDependency(final IProject project, final IProject dependency)
+   {
+      IPluginModelBase pluginModel = PluginRegistry.findModel(project);
+      IPluginModelBase dependencyPlugin = PluginRegistry.findModel(dependency);
+
+      if (pluginModel == null || dependencyPlugin == null)
+         return false;
+
+      for (BundleSpecification spec : pluginModel.getBundleDescription().getRequiredBundles())
+      {
+         if (spec.getName().equals(dependencyPlugin.getBundleDescription().getName()))
+            return true;
+      }
+
+      return false;
    }
 }
