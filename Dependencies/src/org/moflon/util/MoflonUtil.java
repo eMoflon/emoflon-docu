@@ -270,7 +270,12 @@ public class MoflonUtil
          IPluginModelBase pluginModel = PluginRegistry.findModel(project);
          if (pluginModel != null)
          {
-            URI pluginURI = URI.createPlatformPluginURI(pluginModel.getBundleDescription().getSymbolicName() + "/", true);
+        	String pluginID = project.getName();
+        	
+        	if(pluginModel.getBundleDescription() != null)
+        		pluginID = pluginModel.getBundleDescription().getSymbolicName();
+        		
+            URI pluginURI = URI.createPlatformPluginURI(pluginID + "/", true);
             URI resourceURI = URI.createPlatformResourceURI(project.getName() + "/", true);
             set.getURIConverter().getURIMap().put(pluginURI, resourceURI);
          }
@@ -282,8 +287,13 @@ public class MoflonUtil
       IPluginModelBase pluginModel = PluginRegistry.findModel(project);
       if (pluginModel != null)
       {
+    	String pluginID = project.getName();
+      	
+      	if(pluginModel.getBundleDescription() != null)
+      		pluginID = pluginModel.getBundleDescription().getSymbolicName(); 
+    	  
          // Plugin projects in the workspace
-         return URI.createPlatformPluginURI(pluginModel.getBundleDescription().getSymbolicName() + "/", true);
+         return URI.createPlatformPluginURI(pluginID + "/", true);
       } else
       {
          // Regular projects in the workspace
@@ -296,12 +306,20 @@ public class MoflonUtil
       IPluginModelBase pluginModel = PluginRegistry.findModel(project);
       IPluginModelBase dependencyPlugin = PluginRegistry.findModel(dependency);
 
+      String pluginID = dependency.getName();
+      
       if (pluginModel == null || dependencyPlugin == null)
          return false;
 
+      if(dependencyPlugin.getBundleDescription() != null)
+    	  pluginID = dependencyPlugin.getBundleDescription().getName();
+
+      if(pluginModel.getBundleDescription() == null)
+    	  return false;
+    	  
       for (BundleSpecification spec : pluginModel.getBundleDescription().getRequiredBundles())
       {
-         if (spec.getName().equals(dependencyPlugin.getBundleDescription().getName()))
+         if (spec.getName().equals(pluginID))
             return true;
       }
 
