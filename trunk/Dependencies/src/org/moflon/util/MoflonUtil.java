@@ -59,7 +59,7 @@ public class MoflonUtil
       return getDefaultPathToFileInProject(projectName, ".genmodel");
    }
 
-   private static String getDefaultPathToFileInProject(final String projectName, final String ending)
+   public static String getDefaultPathToFileInProject(final String projectName, final String ending)
    {
       return "model/" + MoflonUtil.lastCapitalizedSegmentOf(projectName) + ending;
    }
@@ -270,11 +270,11 @@ public class MoflonUtil
          IPluginModelBase pluginModel = PluginRegistry.findModel(project);
          if (pluginModel != null)
          {
-        	String pluginID = project.getName();
-        	
-        	if(pluginModel.getBundleDescription() != null)
-        		pluginID = pluginModel.getBundleDescription().getSymbolicName();
-        		
+            String pluginID = project.getName();
+
+            if (pluginModel.getBundleDescription() != null)
+               pluginID = pluginModel.getBundleDescription().getSymbolicName();
+
             URI pluginURI = URI.createPlatformPluginURI(pluginID + "/", true);
             URI resourceURI = URI.createPlatformResourceURI(project.getName() + "/", true);
             set.getURIConverter().getURIMap().put(pluginURI, resourceURI);
