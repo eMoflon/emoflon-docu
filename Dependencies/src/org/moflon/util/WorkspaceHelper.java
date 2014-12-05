@@ -64,8 +64,12 @@ public class WorkspaceHelper
    public final static int PROGRESS_SCALE = 1000;
 
    public static final String ECORE_FILE_EXTENSION = ".ecore";
+   
+   public static final String PRE_ECORE_FILE_EXTENSION = ".pre.ecore";
 
    public static final String TGG_FILE_EXTENSION = ".tgg.xmi";
+   
+   public static final String PRE_TGG_FILE_EXTENSION = ".pre.tgg.xmi";
 
    public static final String INJECTION_FOLDER = "injection";
 
