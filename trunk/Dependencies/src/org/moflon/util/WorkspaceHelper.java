@@ -58,8 +58,8 @@ public class WorkspaceHelper
    public static final String GEN_FOLDER = "gen";
 
    public final static String TEMP_FOLDER = ".temp";
-
-   public final static String SNAPSHOT_FOLDER = "snapshot";
+   
+   public static final String MOCA_XMI_FILE_EXTENSION = ".moca.xmi";
 
    public final static int PROGRESS_SCALE = 1000;
 
@@ -81,14 +81,6 @@ public class WorkspaceHelper
 
    public static final String GEN_MODEL_EXT = ".genmodel";
 
-   public static final String MOCA_CONTAINER = "org.moflon.moca.MOCA_CONTAINER";
-
-   public static final String MOFLON_CONTAINER = "org.moflon.ide.MOFLON_CONTAINER";
-
-   public static final String TIE_CONTAINER = "org.moflon.tie.TIE_CONTAINER";
-
-   public static final String MOSL_CONTAINER = "org.moflon.ide.MOSL";
-
    public static final String REPOSITORY_NATURE_ID = "org.moflon.ide.ui.runtime.natures.RepositoryNature";
 
    public static final String INTEGRATION_NATURE_ID = "org.moflon.ide.ui.runtime.natures.IntegrationNature";
@@ -102,6 +94,14 @@ public class WorkspaceHelper
    public static final String SUFFIX_GEN_ECORE = ".gen.ecore";
 
    public static final String PLUGIN_ID_MOFLON_DEPENDENCIES = "org.moflon.dependencies";
+   
+   public static final String PLUGIN_ID_ECORE = "org.eclipse.emf.ecore";
+
+   public static final String PLUGIN_ID_TGGRUNTIME = "TGGRuntime";
+
+   public static final String PLUGIN_ID_SDMLANGUAGE = "SDMLanguage";
+
+   public static final String PLUGIN_ID_TGGLANGUAGE = "TGGLanguage";
 
    /**
     * Checks if given name is a valid name for a new project in the current workspace.
