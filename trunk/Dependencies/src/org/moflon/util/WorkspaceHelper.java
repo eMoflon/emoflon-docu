@@ -23,6 +23,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -36,7 +37,10 @@ import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.internal.ui.workingsets.IWorkingSetIDs;
 import org.eclipse.jdt.ui.wizards.JavaCapabilityConfigurationPage;
+import org.eclipse.ui.IWorkingSet;
+import org.eclipse.ui.IWorkingSetManager;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -848,5 +852,31 @@ public class WorkspaceHelper
    public static IFile getProjectGenmodelFile(final IProject repositoryProject)
    {
       return repositoryProject.getFile(MODEL_FOLDER + PATH_SEPARATOR + repositoryProject.getName() + GEN_MODEL_EXT);
+   }
+
+   public static void moveProjectToWorkingSet(IProject project, String workingSetName)
+   {
+      // Move project to appropriate working set
+      IWorkingSetManager workingSetManager = PlatformUI.getWorkbench().getWorkingSetManager();
+      IWorkingSet workingSet = workingSetManager.getWorkingSet(workingSetName);
+      if (workingSet == null)
+      {
+         workingSet = workingSetManager.createWorkingSet(workingSetName, new IAdaptable[] { project });
+         workingSet.setId(IWorkingSetIDs.JAVA);
+         workingSetManager.addWorkingSet(workingSet);
+      } else
+      {
+         // Add current contents of WorkingSet
+         ArrayList<IAdaptable> newElements = new ArrayList<IAdaptable>();
+         for (IAdaptable element : workingSet.getElements())
+            newElements.add(element);
+   
+         // Add newly created project
+         newElements.add(project);
+   
+         // Set updated contents
+         IAdaptable[] newElementsArray = new IAdaptable[newElements.size()];
+         workingSet.setElements(newElements.toArray(newElementsArray));
+      }
    }
 }
