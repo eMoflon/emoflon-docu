@@ -67,6 +67,7 @@ public class ManifestFileBuilder {
 		return new ManifestPrettyPrinter().print(string);
 	}
 
+	//TODO@rkluge: is there a lock that is kept in case of an exception?
 	private void readManifestFile(final IFile manifestFile, final Manifest manifest) throws CoreException {
 		try {
 			manifest.read(manifestFile.getContents());

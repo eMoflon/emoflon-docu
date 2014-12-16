@@ -13,8 +13,11 @@ import java.util.jar.JarFile;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.ENamedElement;
@@ -23,6 +26,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.osgi.service.resolver.BundleSpecification;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
+import org.eclipse.pde.internal.core.PDECore;
+import org.moflon.util.plugins.ManifestFileBuilder;
+import org.moflon.util.plugins.PluginManifestConstants;
 
 /**
  * A collection of useful helper methods.
@@ -30,6 +36,7 @@ import org.eclipse.pde.core.plugin.PluginRegistry;
  */
 public class MoflonUtil
 {
+   private static final Logger logger = Logger.getLogger(MoflonUtil.class);
 
    /**
     * Marker for code passages generated through eMoflon/EMF that are eligible for extracting injections.
@@ -42,7 +49,6 @@ public class MoflonUtil
     */
    public final static String DEFAULT_METHOD_BODY = "\n" + EOPERATION_MODEL_COMMENT
          + "\n\n// TODO: implement this method here but do not remove the injection marker \nthrow new UnsupportedOperationException();";
-
 
    public static String getDefaultPathToEcoreFileInProject(final String projectName)
    {
@@ -58,8 +64,9 @@ public class MoflonUtil
    {
       return "model/" + MoflonUtil.lastCapitalizedSegmentOf(projectName) + ending;
    }
-    
-   public static URI getDefaultURIToEcoreFileInPlugin(final String pluginID){
+
+   public static URI getDefaultURIToEcoreFileInPlugin(final String pluginID)
+   {
       return URI.createPlatformPluginURI("/" + pluginID + "/" + getDefaultPathToEcoreFileInProject(pluginID), true);
    }
 
@@ -234,7 +241,7 @@ public class MoflonUtil
       }
    }
 
-   public static String lastSegmentOf(String name)
+   public static String lastSegmentOf(final String name)
    {
       int startOfLastSegment = name.lastIndexOf(".");
 
@@ -246,7 +253,7 @@ public class MoflonUtil
       return name.substring(startOfLastSegment);
    }
 
-   public static String lastCapitalizedSegmentOf(String name)
+   public static String lastCapitalizedSegmentOf(final String name)
    {
       return StringUtils.capitalize(lastSegmentOf(name));
    }
@@ -257,40 +264,55 @@ public class MoflonUtil
          createMapping(set, project);
    }
 
-   public static void createMapping(final ResourceSet set, final String projectName){
+   public static void createMapping(final ResourceSet set, final String projectName)
+   {
       IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
       createMapping(set, project);
    }
-   
+
    public static void createMapping(final ResourceSet set, final IProject project)
    {
       if (project.isAccessible())
       {
-         IPluginModelBase pluginModel = PluginRegistry.findModel(project);
-         if (pluginModel != null)
+         try
          {
-            String pluginID = project.getName();
-
-            if (pluginModel.getBundleDescription() != null)
-               pluginID = pluginModel.getBundleDescription().getSymbolicName();
-
-            URI pluginURI = URI.createPlatformPluginURI(pluginID + "/", true);
-            URI resourceURI = URI.createPlatformResourceURI(project.getName() + "/", true);
-            set.getURIConverter().getURIMap().put(pluginURI, resourceURI);
+            if (project.hasNature(WorkspaceHelper.PLUGIN_NATURE_ID))
+            {
+               new ManifestFileBuilder().manipulateManifest(project, manifest -> {
+                  String pluginId = project.getName();
+                  final String symbolicName = (String) manifest.getMainAttributes().get(PluginManifestConstants.BUNDLE_SYMBOLIC_NAME);
+                  if (symbolicName != null) 
+                  {
+                     pluginId = symbolicName;
+                  }
+                  else {
+                     logger.warn("Unable to extract plugin id from manifest of project " + project.getName() + ". Falling back to project name.");
+                  }
+                  URI pluginURI = URI.createPlatformPluginURI(pluginId + "/", true);
+                  URI resourceURI = URI.createPlatformResourceURI(project.getName() + "/", true);
+                  set.getURIConverter().getURIMap().put(pluginURI, resourceURI);
+                  return false;
+               });
+               
+            }
+         } catch (CoreException e)
+         {
+            logger.error("Failed to check nature for project " + project.getName());
          }
+
       }
    }
-   
+
    public static final URI lookupProjectURI(final IProject project)
    {
       IPluginModelBase pluginModel = PluginRegistry.findModel(project);
       if (pluginModel != null)
       {
-    	String pluginID = project.getName();
-      	
-      	if(pluginModel.getBundleDescription() != null)
-      		pluginID = pluginModel.getBundleDescription().getSymbolicName(); 
-    	  
+         String pluginID = project.getName();
+
+         if (pluginModel.getBundleDescription() != null)
+            pluginID = pluginModel.getBundleDescription().getSymbolicName();
+
          // Plugin projects in the workspace
          return URI.createPlatformPluginURI(pluginID + "/", true);
       } else
@@ -306,16 +328,16 @@ public class MoflonUtil
       IPluginModelBase dependencyPlugin = PluginRegistry.findModel(dependency);
 
       String pluginID = dependency.getName();
-      
+
       if (pluginModel == null || dependencyPlugin == null)
          return false;
 
-      if(dependencyPlugin.getBundleDescription() != null)
-    	  pluginID = dependencyPlugin.getBundleDescription().getName();
+      if (dependencyPlugin.getBundleDescription() != null)
+         pluginID = dependencyPlugin.getBundleDescription().getName();
 
-      if(pluginModel.getBundleDescription() == null)
-    	  return false;
-    	  
+      if (pluginModel.getBundleDescription() == null)
+         return false;
+
       for (BundleSpecification spec : pluginModel.getBundleDescription().getRequiredBundles())
       {
          if (spec.getName().equals(pluginID))
