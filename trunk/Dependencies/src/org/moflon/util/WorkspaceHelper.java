@@ -879,4 +879,8 @@ public class WorkspaceHelper
          workingSet.setElements(newElements.toArray(newElementsArray));
       }
    }
+
+public static IFile getManifestFile(final IProject project) {
+	return project.getFolder("META-INF").getFile("MANIFEST.MF");
+}
 }

@@ -698,48 +698,4 @@ public class eMoflonEMFUtil
       return resource;
    }
 
-   public static List<Object> shuffle(final List<Object> in)
-   {
-      //TODO[rkluge] Why not use Collections.shuffle(in); ?
-      final int size = in.size();
-      if (size == 0 || size == 1)
-         return in; // nothing to shuffle
-
-      // the following array defines the shuffling (position_no (=old index) -> stored value (=new index))
-      int[] indexArray = new int[size];
-
-      // pool of indices to draw from (randomly)
-      List<Integer> poolOfIndices = new ArrayList<Integer>(size);
-      for (int i = 0; i < size; i++)
-      {
-         poolOfIndices.add(i);
-      }
-
-      // derive a permutation
-      for (int i = 0; i < size; i++)
-      {
-         int randIndex = random.nextInt(poolOfIndices.size());
-         indexArray[i] = poolOfIndices.remove(randIndex);
-      }
-
-      // re-sort the original list, according to the generated permutation
-      for (int origI = 0; origI < size; origI++)
-      {
-         int newI = indexArray[origI];
-         if ((newI >= origI) && (newI != 0))
-         {
-            Object temp = in.remove(origI);
-            // consider the down-shift of the remaining elements after the removal
-            in.add(newI - 1, temp);
-         } else
-         {
-            Object temp = in.remove(origI);
-            // no down-shift necessary
-            in.add(newI, temp);
-         }
-      }
-
-      // return the shuffled list
-      return in;
-   }
 }
