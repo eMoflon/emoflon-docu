@@ -2,7 +2,6 @@ package org.moflon.util;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -10,7 +9,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -51,12 +49,7 @@ public class eMoflonEMFUtil
 
    private static Map<EClassifier, String> clazzNames = new HashMap<EClassifier, String>();
 
-   private static Random random = new SecureRandom();
-
    /*
-    * 
-    * 
-    * 
     * Initialization Methods
     */
 
