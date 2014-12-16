@@ -883,4 +883,6 @@ public class WorkspaceHelper
 public static IFile getManifestFile(final IProject project) {
 	return project.getFolder("META-INF").getFile("MANIFEST.MF");
 }
+
+public static final String PLUGIN_NATURE_ID = "org.eclipse.pde.PluginNature"; // PDE.NATURE_ID
 }
