@@ -278,9 +278,14 @@ public class MoflonUtil
             {
                new ManifestFileBuilder().manipulateManifest(project, manifest -> {
                   String pluginId = project.getName();
-                  final String symbolicName = (String) manifest.getMainAttributes().get(PluginManifestConstants.BUNDLE_SYMBOLIC_NAME);
+                  String symbolicName = (String) manifest.getMainAttributes().get(PluginManifestConstants.BUNDLE_SYMBOLIC_NAME);
+                  
                   if (symbolicName != null) 
                   {
+                     int strip = symbolicName.indexOf(";singleton:=");
+                     if(strip != -1)
+                        symbolicName = symbolicName.substring(0, symbolicName.indexOf(";singleton:="));
+                     
                      pluginId = symbolicName;
                   }
                   else {
@@ -289,6 +294,7 @@ public class MoflonUtil
                   URI pluginURI = URI.createPlatformPluginURI(pluginId + "/", true);
                   URI resourceURI = URI.createPlatformResourceURI(project.getName() + "/", true);
                   set.getURIConverter().getURIMap().put(pluginURI, resourceURI);
+                  logger.debug("Created mapping: " + pluginURI + " -> " + resourceURI);
                   return false;
                });
                
