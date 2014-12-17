@@ -29,7 +29,7 @@ public class ExportedPackagesInManifestUpdater {
 	}
 
 	public void run(final IProgressMonitor monitor) throws CoreException {
-		new ManifestFileBuilder().manipulateManifest(project, manifest -> {
+		new ManifestFileUpdater().processManifest(project, manifest -> {
 
 			return updateExportedPackages(manifest);
 		});

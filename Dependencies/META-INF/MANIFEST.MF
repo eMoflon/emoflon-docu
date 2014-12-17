@@ -100,4 +100,4 @@ Require-Bundle: org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
  org.eclipse.emf.codegen.ecore,
  org.eclipse.pde.core
 Bundle-ActivationPolicy: lazy
-Bundle-Activator: org.moflon.Activator
+Bundle-Activator: org.moflon.MoflonDependenciesPlugin
