@@ -24,7 +24,10 @@ import org.moflon.util.WorkspaceHelper;
 
 public class ManifestFileBuilder {
 
-	public enum AttributeUpdatePolicy {
+   //TODO@rkluge use constant when moved
+	private static final String PLUGIN_ID = "org.moflon.ide.core";
+
+   public enum AttributeUpdatePolicy {
 		FORCE, KEEP;
 	}
 
@@ -72,8 +75,7 @@ public class ManifestFileBuilder {
 		try {
 			manifest.read(manifestFile.getContents());
 		} catch (IOException e) {
-			//TODO@rkluge use constant when moved
-			throw new CoreException(new Status(IStatus.ERROR, "org.moflon.ide.core",
+			throw new CoreException(new Status(IStatus.ERROR, PLUGIN_ID,
 					"Failed to read existing MANIFEST.MF: " + e.getMessage(), e));
 		}
 	}
