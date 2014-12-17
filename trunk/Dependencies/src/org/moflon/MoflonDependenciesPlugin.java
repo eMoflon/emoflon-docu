@@ -11,14 +11,15 @@ import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
 import org.osgi.framework.BundleContext;
 
-public class Activator extends Plugin
+public class MoflonDependenciesPlugin extends Plugin
 {
-
+   public final static String PLUGIN_ID = "org.moflon.dependencies"; 
+   
    // The shared instance
-   private static Activator plugin;
+   private static MoflonDependenciesPlugin plugin;
 
    // Singleton instance
-   public static Activator getDefault()
+   public static MoflonDependenciesPlugin getDefault()
    {
       return plugin;
    }
@@ -32,7 +33,7 @@ public class Activator extends Plugin
     *           The id of the plugin bundle to be searched
     * @return URL to the resource or null if nothing was found (URL because resource could be inside a jar).
     */
-   public static URL getPathRelToPlugIn(String filePath, String pluginId)
+   public static URL getPathRelToPlugIn(final String filePath, final String pluginId)
    {
       try
       {
@@ -45,26 +46,26 @@ public class Activator extends Plugin
    }
 
    @Override
-   public void start(BundleContext context) throws Exception
+   public void start(final BundleContext context) throws Exception
    {
       super.start(context);
       plugin = this;
    }
 
    @Override
-   public void stop(BundleContext context) throws Exception
+   public void stop(final BundleContext context) throws Exception
    {
       plugin = null;
       super.stop(context);
    }
 
-   public static void throwCoreExceptionAsError(String message, String plugin, Exception lowLevelException) throws CoreException
+   public static void throwCoreExceptionAsError(final String message, final String plugin, final Exception lowLevelException) throws CoreException
    {
       IStatus status = new Status(IStatus.ERROR, plugin, IStatus.OK, message, lowLevelException);
       throw new CoreException(status);
    }
 
-   public static String displayExceptionAsString(Exception e)
+   public static String displayExceptionAsString(final Exception e)
    {
       return "Cause: " + ExceptionUtils.getRootCauseMessage(e) + "\n StackTrace: " + ExceptionUtils.getStackTrace(ExceptionUtils.getRootCause(e));
    }

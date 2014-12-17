@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.osgi.service.resolver.BundleSpecification;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
-import org.moflon.util.plugins.ManifestFileBuilder;
+import org.moflon.util.plugins.ManifestFileUpdater;
 import org.moflon.util.plugins.PluginManifestConstants;
 
 /**
@@ -276,7 +276,7 @@ public class MoflonUtil
          {
             if (project.hasNature(WorkspaceHelper.PLUGIN_NATURE_ID))
             {
-               new ManifestFileBuilder().manipulateManifest(project, manifest -> {
+               new ManifestFileUpdater().processManifest(project, manifest -> {
                   String pluginId = project.getName();
                   String symbolicName = (String) manifest.getMainAttributes().get(PluginManifestConstants.BUNDLE_SYMBOLIC_NAME);
                   
