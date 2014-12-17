@@ -62,7 +62,7 @@ public class ManifestFileUpdater
          {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-            manifest.write(stream);
+            new ManifestWriter().write(manifest, stream);
             String formattedManifestString = prettyPrintManifest(stream.toString());
             if (!manifestFile.exists())
             {
