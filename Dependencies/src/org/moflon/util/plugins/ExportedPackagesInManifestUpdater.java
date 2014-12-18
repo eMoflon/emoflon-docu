@@ -1,5 +1,6 @@
 package org.moflon.util.plugins;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -28,9 +29,8 @@ public class ExportedPackagesInManifestUpdater {
 		this.genModel = genModel;
 	}
 
-	public void run(final IProgressMonitor monitor) throws CoreException {
+	public void run(final IProgressMonitor monitor) throws CoreException, IOException {
 		new ManifestFileUpdater().processManifest(project, manifest -> {
-
 			return updateExportedPackages(manifest);
 		});
 

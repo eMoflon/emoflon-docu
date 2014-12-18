@@ -259,16 +259,22 @@ public class MoflonUtil
    public static final void calculatePluginToResourceMap(final ResourceSet set)
    {
       for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects())
-         createMapping(set, project);
+         try
+         {
+            createMapping(set, project);
+         } catch (IOException e)
+         {
+            e.printStackTrace();
+         }
    }
 
-   public static void createMapping(final ResourceSet set, final String projectName)
+   public static void createMapping(final ResourceSet set, final String projectName) throws IOException
    {
       IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
       createMapping(set, project);
    }
 
-   public static void createMapping(final ResourceSet set, final IProject project)
+   public static void createMapping(final ResourceSet set, final IProject project) throws IOException
    {
       if (project.isAccessible())
       {

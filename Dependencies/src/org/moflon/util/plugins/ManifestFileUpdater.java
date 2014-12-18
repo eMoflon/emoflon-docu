@@ -5,8 +5,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.jar.Attributes;
@@ -43,11 +46,11 @@ public class ManifestFileUpdater
     * 
     * @param consumer
     *           A function that returns whether it has modified the manifest.
+    * @throws CoreException 
+    * @throws IOException 
     */
-   public void processManifest(final IProject project, final Function<Manifest, Boolean> consumer)
+   public void processManifest(final IProject project, final Function<Manifest, Boolean> consumer) throws CoreException, IOException
    {
-      try
-      {
          IFile manifestFile = WorkspaceHelper.getManifestFile(project);
          Manifest manifest = new Manifest();
 
@@ -72,11 +75,6 @@ public class ManifestFileUpdater
                manifestFile.setContents(new ByteArrayInputStream(formattedManifestString.getBytes()), true, true, new NullProgressMonitor());
             }
          }
-      } catch (Exception e)
-      {
-         e.printStackTrace();
-      }
-
    }
 
    private String prettyPrintManifest(final String string)
@@ -156,6 +154,44 @@ public class ManifestFileUpdater
          return false;
       }
    }
+   
+   public Map<String, IProject> extractPluginIDToProjectMap(Collection<IProject> projects){
+      Map<String, IProject> idToProject = new HashMap<>();
+      projects.stream().forEach(p -> {
+         try{
+            processManifest(p, manifest -> {
+            idToProject.put(extractPluginId(getID(p,manifest)), p);
+            return false;
+         });
+         } catch(Exception e){
+            idToProject.put(p.getName(), p);
+         }
+      });
+      
+      return idToProject;
+   }
+
+   private String getID(IProject p, Manifest manifest)
+   {
+     return (String)manifest.getMainAttributes().get(PluginManifestConstants.BUNDLE_SYMBOLIC_NAME);
+   }
+   
+   public Collection<String> getDependenciesAsPluginIDs(IProject project){
+      Collection<String> dependencies = new ArrayList<>();
+      
+      try
+      {
+         processManifest(project, manifest -> {
+            dependencies.addAll(extractDependencies((String) manifest.getMainAttributes().get(PluginManifestConstants.REQUIRE_BUNDLE)));
+            return false;
+         });
+      } catch (Exception e)
+      {
+         e.printStackTrace();
+      }  
+      
+      return dependencies.stream().map(dep -> extractPluginId(dep)).collect(Collectors.toList());
+   }
 
    /**
     * Returns the plugin Id for a given dependency entry, which may contain additional metadata, e.g.
@@ -190,14 +226,14 @@ public class ManifestFileUpdater
    }
 
    /**
-    * Extracts the dependencies from the given properties. The dependencies are used as in
+    * Extracts the dependencies from the given list of properties.
     */
-   public static List<String> extractDependencies(final String dependenciesFromMetamodelProperties)
+   public static List<String> extractDependencies(final String dependencies)
    {
       List<String> extractedDependencies = new ArrayList<>();
-      if (dependenciesFromMetamodelProperties != null && !dependenciesFromMetamodelProperties.isEmpty())
+      if (dependencies != null && !dependencies.isEmpty())
       {
-         extractedDependencies.addAll(Arrays.asList(dependenciesFromMetamodelProperties.split(",")));
+         extractedDependencies.addAll(Arrays.asList(dependencies.split(",")));
       }
 
       return extractedDependencies;
