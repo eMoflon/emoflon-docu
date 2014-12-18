@@ -33,6 +33,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.moflon.MoflonDependenciesPlugin;
 import org.moflon.util.WorkspaceHelper;
 import org.moflon.util.eMoflonEMFUtil;
 import org.w3c.dom.Document;
@@ -62,9 +63,6 @@ public class PluginXmlUpdater
       }
 
    }
-
-   // TODO@rkluge: Set correctly when class has moved
-   private static final String PLUGIN_ID = "org.moflon.ide.core";
 
    /**
     * Minimal content of a plugin.xml file
@@ -115,10 +113,10 @@ public class PluginXmlUpdater
 
       } catch (ParserConfigurationException | SAXException | XPathExpressionException e)
       {
-         throw new CoreException(new Status(IStatus.ERROR, PLUGIN_ID, "Error parsing plugin.xml for project " + project.getName() + ": " + e.getMessage(), e));
+         throw new CoreException(new Status(IStatus.ERROR, MoflonDependenciesPlugin.PLUGIN_ID, "Error parsing plugin.xml for project " + project.getName() + ": " + e.getMessage(), e));
       } catch (IOException | TransformerFactoryConfigurationError | TransformerException e)
       {
-         throw new CoreException(new Status(IStatus.ERROR, PLUGIN_ID, "Error reading/writing plugin.xml for project " + project.getName() + ": "
+         throw new CoreException(new Status(IStatus.ERROR, MoflonDependenciesPlugin.PLUGIN_ID, "Error reading/writing plugin.xml for project " + project.getName() + ": "
                + e.getMessage(), e));
       } finally
       {

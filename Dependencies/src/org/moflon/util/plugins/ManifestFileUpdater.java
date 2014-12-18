@@ -82,7 +82,6 @@ public class ManifestFileUpdater
       return new ManifestPrettyPrinter().print(string);
    }
 
-   // TODO@rkluge: is there a lock that is kept in case of an exception?
    private void readManifestFile(final IFile manifestFile, final Manifest manifest) throws CoreException
    {
       try
@@ -155,7 +154,7 @@ public class ManifestFileUpdater
       }
    }
    
-   public Map<String, IProject> extractPluginIDToProjectMap(Collection<IProject> projects){
+   public Map<String, IProject> extractPluginIDToProjectMap(final Collection<IProject> projects){
       Map<String, IProject> idToProject = new HashMap<>();
       projects.stream().forEach(p -> {
          try{
@@ -171,12 +170,12 @@ public class ManifestFileUpdater
       return idToProject;
    }
 
-   private String getID(IProject p, Manifest manifest)
+   private String getID(final IProject p, final Manifest manifest)
    {
      return (String)manifest.getMainAttributes().get(PluginManifestConstants.BUNDLE_SYMBOLIC_NAME);
    }
    
-   public Collection<String> getDependenciesAsPluginIDs(IProject project){
+   public Collection<String> getDependenciesAsPluginIDs(final IProject project){
       Collection<String> dependencies = new ArrayList<>();
       
       try
