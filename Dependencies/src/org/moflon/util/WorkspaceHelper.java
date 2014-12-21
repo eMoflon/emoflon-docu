@@ -95,8 +95,6 @@ public class WorkspaceHelper
 
    public static final String LOG4J_JAR = "/lib/log4j-1.2.17.jar";
 
-   public static final String SUFFIX_GEN_ECORE = ".gen.ecore";
-
    public static final String PLUGIN_ID_MOFLON_DEPENDENCIES = "org.moflon.dependencies";
    
    public static final String PLUGIN_ID_ECORE = "org.eclipse.emf.ecore";
