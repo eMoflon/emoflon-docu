@@ -26,4 +26,5 @@
 ### Problem 2
 **Issue:** Eclipse starts but your workspace is empty.
 
-**Solution:** Make sure that your default SVN client/interface is *SVNKit* (Window > Preferences > Team/SVN). If *JavaHL* is installed, uninstall it.
+**Solution:** Make sure that your default SVN client/interface is *SVNKit* (Window > Preferences > Team/SVN). 
+If *JavaHL* is installed, uninstall it.
