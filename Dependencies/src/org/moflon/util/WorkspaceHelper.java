@@ -91,6 +91,8 @@ public class WorkspaceHelper
 
    public static final String METAMODEL_NATURE_ID = "org.moflon.ide.ui.runtime.natures.MetamodelNature";
 
+   public static final String PLUGIN_NATURE_ID = "org.eclipse.pde.PluginNature"; // PDE.NATURE_ID
+
    public static final String ANTLR_3 = "/lib/antlr-3.5.2-complete.jar";
 
    public static final String LOG4J_JAR = "/lib/log4j-1.2.17.jar";
@@ -98,6 +100,8 @@ public class WorkspaceHelper
    public static final String PLUGIN_ID_MOFLON_DEPENDENCIES = "org.moflon.dependencies";
    
    public static final String PLUGIN_ID_ECORE = "org.eclipse.emf.ecore";
+   
+   public static final String PLUGIN_ID_ECORE_XMI = "org.eclipse.emf.ecore.xmi";
 
    public static final String PLUGIN_ID_TGGRUNTIME = "TGGRuntime";
 
@@ -878,9 +882,9 @@ public class WorkspaceHelper
       }
    }
 
-public static IFile getManifestFile(final IProject project) {
-	return project.getFolder("META-INF").getFile("MANIFEST.MF");
-}
+   public static IFile getManifestFile(final IProject project)
+   {
+      return project.getFolder("META-INF").getFile("MANIFEST.MF");
+   }
 
-public static final String PLUGIN_NATURE_ID = "org.eclipse.pde.PluginNature"; // PDE.NATURE_ID
 }
