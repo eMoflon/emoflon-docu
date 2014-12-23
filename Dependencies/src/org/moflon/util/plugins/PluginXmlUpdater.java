@@ -104,7 +104,7 @@ public class PluginXmlUpdater
          removeExtensionPointsForGeneratedPackages(doc);
 
          final List<Element> extensionElements = createListOfGeneratedPackageExtensions(doc, project, genmodel);
-         final Node pluginRootElement = doc.getElementsByTagName("plugin").item(0);
+         final Node pluginRootElement = getRootNode(doc);
          extensionElements.forEach(element -> pluginRootElement.appendChild(element));
 
          String output = formatXmlString(doc, monitor);
@@ -113,11 +113,12 @@ public class PluginXmlUpdater
 
       } catch (ParserConfigurationException | SAXException | XPathExpressionException e)
       {
-         throw new CoreException(new Status(IStatus.ERROR, MoflonDependenciesPlugin.PLUGIN_ID, "Error parsing plugin.xml for project " + project.getName() + ": " + e.getMessage(), e));
+         throw new CoreException(new Status(IStatus.ERROR, MoflonDependenciesPlugin.PLUGIN_ID, "Error parsing plugin.xml for project " + project.getName()
+               + ": " + e.getMessage(), e));
       } catch (IOException | TransformerFactoryConfigurationError | TransformerException e)
       {
-         throw new CoreException(new Status(IStatus.ERROR, MoflonDependenciesPlugin.PLUGIN_ID, "Error reading/writing plugin.xml for project " + project.getName() + ": "
-               + e.getMessage(), e));
+         throw new CoreException(new Status(IStatus.ERROR, MoflonDependenciesPlugin.PLUGIN_ID, "Error reading/writing plugin.xml for project "
+               + project.getName() + ": " + e.getMessage(), e));
       } finally
       {
          monitor.worked(1);
@@ -125,7 +126,12 @@ public class PluginXmlUpdater
       }
    }
 
-   private void removeExtensionPointsForGeneratedPackages(final Document doc) throws XPathExpressionException
+   public static Node getRootNode(final Document doc)
+   {
+      return doc.getElementsByTagName("plugin").item(0);
+   }
+
+   private static void removeExtensionPointsForGeneratedPackages(final Document doc) throws XPathExpressionException
    {
       NodeList extensionPoints = PluginXmlUpdater.getGeneratedPackageExtensionPoints(doc);
       for (int n = 0; n < extensionPoints.getLength(); ++n)
@@ -134,15 +140,31 @@ public class PluginXmlUpdater
       }
    }
 
-   private Document parseXmlModel(final String content) throws ParserConfigurationException, SAXException, IOException
+   private static Document parseXmlModel(final String content) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException
    {
       DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+      factory.setIgnoringElementContentWhitespace(true);
       DocumentBuilder builder = factory.newDocumentBuilder();
       Document doc = builder.parse(new ByteArrayInputStream(content.getBytes()));
+
+      dropWhitespaceNodesFromTree(doc);
+
       return doc;
    }
 
-   private String readOrGetDefaultPluginXmlContent(final IProject project) throws IOException, CoreException
+   private static void dropWhitespaceNodesFromTree(final Document doc) throws XPathExpressionException
+   {
+      XPath xp = XPathFactory.newInstance().newXPath();
+      NodeList nl = (NodeList) xp.evaluate("//text()[normalize-space(.)='']", doc, XPathConstants.NODESET);
+
+      for (int i = 0; i < nl.getLength(); ++i)
+      {
+         Node node = nl.item(i);
+         node.getParentNode().removeChild(node);
+      }
+   }
+
+   private static String readOrGetDefaultPluginXmlContent(final IProject project) throws IOException, CoreException
    {
       IFile pluginXmlFile = getPluginXml(project);
       String content = "";
@@ -156,7 +178,7 @@ public class PluginXmlUpdater
       return content;
    }
 
-   private List<Element> createListOfGeneratedPackageExtensions(final Document doc, final IProject project, final GenModel genmodel)
+   private static List<Element> createListOfGeneratedPackageExtensions(final Document doc, final IProject project, final GenModel genmodel)
    {
       final List<GeneratedPackageEntry> entries = extractGeneratedPackageEntries(project, genmodel);
       final List<Element> extensionElements = new ArrayList<>();
@@ -174,7 +196,7 @@ public class PluginXmlUpdater
       return extensionElements;
    }
 
-   private List<GeneratedPackageEntry> extractGeneratedPackageEntries(final IProject project, final GenModel genmodel)
+   private static List<GeneratedPackageEntry> extractGeneratedPackageEntries(final IProject project, final GenModel genmodel)
    {
       String genmodelFile = WorkspaceHelper.getProjectGenmodelFile(project).getProjectRelativePath().toString();
       final List<GeneratedPackageEntry> entries = new ArrayList<>();
@@ -188,11 +210,13 @@ public class PluginXmlUpdater
       return entries;
    }
 
-   private String formatXmlString(final Document doc, final IProgressMonitor monitor) throws TransformerConfigurationException,
+   private static String formatXmlString(final Document doc, final IProgressMonitor monitor) throws TransformerConfigurationException,
          TransformerFactoryConfigurationError, TransformerException
    {
       Transformer transformer = TransformerFactory.newInstance().newTransformer();
       transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+      transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+      transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
       StreamResult result = new StreamResult(new StringWriter());
       DOMSource source = new DOMSource(doc);
       transformer.transform(source, result);
@@ -202,7 +226,7 @@ public class PluginXmlUpdater
       return output;
    }
 
-   private void writeContentToFile(final String content, final IFile file, final IProgressMonitor monitor) throws CoreException
+   private static void writeContentToFile(final String content, final IFile file, final IProgressMonitor monitor) throws CoreException
    {
       if (!file.exists())
       {
@@ -213,7 +237,7 @@ public class PluginXmlUpdater
       }
    }
 
-   private IFile getPluginXml(final IProject currentProject)
+   private static IFile getPluginXml(final IProject currentProject)
    {
       return currentProject.getFile("plugin.xml");
    }
