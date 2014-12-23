@@ -138,7 +138,7 @@ public class MoflonUtil
          javaType = EcorePackage.eINSTANCE.getEClassifier(eCoreType).getInstanceClass().getSimpleName();
       } catch (Exception e)
       {
-         logger.warn("Can not derive java data type from the given Ecore data type = " + eCoreType);
+         logger.debug("Can not derive java data type from the given Ecore data type = " + eCoreType);
 
          javaType = eCoreType;
       }
