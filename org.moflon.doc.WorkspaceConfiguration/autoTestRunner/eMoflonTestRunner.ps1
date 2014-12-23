@@ -2,19 +2,20 @@ $OLD_DIR = $(get-location).Path
 $OUTPUT_DIRECTORY="$HOME\emoflon_autotest_tmp_dir"
 
 # List of all test workspaces
-$WORKSPACES = "TestWorkspace_Democles_0",
+$WORKSPACES = 
+	"TestWorkspace_Democles_0",
  	"TestWorkspace_Misc",
 	"TestWorkspace_TGG_0",
 	"TestWorkspace_TGG_1",
 	"TransformationZoo_0",
-	"TransformationZoo_1"
+	"TransformationZoo_1",
+	"DeveloperWorkspace"
 
 # Path to eclipse - must contain eclipse.exe
 $ECLIPSE_HOME = "C:\Program Files\eclipse"
 
 echo "OUTPUT_DIRECTORY:   $OUTPUT_DIRECTORY"
 echo "ECLIPSE_HOME:       $ECLIPSE_HOME"
-#echo "org.moflon.ide version: $(Get-ChildItem -Name "$ECLIPSE_HOME/plugins/org.moflon.ide*")[0]"
 echo ""
 
 # Clean up root folder
