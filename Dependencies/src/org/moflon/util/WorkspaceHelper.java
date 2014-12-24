@@ -108,6 +108,8 @@ public class WorkspaceHelper
    public static final String PLUGIN_ID_SDMLANGUAGE = "SDMLanguage";
 
    public static final String PLUGIN_ID_TGGLANGUAGE = "TGGLanguage";
+   
+   public static final String PLUGIN_ID_MOCATREE = "MocaTree";
 
    /**
     * Checks if given name is a valid name for a new project in the current workspace.

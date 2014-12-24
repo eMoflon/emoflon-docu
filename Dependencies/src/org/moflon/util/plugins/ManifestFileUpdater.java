@@ -33,9 +33,7 @@ public class ManifestFileUpdater
       FORCE, KEEP;
    }
 
-   // TODO aanjorin: is this used anywhere?
-   // This means that the dependency is not available as a plugin -> the user
-   // must manipulate the projects buildpath manually!
+   /** This means that the dependency is not available as a plugin -> the user must manipulate the projects buildpath manually! **/
    public static final Object IGNORE_PLUGIN_ID = "__ignore__";
 
    /**
