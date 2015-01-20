@@ -10,9 +10,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
@@ -30,8 +28,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
-import org.eclipse.emf.codegen.util.CodeGenUtil;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.jdt.core.IClasspathAttribute;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
@@ -114,6 +110,8 @@ public class WorkspaceHelper
    public static final String PLUGIN_ID_DOTTOTGGTGG = "DotToTGGTGG";
 
    public static final String PLUGIN_ID_DotToSDMLanguageTGG = "DotToSDMLanguageTGG";
+
+   public static final String PLUGIN_ID_MOCA = "Moca"; 
    
    /**
     * Checks if given name is a valid name for a new project in the current workspace.
@@ -313,7 +311,7 @@ public class WorkspaceHelper
    /**
     * Returns the set of classpath entries of the given Java project
     */
-   public static Collection<IClasspathEntry> getClasspathEntries(final IJavaProject javaProject) throws JavaModelException
+   private static Collection<IClasspathEntry> getClasspathEntries(final IJavaProject javaProject) throws JavaModelException
    {
       return new HashSet<>(Arrays.asList(javaProject.getRawClasspath()));
    }
@@ -364,78 +362,6 @@ public class WorkspaceHelper
       monitor.done();
    }
 
-   public static void setJarAsLibOnBuildpath(final IJavaProject javaProject, final IFile jar, final IProgressMonitor monitor) throws JavaModelException
-   {
-      monitor.beginTask("", 2 * PROGRESS_SCALE);
-
-      // Get current entries on the classpath
-      LinkedList<IClasspathEntry> classpathEntries = new LinkedList<IClasspathEntry>();
-      for (IClasspathEntry entry : javaProject.getRawClasspath())
-         classpathEntries.add(entry);
-
-      // Add new entry for the classpath
-      if (jar != null)
-      {
-         IClasspathEntry libEntry = JavaCore.newLibraryEntry(jar.getFullPath(), null, null);
-         classpathEntries.add(libEntry);
-      }
-
-      setBuildPath(javaProject, classpathEntries, monitor);
-
-      monitor.worked(1 * PROGRESS_SCALE);
-
-      monitor.done();
-   }
-
-   public static void setProjectOnBuildpath(final IJavaProject javaProject, final IJavaProject dependency, final IProgressMonitor monitor)
-         throws JavaModelException
-   {
-      monitor.beginTask("", 2 * PROGRESS_SCALE);
-
-      // Helper collections to determine the current entries of the java project's classpath
-      List<IClasspathEntry> classpathEntries = new LinkedList<>();
-      Set<IPath> tempSetOfPathsForProjects = new HashSet<>(); // used for filtering (s. below)
-
-      // Collect project paths in list and filter out duplicates
-      for (IClasspathEntry entry : javaProject.getRawClasspath())
-      {
-         if (entry.getEntryKind() == IClasspathEntry.CPE_PROJECT)
-         {
-            // we found a project dependency
-            IPath pathOfEntry = entry.getPath();
-            // if we have already encountered the entry (should not happen though [mw])
-            // do not add it again
-            if (!tempSetOfPathsForProjects.contains(pathOfEntry))
-            {
-               // we have found a new entry
-               // update the helper set
-               tempSetOfPathsForProjects.add(pathOfEntry);
-               // add the entry also to the classpath (to maintain the original ordering)
-               classpathEntries.add(entry);
-            }
-         } else
-         {
-            // this classpathEntry does not reference another project
-            // so just add it (can this assumption potentially lead to an error? [mw])
-            classpathEntries.add(entry);
-         }
-      }
-
-      // Add new project path to list of project paths (if not already present)
-      if (dependency != null)
-      {
-         IClasspathEntry projectEntry = JavaCore.newProjectEntry(dependency.getPath());
-         if (tempSetOfPathsForProjects.add(projectEntry.getPath()))
-            classpathEntries.add(projectEntry);
-      }
-
-      setBuildPath(javaProject, classpathEntries, monitor);
-
-      monitor.worked(1 * PROGRESS_SCALE);
-
-      monitor.done();
-   }
-
    /**
     * Set up the project to a consistent java project
     * 
@@ -470,54 +396,6 @@ public class WorkspaceHelper
       monitor.done();
 
       return javaProject;
-   }
-
-   /**
-    * Add dependencies of generated EMF code to the build path
-    * 
-    * @return
-    */
-   public static boolean addEMFDependenciesToBuildPath(final IProgressMonitor monitor, final IProject iproject)
-   {
-      monitor.beginTask("", 1 * WorkspaceHelper.PROGRESS_SCALE);
-
-      try
-      {
-         IJavaProject project = JavaCore.create(iproject);
-
-         List<IClasspathEntry> classpathEntries = new UniqueEList<IClasspathEntry>();
-         classpathEntries.addAll(Arrays.asList(project.getRawClasspath()));
-
-         // Add EMF specific dependencies
-         CodeGenUtil.EclipseUtil.addClasspathEntries(classpathEntries, "ECLIPSE_CORE_RUNTIME", "org.eclipse.core.runtime");
-         CodeGenUtil.EclipseUtil.addClasspathEntries(classpathEntries, "ECLIPSE_CORE_RESOURCES", "org.eclipse.core.resources");
-         CodeGenUtil.EclipseUtil.addClasspathEntries(classpathEntries, "EMF_COMMON", "org.eclipse.emf.common");
-         CodeGenUtil.EclipseUtil.addClasspathEntries(classpathEntries, "EMF_ECORE", "org.eclipse.emf.ecore");
-         CodeGenUtil.EclipseUtil.addClasspathEntries(classpathEntries, "EMF_ECORE_XMI", "org.eclipse.emf.ecore.xmi");
-
-         // Remove duplicate entries
-         List<IClasspathEntry> filteredEntries = new ArrayList<IClasspathEntry>();
-         HashSet<IPath> pathes = new HashSet<IPath>();
-         for (IClasspathEntry entry : classpathEntries)
-         {
-            IPath entryPath = entry.getPath();
-            if (pathes.add(entryPath))
-            {
-               filteredEntries.add(entry);
-            }
-         }
-
-         project.setRawClasspath(filteredEntries.toArray(new IClasspathEntry[filteredEntries.size()]), new SubProgressMonitor(monitor,
-               1 * WorkspaceHelper.PROGRESS_SCALE, SubProgressMonitor.SUPPRESS_SUBTASK_LABEL));
-      } catch (Exception e)
-      {
-         e.printStackTrace();
-         return false;
-      }
-
-      monitor.done();
-
-      return true;
    }
 
    /**
@@ -561,7 +439,7 @@ public class WorkspaceHelper
    /**
     * Adds the given container to the list of build path entries (if not included, yet)
     */
-   public static void addContainerToBuildPath(final Collection<IClasspathEntry> classpathEntries, final String container)
+   private static void addContainerToBuildPath(final Collection<IClasspathEntry> classpathEntries, final String container)
    {
       IClasspathEntry entry = JavaCore.newContainerEntry(new Path(container));
       for (IClasspathEntry iClasspathEntry : classpathEntries)
@@ -587,7 +465,7 @@ public class WorkspaceHelper
    /**
     * Adds the given container to the build path of the given java project.
     */
-   public static void addContainerToBuildPath(final IJavaProject iJavaProject, final String container)
+   private static void addContainerToBuildPath(final IJavaProject iJavaProject, final String container)
    {
       try
       {
@@ -602,58 +480,6 @@ public class WorkspaceHelper
          logger.error("Unable to set classpath variable");
          e.printStackTrace();
       }
-   }
-
-   /**
-    * Removes a project from the build path of another project
-    * 
-    * @param javaProject
-    *           the project whose build path is manipulated
-    * @param toBeRemovedProject
-    *           the project to be removed
-    */
-   public static void removeProjectFromBuildPath(final IJavaProject javaProject, final IProject toBeRemovedProject)
-   {
-      try
-      {
-         // Get current entries on the classpath and filter project out
-         Collection<IClasspathEntry> classpathEntries = new ArrayList<>();
-         for (IClasspathEntry iClasspathEntry : javaProject.getRawClasspath())
-         {
-            if (!(iClasspathEntry.getPath().equals(toBeRemovedProject.getFullPath()) && iClasspathEntry.getEntryKind() == IClasspathEntry.CPE_PROJECT))
-               classpathEntries.add(iClasspathEntry);
-         }
-
-         setBuildPath(javaProject, classpathEntries);
-      } catch (JavaModelException e)
-      {
-         logger.error("Unable to set classpath variable");
-         e.printStackTrace();
-      }
-   }
-
-   /**
-    * Returns whether the given container appears on the build path of the given project.
-    */
-   public static boolean isContainerOnBuildPath(final IProject project, final String container)
-   {
-      IJavaProject iJavaProject = JavaCore.create(project);
-
-      try
-      {
-         // Get current entries on the classpath and filter project out
-         for (IClasspathEntry iClasspathEntry : iJavaProject.getRawClasspath())
-         {
-            if (iClasspathEntry.getEntryKind() == IClasspathEntry.CPE_CONTAINER && iClasspathEntry.getPath().toString().equals(container))
-               return true;
-         }
-      } catch (JavaModelException e)
-      {
-         logger.error("Unable to check if " + container + " is on the classpath of " + iJavaProject);
-         e.printStackTrace();
-      }
-
-      return false;
    }
 
    private static void setBuildPath(final IJavaProject javaProject, final Collection<IClasspathEntry> entries, final IProgressMonitor monitor)
@@ -701,7 +527,7 @@ public class WorkspaceHelper
     *           the monitor that reports on the progress
     * @throws CoreException
     */
-   public static void addFile(final IFile file, final String contents, final IProgressMonitor monitor) throws CoreException
+   private static void addFile(final IFile file, final String contents, final IProgressMonitor monitor) throws CoreException
    {
       ByteArrayInputStream source = new ByteArrayInputStream(contents.getBytes());
       file.create(source, true, createSubmonitorWith1Tick(monitor));
@@ -737,17 +563,6 @@ public class WorkspaceHelper
    public static SubProgressMonitor createSubmonitorWith1Tick(final IProgressMonitor monitor)
    {
       return createSubMonitor(monitor, 1);
-   }
-
-   /**
-    * Creates a submonitor of the given monitor with 1 tick length.
-    * 
-    * @deprecated use createSubmonitorWith1Tick instead (since 1.6b2)
-    */
-   @Deprecated
-   public static SubProgressMonitor createSubMonitor(final IProgressMonitor monitor)
-   {
-      return createSubmonitorWith1Tick(monitor);
    }
 
    /**
@@ -850,11 +665,6 @@ public class WorkspaceHelper
       final IFolder genFolder = file.getProject().getFolder(WorkspaceHelper.GEN_FOLDER);
       final IPath fullJavaPath = genFolder.getProjectRelativePath().append(pathToJavaFile);
       return fullJavaPath;
-   }
-
-   public static IFile getProjectEcoreFile(final IProject repositoryProject)
-   {
-      return repositoryProject.getFile(MODEL_FOLDER + PATH_SEPARATOR + repositoryProject.getName() + ECORE_FILE_EXTENSION);
    }
 
    public static IFile getProjectGenmodelFile(final IProject repositoryProject)
