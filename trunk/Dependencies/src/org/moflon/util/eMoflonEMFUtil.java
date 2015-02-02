@@ -334,16 +334,10 @@ public class eMoflonEMFUtil
       return URI.createFileURI(filePath.getAbsolutePath());
    }
 
+   
    /**
-    * This method only works when you have registered an appropriate adapter right after loading your model! Further
-    * documentation can be found here: http://sdqweb.ipd.kit.edu/wiki/EMF_Reverse_Lookup_/
-    * _navigating_unidirectional_references_bidirectional
-    * 
-    * @param target
-    *           the target of this reference
-    * @param sourceType
-    *           the type of the opposite objects you are looking for
-    * @return a list of all opposite objects
+    * If possible, prefer {@link eMoflonEMFUtil#getOppositeReferenceTyped(EObject, Class, String) instead!}
+    * This method will be marked as deprecated in the near future.
     */
    public static List<?> getOppositeReference(final EObject target, final Class<?> sourceType, final String targetRoleName)
    {
@@ -369,6 +363,42 @@ public class eMoflonEMFUtil
       return returnList;
    }
 
+   /**
+    * This method only works when you have registered an appropriate adapter right after loading your model! Further
+    * documentation can be found here: http://sdqweb.ipd.kit.edu/wiki/EMF_Reverse_Lookup_/
+    * _navigating_unidirectional_references_bidirectional
+    * 
+    * @param target
+    *           the target of this reference
+    * @param sourceType
+    *           the type of the opposite objects you are looking for
+    * @return a list of all opposite objects
+    */
+   public static <T extends EObject> List<T> getOppositeReferenceTyped(final EObject target, final Class<T> sourceType, final String targetRoleName)
+   {
+      Collection<Setting> settings = getInverseReferences(target);
+
+      List<T> returnList = new ArrayList<T>();
+      for (Setting setting : settings)
+      {
+         EObject candidate = getCandidateObject(sourceType, targetRoleName, setting);
+         if (candidate != null)
+            returnList.add((T) candidate);
+      }
+
+      EObject eContainer = target.eContainer();
+      if (eContainer != null)
+      {
+         Setting setting = (((InternalEObject) eContainer).eSetting(target.eContainmentFeature()));
+         EObject candidate = getCandidateObject(sourceType, targetRoleName, setting);
+         if (candidate != null)
+            returnList.add((T) candidate);
+      }
+
+      return returnList;
+   }
+
+   
    private static EObject getCandidateObject(final Class<?> sourceType, final String targetRoleName, final Setting setting)
    {
       if (setting.getEStructuralFeature().getName().equals(targetRoleName))
