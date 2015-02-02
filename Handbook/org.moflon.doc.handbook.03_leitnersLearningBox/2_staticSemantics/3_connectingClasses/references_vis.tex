@@ -5,7 +5,7 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] A fundamental gesture in EA is \emph{Quick Link}. Quick Link is used to create EReferences between elements in a context-sensitive
+\item[$\blacktriangleright$] A fundamental gesture in EA is \emph{Quick Link}\define{Quick Link}. Quick Link is used to create EReferences between elements in a context-sensitive
 manner. To use quick link, choose an element and note the little black arrow in its top-right corner (Fig.~\ref{ea:quicklink}).
 
 \begin{figure}[htbp]
@@ -76,7 +76,7 @@ consequently not.
 
 \begin{itemize}
 \item[$\blacktriangleright$] Take a moment to review how the \texttt{Aggregration} settings extend the \texttt{Multiplicity} rules. If you've done everything
-right, your metamodel should now resemble Fig.~\ref{ea:ereference_completed}, with a single \emph{bidirectional EReference} between \texttt{Box} and
+right, your metamodel should now resemble Figure~\ref{ea:ereference_completed}, with a single \emph{bidirectional EReference} between \texttt{Box} and
 \texttt{Partition}.
 
 \vspace{1cm}
@@ -89,7 +89,7 @@ right, your metamodel should now resemble Fig.~\ref{ea:ereference_completed}, wi
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] Following the same process, create two unidirectional self-EReferences for \texttt{Partition}, and then a second bidirectional
+\item[$\blacktriangleright$] Following the same process, create two unidirectional self-EReferences for \texttt{Partition} (for next and previous \texttt{Partitions}), and a second bidirectional composite
 EReference\footnote{To be precise, \emph{all} EReferences in Ecore are actually unidirectional. A ``bidirectional'' EReference in our metamodel is really two
 mapped EReferences that are opposites of each other. We however, believe it is simpler to handle these pairs as single EReferences, and prefer this
 concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\ref{ea:ereferences_all}). 
@@ -111,7 +111,7 @@ concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\re
 
 \vspace{1cm}
 
-\item[$\blacktriangleright$] Export your diagram to Eclipse and refresh your workspace. Your Ecore file should now resemble Fig~\ref{eclipse:model_allClasses}.
+\item[$\blacktriangleright$] Export your diagram to Eclipse and refresh your workspace. Your Ecore metamodel file in ``model/LearningBoxLanguage.ecore" should now resemble Figure~\ref{eclipse:model_allClasses}.
 
 \vspace{1cm}
 

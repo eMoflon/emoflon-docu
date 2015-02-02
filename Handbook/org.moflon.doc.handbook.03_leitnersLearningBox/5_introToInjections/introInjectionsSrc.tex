@@ -36,7 +36,7 @@ likely add invisible characters that eMoflon is unable to handle.
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Save the file, then right-click either on the file in the package explorer, or in the editor window, and choose ``eMoflon/
-Create/Update Injection for class'' from the context menu (Fig.~\ref{eclipse:injection_create_injection}).
+Create/Update Injection for class'' (Alt+Shift+E,I) from the context menu (Fig.~\ref{eclipse:injection_create_injection}).
 
 \begin{figure}[htbp]
     \centering
@@ -60,7 +60,7 @@ but with a new \texttt{.inject} extension (Fig.~\ref{eclipse:injection_folder}).
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{eclipse_partialClassPartition}
+    \includegraphics[width=0.75\textwidth]{eclipse_partialClassPartition}
     \caption{Generated injection file for \texttt{PartitionImpl.java}}
     \label{eclipse:injection_partialClassPartition}
 \end{figure}
@@ -68,6 +68,13 @@ but with a new \texttt{.inject} extension (Fig.~\ref{eclipse:injection_folder}).
 \clearpage
 
 \item[$\blacktriangleright$] As a final step, clean and build your metamodel to check that the code is generated and injected properly.
+
+\item[$\blacktriangleright$] By the way, eMoflon allows you to switch quickly between a Java class and its injection file.
+When inside ``PartitionImpl.java", open the context menu and select ``eMoflon/Class <-> Injection" (Alt+Shift+E,W).
+This brings you to ``PartitionImpl.java".
+
+Repeat this command and you are back in ``PartitionImpl.inject``.
+
 
 \item[$\blacktriangleright$] That's it! While injecting handwritten code is a remarkably simple process, it is pretty boring and low level to call all those
 setters and getters yourself. We'll return to injections for establishing two simple methods in Part III using this strategy, but we'll also learn how to

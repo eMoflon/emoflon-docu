@@ -3,7 +3,7 @@
 \visHeader
 \hypertarget{static:methods vis}{}
 
-To finish defining our types, lets define the \emph{signatures} of some operations they'll eventually support.
+To finish defining our types, lets define the \emph{signatures}\define{Operation Signature} of some operations that they'll eventually support.
 
 \begin{enumerate}
 
@@ -24,13 +24,13 @@ leave the \texttt{Return Type} as \texttt{void}, and press \texttt{Save}.
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] In the same dialogue, press \texttt{New} to add a second operation, \texttt{removeCard}, and edit the values as seen in 
-Fig.~\ref{ea:operation_parameters}. Notice that the \texttt{Return Type} can be chosen by either the drop-down menu for
-primitives (e.g. \texttt{EBoolean}), or via the `\texttt{\ldots}' button (highlighted in Fig.~\ref{ea:operation_properties}) for types you've established in
+Figure~\ref{ea:operation_parameters}. Notice that the \texttt{Return Type} can be chosen by either the drop-down menu for
+primitives (e.g. \texttt{EBoolean}), or via the `\texttt{\ldots}' button (highlighted in Figure~\ref{ea:operation_properties}) for types you've established in
 the metamodel (e.g. \texttt{Card}).
 \vspace{-.3cm}
 \begin{quote}
 { \small
-$\textbf{Please note:}$ Non-primitive types \emph{must} be chosen via the `\texttt{\ldots}' button. It allows you to browse for the corresponding elements in
+$\textbf{Very important:}$ Non-primitive types \emph{must} be chosen via the `\texttt{\ldots}' button. It allows you to browse for the corresponding elements in
 your project. Simply typing them won't work!
 }
 \end{quote}
@@ -47,14 +47,14 @@ your project. Simply typing them won't work!
 completing the dialouge. Please remember that you must also use either the drop-down menu, or the `\texttt{\ldots}' button to select the type or else validation
 will fail.
 
-\item[$\blacktriangleright$] Repeat this process for the \texttt{check} operation (with two parameters), as depicted in Fig.~\ref{ea:operation_parameters}. 
+\item[$\blacktriangleright$] Repeat this process for the \texttt{check} operation (with the two parameters \texttt{card:Card, guessed:EString}) that returns an \texttt{EBoolean} (Fig.~\ref{ea:operation_parameters}). 
 
 \item[$\blacktriangleright$] If you've done everything right, your dialogue should now contain three methods - \texttt{check}, \texttt{empty}, and
 \texttt{removeCard} - each with the corresponding parameters and return types in Fig.~\ref{ea:operation_partition}.
 
 
 \item[$\blacktriangleright$] Add all operations analogously for \texttt{Box} and \texttt{Card} until your metamodel closely resembles
-Fig.~\ref{ea:metamodel_complete}.\footnote{Please note that names of parameters may not be displayed by default in EA}
+Figure~\ref{ea:metamodel_complete}.\footnote{Please note that names of parameters may not be displayed by default in EA}
 
 \item[$\blacktriangleright$] To finish, export the metamodel for code generation in Eclipse, and examine the model once again. Each signature should have
 appeared in their respective EClass.
@@ -93,6 +93,7 @@ following section.
 \end{figure}
 \FloatBarrier
 
+\todo{General remark: jumpSingle does not seem to work (rkluge)}
 \jumpSingle{validation vis}
 
 \end{enumerate}
