@@ -16,48 +16,64 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 
-public class ExportedPackagesInManifestUpdater {
+public class ExportedPackagesInManifestUpdater
+{
 
-	public static final String EXPORT_PACKAGE_KEY = "Export-Package";
-	public static final Name EXPORT_PACKAGE = new Attributes.Name(EXPORT_PACKAGE_KEY);
+   public static final String EXPORT_PACKAGE_KEY = "Export-Package";
 
-	private IProject project;
-	private GenModel genModel;
+   public static final Name EXPORT_PACKAGE = new Attributes.Name(EXPORT_PACKAGE_KEY);
 
-	public ExportedPackagesInManifestUpdater(final IProject project, final GenModel genModel) {
-		this.project = project;
-		this.genModel = genModel;
-	}
+   private IProject project;
 
-	public void run(final IProgressMonitor monitor) throws CoreException, IOException {
-		new ManifestFileUpdater().processManifest(project, manifest -> {
-			return updateExportedPackages(manifest);
-		});
+   private GenModel genModel;
 
-		monitor.done();
-	}
-	private boolean updateExportedPackages(final Manifest manifest) {
-		String exportedPackageString = (String) manifest.getMainAttributes().get(EXPORT_PACKAGE);
-		List<String> exportedPackages = new ArrayList<>();
-		if (exportedPackageString != null && !exportedPackageString.isEmpty()) {
-			exportedPackages.addAll(Arrays.asList(exportedPackageString.split(",")));
-		}
-		Set<String> missingPackages = new HashSet<>(getExportPackage());
-		missingPackages.removeAll(exportedPackages);
-		exportedPackages.addAll(missingPackages);
+   public ExportedPackagesInManifestUpdater(final IProject project, final GenModel genModel)
+   {
+      this.project = project;
+      this.genModel = genModel;
+   }
 
-		manifest.getMainAttributes().put(EXPORT_PACKAGE, exportedPackages.stream().collect(Collectors.joining(",")));
-		
-		return true;
-	}
+   public void run(final IProgressMonitor monitor) throws CoreException, IOException
+   {
+      new ManifestFileUpdater().processManifest(project, manifest -> {
+         return updateExportedPackages(manifest);
+      });
 
-	private List<String> getExportPackage() {
-		final List<String> exportedPackages = new ArrayList<>();
-		genModel.getAllGenPackagesWithClassifiers().forEach(genPackage -> {
-			exportedPackages.add(genPackage.getInterfacePackageName());
-			exportedPackages.add(genPackage.getUtilitiesPackageName());
-			exportedPackages.add(genPackage.getClassPackageName());
-		});
-		return exportedPackages;
-	}
+      monitor.done();
+   }
+
+   private boolean updateExportedPackages(final Manifest manifest)
+   {
+      String exportedPackageString = (String) manifest.getMainAttributes().get(EXPORT_PACKAGE);
+      List<String> exportedPackages = new ArrayList<>();
+      if (exportedPackageString != null && !exportedPackageString.isEmpty())
+      {
+         exportedPackages.addAll(Arrays.asList(exportedPackageString.split(",")));
+      }
+      Set<String> missingPackages = new HashSet<>(getExportPackage());
+      missingPackages.removeAll(exportedPackages);
+      exportedPackages.addAll(missingPackages);
+
+      String exportedPackagesString = exportedPackages.stream().collect(Collectors.joining(","));
+      if (!exportedPackagesString.isEmpty())
+      {
+         manifest.getMainAttributes().put(EXPORT_PACKAGE, exportedPackagesString);
+      }
+      else {
+         manifest.getMainAttributes().remove(EXPORT_PACKAGE);
+      }
+
+      return true;
+   }
+
+   private List<String> getExportPackage()
+   {
+      final List<String> exportedPackages = new ArrayList<>();
+      genModel.getAllGenPackagesWithClassifiers().forEach(genPackage -> {
+         exportedPackages.add(genPackage.getInterfacePackageName());
+         exportedPackages.add(genPackage.getUtilitiesPackageName());
+         exportedPackages.add(genPackage.getClassPackageName());
+      });
+      return exportedPackages;
+   }
 }
