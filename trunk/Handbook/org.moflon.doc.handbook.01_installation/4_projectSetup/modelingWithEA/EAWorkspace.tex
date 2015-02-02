@@ -4,11 +4,26 @@
 \subsection{Your Enterprise Architect Workspace}
 
 Now\hypertarget{projectStructure vis}{} that everything is installed and setup properly, let's take a closer look at the different workspaces and our workflow.
-Before we continue, please make a few slight adjustments to Enterprise Architect (EA) so you can easily compare your current workspace to our screenshots:
+Before we continue, please make a few slight adjustments to Enterprise Architect (EA) so you can easily compare your current workspace to our screenshots.
+These settings are advisable but you are, of course, free to choose your own colour schema.
+
 \begin{itemize}
 
-\item[$\blacktriangleright$] Select ``Tools/Options/Standard Colors'' in EA, and set your colours to reflect Fig.~\ref{ea:standardColoursEA}.
-This is advisable but you are, of course, free to choose your own colour schema.
+\item[$\blacktriangleright$] Select ``Tools/Options/Themes'' in EA, and set Diagram Theme to \texttt{Enterprise Architect 10}.
+
+\item[$\blacktriangleright$] Next, proceed to ``Gradients and Background'' and set ``Gradient" and ``Fill" to White (Fig.~\ref{ea:paperAndElementFill}). 
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{standardPaperAndFill}
+    \caption{Suggested paper background and element fill}
+    \label{ea:paperAndElementFill}
+\end{figure}
+
+\vspace{0.5cm}
+
+\item[$\blacktriangleright$] In the ``Standard Colors'' tab, and set your colours to reflect Fig.~\ref{ea:standardColoursEA}.
 
 \vspace{0.5cm}
 
@@ -61,7 +76,7 @@ Now switch back to your Eclipse workspace and note the two nodes named \texttt{S
 
 These nodes, used to group related \emph{Eclipse projects} in an Eclipse workspace, are called \emph{working sets}. The working set
 \texttt{Spe\-ci\-fi\-ca\-tions} contains all \emph{metamodel projects} in a  workspace. Your metamodel project contains a single EAP (EA project) file and is
-used to communicate with EA and initiate code generation by simply pressing F5 or choosing \texttt{Refresh} from the context menu. In our case,
+used to communicate with EA and initiate code generation by simply pressing \texttt{F5} or choosing \texttt{Refresh} from the context menu. In our case,
 \texttt{Specifications} should contain a single metamodel project \texttt{Demo} containing our EA project file  \texttt{Demo.eap}.
  
 Figure~\ref{fig:fromEAtoEclipse} depicts how the Eclipse working set \texttt{Demo} and its contents were generated from the EA model \texttt{Demo}. Every model
@@ -74,7 +89,7 @@ in EA is mapped to a working set in Eclipse with the same name. From every packa
     \label{fig:fromEAtoEclipse}
 \end{figure}
 
-These projects, however, are of a different \emph{nature} than, for example metamodel projects or normal Java projects. These are called \emph{repository
+These projects, however, are of a different \emph{nature} than, for example, metamodel projects or normal Java projects. These are called \emph{repository
 projects}. A nature is Eclipse lingo for ``project type'' and is visually indicated by a corresponding nature icon on the project folder. Our metamodel projects
 sport a neat little class diagram symbol. Repository projects are generated automatically with a certain project structure according to our conventions.
 

@@ -31,33 +31,49 @@ eMoflon's functionality. This is where you can validate and export your complete
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.9\textwidth]{ea_controlPanelValidateAll}
-	\caption{eMoflon's control panel} 
+	\caption{eMoflon's control panel in EA} 
 	\label{ea:controlPanel} 
 \end{figure}
 
 \item[$\blacktriangleright$] Now try exploring the EA project browser! Try to navigate to the packages, classes, and diagrams. Don't worry if you don't
 understand that much - we'll get to explaining everything in a moment. Just make sure not to change anything!
 
-\item[$\blacktriangleright$] Switch back to Eclipse, choose your metamodel project, and press F5 to refresh. A new folder should appear, and your errors should
-disappear after a few seconds. Since you've chosen to use our visual syntax, there isn't much to look at here. The export from EA places all required files in a
-hidden folder (.temp) in the project, and refreshing triggers a build process that invokes our code generator automatically. 
+\item[$\blacktriangleright$] Switch back to Eclipse, choose your metamodel project, and press \texttt{F5} to refresh. 
+The export from EA places all required files in a hidden folder (.temp) in the project.
+A new, third project named \emph{DoubleLinkedListLanguage} is now being created.
+Do not worry about the problem markers.
 
-\item[$\blacktriangleright$] You should be able to monitor the progress with the green bar in the lower right corner (Fig.~\ref{eclipse:build}). Pressing the
-symbol opens a monitor view that gives more details of the build process. You don't need to worry about any of these details, just remember to refresh your
-Eclipse workspace after an export.
-
-\jumpSingle{validate common}
+\item[$\blacktriangleright$] The three asterisks (Fig.~\ref{eclipse:dirty-project}) signal that the project still needs to be built.
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.9\textwidth]{eclipse_buildingProgress}
-	\caption{Eclipse workspace when using visual syntax} 
-	\label{eclipse:build} 
+    \centering
+    \includegraphics[width=0.35\textwidth]{eclipse_dirtyProject.png}
+    \caption{Dirty projects are marked with ***} 
+    \label{eclipse:dirty-project} 
 \end{figure}
 
 \vspace{0.5cm}
+
+\item[$\blacktriangleright$] Now, right-click \emph{DoubleLinkedListLanguage} and choose ``eMoflon/Build" (or use the shortcut Alt+Shift+E,B\footnote{First press Alt+Shift+E, release, and press B.
+By default, most shortcuts eMoflon start with Alt+Shift+E.}).
+
+eMoflon now generates the Java code in your repository project.
+You should be able to monitor the progress with the green bar in the lower right corner (Fig.~\ref{eclipse:build}). Pressing the
+symbol opens a monitor view that gives more details of the build process. You don't need to worry about any of these details, just remember to \begin{inparaenum}[(i.)]
+\item refresh your Eclipse workspace after an export, and
+\item rebuild projects that bear a ``dirty" marker (\texttt{***}).
+\end{inparaenum}
+
+\jumpSingle{validate common}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{eclipse_buildingProgress.png}
+    \caption{Eclipse workspace when using visual syntax} 
+    \label{eclipse:build} 
+\end{figure}
 
 \item[$\blacktriangleright$] If you're ever worried about forgetting to refresh your workspace, or if you just don't want to bother with having to do this,
 Eclipse does offer an option to do it for you automatically. To activate this, go to ``Window/Preferences/General/Workspace" and select \texttt{Refresh on
