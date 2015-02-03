@@ -26,6 +26,10 @@ import org.eclipse.core.runtime.Status;
 import org.moflon.MoflonDependenciesPlugin;
 import org.moflon.util.WorkspaceHelper;
 
+/**
+ * This class provides functionality to modify manifest files.
+ *
+ */
 public class ManifestFileUpdater
 {
 

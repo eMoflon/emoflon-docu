@@ -10,7 +10,9 @@ import java.util.jar.Manifest;
 import java.util.jar.Attributes.Name;
 
 /**
- * This class mimics the behavior of {@link Manifest#write}, which fails to close its output stream.
+ * This class mimics the behavior of JDK's {@link Manifest#write}, which fails to close its output stream.
+ * 
+ * For more information on the format of Manifest files, see {@link http://www.cs.mun.ca/~michael/java/jdk1.1-beta2-docs/guide/jar/manifest.html}.
  */
 public class ManifestWriter
 {
