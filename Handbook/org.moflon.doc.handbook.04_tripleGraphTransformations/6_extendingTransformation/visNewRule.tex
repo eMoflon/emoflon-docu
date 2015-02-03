@@ -1,6 +1,6 @@
 \newpage
 \hypertarget{allCards vis}{}
-\subsection{AllOtherCardsRule}
+\subsection{AllOtherPartitionsRule}
 \visHeader
 
 Remember that you can start the majority of new rules in two different ways! You can either return to the TGG's \texttt{Rules} diagram and use the toolbox
@@ -9,14 +9,14 @@ there, or knowing that you need \texttt{box} and \texttt{partition0} for the con
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Once you've initialized the \texttt{AllOtherCardsRule} diagram, build the rule until it matches
-Fig.~\ref{fig:ea_allOtherCardsRuleComplete}.
+\item[$\blacktriangleright$] Once you've initialized the \texttt{AllOtherPartitionsRule} diagram, build the rule until it matches
+Fig.~\ref{fig:ea_AllOtherPartitionsRuleComplete}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{ea_AllOtherCardsRule}
-  \caption{The completed \texttt{AllOtherCardsRule}}
-  \label{fig:ea_allOtherCardsRuleComplete}
+  \includegraphics[width=0.7\textwidth]{ea_AllOtherPartitionsRule}
+  \caption{The completed \texttt{AllOtherPartitionsRule}}
+  \label{fig:ea_AllOtherPartitionsRuleComplete}
 \end{center}
 \end{figure}
 
@@ -26,12 +26,13 @@ Fig.~\ref{fig:ea_allOtherCardsRuleComplete}.
 \item[$\blacktriangleright$] Save, validate, export, and refresh your Eclipse package explorer to generate code for this rule. Run the TGG again -- it works!
 The transformation is now able to handle the troublesome \texttt{next} dangling edge from the third partition.
 
-\item[$\blacktriangleright$] Feel free to go ahead and add as many \texttt{partition}s and \texttt{card}s as you like to your model instance. Your TGG is now
+\item[$\blacktriangleright$] Feel free to go ahead and add as many \texttt{partition}s and \texttt{card}s as you like to your model instance.
+Your TGG is now
 also able to handle a \texttt{box} with any number of \texttt{partition}s beautifully. 
 
-\item[$\blacktriangleright$] To see how this rule is specified in the textual syntax, check out Fig.~\ref{eclipse:allOtherCardsRuleComplete} in the next
+\item[$\blacktriangleright$] To see how this rule is specified in the textual syntax, check out Fig.~\ref{eclipse:AllOtherPartitionsRuleComplete} in the next
 section.
 
-\jumpSingle{sec:breakpoints}
+\jumpSingle{sec:synch}
 
 \end{itemize}

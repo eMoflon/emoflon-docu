@@ -1,5 +1,6 @@
 \newpage
 \section{Model Synchronization}
+\hypertarget{sec:synch}
 \genHeader
 
 At this stage, you have successfully created a trio of rules that can transform a \texttt{Box} with any number of \texttt{Partitions} and
@@ -9,7 +10,7 @@ that you probably won't make any further changes to your rules, your corresponde
 Now suppose you wanted to make a minor change to one of your current instances, such as adding a single a new card or entry into one of your instances. Could
 you modify the instance models and simply run the transformation again to keep the target and sources consistent? 
 
-The current \texttt{fwd.src.xmi} file (Fig.~\ref{eclipse:fourthPartitionStart}) has a partition with an index of three which, when transformed, correctly
+The current \texttt{fwd.src.xmi} file (Fig.~\ref{fig:ea_extended_fwd_src_xmi}) has a partition with an index of three which, when transformed, correctly
 produces a target dictionary with all four entries. What would happen if we attempted to transform this dictionary back into the same learning box, with all
 four partitions?
 
@@ -39,18 +40,35 @@ exists after synchronizing to and from the resulting \texttt{Dictionary} model.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Open \texttt{LearningBoxToDictionaryIntegrationSynch.java}, locate the empty \texttt{changeSrc} method, and edit it as
-shown in Fig.~\ref{eclipse:changeSrc}.
-
-\vspace{0.5cm}
+\item[$\blacktriangleright$] Open \texttt{LearningBoxToDictionaryIntegrationSynch.java}, locate the empty \texttt{syncForward} method, and edit it as
+shown in Fig.~\ref{eclipse:synchForward}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.9\textwidth]{eclipse_changeSrc}
-  \caption{Small update to the source \texttt{Box} model}
-  \label{eclipse:changeSrc}
+\begin{lstlisting}[language=Java,backgroundcolor=\color{white}, keywordstyle={\bfseries\color{purple}}]
+public void syncForward(String corr) {
+	setChangeSrc(root -> { 
+		Box box = (Box) root;
+		Partition partition3 = box.getContainedPartition()
+			.stream().filter(p -> p.getIndex() > 2).findAny().get();
+		Card newCard = LearningBoxLanguageFactory.eINSTANCE.createCard();
+		newCard.setBack("Question Five");
+		newCard.setFace("Answer Fuenf");
+		partition3.getCard().add(newCard);
+	});
+	loadTriple(corr);
+	loadSynchronizationProtocol("instances/fwd.protocol.xmi");
+	integrateForward();
+	saveResult("fwd");
+	
+	System.out.println("Completed forward synchronization");
+}
+\end{lstlisting}
+  \caption{Implementation of our custom \texttt{IndexToLevel} constraint}
+  \label{eclipse:synchForward}
 \end{center}
 \end{figure}
+
 
 \item[$\blacktriangleright$] Save and run the file. You'll notice that even though no changes were specified for the backward synchronization, both directions
 completed without error.
@@ -64,36 +82,37 @@ the Dictionary. Together with \texttt{sync.fwd.corr.xmi} and \texttt{sync.fwd.pr
 another!
 
 \item[$\blacktriangleright$] What if we wanted to make a change in the other direction? Let's try deleting an entry while keeping all four partitions. Open
-the synchronization's Java file again and locate \texttt{changeTrg}. Complete it as depicted in Fig.~\ref{eclipse:changeTrg}.
+the synchronization's Java file again and locate \texttt{syncBackward}. Replace the code as depicted in Fig.~\ref{eclipse:synchBacward}.
 
 \newpage
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{eclipse_changeTrg}
-  \caption{Small update to the target \texttt{dictionary} model}
-  \label{eclipse:changeTrg}
+\begin{lstlisting}[language=Java,backgroundcolor=\color{white}, keywordstyle={\bfseries\color{purple}}]
+public void syncBackward(String corr) {
+	setChangeTrg(root -> {
+		Dictionary dictionary = (Dictionary) root;
+		Entry deleted = dictionary.getEntry().remove(0);
+	});
+	loadTriple(corr);
+	loadSynchronizationProtocol("instances/fwd.protocol.xmi");
+	integrateBackward();
+	saveResult("bwd");
+
+	System.out.println("Completed backward synchronization");
+}
+\end{lstlisting}
+  \caption{Implementation of our custom \texttt{IndexToLevel} constraint}
+  \label{eclipse:synchBacward}
 \end{center}
 \end{figure}
 
 \item[$\blacktriangleright$] Run the synchronization a final time, and refresh the ``instances'' folder. Open and inspect both \texttt{sync.bwd.src.xmi} and
-\texttt{sync.\-bwd.\-trg.\-xmi}. If everything has executed correctly, \texttt{Card Question One} should be missing from \texttt{partition0}, and
+\texttt{sync.\-bwd.\-trg.\-xmi}. If everything has executed correctly, a \texttt{Card} should be missing in \texttt{Box}, and
 \texttt{partition3} still exists! Equivalently, there should only be four \texttt{Entry} elements in the output \texttt{Dict\-ion\-ar\-y}.
 
 \item[$\blacktriangleright$] You may have noticed that there is no \texttt{Entry Five}, which we added to \texttt{partition3} in the forward
 synchronization. Recall that the process loads and makes changes to the \emph{original} triple, not the most recent copies. The files are simple Java code, so
 you are invited to modify them as you wish for your own projects.
-
-\item[$\blacktriangleright$] Let's try running the integrator on \texttt{sync.fwd.corr.xmi} with \texttt{sync.\-fwd.\-prot\-o\-col.\-xmi}.
-
-\item[$\blacktriangleright$] Proceed through the synchronization step-by-step as far as possible. It takes hardly any time at all! In fact, all it shows is the
-green creation of \texttt{Five : Fuenf} and its link. Recall that this visualization is based on the protocol process, which for this synchronization, only
-added a new card. The four partitions or dictionary container already existed. Their creation is included in the \texttt{fwd.protocol.xmi} generated
-after running \texttt{LearningBoxToDictionaryIntegrationTrafo.java}.
-
-\item[$\blacktriangleright$] As a final point, run the integrator on \texttt{sync.bwd.corr.xmi} with \texttt{sync.\-bwd.\-pro\-to\-col.\-xmi} and try to step
-through. No, it isn't a bug -- you can't do anything because the only update in the backward direction was a deletion of an element, now missing from the
-correspondence model. Remember from the discussion in Section 4 that TGGs are by definition, monotonic. This means TGGs may only specify the build-up of models; A different
-process takes care of an element's deletion.
 
 \end{itemize}
