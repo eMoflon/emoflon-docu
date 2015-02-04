@@ -120,8 +120,7 @@ lost, guaranteeing their correct positions in the tree when transforming back.
 
 The final constraint however, is one we haven't used before. If you re-examine your source \texttt{tree.xmi} model, you'll notice that every entry has a
 different \texttt{index} value. This prevented us from setting an attribute constraint on \texttt{entryNode} but, as long as its index wasn't 0 indicating a
-\texttt{titleNode} (as constrained in the previous \texttt{NodeToDictionaryRule}), it didn't matter. Unfortunately, this missing information means any new
-\texttt{entryNode}s created in the backward transformation have a default 0 index value, and \emph{could} be mistaken by the rule. By using
+\texttt{titleNode} (as constrained in the previous \texttt{Node\-To\-Dictionary\-Rule}), it didn't matter. Unfortunately, this missing information means any new \texttt{entryNode}s created in the backward transformation have a default 0 index value, and \emph{could} be mistaken by the rule. By using
 \texttt{setDefaultNumber}, we have declared that any created default \texttt{index} attributes must be set to 2.
 
 \subsubsection{AuthorRule} % ---------------------------------
@@ -193,7 +192,7 @@ already exist, (i.e., be `black').
 
 \subsubsection{ExistingAuthorRule} % ---------------------------------
 
-\item[$\blacktriangleright$] In \texttt{AuthorRule}'s diagram, select \texttt{authorNode} and \texttt{library}, and press \texttt{Derive}. Enter
+\item[$\blacktriangleright$] In \texttt{AuthorRule}'s diagram, select \texttt{author} and \texttt{library}, and press \texttt{Derive}. Enter
 \texttt{ExistingAuthorRule} as the rule's name but given that we want to refine the selected elements, not use them as context elements,
 be sure to select the \texttt{exact copy} option (Fig.~\ref{ea:deriveRefinement}).
 
@@ -234,7 +233,7 @@ elements from the basis rule as links so they're represented in the diagram. Fig
 
 \subsubsection{NewAuthorRule} % ---------------------------------
 
-\item[$\blacktriangleright$] Return to \texttt{AuthorRule} and derive another copy of \texttt{authorNode} and \texttt{library} into a rule called
+\item[$\blacktriangleright$] Return to \texttt{AuthorRule} and derive this time a copy of \texttt{authorNode} and \texttt{library} into a rule called
 \texttt{NewAuthorRule}. We'll explain why further in the next section, but for now just leave it as it is, and don't change anything. As we have defined
 \texttt{AuthorRule} as abstract, we need this concrete rule to handle new authors. The diagram should come to resemble Fig.~\ref{ea:NewAuthorRule}.
 
