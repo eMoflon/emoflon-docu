@@ -10,19 +10,18 @@ If you find this section challenging or unclear, refer to Part II: Ecore for a d
 
 \begin{enumerate}
 
-\item[$\blacktriangleright$] Open Eclipse and create a new metamodel project named \texttt{Ecore\-To\-Gen\-Model}, selecting the \texttt{Add Demo Specification}
+\item[$\blacktriangleright$] Open Eclipse and create a new metamodel project named \texttt{Ecore\-To\-Gen\-Model}, do not select the \texttt{Add Demo Specification}
 option in the project wizard window.
 
-\item[$\blacktriangleright$] A new specifications folder with the project name should have loaded into the workspace, along with an \texttt{DemoTestSuite} JUnit
-test. You may choose to either delete or ignore this second project -- it is used as the example in Part I and is irrelevant in this context.
+\item[$\blacktriangleright$] A new specifications folder with the project name should have been loaded into the workspace.
 
-\item[$\blacktriangleright$] Double-click the generated \texttt{Ecore\-To\-Gen\-Model.eap} file to open your project in EA. Explore the project browser and
-make of note of the packages already present in EA under \texttt{eMoflon Languages}, especially \texttt{Ecore} which we shall use in this transformation.
+\item[$\blacktriangleright$] Double-click the generated \texttt{Ecore\-To\-Gen\-Model.eap} file to open your project in EA. 
+Explore the project browser and make note of the packages already present in EA under \texttt{eMoflon Languages}, especially \texttt{Ecore} which we shall use in this transformation.
 
-\item[$\blacktriangleright$] Select either root note and create a new package named \texttt{Gen\-Model\-Language}. 
+\item[$\blacktriangleright$] Select the root note \texttt{My Working Set} and create a new package named \texttt{Gen\-Model\-Language}. 
 
 \item[$\blacktriangleright$] Add a new Ecore diagram and model the elements as depicted in Fig.~\ref{fig_gMM}. You'll need to create the three EClasses on
-the left, but \texttt{Ecore::EPackage} and \texttt{Ecore::EClass} can be drag-and-dropped and pasted as links from the project browser. 
+the left, but \texttt{Ecore::EPackage} and \texttt{Ecore::EClass} are to be drag-and-dropped and pasted as links from the project browser. 
 
 \vspace{0.5cm}
 
@@ -38,9 +37,10 @@ the left, but \texttt{Ecore::EPackage} and \texttt{Ecore::EClass} can be drag-an
 
 \item[$\blacktriangleright$] Please note that the actual \texttt{GenModel} metamodel contains many more elements, but this subset is sufficient for our
 task.
+Although this subset can be incomplete, it must be correct and not contradict the actual \texttt{GenModel} metamodel in any way!
 
-\item[$\blacktriangleright$] Navigate to the project browser again and create another packaged named \texttt{Ecore2GenModel}.  This will contain the
-\texttt{Transformer} class; Complete its diagram as depicted in Fig.~\ref{fig_e2gm}.
+\item[$\blacktriangleright$] Navigate to the project browser again and create another package named \texttt{Ecore2GenModel}.  
+This will contain the \texttt{Transformer} class; Create and complete its Ecore diagram as depicted in Fig.~\ref{fig_e2gm}.
 
 \item[$\blacktriangleright$] Carefully double-click each method to create and implement their SDMs as depicted in Figs.~\ref{fig_pack2gm} and \ref{fig_transf}.
 \end{enumerate}
