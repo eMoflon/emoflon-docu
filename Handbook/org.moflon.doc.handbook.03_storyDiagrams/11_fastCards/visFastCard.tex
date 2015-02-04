@@ -5,7 +5,7 @@
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] To introduce fast cards into your learning box, return to the metamodel diagram and create a new \texttt{eclass},
+\item[$\blacktriangleright$] To introduce fast cards into your learning box, return to the metamodel diagram and create a new \texttt{EClass},
 \texttt{FastCard}. Quick link to \texttt{Card} and choose \texttt{Create Inheritance} from the context menu. We only want to check the dynamic type of a
 tested card at runtime, which means we don't need to override anything. Therefore, when the \texttt{Overrides \& Implementations} dialogue appears, make sure
 nothing is selected (Fig.~\ref{ea:dialogue_override}). Your metamodel should then resemble Fig.~\ref{ea:metamodel_FastCard}.
@@ -74,8 +74,9 @@ parameter \emph{and} has already been used in \texttt{checkIfGuessIsCorrect}. We
 \texttt{Object\-Vari\-able\-Ex\-pres\-sion}, with \texttt{card} as the target. Note that a binding could also use a \emph{MethodCallExpression} to invoke a
 method whose return value would be the bound value. This is very useful as it allows invoking helper methods directly in patterns.
 
-\item[$\blacktriangleright$] To finalize the SDM, extract the \texttt{promoteFastCard} story pattern and build the pattern according to
-Fig.~\ref{ea:promoteFastCardPattern}. Compare this pattern to Figs.~\ref{ea:sdm_check_complete_activity_node} and \ref{ea:sdm_check_complete_penalize}, the
+\item[$\blacktriangleright$] To finalize the SDM, (i) extract the \texttt{promoteFastCard} story pattern and build the pattern according to
+Fig.~\ref{ea:promoteFastCardPattern} and (ii) create the parallel \texttt{Success} and \texttt{Failure} edges from this activity to the stop node returning 
+\texttt{true} for the same reason as in \texttt{check} earlier. Compare the pattern in Fig.~\ref{ea:promoteFastCardPattern} to Figs.~\ref{ea:sdm_check_complete_activity_node} and \ref{ea:sdm_check_complete_penalize}, the
 original promotion and penalizing card movements. As you can see, they're very similar, except \texttt{fastCard} is transferred from the current partition
 (\texttt{this}) immediately to the last partition in \texttt{box}, identified as having no next \texttt{Partition} with an appropriate NAC.
 Note that a second NAC is used to handle the case where \texttt{this} would be the next \texttt{Partition}, which is also not want we want.

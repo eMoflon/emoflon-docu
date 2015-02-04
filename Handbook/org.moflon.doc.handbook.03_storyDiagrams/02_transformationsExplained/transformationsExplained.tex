@@ -26,10 +26,10 @@ A rule, $r: (L,R)$, can be \emph{applied} to a model (a typed graph) $G$ by:
 \begin{enumerate}
   \item \emph{Finding} an occurrence of the precondition $L$ in $G$ via a \emph{match}, $m$
   
-  \item \emph{Cutting} out or $Destroying (L\setminus R)$ i.e., the elements that are present in the precondition but not in the postcondition are deleted
+  \item \emph{Cutting} out or $Destroying$ $(L\setminus R)$, i.e., the elements that are present in the precondition but not in the postcondition are deleted
   from $G$ to form  $(G\setminus Destroy)$
   
-  \item \emph{Pasting} or $Creating (R\setminus L)$ i.e., new elements that are present in the postcondition but not in the precondition and are to be created
+  \item \emph{Pasting} or $Creating$ $(R\setminus L)$, i.e., new elements that are present in the postcondition but not in the precondition and are to be created
   in the hole left in $(G\setminus Destroy)$ to form a new graph, $H = (G\setminus Destroy) \cup Create$ (Fig.\ref{fig:rule_application}). 
   
   \end{enumerate}

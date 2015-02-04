@@ -18,7 +18,7 @@ For a more detailed overview of the box and our goals, we recommend you read the
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] To get started in Eclipse, press the \texttt{new} button and navigate to ``Examples/eMoflon Handbook Examples/''
+\item[$\blacktriangleright$] To get started in Eclipse, press the \texttt{New} button and navigate to ``Examples/eMoflon Handbook Examples/''
 (Fig.~\ref{eclipse:downloadWizard}).
 
 \begin{figure}[htbp]
@@ -35,35 +35,38 @@ you to experiment with your metamodel.
 \newpage
 
 \vspace*{0.5cm}
-
-\item[$\blacktriangleright$] If your package explorer does not resemble ours in Fig.~\ref{eclipse:workingSets} with at least two distinct nodes, select the
-small, downward facing arrow in the corner of the package explorer. Choose ``Working Sets'' as your ``Top Level Elements.'' We use these to structure the
-workspace in Eclipse.
-
-\vspace{0.75cm}
-
+%
+%\item[$\blacktriangleright$] If your package explorer does not resemble ours in Fig.~\ref{eclipse:workingSets} with at least two distinct nodes, select the
+%small, downward facing arrow in the corner of the package explorer. Choose ``Working Sets'' as your ``Top Level Elements.'' We use these to structure the
+%workspace in Eclipse.
+%
+%\vspace{0.75cm}
+%
 \end{itemize}
-
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.9\textwidth]{eclipse_workingSets}
-	\caption{Configuring your Package Explorer}
-	\label{eclipse:workingSets}
-\end{figure}
-
-The ``MyWorkingSet" node contains \texttt{Learn\-ing\-Box\-Lang\-uage}, which in turn contains all the code generated from your metamodel. The metamodel itself
-is found in \texttt{Leit\-ners\-Learn\-ing\-Box} under ``Specifications.'' The visual metamodel is a single \texttt{.eap} file, while the textual metamodel is
-contained within an explicit folder structure, starting with ``/MOSL.'' Finally, the GUI is placed in the ``Other Projects'' node.
-
-Each of these projects are not placed in the same working set as they have different \emph{nature}s, or project types. \texttt{Learning\-Box\-Language} is a
-\emph{repository project}, the Eclipse classification of a normal Java project,\footnote{For details on the project setup, review Part I, Section 4}
-while \texttt{LeitnersLearningBox} is a metamodel project.
+%
+%\begin{figure}[htbp]
+%	\centering
+%  \includegraphics[width=0.9\textwidth]{eclipse_workingSets}
+%	\caption{Configuring your Package Explorer}
+%	\label{eclipse:workingSets}
+%\end{figure}
+%
+%The ``MyWorkingSet" node contains \texttt{Learn\-ing\-Box\-Lang\-uage}, which in turn contains all the code generated from your metamodel. The metamodel itself
+%is found in \texttt{Leit\-ners\-Learn\-ing\-Box} under ``Specifications.'' The visual metamodel is a single \texttt{.eap} file, while the textual metamodel is
+%contained within an explicit folder structure, starting with ``/MOSL.'' Finally, the GUI is placed in the ``Other Projects'' node.
+%
+%Each of these projects are not placed in the same working set as they have different \emph{nature}s, or project types. \texttt{Learning\-Box\-Language} is a
+%\emph{repository project}, the Eclipse classification of a normal Java project,\footnote{For details on the project setup, review Part I, Section 4}
+%while \texttt{LeitnersLearningBox} is a metamodel project.
 
 \begin{itemize}
+	
+\itemWithRightTriangle In order to start working with the cheat package, you have to generate code by (i) opening the \texttt{.eap} file in \texttt{LeitnersLearningBox}, (ii) exporting it using Enterprise Architect, (iii) refreshing the project containing the \texttt{.eap} and (iv) rebuilding the  \texttt{LearningBoxLanguage} project. For more details on the code generation process, refer to Part I, Section 2.
 
 \item[$\blacktriangleright$] Inspect the files in both projects until you feel comfortable with what you'll be working with. In particular, look at the files
-found under ``gen." Each Java file has a corresponding \texttt{.impl} file, where all generated method implementations will be placed.\footnote{For
-more details on code generation, refer to Part I, Section 5} 
+found under ``gen." Each Java file has a corresponding \texttt{.impl} file, where all generated method implementations will be placed.
+%\footnote{For
+%more details on code generation, refer to Part I, Section 5} 
 
 \item[$\blacktriangleright$] Be sure to also review the Ecore model in ``LearningBoxLanguage/model/'' and the dynamic model found in ``instances.'' While
 you can make and customize your own instances,\footnote{To learn how to make your own instance models, review Part II, Section 4} we have included a small
