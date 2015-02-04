@@ -237,8 +237,11 @@ attempt to guarantee type safety} and should be avoided when possible.
 
 \item[$\blacktriangleright$] To implement a literal, double click the stop node stemming from  \texttt{promoteCard}, and change the expression type from
 \texttt{void} to \texttt{LiteralEx\-pression} (Fig.~\ref{ea:sdm_check_literal_exp}). Change the value in the window below to \texttt{true}. Press \texttt{OK},
-then finish the SDM by returning \texttt{false} after \texttt{penalizeCard} in the same manner. Your diagram should now resemble
-Fig.~\ref{ea:sdm_check_finish}.
+then finish the SDM by returning \texttt{false} after \texttt{penalizeCard} in the same manner. Note that it is also possible that \texttt{promoteCard} or 
+\texttt{penalizeCard} fails\footnote{For example, if the actual partition doesn't have a ``proper'' successor or predecessor -- in this case, unfortunately, we can't 
+give a real reward or penalty for the guess, which means that we still return \texttt{true} or \texttt{false}.}. This is handled by placing parallel \texttt{Success} 
+and \texttt{Failure} edges after the \texttt{promoteCard} and \texttt{penalizeCard} activities. After doing these, your diagram should 
+resemble Fig.~\ref{ea:sdm_check_finish}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -250,7 +253,7 @@ Fig.~\ref{ea:sdm_check_finish}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=\textwidth]{ea_sdmCheckComplete}
+  \includegraphics[width=.9\textwidth]{ea_sdmCheckComplete}
   \caption{Complete SDM for \texttt{Partition::check}}
   \label{ea:sdm_check_finish}
 \end{center}
