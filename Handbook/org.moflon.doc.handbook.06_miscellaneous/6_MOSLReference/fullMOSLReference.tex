@@ -28,7 +28,7 @@ opposites	:=	link '<->' link
 parameter	:=	parameter_name : type
 param_list	:=	parameter*
 reference	:=	[binding_operator] ['<>'] '->' reference_name 
-					'('multiplicity')' ':' target_type
+				'('multiplicity')' ':' target_type
 
 attribute_name, ov_name, parameter_name, reference_name, return_type, 
 	target_type, type := STRING
@@ -38,16 +38,17 @@ SDM Patterns and TGG Rules
 \begin{lstlisting}[backgroundcolor=\color{codelightgray}]
 assignment		:= ov_name'.'attribute_name ':=' expression
 statement_node	:= '<'method_call'>'
-link_variable 	:= [binding_operator] '-' reference_name '->' source_type
-object_variable := [binding_semantics] [binding_operator] [binding_state] 
-					ov_name ':' type_reference
+link_variable 	:= [binding_operator]'-'reference_name'->'source_type
+object_variable := [binding_semantics][binding_operator][binding_state] 
+                   ov_name ':' type_reference
 										
-AttributeValueExpression 	:= ov_name'.'attribute_name
-LiteralExpression 			:= boolean_literal | integer_literal | any_literal
-ObjectVariableExpression 	:= '@'ov_name
-ParameterExpression 		:= '$'parameter_name
-MethodCallExpression 		:= (objectVariableExpression | ParameterExpression)
-									'.'ID'('argument_list')'
+AttributeValueExpression := ov_name'.'attribute_name
+LiteralExpression        := boolean_literal | integer_literal 
+                         |  any_literal
+ObjectVariableExpression := '@'ov_name
+ParameterExpression      := '$'parameter_name
+MethodCallExpression     := (objectVariableExpression| 
+                           ParameterExpression)'.'ID'('argument_list')'
 
 boolean_literal := true, false
 integer_literal := ['+' | '-'] ( '1' | ... | '9' )
