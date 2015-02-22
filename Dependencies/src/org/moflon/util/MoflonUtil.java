@@ -8,10 +8,14 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.Pair;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
@@ -27,6 +31,7 @@ import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 import org.moflon.util.plugins.ManifestFileUpdater;
 import org.moflon.util.plugins.PluginManifestConstants;
+
 
 /**
  * A collection of useful helper methods.
@@ -355,5 +360,29 @@ public class MoflonUtil
       }
 
       return false;
+   }
+
+   public static String correctPathWithImportMappings(String typePath, Map<String, String> importMappings)
+   {
+      // Break path up into all segments
+      List<String> segments = Arrays.asList(typePath.split(Pattern.quote(".")));
+      Optional<String> EMPTY_OPTION = Optional.<String> empty();
+      Pair<Optional<String>, Optional<String>> EMPTY_PAIR = Pair.of(EMPTY_OPTION, EMPTY_OPTION);
+
+      // Check all possible segment prefixes for fitting entry in import mappings 
+      return segments.stream().reduce(EMPTY_PAIR, (oldPair, newSegment) -> {
+         if (oldPair.right.isPresent())
+            return oldPair;
+         else
+         {
+            String oldPrefix = oldPair.left.isPresent() ? oldPair.left.get() + "." : "";
+            String newPrefix = oldPrefix + newSegment;
+
+            if (importMappings.containsKey(newPrefix))
+               return Pair.of(Optional.of(newPrefix), Optional.of(importMappings.get(newPrefix)));
+            else
+               return Pair.of(Optional.of(newPrefix), EMPTY_OPTION);
+         }
+      }, (p1, p2) -> Pair.of(p1.left.isPresent() ? p1.left : p2.left, p1.right.isPresent() ? p1.right : p2.right)).right.orElse(typePath);
    }
 }
