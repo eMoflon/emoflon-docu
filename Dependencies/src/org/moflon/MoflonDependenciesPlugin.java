@@ -67,7 +67,12 @@ public class MoflonDependenciesPlugin extends Plugin
 
    public static String displayExceptionAsString(final Exception e)
    {
-      return "Cause: " + ExceptionUtils.getRootCauseMessage(e) + "\n StackTrace: " + ExceptionUtils.getStackTrace(ExceptionUtils.getRootCause(e));
+      try {
+      String message = "Cause: " + ExceptionUtils.getRootCauseMessage(e) + "\n StackTrace: " + ExceptionUtils.getStackTrace(ExceptionUtils.getRootCause(e));
+      return message;
+      } catch(Exception new_e){
+         return e.getMessage();
+      }
    }
 
 }
