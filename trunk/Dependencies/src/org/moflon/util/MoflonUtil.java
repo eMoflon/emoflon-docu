@@ -125,17 +125,15 @@ public class MoflonUtil
    }
 
    /**
-    * Derive the java data type of a given Ecore data type. All numerical data types (e.g. byte, int etc.) are converted
-    * to the Java class "Number".
+    * Derive the java data type of a given Ecore data type. 
     * 
     * @param eCoreType
     *           the name of the Ecore data type class (e.g. EString)
     * @return the name of the java type class (e.g. String)
     */
-   public static String eCoreTypeToJavaType(final String eCoreType, final boolean numericalToNumber) throws IllegalArgumentException
+   public static String eCoreTypeToJavaType(final String eCoreType) throws IllegalArgumentException
    {
       String javaType = "";
-      List<String> primitiveNumberTypes = Arrays.asList(new String[] { "byte", "short", "int", "long", "float", "double" });
 
       // Derive the java data type from the Ecore class name
       try
@@ -147,11 +145,6 @@ public class MoflonUtil
 
          javaType = eCoreType;
       }
-
-      // Convert all numerical data types to Number
-      if (numericalToNumber)
-         if (primitiveNumberTypes.contains(javaType))
-            javaType = "Number";
 
       return javaType;
    }
