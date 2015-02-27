@@ -16,6 +16,7 @@ Export-Package: antlr,
  antlr.debug,
  antlr.debug.misc,
  antlr.preprocessor,
+ de.svenjacobs.loremipsum,
  de.upb.tools.fca,
  de.upb.tools.pcs,
  de.upb.tools.sdm,
@@ -186,7 +187,8 @@ Bundle-ClassPath: .,
  lib/commons-lang3-3.0-beta.jar,
  lib/RuntimeTools.jar,
  lib/antlr-3.5.2-complete.jar,
- lib/antlr-4.2.1-complete.jar
+ lib/antlr-4.2.1-complete.jar,
+ lib/loremipsum-1.0.jar
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
  org.eclipse.jdt.core,
