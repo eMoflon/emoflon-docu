@@ -141,7 +141,7 @@ public class MoflonUtil
          javaType = EcorePackage.eINSTANCE.getEClassifier(eCoreType).getInstanceClass().getSimpleName();
       } catch (Exception e)
       {
-         logger.debug("Can not derive java data type from the given Ecore data type = " + eCoreType);
+         logger.debug("Cannot derive Java data type from the given Ecore data type = '" + eCoreType + "'. Using Ecore type instead.");
 
          javaType = eCoreType;
       }
@@ -355,7 +355,7 @@ public class MoflonUtil
       return false;
    }
 
-   public static String correctPathWithImportMappings(String typePath, Map<String, String> importMappings)
+   public static String correctPathWithImportMappings(final String typePath, final Map<String, String> importMappings)
    {
       // Break path up into all segments
       List<String> segments = Arrays.asList(typePath.split(Pattern.quote(".")));
