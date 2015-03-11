@@ -61,8 +61,6 @@ public class WorkspaceHelper
    
    public static final String MOCA_XMI_FILE_EXTENSION = ".moca.xmi";
 
-   public final static int PROGRESS_SCALE = 1000;
-
    public static final String ECORE_FILE_EXTENSION = ".ecore";
    
    public static final String PRE_ECORE_FILE_EXTENSION = ".pre.ecore";
@@ -159,7 +157,7 @@ public class WorkspaceHelper
     */
    public static IProject createProject(final String projectName, final String pluginId, final IProgressMonitor monitor) throws CoreException
    {
-      monitor.beginTask("", 2 * PROGRESS_SCALE);
+      monitor.beginTask("", 2);
 
       // Get project handle
       IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
@@ -198,7 +196,7 @@ public class WorkspaceHelper
     */
    public static IFolder addFolder(final IProject project, final String folderName, final IProgressMonitor monitor) throws CoreException
    {
-      monitor.beginTask("", 1 * PROGRESS_SCALE);
+      monitor.beginTask("", 1);
 
       IFolder projFolder = project.getFolder(folderName);
       if (!projFolder.exists())
@@ -227,7 +225,7 @@ public class WorkspaceHelper
    public static void addFile(final IProject project, final String fileName, final URL pathToContent, final String pluginID, final IProgressMonitor monitor)
          throws CoreException, URISyntaxException, IOException
    {
-      monitor.beginTask("", 1 * PROGRESS_SCALE);
+      monitor.beginTask("", 1);
 
       IFile projectFile = project.getFile(fileName);
       InputStream contents = pathToContent.openStream();
@@ -238,7 +236,7 @@ public class WorkspaceHelper
 
    public static void clearFolder(final IProject project, final String folder, final IProgressMonitor monitor) throws CoreException, URISyntaxException, IOException
    {
-      monitor.beginTask("", 1 * PROGRESS_SCALE);
+      monitor.beginTask("", 1);
 
       IFolder folderInProject = project.getFolder(folder);
       
@@ -263,7 +261,7 @@ public class WorkspaceHelper
     */
    public static void addFile(final IProject project, final String fileName, final String contents, final IProgressMonitor monitor) throws CoreException
    {
-      monitor.beginTask("", 1 * PROGRESS_SCALE);
+      monitor.beginTask("", 1);
       IFile projectFile = project.getFile(fileName);
       ByteArrayInputStream source = new ByteArrayInputStream(contents.getBytes());
       projectFile.create(source, true, createSubmonitorWith1Tick(monitor));
@@ -285,7 +283,7 @@ public class WorkspaceHelper
    public static void setAsSourceFolderInBuildpath(final IJavaProject javaProject, final IFolder[] folderNames, final IClasspathAttribute[] extraAttributes,
          final IProgressMonitor monitor) throws JavaModelException
    {
-      monitor.beginTask("", 2 * PROGRESS_SCALE);
+      monitor.beginTask("", 2);
 
       Collection<IClasspathEntry> entries = getClasspathEntries(javaProject);
 
@@ -301,7 +299,7 @@ public class WorkspaceHelper
             }
          }
       }
-      monitor.worked(1 * PROGRESS_SCALE);
+      monitor.worked(1);
 
       setBuildPath(javaProject, entries, monitor);
 
@@ -373,7 +371,7 @@ public class WorkspaceHelper
     */
    public static IJavaProject setUpAsJavaProject(final IProject project, final IProgressMonitor monitor)
    {
-      monitor.beginTask("", 1 * PROGRESS_SCALE);
+      monitor.beginTask("", 1);
 
       final JavaCapabilityConfigurationPage jcpage = new JavaCapabilityConfigurationPage();
       final IJavaProject javaProject = JavaCore.create(project);
@@ -570,7 +568,7 @@ public class WorkspaceHelper
     */
    public static SubProgressMonitor createSubMonitor(final IProgressMonitor monitor, final int ticks)
    {
-      return new SubProgressMonitor(monitor, ticks * PROGRESS_SCALE);
+      return new SubProgressMonitor(monitor, ticks);
    }
 
    /**
@@ -672,7 +670,7 @@ public class WorkspaceHelper
       return repositoryProject.getFile(MODEL_FOLDER + PATH_SEPARATOR + repositoryProject.getName() + GEN_MODEL_EXT);
    }
 
-   public static void moveProjectToWorkingSet(IProject project, String workingSetName)
+   public static void moveProjectToWorkingSet(final IProject project, final String workingSetName)
    {
       // Move project to appropriate working set
       IWorkingSetManager workingSetManager = PlatformUI.getWorkbench().getWorkingSetManager();
