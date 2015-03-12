@@ -3,6 +3,7 @@ package org.moflon.util.plugins;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -37,7 +38,10 @@ public class ManifestFileUpdater
       FORCE, KEEP;
    }
 
-   /** This means that the dependency is not available as a plugin -> the user must manipulate the projects buildpath manually! **/
+   /**
+    * This means that the dependency is not available as a plugin -> the user must manipulate the projects buildpath
+    * manually!
+    **/
    public static final Object IGNORE_PLUGIN_ID = "__ignore__";
 
    /**
@@ -48,35 +52,37 @@ public class ManifestFileUpdater
     * 
     * @param consumer
     *           A function that returns whether it has modified the manifest.
-    * @throws CoreException 
-    * @throws IOException 
+    * @throws CoreException
+    * @throws IOException
     */
    public void processManifest(final IProject project, final Function<Manifest, Boolean> consumer) throws CoreException, IOException
    {
-         IFile manifestFile = WorkspaceHelper.getManifestFile(project);
-         Manifest manifest = new Manifest();
+      IFile manifestFile = WorkspaceHelper.getManifestFile(project);
+      Manifest manifest = new Manifest();
 
-         if (manifestFile.exists())
+      if (manifestFile.exists())
+      {
+         readManifestFile(manifestFile, manifest);
+      }
+
+      final boolean hasManifestChanged = consumer.apply(manifest);
+
+      if (hasManifestChanged)
+      {
+         ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+         new ManifestWriter().write(manifest, stream);
+         String formattedManifestString = prettyPrintManifest(stream.toString());
+         if (!manifestFile.exists())
          {
-            readManifestFile(manifestFile, manifest);
-         }
-
-         final boolean hasManifestChanged = consumer.apply(manifest);
-
-         if (hasManifestChanged)
+            WorkspaceHelper.addAllFoldersAndFile(project, manifestFile.getProjectRelativePath(), formattedManifestString, new NullProgressMonitor());
+         } else
          {
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-
-            new ManifestWriter().write(manifest, stream);
-            String formattedManifestString = prettyPrintManifest(stream.toString());
-            if (!manifestFile.exists())
-            {
-               WorkspaceHelper.addAllFoldersAndFile(project, manifestFile.getProjectRelativePath(), formattedManifestString, new NullProgressMonitor());
-            } else
-            {
-               manifestFile.setContents(new ByteArrayInputStream(formattedManifestString.getBytes()), true, true, new NullProgressMonitor());
-            }
+            final ByteArrayInputStream fileOutputStream = new ByteArrayInputStream(formattedManifestString.getBytes());
+            manifestFile.setContents(fileOutputStream, IFile.FORCE, new NullProgressMonitor());
+            stream.close();
          }
+      }
    }
 
    private String prettyPrintManifest(final String string)
@@ -88,7 +94,9 @@ public class ManifestFileUpdater
    {
       try
       {
-         manifest.read(manifestFile.getContents());
+         InputStream manifestFileContents = manifestFile.getContents();
+         manifest.read(manifestFileContents);
+         manifestFileContents.close();
       } catch (IOException e)
       {
          throw new CoreException(new Status(IStatus.ERROR, MoflonDependenciesPlugin.PLUGIN_ID, "Failed to read existing MANIFEST.MF: " + e.getMessage(), e));
@@ -155,31 +163,35 @@ public class ManifestFileUpdater
          return false;
       }
    }
-   
-   public Map<String, IProject> extractPluginIDToProjectMap(final Collection<IProject> projects){
+
+   public Map<String, IProject> extractPluginIDToProjectMap(final Collection<IProject> projects)
+   {
       Map<String, IProject> idToProject = new HashMap<>();
       projects.stream().forEach(p -> {
-         try{
+         try
+         {
             processManifest(p, manifest -> {
-            idToProject.put(extractPluginId(getID(p,manifest)), p);
-            return false;
-         });
-         } catch(Exception e){
+               idToProject.put(extractPluginId(getID(p, manifest)), p);
+               return false;
+            });
+         } catch (Exception e)
+         {
             idToProject.put(p.getName(), p);
          }
       });
-      
+
       return idToProject;
    }
 
    private String getID(final IProject p, final Manifest manifest)
    {
-     return (String)manifest.getMainAttributes().get(PluginManifestConstants.BUNDLE_SYMBOLIC_NAME);
+      return (String) manifest.getMainAttributes().get(PluginManifestConstants.BUNDLE_SYMBOLIC_NAME);
    }
-   
-   public Collection<String> getDependenciesAsPluginIDs(final IProject project){
+
+   public Collection<String> getDependenciesAsPluginIDs(final IProject project)
+   {
       Collection<String> dependencies = new ArrayList<>();
-      
+
       try
       {
          processManifest(project, manifest -> {
@@ -189,8 +201,8 @@ public class ManifestFileUpdater
       } catch (Exception e)
       {
          e.printStackTrace();
-      }  
-      
+      }
+
       return dependencies.stream().map(dep -> extractPluginId(dep)).collect(Collectors.toList());
    }
 
