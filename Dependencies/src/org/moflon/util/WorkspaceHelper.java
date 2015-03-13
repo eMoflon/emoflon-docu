@@ -110,6 +110,8 @@ public class WorkspaceHelper
    public static final String PLUGIN_ID_DotToSDMLanguageTGG = "DotToSDMLanguageTGG";
 
    public static final String PLUGIN_ID_MOCA = "Moca";
+   
+   public static final String PLUGIN_ID_DEBUGLANGUAGE = "DebugLanguage";
 
    /**
     * Checks if given name is a valid name for a new project in the current workspace.
