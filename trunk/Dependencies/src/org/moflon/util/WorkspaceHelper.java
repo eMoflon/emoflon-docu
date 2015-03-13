@@ -58,15 +58,15 @@ public class WorkspaceHelper
    public static final String GEN_FOLDER = "gen";
 
    public final static String TEMP_FOLDER = ".temp";
-   
+
    public static final String MOCA_XMI_FILE_EXTENSION = ".moca.xmi";
 
    public static final String ECORE_FILE_EXTENSION = ".ecore";
-   
+
    public static final String PRE_ECORE_FILE_EXTENSION = ".pre.ecore";
 
    public static final String TGG_FILE_EXTENSION = ".tgg.xmi";
-   
+
    public static final String PRE_TGG_FILE_EXTENSION = ".pre.tgg.xmi";
 
    public static final String INJECTION_FOLDER = "injection";
@@ -92,9 +92,9 @@ public class WorkspaceHelper
    public static final String LOG4J_JAR = "/lib/log4j-1.2.17.jar";
 
    public static final String PLUGIN_ID_MOFLON_DEPENDENCIES = "org.moflon.dependencies";
-   
+
    public static final String PLUGIN_ID_ECORE = "org.eclipse.emf.ecore";
-   
+
    public static final String PLUGIN_ID_ECORE_XMI = "org.eclipse.emf.ecore.xmi";
 
    public static final String PLUGIN_ID_TGGRUNTIME = "TGGRuntime";
@@ -102,15 +102,15 @@ public class WorkspaceHelper
    public static final String PLUGIN_ID_SDMLANGUAGE = "SDMLanguage";
 
    public static final String PLUGIN_ID_TGGLANGUAGE = "TGGLanguage";
-   
+
    public static final String PLUGIN_ID_MOCATREE = "MocaTree";
-   
+
    public static final String PLUGIN_ID_DOTTOTGGTGG = "DotToTGGTGG";
 
    public static final String PLUGIN_ID_DotToSDMLanguageTGG = "DotToSDMLanguageTGG";
 
-   public static final String PLUGIN_ID_MOCA = "Moca"; 
-   
+   public static final String PLUGIN_ID_MOCA = "Moca";
+
    /**
     * Checks if given name is a valid name for a new project in the current workspace.
     * 
@@ -234,15 +234,16 @@ public class WorkspaceHelper
       monitor.done();
    }
 
-   public static void clearFolder(final IProject project, final String folder, final IProgressMonitor monitor) throws CoreException, URISyntaxException, IOException
+   public static void clearFolder(final IProject project, final String folder, final IProgressMonitor monitor) throws CoreException, URISyntaxException,
+         IOException
    {
       monitor.beginTask("", 1);
 
       IFolder folderInProject = project.getFolder(folder);
-      
+
       for (IResource member : folderInProject.members())
          member.delete(true, createSubmonitorWith1Tick(monitor));
-      
+
       monitor.done();
    }
 
@@ -588,19 +589,37 @@ public class WorkspaceHelper
       return isMoflonProject(project) || isMetamodelProject(project);
    }
 
+   /**
+    * Returns whether the project is a an integration project, that is, if it contains generated code of a TGG project.
+    * 
+    * @param project
+    *           the project. May be null.
+    */
    public static boolean isIntegrationProject(final IProject project) throws CoreException
    {
       return project.hasNature(INTEGRATION_NATURE_ID);
    }
 
+   /**
+    * Returns whether the project is a a repository project, that is, if it contains generated code.
+    * 
+    * @param project
+    *           the project. May be null.
+    */
    public static boolean isRepositoryProject(final IProject project) throws CoreException
    {
-      return project.hasNature(REPOSITORY_NATURE_ID);
+      return project != null && project.hasNature(REPOSITORY_NATURE_ID);
    }
 
+   /**
+    * Returns whether the project is a a meta-model project, that is, if it contains a meta-model
+    * 
+    * @param project
+    *           the project. May be null.
+    */
    public static boolean isMetamodelProject(final IProject project) throws CoreException
    {
-      return project.hasNature(METAMODEL_NATURE_ID);
+      return project != null && project.hasNature(METAMODEL_NATURE_ID);
    }
 
    public static boolean isInjectionFile(final IResource resource)
@@ -686,10 +705,10 @@ public class WorkspaceHelper
          ArrayList<IAdaptable> newElements = new ArrayList<IAdaptable>();
          for (IAdaptable element : workingSet.getElements())
             newElements.add(element);
-   
+
          // Add newly created project
          newElements.add(project);
-   
+
          // Set updated contents
          IAdaptable[] newElementsArray = new IAdaptable[newElements.size()];
          workingSet.setElements(newElements.toArray(newElementsArray));
