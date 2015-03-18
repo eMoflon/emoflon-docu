@@ -85,24 +85,6 @@ public class ManifestFileUpdater
       }
    }
 
-   private String prettyPrintManifest(final String string)
-   {
-      return new ManifestPrettyPrinter().print(string);
-   }
-
-   private void readManifestFile(final IFile manifestFile, final Manifest manifest) throws CoreException
-   {
-      try
-      {
-         InputStream manifestFileContents = manifestFile.getContents();
-         manifest.read(manifestFileContents);
-         manifestFileContents.close();
-      } catch (IOException e)
-      {
-         throw new CoreException(new Status(IStatus.ERROR, MoflonDependenciesPlugin.PLUGIN_ID, "Failed to read existing MANIFEST.MF: " + e.getMessage(), e));
-      }
-   }
-
    /**
     * Updates the given attribute in the manifest.
     * 
@@ -223,6 +205,38 @@ public class ManifestFileUpdater
       }
    }
 
+   /**
+    * Extracts the dependencies from the given list of properties.
+    */
+   public static List<String> extractDependencies(final String dependencies)
+   {
+      List<String> extractedDependencies = new ArrayList<>();
+      if (dependencies != null && !dependencies.isEmpty())
+      {
+         extractedDependencies.addAll(Arrays.asList(dependencies.split(",")));
+      }
+
+      return extractedDependencies;
+   }
+
+   private String prettyPrintManifest(final String string)
+   {
+      return new ManifestPrettyPrinter().print(string);
+   }
+
+   private void readManifestFile(final IFile manifestFile, final Manifest manifest) throws CoreException
+   {
+      try
+      {
+         InputStream manifestFileContents = manifestFile.getContents();
+         manifest.read(manifestFileContents);
+         manifestFileContents.close();
+      } catch (IOException e)
+      {
+         throw new CoreException(new Status(IStatus.ERROR, MoflonDependenciesPlugin.PLUGIN_ID, "Failed to read existing MANIFEST.MF: " + e.getMessage(), e));
+      }
+   }
+
    private static void addDependenciesToManifest(final Manifest manifest, final List<String> dependencies)
    {
       String dependenciesString = ManifestFileUpdater.createDependenciesString(dependencies);
@@ -236,20 +250,6 @@ public class ManifestFileUpdater
    private static String createDependenciesString(final List<String> dependencies)
    {
       return dependencies.stream().filter(dep -> !dep.equals("")).collect(Collectors.joining(","));
-   }
-
-   /**
-    * Extracts the dependencies from the given list of properties.
-    */
-   public static List<String> extractDependencies(final String dependencies)
-   {
-      List<String> extractedDependencies = new ArrayList<>();
-      if (dependencies != null && !dependencies.isEmpty())
-      {
-         extractedDependencies.addAll(Arrays.asList(dependencies.split(",")));
-      }
-
-      return extractedDependencies;
    }
 
 }
