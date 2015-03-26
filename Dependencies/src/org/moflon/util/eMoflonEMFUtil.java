@@ -19,6 +19,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -334,10 +335,9 @@ public class eMoflonEMFUtil
       return URI.createFileURI(filePath.getAbsolutePath());
    }
 
-   
    /**
-    * If possible, prefer {@link eMoflonEMFUtil#getOppositeReferenceTyped(EObject, Class, String) instead!}
-    * This method will be marked as deprecated in the near future.
+    * If possible, prefer {@link eMoflonEMFUtil#getOppositeReferenceTyped(EObject, Class, String) instead!} This method
+    * will be marked as deprecated in the near future.
     */
    public static List<?> getOppositeReference(final EObject target, final Class<?> sourceType, final String targetRoleName)
    {
@@ -398,7 +398,6 @@ public class eMoflonEMFUtil
       return returnList;
    }
 
-   
    private static EObject getCandidateObject(final Class<?> sourceType, final String targetRoleName, final Setting setting)
    {
       if (setting.getEStructuralFeature().getName().equals(targetRoleName))
@@ -501,7 +500,7 @@ public class eMoflonEMFUtil
 
    }
 
-   @SuppressWarnings({ "unchecked"})
+   @SuppressWarnings({ "unchecked" })
    public static void addOppositeReference(final EObject source, final EObject target, final String targetRole)
    {
       EStructuralFeature reference = source.eClass().getEStructuralFeature(targetRole);
@@ -516,8 +515,9 @@ public class eMoflonEMFUtil
    {
       removeEdge(source, target, targetRole);
    }
-   
-   public static void removeEdge(final EObject source, final EObject target, final String targetRole){
+
+   public static void removeEdge(final EObject source, final EObject target, final String targetRole)
+   {
       EStructuralFeature reference = source.eClass().getEStructuralFeature(targetRole);
       if (!reference.isMany())
       {
@@ -525,7 +525,7 @@ public class eMoflonEMFUtil
       } else
       {
          ((Collection<?>) source.eGet(reference)).remove(target);
-      }      
+      }
    }
 
    public static EStructuralFeature getReference(final EObject obj, final String name)
@@ -719,6 +719,33 @@ public class eMoflonEMFUtil
       set.getResources().add(resource);
 
       return resource;
+   }
+
+   public static int getNodeCount(EObject model)
+   {
+      int i = 0;
+      TreeIterator<EObject> iterator = model.eAllContents();
+      while (iterator.hasNext())
+      {
+         i++;
+         iterator.next();
+      }
+
+      return i;
+   }
+
+   public static int getEdgeCount(EObject model)
+   {
+
+      int i = 0;
+      TreeIterator<EObject> iterator = model.eAllContents();
+      while (iterator.hasNext())
+      {
+         EObject node = iterator.next();
+         Set<EStructuralFeature> references = eMoflonEMFUtil.getAllReferences(node);
+         i += references.size();
+      }
+      return i;
    }
 
 }
