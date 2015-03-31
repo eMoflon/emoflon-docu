@@ -65,7 +65,11 @@ public class MoflonUtil
 
    public static String getDefaultPathToFileInProject(final String projectName, final String ending)
    {
-      return "model/" + MoflonUtil.lastCapitalizedSegmentOf(projectName) + ending;
+      return "model/" + getDefaultNameOfFileInProjectWithoutExtension(projectName) + ending;
+   }
+   
+   public static String getDefaultNameOfFileInProjectWithoutExtension(final String projectName){
+      return MoflonUtil.lastCapitalizedSegmentOf(projectName);
    }
 
    public static URI getDefaultURIToEcoreFileInPlugin(final String pluginID)
