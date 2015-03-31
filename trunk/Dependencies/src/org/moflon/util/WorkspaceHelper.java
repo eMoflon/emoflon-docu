@@ -42,6 +42,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * A collection of useful helper methods when dealing with a workspace in an eclipse plugin.
  */
+@SuppressWarnings("restriction")
 public class WorkspaceHelper
 {
 
@@ -684,11 +685,6 @@ public class WorkspaceHelper
       final IFolder genFolder = file.getProject().getFolder(WorkspaceHelper.GEN_FOLDER);
       final IPath fullJavaPath = genFolder.getProjectRelativePath().append(pathToJavaFile);
       return fullJavaPath;
-   }
-
-   public static IFile getProjectGenmodelFile(final IProject repositoryProject)
-   {
-      return repositoryProject.getFile(MODEL_FOLDER + PATH_SEPARATOR + repositoryProject.getName() + GEN_MODEL_EXT);
    }
 
    public static void moveProjectToWorkingSet(final IProject project, final String workingSetName)

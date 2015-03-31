@@ -34,6 +34,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.moflon.MoflonDependenciesPlugin;
+import org.moflon.util.MoflonUtil;
 import org.moflon.util.WorkspaceHelper;
 import org.moflon.util.eMoflonEMFUtil;
 import org.w3c.dom.Document;
@@ -78,7 +79,7 @@ public class PluginXmlUpdater
    {
       monitor.beginTask("Create/update plugin.xml", 1);
 
-      IFile projectGenModelFile = WorkspaceHelper.getProjectGenmodelFile(currentProject);
+      IFile projectGenModelFile = currentProject.getFile(MoflonUtil.getDefaultPathToGenModelInProject(currentProject.getName()));
       String pathToGenmodel = projectGenModelFile.getRawLocation().toOSString();
       GenModel genmodel = (GenModel) eMoflonEMFUtil.loadAndInitModel(EcorePackage.eINSTANCE, pathToGenmodel);
 
@@ -198,7 +199,7 @@ public class PluginXmlUpdater
 
    private static List<GeneratedPackageEntry> extractGeneratedPackageEntries(final IProject project, final GenModel genmodel)
    {
-      String genmodelFile = WorkspaceHelper.getProjectGenmodelFile(project).getProjectRelativePath().toString();
+      String genmodelFile = MoflonUtil.getDefaultPathToGenModelInProject(project.getName());
       final List<GeneratedPackageEntry> entries = new ArrayList<>();
       final List<GenPackage> ePackages = genmodel.getAllGenPackagesWithClassifiers();
       for (final GenPackage genPackage : ePackages)
