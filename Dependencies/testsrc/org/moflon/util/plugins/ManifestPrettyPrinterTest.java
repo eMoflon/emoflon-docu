@@ -144,8 +144,6 @@ public class ManifestPrettyPrinterTest {
 				+ " bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\r\n"//
 				+ " c\r\n";//
 		String formattedContent = printer.print(content);
-		System.out.println("'" + expected + "'");
-		System.out.println("'" + formattedContent + "'");
 		Assert.assertEquals(expected, formattedContent);
 	}
 }
