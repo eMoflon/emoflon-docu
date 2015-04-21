@@ -718,4 +718,9 @@ public class WorkspaceHelper
       return project.getFolder("META-INF").getFile("MANIFEST.MF");
    }
 
+   public static boolean allProjectsExist(final Collection<IProject> projects)
+   {
+      return projects.stream().allMatch(project -> project.exists());
+   }
+
 }

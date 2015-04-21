@@ -11,15 +11,15 @@ import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
 import org.osgi.framework.BundleContext;
 
-public class MoflonDependenciesPlugin extends Plugin
+public class MoflonDependenciesActivator extends Plugin
 {
-   public final static String PLUGIN_ID = "org.moflon.dependencies"; 
-   
+   public final static String PLUGIN_ID = "org.moflon.dependencies";
+
    // The shared instance
-   private static MoflonDependenciesPlugin plugin;
+   private static MoflonDependenciesActivator plugin;
 
    // Singleton instance
-   public static MoflonDependenciesPlugin getDefault()
+   public static MoflonDependenciesActivator getDefault()
    {
       return plugin;
    }
@@ -67,12 +67,20 @@ public class MoflonDependenciesPlugin extends Plugin
 
    public static String displayExceptionAsString(final Exception e)
    {
-      try {
-      String message = "Cause: " + ExceptionUtils.getRootCauseMessage(e) + "\n StackTrace: " + ExceptionUtils.getStackTrace(ExceptionUtils.getRootCause(e));
-      return message;
-      } catch(Exception new_e){
+      try
+      {
+         final String message;
+         if (null == e.getCause())
+         {
+            message = "Cause: " + ExceptionUtils.getRootCauseMessage(e) + "\n StackTrace: " + ExceptionUtils.getStackTrace(ExceptionUtils.getRootCause(e));
+         } else
+         {
+            message = "Reason: " + e.getMessage();
+         }
+         return message;
+      } catch (Exception new_e)
+      {
          return e.getMessage();
       }
    }
-
 }

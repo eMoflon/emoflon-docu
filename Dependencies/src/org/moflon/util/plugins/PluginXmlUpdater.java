@@ -33,7 +33,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.moflon.MoflonDependenciesPlugin;
+import org.moflon.MoflonDependenciesActivator;
 import org.moflon.util.MoflonUtil;
 import org.moflon.util.WorkspaceHelper;
 import org.moflon.util.eMoflonEMFUtil;
@@ -114,11 +114,11 @@ public class PluginXmlUpdater
 
       } catch (ParserConfigurationException | SAXException | XPathExpressionException e)
       {
-         throw new CoreException(new Status(IStatus.ERROR, MoflonDependenciesPlugin.PLUGIN_ID, "Error parsing plugin.xml for project " + project.getName()
+         throw new CoreException(new Status(IStatus.ERROR, MoflonDependenciesActivator.PLUGIN_ID, "Error parsing plugin.xml for project " + project.getName()
                + ": " + e.getMessage(), e));
       } catch (IOException | TransformerFactoryConfigurationError | TransformerException e)
       {
-         throw new CoreException(new Status(IStatus.ERROR, MoflonDependenciesPlugin.PLUGIN_ID, "Error reading/writing plugin.xml for project "
+         throw new CoreException(new Status(IStatus.ERROR, MoflonDependenciesActivator.PLUGIN_ID, "Error reading/writing plugin.xml for project "
                + project.getName() + ": " + e.getMessage(), e));
       } finally
       {
