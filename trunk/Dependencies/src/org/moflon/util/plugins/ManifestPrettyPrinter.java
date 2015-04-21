@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 /**
  * A class that makes manifest files more pretty, e.g., by placing dependencies and exported packages in a single line each.
  */
+//TODO@rkluge: The dependencies plugin is not the right place for this class.
 public class ManifestPrettyPrinter
 {
 

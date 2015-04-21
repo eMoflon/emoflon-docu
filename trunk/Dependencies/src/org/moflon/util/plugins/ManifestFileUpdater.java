@@ -24,7 +24,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.moflon.MoflonDependenciesPlugin;
+import org.moflon.MoflonDependenciesActivator;
 import org.moflon.util.WorkspaceHelper;
 
 /**
@@ -233,7 +233,7 @@ public class ManifestFileUpdater
          manifestFileContents.close();
       } catch (IOException e)
       {
-         throw new CoreException(new Status(IStatus.ERROR, MoflonDependenciesPlugin.PLUGIN_ID, "Failed to read existing MANIFEST.MF: " + e.getMessage(), e));
+         throw new CoreException(new Status(IStatus.ERROR, MoflonDependenciesActivator.PLUGIN_ID, "Failed to read existing MANIFEST.MF: " + e.getMessage(), e));
       }
    }
 

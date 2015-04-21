@@ -15,8 +15,8 @@ import java.util.jar.JarFile;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.Pair;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -31,7 +31,6 @@ import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 import org.moflon.util.plugins.ManifestFileUpdater;
 import org.moflon.util.plugins.PluginManifestConstants;
-
 
 /**
  * A collection of useful helper methods.
@@ -67,8 +66,9 @@ public class MoflonUtil
    {
       return "model/" + getDefaultNameOfFileInProjectWithoutExtension(projectName) + ending;
    }
-   
-   public static String getDefaultNameOfFileInProjectWithoutExtension(final String projectName){
+
+   public static String getDefaultNameOfFileInProjectWithoutExtension(final String projectName)
+   {
       return MoflonUtil.lastCapitalizedSegmentOf(projectName);
    }
 
@@ -129,7 +129,7 @@ public class MoflonUtil
    }
 
    /**
-    * Derive the java data type of a given Ecore data type. 
+    * Derive the java data type of a given Ecore data type.
     * 
     * @param eCoreType
     *           the name of the Ecore data type class (e.g. EString)
@@ -287,16 +287,16 @@ public class MoflonUtil
                new ManifestFileUpdater().processManifest(project, manifest -> {
                   String pluginId = project.getName();
                   String symbolicName = (String) manifest.getMainAttributes().get(PluginManifestConstants.BUNDLE_SYMBOLIC_NAME);
-                  
-                  if (symbolicName != null) 
+
+                  if (symbolicName != null)
                   {
                      int strip = symbolicName.indexOf(";singleton:=");
-                     if(strip != -1)
+                     if (strip != -1)
                         symbolicName = symbolicName.substring(0, symbolicName.indexOf(";singleton:="));
-                     
+
                      pluginId = symbolicName;
-                  }
-                  else {
+                  } else
+                  {
                      logger.warn("Unable to extract plugin id from manifest of project " + project.getName() + ". Falling back to project name.");
                   }
                   URI pluginURI = URI.createPlatformPluginURI(pluginId + "/", true);
@@ -305,7 +305,7 @@ public class MoflonUtil
                   logger.debug("Created mapping: " + pluginURI + " -> " + resourceURI);
                   return false;
                });
-               
+
             }
          } catch (CoreException e)
          {
@@ -366,13 +366,13 @@ public class MoflonUtil
       Optional<String> EMPTY_OPTION = Optional.<String> empty();
       Pair<Optional<String>, Optional<String>> EMPTY_PAIR = Pair.of(EMPTY_OPTION, EMPTY_OPTION);
 
-      // Check all possible segment prefixes for fitting entry in import mappings 
+      // Check all possible segment prefixes for fitting entry in import mappings
       return segments.stream().reduce(EMPTY_PAIR, (oldPair, newSegment) -> {
-         if (oldPair.right.isPresent())
+         if (oldPair.getRight().isPresent())
             return oldPair;
          else
          {
-            String oldPrefix = oldPair.left.isPresent() ? oldPair.left.get() + "." : "";
+            String oldPrefix = oldPair.getLeft().isPresent() ? oldPair.getLeft().get() + "." : "";
             String newPrefix = oldPrefix + newSegment;
 
             if (importMappings.containsKey(newPrefix))
@@ -380,6 +380,7 @@ public class MoflonUtil
             else
                return Pair.of(Optional.of(newPrefix), EMPTY_OPTION);
          }
-      }, (p1, p2) -> Pair.of(p1.left.isPresent() ? p1.left : p2.left, p1.right.isPresent() ? p1.right : p2.right)).right.orElse(typePath);
+      }, (p1, p2) -> Pair.of(p1.getLeft().isPresent() ? p1.getLeft() : p2.getLeft(), p1.getRight().isPresent() ? p1.getRight() : p2.getRight())).getRight()
+            .orElse(typePath);
    }
 }
