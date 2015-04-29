@@ -156,6 +156,41 @@ public class eMoflonEMFUtil
    }
 
    /**
+    * Loads a model, initializes its metamodel and resolves dependencies from a Jar file.
+    * 
+    * The URI to load the model from is constructed as follows:
+    * Given a "C:/Users/user/lib.jar" as path to the jar and "/model/myModel.xmi", the constructed URI is "jar:file:C:/Users/user/lib.jar!/model/myModel.jar".
+    * 
+    * @param metamodel the metamodel that should be initialized
+    * @param pathToJarFile path to the jar file (absolute or relative)
+    * @param pathToResourceInJarFile path to the model inside the jar
+    * @param dependencies contains other models to resolve dependencies
+    * @return the root element of the loaded model
+    */
+   public static EObject loadAndInitModelFromJarFileWithDependencies(final EPackage metamodel, final String pathToJarFile,
+         final String pathToResourceInJarFile, final ResourceSet dependencies)
+   {
+      init(metamodel);
+      final URI uri = createInJarURI(pathToJarFile, pathToResourceInJarFile);
+      return eMoflonEMFUtil.loadModelWithDependenciesAndCrossReferencer(uri,
+            dependencies);
+   }
+
+   /**
+    * Creates an URI for resources inside a Jar file.
+    * 
+    * The created URI is equivalent to "jar:file:[pathToJarFile]![pathToResourceInJarFile]".
+    * 
+    * @param pathToJarFile  path to the jar file (absolute or relative)
+    * @param pathToResourceInJarFile path to resource inside the jar
+    * @return the built URI
+    */
+   public static URI createInJarURI(final String pathToJarFile, final String pathToResourceInJarFile)
+   {
+      return URI.createURI("jar:file:" + pathToJarFile + "!" + pathToResourceInJarFile);
+   }
+
+   /**
     * Use this method directly only if you know what you are doing! The corresponding metamodel must be initialized
     * already. The model is loaded with all dependencies, and a cross reference adapter is added to enable inverse
     * navigation.
@@ -721,7 +756,7 @@ public class eMoflonEMFUtil
       return resource;
    }
 
-   public static int getNodeCount(EObject model)
+   public static int getNodeCount(final EObject model)
    {
       int i = 0;
       TreeIterator<EObject> iterator = model.eAllContents();
@@ -734,7 +769,7 @@ public class eMoflonEMFUtil
       return i;
    }
 
-   public static int getEdgeCount(EObject model)
+   public static int getEdgeCount(final EObject model)
    {
 
       int i = 0;
