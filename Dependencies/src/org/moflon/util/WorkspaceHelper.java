@@ -111,7 +111,7 @@ public class WorkspaceHelper
    public static final String PLUGIN_ID_DotToSDMLanguageTGG = "DotToSDMLanguageTGG";
 
    public static final String PLUGIN_ID_MOCA = "Moca";
-   
+
    public static final String PLUGIN_ID_DEBUGLANGUAGE = "DebugLanguage";
 
    /**
@@ -669,6 +669,19 @@ public class WorkspaceHelper
       return resource.getType() == IResource.FOLDER;
    }
 
+   /**
+    * Returns the file name of the injection file for a given Java file.
+    * 
+    * This method assumes that the first segment in the path is the source folder (e.g.,"/src"). The injection file name
+    * is obtained by replacing the first segment of the input file name with {@link WorkspaceHelper#INJECTION_FOLDER}
+    * and by replacing the file extension with {@link WorkspaceHelper#INJECTION_FILE_EXTENSION}.
+    * 
+    * The resulting path needs to be resolved against a project via {@link IProject#getFile(IPath)}.
+    * 
+    * @param javaFile
+    *           the Java file
+    * @return the path to the injection file
+    */
    public static IPath getPathToInjection(final IFile javaFile)
    {
       final IPath packagePath = javaFile.getProjectRelativePath().removeFirstSegments(1);
@@ -678,6 +691,20 @@ public class WorkspaceHelper
       return fullInjectionPath;
    }
 
+   /**
+    * Returns the file name of the Java file for a given injection file.
+    * 
+    * This method assumes that the first segment in the path is the injection folder (
+    * {@link WorkspaceHelper#INJECTION_FOLDER}). The injection file name is obtained by replacing the first segment of
+    * the input file name with {@link WorkspaceHelper#GEN_FOLDER} and by replacing the file extension with
+    * {@link WorkspaceHelper#JAVA_FILE_EXTENSION}.
+    * 
+    * The resulting path needs to be resolved against a project via {@link IProject#getFile(IPath)}.
+    * 
+    * @param file
+    *           the injection file
+    * @return the path to the Java file
+    */
    public static IPath getPathToJavaFile(final IFile file)
    {
       final IPath packagePath = file.getProjectRelativePath().removeFirstSegments(1);
