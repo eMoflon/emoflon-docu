@@ -6,8 +6,8 @@ import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.jar.Attributes;
-import java.util.jar.Manifest;
 import java.util.jar.Attributes.Name;
+import java.util.jar.Manifest;
 
 /**
  * This class mimics the behavior of JDK's {@link Manifest#write}, which fails to close its output stream.
