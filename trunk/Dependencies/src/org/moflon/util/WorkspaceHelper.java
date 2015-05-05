@@ -714,6 +714,14 @@ public class WorkspaceHelper
       return fullJavaPath;
    }
 
+   public static String getFullyQualifiedClassName(final IFile javaFile)
+   {
+      final IPath packagePath = javaFile.getProjectRelativePath().removeFirstSegments(1);
+      final IPath pathToJavaFile = packagePath.removeFileExtension();
+      final String fullyQualifiedClassName = pathToJavaFile.toPortableString().replace("/", ".");
+      return fullyQualifiedClassName;
+   }
+
    public static void moveProjectToWorkingSet(final IProject project, final String workingSetName)
    {
       // Move project to appropriate working set
