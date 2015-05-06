@@ -90,10 +90,6 @@ public class WorkspaceHelper
 
    public static final String ANTLR_3 = "/lib/antlr-3.5.2-complete.jar";
 
-   public static final String LOG4J_JAR = "/lib/log4j-1.2.17.jar";
-
-   public static final String PLUGIN_ID_MOFLON_DEPENDENCIES = "org.moflon.dependencies";
-
    public static final String PLUGIN_ID_ECORE = "org.eclipse.emf.ecore";
 
    public static final String PLUGIN_ID_ECORE_XMI = "org.eclipse.emf.ecore.xmi";
