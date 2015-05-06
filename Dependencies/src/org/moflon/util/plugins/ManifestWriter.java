@@ -3,6 +3,7 @@ package org.moflon.util.plugins;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.jar.Attributes;
@@ -12,7 +13,8 @@ import java.util.jar.Manifest;
 /**
  * This class mimics the behavior of JDK's {@link Manifest#write}, which fails to close its output stream.
  * 
- * For more information on the format of Manifest files, see {@link http://www.cs.mun.ca/~michael/java/jdk1.1-beta2-docs/guide/jar/manifest.html}.
+ * For more information on the format of Manifest files, see {@link http
+ * ://www.cs.mun.ca/~michael/java/jdk1.1-beta2-docs/guide/jar/manifest.html}.
  */
 public class ManifestWriter
 {
@@ -37,7 +39,7 @@ public class ManifestWriter
          if (value != null)
          {
             byte[] vb = value.getBytes("UTF8");
-            value = new String(vb, 0, 0, vb.length);
+            value = new String(vb, 0, 0, Charset.forName("UTF-8"));
          }
          buffer.append(value);
          buffer.append("\r\n");
@@ -104,7 +106,7 @@ public class ManifestWriter
             if (value != null)
             {
                byte[] vb = value.getBytes("UTF8");
-               value = new String(vb, 0, 0, vb.length);
+               value = new String(vb, 0, 0, Charset.forName("UTF-8"));
             }
             buffer.append(value);
 
@@ -129,7 +131,7 @@ public class ManifestWriter
          if (value != null)
          {
             byte[] vb = value.getBytes("UTF8");
-            value = new String(vb, 0, 0, vb.length);
+            value = new String(vb, 0, 0, Charset.forName("UTF-8"));
          }
          buffer.append(value);
 
