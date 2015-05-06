@@ -16,21 +16,20 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.osgi.service.resolver.BundleSpecification;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
-import org.moflon.util.plugins.ManifestFileUpdater;
-import org.moflon.util.plugins.PluginManifestConstants;
 
 /**
  * A collection of useful helper methods.
@@ -38,7 +37,6 @@ import org.moflon.util.plugins.PluginManifestConstants;
  */
 public class MoflonUtil
 {
-   private static final Logger logger = Logger.getLogger(MoflonUtil.class);
 
    /**
     * Marker for code passages generated through eMoflon/EMF that are eligible for extracting injections.
@@ -52,6 +50,8 @@ public class MoflonUtil
    public final static String DEFAULT_METHOD_BODY = "\n" + EOPERATION_MODEL_COMMENT
          + "\n\n// TODO: implement this method here but do not remove the injection marker \nthrow new UnsupportedOperationException();";
 
+   private static final Logger logger = Logger.getLogger(MoflonUtil.class);
+   
    public static String getDefaultPathToEcoreFileInProject(final String projectName)
    {
       return getDefaultPathToFileInProject(projectName, ".ecore");
@@ -258,63 +258,6 @@ public class MoflonUtil
       return StringUtils.capitalize(lastSegmentOf(name));
    }
 
-   public static final void calculatePluginToResourceMap(final ResourceSet set)
-   {
-      for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects())
-         try
-         {
-            createMapping(set, project);
-         } catch (IOException e)
-         {
-            e.printStackTrace();
-         }
-   }
-
-   public static void createMapping(final ResourceSet set, final String projectName) throws IOException
-   {
-      IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-      createMapping(set, project);
-   }
-
-   public static void createMapping(final ResourceSet set, final IProject project) throws IOException
-   {
-      if (project.isAccessible())
-      {
-         try
-         {
-            if (project.hasNature(WorkspaceHelper.PLUGIN_NATURE_ID))
-            {
-               new ManifestFileUpdater().processManifest(project, manifest -> {
-                  String pluginId = project.getName();
-                  String symbolicName = (String) manifest.getMainAttributes().get(PluginManifestConstants.BUNDLE_SYMBOLIC_NAME);
-
-                  if (symbolicName != null)
-                  {
-                     int strip = symbolicName.indexOf(";singleton:=");
-                     if (strip != -1)
-                        symbolicName = symbolicName.substring(0, symbolicName.indexOf(";singleton:="));
-
-                     pluginId = symbolicName;
-                  } else
-                  {
-                     logger.warn("Unable to extract plugin id from manifest of project " + project.getName() + ". Falling back to project name.");
-                  }
-                  URI pluginURI = URI.createPlatformPluginURI(pluginId + "/", true);
-                  URI resourceURI = URI.createPlatformResourceURI(project.getName() + "/", true);
-                  set.getURIConverter().getURIMap().put(pluginURI, resourceURI);
-                  logger.debug("Created mapping: " + pluginURI + " -> " + resourceURI);
-                  return false;
-               });
-
-            }
-         } catch (CoreException e)
-         {
-            logger.error("Failed to check nature for project " + project.getName());
-         }
-
-      }
-   }
-
    public static final URI lookupProjectURI(final IProject project)
    {
       IPluginModelBase pluginModel = PluginRegistry.findModel(project);
@@ -382,5 +325,30 @@ public class MoflonUtil
          }
       }, (p1, p2) -> Pair.of(p1.getLeft().isPresent() ? p1.getLeft() : p2.getLeft(), p1.getRight().isPresent() ? p1.getRight() : p2.getRight())).getRight()
             .orElse(typePath);
+   }
+
+   public static String displayExceptionAsString(final Exception e)
+   {
+      try
+      {
+         final String message;
+         if (null == e.getCause())
+         {
+            message = "Cause: " + ExceptionUtils.getRootCauseMessage(e) + "\n StackTrace: " + ExceptionUtils.getStackTrace(ExceptionUtils.getRootCause(e));
+         } else
+         {
+            message = "Reason: " + e.getMessage();
+         }
+         return message;
+      } catch (Exception new_e)
+      {
+         return e.getMessage();
+      }
+   }
+
+   public static void throwCoreExceptionAsError(final String message, final String plugin, final Exception lowLevelException) throws CoreException
+   {
+      IStatus status = new Status(IStatus.ERROR, plugin, IStatus.OK, message, lowLevelException);
+      throw new CoreException(status);
    }
 }

@@ -2,24 +2,20 @@ package org.moflon;
 
 import java.net.URL;
 
-import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
-import org.eclipse.core.runtime.Status;
 import org.osgi.framework.BundleContext;
 
-public class MoflonDependenciesActivator extends Plugin
+public class MoflonUtilitiesActivator extends Plugin
 {
-   public final static String PLUGIN_ID = "org.moflon.dependencies";
+   public final static String PLUGIN_ID = "org.moflon.core.utilities";
 
    // The shared instance
-   private static MoflonDependenciesActivator plugin;
+   private static MoflonUtilitiesActivator plugin;
 
    // Singleton instance
-   public static MoflonDependenciesActivator getDefault()
+   public static MoflonUtilitiesActivator getDefault()
    {
       return plugin;
    }
@@ -57,30 +53,5 @@ public class MoflonDependenciesActivator extends Plugin
    {
       plugin = null;
       super.stop(context);
-   }
-
-   public static void throwCoreExceptionAsError(final String message, final String plugin, final Exception lowLevelException) throws CoreException
-   {
-      IStatus status = new Status(IStatus.ERROR, plugin, IStatus.OK, message, lowLevelException);
-      throw new CoreException(status);
-   }
-
-   public static String displayExceptionAsString(final Exception e)
-   {
-      try
-      {
-         final String message;
-         if (null == e.getCause())
-         {
-            message = "Cause: " + ExceptionUtils.getRootCauseMessage(e) + "\n StackTrace: " + ExceptionUtils.getStackTrace(ExceptionUtils.getRootCause(e));
-         } else
-         {
-            message = "Reason: " + e.getMessage();
-         }
-         return message;
-      } catch (Exception new_e)
-      {
-         return e.getMessage();
-      }
    }
 }
