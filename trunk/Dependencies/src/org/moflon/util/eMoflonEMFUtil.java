@@ -614,6 +614,9 @@ public class eMoflonEMFUtil
 
    public static String getName(final EObject child)
    {
+      if(child == null)
+         return "null";
+      
       Object name = "";
 
       EStructuralFeature nameFeature = child.eClass().getEStructuralFeature("name");
