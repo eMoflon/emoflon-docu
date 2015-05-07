@@ -754,4 +754,10 @@ public class WorkspaceHelper
       return projects.stream().allMatch(project -> project.exists());
    }
 
+   public static final String PLUGIN_ID_LOG4J = "org.apache.log4j;bundle-version=\"1.2.15\"";
+
+   public static final String PLUGIN_ID_APACHE_COMMONS_LANG3 = "org.apache.commons.lang3;bundle-version=\"3.1.0\"";
+
+   public static final String PLUGIN_ID_APACHE_COMMONS_IO = "org.apache.commons.io;bundle-version=\"[2.2.0,3)\"";
+
 }
