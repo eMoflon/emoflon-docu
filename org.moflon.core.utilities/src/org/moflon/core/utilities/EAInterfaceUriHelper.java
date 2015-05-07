@@ -1,4 +1,4 @@
-package org.moflon.util;
+package org.moflon.core.utilities;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;

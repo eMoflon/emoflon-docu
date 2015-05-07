@@ -1,4 +1,4 @@
-package org.moflon;
+package org.moflon.core.utilities;
 
 import java.net.URL;
 

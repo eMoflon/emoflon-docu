@@ -6,6 +6,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.junit.Assert;
 import org.junit.Test;
+import org.moflon.core.utilities.WorkspaceHelper;
 
 @SuppressWarnings("restriction")
 public class WorkspaceHelperTest
