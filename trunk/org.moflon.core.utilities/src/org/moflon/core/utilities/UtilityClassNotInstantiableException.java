@@ -1,4 +1,4 @@
-package org.moflon.util;
+package org.moflon.core.utilities;
 
 /**
  * This exception may be thrown in constructors of utility classes.

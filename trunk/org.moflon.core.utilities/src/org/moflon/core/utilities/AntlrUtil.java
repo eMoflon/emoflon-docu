@@ -1,8 +1,6 @@
-package org.moflon.util;
+package org.moflon.core.utilities;
 
 import java.net.URL;
-
-import org.moflon.MoflonUtilitiesActivator;
 
 public final class AntlrUtil
 {

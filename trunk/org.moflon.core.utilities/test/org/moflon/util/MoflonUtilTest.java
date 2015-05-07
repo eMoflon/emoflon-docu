@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.junit.Assert;
 import org.junit.Test;
+import org.moflon.core.utilities.MoflonUtil;
 
 public class MoflonUtilTest
 {

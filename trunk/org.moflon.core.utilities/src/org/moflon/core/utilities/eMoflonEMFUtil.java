@@ -1,4 +1,4 @@
-package org.moflon.util;
+package org.moflon.core.utilities;
 
 import java.io.File;
 import java.io.IOException;

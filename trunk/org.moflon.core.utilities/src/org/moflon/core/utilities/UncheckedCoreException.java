@@ -1,4 +1,4 @@
-package org.moflon.util;
+package org.moflon.core.utilities;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
