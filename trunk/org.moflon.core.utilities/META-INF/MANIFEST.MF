@@ -16,9 +16,6 @@ Export-Package: antlr,
  antlr.debug,
  antlr.debug.misc,
  antlr.preprocessor,
- de.upb.tools.fca,
- de.upb.tools.pcs,
- de.upb.tools.sdm,
  org.abego.treelayout,
  org.abego.treelayout.internal.util,
  org.abego.treelayout.internal.util.java.lang.string,
@@ -68,7 +65,6 @@ Export-Package: antlr,
  org.stringtemplate.v4.gui,
  org.stringtemplate.v4.misc
 Bundle-ClassPath: .,
- lib/RuntimeTools.jar,
  lib/antlr-3.5.2-complete.jar,
  lib/antlr-4.2.1-complete.jar
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
