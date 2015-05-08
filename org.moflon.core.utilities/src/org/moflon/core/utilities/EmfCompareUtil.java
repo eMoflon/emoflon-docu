@@ -11,6 +11,7 @@ import org.eclipse.emf.compare.diff.DiffBuilder;
 import org.eclipse.emf.compare.diff.FeatureFilter;
 import org.eclipse.emf.compare.diff.IDiffEngine;
 import org.eclipse.emf.compare.diff.IDiffProcessor;
+import org.eclipse.emf.compare.scope.DefaultComparisonScope;
 import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -56,7 +57,7 @@ public class EmfCompareUtil
          }
       };
 
-      IComparisonScope scope = EMFCompare.createDefaultScope(actual, expected);
+      IComparisonScope scope = new DefaultComparisonScope(actual, expected, null);
       Comparison comparison = EMFCompare.builder().setDiffEngine(diffEngine).build().compare(scope);
 
       return comparison.getDifferences();

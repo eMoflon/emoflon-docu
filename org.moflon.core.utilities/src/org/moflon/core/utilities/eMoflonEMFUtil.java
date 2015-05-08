@@ -409,6 +409,7 @@ public class eMoflonEMFUtil
     *           the type of the opposite objects you are looking for
     * @return a list of all opposite objects
     */
+   @SuppressWarnings("unchecked")
    public static <T extends EObject> List<T> getOppositeReferenceTyped(final EObject target, final Class<T> sourceType, final String targetRoleName)
    {
       Collection<Setting> settings = getInverseReferences(target);
