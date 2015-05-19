@@ -59,6 +59,7 @@ public class eMoflonEMFUtil
     * context, this is not necessary. Note that this method is called on demand from {@link #init(EPackage)} and
     * loading/saving methods.
     */
+   @Deprecated
    public static void registerXMIFactoryAsDefault()
    {
       // Add XMI factory to registry
@@ -87,6 +88,7 @@ public class eMoflonEMFUtil
     * Use this method to initialize the given EPackage. This is required before loading/saving or working with the
     * package. In a plugin context, this might be automatically carried out via an appropriate extension point.
     */
+   @Deprecated
    public static void init(final EPackage metamodel)
    {
       registerXMIFactoryAsDefault();
@@ -102,6 +104,7 @@ public class eMoflonEMFUtil
     *           Absolute or relative path to XMI file.
     * @return the root element of the loaded model
     */
+   @Deprecated
    public static EObject loadModel(final String pathToXMIFile)
    {
       return loadModelWithDependencies(pathToXMIFile, null);
@@ -117,6 +120,7 @@ public class eMoflonEMFUtil
     *           Contains other models to resolve dependencies.
     * @return the root element of the loaded model with resolved dependencies.
     */
+   @Deprecated
    public static EObject loadModelWithDependencies(final String pathToXMIFile, final ResourceSet dependencies)
    {
       return loadModelWithDependenciesAndCrossReferencer(createFileURI(pathToXMIFile, true), dependencies);
@@ -132,6 +136,7 @@ public class eMoflonEMFUtil
     * 
     * @return the root element of the loaded model
     */
+   @Deprecated
    public static EObject loadAndInitModel(final EPackage metamodel, final String pathToXMIFile)
    {
       init(metamodel);
@@ -149,6 +154,7 @@ public class eMoflonEMFUtil
     *           Contains other models to resolve dependencies.
     * @return the root element of the loaded model
     */
+   @Deprecated
    public static EObject loadAndInitModelWithDependencies(final EPackage metamodel, final String pathToXMIFile, final ResourceSet dependencies)
    {
       init(metamodel);
@@ -167,6 +173,7 @@ public class eMoflonEMFUtil
     * @param dependencies contains other models to resolve dependencies
     * @return the root element of the loaded model
     */
+   @Deprecated
    public static EObject loadAndInitModelFromJarFileWithDependencies(final EPackage metamodel, final String pathToJarFile,
          final String pathToResourceInJarFile, final ResourceSet dependencies)
    {
@@ -201,6 +208,7 @@ public class eMoflonEMFUtil
     *           Contains other models to resolve dependencies
     * @return the root element of the loaded model
     */
+   @Deprecated
    public static EObject loadModelWithDependenciesAndCrossReferencer(final URI uriToModelResource, ResourceSet dependencies)
    {
       registerXMIFactoryAsDefault();
@@ -246,6 +254,7 @@ public class eMoflonEMFUtil
     * @throws IllegalStateException
     *            if something else goes wrong (e.g. xmi document could not be parsed correctly)
     */
+   @Deprecated
    public static EObject loadModelAndAddUriMapping(final String pathToXMIFile, final ResourceSet dependencies) throws IOException
    {
 
@@ -296,6 +305,7 @@ public class eMoflonEMFUtil
     * @param pathToXMIFile
     *           Absolute or relative path to XMI file in which to save the model.
     */
+   @Deprecated
    static public void saveModel(final EObject rootElementOfModel, final String pathToXMIFile)
    {
       saveModel(rootElementOfModel, createFileURI(pathToXMIFile, false), new ResourceSetImpl());
@@ -310,6 +320,7 @@ public class eMoflonEMFUtil
     * @param dependencies
     *           Contains other models to resolve dependencies.
     */
+   @Deprecated
    static public void saveModelWithDependencies(final EObject rootElementOfModel, final String pathToXMIFile, final ResourceSet dependencies)
    {
       saveModel(rootElementOfModel, createFileURI(pathToXMIFile, false), dependencies);
@@ -324,6 +335,7 @@ public class eMoflonEMFUtil
     * @param dependencies
     *           Contains other models to resolve dependencies.
     */
+   @Deprecated
    static public void saveModel(final EObject rootElementOfModel, final URI uriToModelResource, final ResourceSet dependencies)
    {
       if (rootElementOfModel == null)
@@ -745,6 +757,7 @@ public class eMoflonEMFUtil
       return success;
    }
 
+   @Deprecated
    public static Resource addToResourceSet(final ResourceSet set, final EObject object)
    {
       Resource resource = object.eResource();
