@@ -327,14 +327,22 @@ public class MoflonUtil
             .orElse(typePath);
    }
 
+   /**
+    * Formats the given exception for debugging purposes.
+    * 
+    * If available, the root cause and its stacktrace are formatted.
+    * Else, the reason of the exception is shown. 
+    * @param e the exception to be formatted
+    * @return the formatted exception
+    */
    public static String displayExceptionAsString(final Exception e)
    {
       try
       {
          final String message;
-         if (null == e.getCause())
+         if (null != e.getCause())
          {
-            message = "Cause: " + ExceptionUtils.getRootCauseMessage(e) + "\n StackTrace: " + ExceptionUtils.getStackTrace(ExceptionUtils.getRootCause(e));
+            message = "Cause: " + ExceptionUtils.getRootCauseMessage(e) + "\nStackTrace: " + ExceptionUtils.getStackTrace(ExceptionUtils.getRootCause(e));
          } else
          {
             message = "Reason: " + e.getMessage();
