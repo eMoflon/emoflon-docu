@@ -648,6 +648,7 @@ public class WorkspaceHelper
     * 
     * @deprecated Use {@link #getProjectByName(String)}
     */
+   //TODO Remove on next release
    @Deprecated
    public static IProject getProjectRoot(final String projectName)
    {
