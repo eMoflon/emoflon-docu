@@ -35,6 +35,8 @@ import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.internal.ui.workingsets.IWorkingSetIDs;
 import org.eclipse.jdt.ui.wizards.JavaCapabilityConfigurationPage;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
+import org.eclipse.pde.core.plugin.PluginRegistry;
 import org.eclipse.ui.IWorkingSet;
 import org.eclipse.ui.IWorkingSetManager;
 import org.eclipse.ui.PlatformUI;
@@ -643,10 +645,46 @@ public class WorkspaceHelper
     * Returns the project in the workspace with the given project name.
     * 
     * The returned project has to be checked for existence
+    * 
+    * @deprecated Use {@link #getProjectByName(String)}
     */
+   @Deprecated
    public static IProject getProjectRoot(final String projectName)
    {
+      return getProjectByName(projectName);
+   }
+
+   public static IProject getProjectByName(final String projectName)
+   {
       return ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+   }
+
+   public static IProject getProjectByPluginId(final String pluginId)
+   {
+      return getAllProjectsInWorkspace().stream().filter(project -> {
+         return doesProjectHavePluginId(project, pluginId);
+      }).findAny().orElse(null);
+   }
+
+   private static boolean doesProjectHavePluginId(final IProject project, final String pluginId)
+   {
+      IPluginModelBase pluginModel = PluginRegistry.findModel(project);
+      if (pluginModel.getBundleDescription() != null)
+      {
+         final String projectId = pluginModel.getBundleDescription().getSymbolicName();
+         return pluginId.equals(projectId);
+      } else
+      {
+         return false;
+      }
+   }
+
+   /**
+    * Returns the list of all projects in the workspace
+    */
+   public static List<IProject> getAllProjectsInWorkspace()
+   {
+      return Arrays.asList(ResourcesPlugin.getWorkspace().getRoot().getProjects());
    }
 
    /**
