@@ -660,6 +660,14 @@ public class WorkspaceHelper
       return ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
    }
 
+   /**
+    * Returns the project with the given plugin id in the workspace.
+    * 
+    * If no such project can be found, null is returned.
+    * 
+    * @param pluginId the plugin id
+    * @return the project with the plugin id or null if not such project exists
+    */
    public static IProject getProjectByPluginId(final String pluginId)
    {
       return getAllProjectsInWorkspace().stream().filter(project -> {
@@ -667,13 +675,13 @@ public class WorkspaceHelper
       }).findAny().orElse(null);
    }
 
-   private static boolean doesProjectHavePluginId(final IProject project, final String pluginId)
+   private static boolean doesProjectHavePluginId(final IProject project, final String desiredPluginId)
    {
       IPluginModelBase pluginModel = PluginRegistry.findModel(project);
-      if (pluginModel.getBundleDescription() != null)
+      if (pluginModel != null && pluginModel.getBundleDescription() != null)
       {
-         final String projectId = pluginModel.getBundleDescription().getSymbolicName();
-         return pluginId.equals(projectId);
+         final String actualPluginId = pluginModel.getBundleDescription().getSymbolicName();
+         return desiredPluginId.equals(actualPluginId);
       } else
       {
          return false;
