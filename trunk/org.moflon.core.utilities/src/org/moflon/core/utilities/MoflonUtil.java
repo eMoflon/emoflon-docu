@@ -1,5 +1,6 @@
 package org.moflon.core.utilities;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
@@ -19,8 +20,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.log4j.Logger;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
@@ -51,7 +54,7 @@ public class MoflonUtil
          + "\n\n// TODO: implement this method here but do not remove the injection marker \nthrow new UnsupportedOperationException();";
 
    private static final Logger logger = Logger.getLogger(MoflonUtil.class);
-   
+
    public static String getDefaultPathToEcoreFileInProject(final String projectName)
    {
       return getDefaultPathToFileInProject(projectName, ".ecore");
@@ -330,9 +333,10 @@ public class MoflonUtil
    /**
     * Formats the given exception for debugging purposes.
     * 
-    * If available, the root cause and its stacktrace are formatted.
-    * Else, the reason of the exception is shown. 
-    * @param e the exception to be formatted
+    * If available, the root cause and its stacktrace are formatted. Else, the reason of the exception is shown.
+    * 
+    * @param e
+    *           the exception to be formatted
     * @return the formatted exception
     */
    public static String displayExceptionAsString(final Exception e)
@@ -358,5 +362,36 @@ public class MoflonUtil
    {
       IStatus status = new Status(IStatus.ERROR, plugin, IStatus.OK, message, lowLevelException);
       throw new CoreException(status);
+   }
+
+   /**
+    * Writes the given string to file.
+    * 
+    * If the file does not exist, it gets created
+    * 
+    * @param content
+    *           the new file content
+    * @param file
+    *           the file
+    * @param monitor
+    * @throws CoreException
+    */
+   public static void writeContentToFile(final String content, final IFile file, final IProgressMonitor monitor) throws CoreException
+   {
+      try
+      {
+
+         monitor.beginTask("Write to file", 1);
+         if (!file.exists())
+         {
+            file.create(new ByteArrayInputStream(content.getBytes()), true, WorkspaceHelper.createSubmonitorWith1Tick(monitor));
+         } else
+         {
+            file.setContents(new ByteArrayInputStream(content.getBytes()), true, true, WorkspaceHelper.createSubmonitorWith1Tick(monitor));
+         }
+      } finally
+      {
+         monitor.done();
+      }
    }
 }
