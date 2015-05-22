@@ -1,0 +1,58 @@
+\newpage
+\section{eMoflon in a Jar}
+\genHeader
+
+This section describes how to package code generated with eMoflon into
+runnable Jar files, which is useful if you want to build applications for end-users.
+
+We distinguish between repository, i.e., SDM-based, and integration,
+i.e., TGG-based, projects.
+
+\subsection{Packaging SDM projects}
+
+The following explanations use the demo specification that is shipped with
+eMoflon to explain the workflow of building a runnable Jar file.
+
+\begin{itemize}
+    
+\item[$\blacktriangleright$] 
+Open a fresh workspace and add to it the eMoflon Demo specification (visual or textual syntax) by selecting ``File/New/Other..." and then ``eMoflon/New Metamodel Wizard".
+Do not forget to to tick the ``Add demo specification" checkbox!
+    
+\item[$\blacktriangleright$]
+Generate code for the demo and verify the result by running the test cases in \emph{DemoTestSuite}.
+
+\item[$\blacktriangleright$]
+Add a suitable main method to \texttt{NodeTest}, for instance:
+\begin{lstlisting}
+public static void main(String[] args) {
+    System.out.println("Begin of test runs");
+    new NodeTest().testDeleteNode();
+    new NodeTest().testInsertNodeAfter();
+    new NodeTest().testInsertNodeBefore();
+    System.out.println("End of test runs");
+}
+\end{lstlisting}
+
+\item[$\blacktriangleright$]
+Run \texttt{NodeTest} as ``Java Application" (\emph{not} as ``JUnit Test").
+Now you have a new launch configuration named ``NodeTest".
+
+\item[$\blacktriangleright$]
+Now, select the repository project (containing the generated code) and the project \emph{DemoTestSuite}.
+Right-click and select ``Export...".
+Choose ``Runnable JAR file".
+  
+\item[$\blacktriangleright$]
+On the next page, select the launch configuration you just created by running \texttt{NodeTest} and an appropriate target location for your Jar file.
+The libraries should be packaged or extracted into the generated Jar file.
+
+\item[$\blacktriangleright$]
+Afterwards, open up a console in the folder containing the generated Jar file and execute it as follows:
+\begin{lstlisting}
+java -jar [GeneratedJarFile.jar]
+\end{lstlisting}
+
+    
+\end{itemize}
+
