@@ -8,7 +8,7 @@ runnable Jar files, which is useful if you want to build applications for end-us
 We distinguish between repository, i.e., SDM-based, and integration,
 i.e., TGG-based, projects.
 
-\subsection{Packaging SDM projects}
+\subsection{Packaging SDM projects into a Jar file}
 
 The following explanations use the demo specification that is shipped with
 eMoflon to explain the workflow of building a runnable Jar file.
@@ -40,6 +40,7 @@ Now you have a new launch configuration named ``NodeTest".
 
 \item[$\blacktriangleright$]
 Now, select the repository project (containing the generated code) and the project \emph{DemoTestSuite}.
+You do not need to add the project containing the EA project.
 Right-click and select ``Export...".
 Choose ``Runnable JAR file".
   
@@ -56,3 +57,42 @@ java -jar [GeneratedJarFile.jar]
     
 \end{itemize}
 
+\subsection{Packaging TGG projects into a Jar file}
+\emph{yet to come\dots}
+
+\begin{comment}
+In the following, you will create a runnable Jar from a TGG specification.
+We assume that you have some existing TGG implementation and that you want to execute the \texttt{main} method in the \texttt{org.moflon.tie.[YourIntegrationProject]Trafo}.
+\begin{itemize}
+    
+\item[$\blacktriangleright$] 
+Ensure that your TGG rules from within Eclipse.
+For simplicity, we assume that your main method currently resembles the following snippet:
+\begin{lstlisting}
+public static void main(String[] args) throws IOException {
+    // Set up logging
+    BasicConfigurator.configure();
+
+    // Forward Transformation
+    [YourIntegrationProject]Trafo helper = 
+        new [YourIntegrationProject]Trafo();
+    helper.performForward("instances/fwd.src.xmi");
+}
+\end{lstlisting}
+The default transformation helper should print a short success message when the forward transformation has finished.
+
+\item[$\blacktriangleright$]
+Before packaging your project, one more modification is necessary:
+The method for loading the TGG rules (in the consructor of \texttt{[Your\-Integration\-Project]\-Trafo}) looks as follows in the default generated code:
+\begin{lstlisting}
+loadRulesFromProject("..");
+\end{lstlisting}
+Replace this line with the following to allow for the TGG rules to be loaded from within a Jar file:
+\begin{lstlisting}
+\end{lstlisting}
+\end{itemize} 
+\end{comment}
+
+
+
+   
