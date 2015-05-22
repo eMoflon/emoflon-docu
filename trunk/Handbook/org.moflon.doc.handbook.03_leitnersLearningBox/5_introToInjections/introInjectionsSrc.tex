@@ -70,7 +70,7 @@ but with a new \texttt{.inject} extension (Fig.~\ref{eclipse:injection_folder}).
 \item[$\blacktriangleright$] As a final step, clean and build your metamodel to check that the code is generated and injected properly.
 
 \item[$\blacktriangleright$] By the way, eMoflon allows you to switch quickly between a Java class and its injection file.
-When inside ``PartitionImpl.java", open the context menu and select ``eMoflon/Class <-> Injection" (Alt+Shift+E,W).
+When inside ``PartitionImpl.java", open the context menu and select ``eMoflon/Class \verb|<->| Injection" (Alt+Shift+E,W).
 This brings you to ``PartitionImpl.java".
 
 Repeat this command and you are back in ``PartitionImpl.inject``.
@@ -81,3 +81,46 @@ setters and getters yourself. We'll return to injections for establishing two si
 implement more complex methods using Story Diagrams.
  
 \end{itemize}
+
+\subsection*{Creating injections automatically with save actions}
+
+Information loss is a typical pitfall that you may encounter when working with injections:
+If you forget to create an injection and trigger a rebuild (``eMoflon/Build", Alt+Shift+E,B), the generated code is entirley dropped -- including any unsaved injection code.
+
+To save you from this frustrating experience, eMoflon may automatically save injections whenever you save your Java file.
+
+\begin{itemize}
+
+\item[$\blacktriangleright$] 
+Open the preferences dialog via ``Window/Preferences" and navigate to the ``Save Actions" (``Java/Editor/Save Actions").
+
+\item[$\blacktriangleright$]
+To enable save actions, tick ``Perform the selected actions on save" and ``Additional actions" (Fig.~\ref{eclipse:injection_saveActions1}).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{eclipse_injection_saveActions1.png}
+    \caption{Main ``Save Actions" configuration dialog}
+    \label{eclipse:injection_saveActions1}
+\end{figure}
+
+\item[$\blacktriangleright$]
+Press ``Configure", switch to the ``eMoflon Injections" tab and tick ``Enable injection extraction on save" (Fig.~\ref{eclipse:injection_saveActions2}).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{eclipse_injection_saveActions1.png}
+    \caption{Additional actions configuration dialog}
+    \label{eclipse:injection_saveActions2}
+\end{figure}
+
+\item[$\blacktriangleright$]
+After confirming the changes, open up ``PartitionImpl.java", perform a tiny modification on it, and save the file.
+The eMoflon console should display a message to confirm that injections have been extracted automatically, e.g.,
+\begin{verbatim}
+[handlers.CreateInjectionHandler::115] -  Created injection
+file for 'PartitionImpl'.
+\end{verbatim}
+
+\end{itemize}
+
