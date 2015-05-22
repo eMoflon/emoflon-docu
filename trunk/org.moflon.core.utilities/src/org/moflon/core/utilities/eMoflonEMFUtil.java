@@ -53,6 +53,11 @@ public class eMoflonEMFUtil
    /*
     * Initialization Methods
     */
+   public static final ResourceSet createDefaultResourceSet() {
+      final ResourceSetImpl set = new ResourceSetImpl();
+      set.getResourceFactoryRegistry().getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+      return set;
+   }
 
    /**
     * If using EMF from plain Java (e.g. JUnit Tests), invoke to register EMF defaults as necessary. In a plugin
@@ -91,7 +96,6 @@ public class eMoflonEMFUtil
    @Deprecated
    public static void init(final EPackage metamodel)
    {
-      registerXMIFactoryAsDefault();
       metamodel.getName();
    }
 
@@ -107,7 +111,7 @@ public class eMoflonEMFUtil
    @Deprecated
    public static EObject loadModel(final String pathToXMIFile)
    {
-      return loadModelWithDependencies(pathToXMIFile, null);
+      return loadModelWithDependencies(pathToXMIFile, new ResourceSetImpl());
    }
 
    /**
@@ -120,7 +124,6 @@ public class eMoflonEMFUtil
     *           Contains other models to resolve dependencies.
     * @return the root element of the loaded model with resolved dependencies.
     */
-   @Deprecated
    public static EObject loadModelWithDependencies(final String pathToXMIFile, final ResourceSet dependencies)
    {
       return loadModelWithDependenciesAndCrossReferencer(createFileURI(pathToXMIFile, true), dependencies);
@@ -208,17 +211,14 @@ public class eMoflonEMFUtil
     *           Contains other models to resolve dependencies
     * @return the root element of the loaded model
     */
-   @Deprecated
    public static EObject loadModelWithDependenciesAndCrossReferencer(final URI uriToModelResource, ResourceSet dependencies)
    {
-      registerXMIFactoryAsDefault();
-
       // Obtain a new resource set if necessary
-      if (dependencies == null)
-         dependencies = new ResourceSetImpl();
+      if (dependencies == null) {
+         throw new NullPointerException();
+      }
 
       // Get the resource (load on demand)
-      dependencies.createResource(uriToModelResource);
       Resource resource = dependencies.getResource(uriToModelResource, true);
 
       // Add adapter for reverse navigation along unidirectional links
@@ -305,58 +305,33 @@ public class eMoflonEMFUtil
     * @param pathToXMIFile
     *           Absolute or relative path to XMI file in which to save the model.
     */
-   @Deprecated
    static public void saveModel(final EObject rootElementOfModel, final String pathToXMIFile)
    {
-      saveModel(rootElementOfModel, createFileURI(pathToXMIFile, false), new ResourceSetImpl());
-   }
-
-   /**
-    * Use to save a model with dependencies to other models to the given XMI file path.
-    * 
-    * @param rootElementOfModel
-    * @param pathToXMIFile
-    *           Absolute or relative path to XMI file in which to save the model.
-    * @param dependencies
-    *           Contains other models to resolve dependencies.
-    */
-   @Deprecated
-   static public void saveModelWithDependencies(final EObject rootElementOfModel, final String pathToXMIFile, final ResourceSet dependencies)
-   {
-      saveModel(rootElementOfModel, createFileURI(pathToXMIFile, false), dependencies);
-   }
-
-   /**
-    * Use this method directly only if you know what you are doing! Use to save a model with dependencies to the given
-    * resource URI.
-    * 
-    * @param rootElementOfModel
-    * @param uriToModelResource
-    * @param dependencies
-    *           Contains other models to resolve dependencies.
-    */
-   @Deprecated
-   static public void saveModel(final EObject rootElementOfModel, final URI uriToModelResource, final ResourceSet dependencies)
-   {
-      if (rootElementOfModel == null)
-         throw new IllegalArgumentException("The model to be saved cannot be null");
-
-      registerXMIFactoryAsDefault();
-      // Create a resource and add model
-      Resource resource = dependencies.createResource(uriToModelResource);
-      resource.getContents().add(rootElementOfModel);
-
-      // Save model to file
-      try
-      {
-         resource.save(null);
-      } catch (IOException e)
-      {
-         String errorMessage = "Unable to save model to " + uriToModelResource + ". Error:" + e.getMessage();
-         logger.error(errorMessage);
-         throw new IllegalStateException(errorMessage, e);
+      Resource resource = rootElementOfModel.eResource(); 
+      URI fileURI = createFileURI(pathToXMIFile, false);
+      if(fileURI.equals(resource.getURI())){
+         try
+         {
+            resource.save(null);
+         } catch (IOException e)
+         {
+            e.printStackTrace();
+         }
+      }
+      else{
+         Map<URI,URI> uriMapping = resource.getResourceSet().getURIConverter().getURIMap();
+         uriMapping.put(resource.getURI(), fileURI);
+         try
+         {
+            resource.save(null);
+         } catch (IOException e)
+         {
+            e.printStackTrace();
+         }
+         uriMapping.remove(resource.getURI());
       }
    }
+
 
    /*
     * 
