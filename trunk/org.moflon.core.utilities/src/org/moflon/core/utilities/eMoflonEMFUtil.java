@@ -164,6 +164,24 @@ public class eMoflonEMFUtil
       return loadModelWithDependencies(pathToXMIFile, dependencies);
    }
 
+
+   /**
+    * Loads a model, initializes its metamodel and resolves dependencies from a Jar file.
+    * 
+    * The URI to load the model from is constructed as follows:
+    * Given a "C:/Users/user/lib.jar" as jar file and "/model/myModel.xmi", the constructed URI is "jar:file:C:/Users/user/lib.jar!/model/myModel.jar".
+    * 
+    * @param metamodel the metamodel that should be initialized
+    * @param pathToJarFile path to the jar file (absolute or relative)
+    * @param pathToResourceInJarFile path to the model inside the jar
+    * @param dependencies contains other models to resolve dependencies
+    * @return the root element of the loaded model
+    */
+   public static EObject loadAndInitModelFromJarFileWithDependencies(final EPackage metamodel, final File jarFile,
+         final String pathToResourceInJarFile, final ResourceSet dependencies) {
+      return loadAndInitModelFromJarFileWithDependencies(metamodel, jarFile.getAbsolutePath(), pathToResourceInJarFile, dependencies);
+   }
+   
    /**
     * Loads a model, initializes its metamodel and resolves dependencies from a Jar file.
     * 
