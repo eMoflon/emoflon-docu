@@ -167,29 +167,33 @@ public class WorkspaceHelper
     */
    public static IProject createProject(final String projectName, final String pluginId, final IProgressMonitor monitor) throws CoreException
    {
-      monitor.beginTask("", 2);
-
-      // Get project handle
-      IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-      IProject newProject = root.getProject(projectName);
-
-      // Use default location (in workspace)
-      final IProjectDescription description = ResourcesPlugin.getWorkspace().newProjectDescription(newProject.getName());
-      description.setLocation(null);
-
-      // Complain if project already exists
-      if (newProject.exists())
+      try
       {
-         throw new CoreException(new Status(IStatus.ERROR, pluginId, projectName + " exists already!"));
+         monitor.beginTask("", 2);
+
+         // Get project handle
+         IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+         IProject newProject = root.getProject(projectName);
+
+         // Use default location (in workspace)
+         final IProjectDescription description = ResourcesPlugin.getWorkspace().newProjectDescription(newProject.getName());
+         description.setLocation(null);
+
+         // Complain if project already exists
+         if (newProject.exists())
+         {
+            throw new CoreException(new Status(IStatus.ERROR, pluginId, projectName + " exists already!"));
+         }
+
+         // Create project
+         newProject.create(description, createSubmonitorWith1Tick(monitor));
+         newProject.open(createSubmonitorWith1Tick(monitor));
+
+         return newProject;
+      } finally
+      {
+         monitor.done();
       }
-
-      // Create project
-      newProject.create(description, createSubmonitorWith1Tick(monitor));
-      newProject.open(createSubmonitorWith1Tick(monitor));
-
-      monitor.done();
-
-      return newProject;
    }
 
    /**
@@ -206,13 +210,18 @@ public class WorkspaceHelper
     */
    public static IFolder addFolder(final IProject project, final String folderName, final IProgressMonitor monitor) throws CoreException
    {
-      monitor.beginTask("", 1);
+      try
+      {
+         monitor.beginTask("", 1);
 
-      IFolder projFolder = project.getFolder(folderName);
-      if (!projFolder.exists())
-         projFolder.create(true, true, createSubmonitorWith1Tick(monitor));
-      monitor.done();
-      return projFolder;
+         IFolder projFolder = project.getFolder(folderName);
+         if (!projFolder.exists())
+            projFolder.create(true, true, createSubmonitorWith1Tick(monitor));
+         return projFolder;
+      } finally
+      {
+         monitor.done();
+      }
    }
 
    /**
@@ -235,26 +244,34 @@ public class WorkspaceHelper
    public static void addFile(final IProject project, final String fileName, final URL pathToContent, final String pluginID, final IProgressMonitor monitor)
          throws CoreException, URISyntaxException, IOException
    {
-      monitor.beginTask("", 1);
+      try
+      {
+         monitor.beginTask("", 1);
 
-      IFile projectFile = project.getFile(fileName);
-      InputStream contents = pathToContent.openStream();
-      projectFile.create(contents, true, createSubmonitorWith1Tick(monitor));
-
-      monitor.done();
+         IFile projectFile = project.getFile(fileName);
+         InputStream contents = pathToContent.openStream();
+         projectFile.create(contents, true, createSubmonitorWith1Tick(monitor));
+      } finally
+      {
+         monitor.done();
+      }
    }
 
    public static void clearFolder(final IProject project, final String folder, final IProgressMonitor monitor) throws CoreException, URISyntaxException,
          IOException
    {
-      monitor.beginTask("", 1);
+      try
+      {
+         IFolder folderInProject = project.getFolder(folder);
+         monitor.beginTask("", folderInProject.members().length);
 
-      IFolder folderInProject = project.getFolder(folder);
+         for (IResource member : folderInProject.members())
+            member.delete(true, createSubmonitorWith1Tick(monitor));
 
-      for (IResource member : folderInProject.members())
-         member.delete(true, createSubmonitorWith1Tick(monitor));
-
-      monitor.done();
+      } finally
+      {
+         monitor.done();
+      }
    }
 
    /**
@@ -272,11 +289,16 @@ public class WorkspaceHelper
     */
    public static void addFile(final IProject project, final String fileName, final String contents, final IProgressMonitor monitor) throws CoreException
    {
-      monitor.beginTask("", 1);
-      IFile projectFile = project.getFile(fileName);
-      ByteArrayInputStream source = new ByteArrayInputStream(contents.getBytes());
-      projectFile.create(source, true, createSubmonitorWith1Tick(monitor));
-      monitor.done();
+      try
+      {
+         monitor.beginTask("", 1);
+         IFile projectFile = project.getFile(fileName);
+         ByteArrayInputStream source = new ByteArrayInputStream(contents.getBytes());
+         projectFile.create(source, true, createSubmonitorWith1Tick(monitor));
+      } finally
+      {
+         monitor.done();
+      }
    }
 
    /**
@@ -294,27 +316,31 @@ public class WorkspaceHelper
    public static void setAsSourceFolderInBuildpath(final IJavaProject javaProject, final IFolder[] folderNames, final IClasspathAttribute[] extraAttributes,
          final IProgressMonitor monitor) throws JavaModelException
    {
-      monitor.beginTask("", 2);
-
-      Collection<IClasspathEntry> entries = getClasspathEntries(javaProject);
-
-      // Add new entries for the classpath
-      if (folderNames != null)
+      try
       {
-         for (IFolder folder : folderNames)
+         monitor.beginTask("", 2);
+
+         Collection<IClasspathEntry> entries = getClasspathEntries(javaProject);
+
+         // Add new entries for the classpath
+         if (folderNames != null)
          {
-            if (folder != null)
+            for (IFolder folder : folderNames)
             {
-               IClasspathEntry prjEntry = JavaCore.newSourceEntry(folder.getFullPath(), null, null, null, extraAttributes);
-               entries.add(prjEntry);
+               if (folder != null)
+               {
+                  IClasspathEntry prjEntry = JavaCore.newSourceEntry(folder.getFullPath(), null, null, null, extraAttributes);
+                  entries.add(prjEntry);
+               }
             }
          }
+         monitor.worked(1);
+
+         setBuildPath(javaProject, entries, monitor);
+      } finally
+      {
+         monitor.done();
       }
-      monitor.worked(1);
-
-      setBuildPath(javaProject, entries, monitor);
-
-      monitor.done();
    }
 
    /**
@@ -331,22 +357,27 @@ public class WorkspaceHelper
    public static IProjectDescription getDescriptionWithAddedNature(final IProject project, final String natureId, final IProgressMonitor monitor)
          throws CoreException
    {
-      monitor.beginTask("Create description with added natures", 1);
-
-      IProjectDescription description = project.getDescription();
-
-      List<String> natures = new ArrayList<>(Arrays.asList(description.getNatureIds()));
-
-      if (!natures.contains(natureId))
+      try
       {
-         natures.add(natureId);
-         description.setNatureIds(natures.toArray(new String[natures.size()]));
+         monitor.beginTask("Create description with added natures", 1);
+
+         IProjectDescription description = project.getDescription();
+
+         List<String> natures = new ArrayList<>(Arrays.asList(description.getNatureIds()));
+
+         if (!natures.contains(natureId))
+         {
+            natures.add(natureId);
+            description.setNatureIds(natures.toArray(new String[natures.size()]));
+         }
+
+         monitor.worked(1);
+
+         return description;
+      } finally
+      {
+         monitor.done();
       }
-
-      monitor.worked(1);
-      monitor.done();
-
-      return description;
    }
 
    /**
@@ -363,12 +394,16 @@ public class WorkspaceHelper
     */
    public static void addNature(final IProject project, final String natureId, final IProgressMonitor monitor) throws CoreException
    {
-      monitor.beginTask("Add nature to project", 2);
+      try
+      {
+         monitor.beginTask("Add nature to project", 2);
 
-      IProjectDescription description = getDescriptionWithAddedNature(project, natureId, createSubmonitorWith1Tick(monitor));
-      project.setDescription(description, createSubmonitorWith1Tick(monitor));
-
-      monitor.done();
+         IProjectDescription description = getDescriptionWithAddedNature(project, natureId, createSubmonitorWith1Tick(monitor));
+         project.setDescription(description, createSubmonitorWith1Tick(monitor));
+      } finally
+      {
+         monitor.done();
+      }
    }
 
    /**
@@ -382,29 +417,33 @@ public class WorkspaceHelper
     */
    public static IJavaProject setUpAsJavaProject(final IProject project, final IProgressMonitor monitor)
    {
-      monitor.beginTask("", 1);
+      try
+      {
+         monitor.beginTask("", 1);
 
-      final JavaCapabilityConfigurationPage jcpage = new JavaCapabilityConfigurationPage();
-      final IJavaProject javaProject = JavaCore.create(project);
+         final JavaCapabilityConfigurationPage jcpage = new JavaCapabilityConfigurationPage();
+         final IJavaProject javaProject = JavaCore.create(project);
 
-      PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
-         @Override
-         public void run()
-         {
-            jcpage.init(javaProject, null, null, true);
-            try
+         PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
+            @Override
+            public void run()
             {
-               jcpage.configureJavaProject(createSubmonitorWith1Tick(monitor));
-            } catch (Exception e)
-            {
-               e.printStackTrace();
+               jcpage.init(javaProject, null, null, true);
+               try
+               {
+                  jcpage.configureJavaProject(createSubmonitorWith1Tick(monitor));
+               } catch (Exception e)
+               {
+                  e.printStackTrace();
+               }
             }
-         }
-      });
+         });
 
-      monitor.done();
-
-      return javaProject;
+         return javaProject;
+      } finally
+      {
+         monitor.done();
+      }
    }
 
    /**
@@ -494,12 +533,19 @@ public class WorkspaceHelper
    private static void setBuildPath(final IJavaProject javaProject, final Collection<IClasspathEntry> entries, final IProgressMonitor monitor)
          throws JavaModelException
    {
-      // Create new buildpath
-      IClasspathEntry[] newEntries = new IClasspathEntry[entries.size()];
-      entries.toArray(newEntries);
+      try
+      {
+         monitor.beginTask("Set build path", 1);
+         // Create new buildpath
+         IClasspathEntry[] newEntries = new IClasspathEntry[entries.size()];
+         entries.toArray(newEntries);
 
-      // Set new classpath with added entries
-      javaProject.setRawClasspath(newEntries, monitor != null ? createSubmonitorWith1Tick(monitor) : null);
+         // Set new classpath with added entries
+         javaProject.setRawClasspath(newEntries, monitor != null ? createSubmonitorWith1Tick(monitor) : null);
+      } finally
+      {
+         monitor.done();
+      }
    }
 
    private static void setBuildPath(final IJavaProject javaProject, final Collection<IClasspathEntry> entries) throws JavaModelException
@@ -519,11 +565,18 @@ public class WorkspaceHelper
    public static void addAllFolders(final IProject project, final String path, final IProgressMonitor monitor) throws CoreException
    {
       String[] folders = path.split(PATH_SEPARATOR);
-      StringBuilder currentFolder = new StringBuilder();
-      for (String folder : folders)
+      try
       {
-         currentFolder.append(PATH_SEPARATOR).append(folder);
-         addFolder(project, currentFolder.toString(), monitor);
+         monitor.beginTask("Add folders", folders.length);
+         StringBuilder currentFolder = new StringBuilder();
+         for (String folder : folders)
+         {
+            currentFolder.append(PATH_SEPARATOR).append(folder);
+            addFolder(project, currentFolder.toString(), createSubmonitorWith1Tick(monitor));
+         }
+      } finally
+      {
+         monitor.done();
       }
    }
 
@@ -538,9 +591,15 @@ public class WorkspaceHelper
     */
    private static void addFile(final IFile file, final String contents, final IProgressMonitor monitor) throws CoreException
    {
-      ByteArrayInputStream source = new ByteArrayInputStream(contents.getBytes());
-      file.create(source, true, createSubmonitorWith1Tick(monitor));
-      monitor.done();
+      try
+      {
+         monitor.beginTask("Add file", 1);
+         ByteArrayInputStream source = new ByteArrayInputStream(contents.getBytes());
+         file.create(source, true, createSubmonitorWith1Tick(monitor));
+      } finally
+      {
+         monitor.done();
+      }
    }
 
    /**
@@ -559,14 +618,21 @@ public class WorkspaceHelper
    public static void addAllFoldersAndFile(final IProject project, final IPath pathToFile, final String fileContent, final IProgressMonitor monitor)
          throws CoreException
    {
-      // Remove file segment
-      IPath folders = pathToFile.removeLastSegments(1);
+      try
+      {
+         monitor.beginTask("Add file", 2);
+         // Remove file segment
+         IPath folders = pathToFile.removeLastSegments(1);
 
-      // Create all necessary folders
-      addAllFolders(project, folders.toString(), monitor);
+         // Create all necessary folders
+         addAllFolders(project, folders.toString(), createSubmonitorWith1Tick(monitor));
 
-      // Create file
-      addFile(project.getFile(pathToFile), fileContent, monitor);
+         // Create file
+         addFile(project.getFile(pathToFile), fileContent, createSubmonitorWith1Tick(monitor));
+      } finally
+      {
+         monitor.done();
+      }
    }
 
    public static SubProgressMonitor createSubmonitorWith1Tick(final IProgressMonitor monitor)
@@ -649,7 +715,7 @@ public class WorkspaceHelper
     * 
     * @deprecated Use {@link #getProjectByName(String)}
     */
-   //TODO Remove on next release
+   // TODO Remove on next release
    @Deprecated
    public static IProject getProjectRoot(final String projectName)
    {
@@ -666,7 +732,8 @@ public class WorkspaceHelper
     * 
     * If no such project can be found, null is returned.
     * 
-    * @param pluginId the plugin id
+    * @param pluginId
+    *           the plugin id
     * @return the project with the plugin id or null if not such project exists
     */
    public static IProject getProjectByPluginId(final String pluginId)
@@ -833,7 +900,8 @@ public class WorkspaceHelper
    /**
     * Checks whether the given monitor has been canceled and throws an InterruptedException to signal the cancellation.
     * 
-    * @throws InterruptedException if the monitor has been cancelled
+    * @throws InterruptedException
+    *            if the monitor has been cancelled
     */
    public static void checkCanceledAndThrowInterruptedException(final IProgressMonitor monitor) throws InterruptedException
    {
