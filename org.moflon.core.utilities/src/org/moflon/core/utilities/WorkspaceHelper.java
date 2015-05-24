@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
@@ -807,5 +808,36 @@ public class WorkspaceHelper
    public static boolean allProjectsExist(final Collection<IProject> projects)
    {
       return projects.stream().allMatch(project -> project.exists());
+   }
+
+   public static Collection<IProject> getProjectsByNatureID(final String natureID) throws CoreException
+   {
+      return Arrays.asList(ResourcesPlugin.getWorkspace().getRoot().getProjects()).stream()//
+            .filter(p -> p.isOpen())//
+            .filter(p -> hasNatureSafe(p, natureID))//
+            .collect(Collectors.toList());
+   }
+
+   // This method ignores the checked CoreException to make it usable inside streams
+   public static boolean hasNatureSafe(final IProject project, final String natureId)
+   {
+      try
+      {
+         return project.hasNature(natureId);
+      } catch (CoreException e)
+      {
+         return false;
+      }
+   }
+
+   /**
+    * Checks whether the given monitor has been canceled and throws an InterruptedException to signal the cancellation.
+    * 
+    * @throws InterruptedException if the monitor has been cancelled
+    */
+   public static void checkCanceledAndThrowInterruptedException(final IProgressMonitor monitor) throws InterruptedException
+   {
+      if (monitor.isCanceled())
+         throw new InterruptedException();
    }
 }
