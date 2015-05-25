@@ -233,7 +233,7 @@ public class eMoflonEMFUtil
    {
       // Obtain a new resource set if necessary
       if (dependencies == null) {
-         throw new NullPointerException();
+    	  throw new IllegalArgumentException("The resource set passed as 'dependencies' must not be null!");
       }
 
       // Get the resource (load on demand)
@@ -281,8 +281,7 @@ public class eMoflonEMFUtil
 
       try
       {
-         // Retrieve package URI from XMI file (this must be done before
-         // loading!)
+         // Retrieve package URI from XMI file (this must be done before loading!)
          DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
          DocumentBuilder docBuilder = dbf.newDocumentBuilder();
          Document doc = docBuilder.parse(file);
@@ -325,9 +324,18 @@ public class eMoflonEMFUtil
     */
    static public void saveModel(final EObject rootElementOfModel, final String pathToXMIFile)
    {
-      Resource resource = rootElementOfModel.eResource(); 
+      Resource resource = rootElementOfModel.eResource();
       URI fileURI = createFileURI(pathToXMIFile, false);
-      if(fileURI.equals(resource.getURI())){
+
+      if (resource == null)
+      {
+         // Create a default resource
+         resource = new ResourceSetImpl().createResource(fileURI);
+         resource.getContents().add(rootElementOfModel);
+      }
+
+      if (fileURI.equals(resource.getURI()))
+      {
          try
          {
             resource.save(null);
@@ -335,9 +343,9 @@ public class eMoflonEMFUtil
          {
             e.printStackTrace();
          }
-      }
-      else{
-         Map<URI,URI> uriMapping = resource.getResourceSet().getURIConverter().getURIMap();
+      } else
+      {
+         Map<URI, URI> uriMapping = resource.getResourceSet().getURIConverter().getURIMap();
          uriMapping.put(resource.getURI(), fileURI);
          try
          {
