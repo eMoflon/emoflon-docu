@@ -63,6 +63,7 @@ public class eMoflonEMFUtil
     * If using EMF from plain Java (e.g. JUnit Tests), invoke to register EMF defaults as necessary. In a plugin
     * context, this is not necessary. Note that this method is called on demand from {@link #init(EPackage)} and
     * loading/saving methods.
+    * @deprecated use {@link createDefaultResourceSet() createDefaultResourceSet} method
     */
    @Deprecated
    public static void registerXMIFactoryAsDefault()
@@ -92,6 +93,8 @@ public class eMoflonEMFUtil
    /**
     * Use this method to initialize the given EPackage. This is required before loading/saving or working with the
     * package. In a plugin context, this might be automatically carried out via an appropriate extension point.
+    * @deprecated simply pass the eINSTANCE static attribute of the tailored EPackage to a method, or use the standard
+    * EMF package registering mechanism {@see org.eclipse.emf.ecore.resource.ResourceSet#getPackageRegistry()} 
     */
    @Deprecated
    public static void init(final EPackage metamodel)
@@ -107,6 +110,9 @@ public class eMoflonEMFUtil
     * @param pathToXMIFile
     *           Absolute or relative path to XMI file.
     * @return the root element of the loaded model
+    * @deprecated use standard EMF method for loading the model by passing an URI and {@code true} to 
+    * the {@link org.eclipse.emf.ecore.resource.ResourceSet#getResource(URI,boolean) getResource} method and then install
+    * cross-referencers by the {@link installCrossReferencers(ResourceSet) installCrossReferencers()} method
     */
    @Deprecated
    public static EObject loadModel(final String pathToXMIFile)
@@ -120,13 +126,17 @@ public class eMoflonEMFUtil
     * 
     * @param pathToXMIFile
     *           Absolute or relative path to XMI file.
-    * @param dependencies
+    * @param resourceSet
     *           Contains other models to resolve dependencies.
     * @return the root element of the loaded model with resolved dependencies.
+    * @deprecated use standard EMF method for loading the model by passing an URI and {@code true} to 
+    * the {@link org.eclipse.emf.ecore.resource.ResourceSet#getResource(URI,boolean) getResource} method and then install
+    * cross-referencers by the {@link installCrossReferencers(ResourceSet) installCrossReferencers()} method
     */
-   public static EObject loadModelWithDependencies(final String pathToXMIFile, final ResourceSet dependencies)
+   @Deprecated
+   public static EObject loadModelWithDependencies(final String pathToXMIFile, final ResourceSet resourceSet)
    {
-      return loadModelWithDependenciesAndCrossReferencer(createFileURI(pathToXMIFile, true), dependencies);
+      return loadModelWithDependenciesAndCrossReferencer(createFileURI(pathToXMIFile, true), resourceSet);
    }
 
    /**
@@ -138,6 +148,11 @@ public class eMoflonEMFUtil
     *           Absolute or relative path to XMI file
     * 
     * @return the root element of the loaded model
+    * @deprecated init metamodel by simply referring to the eINSTANCE static attribute of a tailored EPackage, 
+    * use standard EMF method for loading the model by passing an URI and {@code true} to the 
+    * {@link org.eclipse.emf.ecore.resource.ResourceSet#getResource(URI,boolean) getResource} method and
+    * then install cross-referencers by the {@link installCrossReferencers(ResourceSet) installCrossReferencers()}
+    * method
     */
    @Deprecated
    public static EObject loadAndInitModel(final EPackage metamodel, final String pathToXMIFile)
@@ -156,6 +171,11 @@ public class eMoflonEMFUtil
     * @param dependencies
     *           Contains other models to resolve dependencies.
     * @return the root element of the loaded model
+    * @deprecated init metamodel by simply referring to the eINSTANCE static attribute of a tailored EPackage, 
+    * use standard EMF method for loading the model by passing an URI and {@code true} to the 
+    * {@link org.eclipse.emf.ecore.resource.ResourceSet#getResource(URI,boolean) getResource} method and
+    * then install cross-referencers by the {@link installCrossReferencers(ResourceSet) installCrossReferencers()}
+    * method
     */
    @Deprecated
    public static EObject loadAndInitModelWithDependencies(final EPackage metamodel, final String pathToXMIFile, final ResourceSet dependencies)
@@ -176,7 +196,13 @@ public class eMoflonEMFUtil
     * @param pathToResourceInJarFile path to the model inside the jar
     * @param dependencies contains other models to resolve dependencies
     * @return the root element of the loaded model
+    * @deprecated init metamodel by simply referring to the eINSTANCE static attribute of a tailored EPackage, 
+    * use standard EMF method for loading the model by passing an URI and {@code true} to the 
+    * {@link org.eclipse.emf.ecore.resource.ResourceSet#getResource(URI,boolean) getResource} method and
+    * then install cross-referencers by the {@link installCrossReferencers(ResourceSet) installCrossReferencers()}
+    * method
     */
+   @Deprecated
    public static EObject loadAndInitModelFromJarFileWithDependencies(final EPackage metamodel, final File jarFile,
          final String pathToResourceInJarFile, final ResourceSet dependencies) {
       return loadAndInitModelFromJarFileWithDependencies(metamodel, jarFile.getAbsolutePath(), pathToResourceInJarFile, dependencies);
@@ -191,17 +217,22 @@ public class eMoflonEMFUtil
     * @param metamodel the metamodel that should be initialized
     * @param pathToJarFile path to the jar file (absolute or relative)
     * @param pathToResourceInJarFile path to the model inside the jar
-    * @param dependencies contains other models to resolve dependencies
+    * @param resourceSet contains other models to resolve dependencies
     * @return the root element of the loaded model
+    * @deprecated init metamodel by simply referring to the eINSTANCE static attribute of a tailored EPackage, 
+    * use standard EMF method for loading the model by passing an URI and {@code true} to the 
+    * {@link org.eclipse.emf.ecore.resource.ResourceSet#getResource(URI,boolean) getResource} method and
+    * then install cross-referencers by the {@link installCrossReferencers(ResourceSet) installCrossReferencers()}
+    * method
     */
    @Deprecated
    public static EObject loadAndInitModelFromJarFileWithDependencies(final EPackage metamodel, final String pathToJarFile,
-         final String pathToResourceInJarFile, final ResourceSet dependencies)
+         final String pathToResourceInJarFile, final ResourceSet resourceSet)
    {
       init(metamodel);
       final URI uri = createInJarURI(pathToJarFile, pathToResourceInJarFile);
       return eMoflonEMFUtil.loadModelWithDependenciesAndCrossReferencer(uri,
-            dependencies);
+            resourceSet);
    }
 
    /**
@@ -225,27 +256,31 @@ public class eMoflonEMFUtil
     * 
     * @param uriToModelResource
     *           URI of resource containing model
-    * @param dependencies
+    * @param resourceSet
     *           Contains other models to resolve dependencies
     * @return the root element of the loaded model
+    * @deprecated use standard EMF method for loading the model by passing an URI and {@code true} to 
+    * the {@link org.eclipse.emf.ecore.resource.ResourceSet#getResource(URI,boolean) getResource} method and then install
+    * cross-referencers by the {@link installCrossReferencers(ResourceSet) installCrossReferencers()} method (Note that a
+    * cross-referencer should be installed exactly once on a resource set.)
     */
-   public static EObject loadModelWithDependenciesAndCrossReferencer(final URI uriToModelResource, ResourceSet dependencies)
+   @Deprecated
+   public static EObject loadModelWithDependenciesAndCrossReferencer(final URI uriToModelResource, ResourceSet resourceSet)
    {
-      // Obtain a new resource set if necessary
-      if (dependencies == null) {
-    	  throw new IllegalArgumentException("The resource set passed as 'dependencies' must not be null!");
+      if (resourceSet == null) {
+    	  throw new IllegalArgumentException("The resource set passed as 'resourceSet' must not be null!");
       }
 
       // Get the resource (load on demand)
-      Resource resource = dependencies.getResource(uriToModelResource, true);
+      Resource resource = resourceSet.getResource(uriToModelResource, true);
 
       // Add adapter for reverse navigation along unidirectional links
-      ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(dependencies);
+      ECrossReferenceAdapter adapter = ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet);
       if (adapter == null)
       {
          try
          {
-            dependencies.eAdapters().add(new ECrossReferenceAdapter());
+            resourceSet.eAdapters().add(new ECrossReferenceAdapter());
          } catch (Exception e)
          {
             e.printStackTrace();
@@ -307,6 +342,21 @@ public class eMoflonEMFUtil
 
       return loadModelWithDependenciesAndCrossReferencer(resourceURI, dependencies);
    }
+   
+   /**
+    * Copies the model stored in the resource at the from URL into a resource at the to URL  
+    * @param resourceSet the resource set in which the copy operation is performed
+    * @param from the resource URL, which serves as the source of the copy operation
+    * @param to the resource URL, which serves as the target of the copy operation
+    * @return the loaded or newly created resource with the to URL
+    */
+   public static Resource copy(final ResourceSet resourceSet, final URI from, final URI to) {
+	   final Map<URI,URI> uriMap = resourceSet.getURIConverter().getURIMap();
+	   uriMap.put(to, from);
+	   final Resource resource = resourceSet.getResource(to, true);
+	   uriMap.remove(to);
+	   return resource;
+   }
 
    /*
     * 
@@ -318,11 +368,12 @@ public class eMoflonEMFUtil
    /**
     * Use to save a model to the given XMI file path.
     * 
+    * @param resourceSet
     * @param rootElementOfModel
     * @param pathToXMIFile
     *           Absolute or relative path to XMI file in which to save the model.
     */
-   static public void saveModel(final EObject rootElementOfModel, final String pathToXMIFile)
+   static public void saveModel(final ResourceSet resourceSet, final EObject rootElementOfModel, final String pathToXMIFile)
    {
       Resource resource = rootElementOfModel.eResource();
       URI fileURI = createFileURI(pathToXMIFile, false);
@@ -330,7 +381,7 @@ public class eMoflonEMFUtil
       if (resource == null)
       {
          // Create a default resource
-         resource = new ResourceSetImpl().createResource(fileURI);
+         resource = resourceSet.createResource(fileURI);
          resource.getContents().add(rootElementOfModel);
       }
 
@@ -356,6 +407,22 @@ public class eMoflonEMFUtil
          }
          uriMapping.remove(resource.getURI());
       }
+   }
+   
+   /**
+    * Use to save a model to the given XMI file path.
+    * 
+    * @param rootElementOfModel
+    * @param pathToXMIFile
+    *           Absolute or relative path to XMI file in which to save the model.
+    * @deprecated use the {@link #saveModel(ResourceSet, EObject, String) saveModel} method with a resource
+    * set created by the {@link #createDefaultResourceSet()  createDefaultResourceSet()}} static method.
+    * Enforcing the explicit creation of a resource set yields to a more conscious (re)use of resource sets. 
+    */
+   @Deprecated
+   static public void saveModel(final EObject rootElementOfModel, final String pathToXMIFile)
+   {
+	   saveModel(createDefaultResourceSet(), rootElementOfModel, pathToXMIFile);
    }
 
 
