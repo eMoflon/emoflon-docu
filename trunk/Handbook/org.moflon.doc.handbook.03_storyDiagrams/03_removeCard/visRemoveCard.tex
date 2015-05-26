@@ -223,3 +223,43 @@ next section.
 
 \end{itemize}
 
+
+\subsection*{Removing SDMs}
+
+Imagine that you have just created an SDM for a method, but now you want to implement the method using an injection.
+This section describes how to get rid of this old SDM.
+
+Let's assume that you want to remove the SDM of \texttt{Partition::removeCard}, which you just created.
+
+\begin{itemize}
+\item[$\blacktriangleright$]
+In the project browser, navigate to the method of which you want to remove the SDM.
+This can be accomplished by right-clicking the method in the Ecore diagram and then selecting ``Find in project browser" (Fig.~\ref{ea:sdm_removeSDM_findInProjectBrowser}), or by navigating manually through the project browser.
+
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{ea_sdmRemoveSDM_findInProjectBrowser}
+        \caption{Navigate to method in project browser}  
+        \label{ea:sdm_removeSDM_findInProjectBrowser}
+    \end{center}
+\end{figure}
+
+\item[$\blacktriangleright$]
+Inside of the EClass ``Partition", you find the one entry for the method (``removeCard(Card)") and one entry for its SDM (``$\ll$SDM Activity$\gg$ removeCard(Card)") (Fig.~\ref{ea:sdm_removeSDM_methodSelected}).
+
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{ea_sdmRemoveSDM_methodSelected}
+        \caption{Project browser entries for method ``removeCard" and its SDM}  
+        \label{ea:sdm_removeSDM_methodSelected}
+    \end{center}
+\end{figure}
+
+\item[$\blacktriangleright$]
+Select and remove the SDM Activity to get rid of the SDM associated with ``removeCard(Card)" either by using the context menu entry ``Delete '$\ll$SDM Activity$\gg$ removeCard(Card)'" or via \emph{Ctrl+Delete}.
+\textbf{Important:} This action cannot be undone!
+
+\item[$\blacktriangleright$]
+After a successful export and rebuild of your project, you may add an injection for ``Partition::removeCard".
+
+\end{itemize}
