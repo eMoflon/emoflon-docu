@@ -112,12 +112,19 @@ public class eMoflonEMFUtil
     * @return the root element of the loaded model
     * @deprecated use standard EMF method for loading the model by passing an URI and {@code true} to 
     * the {@link org.eclipse.emf.ecore.resource.ResourceSet#getResource(URI,boolean) getResource} method and then install
-    * cross-referencers by the {@link installCrossReferencers(ResourceSet) installCrossReferencers()} method
+    * cross-referencers by the {@link installCrossReferencers(ResourceSet) installCrossReferencers()} method.
+    * <p>
+    * For example use instead:
+    *<p><blockquote><pre>  
+    *ResourceSet rs = eMoflonEMFUtil.createDefaultResourceSet();
+	*Resource res= rs.getResource(eMoflonEMFUtil.createFileURI("path/to/foo.xmi", true),true);
+	*EObject foo = res.getContents().get(0);
+	* </pre></blockquote>
     */
    @Deprecated
    public static EObject loadModel(final String pathToXMIFile)
    {
-      return loadModelWithDependencies(pathToXMIFile, new ResourceSetImpl());
+      return loadModelWithDependencies(pathToXMIFile, createDefaultResourceSet());
    }
 
    /**
