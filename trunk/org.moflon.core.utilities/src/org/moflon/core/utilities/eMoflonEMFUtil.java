@@ -165,7 +165,7 @@ public class eMoflonEMFUtil
    public static EObject loadAndInitModel(final EPackage metamodel, final String pathToXMIFile)
    {
       init(metamodel);
-      return loadModelWithDependencies(pathToXMIFile, null);
+      return loadModelWithDependencies(pathToXMIFile, createDefaultResourceSet());
    }
 
    /**
