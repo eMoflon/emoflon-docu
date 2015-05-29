@@ -272,7 +272,7 @@ public class eMoflonEMFUtil
     * cross-referencer should be installed exactly once on a resource set.)
     */
    @Deprecated
-   public static EObject loadModelWithDependenciesAndCrossReferencer(final URI uriToModelResource, ResourceSet resourceSet)
+   public static EObject loadModelWithDependenciesAndCrossReferencer(final URI uriToModelResource, final ResourceSet resourceSet)
    {
       if (resourceSet == null) {
     	  throw new IllegalArgumentException("The resource set passed as 'resourceSet' must not be null!");
@@ -832,6 +832,9 @@ public class eMoflonEMFUtil
       return success;
    }
 
+   /**
+    * @deprecated The semantics of this method is absolutely unclear!
+    */
    @Deprecated
    public static Resource addToResourceSet(final ResourceSet set, final EObject object)
    {
