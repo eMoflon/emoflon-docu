@@ -122,6 +122,10 @@ public class WorkspaceHelper
 
    public static final String ISSUE_TRACKER_URL = "https://github.com/eMoflon/emoflon-issue-tracking-system/issues";
 
+   public static final String MOSL_PROBLEM_MARKER_ID = "org.moflon.ide.marker.MOSLProblem";
+   
+   public static final String INJECTION_PROBLEM_MARKER_ID = "org.moflon.ide.marker.InjectionProblem";
+
    /**
     * Checks if given name is a valid name for a new project in the current workspace.
     * 
@@ -909,4 +913,5 @@ public class WorkspaceHelper
       if (monitor.isCanceled())
          throw new InterruptedException();
    }
+
 }
