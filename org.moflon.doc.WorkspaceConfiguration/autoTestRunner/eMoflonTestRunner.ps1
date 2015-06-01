@@ -12,14 +12,14 @@ $sleepTimeBetweenStartsInSeconds = 120
 # Array of all test workspaces
 # (see EMoflonStandardWorkspaces)
 [System.Collections.ArrayList]$WORKSPACES = @()
-$WORKSPACES.add("TestWorkspace_Democles_0")
-$WORKSPACES.add("TestWorkspace_Misc")
-# $WORKSPACES.add("TestWorkspace_TGG_0")
-# $WORKSPACES.add("TestWorkspace_TGG_1")
-# $WORKSPACES.add("TransformationZoo_0")
-# $WORKSPACES.add("TransformationZoo_1")
-# $WORKSPACES.add("DeveloperWorkspace")
-# $WORKSPACES.add("TextualSyntaxWorkspace")
+[void]$WORKSPACES.add("TestWorkspace_Democles_0")
+[void]$WORKSPACES.add("TestWorkspace_Misc")
+# [void]$WORKSPACES.add("TestWorkspace_TGG_0")
+# [void]$WORKSPACES.add("TestWorkspace_TGG_1")
+# [void]$WORKSPACES.add("TransformationZoo_0")
+# [void]$WORKSPACES.add("TransformationZoo_1")
+# [void]$WORKSPACES.add("DeveloperWorkspace")
+# [void]$WORKSPACES.add("TextualSyntaxWorkspace")
 
 # Whether to spawn a new console for each Eclipse instance, showing standard output/standard error messages
 $USE_CONSOLE = $FALSE # either $TRUE or $FALSE
