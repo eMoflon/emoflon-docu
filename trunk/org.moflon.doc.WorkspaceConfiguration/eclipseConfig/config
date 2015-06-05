@@ -1,5 +1,0 @@
-[miscellany]
-enable-auto-props = yes
-
-[auto-props]
-* = svn:keywords=Author Revision Date
