@@ -1,0 +1,10 @@
+class Partition 
+{
+  index : EInt
+  partitionSize : EInt
+  
+  <> - card (0..*) -> Card (*@\label{mosl:containedCard}@*)
+  - box (0..1) -> Box (*@\label{mosl:referencedBox}@*)
+  - next (0..1) -> Partition (*@\label{mosl:nextPartition}@*)
+  - previous (0..1) -> Partition (*@\label{mosl:previousPartition}@*)
+}

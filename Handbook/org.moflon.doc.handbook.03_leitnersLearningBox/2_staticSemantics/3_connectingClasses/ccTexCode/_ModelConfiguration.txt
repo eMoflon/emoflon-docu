@@ -1,0 +1,5 @@
+opposites 
+{
+  containedPartition : Box <-> box : Partition
+  card : Partition <-> cardContainer : Card
+}
