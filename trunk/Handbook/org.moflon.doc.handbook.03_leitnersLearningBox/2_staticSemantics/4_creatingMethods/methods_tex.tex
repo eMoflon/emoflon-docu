@@ -24,47 +24,40 @@ name, return\_type, param\_name, param\_type := STRING}
 \item[$\blacktriangleright$] Create two more functions for \texttt{Partition} the same way. We'll need a \texttt{removeCard} method that accepts and returns a
 \texttt{Card}, as well as a EBoolean \texttt{check} method that accepts a \texttt{Card} and an \texttt{EString} guess. 
 
-\item[$\blacktriangleright$] Your \texttt{Partition} EClass should now resemble Fig.~\ref{eclipse:partitionMethods}.
+\item[$\blacktriangleright$] Your \texttt{Partition} EClass should now resemble Listing~\ref{eclipse:partitionMethods}.
 
 \vspace{0.5cm}
 
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.6\textwidth]{eclipse_partitionMethods}
-	\caption{The completed \texttt{Partition} EClass}
-	\label{eclipse:partitionMethods}
-\end{figure}
+\lstinputlisting[style=eclass, label=eclipse:partitionMethods ,caption={The completed \texttt{Partition} EClass}]{../2_staticSemantics/4_creatingMethods/cmTexCode/Partition.txt} 
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] What needs to be done in the \texttt{Card} EClass? Well, in order to check the card, we'll need to be able to look at the flip
-side. We'll also need to print whatever is on the current side. Create two paramater-less \texttt{void} functions, \texttt{invert} and \texttt{printCard}. 
+side. We'll also need to print whatever is on the current side. Create two paramater-less \texttt{void} functions, \texttt{invert} and \texttt{printCard} (Listing~\ref{eclipse:cardMethods}). 
+
+\lstinputlisting[style=eclass, label=eclipse:cardMethods ,caption={The completed \texttt{Card} EClass}]{../2_staticSemantics/4_creatingMethods/cmTexCode/Card.txt} 
 
 \item[$\blacktriangleright$] Finally, what do we want to do with \texttt{Box}? In summary, we want a \texttt{Box} to:
 
 \begin{description}
-  \item[\texttt{determineNextSize():EInt}] Calculate how large a new partition in the box should be
-  \item[\texttt{grow():EBoolean}] Increase the box by adding a new partition
-  \item[\texttt{toString():EString}] Produce a string representation of the box with all its contents
-  \item[\texttt{addToStringRep(card:Card):void}] Update the current string representation to include \texttt{card}
+  \item[\texttt{determineNextSize():EInt}] Calculate how large a new partition in the box should be (Line~\ref{mosl:methodSize})
+  \item[\texttt{grow():EBoolean}] Increase the box by adding a new partition (Line~\ref{mosl:methodGrow})
+  \item[\texttt{toString():EString}] Produce a string representation of the box with all its contents (Line~\ref{mosl:methodToString})
+  \item[\texttt{addToStringRep(card:Card):void}] Update the current string representation to include \texttt{card} (Line~\ref{mosl:methodRep})
 \end{description}
 
-\item[$\blacktriangleright$] Implement the above signatures, and your entire workspace should now resemble Fig.~\ref{eclipse:workspaceMethods}.
+\lstinputlisting[style=eclass, label=eclipse:boxMethods ,caption={The completed \texttt{Box} EClass}]{../2_staticSemantics/4_creatingMethods/cmTexCode/Box.txt} 
+
+\item[$\blacktriangleright$] Implement the above signatures, and your entire workspace should now resemble Listings~\ref{eclipse:boxMethods},~\ref{eclipse:partitionMethods} and~ \ref{eclipse:cardMethods}.
 
 \item[$\blacktriangleright$] Congratulations! You have now created a metamodel for our Learning Box using eMoflon's textual syntax! To see how
 this looks in the visual syntax, check out Fig.~\ref{ea:metamodel_complete} from the previous section. As a final step, make sure you build the project and
 wait for the package explorer to refresh. 
 
-\newpage
+
 
 \jumpSingle{validation tex}
 
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.7\textwidth]{eclipse_classesFullyDeclared}
-	\caption{Completed method signatures}
-	\label{eclipse:workspaceMethods}
-\end{figure}
-\FloatBarrier
+
 
 \end{itemize}
