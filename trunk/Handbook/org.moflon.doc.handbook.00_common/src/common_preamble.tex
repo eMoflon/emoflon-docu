@@ -35,7 +35,7 @@ This means: Whenever something goes wrong even though you are sure to have follo
 
 \def\itemWithRightTriangle{\item[$\blacktriangleright$]}
 
-\definecolor{codelightgray}{rgb}{0.87,0.87,0.87}
+\input{../../org.moflon.doc.handbook.00_common/src/codestyles/Color}
 
 \hypersetup{colorlinks=true,% 
 	linkcolor=black,%
@@ -46,13 +46,8 @@ This means: Whenever something goes wrong even though you are sure to have follo
 	urlcolor=black
 }
 
-\lstset{language=,
-    keywordstyle=\color{blue},
-    basicstyle=\scriptsize\ttfamily,
-    showstringspaces=false,
-    backgroundcolor=\color{codelightgray},
-    morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
-}
+\input{../../org.moflon.doc.handbook.00_common/src/codestyles/Default}
+\input{../../org.moflon.doc.handbook.00_common/src/codestyles/MOSL}
 
 \setcounter{tocdepth}{1}
 
