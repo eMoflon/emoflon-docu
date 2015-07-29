@@ -11,43 +11,68 @@
 \texttt{removeCard} signature and add a pair of curly brackets so that it looks like a proper method declaration. This entire scope can be referred to as the method's \emph{activity}, where the control flow (imperative top-layer) of a
 transformation is defined.
 
-\itemWithRightTriangle Complete the activity with a single pattern and return statement as depicted in Fig~\ref{eclipse:remCardDec}. Don't forget -- you
+\itemWithRightTriangle Complete the activity with a single pattern and return statement as depicted in Listing~\ref{eclipse:remCardDec}. Don't forget -- you
 can use eMoflon's auto-complete feature here! Press \texttt{Ctrl + Space} on an
 empty line, then select the pattern template to establish \texttt{deleteSingleCard}.
 
-\itemWithRightTriangle Note that in this context, the \texttt{`@'} operator indicates an \emph{ObjectVariableExpression}%
-\define{ObjectVariable\-Expression}. This expression implicitly refers to object variables from the preceding story node. In \texttt{removeCard}'s case, the
-returned object refers to the \texttt{card} from the pattern.
+\itemWithRightTriangle Note that in this context, the \texttt{`\$'} operator indicates a \emph{ParameterExpression}%
+\define{Parameter\-Expression}. This expression implicitly refers to parameters from arguments which are assigned by the operation. In \texttt{removeCard}'s case, the returned parameter refers to the \texttt{card} parameter.
 
 \vspace{0.5cm}
 
-\begin{figure}[htp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{eclipse_removeCardDeclaration}
-  \caption{Control flow for \texttt{removeCard}}
-  \label{eclipse:remCardDec}
-\end{center}
-\end{figure}
+\lstinputlisting[style=eclass, label=eclipse:remCardDec,caption={Control flow for \texttt{removeCard}}] {../03_removeCard/texRemCode/Partition.txt} 
 
 \itemWithRightTriangle It should be mentioned that MOSL limits method definitions exclusively to the method's control flow. All actual transformation
-rules are modeled in separate \emph{pattern} files. In this case, \texttt{removeCard}'s link deletion will be modeled in \texttt{[deleteSingleCard]}.
+rules are modelled in separate \emph{pattern} files. In this case, \texttt{removeCard}'s link deletion will be modelled in \texttt{[deleteSingleCard]}.
 
 \vspace{0.5cm}
 
 \itemWithRightTriangle Save \texttt{Partition.eclass}. An error should immediately appear below the editor. In the ``Problems'' tab, the message
-states that the builder cannot find the specified pattern file. Well, this makes sense. You haven't created it yet! Click this message and press \texttt{Ctrl +
-1} to invoke a ``Quick Fix'' dialogue (Fig~\ref{eclipse:quickFix}). It offers to create a pattern file for you. Given that's exactly what you'd like, select the
+states that the builder cannot find the specified pattern file (Fig.~\ref{eclipse:errorMissingPattern}). Well, this makes sense. You haven't created it yet! Click this message and press \texttt{Ctrl +
+1} to invoke a ``Quick Fix'' dialogue (Fig.~\ref{eclipse:quickFix}). It offers to create a pattern file for you. Given that's exactly what you'd like, select the
 option and press \texttt{Finish}.
 
 \vspace{0.5cm}
 
 \begin{figure}[htp]
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{eclipse_patternQuickFix}
-  \caption{A quick fix to a missing pattern error}
-  \label{eclipse:quickFix}
-\end{center}
+	\centering
+	\subfloat[The errors because of the missing pattern]{	
+		\includegraphics[width=1\textwidth]{eclipse_errorMissingPattern}
+		\label{eclipse:errorMissingPattern}
+	}
+	\vspace{0.5cm}
+	\subfloat[A quick fix to a missing pattern error]{
+		  \includegraphics[width=0.45\textwidth]{eclipse_patternQuickFix}
+		  \label{eclipse:quickFix}
+	}
+	\caption{Missing pattern error handling}
 \end{figure}
+
+\vspace{0.5cm}
+
+\itemWithRightTriangle Alternatively, you can create a new folder with the name of the operation, in this case \texttt{removeCard} and create the \texttt{deleteSingleCard} pattern with the wizard.
+
+
+\begin{figure}[htp]
+	\centering
+	\subfloat[Menu to create a pattern manually]{	
+		\includegraphics[width=0.9\textwidth]{eclipse_newFolderPatternMenu}
+		\label{eclipse:newFolderPattern}
+	}
+	
+	\subfloat[Wizard to create the \texttt{remove\-Card} folder]{	
+			\includegraphics[width=0.45\textwidth]{eclipse_newFolder}
+			\label{eclipse:newFoldern}
+		}
+	\subfloat[Wizard to create the \texttt{delete\-Single\-Card} pattern]{
+		\includegraphics[width=0.45\textwidth]{eclipse_newPattern}
+		\label{eclipse:newPattern}
+	}
+	\caption{Manual way to create a pattern}
+\end{figure}
+
+\newpage
+
 
 \itemWithRightTriangle The new file will open in the editor, and you'll be able to see a new directory structure under ``LearningBoxLanguage/\_patterns''
 (Fig.~\ref{eclipse:pattStruct}). To explain, \texttt{deleteSingleCard.pattern} is invoked by the method \texttt{removeCard}, which is in the \texttt{Partition}
@@ -72,6 +97,10 @@ but \emph{what}.
 \itemWithRightTriangle Create two object variables, \texttt{@this:Partition } and \texttt{ @card:Card}\\ (Fig.~\ref{eclipse:remCardObjVar}). When working
 with MOSL patterns, \texttt{`@'} again indicates that the variable is \emph{bound}. \texttt{this} is bound to the object whose method is invoked,
 while \texttt{card} is bound to the value of the parameter with the same name.
+
+%\itemWithRightTriangle Note that in this context, the \texttt{`\$'} operator indicates a \emph{ObjectVariableExpression}%
+%\define{Parameter\-Expression}. This expression implicitly refers to object variables from the preceding story node. In \texttt{removeCard}'s case, the
+%returned object refers to the \texttt{card} from the pattern.
 
 \begin{figure}[htp]
 \begin{center}
