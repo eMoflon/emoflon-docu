@@ -20,8 +20,13 @@
 \usepackage{upquote}
 \usepackage{paralist}
 \usepackage[nodayofweek]{datetime}
+\usepackage{chngcntr}
 
-\newcommand{\monthword}[1]{\ifcase#1\or January\or Febuary\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi}
+%change the numbering of pictures and listings
+\AtBeginDocument{\counterwithin{lstlisting}{section}}
+\counterwithin{figure}{section}
+
+\newcommand{\monthword}[1]{\ifcase#1\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi}
 
 %\include{common_definitions}
 \newcommand{\eMoflonContact}{\href{mailto:contact@emoflon.org}{contact@emoflon.org}}
