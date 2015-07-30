@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Handbook" basedir="." default="package">
+
+	<description>
+		This build script packages the handbook files for deployment.
+		Task "package": Copies all parts of the handbook to ${targetDirectory}, using appropriate names.
+		Task "clean": Removes ${targetDirectory}.
+	</description>
+	<property name="targetDirectory" location="../tmp/handbook" />
+
+	<target name="package" description="Package handbook files">
+		<mkdir dir="${targetDirectory}" />
+		<copy file="../../org.moflon.doc.handbook.00_introduction/src/introduction_mainFile.pdf" tofile="${targetDirectory}/part0.pdf" />
+		<copy file="../../org.moflon.doc.handbook.01_installation/src/installation_mainFile.pdf" tofile="${targetDirectory}/part1.pdf" />
+		<copy file="../../org.moflon.doc.handbook.02_leitnersLearningBox/src/learningBox_mainFile.pdf" tofile="${targetDirectory}/part2.pdf" />
+		<copy file="../../org.moflon.doc.handbook.03_storyDiagrams/src/storyDiagrams_mainFile.pdf" tofile="${targetDirectory}/part3.pdf" />
+		<copy file="../../org.moflon.doc.handbook.04_tripleGraphTransformations/src/TGG_mainFile.pdf" tofile="${targetDirectory}/part4.pdf" />
+		<copy file="../../org.moflon.doc.handbook.05_modelToTextTransformations/src/modelToTextTransforms_mainFile.pdf" tofile="${targetDirectory}/part5.pdf" />
+		<copy file="../../org.moflon.doc.handbook.06_miscellaneous/src/miscellaneous_mainFile.pdf" tofile="${targetDirectory}/part5.pdf" />
+	</target>
+
+
+	<target name="clean" description="Remove pre-packaged handbook files">
+		<delete dir="${targetDirectory}" />
+	</target>
+
+</project>
