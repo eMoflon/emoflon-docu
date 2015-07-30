@@ -9,24 +9,16 @@
 action is determined as the result of a conditional statement, we need an \emph{if/else} construct.
 
 \item[$\blacktriangleright$] In the \texttt{check} method, create the basic \emph{if/else} construct with three patterns, as illustrated in
-Fig.~\ref{eclipse:checkDec}. Our auto completion feature includes a template for this.
+Listing~\ref{eclipse:finalMethod}, Line~\ref{code:checkCard}, \ref{code:promoteCard} and~\ref{code:penalizeCard}. Our auto completion feature includes a template for this.
 
 \vspace{0.5cm}
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.65\textwidth]{eclipse_checkCardMethod}
-  \caption{An if/else construct in \texttt{check}}
-  \label{eclipse:checkDec}
-\end{center}
-\end{figure} 
 
 \item[$\blacktriangleright$] Upon saving, use the ``Quick Fix'' wizard again to generate the required pattern files. Your package explorer should now resemble
 Fig.~\ref{eclipse:checkPatternsExplorer}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.55\textwidth]{eclipse_checkPackageExplorer}
+  \includegraphics[width=0.6\textwidth]{eclipse_checkPackageExplorer}
   \caption{Project directory after creating patterns}
   \label{eclipse:checkPatternsExplorer}
 \end{center}
@@ -120,26 +112,22 @@ integer\_literal := [`+' | `-'] ( `1' |\ldots| `9' ) \\
 any\_literal := SINGLE\_QUOTED\_STRING\\
 }
 
-\vspace{0.5cm}
+
 
 \item[$\blacktriangleright$] Knowing this, and that \texttt{guess} was successful
 when the card was promoted, return \texttt{true} beneath \texttt{promoteCard}. If it was penalized, return \texttt{false}. Your \texttt{check} method
-should now resemble Fig.\ref{eclipse:finalMethod}.
+should now resemble Listing~\ref{eclipse:finalMethod}.
+
+\vspace{0.5cm}
+
+\lstinputlisting[style=eclass, firstline=17, lastline=29, firstnumber=17, label=eclipse:finalMethod,caption={Completed control flow for \texttt{check} with an if/else construct}] {../04_checkCard/texCheCode/Partition.txt} 
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Save and build your metamodel, then try viewing the changes in ``PartitionImpl.Java'' under \texttt{check}. You'll be able to
 see the \emph{if/else} construct, as well as the link manipulations. 
 
-\newpage
-
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.7\textwidth]{eclipse_checkMethodFinal}
-  \caption{Completed control flow for \texttt{check}}
-  \label{eclipse:finalMethod}
-\end{center}
-\end{figure}
+\vspace{0.5cm}
 
 \item[$\blacktriangleright$] Great job! You have just enabled checking a card with guesses via a new control flow construct, \emph{if/else}, and two patterns
 that move the cards appropriately. To see how this SDM is implemented visually, check out Fig.~\ref{ea:sdm_check_finish} for the control flow, and
