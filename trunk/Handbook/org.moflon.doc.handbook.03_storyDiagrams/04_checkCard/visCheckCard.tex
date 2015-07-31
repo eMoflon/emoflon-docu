@@ -64,8 +64,8 @@ need to add \emph{edge guards}\define{Edge Guards} to change this into an \emph{
 \begin{itemize}
 
 \item[$\blacktriangleright$] To add a guard to the edge leading from \texttt{check\-If\-Guess\-Is\-Correct} to \texttt{penalize\-Card}, double click the edge
-and set the \emph{Guard Type} to \texttt{Failure} (Fig.~\ref{ea:sdm_check_guard}). Repeat the process for the \texttt{Success} edge leading to
-\texttt{promoteCard}.
+and set the \emph{Guard Type} to \texttt{Failure} (Fig.~\ref{ea:sdm_check_guard}).
+Repeat the process for the \texttt{Success} edge leading to \texttt{promoteCard}.
 
 \vspace{0.5cm}
 
@@ -81,6 +81,13 @@ and set the \emph{Guard Type} to \texttt{Failure} (Fig.~\ref{ea:sdm_check_guard}
 
 \end{itemize}
 
+\paragraph{Edge guards: Success, Failure, or None?} You may now wonder why we did not use edge guards already for implementing \texttt{removeCard}.
+In fact, an unguarded activity edge is equivalent with with a \texttt{Success} edge.
+More precisely, if you create an activity node only one outgoing unguarded edge you assert that the pattern contained in this activity node will \emph{always} be successful.
+In case the pattern is not applicable, a runtime exception will be thrown.
+In contrast, having an outgoing \texttt{Success} and \texttt{Failure} edge describes that you allow your pattern to not match.
+
+\paragraph{Extracting Story Patterns} 
 One great feature of eMoflon (with EA) is a means of coping with large patterns. It might be nice to visualise \emph{small} story patterns directly in their
 nodes (such as \texttt{removeCardFromPartition}), but for large patterns or complex control flow, such diagrams would get extremely cumbersome and unwieldy
 \emph{very} quickly! This is indeed a popular argument against visual languages and it might have already crossed your mind -- ``This is cute, but it'll
