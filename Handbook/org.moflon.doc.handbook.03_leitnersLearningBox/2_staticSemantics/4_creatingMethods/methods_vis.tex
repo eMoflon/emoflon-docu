@@ -18,36 +18,34 @@ Properties/Operations..'' or simply press \texttt{F10}.
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] In the dialogue that pops-up (Fig.~\ref{ea:operation_properties}), enter \texttt{empty} as the \texttt{Name} of the operation,
-leave the \texttt{Return Type} as \texttt{void}, and press \texttt{Save}. 
+\item[$\blacktriangleright$] In the dialogue that pops-up (Fig.~\ref{ea:operation_properties}), enter \texttt{empty} as the \texttt{Name} of the operation and \texttt{void} as the \texttt{Return Type}.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] In the same dialogue, press \texttt{New} to add a second operation, \texttt{removeCard}, and edit the values as seen in 
-Figure~\ref{ea:operation_parameters}. Notice that the \texttt{Return Type} can be chosen by either the drop-down menu for
-primitives (e.g. \texttt{EBoolean}), or via the `\texttt{\ldots}' button (highlighted in Figure~\ref{ea:operation_properties}) for types you've established in
-the metamodel (e.g. \texttt{Card}).
+\item[$\blacktriangleright$] In the same dialogue, click on \texttt{New Operation...} to add a second operation, \texttt{removeCard}, and edit the values as seen in 
+Figure~\ref{ea:operation_parameters}. Notice that the \texttt{Return Type} can be chosen by either the drop-down menu, or via direct typing. For types you've established in
+the metamodel (e.g. \texttt{Card}) you have to use `\texttt{Select Type...}' from the drop-down menu.
 \vspace{-.3cm}
 \begin{quote}
 { \small
-$\textbf{Very important:}$ Non-primitive types \emph{must} be chosen via the `\texttt{\ldots}' button. It allows you to browse for the corresponding elements in
+$\textbf{Very important:}$ Non-primitive types \emph{must} be chosen via `\texttt{Select Type...}' in the drop-down menu. It allows you to browse for the corresponding elements in
 your project. Simply typing them won't work!
 }
 \end{quote}
 
 \begin{figure}[htbp]
 	\centering
-  	\includegraphics[width=0.8\textwidth]{ea_operationEmpty}
+  	\includegraphics[width=\textwidth]{ea_operationEmpty}
 	\caption{EClass properties editor}
 	\label{ea:operation_properties}
 \end{figure}
 
 
-\item[$\blacktriangleright$] Parameters can be added by pressing \texttt{Edit}\footnote{You must save the operation before this option will become active} and
-completing the dialouge. Please remember that you must also use either the drop-down menu, or the `\texttt{\ldots}' button to select the type or else validation
+\item[$\blacktriangleright$] Parameters can be added by selecting \texttt{Parameters} and
+completing the dialouge (Fig.~\ref{ea:operation_parameters}). Please remember that you must also use either the drop-down menu, or direct typing to select the type or else validation
 will fail.
 
-\item[$\blacktriangleright$] Repeat this process for the \texttt{check} operation (with the two parameters \texttt{card:Card, guessed:EString}) that returns an \texttt{EBoolean} (Fig.~\ref{ea:operation_parameters}). 
+\item[$\blacktriangleright$] Repeat this process for the \texttt{check} operation (with the two parameters \texttt{card:Card, guess:EString}) that returns an \texttt{EBoolean}. 
 
 \item[$\blacktriangleright$] If you've done everything right, your dialogue should now contain three methods - \texttt{check}, \texttt{empty}, and
 \texttt{removeCard} - each with the corresponding parameters and return types in Fig.~\ref{ea:operation_partition}.
@@ -68,7 +66,7 @@ following section.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.85\textwidth]{ea_operationRemoveCard}
+  \includegraphics[width=\textwidth]{ea_operationRemoveCard}
 	\caption{Parameters and return type}
 	\label{ea:operation_parameters}
 \end{figure}
@@ -77,7 +75,7 @@ following section.
 
 \begin{figure}[h!]
 	\centering
-  \includegraphics[width=0.9\textwidth]{ea_operationCheck}
+  \includegraphics[width=\textwidth]{ea_operationCheck}
 	\caption{All operations in \texttt{Partition}}
 	\label{ea:operation_partition}
 \end{figure}
@@ -87,7 +85,7 @@ following section.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.63\textwidth]{ea_metamodelComplete.png}
+  \includegraphics[width=0.6\textwidth]{ea_metamodelComplete}
 \caption[Complete metamodel for our learning box.]{Complete metamodel for our learning box}
 	\label{ea:metamodel_complete}
 \end{figure}
