@@ -30,25 +30,18 @@ In the context menu that appears, select ``Create Bidirectional EReference'' (Fi
 \item[$\blacktriangleright$] Double click the EReference to invoke a dialogue. In this window you can adjust all relevant settings. Feel free to leave the
 \texttt{Name} value blank - this property is only used for documentation purposes, and is not relevant for code generation.
 
-\item[$\blacktriangleright$] Within this dialogue, go to ``Source Role,'' and compare the relevant values in Fig.~\ref{ea:role_source} for the \emph{source}
+\item[$\blacktriangleright$] Within this dialogue, go to ``Role(s),'' and compare the relevant values in Fig.~\ref{ea:roles} for the \emph{source} 
 end of the EReference (the \texttt{Box} role). As you can see, the default source is set to the EClass you linked from, while the default target
 is the EClass you linked to. In this window, do not forget to confirm and modify the \texttt{Role}, \texttt{Navigability}, \texttt{Multiplicity}, and
-\texttt{Aggregation} settings for the source as required. Repeat the process for the \texttt{Target Role} (Fig.~\ref{ea:role_target}).
+\texttt{Aggregation} settings for the source as required. Repeat the process for the \texttt{Target Role}.
 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
 	\centering
-    \includegraphics[width=0.9\textwidth]{ea_assocPropsSource}
-	\caption{Properties for the source role of an EReference}
-	\label{ea:role_source}
-\end{figure}
-
-\begin{figure}[htbp]
-	\centering
-	  \includegraphics[width=0.9\textwidth]{ea_assocPropsTarget}
-	\caption{Properties for the target role of an EReference}
-	\label{ea:role_target}
+    \includegraphics[width=\textwidth]{ea_assocProps}
+	\caption{Properties for the source and target role of an EReference}
+	\label{ea:roles}
 \end{figure}
 
 \end{itemize}
