@@ -20,7 +20,7 @@ control panel.
 
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.8\textwidth]{ea_extensionMenu}
+  \includegraphics[width=1\textwidth]{ea_extensionMenu}
 	\caption{Export from EA} 
 	\label{ea:validate_dropdown} 
 \end{figure}
@@ -40,7 +40,7 @@ understand that much - we'll get to explaining everything in a moment. Just make
 
 \item[$\blacktriangleright$] Switch back to Eclipse, choose your metamodel project, and press \texttt{F5} to refresh. 
 The export from EA places all required files in a hidden folder (.temp) in the project.
-A new, third project named \emph{DoubleLinkedListLanguage} is now being created.
+A new, third project named \emph{org.moflon.demo.doublelinkedlist} is now being created.
 Do not worry about the problem markers.
 
 \item[$\blacktriangleright$] The three asterisks (Fig.~\ref{eclipse:dirty-project}) signal that the project still needs to be built.
@@ -49,14 +49,14 @@ Do not worry about the problem markers.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.35\textwidth]{eclipse_dirtyProject.png}
+    \includegraphics[width=0.35\textwidth]{eclipse_dirtyProject}
     \caption{Dirty projects are marked with ***} 
     \label{eclipse:dirty-project} 
 \end{figure}
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Now, right-click \emph{DoubleLinkedListLanguage} and choose ``eMoflon/Build" (or use the shortcut Alt+Shift+E,B\footnote{First press Alt+Shift+E, release, and press B.
+\item[$\blacktriangleright$] Now, right-click \emph{org.moflon.demo.doublelinkedlist} and choose ``eMoflon/Build" (or use the shortcut Alt+Shift+E,B\footnote{First press Alt+Shift+E, release, and press B.
 By default, most shortcuts eMoflon start with Alt+Shift+E.}).
 
 eMoflon now generates the Java code in your repository project.
@@ -70,7 +70,7 @@ symbol opens a monitor view that gives more details of the build process. You do
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{eclipse_buildingProgress.png}
+    \includegraphics[width=1\textwidth]{eclipse_buildingProgress}
     \caption{Eclipse workspace when using visual syntax} 
     \label{eclipse:build} 
 \end{figure}
