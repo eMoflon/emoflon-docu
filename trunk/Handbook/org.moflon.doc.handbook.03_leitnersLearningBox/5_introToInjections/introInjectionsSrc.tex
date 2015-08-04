@@ -12,7 +12,7 @@ one as well.
 \begin{itemize}
 
 \item[$\blacktriangleright$] From your working set, open ``gen/LearningBoxLanguage.impl/Part\-it\-ionImpl.java'' and enter the following code in the
-\texttt{removeCard} declaration, starting at approximately line 358. Do not remove the first comment, which is necessary to indicate that this code is written
+\texttt{removeCard} declaration, starting at approximately line 347. Do not remove the first comment, which is necessary to indicate that this code is written
 by the user and needs to be extracted automatically as an injection. Please also do not copy and paste the following code -- the copying process will most
 likely add invisible characters that eMoflon is unable to handle.
 
@@ -21,13 +21,13 @@ likely add invisible characters that eMoflon is unable to handle.
 \begin{figure}[htbp]
         \centering
         \begin{lstlisting}[language=Java, keywordstyle={\bfseries\color{purple}}, backgroundcolor=\color{white}]
-    public Card removeCard(Card card) {
-        // [user code injected with eMoflon]
-        if (card != null){
-        	card.setCardContainer(null);
-        }
-        return card;
-    }
+    public Card removeCard(Card toBeRemovedCard) {
+		// [user code injected with eMoflon]
+		if(toBeRemovedCard != null){
+			toBeRemovedCard.setCardContainer(null);
+		}
+		return toBeRemovedCard;
+	}
         \end{lstlisting}
         \caption{Implementation of \texttt{removeCard}}
         \label{code:addToStringRep_impl}
@@ -60,14 +60,14 @@ but with a new \texttt{.inject} extension (Fig.~\ref{eclipse:injection_folder}).
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.75\textwidth]{eclipse_partialClassPartition}
+    \includegraphics[width=0.8\textwidth]{eclipse_partialClassPartition}
     \caption{Generated injection file for \texttt{PartitionImpl.java}}
     \label{eclipse:injection_partialClassPartition}
 \end{figure}
 
 \clearpage
 
-\item[$\blacktriangleright$] As a final step, clean and build your metamodel to check that the code is generated and injected properly.
+\item[$\blacktriangleright$] As a final step, build your metamodel to check that the code is generated and injected properly.
 
 \item[$\blacktriangleright$] By the way, eMoflon allows you to switch quickly between a Java class and its injection file.
 When inside ``PartitionImpl.java", open the context menu and select ``eMoflon/Class \verb|<->| Injection" (Alt+Shift+E,W).
