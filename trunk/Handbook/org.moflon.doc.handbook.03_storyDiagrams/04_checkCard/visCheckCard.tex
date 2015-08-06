@@ -1,6 +1,7 @@
 \newpage
 \hypertarget{checkCard vis}{}
 \subsection{Implementing check}
+\label{sec: Implementing check}
 \visHeader
 
 \begin{itemize}
@@ -50,7 +51,7 @@ Fig.~\ref{ea:sdmcheck_att_constraint}, and select the correct \texttt{Attribute}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Similar to how the return value was specified in the previous SDM, set the \texttt{ParameterExpression} to refer to \texttt{guessed},
+\item[$\blacktriangleright$] Similar to how the return value was specified in the previous SDM, set the \texttt{ParameterExpression} to refer to \texttt{guess},
 i.e., the user's EString input. Press \texttt{Add}, and admire your first conditional.
 
 \end{itemize}
@@ -104,7 +105,7 @@ supports separating your transformation's pattern layer from its imperative cont
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=1\textwidth]{ea_extractStoryPattern}
+  \includegraphics[width=0.8\textwidth]{ea_extractStoryPattern}
   \caption{Extract a story pattern for more space and a better overview}
   \label{ea:sdm_check_extract_storypattern}
 \end{center}
@@ -112,7 +113,7 @@ supports separating your transformation's pattern layer from its imperative cont
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.48\textwidth]{sdm_promoteCardProjBrowser}
+  \includegraphics[width=0.45\textwidth]{sdm_promoteCardProjBrowser}
   \caption{A new subdiagram is created automatically}
   \label{ea:sdm_new_sub_diagram}
 \end{center}
@@ -147,8 +148,8 @@ into the new (extracted) pattern diagram (Fig.~\ref{ea:sdm_check_bound_card}).
 
 \item[$\blacktriangleright$] A dialogue will appear asking what kind of visual element should be created. You can create (1) a simple link (which would refer to
 and be represented by the class \texttt{Card}), (2) create an instance of \texttt{Card} as an object variable, or (3) as an invocation (which has no meaning
-for eMoflon diagrams). Paste \texttt{Card} as an \texttt{Instance}, and select \texttt{Save selection as default} so option (2) will be
-used next time by default. You should also select \texttt{Hold Ctrl to show this dialog}, so this dialogue doesn't appear every time you use this
+for eMoflon diagrams). Paste \texttt{Card} as an \texttt{Instance}, and select \texttt{Autosave Selection as Default} under ``Options" so option (2) will be
+used next time by default. You should also select \texttt{Use Ctrl + Mouse drag to show this Dialog}, so this dialogue doesn't appear every time you use this
 gesture. Don't worry -- if you ever need option (1), hold \texttt{Ctrl} when dragging to invoke the dialogue again.
 
 \vspace{0.5cm}
@@ -243,7 +244,7 @@ attempt to guarantee type safety} and should be avoided when possible.
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] To implement a literal, double click the stop node stemming from  \texttt{promoteCard}, and change the expression type from
-\texttt{void} to \texttt{LiteralEx\-pression} (Fig.~\ref{ea:sdm_check_literal_exp}). Double click on  the window below to change the value to \texttt{true}. Press \texttt{OK},
+\texttt{void} to \texttt{LiteralEx\-pression} (Fig.~\ref{ea:sdm_check_literal_exp}). Change the value in the window below to \texttt{true}. Press \texttt{OK},
 then finish the SDM by returning \texttt{false} after \texttt{penalizeCard} in the same manner. Note that it is also possible that \texttt{promoteCard} or 
 \texttt{penalizeCard} fails\footnote{For example, if the actual partition doesn't have a ``proper'' successor or predecessor -- in this case, unfortunately, we can't 
 give a real reward or penalty for the guess, which means that we still return \texttt{true} or \texttt{false}.}. This is handled by placing parallel \texttt{Success} 
@@ -252,7 +253,7 @@ resemble Fig.~\ref{ea:sdm_check_finish}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.4\textwidth]{ea_stopNodeLiteral}
+  \includegraphics[width=0.5\textwidth]{ea_stopNodeLiteral}
   \caption{Add a return value with a literal expression}
   \label{ea:sdm_check_literal_exp}
 \end{center}
@@ -260,7 +261,7 @@ resemble Fig.~\ref{ea:sdm_check_finish}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=1\textwidth]{ea_sdmCheckComplete}
+  \includegraphics[width=.9\textwidth]{ea_sdmCheckComplete}
   \caption{Complete SDM for \texttt{Partition::check}}
   \label{ea:sdm_check_finish}
 \end{center}
