@@ -10,15 +10,13 @@ invoke your method and branch based on its result.
 
 \begin{figure}[htp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{eclipse_boxImplStatementNode}
+  \includegraphics[width=0.7\textwidth]{eclipse_boxImplStatementNode}
   \caption{Code generated for branching with a statement node}
   \label{eclipse:initBoxImpl}
 \end{center}
 \end{figure}
 
-Hold \texttt{Ctrl} while clicking on \texttt{initializeBox()} to automatically
-jump to its declaration.
-If you didn't complete the SDM, it would look like Fig.~\ref{eclipse:initBoxDecl}.
+Go to \texttt{initializeBox}, it should look like Fig.~\ref{eclipse:initBoxDecl}.
 
 \begin{figure}[htp]
 \begin{center}
@@ -35,3 +33,4 @@ Using Java and injections makes sense if the method is non-structural, but seein
 first two partitions of the box if it succeeds, \texttt{initializeBox} is actually quite structural and can be described beautifully as a pattern. This is why
 we opted to specify it as an SDM.
 
+\jumpSingle{conBran vis}
