@@ -10,13 +10,13 @@
 
 	<target name="package" description="Package handbook files">
 		<mkdir dir="${targetDirectory}" />
-		<copy file="../../org.moflon.doc.handbook.00_introduction/src/introduction_mainFile.pdf" tofile="${targetDirectory}/part0.pdf" />
-		<copy file="../../org.moflon.doc.handbook.01_installation/src/installation_mainFile.pdf" tofile="${targetDirectory}/part1.pdf" />
-		<copy file="../../org.moflon.doc.handbook.02_leitnersLearningBox/src/learningBox_mainFile.pdf" tofile="${targetDirectory}/part2.pdf" />
-		<copy file="../../org.moflon.doc.handbook.03_storyDiagrams/src/storyDiagrams_mainFile.pdf" tofile="${targetDirectory}/part3.pdf" />
-		<copy file="../../org.moflon.doc.handbook.04_tripleGraphTransformations/src/TGG_mainFile.pdf" tofile="${targetDirectory}/part4.pdf" />
-		<copy file="../../org.moflon.doc.handbook.05_modelToTextTransformations/src/modelToTextTransforms_mainFile.pdf" tofile="${targetDirectory}/part5.pdf" />
-		<copy file="../../org.moflon.doc.handbook.06_miscellaneous/src/miscellaneous_mainFile.pdf" tofile="${targetDirectory}/part5.pdf" />
+		<copy file="../../org.moflon.doc.handbook.00_introduction/00_introduction.pdf" tofile="${targetDirectory}/part0.pdf" />
+		<copy file="../../org.moflon.doc.handbook.01_installation/01_installation.pdf" tofile="${targetDirectory}/part1.pdf" />
+		<copy file="../../org.moflon.doc.handbook.02_leitnersLearningBox/02_leitnersLearningBox.pdf" tofile="${targetDirectory}/part2.pdf" />
+		<copy file="../../org.moflon.doc.handbook.03_storyDiagrams/03_storyDiagrams.pdf" tofile="${targetDirectory}/part3.pdf" />
+		<copy file="../../org.moflon.doc.handbook.04_tripleGraphTransformations/04_TGGs.pdf" tofile="${targetDirectory}/part4.pdf" />
+		<copy file="../../org.moflon.doc.handbook.05_modelToTextTransformations/05_modelToText.pdf" tofile="${targetDirectory}/part5.pdf" />
+		<copy file="../../org.moflon.doc.handbook.06_miscellaneous/06_miscellaneous.pdf" tofile="${targetDirectory}/part5.pdf" />
 	</target>
 
 
