@@ -1,0 +1,54 @@
+\begin{thebibliography}{1}
+
+\bibitem{Giese2010}
+Holger Giese, Stephan Hildebrandt, and Leen Lambers.
+\newblock {Toward Bridging the Gap between Formal Semantics and Implementation
+  of Triple Graph Grammars}.
+\newblock In {\em 2010 Workshop on Model-Driven Engineering, Verification, and
+  Validation}, pages 19--24. IEEE, October 2010.
+
+\bibitem{Hermann2011a}
+Frank Hermann, Hartmut Ehrig, Fernando Orejas, Krzysztof Czarnecki, Zinovy
+  Diskin, and Yingfei Xiong.
+\newblock {Correctness of Model Synchronization Based on Triple Graph
+  Grammars}.
+\newblock In Thomas {Whittle, Jon and Clark, Tony and K\"{u}hne}, editor, {\em
+  Model Driven Engineering Languages and Systems}, volume 6981 of {\em Lecture
+  Notes in Computer Science}, pages 668--682, Berlin / Heidelberg, 2011.
+  Springer.
+
+\bibitem{Klar2010}
+Felix Klar, Marius Lauder, Alexander K\"{o}nigs, and Andy Sch\"{u}rr.
+\newblock {Extended Triple Graph Grammars with Efficient and Compatible Graph
+  Translators}.
+\newblock In Andy Sch\"{u}rr, C.~Lewerentz, G.~Engels, W.~Sch\"{a}fer, and
+  B.~Westfechtel, editors, {\em Graph Transformations and Model Driven
+  Enginering - Essays Dedicated to Manfred Nagl on the Occasion of his 65th
+  Birthday}, volume 5765 of {\em Lecture Notes in Computer Science}, pages
+  141--174. Springer, Heidelberg, November 2010.
+
+\bibitem{LAVS_ICGT_2012}
+M~Lauder, A~Anjorin, G~Varr{\'o}, and A~Sch\"{u}rr.
+\newblock {Efficient Model Synchronization with Precedence Triple Graph
+  Grammars}.
+\newblock In {\em Proceedings of the 6th International Conference on Graph
+  Transformation}, Lecture Notes in Computer Science (LNCS), Heidelberg, 2012.
+  Springer Verlag.
+
+\bibitem{tgg:schuerr_94}
+Andy Sch\"{u}rr.
+\newblock {Specification of Graph Translators with Triple Graph Grammars}.
+\newblock In G~Tinhofer, editor, {\em 20th Int. Workshop on Graph-Theoretic
+  Concepts in Computer Science}, volume 903 of {\em Lecture Notes in Computer
+  Science (LNCS)}, pages 151--163, Heidelberg, 1994. Springer Verlag.
+
+\bibitem{sk2008}
+Andy Sch\"{u}rr and Felix Klar.
+\newblock {15 Years of Triple Graph Grammars - Research Challenges, New
+  Contributions, Open Problems}.
+\newblock In Hartmut Ehrig, Reiko Heckel, Grzegorz Rozenberg, and Gabriele
+  Taentzer, editors, {\em 4th International Conference on Graph
+  Transformation}, volume 5214 of {\em Lecture Notes in Computer Science
+  (LNCS)}, pages 411--425, Heidelberg, 2008. Springer Verlag.
+
+\end{thebibliography}
