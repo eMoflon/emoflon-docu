@@ -107,7 +107,7 @@ need to update the file so that it will work with our specific project, so add t
 
 \begin{figure}[!htbp]
 \begin{center}
- \includegraphics[width=\textwidth]{eclipse_editTrafo}
+ \includegraphics[width=1.1\textwidth]{eclipse_editTrafo}
   \caption{Edit \texttt{DictionaryCodeAdapterTrafo} to run the transformation}
   \label{eclipse:defaultTGGMain}
 \end{center}
@@ -123,6 +123,7 @@ onto the parser, then plug in the tree generated from the parser as a single sub
 In this example, the framework uses our parser on \texttt{.dictionary} files, the file extension we specified when creating the lexer and parser stubs
 (Fig.~\ref{eclipse:generatedParser}). Of course, this method (in the generated \texttt{parserAdapter}) can be overridden to register e.g., multiple
 file extensions, or peek into the actual file content and base its parsing decision on what it finds.
+\newline % inserted to bring itemize on the next page
 
 \begin{itemize}
 
