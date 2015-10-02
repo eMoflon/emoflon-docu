@@ -1,6 +1,0 @@
-class Card 
-{
-  back : EString
-  face : EString
-  partitionHistory : EString
-}

@@ -1,5 +1,0 @@
-class Partition 
-{
-  index : EInt
-  partitionSize : EInt
-}
