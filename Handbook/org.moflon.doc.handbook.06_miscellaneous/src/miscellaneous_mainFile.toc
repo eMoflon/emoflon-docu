@@ -16,17 +16,14 @@
 \contentsline {section}{\numberline {3}Using existing EMF projects in eMoflon}{20}{section.0.3}
 \contentsline {subsection}{\numberline {3.1}Modelling relevant aspects in EA}{20}{subsection.0.3.1}
 \contentsline {subsection}{\numberline {3.2}Configuration for code generation in Eclipse}{24}{subsection.0.3.2}
-\contentsline {section}{\numberline {4}MOSL syntax}{27}{section.0.4}
-\contentsline {section}{\numberline {5}eMoflon in a Jar}{28}{section.0.5}
-\contentsline {subsection}{\numberline {5.1}Packaging SDM projects into a Jar file}{28}{subsection.0.5.1}
-\contentsline {subsection}{\numberline {5.2}Packaging TGG projects into a Jar file}{29}{subsection.0.5.2}
-\contentsline {section}{\numberline {6}Useful shortcuts}{31}{section.0.6}
-\contentsline {subsection}{\numberline {6.1}In Eclipse (general)}{31}{subsection.0.6.1}
-\contentsline {subsection}{\numberline {6.2}In Eclipse (eMoflon Plugin)}{31}{subsection.0.6.2}
-\contentsline {subsection}{\numberline {6.3}In EA}{31}{subsection.0.6.3}
-\contentsline {section}{\numberline {7}Legacy support for CodeGen2}{33}{section.0.7}
-\contentsline {section}{\numberline {8}Creating and Using Enumerations}{34}{section.0.8}
-\contentsline {subsection}{\numberline {8.1}Creating Enums in Enterprise Architect}{35}{subsection.0.8.1}
-\contentsline {subsection}{\numberline {8.2}Creating Enums}{37}{subsection.0.8.2}
-\contentsline {section}{\numberline {9}Glossary}{38}{section.0.9}
-\contentsline {section}{\numberline {10}GNU General public license}{42}{section.0.10}
+\contentsline {section}{\numberline {4}eMoflon in a Jar}{27}{section.0.4}
+\contentsline {subsection}{\numberline {4.1}Packaging SDM projects into a Jar file}{27}{subsection.0.4.1}
+\contentsline {subsection}{\numberline {4.2}Packaging TGG projects into a Jar file}{28}{subsection.0.4.2}
+\contentsline {section}{\numberline {5}Useful shortcuts}{30}{section.0.5}
+\contentsline {subsection}{\numberline {5.1}In Eclipse (general)}{30}{subsection.0.5.1}
+\contentsline {subsection}{\numberline {5.2}In Eclipse (eMoflon Plugin)}{30}{subsection.0.5.2}
+\contentsline {subsection}{\numberline {5.3}In EA}{30}{subsection.0.5.3}
+\contentsline {section}{\numberline {6}Legacy support for CodeGen2}{32}{section.0.6}
+\contentsline {section}{\numberline {7}Creating and Using Enumerations in Enterprise Architect}{34}{section.0.7}
+\contentsline {section}{\numberline {8}Glossary}{36}{section.0.8}
+\contentsline {section}{\numberline {9}GNU General public license}{40}{section.0.9}
