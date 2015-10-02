@@ -2,7 +2,7 @@
 \hypertarget{checkCard vis}{}
 \subsection{Implementing check}
 \label{sec: Implementing check}
-\visHeader
+\genHeader
 
 \begin{itemize}
 
@@ -105,7 +105,7 @@ supports separating your transformation's pattern layer from its imperative cont
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{ea_extractStoryPattern}
+  \includegraphics[width=1.1\textwidth]{ea_extractStoryPattern}
   \caption{Extract a story pattern for more space and a better overview}
   \label{ea:sdm_check_extract_storypattern}
 \end{center}
@@ -113,7 +113,7 @@ supports separating your transformation's pattern layer from its imperative cont
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.45\textwidth]{sdm_promoteCardProjBrowser}
+  \includegraphics[width=0.5\textwidth]{sdm_promoteCardProjBrowser}
   \caption{A new subdiagram is created automatically}
   \label{ea:sdm_new_sub_diagram}
 \end{center}
@@ -253,7 +253,7 @@ resemble Fig.~\ref{ea:sdm_check_finish}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{ea_stopNodeLiteral}
+  \includegraphics[width=0.4\textwidth]{ea_stopNodeLiteral}
   \caption{Add a return value with a literal expression}
   \label{ea:sdm_check_literal_exp}
 \end{center}
@@ -261,21 +261,14 @@ resemble Fig.~\ref{ea:sdm_check_finish}.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=.9\textwidth]{ea_sdmCheckComplete}
+  \includegraphics[width=0.9\textwidth]{ea_sdmCheckComplete}
   \caption{Complete SDM for \texttt{Partition::check}}
   \label{ea:sdm_check_finish}
 \end{center}
 \end{figure}
 
-\clearpage
-
 \item[$\blacktriangleright$] Great job -- the SDM is now complete! Validate and export your project, then inspect the implementation code for \texttt{check}. We
 strongly recommend that you even write a simple JUnit test (take a look at our simple test case from Part I for inspiration) to take your brand new SDM for a
 test-spin.
-
-\item[$\blacktriangleright$] To see how this is implemented in the textual syntax, see Figs. \ref{eclipse:completedPatterns} and \ref{eclipse:finalMethod} in
-the following section.
-
-\jumpSingle{sec:extendGui}
 
 \end{itemize}

@@ -1,9 +1,0 @@
-pattern deleteSingleCard 
-{
-  @this : Partition (*@\label{eclipse:remThisPartition}@*)
-  {
-    -- - card -> card (*@\label{eclipse:remReferencePartition}@*)
-  }
-  
-  @card : Card (*@\label{eclipse:remCardPartition}@*)
-}
