@@ -1,0 +1,22 @@
+\begin{thebibliography}{1}
+
+\bibitem{CH03}
+Krzysztof Czarnecki and Simon Helsen.
+\newblock Classification of model transformation approaches.
+\newblock In {\em Online Proc. of 2nd OOPSLA Workshop on Generative Techniques
+  in the context of Model Driven Architecture}, Anaheim, California, USA,
+  October 2003.
+
+\bibitem{Mens_Gorp_2006}
+Tom Mens and Pieter~Van Gorp.
+\newblock A taxonomy of model transformation.
+\newblock {\em Electronic Notes in Theoretical Computer Science},
+  152(GraMoT):125--142, 2006.
+
+\bibitem{ANTLR}
+Terence Parr.
+\newblock {\em The Definitive ANTLR Reference: Building Domain-Specific
+  Languages}.
+\newblock Pragmatic Programmers. Pragmatic Bookshelf, first edition, May 2007.
+
+\end{thebibliography}

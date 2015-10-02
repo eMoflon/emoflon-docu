@@ -14,8 +14,7 @@ prepared (useful if you're just joining us), or (2) if you've worked through the
 Both options should work, but we have only tested and updated all screenshots for Option (1) and thus highly recommend this.
 
 As some of you are just reading this handbook without actually getting your hands dirty with an implementation (beware: no pain, no gain!), we have included a
-screenshot of the dictionary metamodel that you get with both options in our visual (Fig.~\ref{ea:dictLang}) and textual (Fig.~\ref{eclipse:dictLangMetamodel})
-concrete syntax.
+screenshot of the dictionary metamodel (Fig.~\ref{ea:dictLang}).
 
 \vspace{0.5cm}
 
@@ -23,18 +22,9 @@ concrete syntax.
 \begin{figure}[htbp]
 \begin{centering}
   \includegraphics[width=\textwidth]{ea_dictionaryMetamodel}
-  \caption{Metamodel for dictionaries (visual concrete syntax)}
+  \caption{Metamodel for dictionaries}
   \label{ea:dictLang}
   \end{centering}
-\end{figure}
-
-\newpage
-
-\begin{figure}[h!]
-  \hspace{-1.5cm}
-  \includegraphics[width=1.2\textwidth]{eclipse_dictionaryMetamodel}
-  \caption{Metamodel for dictionaries (textual concrete syntax)}
-  \label{eclipse:dictLangMetamodel}
 \end{figure}
 
 \vspace{0.5cm}
@@ -49,7 +39,7 @@ concrete syntax.
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.65\textwidth]{eclipse_loadDictionaryProject}
-  \caption{Load the cheat package for Part V into your workspace}
+  \caption{Load the cheat package for Part 4, 5 into your workspace}
   \label{eclipse_cheatPackage}
 \end{center}
 \end{figure}
@@ -61,7 +51,7 @@ concrete syntax.
 
 
 \item[$\blacktriangleright$] \hspace{0.3cm} Use the same metamodel for \texttt{Dictionary} as completed in Part IV. Just make sure you haven't radically changed
-the dictionary metamodel (i.e., it still closely resembles the metamodel in either Fig.~\ref{ea:dictLang} or Fig.~\ref{eclipse:dictLangMetamodel}). Everything
+the dictionary metamodel (i.e., it still closely resembles the metamodel in Fig.~\ref{ea:dictLang}). Everything
 else should work fine using the exact same workspace but remember, your screen may look different than our screenshots.
 
 \end{description}
@@ -69,7 +59,6 @@ else should work fine using the exact same workspace but remember, your screen m
 
 We recommend reviewing the dictionary metamodel until you feel comfortable with what you'll be working with. 
 
-\newpage
 
 \texttt{DictionaryLanguage} is only one of two metamodels that we'll be using to specify the TGG transformation. After all, TGGs typically require separate
 source and target metamodels. The second metamodel involved in the transformation will be eMoflon's standard \texttt{MocaTree} language.\footnote{MOCA stands
@@ -82,8 +71,6 @@ by opening \texttt{dictionary.eap}, navigating to the \texttt{MocaTree} EPackage
 \texttt{Node}. Note that a single \texttt{Node} can store any number of \texttt{Attribute} or \texttt{Text} elements (subnodes), but only belongs to one
 \texttt{File}. If you look closer at \texttt{File}, you'll also notice that it belongs to a single \texttt{Folder}. \texttt{Folder} is able to store any number
 of \texttt{File}s or subfolders.
-
-\newpage
 
 You can see that all elements inherit an \texttt{index} and \texttt{name} attribute. \texttt{Index} can be used to demand a certain \emph{order}
 of nodes in a tree, otherwise not guaranteed by default (i.e., to enforce a hierarchy), while \texttt{name} can be any arbitrary string value. 
@@ -102,12 +89,8 @@ of nodes in a tree, otherwise not guaranteed by default (i.e., to enforce a hier
 
 Enough chatting -- let's begin by creating the TGG project that will implement our model-to-text transformation.
 
-\jumpDual{initialize vis}{initialize tex}
-
 \newpage
 
 \input{../1_settingWorkspace/vis_setWkspSrc}
-
-\input{../1_settingWorkspace/tex_setWkspSrc}
 
 \input{../1_settingWorkspace/addParserSrc}
