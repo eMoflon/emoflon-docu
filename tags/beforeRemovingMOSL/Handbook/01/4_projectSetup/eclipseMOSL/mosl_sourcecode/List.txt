@@ -1,0 +1,7 @@
+class List 
+{
+  name : EString (*@\label{mosl:exampleEAttribute}@*)
+
+  // Sets a container reference to hold an unknown number of 'node'
+  <> - elements(0..*) -> Node (*@\label{mosl:exampleEReferenceContained}@*)
+}
