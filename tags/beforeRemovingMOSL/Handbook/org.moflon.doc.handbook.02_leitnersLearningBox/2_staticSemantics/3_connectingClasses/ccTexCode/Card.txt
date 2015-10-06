@@ -1,0 +1,8 @@
+class Card 
+{
+  back : EString
+  face : EString
+  partitionHistory : EString
+
+  - cardContainer(0..1) -> Partition (*@\label{mosl:cardContainer}@*)
+}

@@ -1,0 +1,7 @@
+class Box 
+{
+  name : EString
+  stringRep : EString
+  
+  <> - containedPartition (0..*) -> Partition (*@\label{mosl:containedPartition}@*)
+}
