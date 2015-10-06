@@ -1,0 +1,53 @@
+\input{../../org.moflon.doc.handbook.00_common/src/common_preamble}
+
+\graphicspath{%
+{../../org.moflon.doc.handbook.00_common/images/}%
+{../2_settingUp/}{../2_settingUp/2.1_startingFresh/}{../2_settingUp/visImportImages/}{../2_settingUp/texImportImages/}%
+{../3_schema/}{../3_schema/visSImages/}{../3_schema/texSImages/}%
+{../4_rules/}{../4_rules/visRImages/}{../4_rules/texRImages/}%
+{../5_inAction/aImages/}%
+{../6_extendingTransformation/splashImages/}{../6_extendingTransformation/visProtoImages/}{../6_extendingTransformation/texProtoImages/}%
+{../7_synchronization/sImages/}%
+{../8_modelgen/images/}%
+}
+
+
+% --------------------------------------------------------------------------------------------------------
+\def\partTitle{Part IV: Triple Graph Grammars}
+
+\input{../../org.moflon.doc.handbook.00_common/src/titlepage}
+% -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\begin{document}
+
+\frontmatter 
+\noHeader
+
+{\let\newpage\relax\maketitle}
+
+\input{../../org.moflon.doc.handbook.00_common/src/copyright}
+\let\cleardoublepage\clearpage
+
+\tableofcontents
+
+% Store page counter
+\newcounter{romanpages}
+\setcounter{romanpages}{\value{page}}
+
+\mainmatter
+
+% Main content for this Part; Handles all inputs
+\include{TGG_source}
+
+\input{TGG_conclusion}
+
+\input{TGG_glossary}
+
+\newpage \genHeader
+\phantomsection
+\addcontentsline{toc}{section}{References}
+\renewcommand*{\bibname}{References}
+\bibliographystyle{plain}  
+\bibliography{../../org.moflon.doc.handbook.00_common/bibliography/references}
+
+\end{document}
