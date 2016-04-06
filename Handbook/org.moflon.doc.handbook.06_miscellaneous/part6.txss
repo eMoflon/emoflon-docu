@@ -1,0 +1,14 @@
+[Session]
+FileVersion=1
+File0\FileName=src/miscellaneous_mainFile.tex
+File0\Line=8
+File0\Col=30
+File0\FirstLine=0
+File0\FoldedLines=
+MasterFile=src/miscellaneous_mainFile.tex
+CurrentFile=src/miscellaneous_mainFile.tex
+Bookmarks=@Invalid()
+
+[InternalPDFViewer]
+File=src/miscellaneous_mainFile.pdf
+Embedded=true
