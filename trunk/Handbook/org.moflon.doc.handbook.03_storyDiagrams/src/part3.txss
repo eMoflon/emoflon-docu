@@ -1,0 +1,14 @@
+[Session]
+FileVersion=1
+File0\FileName=storyDiagrams_mainFile.tex
+File0\Line=0
+File0\Col=0
+File0\FirstLine=0
+File0\FoldedLines=
+MasterFile=storyDiagrams_mainFile.tex
+CurrentFile=storyDiagrams_mainFile.tex
+Bookmarks=@Invalid()
+
+[InternalPDFViewer]
+File=storyDiagrams_mainFile.pdf
+Embedded=true
