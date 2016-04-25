@@ -9,9 +9,8 @@ of a much simpler structure, let's start with the backwards transformation.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Navigate to \texttt{Dictionary\-Language/model/} and open \texttt{Dictio\-nary\-Lang\-uage.ecore}. Expand the tree and create a new
-dynamic instance of a \texttt{Dictionary} named \texttt{bwd.src.xmi}. Make sure you persist the instance in
-\texttt{Learn\-ing\-Box\-To\-Dictionary\-In\-te\-gra\-tion/in\-stan\-ces/} (Fig.~\ref{eclipse:create_instance_dict}).
+\item[$\blacktriangleright$] Navigate to \texttt{Dictionary\-Language/model/} and open \texttt{Dictio\-nary\-Lang\-uage.ecore}. Expand the tree and create a new dynamic instance of a \texttt{Dictionary} named \texttt{bwd.src.xmi} (choose the EClass \texttt{Dictionary}, right-click, and select \texttt{Create dynamic instance}). 
+Make sure you persist your instance as \texttt{Learn\-ing\-Box\-To\-Dictionary\-In\-te\-gra\-tion/in\-stan\-ces/bwd.src.xmi} (as depicted in Fig.~\ref{eclipse:create_instance_dict}).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -23,41 +22,38 @@ dynamic instance of a \texttt{Dictionary} named \texttt{bwd.src.xmi}. Make sure 
 
 \newpage
 
-\item[$\blacktriangleright$] Open the new file and edit the \texttt{Dictionary} properties by double-clicking and setting \texttt{Title} to \texttt{English
-Numbers} in the \texttt{Properties} tab below the window.
+\item[$\blacktriangleright$] Open the new file and edit the \texttt{Dictionary} properties by double-clicking and setting \texttt{Title} to \texttt{English Numbers} in the \texttt{Properties} tab below the window.
 
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Create three child \texttt{Entry} objects.
-Don't forget the syntax we created for each \texttt{entry.content} in the \texttt{CardToEntryRule} when setting up the constraints! 
-Be sure to set this property as \texttt{<word>:<meaning>}. Give each \texttt{entry} a diffirent difficulty \texttt{level}, e.g., \texttt{beginner} for \texttt{One:Eins}, \texttt{advanced} for \texttt{Two:Zwei}, and \texttt{master} for \texttt{Three:Drei}.
+Don't forget the syntax we decided upon for each \texttt{entry.content} in the \texttt{CardToEntryRule} when setting up the constraints! 
+Be sure to set this property according to the format \texttt{<word>:<meaning>}. 
+Give each \texttt{entry} a different difficulty \texttt{level}, e.g., \texttt{beginner} for \texttt{One:Eins}, \texttt{advanced} for \texttt{Two:Zwei}, and \texttt{master} for \texttt{Three:Drei}.
 Your instance should resemble Fig.~\ref{eclipse:dictionaryxmi}.
-
-\vspace{0.5cm}
+After this works you should of course play around with the model and add all kind of cards to see what happens.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.75\textwidth]{eclipse_targetThreeEntries}
+  \includegraphics[width=0.9\textwidth]{eclipse_targetThreeEntries}
   \caption{Fill a \texttt{Dictionary} for the transformation}
   \label{eclipse:dictionaryxmi}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Let's check out the file that will actually execute our transformation. Navigate to
-``LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/\-src/\-org.\-mof\-lon.\-tie'' and click to open
-\texttt{Learn\-ing\-Box\-To\-Dict\-ion\-ary\-Int\-e\-grat\-ion\-Trafo.\-java}.
+\item[$\blacktriangleright$] eMoflon generates default stubs to execute the transformation.
+Navigate to ``LearningBox\-To\-Dictionary\-In\-te\-gra\-tion\-/\-src/\-org.\-mof\-lon.\-tie'' and open \texttt{Learn\-ing\-Box\-To\-Dict\-ion\-ary\-Int\-e\-grat\-ion\-Trafo.\-java}.
 
-\item[$\blacktriangleright$] As you can see, this file is the driver which runs the complete transformation, first transforming forward from a source
-\texttt{box} to a target \texttt{dictionary}, then backward from \texttt{dictionary} to \texttt{box}. As this is plain Java, you can adjust everything freely as
-you wish.
+\item[$\blacktriangleright$] As you can see, this file is a driver for forward and backward transformations, transforming a source \texttt{box} to a target \texttt{dictionary}, and backward from a \texttt{dictionary} to a \texttt{box}. 
+As this is good old Java code , you can adjust everything as you wish.
+To follow this handbook, however, do not change anything for the moment.
 
-\item[$\blacktriangleright$] Right-click the file in the Package Explorer and got to ``Run as\ldots/Java Application'' to execute the file.
+\item[$\blacktriangleright$] Right-click the file in the Package Explorer and navigate to ``Run as\ldots/Java Application'' to execute the file.
 
 \item[$\blacktriangleright$] Did you get one error message, followed by one success message in the eMoflon console window (Fig.~\ref{eclipse:tggERROR}) below
 the editor? Perfect! Both of these statements make sense -- our TGG first attempted the forward transformation but, given that it was missing the source
 (\texttt{box}) instance, it was only able to perform a transformation in the backwards direction.
-
-\vspace{0.5cm}
+The stub checks for \texttt{fwd.src.xmi} and \texttt{bwd.src.xmi} files per convention (all this can of course be edited and changed).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -67,18 +63,15 @@ the editor? Perfect! Both of these statements make sense -- our TGG first attemp
 \end{center}
 \end{figure}
 
-\vspace{-0.5cm}
+\item[$\blacktriangleright$] Refresh the integration project's \texttt{instances} folder. 
+Three new \texttt{.xmi} files should have appeared representing your backward triple. 
+While you created the \texttt{bwd.src.xmi} instance, the TGG generated \texttt{bwd.corr.xmi}, the correspondence graph between target and source, \texttt{bwd.protocol.xmi}, a directed acyclic graph of the rule applications that lead to this result, and \texttt{bwd.trg.xmi}, the output of the transformation. 
 
-\item[$\blacktriangleright$] Refresh the integration's \texttt{instances} folder. Three new \texttt{.xmi} files should have appeared representing your backward
-triple. While you created the \texttt{bwd.src.xmi} instance, the TGG generated \texttt{bwd.corr.xmi}, the correspondence graph between target and source,
-\texttt{bwd.protocol.xmi}, a listing of the attempted steps taken (as well as their results), and \texttt{bwd.trg.xmi}, the output of the transformation. Open
-this last file in the editor.
-
-\item[$\blacktriangleright$] It's a \texttt{Box} of \texttt{English Numbers}! Expand the tree and you'll see our \texttt{Dictionary} in its equivalent
-\texttt{Box} format containing three \texttt{Par\-ti\-tions} (Fig.~\ref{eclipse:derivedBOX}). Double click each \texttt{card} and observe how each
-\texttt{entry.content} was successfully split into two sides.
-
-\vspace{0.5cm}
+\item[$\blacktriangleright$] If you open and inspect \texttt{bwd.trg.xmi} you'll find that it's a \texttt{Box} of \texttt{English Numbers}.
+Expand the tree and you'll see our \texttt{Dictionary} in its corresponding
+\texttt{Box} format containing three \texttt{Par\-ti\-tions} (Fig.~\ref{eclipse:derivedBOX}). 
+Double click each \texttt{card} and observe how each \texttt{entry.content} was successfully split into two sides.
+Also note how the cards were placed in the correct (at least according to our \texttt{indexToLevel} attribute condition) partition.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -88,37 +81,63 @@ this last file in the editor.
 \end{center}
 \end{figure}
 
-\vspace{-0.5cm}
-
 \item[$\blacktriangleright$] Congratulations! You have successfully performed your first \emph{backward} transformation using TGGs!
+To understand better what happened, eMoflon provides two important tools: the first is the correspondence model containing all established links between source and target elements, the second is the so called protocol of the transformation. 
 
-\newpage
-
-\item[$\blacktriangleright$] Don't forget about one of eMoflon's coolest model visualizing features -- the graph viewer.\footnote{Refer to Part 2, Section 4 to
-review how to open and use this tool} This is an especially useful tool for TGGs when you need to quickly confirm your transformation was successful.
-Drag-and-drop \texttt{Box English Numbers} into the graph view and open all nodes by double clicking on them (Fig.~\ref{eclipse:graphView}). You should be able to see each \texttt{Card}'s container
-\texttt{partition} and the edges via which they'll move between partitions.
-
-\vspace{0.5cm}
+\item[$\blacktriangleright$] Go ahead and open \texttt{bwd.corr.xmi}.
+This model contains the created correspondence model, and references both source and target models.
+Using eMoflon's \texttt{Abstract Syntax View}, you can drag in a selection of elements and explore (right-click on a node in the view to choose if direct neighbours or all transitive neighbours should be added to the view) how the models are connected.
+You can remove elements from the view, zoom in and out, and also pick from a choice of standard layout algorithms.
+Figure~\ref{eclipse:graphView} shows all three complete models in the view with all correspondence links highlighted. 
+You can choose elements in the view to see their attribute values either as a tool tip, or in the standard properties view in Eclipse.
 
 \begin{figure}[htb]
 \begin{center}
-  \includegraphics[width=0.6\textwidth]{eclipse_EngNumBoxGraphView}
-  \caption{Confirm the transformation with the Graph Viewer}
+  \includegraphics[width=\textwidth]{eclipse_EngNumBoxGraphView}
+  \caption{Inspecting the correspondence models}
   \label{eclipse:graphView}
 \end{center}
 \end{figure}
 
-\vspace{0.5cm}
+\item[$\blacktriangleright$] eMoflon provides a special visualisation for protocol models, so go ahead and open \texttt{bwd.protocol.xmi}.
+This time around, use the PlantUML view to inspect the protocol.
+If you select the root element (\texttt{Precedence Structure}), you'll see a tree of \emph{rule applications}, showing you which rules were applied to achieve the result.
+As \texttt{Card\-To\-Entry\-Rule} can only be applied after \texttt{BoxToDictionaryRule}, an application of the latter is a parent for all other rule applications.
+These are all children on the same level, as the exact order of application is irrelevant in this case.
+This, in general, directed acyclic graph of rule applications is depicted in Fig.~\ref{eclipse_protocol}.
+ 
+\begin{figure}[htb]
+\begin{center}
+  \includegraphics[width=\textwidth]{eclipse_protocol}
+  \caption{Inspecting the protocol}
+  \label{eclipse_protocol}
+\end{center}
+\end{figure}
 
-\item[$\blacktriangleright$] To show that the transformation is actually bidirectional, let's create a source model (thus resolving the error), and run
-the TGG again to perform a \emph{forwards} transformation of a \texttt{Box} into a \texttt{Dictionary}. Make a copy of \texttt{bwd.trg.xmi} and rename
+\begin{figure}[htb]
+\begin{center}
+  \includegraphics[width=0.9\textwidth]{eclipse_ruleApplication}
+  \caption{Inspecting a rule application}
+  \label{eclipse_ruleApplication}
+\end{center}
+\end{figure}
+
+\item[$\blacktriangleright$] To inspect a rule application, choose one of the children of the precedence structure in the tree view.
+If you choose, for example, a \texttt{Card\-To\-Entry\-Rule} node, a diagram similar to that depicted in Fig.~\ref{eclipse_ruleApplication} will be shown as a visualisation of the rule application.
+To understand this diagram, note that the labels of the nodes are of the form \texttt{rule variable ==> model element}, showing how the object and link variables in the rule were ``matched'' to actual elements in the source and target models.
+The colours indicate which elements would be created by applying this rule (in the simultaneous evolution of all three models).
+This protocol is not only for documentation, but is also used for model synchronisation, which we'll discuss and try out in a moment.
+
+\item[$\blacktriangleright$] To convince yourself that the transformation is actually bidirectional, create a source model, and run the TGG again to perform a \emph{forwards} transformation of a \texttt{Box} into a \texttt{Dictionary}.
+The easiest way to do this is to make a copy of \texttt{bwd.trg.xmi} and rename
 it to \texttt{fwd.src.xmi}.
 
-\newpage
-
-\item[$\blacktriangleright$] Run \texttt{LearningBoxToDictionaryIntegrationTrafo} again by pressing the green ``Run As\ldots'' icon on the toolbar. You should
-now have two success messages in the console window! Finally, refresh the ``instances" folder and compare the output \texttt{fwd.trg.xmi} against the original
-\texttt{bwd.src.xmi} Dictionary model. If everything executed properly, they should look exactly the same.
-
+\item[$\blacktriangleright$] Run \texttt{LearningBoxToDictionaryIntegrationTrafo} again and refresh the ``instances'' folder. 
+Compare the output \texttt{fwd.trg.xmi} against the original \texttt{bwd.src.xmi} Dictionary model. 
+If everything went right, they should be isomorphic (identical up to perhaps sorting of children).
 \end{itemize}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../src/TGG_mainFile"
+%%% End: 

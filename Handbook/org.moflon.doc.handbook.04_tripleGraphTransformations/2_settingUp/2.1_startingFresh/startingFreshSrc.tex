@@ -1,8 +1,28 @@
-\subsection{Starting Fresh}
-\label{sec:loadSourceMeta}
-\begin{itemize}
 
-\item[$\blacktriangleright$] To get started in Eclipse, press the \texttt{Install, configure and deploy Moflon} button and navigate to ``Install Workspace''. Choose ``Handbook Example (Part 4)''. It contains the full \texttt{LeitnersLearningBox} metamodel, as well as each method implemented as an SDM and an example instance in ``LearningBoxLanguage/instances/''.
+\subsection{Get Eclipse}
+\label{sec:get-eclipse}
+
+Navigate to \url{https://www.eclipse.org/downloads/} and download the latest \texttt{Eclipse Modeling Tools}.\footnote{We have tested this part of the handbook for \texttt{Eclipse Mars.2 (4.5.2)} running on Mac OS X Yosemite and Windows 8.}
+Do not try to use another Eclipse package as it probably won't work.
+
+\subsection{Install eMoflon}
+\label{sec:get-emoflon}
+
+Install eMoflon as an Eclipse plugin from this update site.\footnote{\url{http://www.emoflon.org/fileadmin/download/moflon-ide/eclipse-plugin/beta/update-site2/}}
+When installing, make sure you choose to install \emph{all} available features.
+
+\subsection{Install your initial workspace}
+\label{sec:loadSourceMeta}
+
+To get started in Eclipse, press the ``Install, configure and deploy Moflon'' button and navigate to ``Install Workspace''. 
+Choose ``Handbook Example (Part 4)'' (Fig.~\ref{eclipse:downPartIV}). 
+It contains the \texttt{Leitners\-Learning\-Box} and \texttt{Dictionary\-Language} metamodels, which we'll be using. 
+By the way, don't freak out if your workspace looks slightly different than our screenshots -- things often change faster than we can update this handbook.
+If the difference is important and confusing, however, please send us an email:  \url{contact@moflon.org}
+
+If everything went well, you should now have two projects in your workspace.  
+Go ahead and explore the metamodels (\texttt{/model/*.ecore}, \texttt{/model/*.aird}).
+The generated code (\texttt{/gen}) is standard EMF code.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -12,24 +32,9 @@
 \end{center}
 \end{figure}
 
-\vspace{0.5cm}
+If you ever want to create your own ``repository'' projects, eMoflon provides a wizard (``Create new repository project'' in the eMoflon toolbar) for this, which creates the expected project structure with an empty ecore file that you can fill out.
 
-\item[$\blacktriangleright$] After loading, if your workspace does not resemble ours in Fig.~\ref{eclipse:workingSets}, with eMoflon's ``Build'' icon on the
-tooolbar and a package explorer with at least two distinct nodes, first switch to the eMoflon perspective by navigating to ``Window/Open
-Perspective/Other\ldots'' and choosing ``eMoflon'' from the list. Then, select the small downward-facing arrow in the upper right corner of the package
-explorer. ``Top Level Elements/Working Sets.'' To review how these nodes are used to structure our workspace in Eclipse, check out Part I, Section 4.
-
-\vspace{0.5cm}
-
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.9\textwidth]{eclipse_workingSets}
-	\caption{Setting your Package Explorer}
-	\label{eclipse:workingSets}
-\end{figure}
-
-\vspace{0.5cm}
-
-\item[$\blacktriangleright$] Fantastic -- you now have the source metamodel for your transformation ready to go!
-
-\end{itemize}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../src/TGG_mainFile"
+%%% End: 

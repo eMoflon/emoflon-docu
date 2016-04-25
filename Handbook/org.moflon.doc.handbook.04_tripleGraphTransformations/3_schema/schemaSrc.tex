@@ -3,19 +3,55 @@
 \section{Creating your TGG schema}
 \genHeader
 
-Now that the necessary source and target metamodels are in the same workspace, there are several different ways to begin specifying a TGG. We're going to start
-with modeling the correspondence component of the triple language. This correspondence, or \emph{link metamodel},\define{Link \\ Metamodel} specifies
-\emph{correspondence types},\define{Correspondence Types} which will be used to connect specific elements of the source and target metamodels. These
-correspondence elements can also be thought of as \emph{traceability links}.
+Now that we have our source and target metamodels, we're going to start modeling the correspondence component of our envisioned triple language. 
+This correspondence, or \emph{link metamodel},\define{Link \\ Metamodel} specifies \emph{correspondence types},\define{Correspondence Types} which will be used to connect specific elements of the source and target metamodels. 
+These correspondence elements can also be thought of as \emph{traceability links}.
+%
+While the link metamodel is technically just a good old metamodel like any other, eMoflon provides a special wizard and project infrastructure (nature, builder) for so called ``integration'' projects. 
 
-While the link metamodel is technically a standard metamodel, eMoflon uses a slightly different naming convention and concrete syntax to represent it. The
-overall\define{TGG Schema} metamodel triple consisting of the relevant parts of the source, link, and target metamodels is called a \emph{TGG schema}.
+The overall\define{TGG Schema} metamodel triple consisting of the relevant parts of the source, link, and target metamodels is called a \emph{TGG schema}.
+%
+A TGG schema can be viewed as the (metamodel) triple to which all \emph{new} triples must conform. 
+In less technical lingo, it gives an abstract view on the relationships (correspondence) between two metamodels or domains. 
+A domain expert should be able to understand why certain connected elements are related, irrespective of how the relationship is actually established by TGG rules, just by looking at the TGG schema. 
 
-A TGG schema can be viewed as the (metamodel) triple to which all \emph{new} triples must conform. In less technical lingo, it gives an abstract view on the
-relationships (correspondence) between two metamodels or domains. A domain expert should be able to understand why certain connected elements are related,
-irrespective of how the relationship is actually established by TGG rules, just by looking at the TGG schema. 
+In our example schema, we will start by creating a link between our source \texttt{Box} and target \texttt{Dictionary} to express that these two container elements are related.
 
-In our example schema, we will create a link between our source \texttt{Box} and target \texttt{Dictionary} to express that these two container elements are
-related.
+\begin{itemize}
 
-\input{../3_schema/visSchema.tex}
+\item[$\blacktriangleright$] Choose the ``Create new integration project'' wizard from the eMoflon task bar, enter the project name as
+\texttt{Learning\-Box\-To\-Dictionary\-In\-te\-gra\-tion}, and click \texttt{Finish} (Fig.~\ref{intgPackage}).
+
+\item[$\blacktriangleright$] Open the schema file \texttt{src/org/moflon/tgg/mosl/Schema.tgg}, and import both repository projects by adding import statements as depicted in Fig.~\ref{newSchema}.
+As both projects are eMoflon projects (they don't \emph{have} to be but it makes things simpler) you can use a nifty little template provided by the editor for ``eMoflon imports''.
+
+\item[$\blacktriangleright$] Now state which project is to be source (please choose \texttt{Learning\-Box\-Language}) and target (choose \texttt{Dictionary\-Language}) by stating the root packages in the \texttt{\#source} and \texttt{\#target} scopes of the schema (Fig.~\ref{newSchema}).
+As with (almost) everything, the editor will try to help you with a reasonable selection if you hit ``Ctrl + Space''. 
+
+\item[$\blacktriangleright$] Finally, create a first correspondence type named \texttt{BoxToDictionary} connecting \texttt{Boxes} and \texttt{Dictionaries} as indicated in Fig.~\ref{newSchema}.
+\end{itemize}
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=\textwidth]{newIntegrationProject}
+  \caption{Create a new TGG integration project}  
+  \label{intgPackage}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=\textwidth]{newSchema}
+  \caption{Add a first correspondence type}  
+  \label{newSchema}
+\end{center}
+\end{figure}
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../src/TGG_mainFile"
+%%% End: 
+
