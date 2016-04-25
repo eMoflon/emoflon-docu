@@ -1,0 +1,42 @@
+;; RefTeX parse info file
+;; File: /Users/tony/Dropbox/Home/dev/workspaces/handbook/org.moflon.doc.handbook.04_tripleGraphTransformations/src/TGG_mainFile.tex
+;; User: tony (Anthony Anjorin)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags)
+
+(is-multi nil)
+
+(bibview-cache)
+
+(master-dir . "/Users/tony/Dropbox/Home/dev/workspaces/handbook/org.moflon.doc.handbook.04_tripleGraphTransformations/2_settingUp/2.1_startingFresh/")
+
+(label-numbers)
+
+(bof "/Users/tony/Dropbox/Home/dev/workspaces/handbook/org.moflon.doc.handbook.04_tripleGraphTransformations/2_settingUp/2.1_startingFresh/startingFreshSrc.tex")
+
+(toc "toc" "      1 Get Eclipse" "/Users/tony/Dropbox/Home/dev/workspaces/handbook/org.moflon.doc.handbook.04_tripleGraphTransformations/2_settingUp/2.1_startingFresh/startingFreshSrc.tex" nil 3 "1" "\\subsection{Get Eclipse}" 2)
+
+("sec:get-eclipse" "s" "Navigate to \\url{https://www.eclipse.org/downloads/} and download the latest \\texttt{Eclipse Modelin" "/Users/tony/Dropbox/Home/dev/workspaces/handbook/org.moflon.doc.handbook.04_tripleGraphTransformations/2_settingUp/2.1_startingFresh/startingFreshSrc.tex" nil "")
+
+(toc "toc" "      2 Get eMoflon" "/Users/tony/Dropbox/Home/dev/workspaces/handbook/org.moflon.doc.handbook.04_tripleGraphTransformations/2_settingUp/2.1_startingFresh/startingFreshSrc.tex" nil 3 "2" "\\subsection{Get eMoflon}" 363)
+
+("sec:get-emoflon" "s" "Install eMoflon as an Eclipse plugin from this update site.\\footnote{\\url{http://www.emoflon.org/fil" "/Users/tony/Dropbox/Home/dev/workspaces/handbook/org.moflon.doc.handbook.04_tripleGraphTransformations/2_settingUp/2.1_startingFresh/startingFreshSrc.tex" nil "")
+
+(toc "toc" "      1 Get Eclipse" "/Users/tony/Dropbox/Home/dev/workspaces/handbook/org.moflon.doc.handbook.04_tripleGraphTransformations/2_settingUp/2.1_startingFresh/startingFreshSrc.tex" nil 3 "1" "\\subsection{Get Eclipse}" 2)
+
+(toc "toc" "      2 Install your initial workspace" "/Users/tony/Dropbox/Home/dev/workspaces/handbook/org.moflon.doc.handbook.04_tripleGraphTransformations/2_settingUp/2.1_startingFresh/startingFreshSrc.tex" nil 3 "2" "\\subsection{Install your initial workspace}" 661)
+
+("sec:loadSourceMeta" "s" "\\begin{itemize} " "/Users/tony/Dropbox/Home/dev/workspaces/handbook/org.moflon.doc.handbook.04_tripleGraphTransformations/2_settingUp/2.1_startingFresh/startingFreshSrc.tex" nil)
+
+("eclipse:downPartIV" "f" "Initialize your workspace" "/Users/tony/Dropbox/Home/dev/workspaces/handbook/org.moflon.doc.handbook.04_tripleGraphTransformations/2_settingUp/2.1_startingFresh/startingFreshSrc.tex" nil)
+
+("eclipse:workingSets" "f" "Setting your Package Explorer" "/Users/tony/Dropbox/Home/dev/workspaces/handbook/org.moflon.doc.handbook.04_tripleGraphTransformations/2_settingUp/2.1_startingFresh/startingFreshSrc.tex" nil)
+
+(eof "/Users/tony/Dropbox/Home/dev/workspaces/handbook/org.moflon.doc.handbook.04_tripleGraphTransformations/2_settingUp/2.1_startingFresh/startingFreshSrc.tex")
+))
+

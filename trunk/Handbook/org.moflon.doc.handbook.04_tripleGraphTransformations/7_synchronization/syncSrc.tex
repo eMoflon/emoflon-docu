@@ -4,115 +4,93 @@
 \genHeader
 
 At this stage, you have successfully created a trio of rules that can transform a \texttt{Box} with any number of \texttt{Partitions} and
-\texttt{Cards} into a \texttt{Dictionary} with an unlimited number of \texttt{Entrys} (or vice versa). Your source and target metamodels are complete, and given
-that you probably won't make any further changes to your rules, your correspondence metamodel is also complete.
+\texttt{Cards} into a \texttt{Dictionary} with an unlimited number of \texttt{Entrys} (or vice versa). 
 
-Now suppose you wanted to make a minor change to one of your current instances, such as adding a single a new card or entry into one of your instances. Could
-you modify the instance models and simply run the transformation again to keep the target and sources consistent? 
+Now suppose you wanted to make a minor change to one of your current instances, such as adding a single new card or entry into one of your instances. 
+Could you modify the instance models and simply run the transformation again to keep the target and sources consistent? 
 
-The current \texttt{fwd.src.xmi} file (Fig.~\ref{fig:ea_extended_fwd_src_xmi}) has a partition with an index of three which, when transformed, correctly
-produces a target dictionary with all four entries. What would happen if we attempted to transform this dictionary back into the same learning box, with all
-four partitions?
+The current \texttt{fwd.src.xmi} file (Fig.~\ref{fig:ea_extended_fwd_src_xmi}) has a partition with an index of three which, when transformed, correctly produces a target dictionary with all four entries. 
+What would happen if we attempted to transform this dictionary back into the same learning box, with all four partitions?
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Copy and paste \texttt{fwd.trg.xmi}, renaming it as \texttt{bwd.src.xmi}.\footnote{Feel free to either delete or
-rename the original \texttt{bwd.src.xmi} for later reference}
+\item[$\blacktriangleright$] Copy and paste \texttt{fwd.trg.xmi}, renaming it as \texttt{bwd.src.xmi}.\footnote{Feel free to either delete or rename the original \texttt{bwd.src.xmi} for later reference.}
 
 \item[$\blacktriangleright$] Run \texttt{LearningBoxToDictionaryIntegrationTrafo.java} and inspect the resulting \texttt{bwd.trg.xmi}
-(Fig.~\ref{eclipse:missingP3}). Unforunately, the newest \texttt{part\-it\-ion\-3} is missing!
-
-\vspace{0.5cm}
+(Fig.~\ref{eclipse:missingP3}). 
+Unfortunately, the newest \texttt{part\-it\-ion\-3} is missing!
+\end{itemize}
 
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.5\textwidth]{eclipse_missingPartition}
-  \caption{The transformation loses data for any index greater than 2}
+  \caption{We lose information if the original box has more than 3 partitions}
   \label{eclipse:missingP3}
 \end{center}
 \end{figure}
-\end{itemize}
 
-As expected, this extra partition was lost because our TGG rules are only able to create exactly three partitions, not additional ones with unique indexing.
-How can we prevent data loss when we need to update our models in the future? Luckily, eMoflon can take care of this for you as it provides synchronization
-support to update your files incrementally. Let's change our source model by adding a new \texttt{Card} to \texttt{Partition3} and see if the partition still
-exists after synchronizing to and from the resulting \texttt{Dictionary} model.
+If you think about this for a moment it should be clear that our TGG-based backward transformation can only \emph{create} a box with exactly three partitions.
+Why doesn't it try to apply \texttt{AllOtherPartitionsRule} you might be thinking?
+Well, given only the target model it is simply unclear how often this rule should be applied:  Once? Twice? A hundred times?
+We could of course integrate user interaction to decide, but for a TGG of realistic size this would get pretty messy pretty soon. 
+
+When going from the source to the target model, this information (how many partitions exist) is simply discarded and lost. 
+So how can we prevent this information loss when we need to update our models in the future? Luckily, eMoflon can take care of this for you as it provides a \emph{synchronization} mode to support incremental updates.
+
+Let's change our source model by adding a new \texttt{Card} to \texttt{Partition3} and see if the partition still exists after synchronizing to and from the resulting \texttt{Dictionary} model.
 
 \begin{itemize}
+\item[$\blacktriangleright$] Make sure your \texttt{fwd.src.xmi} model is in the ``extended'' version depicted in Fig.~\ref{fig:ea_extended_fwd_src_xmi}, and that you have a fresh triple of corresponding \texttt{fwd.corr.xmi} and \texttt{fwd.trg.xmi} created via the forward batch transformation.
 
-\item[$\blacktriangleright$] Open \texttt{LearningBoxToDictionaryIntegrationSynch.java}, locate the empty \texttt{syncForward} method, and edit it as
-shown in Fig.~\ref{eclipse:synchForward}.
+\item[$\blacktriangleright$] Our synchronisation algorithm requires an explicit ``delta'' representing the exact changes that are to be propagated.
+Although this can be extracted from different versions of a model this is not as easy as it sounds.
+To make matters worse, ``delta recognition'' is also often not unique, i.e., there are many possible deltas for the same pair of old and new models.
 
-\begin{figure}[htbp]
-\begin{center}
-\begin{lstlisting}[language=Java,backgroundcolor=\color{white}, keywordstyle={\bfseries\color{purple}}]
-public void syncForward(String corr) {
-	setChangeSrc(root -> { 
-		Box box = (Box) root;
-		Partition partition3 = box.getContainedPartition()
-			.stream().filter(p -> p.getIndex() > 2).findAny().get();
-		Card newCard = LearningBoxLanguageFactory.eINSTANCE.createCard();
-		newCard.setBack("Question Five");
-		newCard.setFace("Answer Fuenf");
-		partition3.getCard().add(newCard);
-	});
-	loadTriple(corr);
-	loadSynchronizationProtocol("instances/fwd.protocol.xmi");
-	integrateForward();
-	saveResult("fwd");
-	
-	System.out.println("Completed forward synchronization");
-}
-\end{lstlisting}
-  \caption{Implementation of our custom \texttt{IndexToLevel} constraint}
-  \label{eclipse:synchForward}
-\end{center}
-\end{figure}
+As we are more interested in the actual synchronisation than in change recognition or ``diffing'', we require the exact delta which can come from anywhere in actual applications, including being programmed as a hard coded change operation in some kind of synchroniser GUI.
 
+To play around with a TGG, however, we provide a simple \emph{delta editor}, which behaves very much like the standard EMF model editor, but records all the changes you make and persists them as a delta model, which we understand.
 
-\item[$\blacktriangleright$] Save and run the file. You'll notice that even though no changes were specified for the backward synchronization, both directions
-completed without error.
+To open the delta editor, right-click on \texttt{fwd.trg.xmi} and choose \texttt{Open With/Delta Editor}.
 
-\item[$\blacktriangleright$] View the results of your changes by first opening your learning box in \texttt{sync.fwd.src.xmi}. Expand \texttt{Partition 3} --
-is there now a fifth \texttt{Card} inside? As you can see, the synchronization saved your changes to this new file, rather than overwriting the original
-instance model.
-
-\item[$\blacktriangleright$] Open the synchronization's output file, \texttt{sync.bwd.src.xmi}. If it was successful there should be a fifth \texttt{Entry} in
-the Dictionary. Together with \texttt{sync.fwd.corr.xmi} and \texttt{sync.fwd.protocol.xmi}, this files form a new triple and will remain consistent with one
-another!
-
-\item[$\blacktriangleright$] What if we wanted to make a change in the other direction? Let's try deleting an entry while keeping all four partitions. Open
-the synchronization's Java file again and locate \texttt{syncBackward}. Replace the code as depicted in Fig.~\ref{eclipse:synchBacward}.
-
-\newpage
+\item[$\blacktriangleright$] Let's try a simple attribute change:  As \texttt{Entry four:vier} was created from a card in the third partition, its default level is beginner (remember we assume easy cards have wondered further into the box).
+We'll we think this is wrong so let's change the level to \texttt{master}.
+Perform this change directly with the delta editor as if it were the standard EMF model editor (compare with Fig.~\ref{fig:trgDelta}).
+Save the editor and close it.
+Take a look at the created \texttt{fwd.trg.delta.xmi} and inspect it.
+Although we do not (yet) have a fancy visualisation for delta models, it should be pretty easy to see how your change has been represented as a data structure.
+Finally, note that \texttt{fwd.trg.xmi} has \emph{not} been changed yet, i.e., the synchroniser will do this when trying to propagate your changes.
+This is important to understand as handling conflicts (work in progress, planned for a release in the far, far away future) might imply a compromise, i.e., not all your changes might be accepted or possible.
 
 \begin{figure}[htbp]
 \begin{center}
-\begin{lstlisting}[language=Java,backgroundcolor=\color{white}, keywordstyle={\bfseries\color{purple}}]
-public void syncBackward(String corr) {
-	setChangeTrg(root -> {
-		Dictionary dictionary = (Dictionary) root;
-		Entry deleted = dictionary.getEntry().remove(0);
-	});
-	loadTriple(corr);
-	loadSynchronizationProtocol("instances/fwd.protocol.xmi");
-	integrateBackward();
-	saveResult("bwd");
-
-	System.out.println("Completed backward synchronization");
-}
-\end{lstlisting}
-  \caption{Implementation of our custom \texttt{IndexToLevel} constraint}
-  \label{eclipse:synchBacward}
+  \includegraphics[width=0.37\textwidth]{trgDelta}
+  \caption{Change the level of an entry}
+  \label{fig:trgDelta}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Run the synchronization a final time, and refresh the ``instances'' folder. Open and inspect both \texttt{sync.bwd.src.xmi} and
-\texttt{sync.\-bwd.\-trg.\-xmi}. If everything has executed correctly, a \texttt{Card} should be missing in \texttt{Box}, and
-\texttt{partition3} still exists! Equivalently, there should only be four \texttt{Entry} elements in the output \texttt{Dict\-ion\-ar\-y}.
+\item[$\blacktriangleright$] To backward propate your changes, open \texttt{Learning\-Box\-Language\-To\-Dictionary\-Language\-Sync.java}, our generated stub for model synchronisation.
+Our stubs are optimized for this handbook so you do not have to change a thing.
+It's all plain and simple Java though, so you should be able to understand how our API is being used.
+The section where you can adjust and make changes is:
+\begin{verbatim}
+// Adjust values as required
+String delta = "instances/fwd.trg.delta.xmi";
+String corr  = "instances/fwd.corr.xmi";
+BiConsumer<...> synchronizer = helper::syncBackward;
+\end{verbatim}
 
-\item[$\blacktriangleright$] You may have noticed that there is no \texttt{Entry Five}, which we added to \texttt{partition3} in the forward
-synchronization. Recall that the process loads and makes changes to the \emph{original} triple, not the most recent copies. The files are simple Java code, so
-you are invited to modify them as you wish for your own projects.
-
+These values all fit our current change (the created delta file, the relevant correspondence model, and we want to synchronise backwards), so we're ready to go.
+Hit \texttt{Run} and see what happens!
+If everything went well, \texttt{Card question:four} should have been relocated to \texttt{partition0} to fit its corrected difficulty level.
+The great thing is \texttt{partition3} is now empty, \emph{and has been retained}.
+Not that the protocol has been updated, and that \texttt{fwd.trg.xmi} not contains these changes.
 \end{itemize}
+
+Remember this is all academic software and especially the delta editor is rather new and very buggy.
+Feel free to try out all kinds of deltas and if you think you've found a bug, please send us an email at \texttt{contact@moflon.org} and we'll be happy to fix it (or reply with a ``back in your face!'' if it's not one and \emph{you} just got confused).
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../src/TGG_mainFile"
+%%% End: 

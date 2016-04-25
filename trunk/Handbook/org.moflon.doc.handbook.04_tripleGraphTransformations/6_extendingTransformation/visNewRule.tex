@@ -3,31 +3,38 @@
 \subsection{AllOtherPartitionsRule}
 \genHeader
 
-Remember that you can start the majority of new rules in two different ways! You can either return to the TGG's \texttt{Rules} diagram and use the toolbox
-there, or knowing that you need \texttt{box} and \texttt{partition0} for the context of the transformation, you can \emph{derive} this rule from 
-\texttt{BoxToDictionaryRule}.
-
 \begin{itemize}
 
-\item[$\blacktriangleright$] Once you've initialized the \texttt{AllOtherPartitionsRule} diagram, build the rule until it matches
-Fig.~\ref{fig:ea_AllOtherPartitionsRuleComplete}.
+\item[$\blacktriangleright$] Create a new rule \texttt{AllOtherPartitionsRule}, and complete it according to Fig.~\ref{fig:ea_AllOtherPartitionsRuleComplete}.
+
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{ea_AllOtherPartitionsRule}
+  \includegraphics[width=\textwidth]{ea_AllOtherPartitionsRule}
   \caption{The completed \texttt{AllOtherPartitionsRule}}
   \label{fig:ea_AllOtherPartitionsRuleComplete}
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] As you can see, this rule doesn't assume to know the final \texttt{partition} in the transformation. It matches some
-\texttt{n}th partition with an \texttt{index} 2 or more, then connects a new \texttt{n+1}th partition to \texttt{n} and \texttt{partition0}. 
+\item[$\blacktriangleright$] As you can see, this rule doesn't assume to know the final \texttt{partition} in the transformation. 
+It matches the \texttt{n}th partition as the partition without any next partition, then connects a new \texttt{n+1}th partition to \texttt{n} and \texttt{partition0} (clear as every partitions previous is \texttt{partition0}).
+Note that TGG transformations assume that the models are valid, i.e., have the expected structure (in our case meaning that the learning box is correctly ``wired'').\footnote{This should actually be formalised with a set of metamodel constraints that must be checked before a transformation is run, but we've omitted this here to simplify things.}  
+Remember that ``blue'' means ``negative''.
 
-\item[$\blacktriangleright$] Save, validate, export, and refresh your Eclipse package explorer to generate code for this rule. Run the TGG again -- it works!
-The transformation is now able to handle the troublesome \texttt{next} dangling edge from the third partition.
+\item[$\blacktriangleright$] Generate code for your improved TGG and re-run the transformation. 
+It should work now without any error message.
+Inspect the protocol to understand what happened.
 
-\item[$\blacktriangleright$] Feel free to go ahead and add as many \texttt{partition}s and \texttt{card}s as you like to your model instance.
-Your TGG is now
-also able to handle a \texttt{box} with any number of \texttt{partition}s beautifully. 
+\item[$\blacktriangleright$] Go ahead and add as many \texttt{partition}s and \texttt{card}s as you like to your model instance.
+Your TGG is now also able to handle a \texttt{box} with any number of \texttt{partition}s beautifully.
+For five partitions all with cards, the protocol gets quite interesting and is no longer a flat tree.
+Try it out! 
 
 \end{itemize}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../src/TGG_mainFile"
+%%% End: 

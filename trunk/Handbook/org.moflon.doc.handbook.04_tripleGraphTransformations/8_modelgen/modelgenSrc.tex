@@ -1,74 +1,22 @@
 \newpage
-\section{Model Generation (optional)}
+\section{Model Generation with TGGs}
 \hypertarget{sec:modelgen}
 \genHeader
 
 
-%\subsection{Generate model instances with TGGs}
-
-In addition to model transformation and model synchronization, TGG specifications can be used to generate models. Often there is a need for large and randomly generated models for testing purposes. 
-As creating large and valid models manually is quite difficult, eMoflon offers a model generation framework to automate this generation process. 
-
-
+In addition to model transformation and model synchronization, TGG specifications can be used directly to generate models. 
+Often there is a need for large and randomly generated models for testing purposes and it's surprisingly hard and awful work to whip up such a generator that \emph{only} creates valid models with respect to the TGG.
+Once you add or change a rule -- puff!  Your generator produces rubbish.
+It makes sense to automate this generation process and eMoflon provides some basic support.
 
 \begin{itemize}
-\renewcommand\figurename{Figure}
-\item[$\blacktriangleright$] Press the \texttt{Install, configure and deploy Moflon} button on the Eclipse toolbar and navigate to ``Install Workspace''
-(Fig.~\ref{eclipse:finalSolutionWizard}). Find and select \texttt{Handbook Example (Final)} to copy the necessary projects into your workspace.
 
-\vspace{0.5cm}
+\item[$\blacktriangleright$] We assume for this section, that you've completed the previous section and have the source, target, and integration projects in their final versions in your workspace.
 
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_wizard_final}
-  \caption{Get the final solution}
-  \label{eclipse:finalSolutionWizard}
-\end{center}
-\end{figure}
-
-\item[$\blacktriangleright$] Now delete the projects \texttt{Dictionary} and \texttt{DictionaryCodeAdapter} as they are not needed for the model generator. 
-If successful, your workspace should resemble Fig.~\ref{eclipse:loadedDictionaryMetamodel}. 
-
-
-\begin{figure}[htbp] 
-\renewcommand\figurename{Figure}
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{eclipse_example_projects}
-  \caption{Example projects from the wizard}
-  \label{eclipse:loadedDictionaryMetamodel}
-\end{center}
-\end{figure}
-
-
-\item[$\blacktriangleright$] In order to generate code for the model generator you should adjust your \texttt{moflon.properties.xmi} file in the \texttt{Learning\-Box\-To\-Dictionary\-Integration} project (Fig.~\ref{fig:moflon_properties_screenshot}).
-Make sure that the value of the \texttt{TGG Build mode}
-property is set to \texttt{SIMULTANEOUS} or \texttt{ALL} and save the file.
-
-
-\begin{figure}[h]
-\renewcommand\figurename{Figure}
-\centering 
-\includegraphics[width=1\textwidth]{moflon_properties_screenshot}
-\caption{Screenshot of the \texttt{moflon.properties.xmi}}
-\label{fig:moflon_properties_screenshot}
-\end{figure}
-
-\item[$\blacktriangleright$] Run a new \texttt{Export and build} on the \texttt{LeitnersLearningBox.eap} and build your projects in Eclipse in order to generate code. 
-
+In your project \texttt{src} folder locate and open
+\texttt{Learning\-Box\-To\-Dictionary\-Integration\-Model\-Gen.java} (Fig.~\ref{eclipse:modelgen}), our default stub for model integration.
 
 \end{itemize}
- 
- 
-
-  
-  
-Now your generated code contains the necessary methods for model generation.
-In your project \texttt{src} folder you can see the file
-\texttt{Learning\-Box\-To\-Dictionary\-Integration\-Model\-Gen.java}
-(Fig.~\ref{eclipse:modelgen}).
-This class contains a stub and can be used to execute the model generation process.
- 
-
  
 \begin{figure}[htbp]
 \renewcommand\figurename{Figure}
@@ -79,34 +27,23 @@ This class contains a stub and can be used to execute the model generation proce
 \end{center}
 \end{figure}
 
-The \texttt{ModelGenerator} class uses an
-\texttt{AbstractModelGenerationController} to control the generation process (line 35). In
-this template the generation process will be terminated after 20 rules has been
-performed (\texttt{Max\-Rule\-Perform\-Counter\-Controller} (line 36)). 
-Additionally, the \texttt{Time\-out\-Con\-trol\-ler} will terminate the process after 5000ms (line 37). You can use the \texttt{Max\-Model\-Size\-Controller} class to terminate the generation process if
-a specific model size has been reached. 
+The \texttt{ModelGenerator} class uses an \texttt{AbstractModelGenerationController} to control the generation process (Line 35). 
+In this default template the generation process will be terminated after 20 rules have been applied (\texttt{Max\-Rule\-Perform\-Counter\-Controller} (Line 36)). 
+Additionally, the \texttt{Time\-out\-Con\-trol\-ler} will terminate the process after 5000ms (Line 37). 
+You can use the \texttt{Max\-Model\-Size\-Controller} class to terminate the generation process if a specific model size has been reached. 
 The \texttt{RuleSelector} controls which rules are selected as the next to be executed. 
-The built-in \texttt{LimitedRandomRuleSelector} always selects a random rule and has the additional feature to limit the number of performs for specific rules (line 38).
-For instance, if you want axiom rules to be performed exactly once to only generate models with a single root. 
-You can create your own controller classes if the delivered ones are not sufficient. 
-To create your first models do the following:
-
+The built-in \texttt{LimitedRandomRuleSelector} always selects a random rule and has the additional feature to limit the number of performs for specific rules (Line 38).
+As with everything we generate, this is standard Java code, doesn't bite, and can be extended as you wish with your own controller classes and generation strategies.
 
 \begin{itemize}
 
-\item[$\blacktriangleright$] Open your
-\texttt{Learning\-Box\-To\-Dictionary\-Integration\-Model\-Gen\.java} file.
+\item[$\blacktriangleright$]  To ensure that we only get a model with a single root, change \texttt{$<$enter rule name$>$} to \texttt{BoxToDictionaryRule} so that this island rule (which is always applicable) will only be applied once.
 
-\item[$\blacktriangleright$] Change \texttt{$<$enter rule name$>$} to \texttt{BoxToDictionaryRule} to
-create single root models. This rule will only be performed once.
+\item[$\blacktriangleright$] Save the file and hit \texttt{Run}!
 
-\item[$\blacktriangleright$] Save the file and run it.
+You'll probably get some logging information in the console (Fig.~\ref{eclipse:modelgen_log}) containing information gathered during the generation process such as model size for each domain, number of performs for each rule, duration of generation process for each rule etc.
 
 \end{itemize}
-
-You will get some logging information in the console (Fig.~\ref{eclipse:modelgen_log}) which contains
-details gathered during the generation process such as model size for each domain, number of performs for
-each rule, duration of generation process for each rule etc.
 
 
 \begin{figure}[htbp]
@@ -118,53 +55,15 @@ each rule, duration of generation process for each rule etc.
 \end{center}
 \end{figure}
 
-In your \texttt{instances} folder should now be a new folder named
-\texttt{generated\-Models} with a timestamp suffix. It contains your newly generated
-source and target models. \\
+In your \texttt{instances} folder there should now be a new folder named \texttt{generated\-Models} with a timestamp suffix. 
+It contains your newly generated source and target models.
+Have fun viewing.
+Why not try creating like seriously gigantic models?
 
+Note that to support model generation for custom attribute condition in general, you might have to specify additional \texttt{\#gen} adornments. 
+No additional adornments were required for our new attribute condition, and all library conditions suppo
 
-
-To support model generation for custom attribute constraints you may have to specify additional adornments. 
-Adjusting the adornments is needed if the existing adornments does not cover the cases 
-which arise using the TGG for model generation (e.g. the attribute constraints refers to only green object variables where all variables are free). 
-Note that no additional adornments are required for our example.
-\begin{itemize}
-
-\item[$\blacktriangleright$] Open up the dialog for your custom constraint (figure \ref{fig:custom_constraint_definition}).
-
-\item[$\blacktriangleright$] Enter the required adornments for the model
-generator. Implement the new case in your constraint java
-file. On figure \ref{eclipse:modelgen_eq_implementation} you can see the built-in implementation for the
-\texttt{FF}-case of the \texttt{Eq}-constraint. The Generator class is able to
-return random string values with respect to the type parameter. For a number
-type the string will only contain numbers.
-
-\end{itemize}
-
-\begin{figure}[hbt] 
-\centering 
-\includegraphics[width=1\textwidth]{custom_constraint.png}
-\caption{Custom constraint dialog}
-\label{fig:custom_constraint_definition}
-\end{figure}
- 
-
-
-\begin{figure}[htbp]
-\begin{center}
-\begin{lstlisting}[language=Java,backgroundcolor=\color{white}, keywordstyle={\bfseries\color{purple}}]
-// modelgen implementation
-else if (bindingStates.equals("FF"))
-{
-  String value = Generator.getNewRandomString(a.getType());
-  a.bindToValue(value);
-  b.bindToValue(value);
-  setSatisfied(true);
-}
-\end{lstlisting}
-  \caption{Eq-constraint implementation for the FF case}
-  \label{eclipse:modelgen_eq_implementation}
-\end{center}
-\end{figure}
-
- 
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../src/TGG_mainFile"
+%%% End: 
