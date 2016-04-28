@@ -76,9 +76,21 @@
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 \def\idest{i.\,e.\xspace}
+\def\eg{e.\,g.\xspace}
 \newcommand{\enquote}[1]{``#1''}
+\newcommand{\menuSep}[0]{\ensuremath{\to\xspace}}
+\newcommand{\menuPath}[1]{\emph{#1}\xspace}
+\newcommand{\newconcept}[1]{\emph{#1}\xspace}
+\newcommand{\filename}[1]{\texttt{#1}\xspace}
 
+%
+% @param 1 The name of the feature in singular
+\newcommand{\insertNoteAboutOptionalFeatures}[1]{
+\emph{Note: #1 is an optional feature of eMoflon. 
+If you are in a hurry, just skip this section.}
+}
 
+\newcommand{\LK}[1]{\textbf{To LK:} #1}
 
 
 
