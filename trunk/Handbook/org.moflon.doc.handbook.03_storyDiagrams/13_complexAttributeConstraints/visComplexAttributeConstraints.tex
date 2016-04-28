@@ -1,18 +1,18 @@
 \newpage
 \section{Complex Attribute Manipulation}
 \genHeader
-In Section~\ref{sec: Implementing check} we have modeled the \texttt{Partition::check()} method.
-However, as you might realized, our implementation ignores the \texttt{partitionSize}, i.e., the maximal number of cards that fit in a partition.
-In order to prevent our implementation from ``bursting" a partition we gonna use \emph{complex attribute constraints} to extend the SDM for the \texttt{Partition::check()} method. 
-In contrast to simple attribute constrains\footnote{First used in Section~\ref{sec: Implementing check} to compare user’s guess against the card's face value}, which provide only binary operations for comparing attribute values (or literals), complex attribute constraints provides a language to specify arbitrary relations on attributes.
+In \Cref{sec: Implementing check} we have modeled the \texttt{Partition::check()} method.
+However, as you might realized, our implementation ignores the \texttt{partitionSize}, \idest, the maximal number of cards that fit in a partition.
+In order to prevent our implementation from \enquote{bursting} a partition we gonna use \emph{complex attribute constraints} to extend the SDM for the \texttt{Partition::check()} method. 
+In contrast to simple attribute constrains\footnote{First used in \Cref{sec: Implementing check} to compare user’s guess against the card's face value}, which provide only binary operations for comparing attribute values (or literals), complex attribute constraints provides a language to specify arbitrary relations on attributes.
 
 \subsection{Using Complex Attribute Constrains}     
 We start by extending the \texttt{penalizeCard} pattern of the \texttt{Partition::check()} method in such a way that it only moves a card to the previous partition if the additional card does not exceed the actual \texttt{partitionSize} of the previous partition. But before we start we have to extend \texttt{Partition} class by an attribute that keeps track of the actual number of card contained in a partition:
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{ea_CAC_newAtributes}
-  \caption{adding \texttt{currentSize:EInt} to \texttt{Partition}}  
+  \includegraphics[width=0.4\textwidth]{ea_CAC_newAtributes}
+  \caption{Adding \texttt{currentSize:EInt} to \texttt{Partition}}  
   \label{ea_CAC_newAtributes}
 \end{center}
 \end{figure}
