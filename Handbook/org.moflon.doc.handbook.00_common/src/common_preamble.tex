@@ -75,13 +75,26 @@
 
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
+
 \def\idest{i.\,e.\xspace}
 \def\eg{e.\,g.\xspace}
+\def\cf{cf.\xspace}
+\def\vs{vs.\xspace}
+
 \newcommand{\enquote}[1]{``#1''}
-\newcommand{\menuSep}[0]{\ensuremath{\to\xspace}}
+
+% To be used to describe how to navigate through menus (use \menuSep to separate the different levels of the menu)
 \newcommand{\menuPath}[1]{\emph{#1}\xspace}
+\newcommand{\menuSep}[0]{\ensuremath{\to\xspace}}
+
+% To be used when a term is mentioned for the first time
 \newcommand{\newconcept}[1]{\emph{#1}\xspace}
+
+% To be used for concrete values or file names
 \newcommand{\entity}[1]{\texttt{#1}\xspace}
+
+% This env. should be used for step-by-step instructions
+\newenvironment{stepbystep}{\begin{itemize}[$\blacktriangleright$]}{\end{itemize}}
 
 %
 % @param 1 The name of the feature in singular
@@ -90,7 +103,7 @@
 If you are in a hurry, just skip this section.}
 }
 
-\newcommand{\LK}[1]{\textbf{To LK:} #1}
+\newcommand{\LK}[1]{\todo{\textbf{To LK:} #1}}
 
 \hyphenation{me-ta-mo-del-ing}
 
