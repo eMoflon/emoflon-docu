@@ -9,7 +9,7 @@ At this stage, you have successfully created a trio of rules that can transform 
 Now suppose you wanted to make a minor change to one of your current instances, such as adding a single new card or entry into one of your instances. 
 Could you modify the instance models and simply run the transformation again to keep the target and sources consistent? 
 
-The current \texttt{fwd.src.xmi} file (Fig.~\ref{fig:ea_extended_fwd_src_xmi}) has a partition with an index of three which, when transformed, correctly produces a target dictionary with all four entries. 
+The current \texttt{fwd.src.xmi} file (\Cref{fig:ea_extended_fwd_src_xmi}) has a partition with an index of three which, when transformed, correctly produces a target dictionary with all four entries. 
 What would happen if we attempted to transform this dictionary back into the same learning box, with all four partitions?
 
 \begin{itemize}
@@ -17,7 +17,7 @@ What would happen if we attempted to transform this dictionary back into the sam
 \item[$\blacktriangleright$] Copy and paste \texttt{fwd.trg.xmi}, renaming it as \texttt{bwd.src.xmi}.\footnote{Feel free to either delete or rename the original \texttt{bwd.src.xmi} for later reference.}
 
 \item[$\blacktriangleright$] Run \texttt{LearningBoxToDictionaryIntegrationTrafo.java} and inspect the resulting \texttt{bwd.trg.xmi}
-(Fig.~\ref{eclipse:missingP3}). 
+(\Cref{eclipse:missingP3}). 
 Unfortunately, the newest \texttt{part\-it\-ion\-3} is missing!
 \end{itemize}
 
@@ -40,7 +40,7 @@ So how can we prevent this information loss when we need to update our models in
 Let's change our source model by adding a new \texttt{Card} to \texttt{Partition3} and see if the partition still exists after synchronizing to and from the resulting \texttt{Dictionary} model.
 
 \begin{itemize}
-\item[$\blacktriangleright$] Make sure your \texttt{fwd.src.xmi} model is in the ``extended'' version depicted in Fig.~\ref{fig:ea_extended_fwd_src_xmi}, and that you have a fresh triple of corresponding \texttt{fwd.corr.xmi} and \texttt{fwd.trg.xmi} created via the forward batch transformation.
+\item[$\blacktriangleright$] Make sure your \texttt{fwd.src.xmi} model is in the ``extended'' version depicted in \Cref{fig:ea_extended_fwd_src_xmi}, and that you have a fresh triple of corresponding \texttt{fwd.corr.xmi} and \texttt{fwd.trg.xmi} created via the forward batch transformation.
 
 \item[$\blacktriangleright$] Our synchronisation algorithm requires an explicit ``delta'' representing the exact changes that are to be propagated.
 Although this can be extracted from different versions of a model this is not as easy as it sounds.
@@ -54,7 +54,7 @@ To open the delta editor, right-click on \texttt{fwd.trg.xmi} and choose \texttt
 
 \item[$\blacktriangleright$] Let's try a simple attribute change:  As \texttt{Entry four:vier} was created from a card in the third partition, its default level is beginner (remember we assume easy cards have wondered further into the box).
 We'll we think this is wrong so let's change the level to \texttt{master}.
-Perform this change directly with the delta editor as if it were the standard EMF model editor (compare with Fig.~\ref{fig:trgDelta}).
+Perform this change directly with the delta editor as if it were the standard EMF model editor (compare with \Cref{fig:trgDelta}).
 Save the editor and close it.
 Take a look at the created \texttt{fwd.trg.delta.xmi} and inspect it.
 Although we do not (yet) have a fancy visualisation for delta models, it should be pretty easy to see how your change has been represented as a data structure.

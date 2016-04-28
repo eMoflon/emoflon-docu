@@ -32,9 +32,9 @@ Now we can start defining complex attribute constraints:
 \begin{itemize}    
 
 \item[$\blacktriangleright$] Navigate to the \texttt{penalizeCard} pattern in the \texttt{Partition::check()} method and add a \texttt{CSP instance};  
-Following a similar process as creating a new object variable, i.e., either hit the spacebar or use the toolbox to create a new \emph{CSP instance} (Fig.~\ref{ea:CAC_NewCSP}).
+Following a similar process as creating a new object variable, i.e., either hit the spacebar or use the toolbox to create a new \emph{CSP instance} (\Cref{ea:CAC_NewCSP}).
 
-\item[$\blacktriangleright$] You’ll notice a box were you can specify your complex attribute constraints. Enter the attribute constraints as shown in Fig.~\ref{ea:ea_CAC_DefineCSP} to define that a card is only moved if the additional card does not exceed the actual \texttt{partitionSize} of the previous partition.
+\item[$\blacktriangleright$] You’ll notice a box were you can specify your complex attribute constraints. Enter the attribute constraints as shown in \Cref{ea:ea_CAC_DefineCSP} to define that a card is only moved if the additional card does not exceed the actual \texttt{partitionSize} of the previous partition.
 
 \end{itemize}
 
@@ -46,11 +46,11 @@ Basically an attribute constraint is a predicate of the form
 \begin{itemize}
     \item A \emph{local variables} of the form \\
     \hspace*{0.5cm} \texttt{varname:Type},\\
-    as for example, \texttt{newPrevCurrentSize:EInt} (first line Fig.~\ref{ea:ea_CAC_DefineCSP})\\
+    as for example, \texttt{newPrevCurrentSize:EInt} (first line \Cref{ea:ea_CAC_DefineCSP})\\
      defines an local variable \texttt{newPrevCurrentSize} of type \texttt{EInt}. 
     \item A \emph{constant} is of the form \\
     \hspace*{0.5cm} \texttt{value:Type},\\
-    as for example, \texttt{1:EInt} (first line Fig.~\ref{ea:ea_CAC_DefineCSP}) represents constant 1 of type \texttt{EInt}.
+    as for example, \texttt{1:EInt} (first line \Cref{ea:ea_CAC_DefineCSP}) represents constant 1 of type \texttt{EInt}.
     \item An \emph{attribute variable} of the form \\
     \hspace*{0.5cm}\texttt{objectVarName.attributeName}, \\
      and refers to the current value of the attribute \texttt{attributeName} of object variable 	\texttt{objectVarName}, while an attribute variable of the form \texttt{objectVarName.attribteName'} refers to an attribute value after the transformation. This is necessary for, 	e.g., write the java expression \texttt{a.x=a.x+1} as the predicate \texttt{+(a.x', a.x, 1:EInt)}. 
@@ -66,7 +66,7 @@ Basically an attribute constraint is a predicate of the form
 \end{center}
 \end{figure}
 
-The \texttt{CSP instance} (the set of attribute constraints) shown in Fig.~\ref{ea:ea_CAC_DefineCSP} consist of the constraints with meaning \footnote{An complete list of build in constraints is given at the end of this chapter.}:
+The \texttt{CSP instance} (the set of attribute constraints) shown in \Cref{ea:ea_CAC_DefineCSP} consist of the constraints with meaning \footnote{An complete list of build in constraints is given at the end of this chapter.}:
 
 \hspace*{0.5cm}\texttt{\small +(newPrevCurrentSize:EInt, previousPartition.currentSize, 1:EInt)},\\
 meaning that:\\
@@ -84,7 +84,7 @@ meaning that:\\
 meaning that:\\
 \hspace*{0.5cm} \texttt{\small previousPartition.currentSize' == newPrevCurrentSize}.
 \begin{itemize}    
-\item[$\blacktriangleright$] Export the project as usual. Before you start generating code you have to switch the code generation engine. Open the \texttt{moflon.properties.xmi} located in your project and change the \textsf{SDM Codegenerator Method Body Handler} to  \textsf{DEMOCLES\_ATTRIBUTES} (Fig.~\ref{ec_CAC_SwitchCGE}).
+\item[$\blacktriangleright$] Export the project as usual. Before you start generating code you have to switch the code generation engine. Open the \texttt{moflon.properties.xmi} located in your project and change the \textsf{SDM Codegenerator Method Body Handler} to  \textsf{DEMOCLES\_ATTRIBUTES} (\Cref{ec_CAC_SwitchCGE}).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -96,7 +96,7 @@ meaning that:\\
 
 \end{itemize}
 The code generator engine is now able to solve the CSP instances, i.e., the constraints are operationalized and put in correct order. 
-The code resulting for the CSP instance is shown in Figs.~\ref{ea_CAC_penalizeCardLHS} and \ref{ea_CAC_penalizeCardRHS} for the LHS and RHS, respectively.
+The code resulting for the CSP instance is shown in \Cref{ea_CAC_penalizeCardLHS, ea_CAC_penalizeCardRHS} for the LHS and RHS, respectively.
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.99\textwidth]{ea_CAC_penalizeCardLHS.pdf}
@@ -115,7 +115,7 @@ The code resulting for the CSP instance is shown in Figs.~\ref{ea_CAC_penalizeCa
 Notice that the attribute variables \texttt{this.currentSize'} and \\
 \texttt{previousPartition.currentSize'} (represented in the code by \\ 
 \texttt{this\_currentSize\_prime} and \texttt{previousPartition\_currentSize\_prime}, respectively) are treated as local variables on the LHS and then assigned on the RHS to the corresponding attribute values.
-Hence we might rewrite the \texttt{CSP instance} shown in Fig.~\ref{ea:ea_CAC_DefineCSP} to the more compact shown in Fig.\ref{ea:ea_CAC_DefineCSP2}.
+Hence we might rewrite the \texttt{CSP instance} shown in \Cref{ea:ea_CAC_DefineCSP} to the more compact shown in \Cref{ea:ea_CAC_DefineCSP2}.
 \begin{figure}[htbp]
 \begin{center}
   \includegraphics[width=0.99\textwidth]{ea_CAC_DefineCSP2}
@@ -125,13 +125,13 @@ Hence we might rewrite the \texttt{CSP instance} shown in Fig.~\ref{ea:ea_CAC_De
 \end{figure}
 
 \subsection{Defining Own Complex Attribute Constraints}  
-In Section~\ref{sec_A string representation of our learning box} we have implemented the \texttt{Box::toString()} method to obtain a string representation of the box. 
+In \Cref{sec_A string representation of our learning box} we have implemented the \texttt{Box::toString()} method to obtain a string representation of the box. 
 The method uses internally the method \texttt{Box::addToStringRep(Card) : EString} to create a string from a card, that was realized using handwritten code via injections.
 
 In the following the \texttt{Box::addToStringRep(Card):EString} method should be replaced by using complex attribute constraints.
 
 \begin{itemize}
-  \item[$\blacktriangleright$] Reconsider the SDM shown in Fig.~\ref{ea:sdm_tostringComplete}. First add an attribute constraint for appending the string \texttt{"PartitionContent:"} to the \texttt{stringRep} attribute of \texttt{ Box}. To this end, add to the \texttt{ForAllPartitons} pattern the complex attribute constraint:\\
+  \item[$\blacktriangleright$] Reconsider the SDM shown in \Cref{ea:sdm_tostringComplete}. First add an attribute constraint for appending the string \texttt{"PartitionContent:"} to the \texttt{stringRep} attribute of \texttt{ Box}. To this end, add to the \texttt{ForAllPartitons} pattern the complex attribute constraint:\\
 \hspace*{0.5cm} \texttt{\small +(this.stringRep',this.stringRep, "Partition Content:":EString)},\\
 \end{itemize}  
 Note that the ``+'' predicate is overloaded, while \texttt{\small +( :EInt, :EInt, :EInt)} (as used in the previous section), means integer addition, \\
@@ -144,7 +144,7 @@ Instead of using the the concat (\texttt{+}) operation again, we just cand to de
 \begin{itemize}
 \item[$\blacktriangleright$] just adding the \texttt{CSP instance}: \\
 \hspace*{0.5cm}\texttt{\small myConcat(this.stringRep', this.stringRep, card.face, card.back)}\\
-to the \texttt{ForAllCards} pattern. The complete SDM should now look as shown in Fig.~\ref{ea_CAC_CompletToString}.
+to the \texttt{ForAllCards} pattern. The complete SDM should now look as shown in \Cref{ea_CAC_CompletToString}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -153,7 +153,7 @@ to the \texttt{ForAllCards} pattern. The complete SDM should now look as shown i
   \label{ea_CAC_CompletToString}
 \end{center}
 \end{figure}
-\item[$\blacktriangleright$] Export as usual. If you are trying to build the metamodel project in eclipse you get an error message (Fig.~\ref{ec_CAC_Malformed}) that informs you that the attribute constraint with signature: \\
+\item[$\blacktriangleright$] Export as usual. If you are trying to build the metamodel project in eclipse you get an error message (\Cref{ec_CAC_Malformed}) that informs you that the attribute constraint with signature: \\
 \hspace*{0.5cm} \texttt{\small myConcat( :EString, :EString, :EString, :EString)} \\
 is unknown. If you look at \texttt{LearningBoxLanguage/lib/} there is a new file  \texttt{LearningBoxLanguageAttributeConstraintsLib.xmi} 
  
@@ -167,7 +167,7 @@ is unknown. If you look at \texttt{LearningBoxLanguage/lib/} there is a new file
 
 
 
-\item[$\blacktriangleright$] Open the file. It contains a constraint specification \texttt{myConcat} (Fig.\ref{ec_CAC_lib} bottom) that represents the signature (\texttt{\small myConcat( :EString, :EString, :EString, :EString)}) which is derived from the information of the CSP-instance in EA. To define the meaning of \texttt{myConcat} we have to define operations for the constraint.
+\item[$\blacktriangleright$] Open the file. It contains a constraint specification \texttt{myConcat} (\Cref{ec_CAC_lib} bottom) that represents the signature (\texttt{\small myConcat( :EString, :EString, :EString, :EString)}) which is derived from the information of the CSP-instance in EA. To define the meaning of \texttt{myConcat} we have to define operations for the constraint.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -176,7 +176,7 @@ is unknown. If you look at \texttt{LearningBoxLanguage/lib/} there is a new file
   \label{ec_CAC_lib}
 \end{center}
 \end{figure}
-\item[$\blacktriangleright$] Right click the operation specification group for \texttt{myConcat} (top of Fig.~\ref{ec_CAC_lib}) and add as new child an \texttt{operation specification}. 
+\item[$\blacktriangleright$] Right click the operation specification group for \texttt{myConcat} (top of \Cref{ec_CAC_lib}) and add as new child an \texttt{operation specification}. 
 \end{itemize}
 
 An operation\footnote{Double click on the operation specification to open the properties view.} is specified by an \emph{Adornment String}, and a \texttt{Specification} that is a template defining the code to be generated.
@@ -190,7 +190,7 @@ An operation\footnote{Double click on the operation specification to open the pr
 \end{figure}
 
 \begin{itemize}
-\item[$\blacktriangleright$] Complete the operation specification as shown in Fig.\ref{ea_CAC_opSpec}. The adornment string \texttt{FBBB} means that before the operation can be executed the values for parameter 2--4 must be known (\texttt{B}ound), and the \texttt{F}ree parameter (i.e., the first parameter in this case) is derived from the \texttt{B}ound parameters. The \emph{Specification} field contains the template string that specifies a java expression that defines how the \texttt{F}ree parameter is derived from the \texttt{B}ound ones. The template uses the parameter identifier as variables (sounded with \$ \$). 
+\item[$\blacktriangleright$] Complete the operation specification as shown in \Cref{ea_CAC_opSpec}. The adornment string \texttt{FBBB} means that before the operation can be executed the values for parameter 2--4 must be known (\texttt{B}ound), and the \texttt{F}ree parameter (i.e., the first parameter in this case) is derived from the \texttt{B}ound parameters. The \emph{Specification} field contains the template string that specifies a java expression that defines how the \texttt{F}ree parameter is derived from the \texttt{B}ound ones. The template uses the parameter identifier as variables (sounded with \$ \$). 
 
 \end{itemize}
 

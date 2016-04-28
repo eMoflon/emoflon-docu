@@ -6,7 +6,7 @@
 \begin{itemize}
 
 \item[$\blacktriangleright$] A fundamental gesture in EA is \emph{Quick Link}\define{Quick Link}. Quick Link is used to create EReferences between elements in a context-sensitive
-manner. To use quick link, choose an element and note the little black arrow in its top-right corner (Fig.~\ref{ea:quicklink}).
+manner. To use quick link, choose an element and note the little black arrow in its top-right corner (\Cref{ea:quicklink}).
 
 \begin{figure}[htbp]
 	\centering
@@ -17,7 +17,7 @@ manner. To use quick link, choose an element and note the little black arrow in 
 \FloatBarrier
 
 \item[$\blacktriangleright$] Click this black arrow and `pull' to the element you wish to link to. To start, quick-link from \texttt{Box} to \texttt{Partition}.
-In the context menu that appears, select ``Create Bidirectional EReference'' (Fig.~\ref{ea:ereference}).
+In the context menu that appears, select ``Create Bidirectional EReference'' (\Cref{ea:ereference}).
 
 \begin{figure}[htbp]
 	\centering
@@ -30,7 +30,7 @@ In the context menu that appears, select ``Create Bidirectional EReference'' (Fi
 \item[$\blacktriangleright$] Double click the EReference to invoke a dialogue. In this window you can adjust all relevant settings. Feel free to leave the
 \texttt{Name} value blank - this property is only used for documentation purposes, and is not relevant for code generation.
 
-\item[$\blacktriangleright$] Within this dialogue, go to ``Role(s),'' and compare the relevant values in Fig.~\ref{ea:roles} for the \emph{source} 
+\item[$\blacktriangleright$] Within this dialogue, go to ``Role(s),'' and compare the relevant values in \Cref{ea:roles} for the \emph{source} 
 end of the EReference (the \texttt{Box} role). As you can see, the default source is set to the EClass you linked from, while the default target
 is the EClass you linked to. In this window, do not forget to confirm and modify the \texttt{Role}, \texttt{Navigability}, \texttt{Multiplicity}, and
 \texttt{Aggregation} settings for the source as required. Repeat the process for the \texttt{Target Role}.
@@ -52,7 +52,7 @@ To review these properties, the first value you edited was the role name. The \t
 Next, you set the \texttt{Multiplicity} value.  In your source role (\texttt{Box}), you have allowed the creation of up to one target (\texttt{Partition})
 reference for every connected source (\texttt{box}). This means you could not have a single target connected to two sources (i.e., one partition that belongs to
 two boxes). In the target (\texttt{Partition}) role, you have specified that any source (in our case, \texttt{box}) can have any positive-sized number of targets.
-Figure~\ref{fig:sketch_roles} sketches this schematically.
+\Cref{fig:sketch_roles} sketches this schematically.
 
 \vspace{0.5cm}
 
@@ -69,7 +69,7 @@ consequently not.
 
 \begin{itemize}
 \item[$\blacktriangleright$] Take a moment to review how the \texttt{Aggregration} settings extend the \texttt{Multiplicity} rules. If you've done everything
-right, your metamodel should now resemble Figure~\ref{ea:ereference_completed}, with a single \emph{bidirectional EReference} between \texttt{Box} and
+right, your metamodel should now resemble \Cref{ea:ereference_completed}, with a single \emph{bidirectional EReference} between \texttt{Box} and
 \texttt{Partition}.
 
 \vspace{1cm}
@@ -85,7 +85,7 @@ right, your metamodel should now resemble Figure~\ref{ea:ereference_completed}, 
 \item[$\blacktriangleright$] Following the same process, create two unidirectional self-EReferences for \texttt{Partition} (for next and previous \texttt{Partitions}), and a second bidirectional composite
 EReference\footnote{To be precise, \emph{all} EReferences in Ecore are actually unidirectional. A ``bidirectional'' EReference in our metamodel is really two
 mapped EReferences that are opposites of each other. We however, believe it is simpler to handle these pairs as single EReferences, and prefer this
-concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\ref{ea:ereferences_all}). 
+concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (\Cref{ea:ereferences_all}). 
 
 \vspace{1cm}
 
@@ -104,7 +104,7 @@ concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (Fig.~\re
 
 \vspace{1cm}
 
-\item[$\blacktriangleright$] Export your diagram to Eclipse and refresh your workspace. Your Ecore metamodel file in ``model/LearningBoxLanguage.ecore" should now resemble Figure~\ref{eclipse:model_allClasses}.
+\item[$\blacktriangleright$] Export your diagram to Eclipse and refresh your workspace. Your Ecore metamodel file in ``model/LearningBoxLanguage.ecore" should now resemble \Cref{eclipse:model_allClasses}.
 
 \vspace{1cm}
 

@@ -5,7 +5,7 @@
 
 The next method we shall model is probably the most important for our learning box. This method will be invoked when a user decides to test themselves on a card
 in the learning box. They'll be able to see the \texttt{back} attribute of a card from the box, make a guess as to what's on the \texttt{face}, then 
-check their answer (Fig.~\ref{fig:goal_check}). Following our rules established in Fig.~\ref{fig:membox_depiction}, if their guess was correct the card will be
+check their answer (\Cref{fig:goal_check}). Following our rules established in \Cref{fig:membox_depiction}, if their guess was correct the card will be
 \emph{promoted} to the next partition. If wrong, the card will be \emph{penalized} and returned to the first.
 
 \begin{figure}[htbp]
@@ -17,7 +17,7 @@ check their answer (Fig.~\ref{fig:goal_check}). Following our rules established 
 \FloatBarrier
 
 As you can see, checking \texttt{guess} is a simple assertion on string values. The actual movements of the card however, must be implemented as separate
-patterns. Fig.~\ref{fig:patterns_check} briefly shows the intended create and destroy transformations.
+patterns. \Cref{fig:patterns_check} briefly shows the intended create and destroy transformations.
 
 \begin{figure}[htbp]
  	\centering

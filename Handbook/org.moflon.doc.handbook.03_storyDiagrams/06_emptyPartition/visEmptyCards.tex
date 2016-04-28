@@ -7,7 +7,7 @@
 
 \item[$\blacktriangleright$] Create a new activity diagram for \texttt{Partition.empty()}. To begin building the \emph{for each} pattern, quick create a new
 story node and edit its properties. Name it \texttt{deleteCardsInPartition} and change its \texttt{Type} from \texttt{StoryNode} to \texttt{ForEach}. You'll
-also want to create the invoking \texttt{Partition} object, \texttt{this} (Fig.~\ref{ea:sdm_foreach}). Press \texttt{OK}, and you'll see that a \emph{for each}
+also want to create the invoking \texttt{Partition} object, \texttt{this} (\Cref{ea:sdm_foreach}). Press \texttt{OK}, and you'll see that a \emph{for each}
 node is represented as a stacked node to indicate the potential for repetition.
 
 \begin{figure}[htbp]
@@ -19,11 +19,11 @@ node is represented as a stacked node to indicate the potential for repetition.
 \end{figure}
 
 \item[$\blacktriangleright$] Now create the \texttt{card} object variable needed to complete this SDM. Unlike \texttt{removeCard}
-(Fig.~\ref{ea:sdm_complete_control_flow}) however, the goal of \texttt{emptyCards} is not just to remove the link between the selected partition and card, we
+(\Cref{ea:sdm_complete_control_flow}) however, the goal of \texttt{emptyCards} is not just to remove the link between the selected partition and card, we
 want the matched \texttt{card} to be \emph{completely} deleted. This means in the properties tab, after setting the name and binding state, you'll need to set
-the \texttt{Binding Operator} to \texttt{Destroy} (Fig.~\ref{ea:sdm_bindingOperator}).
+the \texttt{Binding Operator} to \texttt{Destroy} (\Cref{ea:sdm_bindingOperator}).
 
-\item[$\blacktriangleright$] Complete the story pattern as indicated in Fig.~\ref{ea:sdm_end}. Notice that the guard that terminates the looping node has an
+\item[$\blacktriangleright$] Complete the story pattern as indicated in \Cref{ea:sdm_end}. Notice that the guard that terminates the looping node has an
 \texttt{[end]} edge guard. Indeed, a \emph{for each} story node \emph{must} execute an \texttt{end} activity when all matches in the pattern have been
 handled. \texttt{empty} is defined as a \texttt{void} method, so don't worry about setting any return value in the stop node.
 

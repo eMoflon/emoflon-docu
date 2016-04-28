@@ -18,7 +18,7 @@ Double-click the \texttt{LearningBoxLa\-nguage.ecore} model to invoke  the \emph
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] To create a concrete instance of the metamodel, you must select an EClass that will become the root element of the new instance.
-For our example, right-click \texttt{Box}, and navigate to ``Create Dynamic Instance'' from the context menu, as depicted in Fig.~\ref{fig:context_menu}.
+For our example, right-click \texttt{Box}, and navigate to ``Create Dynamic Instance'' from the context menu, as depicted in \Cref{fig:context_menu}.
 
 \begin{figure}[htbp]
 	\centering
@@ -31,7 +31,7 @@ For our example, right-click \texttt{Box}, and navigate to ``Create Dynamic Inst
 
 \item[$\blacktriangleright$] A dialogue should appear asking where the instance model file should be persisted. Save your instances according to convention in a
 folder named ``instances,'' which is automatically created in every new repository project. Last but not least, enter \texttt{Box.xmi} as the name of the
-instance model (Fig.~\ref{eclipse:store_dynamic_instance}).
+instance model (\Cref{eclipse:store_dynamic_instance}).
 
 \vspace{0.5cm}
 
@@ -49,7 +49,7 @@ previous Ecore model editor except it's ``generic,'' meaning it allows you to cr
 \clearpage
 
 \item[$\blacktriangleright$] You can populate your instance by adding new children or siblings via a right-click of an element to invoke the
-context-menu depicted in Figure~\ref{eclipse:create_instance}. Note that EMF supports you by respecting your metamodel, and reducing the choice of available
+context-menu depicted in \Cref{eclipse:create_instance}. Note that EMF supports you by respecting your metamodel, and reducing the choice of available
 elements to valid types only.\footnote{This depends on the current context. Try it out!}
 
 \begin{figure}[htbp]
@@ -63,7 +63,7 @@ elements to valid types only.\footnote{This depends on the current context. Try 
 \texttt{Ctrl+S} and confirm the save by closing it, then reloading via a simple double-click.
 
 \item[$\blacktriangleright$] Double-click on one of the partitions to bring up the ``Properties'' tab in the window below the editor
-(Fig.~\ref{eclipse:properties_partition}). Here you'll see the attributes you defined earlier in each EClass. The \texttt{Box}, \texttt{Next}, and
+(\Cref{eclipse:properties_partition}). Here you'll see the attributes you defined earlier in each EClass. The \texttt{Box}, \texttt{Next}, and
 \texttt{Previous} values are its (undefined) EReferences,\footnote{Please note that the editor tab capitilizes the first letter of each property} while \texttt{Index} is a
 partition's unique idenfitication value, and \texttt{Partition Size} is the recommended number of cards the partition should contain before being tested.
 
@@ -89,7 +89,7 @@ Similarly, only set the \texttt{Next} values for the first, and second partition
 with the \texttt{Face} attribute shortly, so provide a \texttt{1} value for that as well.
 
 \item[$\blacktriangleright$] Fill in the rest the cards with similar vocabulary-style words (such as two/2, three/3, \ldots) that you can `test' yourself on
-(Fig.~\ref{eclipse:finalXMI}). You now have a unique, customized learning box! Save your model, and ensure no errors exist before proceeding.
+(\Cref{eclipse:finalXMI}). You now have a unique, customized learning box! Save your model, and ensure no errors exist before proceeding.
 
 \begin{figure}[htbp]
 	\centering

@@ -11,7 +11,7 @@ We could trivially extend the existing \texttt{BoxToDictionaryRule} by connectin
 
 With a so-called \emph{ignore rule}\define{ignore rule}, we'll handle some source elements and their connecting link variables without creating any new elements in the target domain.
 %
-Before specifying this ignore rule, however, let's extend the current \texttt{fwd.src.xmi}\footnote{Remember that you should have created this by copying and renaming \texttt{bwd.trg.xmi}.} by adding a new \texttt{Partition} (with \texttt{index} = 3) as depicted in Fig.~\ref{fig:ea_extended_fwd_src_xmi}.
+Before specifying this ignore rule, however, let's extend the current \texttt{fwd.src.xmi}\footnote{Remember that you should have created this by copying and renaming \texttt{bwd.trg.xmi}.} by adding a new \texttt{Partition} (with \texttt{index} = 3) as depicted in \Cref{fig:ea_extended_fwd_src_xmi}.
 Connect the new partition \texttt{partition3}  to \texttt{partition0} via a \texttt{previous} reference, and connect \texttt{partition2} to \texttt{partition3} via a \texttt{next} reference (this is how to extend a learning box).
 Create a new \texttt{card} in your new \texttt{partition3} as well.
 
@@ -86,7 +86,7 @@ If we would not add the created \texttt{Entry} to the \texttt{Dictionary}, this 
 OK -- let's now understand why the box was already ignored.
 
 \begin{itemize}
-\item[$\blacktriangleright$] Following the four steps in Fig.~\ref{fig:dec}, open the generated ecore file in the integration project (Step 1).
+\item[$\blacktriangleright$] Following the four steps in \Cref{fig:dec}, open the generated ecore file in the integration project (Step 1).
 This file contains not only the correspondence metamodel, but also all operationalized rules.
 Java code for the transformation is generated directly from this file.
 \item[$\blacktriangleright$] Under \texttt{Rules/BoxToDictionaryRule/} locate the so called ``isAppriopriate\_FWD...'' method for the TGG rule.
@@ -103,7 +103,7 @@ You should see an object diagram representing the rule.
 Note that black means context, while blue means negative (it should not be possible to extend a match to cover any of these elements).
 
 \item[$\blacktriangleright$] In our case, there are quite a few edges that would be left (in this sense) dangling.
-An example is shown as Step~4 in Fig.~\ref{fig:dec}:  if the box has any other contained partition apart from the 3 matched in this rule, then it is clear that this extra edge cannot be translated with any other rule in the current TGG.
+An example is shown as Step~4 in \Cref{fig:dec}:  if the box has any other contained partition apart from the 3 matched in this rule, then it is clear that this extra edge cannot be translated with any other rule in the current TGG.
 It would thus be dangling and therefore blocks the application of this rule.
 Another example would be a next edge going out from \texttt{partition2}.
 Can you locate the NAC for this edge?

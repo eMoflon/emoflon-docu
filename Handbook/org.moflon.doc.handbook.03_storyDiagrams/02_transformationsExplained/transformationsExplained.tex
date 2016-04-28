@@ -30,7 +30,7 @@ A rule, $r: (L,R)$, can be \emph{applied} to a model (a typed graph) $G$ by:
   from $G$ to form  $(G\setminus Destroy)$
   
   \item \emph{Pasting} or $Creating$ $(R\setminus L)$, i.e., new elements that are present in the postcondition but not in the precondition and are to be created
-  in the hole left in $(G\setminus Destroy)$ to form a new graph, $H = (G\setminus Destroy) \cup Create$ (Fig.\ref{fig:rule_application}). 
+  in the hole left in $(G\setminus Destroy)$ to form a new graph, $H = (G\setminus Destroy) \cup Create$ (\Cref{fig:rule_application}). 
   
   \end{enumerate}
 
@@ -63,7 +63,7 @@ and one when inserting $Create := (R\setminus L)$ in $(G\setminus Destroy)$ to y
 push-out}. We won't go into further details in this handbook, but the interested reader can refer to \cite{EEPT06} for the exciting details.
 
 Now that we know what rules are, let's take a look at a simple example for our learning box. What would a rule application look like for moving a card from
-one partition to the next? Figure~\ref{fig:rule_example} depicts this $moveCard$ rule.
+one partition to the next? \Cref{fig:rule_example} depicts this $moveCard$ rule.
   
 \begin{figure}[htp]
 \begin{center}
@@ -76,7 +76,7 @@ one partition to the next? Figure~\ref{fig:rule_example} depicts this $moveCard$
 
 As already indicated by the colours used for $moveCard$, we employ a compact representation of rules formed by merging $(L,R)$ into a single \emph{story
 pattern}\define{Story Pattern} composed of  $Destroy := (L\setminus R)$ in red, $Retain :=  L\cap R$ in black, and $Create := (R\setminus L)$ in green
-(Fig.~\ref{fig:rule_compact}).
+(\Cref{fig:rule_compact}).
 
 \begin{figure}[htp]
 \begin{center}
@@ -87,7 +87,7 @@ pattern}\define{Story Pattern} composed of  $Destroy := (L\setminus R)$ in red, 
 \end{figure}
 
 As we shall see in a moment, this  representation is quite intuitive, as one can just forget the details of rule application and think in terms of what is to be
-deleted, retained, and created. We can therefore apply $moveCard$ to a learning box in terms of steps (1) -- (3), as depicted in Fig.~\ref{fig:rule_app_example}.
+deleted, retained, and created. We can therefore apply $moveCard$ to a learning box in terms of steps (1) -- (3), as depicted in \Cref{fig:rule_app_example}.
 
 Despite being able to merge rules together to form one story pattern, the individual rules still have to be applied in a suitable sequence to realise complex
 model transformations consisting of many steps! This can be specified with simplified activity diagrams, where every \emph{activity node}\define{Activity Node}

@@ -7,7 +7,7 @@
 
 \item[$\blacktriangleright$] Open \texttt{LearningBoxLanguage.eap} in Enterprise Architect (EA) by dou\-ble clicking it in Eclipse. Carefully do the
 following: (1) Click \emph{once} on \texttt{Partition} to select it, then (2) Click \emph{once} on the method \texttt{removeCard} to highlight it
-(Fig.~\ref{ea:sdm_start}), and (3) \emph{Double-click} on the chosen method to indicate that you want to implement it.
+(\Cref{ea:sdm_start}), and (3) \emph{Double-click} on the chosen method to indicate that you want to implement it.
 
 \begin{figure}[htp]
 \begin{center}
@@ -18,7 +18,7 @@ following: (1) Click \emph{once} on \texttt{Partition} to select it, then (2) Cl
 \end{figure}
  
 \item[$\blacktriangleright$] If you did everything right (and answered the question which popped up about creating a new SDM diagram with Yes), a new \emph{activity diagram} should be created and opened in a new tab with a cute anchor in
-the corner, and a \emph{start node} labelled with the signature of the method (Fig.~\ref{ea:sdm_skeleton}).  
+the corner, and a \emph{start node} labelled with the signature of the method (\Cref{ea:sdm_skeleton}).  
 
 \begin{figure}[htp]
 \begin{center}
@@ -48,7 +48,7 @@ metamodel. From there, double click the method again to jump back to the SDM. Th
 
 \newpage
 
-\item[$\blacktriangleright$] To begin, select the start node, and note the small black arrow that appears (Fig.~\ref{ea:sdm_quicklink}). 
+\item[$\blacktriangleright$] To begin, select the start node, and note the small black arrow that appears (\Cref{ea:sdm_quicklink}). 
 
 \begin{figure}[htp]
 \begin{center}
@@ -65,7 +65,7 @@ To quick-create an element, pull the arrow and click on an empty spot in the dia
 \item[$\blacktriangleright$] EA notices that there is nothing to quick-link to, and pops up a small, context-sensitive dialogue offering to create an element
 which can be connected to the source element.
 
-\item[$\blacktriangleright$] As illustrated in Fig.~\ref{ea:sdm_new_activity_node}, choose \texttt{Append StoryNode} to create a \emph{Story Node}.
+\item[$\blacktriangleright$] As illustrated in \Cref{ea:sdm_new_activity_node}, choose \texttt{Append StoryNode} to create a \emph{Story Node}.
 
 \begin{figure}[htp]
 \begin{center}
@@ -76,7 +76,7 @@ which can be connected to the source element.
 \end{figure}
 
 \item[$\blacktriangleright$] If you quick-created correctly, you should now have a start node, one node called \texttt{ActivityNode1}, and an edge
-connecting the two items. Complete the activity by quick-creating a stop node (Fig.~\ref{ea:sdm_stop_node}).
+connecting the two items. Complete the activity by quick-creating a stop node (\Cref{ea:sdm_stop_node}).
 
 \begin{figure}[htp]
 \begin{center}
@@ -96,11 +96,11 @@ and stop nodes), those that \emph{can} are called story nodes. Statement nodes c
 encounter this in a later SDM.
 
 \item[$\blacktriangleright$] To complete this activity, double-click \texttt{ActivityNode1} to prompt the dialogue depicted in
-Fig.~\ref{ea:story_pattern}. Enter \texttt{removeCardFromPartition} as the name of the story node, and select \texttt{Create this Object}.  Click
+\Cref{ea:story_pattern}. Enter \texttt{removeCardFromPartition} as the name of the story node, and select \texttt{Create this Object}.  Click
 \texttt{OK}. The activity node now has a single \emph{bound} \emph{object variable}, \texttt{this}.
 
 \item[$\blacktriangleright$] To create a new object variable, choose \texttt{SDM ObjectVariable} from the toolbox then click inside the activity node
-(Fig.~\ref{ea:tool_box}). A properties window will automatically appear (Fig.~\ref{ea:object_variable_properties}).
+(\Cref{ea:tool_box}). A properties window will automatically appear (\Cref{ea:object_variable_properties}).
 
 \begin{figure}[htpb]
 \begin{center} 
@@ -139,7 +139,7 @@ object variables: an assignment to \texttt{this}, and an assignment to a method 
 assigned to the parameter with the same name.
 
 \item[$\blacktriangleright$] To create a \emph{link variable} between the current partition and the card to be removed, choose the object variable \texttt{this}
-and quick link it to \texttt{toBeRemovedCard} (Fig.~\ref{ea:link_variable}).
+and quick link it to \texttt{toBeRemovedCard} (\Cref{ea:link_variable}).
 
 \begin{figure}[htpb]
 \begin{center}
@@ -150,7 +150,7 @@ and quick link it to \texttt{toBeRemovedCard} (Fig.~\ref{ea:link_variable}).
 \end{figure}
 
 \item[$\blacktriangleright$] According to the metamodel, there is only one possible link between a partition and card. Select this and set the
-\texttt{Binding Operator} to \texttt{Destroy} (Fig.~\ref{ea:link_variable_properties}). The reference names will automatically appear in the diagram.
+\texttt{Binding Operator} to \texttt{Destroy} (\Cref{ea:link_variable_properties}). The reference names will automatically appear in the diagram.
 
 \vspace{0.5cm}
 
@@ -166,7 +166,7 @@ and quick link it to \texttt{toBeRemovedCard} (Fig.~\ref{ea:link_variable}).
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Remember how we said that this method should return the same card that was passed in? As luck would have it, a return value for an
-SDM can be specified in the stop node. As depicted in Fig.~\ref{ea:stop_node_return_value}, double-click the stop node to prompt the \texttt{Edit StopNode}
+SDM can be specified in the stop node. As depicted in \Cref{ea:stop_node_return_value}, double-click the stop node to prompt the \texttt{Edit StopNode}
 dialogue.
 
 \newpage
@@ -192,7 +192,7 @@ following SDM implementations, we'll learn and discuss some other expression typ
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Returning to the activity, if you've done everything right, your first SDM should resemble
-Fig.~\ref{ea:sdm_complete_control_flow}, where \texttt{removeCard}'s entire pattern layer is modeled inside the sole \emph{activity node}. The method's return
+\Cref{ea:sdm_complete_control_flow}, where \texttt{removeCard}'s entire pattern layer is modeled inside the sole \emph{activity node}. The method's return
 value is now indicated below the stop node.
 
 \vspace{0.5cm}
@@ -211,7 +211,7 @@ Part I, Section 2.1.} then build your metamodel's code from the package explorer
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] If you're unable to export or generate code successfully, compare your SDM carefully with Fig.~\ref{ea:sdm_complete_control_flow}
+\item[$\blacktriangleright$] If you're unable to export or generate code successfully, compare your SDM carefully with \Cref{ea:sdm_complete_control_flow}
 and make sure you haven't forgotten anything.
 
 \vspace{0.5cm}
@@ -229,7 +229,7 @@ Let's assume that you want to remove the SDM of \texttt{Partition::removeCard}, 
 \begin{itemize}
 \item[$\blacktriangleright$]
 In the project browser, navigate to the method of which you want to remove the SDM.
-This can be accomplished by right-clicking the method in the Ecore diagram and then selecting ``Find in project browser" (Fig.~\ref{ea:sdm_removeSDM_findInProjectBrowser}), or by navigating manually through the project browser.
+This can be accomplished by right-clicking the method in the Ecore diagram and then selecting ``Find in project browser" (\Cref{ea:sdm_removeSDM_findInProjectBrowser}), or by navigating manually through the project browser.
 
 \begin{figure}[htbp]
     \begin{center}
@@ -240,7 +240,7 @@ This can be accomplished by right-clicking the method in the Ecore diagram and t
 \end{figure}
 
 \item[$\blacktriangleright$]
-Inside of the EClass ``Partition", you find the one entry for the method (``removeCard(Card)") and one entry for its SDM (``$\ll$SDM Activity$\gg$ removeCard(Card)") (Fig.~\ref{ea:sdm_removeSDM_methodSelected}).
+Inside of the EClass ``Partition", you find the one entry for the method (``removeCard(Card)") and one entry for its SDM (``$\ll$SDM Activity$\gg$ removeCard(Card)") (\Cref{ea:sdm_removeSDM_methodSelected}).
 
 \begin{figure}[htbp]
     \begin{center}

@@ -6,7 +6,7 @@
 
 In the next SDM we shall create a string representation for all the contents in a single learning box. To accomplish this, we will have to iterate through 
 every card, in every partition. The concept is similar to \texttt{Partition}'s \texttt{empty} method, except we'll need to create a nested \emph{for each}
-loop (Fig.~\ref{fig:goal_stringRep}). Further still, we'll need to call a helper method to accumulate the contents of each card to a single string.
+loop (\Cref{fig:goal_stringRep}). Further still, we'll need to call a helper method to accumulate the contents of each card to a single string.
 
 \vspace{1cm}
 
@@ -25,7 +25,7 @@ void method.
 
 Unlike \texttt{initializeBox} however, this helper method is actually better specified as an injection so, analogously to how you implemented
 \texttt{deter\-mine\-Next\-Size} for \texttt{box.grow()}, quickly edit \texttt{BoxImpl.java} by replacing the default code for \texttt{addToStringRep} with that
-in Fig.~\ref{code:addToStringRep_inject_file}. You can use Eclipse's built-in auto-completion to speed up this process. Save, create the injection file, and
+in \Cref{code:addToStringRep_inject_file}. You can use Eclipse's built-in auto-completion to speed up this process. Save, create the injection file, and
 confirm the contents of \texttt{BoxImpl.inject}.
 
 \newpage

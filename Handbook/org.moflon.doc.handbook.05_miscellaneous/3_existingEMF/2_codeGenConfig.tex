@@ -12,7 +12,7 @@ complete metamodel.
 \item[$\blacktriangleright$] In EA, right-click your \texttt{GenModelLanguage} package and select ``Properties\ldots'' 
 
 \item[$\blacktriangleright$] Navigate to ``Properties/Moflon'' in the dialogue window and update the tagged \texttt{Moflon::Export} value to \texttt{false}
-(Fig.~\ref{fig_customNS}).
+(\Cref{fig_customNS}).
 
 \begin{figure}[htb]
 \begin{center}  \includegraphics[width=\textwidth]{ea_genModelExportFalse}
@@ -24,7 +24,7 @@ complete metamodel.
 \item[$\blacktriangleright$] Next we have to set the ``real'' URI of the project to be used in Eclipse so that the relevant references are exported
 properly. Set the value of \texttt{Moflon::NsUri} to \texttt{platform:/\-plugin/\-org.\-eclipse.\-emf.codegen.ecore/\-model/\-GenModel.ecore}.
 As the default plugin ID generation provided by eMoflon is also not valid here, set the value of \texttt{Moflon::PluginID} to \texttt{\_\_ignore\_\_} (two underscores before and after!).
-The three relevant values to be set are shown in Fig.~\ref{fig_customNS}.
+The three relevant values to be set are shown in \Cref{fig_customNS}.
 
 \item[$\blacktriangleright$] Validate and export all projects as usual to your Eclipse workspace, and update the metamodel project by pressing \texttt{F5} in
 the package explorer.
@@ -44,7 +44,7 @@ configure a few things for code generation.
   
 \item[$\blacktriangleright$] Expand the \texttt{Ecore2GenModel} project folder and open the \texttt{mof\-lon.\-prop\-er\-ties.\-xmi} file tree. Right-click the
 properties container, and create a new \texttt{Add\-it\-ion\-al Dep\-en\-den\-cies} child. Double click the element to open its properties tab below the
-editor, and as shown in Fig.~\ref{eclipse:addDepChild}, update its \texttt{Value} to:\\
+editor, and as shown in \Cref{eclipse:addDepChild}, update its \texttt{Value} to:\\
 \end{enumerate}
 
 \vspace{-1cm}
@@ -71,7 +71,7 @@ editor, and as shown in Fig.~\ref{eclipse:addDepChild}, update its \texttt{Value
 Finally, to compenstate for some cases where our naming conventions were violated, analogously add the following mapping as corrections:
 
 \begin{enumerate}
-\item[$\blacktriangleright$] Add an \emph{import mapping} child for correct generation of imports, setting the key as \texttt{genmodel} (depicted in Fig.~\ref{eclipse:impMapValues}) and value to: \\
+\item[$\blacktriangleright$] Add an \emph{import mapping} child for correct generation of imports, setting the key as \texttt{genmodel} (depicted in \Cref{eclipse:impMapValues}) and value to: \\
 {\small \ttfamily \hspace*{0.5cm} org.\-eclipse.\-emf.\-codegen.\-ecore.\-genmodel}
 
 \vspace{0.5cm}

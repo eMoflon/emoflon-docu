@@ -3,9 +3,9 @@
 \genHeader
 
 Ok, back to business. In this SDM, we shall explicitly specify how our learning box is to be built up. We create a specific pattern that will append new
-partition elements to the end of a \texttt{Box} that follow our established movement rules (Fig.~\ref{fig:membox_depiction}). This means the new partition will
+partition elements to the end of a \texttt{Box} that follow our established movement rules (\Cref{fig:membox_depiction}). This means the new partition will
 become the \texttt{next} reference of the current last partition, and its \texttt{previous} reference must be connected to the first partition in the box
-(Fig.~\ref{fig:goal_grow}).
+(\Cref{fig:goal_grow}).
 
 \begin{figure}[htbp]
  	\centering
@@ -21,7 +21,7 @@ transformation rule. In this SDM, the \mbox{NAC} will be an object variable that
 algebraic graph transformations \cite{EEPT06}, \mbox{NACs} can be arbitrarily complex graphs that are much more general and powerful than what we currently
 support in our implementation,\footnote{To be precise, in CodeGen2 from Fujaba} namely only single negative elements (object or link variables).
 
-As depicted in Fig.~\ref{fig:goal_grow}, to create an appropriate \mbox{NAC} that constrains possible matches, we'll need to check to see if the currently
+As depicted in \Cref{fig:goal_grow}, to create an appropriate \mbox{NAC} that constrains possible matches, we'll need to check to see if the currently
 matched pattern can be extended to include the negative elements. Suppose the current potential last partition has a \texttt{nextPartition}. This means it
 is \emph{not} the absolute last partition, and so the match becomes invalid. We only want to insert a new partition when the \texttt{nextPartition}
 of the current potential last partition is null. Similarly, if the current potential first partition has a \texttt{previousPartition}, the match is invalid. The
@@ -39,7 +39,7 @@ than an SDM. We've already declared this method in our metamodel, so its signatu
 \begin{itemize}
 
 \item[$\blacktriangleright$] Open ``gen/LearningBoxLanguage.impl/BoxImpl.java.'' Scroll to the method declaration, and replace the contents with the code in
-Fig.~\ref{code:determineNextSize_impl}. Remember not to remove the first comment, which is necessary to indicate that the code is handwritten and needs to be
+\Cref{code:determineNextSize_impl}. Remember not to remove the first comment, which is necessary to indicate that the code is handwritten and needs to be
 extracted automatically as an injection. Please do not copy and paste the following code -- the copying process from your pdf viewer to the Eclipse IDE
 will likely add invisible characters to the code that eMoflon is unable to handle.
 

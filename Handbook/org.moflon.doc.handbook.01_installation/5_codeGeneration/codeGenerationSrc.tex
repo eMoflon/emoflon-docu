@@ -10,7 +10,7 @@ referred to as a repository. This is the reason why we refer to such projects as
 building and manipulating concrete instances of a specific model via a programming language such as Java. This is why we indicate repository projects using a
 cute adapter/plug symbol on the project folder.
 
-If you take a careful look at the code structure in \texttt{gen} (Fig.~\ref{eclipse:structureGen}), you'll find a \texttt{FooImpl.java} for every
+If you take a careful look at the code structure in \texttt{gen} (\Cref{eclipse:structureGen}), you'll find a \texttt{FooImpl.java} for every
 \texttt{Foo.java}. Indeed, the subpackage \texttt{.impl} contains Java classes that implement the interfaces in the parent package. Although this might strike
 you as unnecessary (why not merge interface and implementation for simple classes?), this consequent separation in interfaces and implementation allows for a
 clean and relatively simple mapping of Ecore to Java, even in tricky cases such as multiple inheritance (allowed and very common in Ecore models). A further
