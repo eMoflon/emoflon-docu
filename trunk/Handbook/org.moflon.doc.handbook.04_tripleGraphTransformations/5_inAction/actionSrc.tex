@@ -10,7 +10,7 @@ of a much simpler structure, let's start with the backwards transformation.
 \begin{itemize}
 
 \item[$\blacktriangleright$] Navigate to \texttt{Dictionary\-Language/model/} and open \texttt{Dictio\-nary\-Lang\-uage.ecore}. Expand the tree and create a new dynamic instance of a \texttt{Dictionary} named \texttt{bwd.src.xmi} (choose the EClass \texttt{Dictionary}, right-click, and select \texttt{Create dynamic instance}). 
-Make sure you persist your instance as \texttt{Learn\-ing\-Box\-To\-Dictionary\-In\-te\-gra\-tion/in\-stan\-ces/bwd.src.xmi} (as depicted in Fig.~\ref{eclipse:create_instance_dict}).
+Make sure you persist your instance as \texttt{Learn\-ing\-Box\-To\-Dictionary\-In\-te\-gra\-tion/in\-stan\-ces/bwd.src.xmi} (as depicted in \Cref{eclipse:create_instance_dict}).
 
 \begin{figure}[htbp]
 \begin{center}
@@ -30,7 +30,7 @@ Make sure you persist your instance as \texttt{Learn\-ing\-Box\-To\-Dictionary\-
 Don't forget the syntax we decided upon for each \texttt{entry.content} in the \texttt{CardToEntryRule} when setting up the constraints! 
 Be sure to set this property according to the format \texttt{<word>:<meaning>}. 
 Give each \texttt{entry} a different difficulty \texttt{level}, e.g., \texttt{beginner} for \texttt{One:Eins}, \texttt{advanced} for \texttt{Two:Zwei}, and \texttt{master} for \texttt{Three:Drei}.
-Your instance should resemble Fig.~\ref{eclipse:dictionaryxmi}.
+Your instance should resemble \Cref{eclipse:dictionaryxmi}.
 After this works you should of course play around with the model and add all kind of cards to see what happens.
 
 \begin{figure}[htbp]
@@ -50,7 +50,7 @@ To follow this handbook, however, do not change anything for the moment.
 
 \item[$\blacktriangleright$] Right-click the file in the Package Explorer and navigate to ``Run as\ldots/Java Application'' to execute the file.
 
-\item[$\blacktriangleright$] Did you get one error message, followed by one success message in the eMoflon console window (Fig.~\ref{eclipse:tggERROR}) below
+\item[$\blacktriangleright$] Did you get one error message, followed by one success message in the eMoflon console window (\Cref{eclipse:tggERROR}) below
 the editor? Perfect! Both of these statements make sense -- our TGG first attempted the forward transformation but, given that it was missing the source
 (\texttt{box}) instance, it was only able to perform a transformation in the backwards direction.
 The stub checks for \texttt{fwd.src.xmi} and \texttt{bwd.src.xmi} files per convention (all this can of course be edited and changed).
@@ -69,7 +69,7 @@ While you created the \texttt{bwd.src.xmi} instance, the TGG generated \texttt{b
 
 \item[$\blacktriangleright$] If you open and inspect \texttt{bwd.trg.xmi} you'll find that it's a \texttt{Box} of \texttt{English Numbers}.
 Expand the tree and you'll see our \texttt{Dictionary} in its corresponding
-\texttt{Box} format containing three \texttt{Par\-ti\-tions} (Fig.~\ref{eclipse:derivedBOX}). 
+\texttt{Box} format containing three \texttt{Par\-ti\-tions} (\Cref{eclipse:derivedBOX}). 
 Double click each \texttt{card} and observe how each \texttt{entry.content} was successfully split into two sides.
 Also note how the cards were placed in the correct (at least according to our \texttt{indexToLevel} attribute condition) partition.
 
@@ -88,7 +88,7 @@ To understand better what happened, eMoflon provides two important tools: the fi
 This model contains the created correspondence model, and references both source and target models.
 Using eMoflon's \texttt{Abstract Syntax View}, you can drag in a selection of elements and explore (right-click on a node in the view to choose if direct neighbours or all transitive neighbours should be added to the view) how the models are connected.
 You can remove elements from the view, zoom in and out, and also pick from a choice of standard layout algorithms.
-Figure~\ref{eclipse:graphView} shows all three complete models in the view with all correspondence links highlighted. 
+\Cref{eclipse:graphView} shows all three complete models in the view with all correspondence links highlighted. 
 You can choose elements in the view to see their attribute values either as a tool tip, or in the standard properties view in Eclipse.
 
 \begin{figure}[htb]
@@ -104,7 +104,7 @@ This time around, use the PlantUML view to inspect the protocol.
 If you select the root element (\texttt{Precedence Structure}), you'll see a tree of \emph{rule applications}, showing you which rules were applied to achieve the result.
 As \texttt{Card\-To\-Entry\-Rule} can only be applied after \texttt{BoxToDictionaryRule}, an application of the latter is a parent for all other rule applications.
 These are all children on the same level, as the exact order of application is irrelevant in this case.
-This, in general, directed acyclic graph of rule applications is depicted in Fig.~\ref{eclipse_protocol}.
+This, in general, directed acyclic graph of rule applications is depicted in \Cref{eclipse_protocol}.
  
 \begin{figure}[htb]
 \begin{center}
@@ -123,7 +123,7 @@ This, in general, directed acyclic graph of rule applications is depicted in Fig
 \end{figure}
 
 \item[$\blacktriangleright$] To inspect a rule application, choose one of the children of the precedence structure in the tree view.
-If you choose, for example, a \texttt{Card\-To\-Entry\-Rule} node, a diagram similar to that depicted in Fig.~\ref{eclipse_ruleApplication} will be shown as a visualisation of the rule application.
+If you choose, for example, a \texttt{Card\-To\-Entry\-Rule} node, a diagram similar to that depicted in \Cref{eclipse_ruleApplication} will be shown as a visualisation of the rule application.
 To understand this diagram, note that the labels of the nodes are of the form \texttt{rule variable ==> model element}, showing how the object and link variables in the rule were ``matched'' to actual elements in the source and target models.
 The colours indicate which elements would be created by applying this rule (in the simultaneous evolution of all three models).
 This protocol is not only for documentation, but is also used for model synchronisation, which we'll discuss and try out in a moment.

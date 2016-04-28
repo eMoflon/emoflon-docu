@@ -3,12 +3,12 @@
 \genHeader
 
 If everything has been done correctly up to this point, your project should save and build (hit the hammer symbol in the eMolfon task bar).
-The generated code will have some compilation errors (Step 1 in Fig.~\ref{eclipse:tggGenerated}) as Eclipse does not know where to access the generated code for the imported source and target ecore files (these could also be supplied from jars or installed plugins).
+The generated code will have some compilation errors (Step 1 in \Cref{eclipse:tggGenerated}) as Eclipse does not know where to access the generated code for the imported source and target ecore files (these could also be supplied from jars or installed plugins).
 In our case the generated code is in the respective source and target projects so let's communicate this to Eclipse.
 
 \begin{enumerate}
 
-\item[$\blacktriangleright$] Open the \texttt{MANIFEST.MF} file (Step 2 in Fig.~\ref{eclipse:tggGenerated}) and choose the \texttt{De\-pen\-den\-cies} tab (Step 3).
+\item[$\blacktriangleright$] Open the \texttt{MANIFEST.MF} file (Step 2 in \Cref{eclipse:tggGenerated}) and choose the \texttt{De\-pen\-den\-cies} tab (Step 3).
 
 \item[$\blacktriangleright$] Choose both source and target projects (Step 4) as dependencies and click \texttt{OK}.
 All compilations errors should now be resolved.
@@ -69,7 +69,7 @@ Now that we have a better understanding behind the construction of attribute con
 \item[$\blacktriangleright$] Locate and open \texttt{IndexToLevel.java} under ``src/csp.constraints'' in \texttt{LearningBoxToDictionaryIntegration}.
 
 \item[$\blacktriangleright$] As you can see, some code has been generated in order to handle the current unimplemented state of \texttt{IndexToLevel}. 
-Use the code depicted in Fig.~\ref{code:indexToLevel} to replace this default implementation.\footnote{Depending of course on your pdf viewer, copy and pasting this code should work.}
+Use the code depicted in \Cref{code:indexToLevel} to replace this default implementation.\footnote{Depending of course on your pdf viewer, copy and pasting this code should work.}
 
 \begin{figure}[htb]
 \begin{verbatim}

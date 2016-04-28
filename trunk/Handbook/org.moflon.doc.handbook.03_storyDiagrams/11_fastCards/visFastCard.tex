@@ -8,7 +8,7 @@
 \item[$\blacktriangleright$] To introduce fast cards into your learning box, return to the metamodel diagram and create a new \texttt{EClass},
 \texttt{FastCard}. Quick link to \texttt{Card} and choose \texttt{Create Inheritance} from the context menu. We only want to check the dynamic type of a
 tested card at runtime, which means we don't need to override anything. Therefore, when the \texttt{Overrides \& Implementations} dialogue appears, make sure
-nothing is selected (Fig.~\ref{ea:dialogue_override}). Your metamodel should then resemble Fig.~\ref{ea:metamodel_FastCard}.
+nothing is selected (\Cref{ea:dialogue_override}). Your metamodel should then resemble \Cref{ea:metamodel_FastCard}.
 
 \vspace{0.5cm}
 
@@ -32,7 +32,7 @@ nothing is selected (Fig.~\ref{ea:dialogue_override}). Your metamodel should the
 \vspace{0.5cm}
 
 \item[$\blacktriangleright$] Now return to the \texttt{check} SDM (in \texttt{Partition}) and extend the control flow as depicted in
-Fig.~\ref{ea:extendCheck}.
+\Cref{ea:extendCheck}.
 
  \vspace{0.5cm}
  
@@ -48,10 +48,10 @@ Fig.~\ref{ea:extendCheck}.
 \item[$\blacktriangleright$] As you can see, you have created two new story nodes, \texttt{isFastCard}, and \texttt{promoteFastCard}.
  
 \item[$\blacktriangleright$] Next, in order to complete the newest conditional, create a bound \texttt{FastCard} object variable, named \texttt{fastcard} in
-\texttt{isFastCard} (Fig.~\ref{ea:fastCardBinding}).
+\texttt{isFastCard} (\Cref{ea:fastCardBinding}).
  
 \item[$\blacktriangleright$] To check the dynamic type, we'll need to create a binding of \texttt{card} (of type \texttt{Card}) to \texttt{fastcard} (of
-type \texttt{FastCard}), so edit the \texttt{Binding} tab in the \texttt{Object Variable Properties} dialogue (Fig.~\ref{ea:fastCardBinding}). Please note that
+type \texttt{FastCard}), so edit the \texttt{Binding} tab in the \texttt{Object Variable Properties} dialogue (\Cref{ea:fastCardBinding}). Please note that
 this tab will not allow any changes unless the \texttt{bound} option in \texttt{Object Properties} is selected. As you can see, this set up configures the
 pattern matcher to check for types, rather than \texttt{parameters} and \texttt{attributes} as we've previously encountered.
 
@@ -75,8 +75,8 @@ parameter \emph{and} has already been used in \texttt{checkIfGuessIsCorrect}. We
 method whose return value would be the bound value. This is very useful as it allows invoking helper methods directly in patterns.
 
 \item[$\blacktriangleright$] To finalize the SDM, (i) extract the \texttt{promoteFastCard} story pattern and build the pattern according to
-Fig.~\ref{ea:promoteFastCardPattern} and (ii) create the parallel \texttt{Success} and \texttt{Failure} edges from this activity to the stop node returning 
-\texttt{true} for the same reason as in \texttt{check} earlier. Compare the pattern in Fig.~\ref{ea:promoteFastCardPattern} to Figs.~\ref{ea:sdm_check_complete_activity_node} and \ref{ea:sdm_check_complete_penalize}, the
+\Cref{ea:promoteFastCardPattern} and (ii) create the parallel \texttt{Success} and \texttt{Failure} edges from this activity to the stop node returning 
+\texttt{true} for the same reason as in \texttt{check} earlier. Compare the pattern in \Cref{ea:promoteFastCardPattern} to \Cref{ea:sdm_check_complete_activity_node, ea:sdm_check_complete_penalize}, the
 original promotion and penalizing card movements. As you can see, they're very similar, except \texttt{fastCard} is transferred from the current partition
 (\texttt{this}) immediately to the last partition in \texttt{box}, identified as having no next \texttt{Partition} with an appropriate NAC.
 Note that a second NAC is used to handle the case where \texttt{this} would be the next \texttt{Partition}, which is also not what we want.

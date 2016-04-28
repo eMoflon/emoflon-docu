@@ -11,7 +11,7 @@ These settings are advisable but you are, of course, free to choose your own col
 
 \item[$\blacktriangleright$] Select ``Tools/Options/Themes'' in EA, and set Diagram Theme to \texttt{Enterprise Architect 10}.
 
-\item[$\blacktriangleright$] Next, proceed to ``Gradients and Background'' and set ``Gradient" and ``Fill" to White (Fig.~\ref{ea:paperAndElementFill}). 
+\item[$\blacktriangleright$] Next, proceed to ``Gradients and Background'' and set ``Gradient" and ``Fill" to White (\Cref{ea:paperAndElementFill}). 
 \vspace{0.5cm}
 
 \begin{figure}[htbp]
@@ -23,7 +23,7 @@ These settings are advisable but you are, of course, free to choose your own col
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] In the ``Standard Colors'' tab, and set your colours to reflect Fig.~\ref{ea:standardColoursEA}.
+\item[$\blacktriangleright$] In the ``Standard Colors'' tab, and set your colours to reflect \Cref{ea:standardColoursEA}.
 
 \vspace{0.5cm}
 
@@ -36,12 +36,12 @@ These settings are advisable but you are, of course, free to choose your own col
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] In the same dialogue, go to ``Diagram/Appearance'' and reflect the settings in Fig.~\ref{ea:standardAppearanceEA}.
+\item[$\blacktriangleright$] In the same dialogue, go to ``Diagram/Appearance'' and reflect the settings in \Cref{ea:standardAppearanceEA}.
 Again, this is just a suggestion and not mandatory.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Last but not least open the "Code Engineering" toolbar (Fig.~\ref{ea:standardSCEEA1}) and choose \texttt{Ecore} as the default language (Fig.~\ref{ea:standardSCEEA2}). This setting \emph{is} mandatory, and very important.
+\item[$\blacktriangleright$] Last but not least open the "Code Engineering" toolbar (\Cref{ea:standardSCEEA1}) and choose \texttt{Ecore} as the default language (\Cref{ea:standardSCEEA2}). This setting \emph{is} mandatory, and very important.
 \end{itemize}
 
 \begin{figure}[htbp]
@@ -71,7 +71,7 @@ In your EA `workspace' (actually referred to as an \emph{EA project}), take a ca
 \emph{model} in EA lingo, and is used as a container to group a set of related \emph{packages}. In our case, \texttt{Demo}  consists of a single package
 \texttt{DoubleLinkedListLanguage}. An EA project however, can consist of numerous models that in turn, group numerous packages.
 
-Now switch back to your Eclipse workspace and note the two nodes named \texttt{Spe\-ci\-fi\-ca\-tions} and \texttt{org.moflon.demo} (Fig.~\ref{eclipse:eclipsePS}).
+Now switch back to your Eclipse workspace and note the two nodes named \texttt{Spe\-ci\-fi\-ca\-tions} and \texttt{org.moflon.demo} (\Cref{eclipse:eclipsePS}).
 
 \begin{figure}[htbp]
     \centering
@@ -85,7 +85,7 @@ These nodes, used to group related \emph{Eclipse projects} in an Eclipse workspa
 used to communicate with EA and initiate code generation by simply pressing \texttt{F5} or choosing \texttt{Refresh} from the context menu. In our case,
 \texttt{Specifications} should contain a single metamodel project \texttt{Demo} containing our EA project file  \texttt{Demo.eap}.
  
-Figure~\ref{fig:fromEAtoEclipse} depicts how the Eclipse working set \texttt{Demo} and its contents were generated from the EA model \texttt{Demo}. Every model
+\Cref{fig:fromEAtoEclipse} depicts how the Eclipse working set \texttt{Demo} and its contents were generated from the EA model \texttt{Demo}. Every model
 in EA is mapped to a working set in Eclipse with the same name. From every package in the EA model, an Eclipse project is generated, also with the same name.
 
 \begin{figure}[htbp]
@@ -104,7 +104,7 @@ metamodelling language that provides building blocks such as \emph{classes} and 
 between concepts) of a system. This folder also contains a \emph{Genmodel}, the second model required by the Eclipse Modeling Framework (EMF) to generate Java
 code.
 
-Looking back to Fig.~\ref{fig:fromEAtoEclipse}, realize that it also depicts how the class \texttt{Node} in the EA model is mapped to the Java interface
+Looking back to \Cref{fig:fromEAtoEclipse}, realize that it also depicts how the class \texttt{Node} in the EA model is mapped to the Java interface
 \texttt{Node}. Double-click \texttt{Node.java} and take a look at the methods declared in the interface. These correspond directly to the methods declared in
 the modelled \texttt{Node} class.
 
@@ -116,10 +116,10 @@ Have you noticed the methods of the \texttt{Node} class in our EA model?  Now ho
 corresponding implementation in Java is generated automatically and placed in \texttt{NodeImpl.java}. Just in case you didn't get it: The behavioural or dynamic
 aspects of a system can be completely modelled in an abstract, platform (programming language) independent fashion using a blend of activity  diagrams and a ``graph pattern'' language called \textit{Story~Driven~Modelling}~(SDM). In our EA project, these
 \emph{Story Diagrams} or simply \emph{SDM}s, are placed in SDM Containers named according to the method they implement. E.g.  \texttt{$\guillemotleft$SDM
-Activity$\guillemotright$ insertNodeAfter SDM} for the method \texttt{insertNodeAft\-er(Node)} as depicted in Fig.~\ref{fig:fromEAtoEclipse}.  We'll dedicate
+Activity$\guillemotright$ insertNodeAfter SDM} for the method \texttt{insertNodeAft\-er(Node)} as depicted in \Cref{fig:fromEAtoEclipse}.  We'll dedicate
 Part III of the handbook to understanding why SDMs are so  {\huge crazily} cool!
 
-To recap all we've discussed, let's consider the complete workflow as depicted in Fig.~\ref{fig:Overview}. We started with a concise model in EA, simple and
+To recap all we've discussed, let's consider the complete workflow as depicted in \Cref{fig:Overview}. We started with a concise model in EA, simple and
 independent of any platform specific details~(1).  Our EA model consists not only of static aspects modelled as a class diagram~(2), but also of dynamic aspects
 modelled using SDM~(3).  After exporting the model and code generation~(4), we basically switch from \emph{modelling} to \emph{programming} in a specific
 general purpose programming language (Java). On this lower \emph{level of abstraction}, we can flesh out the generated repository~(5) if necessary, and mix as
