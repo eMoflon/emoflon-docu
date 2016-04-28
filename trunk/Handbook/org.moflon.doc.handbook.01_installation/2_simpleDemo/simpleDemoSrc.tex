@@ -6,9 +6,10 @@
 
 \begin{itemize}
 \hypertarget{simpleDemo common}{} 
-\item[$\blacktriangleright$] Open Eclipse to a clean, fresh workspace. Go to ``Window/Open Perspective/Other\ldots''\footnote{A path given as ``foo/bar''
-indicates how to navigate in a series of menus and toolbars. New definitions or concepts will be \emph{italicized}, and any data you're required to enter,
-open, or select will be given as \texttt{command}.} and choose \texttt{eMoflon} (\Cref{eclipse:openPerspective}).
+\item[$\blacktriangleright$]
+Open Eclipse to a clean, fresh workspace.
+Go to \menuPath{Window/Open Perspective/Other\ldots} \footnote{A path given as \menuPath{foo \menuSep bar} indicates how to navigate in a series of menus and toolbars.
+New definitions or concepts will be \newconcept{italicized}, and any data you're required to enter, open, or select will be given as \filename{command}.} and choose \texttt{eMoflon} (\Cref{eclipse:openPerspective}).
 
 \begin{figure}[htbp]
 	\centering
@@ -17,14 +18,15 @@ open, or select will be given as \texttt{command}.} and choose \texttt{eMoflon} 
 	\label{eclipse:openPerspective}
 \end{figure} 
 
-\item[$\blacktriangleright$] At either the far right or centre of the toolbar, a new action set should have appeared. Navigate to ``Install, configure and deploy Moflon'' and click on it. Open the  ``Install Workspace'' menu bar
+\item[$\blacktriangleright$] At either the far right or centre of the toolbar, a new action set should have appeared.
+Navigate to \menuPath{Install Workspace \menuSep eMoflon Examples \menuSep Demo (Double-Linked List)} \LK{Please update the screenshot.}
 (\Cref{eclipse:newMetamodel}).
-
+%
 \vspace{0.5cm}
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width= 0.7\textwidth]{eclipse_MoflonButton}
-	\caption{Invoke the ``Install, configure and deploy Moflon'' button and the ``Install Workspace'' menu bar}
+	\caption{Invoking \enquote{Install Workspace $\to$ eMoflon Examples $\to$ Demo (Double-Linked List)}}
 	\label{eclipse:newMetamodel}
 \end{figure}
 
@@ -32,7 +34,7 @@ open, or select will be given as \texttt{command}.} and choose \texttt{eMoflon} 
 
 \item[$\blacktriangleright$] In this menu you can check out different workspaces for Eclipse. Here you can also check out worspaces for the handbook tutorials. How you can create your own projects is described in Part I. As the first tutorial select ``Demo Workspace''. 
 
-\item[$\blacktriangleright$]  Another button in the new action set is ``View and configure logging'' represented by an \texttt{L} (\Cref{eclipse:logger}).
+\item[$\blacktriangleright$]  Another button in the new action set is \menuPath{View and configure logging} represented by an \texttt{L} (\Cref{eclipse:logger}).
 Clicking this icon will open a \texttt{log4jConfig.properties} file where you can silence certain loggers, set the level of loggers, or configure other
 settings.\footnote{If you're not sure how to do this, check out a short Log4j tutorial a \url{http://logging.apache.org/log4j/1.2/manual.html}} All of eMoflon's
 messages appear in our console window, just below your main editor. This is automatically opened when you selected the \texttt{eMoflon} perspective and
