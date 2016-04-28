@@ -2,26 +2,6 @@
 \subsection{Implementing IndexToLevel}
 \genHeader
 
-If everything has been done correctly up to this point, your project should save and build (hit the hammer symbol in the eMolfon task bar).
-The generated code will have some compilation errors (Step 1 in \Cref{eclipse:tggGenerated}) as Eclipse does not know where to access the generated code for the imported source and target ecore files (these could also be supplied from jars or installed plugins).
-In our case the generated code is in the respective source and target projects so let's communicate this to Eclipse.
-
-\begin{enumerate}
-
-\item[$\blacktriangleright$] Open the \texttt{MANIFEST.MF} file (Step 2 in \Cref{eclipse:tggGenerated}) and choose the \texttt{De\-pen\-den\-cies} tab (Step 3).
-
-\item[$\blacktriangleright$] Choose both source and target projects (Step 4) as dependencies and click \texttt{OK}.
-All compilations errors should now be resolved.
-\end{enumerate}
-
-\begin{figure}[htb]
-\begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_generatedTGG}
-  \caption{Add source and target projects as dependencies}
-  \label{eclipse:tggGenerated}
-\end{center}
-\end{figure}
-
 Our TGG still isn't yet complete. 
 While we've declared and actually used our custom \texttt{indexTolevel} attribute condition, we haven't actually implemented it yet. 
 Let's quickly review the purpose of attribute conditions.

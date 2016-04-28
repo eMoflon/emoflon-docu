@@ -96,11 +96,12 @@ So let's define \texttt{entry\-.cont\-ent} as: \texttt{<word>:<mean\-ing>}.
 \item[$\blacktriangleright$] Luckily, we have two library attribute conditions, \texttt{addPrefix} and \texttt{concat} to help us with this.
 Add the following to your rule:
 
-\verb|addPrefix("Question", word, card.back)|\\  
-\verb|addPrefix("Answer", meaning, card.face)|\\
+\verb|addPrefix("Question ", word, card.back)|\\  
+\verb|addPrefix("Answer ", meaning, card.face)|\\
 \verb|concat(":", word, meaning, entry.content)|
 
-``Question'' and ``Answer'' are EString literals, \texttt{word} and \texttt{meaning} are local variables, and \texttt{card.face}, \texttt{card.back}, and \texttt{entry.content} are attribute expressions (this should be familiar from SDM story patterns).
+``Question '' and ``Answer '' are EString literals, \texttt{word} and
+\texttt{meaning} are local variables, and \texttt{card.face}, \texttt{card.back}, and \texttt{entry.content} are attribute expressions (this should be familiar from SDM story patterns).
 
 \item[$\blacktriangleright$] Our final task is now to specify where a new \texttt{card} (when transformed from an \texttt{entry}) should be placed.  
 We purposefully created three partitions to match the three difficulty levels, but if you check the available library constraints, there is nothing that can directly implement this specific kind of mapping. 
@@ -128,8 +129,27 @@ Add the following to \texttt{CardToEntryRule} to express that the relationship b
 \verb|indexToLevel(partition.index, entry.level)|
 \end{enumerate}
 
-Great work! All that's left to do is implement the \texttt{indexToLevel} constraint, and give your transformation a test run.
+If everything has been done correctly up to this point, your project should save and build (hit the hammer symbol in the eMolfon task bar).
+The generated code will have some compilation errors (Step 1 in Fig.~\ref{eclipse:tggGenerated}) as Eclipse does not know where to access the generated code for the imported source and target ecore files (these could also be supplied from jars or installed plugins).
+In our case the generated code is in the respective source and target projects so let's communicate this to Eclipse.
 
+\begin{enumerate}
+
+\item[$\blacktriangleright$] Open the \texttt{MANIFEST.MF} file (Step 2 in Fig.~\ref{eclipse:tggGenerated}) and choose the \texttt{De\-pen\-den\-cies} tab (Step 3).
+
+\item[$\blacktriangleright$] Choose both source and target projects (Step 4) as dependencies and click \texttt{OK}.
+All compilations errors should now be resolved.
+\end{enumerate}
+
+\begin{figure}[htb]
+\begin{center}
+  \includegraphics[width=0.8\textwidth]{eclipse_generatedTGG}
+  \caption{Add source and target projects as dependencies}
+  \label{eclipse:tggGenerated}
+\end{center}
+\end{figure}
+
+Great work! All that's left to do is implement the \texttt{indexToLevel} constraint, and give your transformation a test run.
 
 %%% Local Variables: 
 %%% mode: latex
