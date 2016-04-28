@@ -20,9 +20,9 @@ First, we extend \texttt{Partition} class by an attribute that keeps track of th
 \end{center}
 \end{figure}
 %
-\begin{itemize}    
-\item[$\blacktriangleright$] Add to the class \texttt{Partition} the new attribute \texttt{currentSize:EInt} (\Cref{ea_CAC_newAtributes}).
-\end{itemize} 
+\begin{stepbystep}    
+\item Add to the class \texttt{Partition} the new attribute \texttt{currentSize:EInt} (\Cref{ea_CAC_newAtributes}).
+\end{stepbystep} 
 %
 Now we start defining complex attribute constraints.
 \begin{figure}[htbp]
@@ -32,31 +32,31 @@ Now we start defining complex attribute constraints.
   \label{ea:CAC_NewCSP}
 \end{center}
 \end{figure}
-\begin{itemize}    
+\begin{stepbystep}
 %
-\item[$\blacktriangleright$] Navigate to the \texttt{penalizeCard} pattern in the \texttt{Partition::check()} method and add a \texttt{CSP instance}.
+\item Navigate to the \texttt{penalizeCard} pattern in the \texttt{Partition::check()} method and add a \texttt{CSP instance}.
 Following a similar process as creating a new object variable, \idest, either hit space or use the toolbox to create a new \emph{CSP instance} (\Cref{ea:CAC_NewCSP}).
 %
-\item[$\blacktriangleright$] You’ll notice a box were you can specify your complex attribute constraints. Enter the attribute constraints as shown in \Cref{ea:ea_CAC_DefineCSP} to define that a card is only moved if the additional card does not exceed the actual \texttt{partitionSize} of the previous partition.
+\item You’ll notice a box were you can specify your complex attribute constraints. Enter the attribute constraints as shown in \Cref{ea:ea_CAC_DefineCSP} to define that a card is only moved if the additional card does not exceed the actual \texttt{partitionSize} of the previous partition.
 %
-\end{itemize}
+\end{stepbystep}
 
-Basically an attribute constraint is a predicate of the form
+Basically, an attribute constraint is a predicate of the form
 
 ~~~~\texttt{SYMB(param$_1$,\ldots,param$_n$)}
 
-\noindent consisting of an symbol \texttt{SYMB} naming the predicate, followed by a list of parameters. A parameter can be:
 \begin{itemize}
-    \item A \emph{local variables} of the form \\
-    \hspace*{0.5cm} \texttt{varname:Type},\\
-    as for example, \texttt{newPrevCurrentSize:EInt} (first line \Cref{ea:ea_CAC_DefineCSP})\\
-     defines an local variable \texttt{newPrevCurrentSize} of type \texttt{EInt}. 
-    \item A \emph{constant} is of the form \\
-    \hspace*{0.5cm} \texttt{value:Type},\\
-    as for example, \texttt{1:EInt} (first line \Cref{ea:ea_CAC_DefineCSP}) represents constant 1 of type \texttt{EInt}.
-    \item An \emph{attribute variable} of the form \\
-    \hspace*{0.5cm}\texttt{objectVarName.attributeName}, \\
-     and refers to the current value of the attribute \texttt{attributeName} of object variable 	\texttt{objectVarName}, while an attribute variable of the form \texttt{objectVarName.attribteName'} refers to an attribute value after the transformation. This is necessary for, 	e.g., write the java expression \texttt{a.x=a.x+1} as the predicate \texttt{+(a.x', a.x, 1:EInt)}. 
+\item A \emph{predicate} \texttt{SYMB} specifies the relation of the affected parameters \texttt{param$_1$, \ldots, param$_n$}, \eg, equality \entity{=} or inequality \entity{!=}.
+    
+\item A \emph{local variables} of the form \texttt{name:type}, \eg, \texttt{newPrevCurrentSize : EInt} (first line \Cref{ea:ea_CAC_DefineCSP}) defines an local variable \texttt{newPrevCurrentSize} of type \texttt{EInt}. 
+
+\item A \emph{constant} is of the form \texttt{value::type} (not the \emph{2} colons), \eg, \texttt{1::EInt} represents constant 1 of type \texttt{EInt}.
+
+\item An \emph{attribute variable} is of the form \texttt{objectVariableName.attributeName}, and refers to the current value of the attribute \texttt{attributeName} of object variable 	\texttt{objectVariableName}, while an attribute variable of the form \texttt{objectVariableName.attribteName'} refers to an attribute value after the transformation.
+This is necessary, \eg, to increment the variable \entity{x} as follows: \entity{+(a.x', a.x, 1::EInt)}. 
+
+\item A \emph{package import} is of the form \entity{importPackage packageName;} and specifies that the package \entity{packageName} should be used to search for types.
+For instance, \entity{importPackage Ecore;} is required to refer to the type \entity{EInt}. 
 \end{itemize}
 
 
