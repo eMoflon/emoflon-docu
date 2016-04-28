@@ -33,6 +33,7 @@
 
 \def\eMoflonUpdateSite{\url{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/update-site2/}}
 \def\eMoflonEAAddin{\url{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/update-site2/ea-ecore-addin.zip}}
+\newcommand{\eMonflonHandbookURL}[1]{\url{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/handbook/part#1.pdf}}
 
 
 
@@ -40,6 +41,14 @@
 \newcommand{\eMoflonContact}{\href{mailto:\emoflonMail}{\emoflonMail}}
 \newcommand{\eMoflonWebsite}{\href{\eMoflonURL}{\eMoflonURL}}
 \newcommand{\todo}[1]{} %\textbf{TODO: #1}}
+
+\newcommand{\dlPartZero}{\eMonflonHandbookURL{0}}
+\newcommand{\dlPartOne}{\eMonflonHandbookURL{1}}
+\newcommand{\dlPartTwo}{\eMonflonHandbookURL{2}}
+\newcommand{\dlPartThree}{\eMonflonHandbookURL{3}}
+\newcommand{\dlPartFour}{\eMonflonHandbookURL{4}}
+\newcommand{\dlPartFive}{\eMonflonHandbookURL{5}}
+\newcommand{\downloadLocation}[1]{{\scriptsize \texttt{URL of this document: #1}}}
 
 
 \def\itemWithRightTriangle{\item[$\blacktriangleright$]}
@@ -52,7 +61,9 @@
 	filecolor=blue,% 
 	menucolor=black,% 
 	pagecolor=black,%
-	urlcolor=black
+	urlcolor=black,%
+    pdfauthor={The eMoflon Developer Team},%
+    pdftitle={The eMoflon \versionNumber{} Handbook}%
 }
 
 \input{../../org.moflon.doc.handbook.00_common/src/codestyles/Default}
@@ -63,14 +74,6 @@
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
-\newcommand{\eMonflonHandbookURL}[1]{\url{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/handbook/part#1.pdf}}
-\newcommand{\dlPartZero}{\eMonflonHandbookURL{0}}
-\newcommand{\dlPartOne}{\eMonflonHandbookURL{1}}
-\newcommand{\dlPartTwo}{\eMonflonHandbookURL{2}}
-\newcommand{\dlPartThree}{\eMonflonHandbookURL{3}}
-\newcommand{\dlPartFour}{\eMonflonHandbookURL{4}}
-\newcommand{\dlPartFive}{\eMonflonHandbookURL{5}}
-\newcommand{\downloadLocation}[1]{{\scriptsize \texttt{URL of this document: #1}}}
 
 
 
