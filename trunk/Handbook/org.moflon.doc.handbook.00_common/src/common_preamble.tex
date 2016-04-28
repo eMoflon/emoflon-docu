@@ -26,17 +26,24 @@
 \AtBeginDocument{\counterwithin{lstlisting}{section}}
 \counterwithin{figure}{section}
 
+\def\emoflonURL{contact@emoflon.org}
+\def\versionNumber{2.15.0}
+\def\eMoflonUpdateSite{\url{http://tiny.cc/emoflon-rel-update-site}}
+\def\eMoflonEAAddin{\url{http://tiny.cc/emoflon-rel-eaaddin}}
+
+
+
 \newcommand{\monthword}[1]{\ifcase#1\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi}
 
 %\include{common_definitions}
-\newcommand{\eMoflonContact}{\href{mailto:contact@emoflon.org}{contact@emoflon.org}}
+\newcommand{\eMoflonContact}{\href{mailto:\emoflonURL}{\emoflonURL}}
 \newcommand{\eMoflonWebsite}{\href{www.emoflon.org}{www.emoflon.org}}
 \newcommand{\disclaimerForTextualSyntax}{\fbox{\parbox{\textwidth}{
 Please note that the textual syntax is not as thoroughly tested as the visual syntax because most of our projects are built with the visual syntax.
 This means: Whenever something goes wrong even though you are sure to have followed the instructions precisely, do not hesitate to contact us via \eMoflonContact.
 }}}
 \newcommand{\todo}[1]{} %\textbf{TODO: #1}}
-\def\versionNumber{2.3.0}
+
 
 \def\itemWithRightTriangle{\item[$\blacktriangleright$]}
 
@@ -67,9 +74,9 @@ This means: Whenever something goes wrong even though you are sure to have follo
 \newcommand{\dlPartFour}{\eMonflonHandbookURL{4}}
 \newcommand{\dlPartFive}{\eMonflonHandbookURL{5}}
 \newcommand{\dlPartSix}{\eMonflonHandbookURL{6}}
+\newcommand{\downloadLocation}[1]{{\scriptsize \texttt{URL of this document: #1}}}
 
-\newcommand{\eMoflonUpdateSite}{\url{http://tiny.cc/emoflon-rel-update-site}}
-\newcommand{\eMoflonEAAddin}{\url{http://tiny.cc/emoflon-rel-eaaddin}}
+
 
 
 % --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
@@ -88,6 +95,18 @@ This means: Whenever something goes wrong even though you are sure to have follo
   		\color{Black}\leaders\hrule height \headrulewidth\hfill}}
   	\fancyfoot{}
 }
+
+% These words should appear in the glossary
+\newcommand{\define}[1]{\marginpar{\small\emph{#1}}}
+
+% Textual syntax EBNF statement format
+\newcommand{\syntax}[1]{ \begin{quote} \small \texttt{#1} \end{quote}}	
+
+\renewcommand{\thesection}{\arabic{section}}
+
+%%%%
+% COMMANDS RELATED TO TEXTUAL SYNTAX OR SPLIT OF VISUAL AND TEXTUAL SYNTAX
+%
 
 % Visual instructions; Red header
 %\newcommand{\visHeader}{
@@ -118,16 +137,3 @@ This means: Whenever something goes wrong even though you are sure to have follo
 %\fancyfoot[RO]{ $\triangleright$ \hyperlink{#1}{\texttt{Next [visual]\hspace{0.2cm}}}%
 % \\ $\triangleright$ \hyperlink{#2}{\texttt{Next [textual]}}}
 %}
-
-
-% Required time for part (Should appear on introduction page)
-\newcommand{\requiredTime}[1]{{\scriptsize \texttt{Approximate time to complete: #1} }}
-\newcommand{\downloadLocation}[1]{{\scriptsize \texttt{URL of this document: #1}}}
-
-% These words should appear in the glossary
-\newcommand{\define}[1]{\marginpar{\small\emph{#1}}}
-
-% Textual syntax EBNF statement format
-\newcommand{\syntax}[1]{ \begin{quote} \small \texttt{#1} \end{quote}}	
-
-\renewcommand{\thesection}{\arabic{section}}
