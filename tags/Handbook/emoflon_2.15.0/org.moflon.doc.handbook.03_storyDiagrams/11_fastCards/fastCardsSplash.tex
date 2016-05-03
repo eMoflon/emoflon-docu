@@ -1,0 +1,38 @@
+\newpage
+\section{Fast cards!}
+\genHeader
+\hypertarget{sec:fastCard}{}
+
+Congratulations, you're almost there! This is the last SDM needed before your Leitner's learning box is fully functional.
+
+For very simple cards (i.e., words in a different language that are quite similar), it might be a bit annoying to have to answer these cards again and
+again in successive partitions. Such \emph{fast} cards should somehow be marked as such and handled differently. If a fast card is correctly answered once,
+it should be immediately moved to the final partition in the box. This way, the card is practiced once, and only tested once more before finally being ejected from the
+box.
+
+It makes sense for a \texttt{FastCard} to inherit from \texttt{Card}, so we'll extend the current object in our metamodel by a new \texttt{EClass} for fast cards, 
+depicted below with a marker to show it behaves differently (\Cref{fig:goal_fastCard}).
+
+\begin{figure}[htbp]
+	\centering
+    \includegraphics[width=0.7\textwidth]{goal_fastCard}
+	\caption{Checking a fast card against a guess}
+	\label{fig:goal_fastCard}
+\end{figure}
+\FloatBarrier
+
+In addition to creating a new \texttt{EClass}, we also need to extend the
+existing \texttt{check} method to check for this special card type once a guess is determined to be correct. Now \texttt{check} needs to decide, based on the dynamic type\footnote{In a statically typed language like Java, every
+object has a static type (determined at compile time) and a dynamic type (that can only be determined at runtime).} of \texttt{card}, if it needs to handle this special fast card. This
+can be expressed in SDMs with a \emph{BindingExpression} (or just \emph{Binding})\define{Binding}. A binding can be specified for a \emph{bound} object variable
+and is the final case in which an object variable can be marked as being bound.
+
+To refresh your memory, we have already learnt that a bound object variable is either (1) assigned to \texttt{this}, (2) a parameter of the method, or (3) a
+value determined in a preceding activity node. Bindings represent a fourth possibility of giving a manual binding for an object variable.
+
+Finally, this new pattern faces a similar challenge as \texttt{grow}. A \texttt{FastCard} can't simply progress to the \texttt{next} partition. It must skip
+ahead to the absolute last partition in the box. This means yet another NAC is required to determine the last partition in a \texttt{Box}.
+  
+\input{../11_fastCards/visFastCard}
+
+\input{../11_fastCards/GUIFastCard}

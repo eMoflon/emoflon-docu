@@ -1,0 +1,14 @@
+[Session]
+FileVersion=1
+File0\FileName=src/installation_mainFile.tex
+File0\Line=29
+File0\Col=13
+File0\FirstLine=15
+File0\FoldedLines=
+MasterFile=src/installation_mainFile.tex
+CurrentFile=src/installation_mainFile.tex
+Bookmarks=@Invalid()
+
+[InternalPDFViewer]
+File=src/installation_mainFile.pdf
+Embedded=true

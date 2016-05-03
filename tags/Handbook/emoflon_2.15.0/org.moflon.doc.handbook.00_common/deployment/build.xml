@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Handbook" basedir="." default="package">
+
+	<description>
+		This build script packages the handbook files for deployment.
+		Task "package": Copies all parts of the handbook to ${path.target}, using appropriate names.
+		Task "clean": Removes ${path.target}.
+	</description>
+	<property file="build.properties" />
+
+	<!--
+	Copies all PDF files to path.target
+	-->
+	<target name="package" description="Package handbook files">
+		<mkdir dir="${path.target}" />
+		<copy file="${path.part0}/00_introduction.pdf" tofile="${path.target}/part0.pdf" failonerror="no"/>
+		<copy file="${path.part0}/src/introduction_mainFile.pdf" tofile="${path.target}/part0.pdf" failonerror="no"/>
+		<copy file="${path.part1}/01_installation.pdf" tofile="${path.target}/part1.pdf" failonerror="no"/>
+		<copy file="${path.part1}/src/installation_mainFile.pdf" tofile="${path.target}/part1.pdf" failonerror="no"/>
+		<copy file="${path.part2}/02_leitnersLearningBox.pdf" tofile="${path.target}/part2.pdf" failonerror="no"/>
+		<copy file="${path.part2}/src/learningBox_mainFile.pdf" tofile="${path.target}/part2.pdf" failonerror="no"/>
+		<copy file="${path.part3}/03_storyDiagrams.pdf" tofile="${path.target}/part3.pdf" failonerror="no"/>
+		<copy file="${path.part3}/src/storyDiagrams_mainFile.pdf" tofile="${path.target}/part3.pdf" failonerror="no"/>
+		<copy file="${path.part4}/04_TGGs.pdf" tofile="${path.target}/part4.pdf" failonerror="no"/>
+		<copy file="${path.part4}/src/TGG_mainFile.tex.pdf" tofile="${path.target}/part4.pdf" failonerror="no"/>
+		<copy file="${path.part6}/06_miscellaneous.pdf" tofile="${path.target}/part6.pdf" failonerror="no"/>
+		<copy file="${path.part6}/src/miscellaneous_mainFile.pdf" tofile="${path.target}/part6.pdf" failonerror="no"/>
+	</target>
+
+	<!--
+	Removes all generated PDF files.
+	Sometimes, a second PDF file is put into the respective ./src folders, 
+	so for each part, there are two delete tasks.
+	-->
+	<target name="clean-pdfs" description="Remove pre-packaged handbook files">
+		<delete failonerror="false" file="${path.part0}/00_introduction.pdf"/>
+		<delete failonerror="false" file="${path.part0}/src/introduction_mainFile.pdf"/>
+		<delete failonerror="false" file="${path.part1}/01_installation.pdf"/>
+		<delete failonerror="false" file="${path.part1}/src/installation_mainFile.pdf"/>
+		<delete failonerror="false" file="${path.part2}/02_leitnersLearningBox.pdf"/>
+		<delete failonerror="false" file="${path.part2}/src/learningBox_mainFile.pdf"/>
+		<delete failonerror="false" file="${path.part3}/03_storyDiagrams.pdf" />
+		<delete failonerror="false" file="${path.part3}/src/storyDiagrams_mainFile.pdf"/>
+		<delete failonerror="false" file="${path.part4}/04_TGGs.pdf"/>
+		<delete failonerror="false" file="${path.part4}/src/TGG_mainFile.pdf"/>
+		<delete failonerror="false" file="${path.part5}/05_modelToText.pdf" />
+		<delete failonerror="false" file="${path.part5}/src/modelToTextTransforms_mainFile.pdf"/>
+		<delete failonerror="false" file="${path.part6}/06_miscellaneous.pdf" />
+		<delete failonerror="false" file="${path.part6}/src/miscellaneous_mainFile.pdf"/>
+	</target>
+
+	<!--
+	Clears the target directory.
+	-->
+	<target name="clean-target" description="Remove pre-packaged handbook files">
+		<delete dir="${path.target}" />
+	</target>
+
+</project>

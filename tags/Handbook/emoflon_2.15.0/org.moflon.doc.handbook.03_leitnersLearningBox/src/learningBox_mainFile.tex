@@ -1,0 +1,46 @@
+\input{../../org.moflon.doc.handbook.00_common/src/common_preamble}
+
+\graphicspath{%
+{../../org.moflon.doc.handbook.00_common/images/}%
+{../2_staticSemantics/1_newStart/nsVisImages/}%
+{../2_staticSemantics/2_definingClasses/dcVisImages/}%
+{../2_staticSemantics/3_connectingClasses/ccVisImages/}%
+{../2_staticSemantics/4_creatingMethods/cmVisImages/}%
+{../2_staticSemantics/5_validation/vis_EAValidation/vVisImages/}%
+{../3_creatingInstance/04_images/}%
+{../4_graphView/gvImages/}%
+{../5_introToInjections/iImages/}%
+{../6_LLBGui/guiImages/}%
+}
+
+\def\partTitle{Part II: Ecore}
+\input{../../org.moflon.doc.handbook.00_common/src/titlepage}
+% -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+\begin{document}
+
+\frontmatter 
+\noHeader
+
+{\let\newpage\relax\maketitle}
+
+\input{../../org.moflon.doc.handbook.00_common/src/copyright}
+\let\cleardoublepage\clearpage
+
+\tableofcontents
+
+% Store page counter
+\newcounter{romanpages}
+\setcounter{romanpages}{\value{page}}
+
+\mainmatter
+
+% Main content for this Part; handles all inputs
+\include{learningBox_source}
+
+\input{learningBox_conclusion}
+
+\include{learningBox_glossary}
+
+\end{document}

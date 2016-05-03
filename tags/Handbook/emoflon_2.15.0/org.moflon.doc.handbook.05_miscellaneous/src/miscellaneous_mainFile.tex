@@ -1,0 +1,58 @@
+\input{../../org.moflon.doc.handbook.00_common/src/common_preamble}
+
+\graphicspath{%
+{../../org.moflon.doc.handbook.00_common/images/}%
+{../1_grokkingEA/01_layOutElements/}%
+{../1_grokkingEA/02_bendingLines/}%
+{../1_grokkingEA/03_delVSRem/}%
+{../1_grokkingEA/04_exclusion/}%
+{../1_grokkingEA/05_verbose/}%
+{../1_grokkingEA/06_duplicating/}%
+{../1_grokkingEA/07_seek/}%
+{../1_grokkingEA/08_advSearch/}%
+{../2_subversionEA/}{../3_existingEMF/emfImages/}%
+{../8_LegacyCodeGen2/images/}%
+{../9_CreatingAndUsingEnums/images/}%
+{../10_convertTGGToMOSLTGG/}
+}
+
+% ----------------------------------------------------------------------------------------------------------------
+\def\partTitle{Part V: Miscellaneous}
+
+\input{../../org.moflon.doc.handbook.00_common/src/titlepage}
+% -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+% keywordstyle=\color{blue},
+% morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
+
+\begin{document}
+
+\frontmatter 
+\noHeader
+
+{\let\newpage\relax\maketitle}
+
+\input{../../org.moflon.doc.handbook.00_common/src/copyright}
+\let\cleardoublepage\clearpage
+
+\tableofcontents
+
+% Store page counter
+\newcounter{romanpages}
+\setcounter{romanpages}{\value{page}}
+
+\mainmatter
+
+% Main content;
+\include{miscellaneous_source}
+
+\newpage \genHeader
+\phantomsection
+\addcontentsline{toc}{section}{References}
+\renewcommand*{\bibname}{References}
+\bibliographystyle{plain}
+\normalsize
+\nocite{*}  
+\bibliography{../../org.moflon.doc.handbook.00_common/bibliography/references}
+
+\end{document}
