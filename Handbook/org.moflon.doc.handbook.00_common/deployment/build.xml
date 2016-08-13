@@ -24,8 +24,8 @@
 		<copy file="${path.part3}/03_storyDiagrams.pdf" tofile="${path.target}/part3.pdf" failonerror="no"/>
 		<copy file="${path.part3}/src/storyDiagrams_mainFile.pdf" tofile="${path.target}/part3.pdf" failonerror="no"/>
 		<copy file="${path.part4}/04_TGGs.pdf" tofile="${path.target}/part4.pdf" failonerror="no"/>
-		<copy file="${path.part4}/src/TGG_mainFile.tex.pdf" tofile="${path.target}/part4.pdf" failonerror="no"/>
-		<copy file="${path.part5}/05_miscellaneous.pdf" tofile="${path.target}/part5.pdf" failonerror="no"/>
+		<copy file="${path.part4}/src/TGG_mainFile.pdf" tofile="${path.target}/part4.pdf" failonerror="no"/>
+		<copy file="${path.part5}/06_miscellaneous.pdf" tofile="${path.target}/part5.pdf" failonerror="no"/>
 		<copy file="${path.part5}/src/miscellaneous_mainFile.pdf" tofile="${path.target}/part5.pdf" failonerror="no"/>
 	</target>
 
