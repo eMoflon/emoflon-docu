@@ -39,9 +39,24 @@ As the first tutorial select \menuPath{eMoflon Examples \menuSep Demo (Double-Li
 
 All our handbook examples are provided via Git and are hosted on GitHub\footnote{See \url{https://github.com/eMoflon/emoflon-examples}.}.
 If you encounter problems when fetching some handbook example, the reason may be that your checked out working copy is in a \enquote{dirty} state.
-In this case, it is safe to remove your whole working copy as follows:
-Navigate to the \menuPath{Git} perspective in Eclipse (\menuPath{Window \menuSep Perspective \menuSep Open Perspective \menuSep Other\dots}), right-click your working copy \entity{emoflon-examples} and choose \menuPath{Delete Repository...}.
+In this case, you may start over by 
+\begin{inparaenum}
+\item removing all affected projects from your workspace (do \emph{not} tick \menuPath{Delete project contents on disk}),
+\item navigating to the \menuPath{Git} perspective in Eclipse (\menuPath{Window \menuSep Perspective \menuSep Open Perspective \menuSep Other\dots}) and
+\item performing one of the following:
+\end{inparaenum}
+\begin{itemize}
+\item The drastic solution:
+Right-click your working copy \eMoflonExamplesRepo and choose \menuPath{Delete Repository...}.
 Make sure to fully delete the repository by ticking all boxes.
+\item The smooth solution:
+Right-click your working copy \eMoflonExamplesRepo and select \menuPath{Clean\dots}.
+Tick \menuPath{Clean selected untracked files and directories} and \menuPath{Include ignored resources}, and confirm with \menuPath{Finish}.
+The previous command has purged all untracked and ignored files but modifications of files tracked by Git are still kept in their modified state.
+To undo these changes, right-click your working \eMoflonExamplesRepo copy again and select \menuPath{Reset\dots}.
+Select \menuPath{master} and tick \menuPath{Hard}, then confirm with \menuPath{Reset}.
+\end{itemize}
+
 
 \item
 Another button in the new action set is \menuPath{View and configure logging} represented by an \texttt{L} (\Cref{eclipse:logger}).
