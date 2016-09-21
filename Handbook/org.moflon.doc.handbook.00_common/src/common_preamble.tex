@@ -36,15 +36,17 @@
 \def\versionNumber{2.16.0}
 \def\suggestedUpdateSiteType{beta} % beta, release
 
-\def\eMoflonUpdateSite{\url{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/update-site2/}}
-\def\eMoflonEAAddin{\url{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/update-site2/ea-ecore-addin.zip}}
-\newcommand{\eMonflonHandbookURL}[1]{\url{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/handbook/part#1.pdf}}
+\def\eMoflonUpdateSite{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/update-site2/}}
+\def\eMoflonEAAddin{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/update-site2/ea-ecore-addin.zip}}
+\newcommand{\eMonflonHandbookURL}[1]{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/handbook/part#1.pdf}}
 
 
 
 %\include{common_definitions}
-\newcommand{\eMoflonContact}{\href{mailto:\emoflonMail}{\emoflonMail}}
-\newcommand{\eMoflonWebsite}{\href{\eMoflonURL}{\eMoflonURL}}
+\newcommand{\linkto}[1]{\linktoTwo{#1}{#1}}
+\newcommand{\linktoTwo}[2]{\href{#1}{\textsf{#2}}}
+\newcommand{\eMoflonContact}{\linktoTwo{mailto:\emoflonMail}{\emoflonMail}}
+\newcommand{\eMoflonWebsite}{\linkto{\eMoflonURL}}
 
 \newcommand{\dlPartZero}{\eMonflonHandbookURL{0}}
 \newcommand{\dlPartOne}{\eMonflonHandbookURL{1}}
@@ -78,8 +80,8 @@
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
 
-\def\idest{i.\,e.\xspace}
-\def\eg{e.\,g.\xspace}
+\def\idest{i.e.\xspace}
+\def\eg{e.g.\xspace}
 \def\cf{cf.\xspace}
 \def\vs{vs.\xspace}
 
