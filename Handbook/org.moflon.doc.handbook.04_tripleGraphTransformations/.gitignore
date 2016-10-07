@@ -1,4 +1,7 @@
 /**/*.synctex.gz
+/**/*.bbl
+/**/*.blg
 /src/**.psf
 /*.pdf
+/tmp/*
 /tmp/

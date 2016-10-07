@@ -32,7 +32,7 @@ separate transformations, \emph{traceability} has to be supported manually (and 
 
 \item[Incrementality and other cool stuff:] Traceability links can also be used to propagate changes made to an existing pair of models \emph{incrementally}, i.e., without recreating the models from scratch. 
 This is not only more efficient in most cases (small change and humongous models), but is also sometimes necessary to avoid losing information in one model that simply cannot be recreated with the other model.
-Finally, having a declarative (meaning here direction agnostic, i.e., neither forward nor backward) makes it easier to derive all kind of different transformations including a model generator (we'll actually get to use this later).
+Finally, having a declarative (meaning here direction-agnostic, i.e., neither forward nor backward) specification makes it easier to derive all kind of different transformations including a model generator (we'll actually get to use this later).
 \end{description}
 
 Our goal in this part is, therefore, to investigate how Triple Graph Grammars (TGGs), a cool \emph{bidirectional} transformation language, can be used to address these problems. 
@@ -46,9 +46,9 @@ To continue with our running example, we shall transform \texttt{Leit\-ners\-Lea
 \end{center}
 \end{figure}
 
-To briefly explain, each card in the box has a keyword on one side that a user can see, paired with a definition hidden on the opposite side. 
+To briefly explain, each card in the box has a keyword on one side (called \emph{face}) that a user can see, paired with a definition hidden on the opposite side (called \emph{back}). 
 We will combine each of these to create the keyword and content of a single dictionary entry, perhaps assigning a difficulty level based on the card's current position in the box. 
-We also want to be able to transform in the opposite direction, transforming each entry into a card by splitting up the contents, and inserting the new element into a specific partition in the box. 
+We also want to be able to transform in the opposite direction, transforming each dictionary entry into a card by splitting up the contents, and inserting the new element into a specific partition in the box. 
 After a short introduction to TGGs and setting up your workspace correctly, we shall see how to develop
 your first bidirectional transformation!
 

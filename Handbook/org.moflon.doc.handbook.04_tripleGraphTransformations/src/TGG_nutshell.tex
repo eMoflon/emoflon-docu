@@ -29,15 +29,16 @@ How? Simply check if a triple ($S\leftarrow C\rightarrow T$) can be created usin
 \vspace{0.25cm}
 
 If such a triple can be created, then the graphs are consistent, denoted by: $S \Leftrightarrow_{TGG} T$. This consistency relation can be used to check if a given bidirectional transformation (i.e., a pair ($f,b$) of a unidirectional forward transformation $f$ and backward transformation $b$) is correct. 
-In summary, \emph{a TGG can be viewed as a specification of how the transformations \emph{should} behave ($S \Leftrightarrow_{TGG} f(S)$ and $b(T) \Leftrightarrow_{TGG} T$)}.
+In summary, a TGG can be viewed as a specification of how the transformations \emph{should behave} ($S \Leftrightarrow_{TGG} f(S)$ and $b(T) \Leftrightarrow_{TGG} T$).
 	
 \item[(2) The consistency relation can be operationalized:]% 
-This is the surprising (and extremely cool) part of TGGs -- correct forward \emph{and} backward transformations (i.e., $f$ and $b$) can be derived automatically from every TGG~\cite{Giese2010,Hermann2011a}! 
+This is the surprising (and extremely cool) part of TGGs:
+correct forward \emph{and} backward transformations (i.e., $f$ and $b$) can be derived automatically from every TGG~\cite{Giese2010,Hermann2011a}! 
 
 \vspace{0.25cm}
 
 In other words, the description of the simultaneous evolution of the source, correspondence, and target graphs is \emph{sufficient} to derive a forward and a backward transformation. 
-As these derived rules explicitly state step-by-step how to perform forward and backward transformations, they are called \emph{operational} rules \define{Operationalization} as opposed to the original TGG \emph{declarative} rules specified by the user. 
+As these derived rules explicitly state step-by-step how to perform forward and backward transformations, they are called \emph{operational} rules \define{Operationalization}, as opposed to the original TGG \emph{declarative} rules specified by the user. 
 This derivation process is therefore also referred to as the \emph{operationalization} of a TGG.
 	
 \end{description}
@@ -46,7 +47,7 @@ Before getting our hands dirty with a concrete example, here are a few extra poi
 
 \begin{itemize}
 
-\item Many more operational rules can be automatically derived from the $S \Leftrightarrow_{TGG} T$ consistency relation including inverse rules to \emph{undo} a step in a forward/backward transformation~\cite{LAVS_ICGT_2012},\footnote{Note that the TGGs are symmetric and forward/backward can be interchanged freely. 
+\item Many more operational rules can be automatically derived from the $S \Leftrightarrow_{TGG} T$ consistency relation including inverse rules to \emph{undo} a step in a forward/backward transformation~\cite{LAVS_ICGT_2012},\footnote{Note that the TGGs are symmetric and forward or backward can be interchanged freely. 
 As it is cumbersome to always write forward/backward, we shall now simply say forward.} and rules that check the consistency of an existing graph triple.
 
 \item You might be wondering why we need the correspondence graph. 

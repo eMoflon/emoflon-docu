@@ -2,7 +2,7 @@
 \subsection{Get Eclipse}
 \label{sec:get-eclipse}
 
-Navigate to \url{https://www.eclipse.org/downloads/} and download the latest \texttt{Eclipse Modeling Tools}.\footnote{We have tested this part of the handbook for \texttt{Eclipse Mars.2 (4.5.2)} running on Mac OS X Yosemite and Windows 8.}
+Navigate to \url{https://www.eclipse.org/downloads/} and download the latest \texttt{Eclipse Modeling Tools}.\footnote{We have tested this part of the handbook for \texttt{Eclipse Neon (4.6.0)} running on Windows 8.1.}
 Do not try to use another Eclipse package as it probably won't work.
 
 \subsection{Install eMoflon}
@@ -12,16 +12,17 @@ Install eMoflon as an Eclipse plugin from this update site.\footnote{\url{http:/
 When installing, make sure you choose to install \emph{all} available features.
 
 If you don't already have Graphviz dot installed on your system then install it:
-\url{http://www.graphviz.org/Download.php}
+\url{http://www.graphviz.org/Download.php}.
+Make sure that the program \emph{dot} is accessible by adding the \emph{bin} directory of your Graphviz installation to the environment variable \%PATH\% (on Windows) or \$PATH (on Linux).
 
 \subsection{Install your initial workspace}
 \label{sec:loadSourceMeta}
 
-To get started in Eclipse, press the ``Install, configure and deploy Moflon'' button and navigate to ``Install Workspace''. 
-Choose ``Handbook Example (Part 4)'' (\Cref{eclipse:downPartIV}). 
+To get started in Eclipse, press the \menuPath{Install, configure and deploy Moflon} button (\eMoflonMenuButton) and navigate to \menuPath{Install Workspace}.
+Choose \menuPath{Handbook Example (Part 4 Start)} (\Cref{eclipse:downPartIV}). \needsUpdate{Screenshot}
 It contains the \texttt{Leitners\-Learning\-Box} and \texttt{Dictionary\-Language} metamodels, which we'll be using. 
 By the way, don't freak out if your workspace looks slightly different than our screenshots -- things often change faster than we can update this handbook.
-If the difference is important and confusing, however, please send us an email:  \url{contact@moflon.org}
+If the difference is important and confusing, however, please send us an email:  \emoflonMail.
 
 If everything went well, you should now have two projects in your workspace.  
 Go ahead and explore the metamodels (\texttt{/model/*.ecore}, \texttt{/model/*.aird}).
@@ -35,7 +36,7 @@ The generated code (\texttt{/gen}) is standard EMF code.
 \end{center}
 \end{figure} 
 
-If you ever want to create your own ``repository'' projects, eMoflon provides a wizard (``Create new repository project'' in the eMoflon toolbar) for this, which creates the expected project structure with an empty ecore file that you can fill out.
+If you ever want to create your own meta-model, eMoflon provides a wizard (\menuPath{Create new repository project} in the eMoflon toolbar) for this, which creates the expected project structure with an empty ecore file that you can fill out.
 
 %%% Local Variables: 
 %%% mode: latex
