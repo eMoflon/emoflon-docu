@@ -90,6 +90,7 @@
 \def\vs{vs.\xspace}
 
 \newcommand{\enquote}[1]{``#1''}
+\newcommand{\shortcut}[1]{\enquote{#1}\xspace}
 
 % To be used to describe how to navigate through menus (use \menuSep to separate the different levels of the menu)
 \newcommand{\menuPath}[1]{\emph{#1}\xspace}
@@ -115,7 +116,21 @@ If you are in a hurry, just skip this section.}
 
 \hyphenation{me-ta-mo-del-ing}
 
+\makeatletter
+\lstdefinestyle{mystyle}{
+    basicstyle=%
+    \ttfamily
+    \color{darkgray}%
+    \lst@ifdisplaystyle\scriptsize\fi
+}
+\makeatother
+\lstset{style=mystyle}
+
+\newcommand{\moslTggCode}[1]{\lstinline{#1}\xspace}
 \newcommand{\eMoflonMenuButton}[0]{\includegraphics{moflon_menu_cloud.png}}
+\newcommand{\eMoflonCreateNewIntegrationProjectIcon}[0]{\includegraphics{integrationProjectWizard.png}}
+\newcommand{\eMoflonCreateNewRepositoryProjectIcon}[0]{\includegraphics{integrationProjectWizard.png}}
+\newcommand{\eMoflonCreateTGGRuleIcon}[0]{\includegraphics{createTGGRuleIcon.png}}
 
 
 % --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------

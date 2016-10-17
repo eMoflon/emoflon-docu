@@ -6,36 +6,36 @@
 With our correspondence type defined in the TGG schema, we can now specify a set of \emph{TGG rules} to describe a language of graph
 triples.
 
-As discussed in \Cref{sec:nutshell}, a TGG rule is quite similar to a story pattern, following a \emph{precondition, postcondition}
-format. This means we'll need to state:
+As discussed in \Cref{sec:nutshell}, a TGG rule is quite similar to a story pattern, following a \emph{precondition-postcondition} format.
+This means we'll need to state:
 
 \begin{itemize}
 
-\item What must be matched (i.e., under which conditions can a rule be applied; `black' elements)
+\item \textbf{Context:} What must be matched (\idest, under which conditions can a rule be applied; shown as \emph{black} elements)
 
-\item What is to be created when the rule is applied (i.e., which objects and links must exist upon exit; `green' elements)
+\item \textbf{Modifications:} What is to be created when the rule is applied (\idest, which objects and links must exist upon exit; shown as \emph{green} elements)
 
 \end{itemize}
 
 \vspace{0.5cm}
 
 Note that the rules of a TGG only describe the simultaneous \emph{build-up} of source, correspondence, and target models.
-Unlike story diagrams, they do not delete or modify any existing elements. 
-In other words, TGG rules are \emph{monotonic}.\define{Monotonic}
+Unlike story diagrams, they do not delete or modify existing elements---you will never find a red element in an eMoflon TGG.
+In other words, TGG rules are \emph{monotonic}.\define{Monotonicity}
 This might seem surprising at first, and you might even think this is a terrible restriction. 
 The intention is that a TGG should only specify a consistency relation, and \emph{not} the forward and backward transformations
 directly, which are derived automatically. 
 In the end, modifications are not necessary on this level but can, of course, be induced in certain operationalizations of the TGG.
 
 Let's quickly think about what rules we need in order to successfully transform a learning box into a dictionary. 
-We need to first take care of the \texttt{box}
-and \texttt{dictionary} structures, where \texttt{box} will need at least one \texttt{partition} to manipulate its \texttt{card}s. If more than one is created, those partitions will need to have appropriate \texttt{next} and \texttt{previous} links. 
+We need to first take care of the \texttt{Box}
+and \texttt{Dictionary} structures, where \texttt{Box} will need at least one \texttt{Partition} to manipulate its \texttt{Card}s.
+If more than one is created, those partitions will need to have appropriate \texttt{next} and \texttt{previous} links. 
 Conversely, given that a \texttt{dictionary} is unsorted, there are no
 counterparts for partitions. 
-A second rule will be needed to transform \texttt{card}s into \texttt{entries}.
+A second rule will be needed to transform \texttt{Card}s into \texttt{Entries}.
 More precisely, a one-to-one correspondence must be
-established (i.e., one \texttt{card} implies one \texttt{entry}), with suitable
-concatenation or splitting of the contents (based on the transformation direction), and some mechanism to assign difficulty levels to each \texttt{entry} or initial position of each \texttt{card}.
+established (\idest, one \texttt{Card} implies one \texttt{Entry}), with suitable concatenation or splitting of the contents (based on the transformation direction), and some mechanism to assign difficulty levels to each \texttt{Entry} or initial position of each \texttt{Card}.
 
 \input{../4_rules/visRules}
 

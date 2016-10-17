@@ -3,9 +3,9 @@
 \subsection{BoxToDictionaryRule}
 \genHeader
 
-\begin{enumerate}
+\begin{stepbystep}
 
-\item[$\blacktriangleright$] Select the created subpackage \texttt{src/org.moflon.tgg.mosl.rules} (Step 1 in \Cref{ea:create_tgg_rule}) and click on the wizard ``Create new TGG rule'' (Step 2).
+\item Select the created subpackage \texttt{src/org.moflon.tgg.mosl.rules} (Step 1 in \Cref{ea:create_tgg_rule}) and click on the wizard \menuPath{Create new TGG rule} (\eMoflonCreateTGGRuleIcon, Step~2).
 In the dialogue that pops up, enter \texttt{BoxToDictionaryRule} as the name of the TGG rule to be created.
 Open the newly created file.
 
@@ -25,29 +25,31 @@ Open the newly created file.
   \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$]  Ensure that you open the \texttt{PlantUML} view (Step 1 in \Cref{ea:boxtodictionaryrule_complete}) as it provides a helpful visualisation of the current TGG rule opened in the editor.
+\item  Ensure that you open the \texttt{PlantUML} view (Step 1 in \Cref{ea:boxtodictionaryrule_complete}) as it provides a helpful visualisation of the current TGG rule opened in the editor.
 To prevent slowing you down, the view is only updated when you save \emph{and} change your cursor position.
+
 Elements in the source domain have a yellow background, while target elements have a peach background.
 Basic UML object diagram syntax is used, extended with colours to represent created elements (green outline) and context elements (black outline).
-\texttt{BoxToDictionaryRule} is a so called``island'' rule and only has created elements.
-For presentation purposes, correspondence links are abstracted from in the visualisation and are depicted as bands (e.g., between \texttt{box} and \texttt{dictionary}).
+
+\texttt{BoxToDictionaryRule} is a so-called \emph{island rule} and only has created elements.
+For presentation purposes, correspondence links are abstracted from in the visualisation and are depicted as bands (\eg, between \texttt{box} and \texttt{dictionary}).
 The rule we want to specify creates a minimal dictionary (just a \texttt{Dictionary} node), and a minimal box, which is a bit more interesting as it consists already of three correctly connected partitions.
 Any structure less than this is not a valid learning box.
 
-\item[$\blacktriangleright$] The textual syntax we use is pretty straightforward:  every domain has a scope (\texttt{\#source}, \texttt{\#target}, and \texttt{\#correspondence}), and there is a final scope for so called attribute conditions, which express how attribute values relate to each other.
-The domain scopes contain again scopes for each \emph{object variable} in the rule (e.g., \texttt{box}) and these scopes then contain outgoing \emph{link variables} (e.g., \texttt{-contained\-Partition->}), as well as inline attribute conditions (e.g., \texttt{index := 0}).
+\item The textual syntax we use is pretty straightforward:  every domain has a scope (\moslTggCode{\#source}, \moslTggCode{\#target}, and \moslTggCode{\#correspondence}), and there is a final scope for so called attribute conditions, which express how attribute values relate to each other.
+The domain scopes contain again scopes for each \emph{object variable} in the rule (e.g., \texttt{box}) and these scopes then contain outgoing \emph{link variables} (\eg, \moslTggCode{-contained\-Partition->}), as well as inline attribute conditions (\eg, \moslTggCode{index := 0}).
 Go ahead and specify the source scope as depicted in Step 2 of \Cref{ea:boxtodictionaryrule_complete}.
-Notice how the \texttt{++} operator is used to mark object and link variables as created or context variables.
+Notice how the \moslTggCode{++} operator is used to mark object and link variables as created or context variables.
 Try removing and adding it and see how the visualisation changes.  
-As always, let the editor help you by pressing ``Ctrl+Space'' as often as possible.
+As always, let the editor help you by pressing \shortcut{Ctrl+Space} as often as possible.
 
-\item[$\blacktriangleright$] Specify the correspondence and target scopes accordingly and make sure your rule (and its visualisation) closely resembles \Cref{ea:boxtodictionaryrule_complete}.
+\item Specify the \moslTggCode{#correspondence} and \moslTggCode{#target} scopes accordingly and make sure your rule (and its visualisation) closely resembles \Cref{ea:boxtodictionaryrule_complete}.
 
-\item[$\blacktriangleright$] To complete our first rule, specify an attribute condition to declare that the name of the box and the title of the dictionary are always to be equal.
+\item To complete our first rule, specify an attribute condition (inside the \moslTggCode{#attributeConditions} scope) to declare that the name of the box and the title of the dictionary are always to be equal.
 As depicted in Step 3 \Cref{ea:boxtodictionaryrule_complete}, this can be accomplished using an \texttt{eq} condition.
-We provide a standard library of such attribute conditions (press \texttt{F3} on the constraint to jump to the library file), but it is also possible to extend this library with your own attribute conditions.
+We provide a standard library of such attribute conditions (press \shortcut{F3} on the constraint to jump to the library file), but it is also possible to extend this library with your own attribute conditions.
 We'll see how to do this in a moment.
-\end{enumerate}
+\end{stepbystep}
 
 Fantastic work! The first rule of our transformation is complete! 
 If you are in hurry, you could jump ahead and proceed directly to \Cref{sect:TGGs_in_Action}: TGGs in Action. 
