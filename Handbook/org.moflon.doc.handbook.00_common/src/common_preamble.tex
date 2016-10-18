@@ -101,6 +101,7 @@
 
 % To be used for concrete values or file names
 \newcommand{\entity}[1]{\texttt{#1}\xspace}
+\newcommand{\filename}[1]{\entity{#1}}
 
 % This env. should be used for step-by-step instructions
 \newenvironment{stepbystep}{\begin{itemize}[$\blacktriangleright$]}{\end{itemize}}
@@ -114,13 +115,19 @@ If you are in a hurry, just skip this section.}
 
 \newcommand{\needsUpdate}[1]{\todo{\textbf{Maintenance required:} #1}}
 
-\hyphenation{me-ta-mo-del-ing}
+\hyphenation{me-ta-mo-del-ing Card-To-Ent-ry}
+\hyphenation{att-ribute-Con-di-tions}
+\hyphenation{Dictionary-Language}
+\hyphenation{Learning-Box-Language}
 
 \makeatletter
 \lstdefinestyle{mystyle}{
+    literate={\\\-}{}{0\discretionary{-}{}{}}, % https://tex.stackexchange.com/questions/69346/how-to-deal-with-very-long-lstinline-phrases-like-long-class-names/69364#69364
+    %prebreak=-,
+    breaklines=true,
     basicstyle=%
     \ttfamily
-    \color{darkgray}%
+    \color{black}% darkgray
     \lst@ifdisplaystyle\scriptsize\fi
 }
 \makeatother
