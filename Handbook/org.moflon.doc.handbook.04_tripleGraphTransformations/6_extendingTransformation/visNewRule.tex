@@ -3,9 +3,9 @@
 \subsection{AllOtherPartitionsRule}
 \genHeader
 
-\begin{itemize}
+\begin{stepbystep}
 
-\item[$\blacktriangleright$] Create a new rule \texttt{AllOtherPartitionsRule}, and complete it according to \Cref{fig:ea_AllOtherPartitionsRuleComplete}.
+\item Create a new rule \texttt{AllOtherPartitionsRule}, and complete it according to \Cref{fig:ea_AllOtherPartitionsRuleComplete}.
 
 
 \begin{figure}[htbp]
@@ -16,21 +16,21 @@
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] As you can see, this rule doesn't assume to know the final \texttt{partition} in the transformation. 
-It matches the \texttt{n}th partition as the partition without any next partition, then connects a new \texttt{n+1}th partition to \texttt{n} and \texttt{partition0} (clear as every partitions previous is \texttt{partition0}).
-Note that TGG transformations assume that the models are valid, i.e., have the expected structure (in our case meaning that the learning box is correctly ``wired'').\footnote{This should actually be formalised with a set of metamodel constraints that must be checked before a transformation is run, but we've omitted this here to simplify things.}  
-Remember that ``blue'' means ``negative''.
+\item As you can see, this rule doesn't assume to know the final \texttt{partition} in the transformation. 
+It matches the \texttt{n}th partition as the partition without any next partition, then connects a new $(n+1)$-th partition to the $n$ partition and \moslTggCode{partition0} (clear as every partitions previous is \moslTggCode{partition0}).
+Note that TGG transformations assume that the models are valid, \idest, have the expected structure (in our case meaning that the learning box is correctly \enquote{wired}).\footnote{This should actually be formalised with a set of metamodel constraints that must be checked before a transformation is run, but we've omitted this here to simplify things.}  
+Remember that \enquote{blue} means \enquote{negative}.
 
-\item[$\blacktriangleright$] Generate code for your improved TGG and re-run the transformation. 
+\item Re-run the transformation after the code for your improved TGG has been generated. 
 It should work now without any error message.
 Inspect the protocol to understand what happened.
 
-\item[$\blacktriangleright$] Go ahead and add as many \texttt{partition}s and \texttt{card}s as you like to your model instance.
-Your TGG is now also able to handle a \texttt{box} with any number of \texttt{partition}s beautifully.
+\item Go ahead and add as many \moslTggCode{Partitions} and \moslTggCode{Card} as you like to your model instance.
+Your TGG is now also able to handle a \moslTggCode{Box} with any number of \moslTggCode{Partitions} beautifully.
 For five partitions all with cards, the protocol gets quite interesting and is no longer a flat tree.
 Try it out! 
 
-\end{itemize}
+\end{stepbystep}
 
 
 

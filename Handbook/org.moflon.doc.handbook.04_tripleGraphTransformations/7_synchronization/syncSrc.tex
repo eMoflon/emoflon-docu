@@ -3,23 +3,23 @@
 \hypertarget{sec:synch}
 \genHeader
 
-At this stage, you have successfully created a trio of rules that can transform a \texttt{Box} with any number of \texttt{Partitions} and
-\texttt{Cards} into a \texttt{Dictionary} with an unlimited number of \texttt{Entrys} (or vice versa). 
+At this stage, you have successfully created a trio of rules that can transform a \moslTggCode{Box} with any number of \moslTggCode{Partitions} and
+\moslTggCode{Cards} into a \moslTggCode{Dictionary} with an unlimited number of \moslTggCode{Entrys} (or vice versa). 
 
 Now suppose you wanted to make a minor change to one of your current instances, such as adding a single new card or entry into one of your instances. 
 Could you modify the instance models and simply run the transformation again to keep the target and sources consistent? 
 
-The current \texttt{fwd.src.xmi} file (\Cref{fig:ea_extended_fwd_src_xmi}) has a partition with an index of three which, when transformed, correctly produces a target dictionary with all four entries. 
+The current \filename{src.xmi} file (\Cref{fig:ea_extended_fwd_src_xmi}) has a partition with an index of three which, when transformed, correctly produces a target dictionary with all four entries. 
 What would happen if we attempted to transform this dictionary back into the same learning box, with all four partitions?
 
-\begin{itemize}
+\begin{stepbystep}
 
-\item[$\blacktriangleright$] Copy and paste \texttt{fwd.trg.xmi}, renaming it as \texttt{bwd.src.xmi}.\footnote{Feel free to either delete or rename the original \texttt{bwd.src.xmi} for later reference.}
+\item Copy and paste \filename{trg.xmi}, renaming it as \texttt{bwd.src.xmi}.\footnote{Feel free to either delete or rename the original \texttt{bwd.src.xmi} for later reference.}
 
-\item[$\blacktriangleright$] Run \texttt{LearningBoxToDictionaryIntegrationTrafo.java} and inspect the resulting \texttt{bwd.trg.xmi}
+\item Run \texttt{LearningBoxToDictionaryIntegrationTrafo.java} and inspect the resulting \texttt{bwd.trg.xmi}
 (\Cref{eclipse:missingP3}). 
 Unfortunately, the newest \texttt{part\-it\-ion\-3} is missing!
-\end{itemize}
+\end{stepbystep}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -37,29 +37,29 @@ We could of course integrate user interaction to decide, but for a TGG of realis
 When going from the source to the target model, this information (how many partitions exist) is simply discarded and lost. 
 So how can we prevent this information loss when we need to update our models in the future? Luckily, eMoflon can take care of this for you as it provides a \emph{synchronization} mode to support incremental updates.
 
-Let's change our source model by adding a new \texttt{Card} to \texttt{Partition3} and see if the partition still exists after synchronizing to and from the resulting \texttt{Dictionary} model.
+Let's change our source model by adding a new \moslTggCode{Card} to \texttt{Partition3} and see if the partition still exists after synchronizing to and from the resulting \moslTggCode{Dictionary} model.
 
-\begin{itemize}
-\item[$\blacktriangleright$] Make sure your \texttt{fwd.src.xmi} model is in the ``extended'' version depicted in \Cref{fig:ea_extended_fwd_src_xmi}, and that you have a fresh triple of corresponding \texttt{fwd.corr.xmi} and \texttt{fwd.trg.xmi} created via the forward batch transformation.
+\begin{stepbystep}
+\item Make sure your \filename{fwd.src.xmi} model is in the \enquote{extended} version depicted in \Cref{fig:ea_extended_fwd_src_xmi}, and that you have a fresh triple of corresponding \filename{fwd.corr.xmi} and \filename{fwd.trg.xmi} created via the forward batch transformation.
 
-\item[$\blacktriangleright$] Our synchronisation algorithm requires an explicit ``delta'' representing the exact changes that are to be propagated.
-Although this can be extracted from different versions of a model this is not as easy as it sounds.
-To make matters worse, ``delta recognition'' is also often not unique, i.e., there are many possible deltas for the same pair of old and new models.
+\item Our synchronisation algorithm requires an explicit \emph{delta}\define{Delta}, a representation of the exact changes that are to be propagated.
+Although this can be extracted from different versions of a model, this is not as easy as it sounds.
+To make matters worse, \enquote{delta recognition} is also often not unique, \idest, there are many possible deltas for the same pair of old and new models.
 
-As we are more interested in the actual synchronisation than in change recognition or ``diffing'', we require the exact delta which can come from anywhere in actual applications, including being programmed as a hard coded change operation in some kind of synchroniser GUI.
+As we are more interested in the actual synchronisation than in change recognition or \enquote{diffing}, we require the exact delta, which can come from anywhere in actual applications, including being programmed as a hard coded change operation in some kind of synchroniser GUI.
 
-To play around with a TGG, however, we provide a simple \emph{delta editor}, which behaves very much like the standard EMF model editor, but records all the changes you make and persists them as a delta model, which we understand.
+To play around with a TGG, however, we provide a simple \menuPath{Delta Editor}\define{Delta Editor}, which behaves very much like the standard EMF model editor, but records all the changes you make and persists them as a delta model, which we understand.
 
-To open the delta editor, right-click on \texttt{fwd.trg.xmi} and choose \texttt{Open With/Delta Editor}.
+To open the delta editor, right-click on \filename{fwd.trg.xmi} and choose \menuPath{Open With/Delta Editor}.
 
-\item[$\blacktriangleright$] Let's try a simple attribute change:  As \texttt{Entry four:vier} was created from a card in the third partition, its default level is beginner (remember we assume easy cards have wondered further into the box).
+\item Let's try a simple attribute change:  As \texttt{Entry four:vier} was created from a card in the third partition, its default level is beginner (remember we assume easy cards have wondered further into the box).
 We'll we think this is wrong so let's change the level to \texttt{master}.
-Perform this change directly with the delta editor as if it were the standard EMF model editor (compare with \Cref{fig:trgDelta}).
+Perform this change directly with the \menuPath{Delta Editor} as if it were the standard EMF model editor (compare with \Cref{fig:trgDelta}).
 Save the editor and close it.
-Take a look at the created \texttt{fwd.trg.delta.xmi} and inspect it.
+Take a look at the created \filename{trg.delta.xmi} and inspect it.
 Although we do not (yet) have a fancy visualisation for delta models, it should be pretty easy to see how your change has been represented as a data structure.
-Finally, note that \texttt{fwd.trg.xmi} has \emph{not} been changed yet, i.e., the synchroniser will do this when trying to propagate your changes.
-This is important to understand as handling conflicts (work in progress, planned for a release in the far, far away future) might imply a compromise, i.e., not all your changes might be accepted or possible.
+Finally, note that \filename{trg.xmi} has \emph{not} been changed yet, \idest, the synchroniser will do this when trying to propagate your changes.
+This is important to understand as handling conflicts (work in progress, planned for a release in the far, far away future) might imply a compromise, \idest, not all your changes might be accepted or possible.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -69,28 +69,28 @@ This is important to understand as handling conflicts (work in progress, planned
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] To backward propagate your changes, open
-\texttt{Learning\-Box\-Language\-To\-Dictionary\-Language\-Sync.java}, our generated stub for model synchronisation.
+\item To backward propagate your changes, open
+\filename{Learning\-Box\-Language\-To\-Dictionary\-Language\-Sync.java}, our generated stub for model synchronisation.
 Our stubs are optimized for this handbook so you do not have to change a thing.
 It's all plain and simple Java though, so you should be able to understand
 how our API is being used.
 The section where you can adjust and make changes is:
-\begin{verbatim}
+\begin{lstlisting}[language=Java]
 // Adjust values as required
 String delta = "instances/fwd.trg.delta.xmi";
 String corr  = "instances/fwd.corr.xmi";
 BiConsumer<...> synchronizer = helper::syncBackward;
-\end{verbatim}
+\end{lstlisting}
 
 These values all fit our current change (the created delta file, the relevant correspondence model, and we want to synchronise backwards), so we're ready to go.
-Hit \texttt{Run} and see what happens!
+Hit \menuPath{Run} and see what happens!
 If everything went well, \texttt{Card question:four} should have been relocated to \texttt{partition0} to fit its corrected difficulty level.
 The great thing is \texttt{partition3} is now empty, \emph{and has been retained}.
-Not that the protocol has been updated, and that \texttt{fwd.trg.xmi} not contains these changes.
-\end{itemize}
+Not that the protocol has been updated, and that \filename{trg.xmi} not contains these changes.
+\end{stepbystep}
 
 Remember this is all academic software and especially the delta editor is rather new and very buggy.
-Feel free to try out all kinds of deltas and if you think you've found a bug, please send us an email at \texttt{contact@moflon.org} and we'll be happy to fix it (or reply with a ``back in your face!'' if it's not one and \emph{you} just got confused).
+Feel free to try out all kinds of deltas and if you think you've found a bug, please send us an email at \emoflonMail and we'll be happy to fix it (or reply with a \enquote{back in your face!} if it's not one and \emph{you} just got confused).
 
 %%% Local Variables: 
 %%% mode: latex

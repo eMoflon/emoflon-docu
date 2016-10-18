@@ -1,17 +1,17 @@
 \section{Extending your transformation}
 \genHeader
 
-At this point, we now have a working TGG to transform a \texttt{Dictionary} into a \texttt{Box} with three \texttt{partition}s, and a \texttt{Box} with exactly three \texttt{Partition}s into a \texttt{Dictionary}. 
+At this point, we now have a working TGG to transform a \moslTggCode{Dictionary} into a \moslTggCode{Box} with three \moslTggCode{partitions}, and a \moslTggCode{Box} with exactly three \moslTggCode{Partition}s into a \moslTggCode{Dictionary}. 
 The only potential problem is that a learning box with only three partitions may not be the most useful studying tool. 
 After all, the more partitions you have, the more practice you'll have with the cards by being quizzed again and again.
 
 A simple strategy would be to allow additional partitions in the box, but to basically ignore them (treat them all as partitions with index greater than two) when transforming to the dictionary. 
-To accomplish this we need an extra rule that clearly states how such partitions should be ignored, i.e., be translated without affecting the dictionary. 
-We could trivially extend the existing \texttt{BoxToDictionaryRule} by connecting a fourth partition, but what if we wanted a fifth one? A sixth? As you can see, this obviously won't work -- there will always be the potential for a \texttt{n+1}th partition in an \texttt{n}-sized box. 
+To accomplish this, we need an extra rule that clearly states how such partitions should be ignored, \idest, be translated without affecting the dictionary. 
+We could trivially extend the existing \moslTggCode{BoxToDictionaryRule} by connecting a fourth partition, but what if we wanted a fifth one? A sixth? As you can see, this obviously won't work -- there will always be the potential for a \texttt{n+1}th partition in an \texttt{n}-sized box. 
 
-With a so-called \emph{ignore rule}\define{ignore rule}, we'll handle some source elements and their connecting link variables without creating any new elements in the target domain.
+With a so-called \emph{ignore rule}\define{Ignore Rule}, we'll handle some source elements and their connecting link variables without creating any new elements in the target domain.
 %
-Before specifying this ignore rule, however, let's extend the current \texttt{fwd.src.xmi}\footnote{Remember that you should have created this by copying and renaming \texttt{bwd.trg.xmi}.} by adding a new \texttt{Partition} (with \texttt{index} = 3) as depicted in \Cref{fig:ea_extended_fwd_src_xmi}.
+Before specifying this ignore rule, however, let's extend the current \filename{fwd.src.xmi}\footnote{Remember that you should have created this by copying and renaming \filename{bwd.trg.xmi}.} by adding a new \moslTggCode{Partition} (with \texttt{index} = 3) as depicted in \Cref{fig:ea_extended_fwd_src_xmi}.
 Connect the new partition \texttt{partition3}  to \texttt{partition0} via a \texttt{previous} reference, and connect \texttt{partition2} to \texttt{partition3} via a \texttt{next} reference (this is how to extend a learning box).
 Create a new \texttt{card} in your new \texttt{partition3} as well.
 
@@ -24,18 +24,22 @@ Create a new \texttt{card} in your new \texttt{partition3} as well.
 \end{figure}
 
 
-If you run your transformation again, you'll get an error message in the console for the forward direction as our \texttt{fwd.src.xmi} with four \texttt{partition}s cannot be handled with our current TGG.
-As this might happen quite often when working on a TGG, let's take some time to understand the message and ``debug'' what went wrong.
+If you run your transformation again, you'll get an error message in the console for the forward direction as our \filename{fwd.src.xmi} with four \texttt{partition}s cannot be handled with our current TGG.
+As this might happen quite often when working on a TGG, let's take some time to understand the message and find out what went wrong.
 The first message in the console is:
 \begin{quote}
   \emph{Your TGG LearningBoxLanguageToDictionaryLanguage is not translation locally complete!}
 \end{quote}
 
-There are basically two things that can go wrong when transforming a source model to a target model with a TGG-based forward transformation: (1) the input model cannot be completely marked (or ``parsed'', or recognized, etc.)  using TGG rules, and (2) some thing went wrong during the translation of the input model, i.e., when trying to extend the output model.
+There are basically two things that can go wrong when transforming a source model to a target model with a TGG-based forward transformation.%
+\begin{inparaenum}[(1)]
+\item The input model cannot be completely marked (or \enquote{parsed}, or recognized) using TGG rules, and 
+\item something went wrong during the translation of the input model, \idest, when trying to extend the output model.
+\end{inparaenum}
 The first problem is referred to as \emph{input local completeness}, while the second problem is referred to as \emph{translation local completeness}.
-The choice of ``input'' vs. ``translation'' should be clear from the above explanation.
-The word ``local'' indicates that the transformation is always with respect to a certain match, i.e., a restricted fragment of the models.
-If a TGG is ``complete'' then these two problems cannot occur.
+The choice of \enquote{input} vs. \enquote{translation} should be clear from the above explanation.
+The word \enquote{local} indicates that the transformation is always with respect to a certain match, \idest, a restricted fragment of the models.
+If a TGG is \enquote{complete} then these two problems cannot occur.
 This is a nice property to have and getting the compiler to check for this statically is ongoing work. 
 
 What makes things a bit ugly is that our algorithm does not backtrack while searching for a valid rule application sequence as this would make things extremely (exponentially) slow.
@@ -62,39 +66,41 @@ To get more information, the synchroniser suggests:
 \end{quote}
 so let's do that and see what happens.
 
-\begin{itemize}
-\item[$\blacktriangleright$] Open \texttt{src/org/moflon/tie/Learning\-Box\-Language\-To\-Dictionary\-Lan\-guage\-Trafo.java} and extend the code invoking the forward transformation as follows:
-\begin{verbatim}
+\begin{stepbystep}
+\item Open \filename{src/org/moflon/tie/Learning\-Box\-Language\-To\-Dictionary\-Lan\-guage\-Trafo.java} and extend the code invoking the forward transformation as follows:
+\begin{lstlisting}[language=Java]
 // Forward Transformation
-LearningBoxLan... helper = new LearningBoxLan...Trafo();
+LearningBoxToDictionaryIntegrationTrafo helper = new LearningBoxToDictionaryIntegrationTrafo();
+
 helper.setVerbose(true); // <--  add this!
+
 helper.performForward("instances/fwd.src.xmi");
-\end{verbatim}
-\end{itemize}
+\end{lstlisting}
+\end{stepbystep}
 
 If you now rerun the transformation, you'll get a printout of exactly which elements could not be translated at all.
-Curiously, this lists include all partitions \emph{and} the box (\texttt{[English Numbers]}).
+Curiously, this lists include all partitions (\eg, \texttt{[LearningBoxLanguage.impl.PartitionImpl@d4342c2 (index: 3)]}) \emph{and} the box (\texttt{[English Numbers]}).
 Although we still do not know why the box and the first three partitions could not be translated using \texttt{BoxToDicationaryRule}, at least we can now understand why the translation failed at \texttt{CardToEntryRule}.
 The following happened:
 \begin{enumerate}
 \item No match could be found for the box and any partition.  
-Instead of complaining directly, the algorithm assumes that we do not care about these elements (this is very often the case in practice), so it ignores them and tries to continue with the translation.
+Instead of complaining directly, the algorithm assumes that we do not care about these elements (this is very often the case in practice), so it \emph{ignores} them and tries to continue with the translation.
 \item When translating a card, however, although things look ok on the source side, there is no \texttt{Dictionary} on the target side and the translation fails.
 If we would not add the created \texttt{Entry} to the \texttt{Dictionary}, this rule application would have worked! 
 \end{enumerate}
 
 OK -- let's now understand why the box was already ignored.
 
-\begin{itemize}
-\item[$\blacktriangleright$] Following the four steps in \Cref{fig:dec}, open the generated ecore file in the integration project (Step 1).
+\begin{stepbystep}
+\item Following the four steps in \Cref{fig:dec}, open the generated Ecore file in the integration project (Step 1).
 This file contains not only the correspondence metamodel, but also all operationalized rules.
 Java code for the transformation is generated directly from this file.
-\item[$\blacktriangleright$] Under \texttt{Rules/BoxToDictionaryRule/} locate the so called ``isAppriopriate\_FWD...'' method for the TGG rule.
-For every TGG rule, three main types of operational rules are derived in each direction:  ``isAppropriate'' methods to check if a match for a rule can be found, ``isApplicable'' to check if this match can be extended to cover all domain, and ``perform'' methods to actually apply the rule in the forward or backward direction.
+\item Under \filename{Rules/BoxToDictionaryRule/}, locate the \javaCode{isAppriopriate_FWD...} method for the TGG rule.
+For every TGG rule, three main types of operational rules are derived in each direction:  \javaCode{isAppropriate} methods to check if a match for a rule can be found, \javaCode{isApplicable} to check if this match can be extended to cover all domain, and \javaCode{perform} methods to actually apply the rule in the forward or backward direction.
 These methods are all generated as unidirectional programmed graph transformations (story diagrams).
 If you want to see how the generated story diagram looks like, go ahead and select the \texttt{Activity} element under the operation (you should get a visualisation as a simple activity diagram).
-\item[$\blacktriangleright$] The most important story node in the story diagram (Step 2) is \texttt{test core match and DEC} (all others are more or less bookkeeping and technical stuff).
-DEC stands for ``Dangling Edge Condition'' and represents a lookahead for the algorithm.
+\item The most important story node in the story diagram (Step 2) is \texttt{test core match and DEC} (all others are more or less bookkeeping and technical stuff).
+DEC stands for \emph{Dangling Edge Condition}\define{Dangling Edge Condition} and represents a lookahead for the algorithm.
 The basic idea is to check for edges that would be impossible to translate if this rule is applied at this location.
 This can be checked for statically and the result of this DEC analyis is embedded in the transformation as simple Negative Application Conditions (NACs). 
 Go ahead and select the story pattern (Step~3).
@@ -102,12 +108,12 @@ Note that it was derived directly from the TGG rule and, in this sense, \emph{is
 You should see an object diagram representing the rule.
 Note that black means context, while blue means negative (it should not be possible to extend a match to cover any of these elements).
 
-\item[$\blacktriangleright$] In our case, there are quite a few edges that would be left (in this sense) dangling.
+\item In our case, there are quite a few edges that would be left (in this sense) dangling.
 An example is shown as Step~4 in \Cref{fig:dec}:  if the box has any other contained partition apart from the 3 matched in this rule, then it is clear that this extra edge cannot be translated with any other rule in the current TGG.
 It would thus be dangling and therefore blocks the application of this rule.
 Another example would be a next edge going out from \texttt{partition2}.
 Can you locate the NAC for this edge?
-\end{itemize}
+\end{stepbystep}
 
 \begin{figure}[htbp]
 \begin{center}
@@ -118,9 +124,9 @@ Can you locate the NAC for this edge?
 \end{figure}
 
 DEC is a great help when it comes to avoiding dead ends without using backtracking, but in our case where the TGG is actually missing a rule, it only postpones the problem and makes it a bit challenging to understand what went wrong.
-On the bright side we took the chance to dig in a bit right?
+On the bright side, we took the chance to dig in a bit, right?
 If you ever have problems understanding why a certain match was not collected, feel free to debug the generated Java code directly if looking at the visualisation does not help (as we did here).
-Just place breakpoints as usual and run the transformation in debug modus.
+Just place breakpoints as usual and run the transformation in debug mode.
 The generated code is quite readable (at least after a week of practice -- haha!).
 
 \input{../6_extendingTransformation/visNewRule}

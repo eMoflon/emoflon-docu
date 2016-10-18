@@ -128,7 +128,7 @@ For now, just make sure you enter the exact values in \Cref{ea:create_new_constr
 \item We can now use this new attribute condition \moslTggCode{indexToLevel} just like any of the library attribute conditions.
 Add the following code to the \moslTggCode{#attributeConditions} scope of the \texttt{CardToEntryRule} to express that the relationship between the index of the partition containing the new card, and the level of the new entry, is defined by our new attribute condition:
 
-\verb|indexToLevel(partition.index, entry.level)|
+\moslTggCode{indexToLevel(partition.index, entry.level)}
 \end{stepbystep}
 
 If everything has been done correctly up to this point, your project should save and build.

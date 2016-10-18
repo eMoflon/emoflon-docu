@@ -46,22 +46,23 @@ If the set of attribute conditions cannot be solved, an exception is thrown at c
 Now that we have a better understanding behind the construction of attribute conditions, let's implement \texttt{indexToLevel}.
 
 \begin{stepbystep}
-\item Locate and open \texttt{IndexToLevel.java} under \filename{src/csp.constraints} in \moslTggCode{Lear\-ningBoxToDictionaryIntegration}.
+\item Locate and open \texttt{IndexToLevel.java} under \filename{src/csp.constraints} in \moslTggCode{LearningBoxToDictionaryIntegration}.
 
 \item As you can see, some code has been generated in order to handle the current unimplemented state of \texttt{IndexToLevel}. 
-Use the code depicted in \Cref{code:indexToLevel} to replace this default implementation.\footnote{Depending of course on your pdf viewer, copy and pasting this code should work.}
+Use the code depicted in \Cref{code:indexToLevel} to replace this default implementation.\footnote{Depending of course on your pdf viewer, copy and pasting this code should work.
+Alternatively, you may find the code here: \url{https://raw.githubusercontent.com/eMoflon/emoflon-docu/master/Handbook/org.moflon.doc.handbook.04_tripleGraphTransformations/4_rules/listings/IndexToLevel.java}}
 
 \lstinputlisting[language=Java,label={code:indexToLevel},caption={Implementation of our custom \texttt{IndexToLevel} constraint}]{../4_rules/listings/IndexToLevel.java}
 
-
 \end{stepbystep}
 
-To briefly explain, the \texttt{levels} list contains difficulty level at positions 0, 1, or 2 in the list, which correspond to our three partitions in the learning box. 
-You'll notice that instead of setting ``master'' to 2, it has rather been set to match the first 0th partition. 
-Unlike an \texttt{entry} in \texttt{dictionary}, the position of each \texttt{card} in \texttt{box} is \emph{not} based on difficulty, but simply how it has been moved as a result of the user's correct and incorrect guesses. 
+To briefly explain, the \javaCode{levels} list contains difficulty level at positions 0, 1, or 2 in the list, which correspond to our three partitions in the learning box. 
+You'll notice that instead of setting \javaCode{"master"} to 2, it has rather been set to match the first (\idest, 0th) partition. 
+Unlike an \javaCode{entry} in \javaCode{dictionary}, the position of each \javaCode{card} in \javaCode{box} is \emph{not} based on difficulty, but simply how it has been moved as a result of the user's correct and incorrect guesses. 
 Easy cards are more likely to be in the final partition (due to moving through the box quickly) while challenging cards are most likely to have been returned to (and currently to be at) the starting position, \idest, the 0th partition.
 
-In the \texttt{solve} method, the index of the matched partition in the rule is first of all normalised (negative values do not make sense, and we handle all partitions  after partition 2 in the same way).
+In the \javaCode{solve} method, the index of the matched partition in the rule is first of all normalised:
+Negative values do not make sense, and we handle all partitions  after partition 2 in the same way.
 A switch statement is then used, based on whichever adornment is currently the case, to enforce or check the condition. 
 
 For \texttt{BB} we check if the normalised index of the partition corresponds to the difficulty level of the card.

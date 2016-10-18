@@ -26,6 +26,7 @@
 \usepackage{cleveref}
 \usepackage{longtable}
 \usepackage{booktabs}
+\usepackage{siunitx}
 
 %change the numbering of pictures and listings
 \AtBeginDocument{\counterwithin{lstlisting}{section}}
@@ -120,6 +121,10 @@ If you are in a hurry, just skip this section.}
 \hyphenation{Dictionary-Language}
 \hyphenation{Learning-Box-Language}
 
+\lstset{
+    backgroundcolor=\color{white},
+    frame=topbottom
+}
 \makeatletter
 \lstdefinestyle{mystyle}{
     literate={\\\-}{}{0\discretionary{-}{}{}}, % https://tex.stackexchange.com/questions/69346/how-to-deal-with-very-long-lstinline-phrases-like-long-class-names/69364#69364
@@ -133,6 +138,7 @@ If you are in a hurry, just skip this section.}
 \makeatother
 \lstset{style=mystyle}
 
+\newcommand{\javaCode}[1]{\lstinline[language=Java]{#1}\xspace}
 \newcommand{\moslTggCode}[1]{\lstinline{#1}\xspace}
 \newcommand{\eMoflonMenuButton}[0]{\includegraphics{moflon_menu_cloud.png}}
 \newcommand{\eMoflonCreateNewIntegrationProjectIcon}[0]{\includegraphics{integrationProjectWizard.png}}
