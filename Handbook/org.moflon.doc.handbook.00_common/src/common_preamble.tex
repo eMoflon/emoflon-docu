@@ -95,7 +95,7 @@
 
 % To be used to describe how to navigate through menus (use \menuSep to separate the different levels of the menu)
 \newcommand{\menuPath}[1]{\emph{#1}\xspace}
-\newcommand{\menuSep}[0]{\ensuremath{\to\xspace}}
+\newcommand{\menuSep}[0]{\ensuremath{\to\;\xspace}}
 
 % To be used when a term is mentioned for the first time
 \newcommand{\newconcept}[1]{\emph{#1}\xspace}
@@ -140,10 +140,13 @@ If you are in a hurry, just skip this section.}
 
 \newcommand{\javaCode}[1]{\lstinline[language=Java]{#1}\xspace}
 \newcommand{\moslTggCode}[1]{\lstinline{#1}\xspace}
-\newcommand{\eMoflonMenuButton}[0]{\includegraphics{moflon_menu_cloud.png}}
-\newcommand{\eMoflonCreateNewIntegrationProjectIcon}[0]{\includegraphics{integrationProjectWizard.png}}
-\newcommand{\eMoflonCreateNewRepositoryProjectIcon}[0]{\includegraphics{integrationProjectWizard.png}}
-\newcommand{\eMoflonCreateTGGRuleIcon}[0]{\includegraphics{createTGGRuleIcon.png}}
+
+% Use \raisebox{-.5ex}{<content>} to move the given content down by .5ex
+\newcommand{\eMoflonMenuButton}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{moflon_menu_cloud.png}}\xspace}
+\newcommand{\eMoflonCreateNewIntegrationProjectIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{integrationProjectWizard.png}}\xspace}
+\newcommand{\eMoflonCreateNewRepositoryProjectIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{integrationProjectWizard.png}}\xspace}
+\newcommand{\eMoflonCreateTGGRuleIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{createTGGRuleIcon.png}}\xspace}
+\newcommand{\eMoflonConfigureLoggingIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{logfile.png}}\xspace}
 
 
 % --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------

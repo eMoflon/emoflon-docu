@@ -9,7 +9,7 @@
 \item
 Open Eclipse to a clean, fresh workspace.
 Go to \menuPath{Window \menuSep Open Perspective \menuSep Other\ldots} \footnote{A path given as \menuPath{foo \menuSep bar} indicates how to navigate in a series of menus and toolbars.
-New definitions or concepts will be \newconcept{italicized}, and any data you're required to enter, open, or select will be given as \entity{command}.} and choose \texttt{eMoflon} (\Cref{eclipse:openPerspective}).
+New definitions or concepts will be \newconcept{italicized}, and any data you're required to enter or select will be given as \entity{command}.} and choose \menuPath{eMoflon} (\Cref{eclipse:openPerspective}).
 
 \begin{figure}[htbp]
 	\centering
@@ -35,12 +35,13 @@ Navigate to \menuPath{\eMoflonMenuButton \menuSep Install Workspace}
 In this menu you can check out different workspaces for Eclipse. 
 Here you can also check out workspaces for the handbook tutorials (\menuPath{eMoflon Examples}).
 How you can create your own projects is described in Part I.
-As the first tutorial select \menuPath{eMoflon Examples \menuSep Demo (Double-Linked List)}. 
+Select \menuPath{eMoflon Examples \menuSep Demo (Double-Linked List)}. 
 
-All our handbook examples are provided via Git and are hosted on GitHub\footnote{See \url{https://github.com/eMoflon/emoflon-examples}.}.
+A technical side note concerning Git:
+The full source code of eMoflon and all our handbook examples are provided via Git and are hosted on GitHub.\footnote{See \linkto{https://github.com/eMoflon/emoflon-tool/} and \linkto{https://github.com/eMoflon/emoflon-examples}, respectively.}
 If you encounter problems when fetching some handbook example, the reason may be that your checked out working copy is in a \enquote{dirty} state.
 In this case, you may start over by 
-\begin{inparaenum}
+\begin{inparaenum}[(i)]
 \item removing all affected projects from your workspace (do \emph{not} tick \menuPath{Delete project contents on disk}),
 \item navigating to the \menuPath{Git} perspective in Eclipse (\menuPath{Window \menuSep Perspective \menuSep Open Perspective \menuSep Other\dots}) and
 \item performing one of the following:
@@ -52,14 +53,14 @@ Make sure to fully delete the repository by ticking all boxes.
 \item The smooth solution:
 Right-click your working copy \eMoflonExamplesRepo and select \menuPath{Clean\dots}.
 Tick \menuPath{Clean selected untracked files and directories} and \menuPath{Include ignored resources}, and confirm with \menuPath{Finish}.
-The previous command has purged all untracked and ignored files but modifications of files tracked by Git are still kept in their modified state.
-To undo these changes, right-click your working \eMoflonExamplesRepo copy again and select \menuPath{Reset\dots}.
+The previous command purges all untracked and ignored files but modifications of files tracked by Git are still kept in their modified state.
+To undo these changes, right-click your working copy again and select \menuPath{Reset\dots}.
 Select \menuPath{master} and tick \menuPath{Hard}, then confirm with \menuPath{Reset}.
 \end{itemize}
 
 
 \item
-Another button in the new action set is \menuPath{View and configure logging} represented by an \texttt{L} (\Cref{eclipse:logger}).
+Another button in the new action set is \menuPath{View and configure logging} represented by an \texttt{L} (\eMoflonConfigureLoggingIcon, \Cref{eclipse:logger}).
 Clicking this icon will open a \texttt{log4jConfig\-.properties} file where you can silence certain loggers, set the level of loggers, or configure other
 settings.\footnote{If you're not sure how to do this, check out a short Log4j tutorial a \url{http://logging.apache.org/log4j/1.2/manual.html}} All of eMoflon's
 messages appear in our console window, just below your main editor. This is automatically opened when you selected the \texttt{eMoflon} perspective and
