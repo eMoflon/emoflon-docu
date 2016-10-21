@@ -47,37 +47,48 @@ Just make sure not to change anything!
 \item Switch back to Eclipse, choose your metamodel project, and press \shortcut{F5} to refresh. 
 The export from EA places all required files in a hidden folder (\filename{.temp}) in the project.
 A new, third project named \javaCode{org.moflon.demo.doublelinkedlist} is now being created.
-Do not worry about the problem markers.
 
-\item The three asterisks signal that the project still needs to be built (\Cref{eclipse:dirty-project}).
-%
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.35\textwidth]{eclipse_dirtyProject}
-    \caption{Dirty projects are marked with ***} 
-    \label{eclipse:dirty-project} 
-\end{figure}
-%
-\item Now, right-click \entity{org.moflon.demo.doublelinkedlist} and choose \menuPath{eMoflon \menuSep Build} (or use the shortcut \entity{Alt+Shift+E,B}\footnote{First press \entity{Alt+Shift+E}, release, and press \entity{B}.
-By default, most shortcuts eMoflon start with \entity{Alt+Shift+E}.}).
-
-eMoflon now generates the Java code in your repository project.
-You should be able to monitor the progress with the green bar in the lower right corner (\Cref{eclipse:build}).
-Pressing the symbol opens a monitor view that gives more details of the build process. 
-You don't need to worry about any of these details, just remember to \begin{inparaenum}[(i.)]
-\item refresh your Eclipse workspace after an export, and
-\item rebuild projects that bear a \enquote{dirty marker} (\texttt{***}).
-\end{inparaenum}
-%
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=1\textwidth]{eclipse_buildingProgress}
-    \caption{Eclipse workspace while building the demo project} 
-    \label{eclipse:build} 
-\end{figure}
+\emph{Note:} If you refresh (for instance) \filename{.temp}, but nothing happens, then the Eclipse \emph{auto-build}\define{Auto-Build} is probably disabled.
+Tick \menuPath{Project \menuSep Build Automatically} to re-enable it.
 %
 \item
-If you're ever worried about forgetting to refresh your workspace, or if you just don't want to bother with having to do this,
+Just wait until the workspace is fully built.
+No error markers should be left---otherwise, double-check that auto-build is enabled.
+%
+\item
+If you're ever worried about forgetting to refresh your workspace after exporting your specification from EA, or if you just don't want to bother with having to do this,
 Eclipse does offer an option to do it for you automatically. To activate this, go to \menuPath{Window \menuSep Preferences \menuSep General \menuSep Workspace} and select \texttt{Refresh on access}.
 
 \end{stepbystep}
+
+\emph{Side note on the build process:}
+The Eclipse auto-build framework normally cares for re-building your project whenever you modify your specification.
+Still, there are situations in which you would like to build your project manually after a whole bunch of modifications, \eg, when your specification has grown very (very!) large.
+To disable auto-build for a particular project, open the contained \menuPath{.project} file, locate either the \texttt{RepositoryBuilder} or the \texttt{IntegrationBuilder} and add a \texttt{<triggers>} element that contains the three build types \texttt{clean,full,incremental} (but not \texttt{auto}) such as in the following snippet.
+\begin{lstlisting}[language=XML]
+<buildCommand>
+  <name>
+    org.moflon.ide.core.runtime.builders.IntegrationBuilder
+  </name>
+  <triggers>clean,full,incremental</triggers> <!-- Add this line -->
+  <arguments></arguments>
+</buildCommand>
+\end{lstlisting}
+If auto-build is disabled for a particular project, this project is labeled with \enquote{[auto-build]} (\Cref{ea:noAutoBuild}).
+%
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{ea_noAutoBuild}
+    \caption{Disabling auto-build for \texttt{org.moflon.demo.doublelinkedlist}} 
+    \label{ea:noAutoBuild} 
+\end{figure}
+To facilitate triggering a manual build in situations where auto-build is switched off for one, several or even all projects, you may use the \enquote{eMoflon hammers}:
+\begin{itemize}[*]
+    \item
+    The \emph{black hammer} \eMoflonFullBuildIcon triggers a full build (regardless of the changes since the last build).
+    Alternatively, you may use the shortcut \linebreak \shortcut{Alt+Shift+E,B}.\footnote{First press \entity{Alt+Shift+E}, release, and press \entity{B}}
+    By the way, most eMoflon shortcuts start with \linebreak\shortcut{Alt+Shift+E}.
+    \item 
+    The \emph{green hammer} \eMoflonIncrementalBuildIcon triggers an incremental build.
+    Alternatively, you may use the shortcut \shortcut{Alt+Shift+E,D}.
+\end{itemize}
