@@ -12,7 +12,7 @@ You therefore need to install the Gurobi optimizer (\url{http://www.gurobi.com/}
 Next, you need to involve Gurobi in your integration project:
 
 \begin{stepbystep}
-\item Navigate to the Java Build Path properties of your integration project and change the native library location for system libraries to the \texttt{bin} folder of your Gurobi installation (\Cref{eclipse:gurobiNative}).
+\item Navigate to the Java Build Path properties of your integration project and set the native library location for system libraries to the \texttt{bin} folder of your Gurobi installation (\Cref{eclipse:gurobiNative}).
 
 \begin{figure}[htbp]
 \renewcommand\figurename{Figure}
@@ -37,7 +37,7 @@ Next, you need to involve Gurobi in your integration project:
 
 Open \javaCode{LearningBoxToDictionaryIntegrationConsistencyCheck.java} in the \texttt{src} folder of your project (\Cref{eclipse:ccstub}).
 By analogy to the model transformation and synchronization stubs, this class loads your models, performs a consistency check, prints info in the console about the consistency of your models, and saves the resulting correspondences as well as the protocol.
-The boolean \javaCode{prepareDelta} indicates whether the inconsistent elements in your source and target models should be shifted to a delta model (empty deltas will be saved if your models are completely consistent).
+The Boolean \javaCode{prepareDeltas} indicates whether the inconsistent elements in your source and target models should be shifted to a delta model (empty deltas will be saved if your models are completely consistent).
 If deltas are prepared, the source and target models will be reduced to their consistent portions, i.e., they will potentially be changed (we thus recommend, as done in the stub, to save all results in some other path than your original models).
 Finally, note that the prepared deltas can then be propagated using forward and backward synchronization as discussed in previous sections.
 
