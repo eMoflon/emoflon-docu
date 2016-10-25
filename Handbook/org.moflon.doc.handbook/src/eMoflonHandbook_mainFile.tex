@@ -76,6 +76,15 @@
 {../../org.moflon.doc.handbook.05_miscellaneous/10_convertTGGToMOSLTGG/}
 }
 
+\newcommand{\beginNewPart}[1]{%
+\noHeader
+\def\partTitle{#1}
+\input{../../org.moflon.doc.handbook.00_common/src/titlepage}
+{\let\newpage\relax\maketitle}
+\let\cleardoublepage\clearpage
+\newpage
+\setcounter{section}{0}%
+}
 
 % -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -89,65 +98,29 @@
 
 \begin{document}
 
-\noHeader
-\def\partTitle{Part 0: Introduction}
-\input{../../org.moflon.doc.handbook.00_common/src/titlepage}
-{\let\newpage\relax\maketitle}
+\beginNewPart{Part 0: Introduction}
 \input{../../org.moflon.doc.handbook.00_common/src/copyright}
-\let\cleardoublepage\clearpage
-\newpage
-\setcounter{section}{0}
 \input{../../org.moflon.doc.handbook.00_introduction/src/introduction_source}
 
-\noHeader
-\newpage
-\def\partTitle{Part I: Installation and Setup}
-\input{../../org.moflon.doc.handbook.00_common/src/titlepage}
-{\let\newpage\relax\maketitle}
-\newpage
-\setcounter{section}{0}
+\beginNewPart{Part I: Installation and Setup}
 \input{../../org.moflon.doc.handbook.01_installation/src/installation_source}
 
-\noHeader
-\newpage
-\def\partTitle{Part II: Ecore}
-\input{../../org.moflon.doc.handbook.00_common/src/titlepage}
-{\let\newpage\relax\maketitle}
-\newpage
-\setcounter{section}{0}
+\beginNewPart{Part II: Ecore}
 \input{../../org.moflon.doc.handbook.02_leitnersLearningBox/src/learningBox_source}
 \input{../../org.moflon.doc.handbook.02_leitnersLearningBox/src/learningBox_conclusion}
 \input{../../org.moflon.doc.handbook.02_leitnersLearningBox/src/learningBox_glossary}
 
-\noHeader
-\newpage
-\def\partTitle{Part III: Story Driven Modelling}
-\input{../../org.moflon.doc.handbook.00_common/src/titlepage}
-{\let\newpage\relax\maketitle}
-\newpage
-\setcounter{section}{0}
+\beginNewPart{Part III: Story Driven Modelling}
 \input{../../org.moflon.doc.handbook.03_storyDiagrams/src/storyDiagrams_source}
 \input{../../org.moflon.doc.handbook.03_storyDiagrams/src/storyDiagrams_conclusion}
 \input{../../org.moflon.doc.handbook.03_storyDiagrams/src/storyDiagrams_glossary}
 
-\noHeader
-\newpage
-\def\partTitle{Part IV: Triple Graph Grammars}
-\input{../../org.moflon.doc.handbook.00_common/src/titlepage}
-{\let\newpage\relax\maketitle}
-\newpage
-\setcounter{section}{0}
+\beginNewPart{Part IV: Triple Graph Grammars}
 \input{../../org.moflon.doc.handbook.04_tripleGraphTransformations/src/TGG_source}
 \input{../../org.moflon.doc.handbook.04_tripleGraphTransformations/src/TGG_conclusion}
 \input{../../org.moflon.doc.handbook.04_tripleGraphTransformations/src/TGG_glossary}
 
-\noHeader
-\newpage
-\def\partTitle{Part V: Miscellaneous}
-\input{../../org.moflon.doc.handbook.00_common/src/titlepage}
-{\let\newpage\relax\maketitle}
-\newpage
-\setcounter{section}{0}
+\beginNewPart{Part V: Miscellaneous}
 \input{../../org.moflon.doc.handbook.05_miscellaneous/src/miscellaneous_source}
 
 % -- References
