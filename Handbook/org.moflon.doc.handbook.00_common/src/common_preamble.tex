@@ -33,6 +33,20 @@
 \AtBeginDocument{\counterwithin{lstlisting}{section}}
 \counterwithin{figure}{section}
 
+
+\newcommand{\beginNewPart}[1]{%
+    \newpage
+    \noHeader
+    \def\partTitle{#1}
+    \input{../../org.moflon.doc.handbook.00_common/src/titlepage}
+    {\let\newpage\relax\maketitle}
+    \let\cleardoublepage\clearpage
+    \setcounter{section}{0}%
+    \newpage
+}
+
+\setcounter{tocdepth}{2}
+
 \def\emoflonMail{contact@emoflon.org}
 \def\eMoflonURL{www.emoflon.org}
 \def\versionNumber{2.23.0}
@@ -40,7 +54,6 @@
 
 \def\eMoflonUpdateSite{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/update-site2/}}
 \def\eMoflonEAAddin{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/update-site2/ea-ecore-addin.zip}}
-\newcommand{\eMonflonHandbookURL}[1]{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/handbook/part#1.pdf}}
 
 
 
@@ -54,6 +67,7 @@
 \newcommand{\eMoflonToolRepo}{\entity{e\-mof\-lon-tool}\xspace}
 \newcommand{\eMoflonDocuRepo}{\entity{e\-mof\-lon-docu}\xspace}
 
+\newcommand{\eMonflonHandbookURL}[1]{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/handbook/part#1.pdf}}
 \newcommand{\dlPartZero}{\eMonflonHandbookURL{0}}
 \newcommand{\dlPartOne}{\eMonflonHandbookURL{1}}
 \newcommand{\dlPartTwo}{\eMonflonHandbookURL{2}}

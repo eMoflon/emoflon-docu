@@ -76,31 +76,15 @@
 {../../org.moflon.doc.handbook.05_miscellaneous/10_convertTGGToMOSLTGG/}
 }
 
-\newcommand{\beginNewPart}[1]{%
-\noHeader
-\def\partTitle{#1}
-\input{../../org.moflon.doc.handbook.00_common/src/titlepage}
-{\let\newpage\relax\maketitle}
-\let\cleardoublepage\clearpage
-\setcounter{section}{0}%
-\newpage
-}
-
-% -------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-% -------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-% Specific settings:
-\setcounter{tocdepth}{2}
-
 \input{draftsettings}
 
 \begin{document}
 
-\beginNewPart{Part 0: Introduction}
+\beginNewPart{eMoflon -- A Tool for Building Tools}
 \input{../../org.moflon.doc.handbook.00_common/src/copyright}
-\newpage
+
+\beginNewPart{Part 0: Introduction}
+
 \input{../../org.moflon.doc.handbook.00_introduction/src/introduction_source}
 
 \beginNewPart{Part I: Installation and Setup}
@@ -124,7 +108,6 @@
 \beginNewPart{Part V: Miscellaneous}
 \input{../../org.moflon.doc.handbook.05_miscellaneous/src/miscellaneous_source}
 
-% -- References
 \newpage \genHeader
 \phantomsection
 \addcontentsline{toc}{section}{References}
