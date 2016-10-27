@@ -11,9 +11,9 @@ as its argument, the specified pattern will \emph{match} only if that card is co
 link between the partition and the card is deleted, effectively ``removing'' the card from the partition. If the card is \emph{not} contained in the partition,
 the pattern won't match, and nothing will happen. In both cases, the card that's passed in is returned.
 
-\begin{itemize}
+\begin{stepbystep}
 
-\item[$\blacktriangleright$] If your code generation was successful, navigate to
+\item If your code generation was successful, navigate to
 ``Learning\-Box\-Language/\-gen/\-Learning\-Box\-Language/\-impl/\-Partition\-Impl.java" to the \texttt{\-remove\-Card} declaration (approximately line 347).
 Inspect the generated implementation for your method (\Cref{eclipse:remCardImpl}). Notice the null check that is automatically created - only a very
 conscientious (and probably slightly paranoid) programmer would program so defensively!
@@ -33,7 +33,7 @@ conscientious (and probably slightly paranoid) programmer would program so defen
 Near the end of Part II (after using injections), you were able to test this method's implementation using our \texttt{LeitnersBoxGui}. Let's run it again to
 make sure \emph{this} version of \texttt{removeCard} works!
 
-\item[$\blacktriangleright$] Load and run the GUI as an application,\footnote{Refer to Part II, Section 6 for details on our GUI} then go to any partition and
+\item Load and run the GUI as an application,\footnote{Refer to Part II, Section 6 for details on our GUI} then go to any partition and
 select \texttt{Remove Card} (\Cref{eclipse:GUIRemCard}).
 It should immediately refresh, and you'll no longer be able to see the card in either the GUI or in the \texttt{Box.xmi} tree in the ``instances'' folder.
 Pretty cool, eh?
@@ -48,4 +48,4 @@ Pretty cool, eh?
 \end{center}
 \end{figure}
 
-\end{itemize}
+\end{stepbystep}

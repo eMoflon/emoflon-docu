@@ -16,9 +16,9 @@ original starting partition, and the learning process is restarted.
 
 For a more detailed overview of the box and our goals, we recommend you read the introduction to Part II. But for now, enough discussion!
 
-\begin{itemize}
+\begin{stepbystep}
 
-\item[$\blacktriangleright$] To get started in Eclipse, press the \texttt{Install, configure and deploy Moflon} button and navigate to ``Install Workspace''. Choose ``Handbook Example (Part 3)''.
+\item To get started in Eclipse, press the \texttt{Install, configure and deploy Moflon} button and navigate to ``Install Workspace''. Choose ``Handbook Example (Part 3)''.
 (\Cref{eclipse:downloadWizard}).
 
 \begin{figure}[htbp]
@@ -28,20 +28,20 @@ For a more detailed overview of the box and our goals, we recommend you read the
 	\label{eclipse:downloadWizard}
 \end{figure}
 
-\item[$\blacktriangleright$] The cheat package contains all files created up to the example in this point, as well as a small GUI that will enable
+\item The cheat package contains all files created up to the example in this point, as well as a small GUI that will enable
 you to experiment with your metamodel.
 
 \newpage
 
 \vspace*{0.5cm}
 %
-%\item[$\blacktriangleright$] If your package explorer does not resemble ours in \Cref{eclipse:workingSets} with at least two distinct nodes, select the
+%\item If your package explorer does not resemble ours in \Cref{eclipse:workingSets} with at least two distinct nodes, select the
 %small, downward facing arrow in the corner of the package explorer. Choose ``Working Sets'' as your ``Top Level Elements.'' We use these to structure the
 %workspace in Eclipse.
 %
 %\vspace{0.75cm}
 %
-\end{itemize}
+\end{stepbystep}
 %
 %\begin{figure}[htbp]
 %	\centering
@@ -58,19 +58,19 @@ you to experiment with your metamodel.
 %\emph{repository project}, the Eclipse classification of a normal Java project,\footnote{For details on the project setup, review Part I, Section 4}
 %while \texttt{LeitnersLearningBox} is a metamodel project.
 
-\begin{itemize}
+\begin{stepbystep}
 	
-\itemWithRightTriangle In order to start working with the cheat package, you have to generate code by (i) opening the \texttt{.eap} file in \texttt{LeitnersLearningBoxVisual}, (ii) exporting it using Enterprise Architect, (iii) refreshing the project containing the \texttt{.eap} and (iv) rebuilding the  \texttt{LearningBoxLanguage} project. For more details on the code generation process, refer to Part I, Section 2.
+\item In order to start working with the cheat package, you have to generate code by (i) opening the \texttt{.eap} file in \texttt{LeitnersLearningBoxVisual}, (ii) exporting it using Enterprise Architect, (iii) refreshing the project containing the \texttt{.eap} and (iv) rebuilding the  \texttt{LearningBoxLanguage} project. For more details on the code generation process, refer to Part I, Section 2.
 
-\item[$\blacktriangleright$] Inspect the files in both projects until you feel comfortable with what you'll be working with. In particular, look at the files
+\item Inspect the files in both projects until you feel comfortable with what you'll be working with. In particular, look at the files
 found under ``gen." Each Java file has a corresponding \texttt{.impl} file, where all generated method implementations will be placed.
 %\footnote{For
 %more details on code generation, refer to Part I, Section 5} 
 
-\item[$\blacktriangleright$] Be sure to also review the Ecore model in ``LearningBoxLanguage/model/'' and the dynamic model found in ``instances.'' While
+\item Be sure to also review the Ecore model in ``LearningBoxLanguage/model/'' and the dynamic model found in ``instances.'' While
 you can make and customize your own instances,\footnote{To learn how to make your own instance models, review Part II, Section 4} we have included a small
 sample to help you get started.
 
-\end{itemize}
+\end{stepbystep}
 
 Well, that's it! A quick review, paired with a fine cheat package makes an excellent appetizer to SDMs. Let's get started.

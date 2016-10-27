@@ -36,9 +36,9 @@ project.
 Due to the algorithmic and non-structural nature of \texttt{determineNextSize}, it will be easier to implement this method via a Java \emph{injection}, rather
 than an SDM. We've already declared this method in our metamodel, so its signature will be available for editing in \texttt{BoxImpl.java}.
 
-\begin{itemize}
+\begin{stepbystep}
 
-\item[$\blacktriangleright$] Open ``gen/LearningBoxLanguage.impl/BoxImpl.java.'' Scroll to the method declaration, and replace the contents with the code in
+\item Open ``gen/LearningBoxLanguage.impl/BoxImpl.java.'' Scroll to the method declaration, and replace the contents with the code in
 \Cref{code:determineNextSize_impl}. Remember not to remove the first comment, which is necessary to indicate that the code is handwritten and needs to be
 extracted automatically as an injection. Please do not copy and paste the following code -- the copying process from your pdf viewer to the Eclipse IDE
 will likely add invisible characters to the code that eMoflon is unable to handle.
@@ -56,12 +56,12 @@ will likely add invisible characters to the code that eMoflon is unable to handl
 \end{figure}
 
 
-\item[$\blacktriangleright$] Save the file, then right-click on it, either in the package explorer or in the editor window, and choose ``eMoflon/
+\item Save the file, then right-click on it, either in the package explorer or in the editor window, and choose ``eMoflon/
 Create/Update Injection for class'' from the context menu. 
 
-\item[$\blacktriangleright$] Confirm the update in the new \texttt{BoxImpl.inject} file's partial class. \texttt{determineNextSize} is now ready to be used by
+\item Confirm the update in the new \texttt{BoxImpl.inject} file's partial class. \texttt{determineNextSize} is now ready to be used by
 your metamodel!
 
-\end{itemize}
+\end{stepbystep}
 
 \input{../../org.moflon.doc.handbook.03_storyDiagrams/08_growBox/visGrowBox}

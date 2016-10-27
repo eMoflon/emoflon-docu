@@ -1,19 +1,19 @@
 \genHeader
 
-\begin{itemize}
+\begin{stepbystep}
 
-\item[$\blacktriangleright$]
+\item 
 Let's start with the double-linked list demonstration specification, which is
 readily provided with eMoflon:
 Create a new meta-model project (``File/New/Other\dots", then ``eMoflon/New
 Metamodel Wizard''), call your project ``Demo'', and tick ``Add Demo
 Specification''.
 
-\item[$\blacktriangleright$]
+\item 
 Open the EAP file ``Demo.eap'' and navigate to the diagram
 ``org.\-moflon.\-demo.\-doublelinkedlist''.
 
-\item[$\blacktriangleright$]
+\item 
 Now, add a new ``EEnum'' type called color.
 This can be done via the Toolbox (``Diagram/Toolbox'') or by pressing space
 while the cursor is inside the digram area.
@@ -27,7 +27,7 @@ Your diagram should resemble \Cref{enums:vis:createEEnum}.
     \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$]
+\item 
 We now create the three colors that our list nodes may have.
 An enum constant is a special attribute.
 Therefore, open the attriutes view of \texttt{Color} (``Right-click/Features \&
@@ -45,7 +45,7 @@ attribute has an ``initial value''.
     \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$]
+\item 
 Finally, create a \texttt{color} attribute of type \texttt{Color} in EClass
 \texttt{Node} (\Cref{enums:vis:colorAttribute}).
 
@@ -58,10 +58,10 @@ Finally, create a \texttt{color} attribute of type \texttt{Color} in EClass
     \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$]
+\item 
 Validate and export and build your metamodel.
 
-\item[$\blacktriangleright$]
+\item 
 A minimal test for the new feature could be implemented in the class
 \texttt{NodeTest} as follows:
 \begin{lstlisting}[language=Java,caption={Test for coloring nodes}]
@@ -73,4 +73,4 @@ public void testAddColor() throws Exception {
 }
 \end{lstlisting}
 
-\end{itemize}
+\end{stepbystep}

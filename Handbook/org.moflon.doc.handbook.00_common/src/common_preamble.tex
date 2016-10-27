@@ -28,12 +28,13 @@
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{siunitx}
+\usepackage{verbatim}
 
 %change the numbering of pictures and listings
 \AtBeginDocument{\counterwithin{lstlisting}{section}}
 \counterwithin{figure}{section}
 
-
+\setcounter{part}{-1}
 \newcommand{\beginNewPart}[1]{%
     \newpage
     \noHeader
@@ -45,7 +46,7 @@
     \newpage
 }
 
-\setcounter{tocdepth}{2}
+
 
 \def\emoflonMail{contact@emoflon.org}
 \def\eMoflonURL{www.emoflon.org}
@@ -67,19 +68,16 @@
 \newcommand{\eMoflonToolRepo}{\entity{e\-mof\-lon-tool}\xspace}
 \newcommand{\eMoflonDocuRepo}{\entity{e\-mof\-lon-docu}\xspace}
 
-\newcommand{\eMonflonHandbookURL}[1]{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/handbook/part#1.pdf}}
-\newcommand{\dlPartZero}{\eMonflonHandbookURL{0}}
-\newcommand{\dlPartOne}{\eMonflonHandbookURL{1}}
-\newcommand{\dlPartTwo}{\eMonflonHandbookURL{2}}
-\newcommand{\dlPartThree}{\eMonflonHandbookURL{3}}
-\newcommand{\dlPartFour}{\eMonflonHandbookURL{4}}
-\newcommand{\dlPartFive}{\eMonflonHandbookURL{5}}
-\newcommand{\downloadLocation}[1]{{\scriptsize \texttt{URL of this document: #1}}}
+\newcommand{\eMonflonHandbookURL}[0]{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/handbook/eMoflonHandbook_\versionNumber.pdf}}
+%\newcommand{\dlPartZero}{\eMonflonHandbookURL{0}}
+%\newcommand{\dlPartOne}{\eMonflonHandbookURL{1}}
+%\newcommand{\dlPartTwo}{\eMonflonHandbookURL{2}}
+%\newcommand{\dlPartThree}{\eMonflonHandbookURL{3}}
+%\newcommand{\dlPartFour}{\eMonflonHandbookURL{4}}
+%\newcommand{\dlPartFive}{\eMonflonHandbookURL{5}}
+%\setcounter{tocdepth}{2}
+%\newcommand{\downloadLocation}[1]{{\scriptsize \texttt{URL of this document: #1}}}
 
-
-\def\itemWithRightTriangle{\item[$\blacktriangleright$]}
-
-\input{../../org.moflon.doc.handbook.00_common/src/codestyles/Color}
 
 \hypersetup{colorlinks=true,% 
     linkcolor=black,%
@@ -91,10 +89,9 @@
     pdftitle={The eMoflon \versionNumber{} Handbook}%
 }
 
+\input{../../org.moflon.doc.handbook.00_common/src/codestyles/Color}
 \input{../../org.moflon.doc.handbook.00_common/src/codestyles/Default}
 \input{../../org.moflon.doc.handbook.00_common/src/codestyles/MOSL}
-
-\setcounter{tocdepth}{1}
 
 \setlength{\parindent}{0pt} 
 \setlength{\parskip}{0.3cm}
@@ -134,24 +131,6 @@
 \hyphenation{att-ribute-Con-di-tions}
 \hyphenation{Dictionary-Language}
 \hyphenation{Learning-Box-Language}
-
-\lstset{
-    backgroundcolor=\color{white},
-    frame=topbottom
-}
-\makeatletter
-\lstdefinestyle{mystyle}{
-    literate={\\\-}{}{0\discretionary{-}{}{}}, % https://tex.stackexchange.com/questions/69346/how-to-deal-with-very-long-lstinline-phrases-like-long-class-names/69364#69364
-    %prebreak=-,
-    breaklines=true,
-    basicstyle=%
-    \ttfamily
-    \color{black}% darkgray
-    \lst@ifdisplaystyle\scriptsize\fi
-}
-\makeatother
-\lstset{style=mystyle}
-
 \newcommand{\javaCode}[1]{\lstinline[language=Java]{#1}\xspace}
 \newcommand{\moslTggCode}[1]{\lstinline{#1}\xspace}
 

@@ -9,9 +9,9 @@ Let's implement the \texttt{removeCard} method, declared in the \texttt{Partitio
 disable the link between them. Don't forget that (according to the signature) not only does \texttt{removeCard} have to pass in a \texttt{Card}, it must return
 one as well.
 
-\begin{itemize}
+\begin{stepbystep}
 
-\item[$\blacktriangleright$] From your working set, open ``gen/LearningBoxLanguage.impl/Part\-it\-ionImpl.java'' and enter the following code in the
+\item From your working set, open ``gen/LearningBoxLanguage.impl/Part\-it\-ionImpl.java'' and enter the following code in the
 \texttt{removeCard} declaration, starting at approximately line 347. Do not remove the first comment, which is necessary to indicate that this code is written
 by the user and needs to be extracted automatically as an injection. Please also do not copy and paste the following code -- the copying process will most
 likely add invisible characters that eMoflon is unable to handle.
@@ -35,7 +35,7 @@ likely add invisible characters that eMoflon is unable to handle.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Save the file, then right-click either on the file in the package explorer, or in the editor window, and choose ``eMoflon/
+\item Save the file, then right-click either on the file in the package explorer, or in the editor window, and choose ``eMoflon/
 Create/Update Injection for class'' (Alt+Shift+E,I) from the context menu (\Cref{eclipse:injection_create_injection}).
 
 \begin{figure}[htbp]
@@ -45,7 +45,7 @@ Create/Update Injection for class'' (Alt+Shift+E,I) from the context menu (\Cref
     \label{eclipse:injection_create_injection}
 \end{figure}
 
-\item[$\blacktriangleright$] This will create a new file in the ``injection'' folder of your project with the same package and name stucture as the Java class,
+\item This will create a new file in the ``injection'' folder of your project with the same package and name stucture as the Java class,
 but with a new \texttt{.inject} extension (\Cref{eclipse:injection_folder}).
 
 \begin{figure}[htbp]
@@ -55,7 +55,7 @@ but with a new \texttt{.inject} extension (\Cref{eclipse:injection_folder}).
     \label{eclipse:injection_folder}
 \end{figure}
 
-\item[$\blacktriangleright$] Double click to open and view this file. It contains the definition of a \textit{partial class}
+\item Double click to open and view this file. It contains the definition of a \textit{partial class}
 (\Cref{eclipse:injection_partialClassPartition}).
 
 \begin{figure}[htbp]
@@ -67,20 +67,20 @@ but with a new \texttt{.inject} extension (\Cref{eclipse:injection_folder}).
 
 \clearpage
 
-\item[$\blacktriangleright$] As a final step, build your metamodel to check that the code is generated and injected properly.
+\item As a final step, build your metamodel to check that the code is generated and injected properly.
 
-\item[$\blacktriangleright$] By the way, eMoflon allows you to switch quickly between a Java class and its injection file.
+\item By the way, eMoflon allows you to switch quickly between a Java class and its injection file.
 When inside ``PartitionImpl.java", open the context menu and select ``eMoflon/Class \verb|<->| Injection" (Alt+Shift+E,W).
 This brings you to ``PartitionImpl.java".
 
 Repeat this command and you are back in ``PartitionImpl.inject``.
 
 
-\item[$\blacktriangleright$] That's it! While injecting handwritten code is a remarkably simple process, it is pretty boring and low level to call all those
+\item That's it! While injecting handwritten code is a remarkably simple process, it is pretty boring and low level to call all those
 setters and getters yourself. We'll return to injections for establishing two simple methods in Part III using this strategy, but we'll also learn how to
 implement more complex methods using Story Diagrams.
  
-\end{itemize}
+\end{stepbystep}
 
 \subsection*{Creating injections automatically with save actions}
 
@@ -89,12 +89,12 @@ If you forget to create an injection and trigger a rebuild (``eMoflon/Build", Al
 
 To save you from this frustrating experience, eMoflon may automatically save injections whenever you save your Java file.
 
-\begin{itemize}
+\begin{stepbystep}
 
-\item[$\blacktriangleright$] 
+\item 
 Open the preferences dialog via ``Window/Preferences" and navigate to the ``Save Actions" (``Java/Editor/Save Actions").
 
-\item[$\blacktriangleright$]
+\item
 To enable save actions, tick ``Perform the selected actions on save" and ``Additional actions" (\Cref{eclipse:injection_saveActions1}).
 
 \begin{figure}[htbp]
@@ -104,7 +104,7 @@ To enable save actions, tick ``Perform the selected actions on save" and ``Addit
     \label{eclipse:injection_saveActions1}
 \end{figure}
 
-\item[$\blacktriangleright$]
+\item
 Press ``Configure", switch to the ``eMoflon Injections" tab and tick ``Enable injection extraction on save" (\Cref{eclipse:injection_saveActions2}).
 
 \begin{figure}[htbp]
@@ -114,10 +114,10 @@ Press ``Configure", switch to the ``eMoflon Injections" tab and tick ``Enable in
     \label{eclipse:injection_saveActions2}
 \end{figure}
 
-\item[$\blacktriangleright$]
+\item
 After confirming the dialog, the bulleted list should contain the entry ``Create eMoflon injections".
 
-\item[$\blacktriangleright$]
+\item
 Open up ``PartitionImpl.java", perform a tiny modification on it, and save the file.
 The eMoflon console should display a message to confirm that injections have been extracted automatically, e.g.,
 \begin{verbatim}
@@ -125,5 +125,5 @@ The eMoflon console should display a message to confirm that injections have bee
 file for 'PartitionImpl'.
 \end{verbatim}
 
-\end{itemize}
+\end{stepbystep}
 

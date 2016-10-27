@@ -8,9 +8,9 @@ project is not meant to be present in your Eclipse workspace as generated code a
 metamodels like Ecore, UML etc.), or (iv) because the project is rather large and stable and you do not want to wait for EA to process a known, unchanging
 model. Whatever the reason, you can prevent unnecessary exports by setting a certain \emph{tagged value} of the project.
 
-\begin{enumerate}
+\begin{stepbystep}
 
-\item[$\blacktriangleright$] Open your project in EA, and navigate to ``View/Tagged Values'' from the menu bar (\Cref{ea:view/Taggedvalues}).
+\item Open your project in EA, and navigate to ``View/Tagged Values'' from the menu bar (\Cref{ea:view/Taggedvalues}).
 
 \begin{figure}[htbp]
 \begin{center}  \includegraphics[width=0.5\textwidth]{ea_viewTaggedValues}
@@ -19,7 +19,7 @@ model. Whatever the reason, you can prevent unnecessary exports by setting a cer
 \end{center}
 \end{figure} 
 
-\item[$\blacktriangleright$] The tagged value, \emph{Moflon::Export}, should already be present and be set to a default \texttt{true} value
+\item The tagged value, \emph{Moflon::Export}, should already be present and be set to a default \texttt{true} value
 (\Cref{ea:moflonExportTG}). If you want the project to be ignored by the eMoflon's validation and/or export functions, change the value to
 \texttt{false} (and conversely back to \texttt{true} to export it again).
 
@@ -31,4 +31,4 @@ model. Whatever the reason, you can prevent unnecessary exports by setting a cer
 \end{center}
 \end{figure}
 
-\end{enumerate}
+\end{stepbystep}
