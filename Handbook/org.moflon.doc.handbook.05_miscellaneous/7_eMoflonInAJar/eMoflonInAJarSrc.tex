@@ -13,15 +13,15 @@ i.e., TGG-based, projects.
 The following explanations use the demo specification that is shipped with
 eMoflon to explain the workflow of building a runnable Jar file.
 
-\begin{itemize}
+\begin{stepbystep}
     
-\item[$\blacktriangleright$] 
+\item 
 Open a fresh workspace and add to it the eMoflon Demo specification by selecting the ``Install, configure and deploy Moflon'' button and open the  ``Install Workspace'' menu bar. Select the ``Demo Workspace''.
     
-\item[$\blacktriangleright$]
+\item 
 Generate code for the demo and verify the result by running the test cases in \emph{DemoTestSuite}.
 
-\item[$\blacktriangleright$]
+\item 
 Add a suitable main method to \texttt{NodeTest}, for instance:
 \begin{lstlisting}
 public static void main(String[] args) {
@@ -33,28 +33,28 @@ public static void main(String[] args) {
 }
 \end{lstlisting}
 
-\item[$\blacktriangleright$]
+\item 
 Run \texttt{NodeTest} as ``Java Application" (\emph{not} as ``JUnit Test").
 Now you have a new launch configuration named ``NodeTest".
 
-\item[$\blacktriangleright$]
+\item 
 Now, select the repository project (containing the generated code) and the project \emph{DemoTestSuite}.
 You do not need to add the project containing the EA project.
 Right-click and select ``Export...".
 Choose ``Runnable JAR file".
   
-\item[$\blacktriangleright$]
+\item 
 On the next page, select the launch configuration you just created by running \texttt{NodeTest} and an appropriate target location for your Jar file.
 The libraries should be packaged or extracted into the generated Jar file.
 
-\item[$\blacktriangleright$]
+\item 
 Afterwards, open up a console in the folder containing the generated Jar file and execute it as follows:
 \begin{lstlisting}
 java -jar [GeneratedJarFile.jar]
 \end{lstlisting}
 
     
-\end{itemize}
+\end{stepbystep}
 
 \subsection{Packaging TGG projects into a Jar file}
 
@@ -67,7 +67,7 @@ There are other build tools such as ant, Maven or Gradle that facilitate this pr
 
 \begin{itemize}
     
-\item[$\blacktriangleright$] 
+\item 
 Ensure that your TGG rules from within Eclipse.
 For simplicity, we assume that your main method currently resembles the following snippet:
 \begin{lstlisting}
@@ -83,7 +83,7 @@ public static void main(String[] args) throws IOException {
 \end{lstlisting}
 The default transformation helper should print a short success message when the forward transformation has finished.
 
-\item[$\blacktriangleright$]
+\item 
 Before packaging your project, you have to change the ways how the TGG rules are being loaded (in the constructor of \texttt{MyIntegration\-Trafo}).
 Replace this method call
 \begin{lstlisting}
@@ -107,21 +107,21 @@ loadRulesFromJarArchive(
 \end{lstlisting}
 
 
-\item[$\blacktriangleright$]
+\item 
 Next, make the ``model" directory a source folder by right-clicking it and selecting ``Build Path/Use as Source Folder".
 This will make the contents of ``model" available in the Jar file to be built.
 
 
-\item[$\blacktriangleright$]
+\item 
 Now, your projects are ready to be packaged.
 Select all projects that are involved in your TGG, that is, the project of the source and target metamodel as well as the actual integration project.
 
 Right-click the projects and select ``Export..." and then ``Java/Runnable JAR File".
 
-\item[$\blacktriangleright$]
+\item 
 Select the appropriate launch configuration (named ``MyIntegrationTraf"), choose the export destination, and make sure that the library handling is set to ``Extract required libraries".
 
-\item[$\blacktriangleright$]
+\item 
 After a successful export, locate the generated Jar file.
 The program expects to find the source model of the transformation at the following path, relative to the folder containing your Jar file: ``instances/fwd.src.xmi".
 

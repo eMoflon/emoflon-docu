@@ -3,9 +3,9 @@
 \genHeader
 \hypertarget{static:references vis}{}
 
-\begin{itemize}
+\begin{stepbystep}
 
-\item[$\blacktriangleright$] A fundamental gesture in EA is \emph{Quick Link}\define{Quick Link}. Quick Link is used to create EReferences between elements in a context-sensitive
+\item A fundamental gesture in EA is \emph{Quick Link}\define{Quick Link}. Quick Link is used to create EReferences between elements in a context-sensitive
 manner. To use quick link, choose an element and note the little black arrow in its top-right corner (\Cref{ea:quicklink}).
 
 \begin{figure}[htbp]
@@ -16,7 +16,7 @@ manner. To use quick link, choose an element and note the little black arrow in 
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] Click this black arrow and `pull' to the element you wish to link to. To start, quick-link from \texttt{Box} to \texttt{Partition}.
+\item Click this black arrow and `pull' to the element you wish to link to. To start, quick-link from \texttt{Box} to \texttt{Partition}.
 In the context menu that appears, select ``Create Bidirectional EReference'' (\Cref{ea:ereference}).
 
 \begin{figure}[htbp]
@@ -27,10 +27,10 @@ In the context menu that appears, select ``Create Bidirectional EReference'' (\C
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] Double click the EReference to invoke a dialogue. In this window you can adjust all relevant settings. Feel free to leave the
+\item Double click the EReference to invoke a dialogue. In this window you can adjust all relevant settings. Feel free to leave the
 \texttt{Name} value blank - this property is only used for documentation purposes, and is not relevant for code generation.
 
-\item[$\blacktriangleright$] Within this dialogue, go to ``Role(s),'' and compare the relevant values in \Cref{ea:roles} for the \emph{source} 
+\item Within this dialogue, go to ``Role(s),'' and compare the relevant values in \Cref{ea:roles} for the \emph{source} 
 end of the EReference (the \texttt{Box} role). As you can see, the default source is set to the EClass you linked from, while the default target
 is the EClass you linked to. In this window, do not forget to confirm and modify the \texttt{Role}, \texttt{Navigability}, \texttt{Multiplicity}, and
 \texttt{Aggregation} settings for the source as required. Repeat the process for the \texttt{Target Role}.
@@ -44,7 +44,7 @@ is the EClass you linked to. In this window, do not forget to confirm and modify
 	\label{ea:roles}
 \end{figure}
 
-\end{itemize}
+\end{stepbystep}
 
 To review these properties, the first value you edited was the role name. The \texttt{Navigation} value should have been automatically set to
 \texttt{Na\-vi\-ga\-ble}. Without these two settings, getter and setter methods will not be generated.
@@ -67,8 +67,8 @@ two boxes). In the target (\texttt{Partition}) role, you have specified that any
 Finally, you set the \texttt{Aggregation} value. In this case, \texttt{box} is a container for \texttt{Partition}s, and \texttt{containedPartition} is
 consequently not.
 
-\begin{itemize}
-\item[$\blacktriangleright$] Take a moment to review how the \texttt{Aggregration} settings extend the \texttt{Multiplicity} rules. If you've done everything
+\begin{stepbystep}
+\item Take a moment to review how the \texttt{Aggregration} settings extend the \texttt{Multiplicity} rules. If you've done everything
 right, your metamodel should now resemble \Cref{ea:ereference_completed}, with a single \emph{bidirectional EReference} between \texttt{Box} and
 \texttt{Partition}.
 
@@ -82,7 +82,7 @@ right, your metamodel should now resemble \Cref{ea:ereference_completed}, with a
 \end{figure}
 \FloatBarrier
 
-\item[$\blacktriangleright$] Following the same process, create two unidirectional self-EReferences for \texttt{Partition} (for next and previous \texttt{Partitions}), and a second bidirectional composite
+\item Following the same process, create two unidirectional self-EReferences for \texttt{Partition} (for next and previous \texttt{Partitions}), and a second bidirectional composite
 EReference\footnote{To be precise, \emph{all} EReferences in Ecore are actually unidirectional. A ``bidirectional'' EReference in our metamodel is really two
 mapped EReferences that are opposites of each other. We however, believe it is simpler to handle these pairs as single EReferences, and prefer this
 concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (\Cref{ea:ereferences_all}). 
@@ -99,12 +99,12 @@ concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (\Cref{ea
 
 \vspace{1cm}
 
-\item[$\blacktriangleright$] You'll notice that the connection between \texttt{Card} and \texttt{Partition} is similar to that between \texttt{Partition} and
+\item You'll notice that the connection between \texttt{Card} and \texttt{Partition} is similar to that between \texttt{Partition} and
 \texttt{Box}. This makes sense as a partition should be able to hold an unlimited amount of cards, but a card can only belong to one partition at a time.
 
 \vspace{1cm}
 
-\item[$\blacktriangleright$] Export your diagram to Eclipse and refresh your workspace. Your Ecore metamodel file in ``model/LearningBoxLanguage.ecore" should now resemble \Cref{eclipse:model_allClasses}.
+\item Export your diagram to Eclipse and refresh your workspace. Your Ecore metamodel file in ``model/LearningBoxLanguage.ecore" should now resemble \Cref{eclipse:model_allClasses}.
 
 \vspace{1cm}
 
@@ -117,7 +117,7 @@ concise concrete syntax.} between \texttt{Partition} and \texttt{Card} (\Cref{ea
 
 \vspace{1cm}
 
-\item[$\blacktriangleright$] All the required attributes and references for your learning box have now been set up.
+\item All the required attributes and references for your learning box have now been set up.
 
 
-\end{itemize}
+\end{stepbystep}

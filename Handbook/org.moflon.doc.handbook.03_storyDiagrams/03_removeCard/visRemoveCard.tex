@@ -3,9 +3,9 @@
 \subsection{Implementing removeCard}
 \genHeader
 
-\begin{itemize}
+\begin{stepbystep}
 
-\item[$\blacktriangleright$] Open \texttt{LearningBoxLanguage.eap} in Enterprise Architect (EA) by dou\-ble clicking it in Eclipse. Carefully do the
+\item Open \texttt{LearningBoxLanguage.eap} in Enterprise Architect (EA) by dou\-ble clicking it in Eclipse. Carefully do the
 following: (1) Click \emph{once} on \texttt{Partition} to select it, then (2) Click \emph{once} on the method \texttt{removeCard} to highlight it
 (\Cref{ea:sdm_start}), and (3) \emph{Double-click} on the chosen method to indicate that you want to implement it.
 
@@ -17,7 +17,7 @@ following: (1) Click \emph{once} on \texttt{Partition} to select it, then (2) Cl
 \end{center}
 \end{figure}
  
-\item[$\blacktriangleright$] If you did everything right (and answered the question which popped up about creating a new SDM diagram with Yes), a new \emph{activity diagram} should be created and opened in a new tab with a cute anchor in
+\item If you did everything right (and answered the question which popped up about creating a new SDM diagram with Yes), a new \emph{activity diagram} should be created and opened in a new tab with a cute anchor in
 the corner, and a \emph{start node} labelled with the signature of the method (\Cref{ea:sdm_skeleton}).  
 
 \begin{figure}[htp]
@@ -30,25 +30,25 @@ the corner, and a \emph{start node} labelled with the signature of the method (\
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] This diagram is where you'll model \texttt{removeCard}'s \emph{control flow}. In other words,
+\item This diagram is where you'll model \texttt{removeCard}'s \emph{control flow}. In other words,
 this is \texttt{removeCard}'s imperative top-level diagram. We refer to the whole activity diagram simply as the \emph{activity}, which always starts with a
 \emph{start node,} contains \emph{activity nodes} connected via \emph{activity edges}, then finally terminates with a \emph{stop node}. Before creating
 these however, let's quickly familiarise ourselves with the EA workspace.
 
-\item[$\blacktriangleright$] First, inspect the project browser and notice that an \texttt{<<SDM Activity>>} container has been created for the method
+\item First, inspect the project browser and notice that an \texttt{<<SDM Activity>>} container has been created for the method
 \texttt{removeCard}. This container will eventually host every artifact related to this pattern (i.e., object variables, stop nodes, etc.). Please note
 that if you're ever unhappy with an SDM, you can always delete the appropriate container in the project browser (such as this one), and start from scratch.
 
-\item[$\blacktriangleright$] Next, note the new \texttt{SDM} toolbox that has been automatically opened for the diagram and placed to the left above
+\item Next, note the new \texttt{SDM} toolbox that has been automatically opened for the diagram and placed to the left above
 the common toolbox. This provides quick access to SDM items that you'll frequently use in your diagram. You can also invoke the active toolbox in a pop-up
 context menu anywhere in the diagram by pressing the \texttt{space} bar.
 
-\item[$\blacktriangleright$] Finally, in the top left corner of the diagram, you'll notice a small anchor. Double click on this icon to quickly jump back to the
+\item Finally, in the top left corner of the diagram, you'll notice a small anchor. Double click on this icon to quickly jump back to the
 metamodel. From there, double click the method again to jump back to the SDM. This is just a small trick to help you quickly navigate between diagrams.
 
 \newpage
 
-\item[$\blacktriangleright$] To begin, select the start node, and note the small black arrow that appears (\Cref{ea:sdm_quicklink}). 
+\item To begin, select the start node, and note the small black arrow that appears (\Cref{ea:sdm_quicklink}). 
 
 \begin{figure}[htp]
 \begin{center}
@@ -58,14 +58,14 @@ metamodel. From there, double click the method again to jump back to the SDM. Th
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] Similar to quick linking,\footnote{This was discussed in Part II, Section 2.5} a second fundamental gesture in EA is \emph{Quick
+\item Similar to quick linking,\footnote{This was discussed in Part II, Section 2.5} a second fundamental gesture in EA is \emph{Quick
 Create}.
 To quick-create an element, pull the arrow and click on an empty spot in the diagram. This is basically ``quick linking'' to a non-existent element.
 
-\item[$\blacktriangleright$] EA notices that there is nothing to quick-link to, and pops up a small, context-sensitive dialogue offering to create an element
+\item EA notices that there is nothing to quick-link to, and pops up a small, context-sensitive dialogue offering to create an element
 which can be connected to the source element.
 
-\item[$\blacktriangleright$] As illustrated in \Cref{ea:sdm_new_activity_node}, choose \texttt{Append StoryNode} to create a \emph{Story Node}.
+\item As illustrated in \Cref{ea:sdm_new_activity_node}, choose \texttt{Append StoryNode} to create a \emph{Story Node}.
 
 \begin{figure}[htp]
 \begin{center}
@@ -75,7 +75,7 @@ which can be connected to the source element.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] If you quick-created correctly, you should now have a start node, one node called \texttt{ActivityNode1}, and an edge
+\item If you quick-created correctly, you should now have a start node, one node called \texttt{ActivityNode1}, and an edge
 connecting the two items. Complete the activity by quick-creating a stop node (\Cref{ea:sdm_stop_node}).
 
 \begin{figure}[htp]
@@ -88,18 +88,18 @@ connecting the two items. Complete the activity by quick-creating a stop node (\
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] If everything is correct, you should now have a fully constructed activity that models the method's control flow.
+\item If everything is correct, you should now have a fully constructed activity that models the method's control flow.
 
-\item[$\blacktriangleright$] While a \emph{stop node} is rather self explanatory, you may be wondering about the differences between the other two menu options,
+\item While a \emph{stop node} is rather self explanatory, you may be wondering about the differences between the other two menu options,
 the \emph{story node}\define{Story Node} and \emph{statement node}\define{Statement Node}. Since not all activity nodes can contain story patterns (e.g., start
 and stop nodes), those that \emph{can} are called story nodes. Statement nodes cannot and are used instead to invoke an action, such as method execution. We'll
 encounter this in a later SDM.
 
-\item[$\blacktriangleright$] To complete this activity, double-click \texttt{ActivityNode1} to prompt the dialogue depicted in
+\item To complete this activity, double-click \texttt{ActivityNode1} to prompt the dialogue depicted in
 \Cref{ea:story_pattern}. Enter \texttt{removeCardFromPartition} as the name of the story node, and select \texttt{Create this Object}.  Click
 \texttt{OK}. The activity node now has a single \emph{bound} \emph{object variable}, \texttt{this}.
 
-\item[$\blacktriangleright$] To create a new object variable, choose \texttt{SDM ObjectVariable} from the toolbox then click inside the activity node
+\item To create a new object variable, choose \texttt{SDM ObjectVariable} from the toolbox then click inside the activity node
 (\Cref{ea:tool_box}). A properties window will automatically appear (\Cref{ea:object_variable_properties}).
 
 \begin{figure}[htpb]
@@ -131,14 +131,14 @@ encounter this in a later SDM.
 \end{figure}
 
 
-\item[$\blacktriangleright$] Using the drop-down menus, choose \texttt{toBeRemovedCard} as the name of the object, and set \texttt{Card} as its type.
+\item Using the drop-down menus, choose \texttt{toBeRemovedCard} as the name of the object, and set \texttt{Card} as its type.
 Since \texttt{card} is a parameter of the method, it is offered as a possible name which can be directly chosen to avoid annoying typing mistakes.
 
-\item[$\blacktriangleright$] In this dialogue, note that the \texttt{Bound} option is automatically set. We have now seen two cases in this activity for bound
+\item In this dialogue, note that the \texttt{Bound} option is automatically set. We have now seen two cases in this activity for bound
 object variables: an assignment to \texttt{this}, and an assignment to a method parameter. Setting \texttt{toBeRemovedCard} to bound means that it will be implicitly
 assigned to the parameter with the same name.
 
-\item[$\blacktriangleright$] To create a \emph{link variable} between the current partition and the card to be removed, choose the object variable \texttt{this}
+\item To create a \emph{link variable} between the current partition and the card to be removed, choose the object variable \texttt{this}
 and quick link it to \texttt{toBeRemovedCard} (\Cref{ea:link_variable}).
 
 \begin{figure}[htpb]
@@ -149,7 +149,7 @@ and quick link it to \texttt{toBeRemovedCard} (\Cref{ea:link_variable}).
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] According to the metamodel, there is only one possible link between a partition and card. Select this and set the
+\item According to the metamodel, there is only one possible link between a partition and card. Select this and set the
 \texttt{Binding Operator} to \texttt{Destroy} (\Cref{ea:link_variable_properties}). The reference names will automatically appear in the diagram.
 
 \vspace{0.5cm}
@@ -165,7 +165,7 @@ and quick link it to \texttt{toBeRemovedCard} (\Cref{ea:link_variable}).
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Remember how we said that this method should return the same card that was passed in? As luck would have it, a return value for an
+\item Remember how we said that this method should return the same card that was passed in? As luck would have it, a return value for an
 SDM can be specified in the stop node. As depicted in \Cref{ea:stop_node_return_value}, double-click the stop node to prompt the \texttt{Edit StopNode}
 dialogue.
 
@@ -179,7 +179,7 @@ dialogue.
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] In the \texttt{Expression} field, choose the \texttt{ParameterExpression}\define{ParameterExpression} option.
+\item In the \texttt{Expression} field, choose the \texttt{ParameterExpression}\define{ParameterExpression} option.
 As suggessted by its name, a \emph{ParameterExpression} is an expression that exclusively accesses method parameters. Given that \texttt{toBeRemovedCard} is the sole
 parameter, the \texttt{object} will be automatically set to this value. In other words, the returned object is now implicitly \emph{bound} by having the same
 name.
@@ -191,13 +191,13 @@ following SDM implementations, we'll learn and discuss some other expression typ
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Returning to the activity, if you've done everything right, your first SDM should resemble
+\item Returning to the activity, if you've done everything right, your first SDM should resemble
 \Cref{ea:sdm_complete_control_flow}, where \texttt{removeCard}'s entire pattern layer is modeled inside the sole \emph{activity node}. The method's return
 value is now indicated below the stop node.
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$]  Don't forget to save your files, validate and export your pattern to the Eclipse workspace,\footnote{Go to
+\item  Don't forget to save your files, validate and export your pattern to the Eclipse workspace,\footnote{Go to
 ``\texttt{Extensions}" and select \texttt{Add-In Windows} to activate eMoflon's console. If you're unsure how to validate, export, or use this window, review
 Part I, Section 2.1.} then build your metamodel's code from the package explorer.
 
@@ -211,12 +211,12 @@ Part I, Section 2.1.} then build your metamodel's code from the package explorer
 \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$] If you're unable to export or generate code successfully, compare your SDM carefully with \Cref{ea:sdm_complete_control_flow}
+\item If you're unable to export or generate code successfully, compare your SDM carefully with \Cref{ea:sdm_complete_control_flow}
 and make sure you haven't forgotten anything.
 
 \vspace{0.5cm}
 
-\end{itemize}
+\end{stepbystep}
 
 
 \subsection*{Removing SDMs}
@@ -226,8 +226,8 @@ This section describes how to get rid of this old SDM.
 
 Let's assume that you want to remove the SDM of \texttt{Partition::removeCard}, which you just created.
 
-\begin{itemize}
-\item[$\blacktriangleright$]
+\begin{stepbystep}
+\item
 In the project browser, navigate to the method of which you want to remove the SDM.
 This can be accomplished by right-clicking the method in the Ecore diagram and then selecting ``Find in project browser" (\Cref{ea:sdm_removeSDM_findInProjectBrowser}), or by navigating manually through the project browser.
 
@@ -239,7 +239,7 @@ This can be accomplished by right-clicking the method in the Ecore diagram and t
     \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$]
+\item
 Inside of the EClass ``Partition", you find the one entry for the method (``removeCard(Card)") and one entry for its SDM (``$\ll$SDM Activity$\gg$ removeCard(Card)") (\Cref{ea:sdm_removeSDM_methodSelected}).
 
 \begin{figure}[htbp]
@@ -250,11 +250,11 @@ Inside of the EClass ``Partition", you find the one entry for the method (``remo
     \end{center}
 \end{figure}
 
-\item[$\blacktriangleright$]
+\item
 Select and remove the SDM Activity to get rid of the SDM associated with ``removeCard(Card)" either by using the context menu entry ``Delete '$\ll$SDM Activity$\gg$ removeCard(Card)'" or via \emph{Ctrl+Delete}.
 \textbf{Important:} This action cannot be undone!
 
-\item[$\blacktriangleright$]
+\item
 After a successful export and rebuild of your project, you may add an injection for ``Partition::removeCard".
 
-\end{itemize}
+\end{stepbystep}

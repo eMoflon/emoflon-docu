@@ -76,55 +76,50 @@
 {../../org.moflon.doc.handbook.05_miscellaneous/10_convertTGGToMOSLTGG/}
 }
 
-\newcommand{\beginNewPart}[1]{%
-\noHeader
-\def\partTitle{#1}
-\input{../../org.moflon.doc.handbook.00_common/src/titlepage}
-{\let\newpage\relax\maketitle}
-\let\cleardoublepage\clearpage
-\setcounter{section}{0}%
-\newpage
-}
-
-% -------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-% -------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-% Specific settings:
-\setcounter{tocdepth}{2}
-
 \input{draftsettings}
 
 \begin{document}
 
-\beginNewPart{Part 0: Introduction}
+\beginNewPart{eMoflon -- A Tool for Building Tools}
 \input{../../org.moflon.doc.handbook.00_common/src/copyright}
-\newpage
-\input{../../org.moflon.doc.handbook.00_introduction/src/introduction_source}
 
+\beginNewPart{Part 0: Introduction}
+
+%\begin{comment}
+\input{../../org.moflon.doc.handbook.00_introduction/src/introduction_source}
+%\end{comment}
+
+%\begin{comment}
 \beginNewPart{Part I: Installation and Setup}
 \input{../../org.moflon.doc.handbook.01_installation/src/installation_source}
+%\end{comment}
 
+%\begin{comment}
 \beginNewPart{Part II: Ecore}
 \input{../../org.moflon.doc.handbook.02_leitnersLearningBox/src/learningBox_source}
 \input{../../org.moflon.doc.handbook.02_leitnersLearningBox/src/learningBox_conclusion}
 \input{../../org.moflon.doc.handbook.02_leitnersLearningBox/src/learningBox_glossary}
+%\end{comment}
 
+%\begin{comment}
 \beginNewPart{Part III: Story Driven Modelling}
 \input{../../org.moflon.doc.handbook.03_storyDiagrams/src/storyDiagrams_source}
 \input{../../org.moflon.doc.handbook.03_storyDiagrams/src/storyDiagrams_conclusion}
 \input{../../org.moflon.doc.handbook.03_storyDiagrams/src/storyDiagrams_glossary}
+%\end{comment}
 
+%\begin{comment}
 \beginNewPart{Part IV: Triple Graph Grammars}
 \input{../../org.moflon.doc.handbook.04_tripleGraphTransformations/src/TGG_source}
 \input{../../org.moflon.doc.handbook.04_tripleGraphTransformations/src/TGG_conclusion}
 \input{../../org.moflon.doc.handbook.04_tripleGraphTransformations/src/TGG_glossary}
+%\end{comment}
 
+%\begin{comment}
 \beginNewPart{Part V: Miscellaneous}
 \input{../../org.moflon.doc.handbook.05_miscellaneous/src/miscellaneous_source}
+%\end{comment}
 
-% -- References
 \newpage \genHeader
 \phantomsection
 \addcontentsline{toc}{section}{References}

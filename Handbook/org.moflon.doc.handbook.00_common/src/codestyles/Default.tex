@@ -1,7 +1,14 @@
 \lstset{language=,
+    literate={\\\-}{}{0\discretionary{-}{}{}}, %https://tex.stackexchange.com/questions/69346/how-to-deal-with-very-long-lstinline-phrases-like-long-class-names/69364#69364
+    breaklines=true,
     keywordstyle=\color{blue},
     basicstyle=\scriptsize\ttfamily,
     showstringspaces=false,
     backgroundcolor=\color{codelightgray},
+    backgroundcolor=\color{white},
+    frame=topbottom,
     morekeywords={SELECT,FROM,WHERE,AND,OR,EClass}
 }
+%\makeatletter
+%     \lst@ifdisplaystyle\scriptsize\fi
+%\makeatother

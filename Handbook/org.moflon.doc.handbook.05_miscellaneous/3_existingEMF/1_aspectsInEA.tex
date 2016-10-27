@@ -8,19 +8,19 @@ EA, where more can be added iteratively as the transformation grows.
 
 If you find this section challenging or unclear, refer to Part II: Ecore for a detailed review of metamodel construction.
 
-\begin{enumerate}
+\begin{stepbystep}
 
-\item[$\blacktriangleright$] Open Eclipse and create a new metamodel project named \texttt{Ecore\-To\-Gen\-Model}, do not select the \texttt{Add Demo Specification}
+\item Open Eclipse and create a new metamodel project named \texttt{Ecore\-To\-Gen\-Model}, do not select the \texttt{Add Demo Specification}
 option in the project wizard window.
 
-\item[$\blacktriangleright$] A new specifications folder with the project name should have been loaded into the workspace.
+\item A new specifications folder with the project name should have been loaded into the workspace.
 
-\item[$\blacktriangleright$] Double-click the generated \texttt{Ecore\-To\-Gen\-Model.eap} file to open your project in EA. 
+\item Double-click the generated \texttt{Ecore\-To\-Gen\-Model.eap} file to open your project in EA. 
 Explore the project browser and make note of the packages already present in EA under \texttt{eMoflon Languages}, especially \texttt{Ecore} which we shall use in this transformation.
 
-\item[$\blacktriangleright$] Select the root note \texttt{My Working Set} and create a new package named \texttt{Gen\-Model\-Language}. 
+\item Select the root note \texttt{My Working Set} and create a new package named \texttt{Gen\-Model\-Language}. 
 
-\item[$\blacktriangleright$] Add a new Ecore diagram and model the elements as depicted in \Cref{fig_gMM}. You'll need to create the three EClasses on
+\item Add a new Ecore diagram and model the elements as depicted in \Cref{fig_gMM}. You'll need to create the three EClasses on
 the left, but \texttt{Ecore::EPackage} and \texttt{Ecore::EClass} are to be drag-and-dropped and pasted as links from the project browser. 
 
 \vspace{0.5cm}
@@ -35,15 +35,15 @@ the left, but \texttt{Ecore::EPackage} and \texttt{Ecore::EClass} are to be drag
 
 \vspace{0.5cm}
 
-\item[$\blacktriangleright$] Please note that the actual \texttt{GenModel} metamodel contains many more elements, but this subset is sufficient for our
+\item Please note that the actual \texttt{GenModel} metamodel contains many more elements, but this subset is sufficient for our
 task.
 Although this subset can be incomplete, it must be correct and not contradict the actual \texttt{GenModel} metamodel in any way!
 
-\item[$\blacktriangleright$] Navigate to the project browser again and create another package named \texttt{Ecore2GenModel}.  
+\item Navigate to the project browser again and create another package named \texttt{Ecore2GenModel}.  
 This will contain the \texttt{Transformer} class; Create and complete its Ecore diagram as depicted in \Cref{fig_e2gm}.
 
-\item[$\blacktriangleright$] Carefully double-click each method to create and implement their SDMs as depicted in \Cref{fig_pack2g,fig_transf}.
-\end{enumerate}
+\item Carefully double-click each method to create and implement their SDMs as depicted in \Cref{fig_pack2g,fig_transf}.
+\end{stepbystep}
 
 \newpage
 

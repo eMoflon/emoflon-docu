@@ -246,12 +246,12 @@ An operation\footnote{Double click on the operation specification to open the pr
 \end{center}
 \end{figure}
 
-\begin{itemize}
-\item[$\blacktriangleright$] Complete the operation specification as shown in \Cref{ea_CAC_opSpec}. The adornment string \texttt{FBBB} means that before the operation can be executed the values for parameter \entity{b}, \entity{c}, and \entity{d} must be known (\idest, they are \texttt{b}ound), and that parameter \entity{a} is unknown (\idest, it is a \texttt{f}ree parameter).
+\begin{stepbystep}
+\item Complete the operation specification as shown in \Cref{ea_CAC_opSpec}. The adornment string \texttt{FBBB} means that before the operation can be executed the values for parameter \entity{b}, \entity{c}, and \entity{d} must be known (\idest, they are \texttt{b}ound), and that parameter \entity{a} is unknown (\idest, it is a \texttt{f}ree parameter).
 Therefore, in the \entity{Specification} template, we add a formula that describes how \entity{a} can be derived based on \entity{b}, \entity{c}, and \entity{d}.
 Inside the template code, the variables are refered to using \entity{\$}.
 The surrounding code has to be valid Java code.
-\end{itemize}
+\end{stepbystep}
 
 \subsection{Built-in Attribute Constraint Types}
 %Please visit the following URL to get a full overview of supported attribute constraint types:\\
