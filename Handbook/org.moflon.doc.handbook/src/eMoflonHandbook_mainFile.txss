@@ -1,14 +1,14 @@
 [Session]
 FileVersion=1
 File0\FileName=eMoflonHandbook_mainFile.tex
-File0\Line=0
-File0\Col=0
-File0\FirstLine=0
+File0\Line=7
+File0\Col=72
+File0\FirstLine=99
 File0\FoldedLines=
 MasterFile=eMoflonHandbook_mainFile.tex
 CurrentFile=eMoflonHandbook_mainFile.tex
 Bookmarks=@Invalid()
 
 [InternalPDFViewer]
-File=../../../../../../../../repos/paper-incrementalTopologyControl-jvlc-2015/_ASystematicApproachToConstructingIncrementalTopologyControlAlgorithmsUsingGraphTransformation.pdf
+File=eMoflonHandbook_mainFile.pdf
 Embedded=true
