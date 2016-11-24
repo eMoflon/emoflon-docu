@@ -34,24 +34,11 @@
 %change the numbering of pictures and listings
 \AtBeginDocument{\counterwithin{lstlisting}{section}}
 \counterwithin{figure}{section}
-
-%\setcounter{part}{-1}
-\newcommand{\beginNewPart}[1]{%
-    \newpage
-    \noHeader
-    \def\partTitle{#1}
-    \input{../../org.moflon.doc.handbook.00_common/src/titlepage}
-    {\let\newpage\relax\maketitle}
-    \let\cleardoublepage\clearpage
-    \setcounter{section}{0}%
-    \newpage
-}
-
-
+\counterwithin{section}{part}
 
 \def\emoflonMail{contact@emoflon.org}
 \def\eMoflonURL{www.emoflon.org}
-\def\versionNumber{2.24.0}
+\def\versionNumber{2.24}
 \def\suggestedUpdateSiteType{beta} % beta, release
 
 \def\eMoflonUpdateSite{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/update-site2/}}
@@ -70,15 +57,6 @@
 \newcommand{\eMoflonDocuRepo}{\entity{e\-mof\-lon-docu}\xspace}
 
 \newcommand{\eMonflonHandbookURL}[0]{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/handbook/eMoflonHandbook_\versionNumber.pdf}}
-%\newcommand{\dlPartZero}{\eMonflonHandbookURL{0}}
-%\newcommand{\dlPartOne}{\eMonflonHandbookURL{1}}
-%\newcommand{\dlPartTwo}{\eMonflonHandbookURL{2}}
-%\newcommand{\dlPartThree}{\eMonflonHandbookURL{3}}
-%\newcommand{\dlPartFour}{\eMonflonHandbookURL{4}}
-%\newcommand{\dlPartFive}{\eMonflonHandbookURL{5}}
-%\setcounter{tocdepth}{2}
-%\newcommand{\downloadLocation}[1]{{\scriptsize \texttt{URL of this document: #1}}}
-
 
 \hypersetup{colorlinks=true,% 
     linkcolor=black,%
@@ -193,6 +171,9 @@
 }%
 {}
 \newcommand{\chapterbreak}{\clearpage}
+
+
+\input{../../org.moflon.doc.handbook.00_common/src/titlepage}
 
 %%%%
 % COMMANDS RELATED TO TEXTUAL SYNTAX OR SPLIT OF VISUAL AND TEXTUAL SYNTAX

@@ -76,8 +76,9 @@ method whose return value would be the bound value. This is very useful as it al
 
 \item To finalize the SDM, (i) extract the \texttt{promoteFastCard} story pattern and build the pattern according to
 \Cref{ea:promoteFastCardPattern} and (ii) create the parallel \texttt{Success} and \texttt{Failure} edges from this activity to the stop node returning 
-\texttt{true} for the same reason as in \texttt{check} earlier. Compare the pattern in \Cref{ea:promoteFastCardPattern} to \Cref{ea:sdm_check_complete_activity_node, ea:sdm_check_complete_penalize}, the
-original promotion and penalizing card movements. As you can see, they're very similar, except \texttt{fastCard} is transferred from the current partition
+\texttt{true} for the same reason as in \texttt{check} earlier.
+Compare the pattern in \Cref{ea:promoteFastCardPattern} to \Cref{ea:sdm_check_complete_activity_node}, the original promotion and penalizing card movements.
+As you can see, they're very similar, except \texttt{fastCard} is transferred from the current partition
 (\texttt{this}) immediately to the last partition in \texttt{box}, identified as having no next \texttt{Partition} with an appropriate NAC.
 Note that a second NAC is used to handle the case where \texttt{this} would be the next \texttt{Partition}, which is also not what we want.
 
