@@ -5,7 +5,7 @@
   
 \begin{stepbystep}
 
-\item  To begin, navigate to ``New Metamodel Project''(\Cref{eclipse:newVisModelButton}) and start a new project named \texttt{Leit\-ners\-Learn\-ing\-Box} (\Cref{eclipse:newVisModel}). Open the empty \texttt{.eap} file in EA.
+\item  To begin, navigate to ``New Metamodel Project''(\Cref{eclipse:newVisModelButton}) and start a new project named \texttt{Leit\-ners\-Learn\-ing\-Box} (\Cref{eclipse:newVisModel}). 
 
 \vspace{0.5cm}
 
@@ -24,7 +24,21 @@
 
 \vspace{0.5cm}
 
-\item In EA, select your working set and press the ``Add a Package'' button (\Cref{ea:newPackage}). 
+\item
+As shown in \Cref{eclipse:OutdatedLabel}, the freshly created project bears the label \textcolor{green}{[outdated]}.
+This label indicates that either the contained \filename{eap} file has not been exported yet or that a re-export is necesary (We will explain what \enquote{exporting} means in \Cref{sec:EAExport}).
+%
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{eclipse_OutdatedLabel}
+    \caption{\textcolor{green}{[outdated]} label to indicate a required (re-)export}
+    \label{eclipse:OutdatedLabel}
+\end{figure}
+
+\vspace{0.5cm}
+
+\item Open the empty \texttt{.eap} file in EA.
+In EA, select your working set and press the ``Add a Package'' button (\Cref{ea:newPackage}). 
 
 \begin{figure}[htbp]
 	\centering
