@@ -4,3 +4,5 @@
 
  * [eMoflon Code base](https://github.com/eMoflon/emoflon-tool)
  * [eMoflon Test suites](https://github.com/eMoflon/emoflon-tests)
+
+Thanks to @scottclowe for the LaTeX CI template (https://github.com/scottclowe/latex-continuous-integration)
