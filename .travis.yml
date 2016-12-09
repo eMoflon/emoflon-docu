@@ -2,7 +2,14 @@
 # Validation page:
 # https://lint.travis-ci.org/
 #
+# If you want to skip CI for a particular commit, add the following line to the commit message:
+# [ci skip]
+# (see https://docs.travis-ci.com/user/customizing-the-build#Skipping-a-build)
 
+# Configure which branches to use
+branches:
+  only:
+    master
 
 language: generic
 
