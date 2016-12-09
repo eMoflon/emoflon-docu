@@ -88,7 +88,7 @@ Although this could be an interesting solution, we'll see how to fully specify t
   \end{center}
 \end{figure}
 
-On the way to handling all attributes, let's first start with the relatively easy case of specifying how every \moslTggCode{entry\-.cont\-ent}, \moslTggCode{card.back}, and \moslTggCode{card.face} relate to each other.
+On the way to handling all attributes, let's first start with the relatively easy case of specifying how every \moslTggCode{entry.content}, \moslTggCode{card.back}, and \moslTggCode{card.face} relate to each other.
 We should probably combine the front and back of each card as a single content attribute of an entry and, in the opposite direction, split the content into \texttt{card.back} and \texttt{card.face}.
 
 So let's define \moslTggCode{entry.content} as: \moslTggCode{<word>:<meaning>}. 

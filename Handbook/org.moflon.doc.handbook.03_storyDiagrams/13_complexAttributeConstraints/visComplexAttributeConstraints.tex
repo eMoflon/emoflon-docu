@@ -67,7 +67,6 @@ Enough theory for now:
 Let's get back to the example.
 \begin{stepbystep}
 \item Insert the following lines (\texttt{importPackage Ecore;} should be already there) to reflect \Cref{ea:ea_CAC_DefineCSP}.
-Especially, make sure that the \menuPath{NAC index} is set to \entity{-1}.
 Double-slashes may be used to add single-line comments.
 \begin{verbatim}
 // Required to use (e.g.,) datatype EInt
@@ -173,15 +172,15 @@ Reconsider the SDM shown in \Cref{ea:sdm_tostringComplete}.
 First, add an attribute constraint for appending the string \texttt{"Content: "} to the \entity{stringRep} attribute of \entity{ Box}.
 To this end, add to the \entity{ForAllPartitons} pattern the following complex attribute constraint:
 \begin{verbatim}
-+(this.stringRep', this.stringRep, "Content: "::EString)
++(this.stringRep', this.stringRep, "Content: "::EString);
 \end{verbatim}
 \end{stepbystep}  
-Note that the predicate \entity{+} is overloaded: For \entity{EInt}, \entity{+} means integer addition, while for \entity{EInt}, it means concatenation.
+Note that the predicate \entity{+} is overloaded: For \entity{EInt}, \entity{+} means integer addition, while for \entity{EString}, it means concatenation.
    	  
 
 
 In a next step, the pattern \entity{ForAllCards} is extended by an complex attribute constraints such that for each card the string containing the front and back is appended to \emph{this.stringRep}.  	 
-Instead of using the the concatenation predicate \texttt{+} again, we just define our own constraint as follows.
+Instead of using the concatenation predicate \texttt{+} again, we just define our own constraint as follows.
 \begin{stepbystep}
 \item 
 Add a \texttt{CSP instance} with the following content to the \texttt{ForAllCards} pattern.

@@ -14,7 +14,7 @@ What would happen if we attempted to transform this dictionary back into the sam
 
 \begin{stepbystep}
 
-\item Copy and paste \filename{trg.xmi}, renaming it as \texttt{bwd.src.xmi}.\footnote{Feel free to either delete or rename the original \texttt{bwd.src.xmi} for later reference.}
+\item Copy and paste \filename{fwd.trg.xmi}, renaming it as \texttt{bwd.src.xmi}.\footnote{Feel free to either delete or rename the original \texttt{bwd.src.xmi} for later reference.}
 
 \item Run \texttt{LearningBoxToDictionaryIntegrationTrafo.java} and inspect the resulting \texttt{bwd.trg.xmi}
 (\Cref{eclipse:missingP3}). 
@@ -48,12 +48,12 @@ To make matters worse, \enquote{delta recognition} is also often not unique, \id
 
 As we are more interested in the actual synchronisation than in change recognition or \enquote{diffing}, we require the exact delta, which can come from anywhere in actual applications, including being programmed as a hard coded change operation in some kind of synchroniser GUI.
 
-To play around with a TGG, however, we provide a simple \menuPath{Delta Editor}\define{Delta Editor}, which behaves very much like the standard EMF model editor, but records all the changes you make and persists them as a delta model, which we understand.
+To play around with a TGG, however, we provide a simple \menuPath{Delta Editor,}\define{Delta Editor} which behaves very much like the standard EMF model editor, but records all the changes you make and persists them as a delta model, which we understand.
 
 To open the delta editor, right-click on \filename{fwd.trg.xmi} and choose \menuPath{Open With/Delta Editor}.
 
 \item Let's try a simple attribute change:  As \texttt{Entry four:vier} was created from a card in the third partition, its default level is beginner (remember we assume easy cards have wondered further into the box).
-We'll we think this is wrong so let's change the level to \texttt{master}.
+Well we think this is wrong so let's change the level to \texttt{master}.
 Perform this change directly with the \menuPath{Delta Editor} as if it were the standard EMF model editor (compare with \Cref{fig:trgDelta}).
 Save the editor and close it.
 Take a look at the created \filename{trg.delta.xmi} and inspect it.

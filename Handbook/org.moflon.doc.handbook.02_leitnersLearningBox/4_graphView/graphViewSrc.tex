@@ -1,5 +1,5 @@
 \newpage
-\section{eMoflon's graph viewer}
+\section{eMoflon's abstract syntax tree}
 \genHeader
 
 At this point, you should now have a small instance model. While Eclipse's built-in editor offers a nice tree structure and table to view and edit your model,
@@ -9,7 +9,7 @@ feature to view how each element in your instance model interacts with others.
 \begin{stepbystep}
 
 \item When you first opened the eMoflon perspective, a small window to the right should have appeared with two tabs, ``Outline'' and
-``Graph View.'' \footnote{If this window is not open, you can re-activate it by right-clicking on the ``eMoflon'' perspective in the main toolbar and pressing
+``abstract syntax tree.'' \footnote{If this window is not open, you can re-activate it by right-clicking on the ``eMoflon'' perspective in the main toolbar and pressing
 ``Reset,'' or by going to ``Window/Show View/Other..,'' then ``Other/Graph View''} 
 
 \item Activate the second tab and drag one of your \texttt{Partition} instances into the empty window. 
@@ -22,7 +22,7 @@ feature to view how each element in your instance model interacts with others.
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=1.0\textwidth]{eclipse_graphViewInit}
-	\caption{A single partition in eMoflon's graph view}
+	\caption{A single partition in eMoflon's abstract syntax tree}
 	\label{eclipse:graphView_init}
 \end{figure}
 
@@ -45,7 +45,7 @@ see, when an instance is already loaded, the graph view is not automatically upd
 notice for the ``Spring Layout'' that each time you press ``Redraw Graph,'' the graph will re-arrange itself, even if you haven't updated any values or changed the window size.
 
 \item The ``Graph View'' features is not exclusively for instance models; Expand the second root node in the editor, and drag and
-drop the \texttt{LearningBoxLanguage} package into the viewer. Click on some or all nodes to open your entire metamodel completely. Now it is displayed in the viewer
+drop the \texttt{Learn\-ing\-Box\-Language} package into the viewer. Click on some or all nodes to open your entire metamodel completely. Now it is displayed in the viewer
 (\Cref{eclipse:graphView_typeGraph}). We have found that the ``Radial Layout'' works best for a view of this complexity. This might be confusing at first,
 but the view contains your metamodel displayed in its abstract syntax, i.e., as an instance of Ecore. In contrast, the tree view displays the metamodel in UML-like
 concrete syntax.

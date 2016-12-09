@@ -8,15 +8,23 @@ We would like to now provide you with a simple GUI with which you can take your 
 
 \item Navigate to the ``Install, configure and deploy Moflon'' button and open the ``Install Workspace'' menu bar (\Cref{eclipse:GUI_load}).
 
-\item Load ``Handbook Example (GUI)'' (\Cref{eclipse:GUI_load}). This will load the new project into your workspace. Right click \texttt{LeitnersBox} to invoke the context menu and select ``Run as/Java application.''
+\item Load ``Handbook Example (GUI)'' (\Cref{eclipse:GUI_load}). This will load the new project into your workspace. 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{eclipse_loadGUI}
+    \includegraphics[width=0.8\textwidth]{eclipse_loadGUI}
     \caption{Load Leitner's Box GUI}
     \label{eclipse:GUI_load}
 \end{figure}
 
+\item Copy your dynamic instance \texttt{Box.xmi} to the instances folder of the GUI project (\Cref{eclipse:Copy_instance}). Right click \texttt{LeitnersBox} to invoke the context menu and select ``Run as/Java application.''
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{eclipse_copyBox}
+    \caption{Copy Box.xmi to the GUI}
+    \label{eclipse:Copy_instance}
+\end{figure}
 
 \item The GUI will automatically navigate to the instances folder where you've stored your instance model, then load your partitions and
 cards into the visualized box. Please note that this will only work if you named your dynamic instance \texttt{Box.xmi} and placed it in the \texttt{instances}
