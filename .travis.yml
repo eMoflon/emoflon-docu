@@ -1,3 +1,9 @@
+#
+# Validation page:
+# https://lint.travis-ci.org/
+#
+
+
 language: generic
 
 ###############################################################################
