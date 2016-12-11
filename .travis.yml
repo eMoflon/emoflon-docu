@@ -32,9 +32,28 @@ before_script:
 
 ###############################################################################
 script:
-  # Use this for PDF with bibtex citations
   - cd Handbook/org.moflon.doc.handbook/src
   - pdflatex -halt-on-error -interaction nonstopmode eMoflonHandbook_mainFile &&
     bibtex eMoflonHandbook_mainFile &&
     pdflatex -halt-on-error -interaction nonstopmode eMoflonHandbook_mainFile &&
     pdflatex -halt-on-error -interaction nonstopmode eMoflonHandbook_mainFile
+  - cp eMoflonHandbook_mainFile.pdf eMoflonHandbook.pdf
+
+###############################################################################
+# Deployment after successful build
+# 
+# Official docu: https://docs.travis-ci.com/user/deployment/releases/
+# See also: https://stackoverflow.com/questions/12343452/how-to-publish-artifacts-in-travis-ci/33109519#33109519
+#
+# How to deploy (experimental!):
+# 1. Commit your code
+# 2. Create a tag
+# 3. Push the commit and the tag -> Travis CI will create a new release of the documentation 
+deploy:
+  provider: releases
+  api_key: '$GITHUB_API_KEY'
+  file:
+    - Handbook/org.moflon.doc.handbook/src/eMoflonHandbook.pdf
+  skip_cleanup: true
+  on:
+    tags: true
