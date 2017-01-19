@@ -8,11 +8,14 @@
 #   [skip ci]
 # (see https://docs.travis-ci.com/user/customizing-the-build#Skipping-a-build)
 #
+# Fix for ensuring that a tagged commit leads to an auto-deployment of the result
+#   https://github.com/travis-ci/travis-ci/issues/2498
 
+# The following setting seems to block the auto-deployment after a succesful build.
 # Configure which branches to use
-branches:
-  only:
-    master
+#branches:
+#  only:
+#    master
 
 language: generic
 
@@ -47,9 +50,10 @@ script:
 # See also: https://stackoverflow.com/questions/12343452/how-to-publish-artifacts-in-travis-ci/33109519#33109519
 #
 # How to deploy (experimental!):
-# 1. Commit your code
-# 2. Create a tag
+# 1. Commit your code:  e.g., git commit -am "Intermediate release"
+# 2. Create a tag:      e.g., git tag -m "Intermediate release" intermediate-release_2017-01-19
 # 3. Push the commit and the tag -> Travis CI will create a new release of the documentation 
+#
 deploy:
   provider: releases
   api_key: '$GITHUB_API_KEY'
