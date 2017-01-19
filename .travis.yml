@@ -43,6 +43,11 @@ script:
     pdflatex -halt-on-error -interaction nonstopmode eMoflonHandbook_mainFile
   - cp eMoflonHandbook_mainFile.pdf eMoflonHandbook.pdf
 
+after_success:
+  # Check that current branch is master, or quit
+  - if [[ "$TRAVIS_BRANCH" != "master" ]]; then echo "Deployments are only done for the master branch. Current branch is $TRAVIS_BRANCH"; exit 0; fi
+  - echo "Deploying build $TRAVIS_BUILD_NUMBER"  
+  
 ###############################################################################
 # Deployment after successful build
 # 
@@ -50,9 +55,10 @@ script:
 # See also: https://stackoverflow.com/questions/12343452/how-to-publish-artifacts-in-travis-ci/33109519#33109519
 #
 # How to deploy (experimental!):
-# 1. Commit your code:  e.g., git commit -am "Intermediate release"
-# 2. Create a tag:      e.g., git tag -m "Intermediate release" intermediate-release_2017-01-19
-# 3. Push the commit and the tag -> Travis CI will create a new release of the documentation 
+# 1. Commit your code:            e.g., git commit -am "Intermediate release"
+# 2. Create a tag:                e.g., git tag -a -m "Intermediate release" intermediate-release_2017-01-19
+# 3. Push the commit and the tag: e.g., git push origin master --tags
+# 4. Travis CI will create a new release of the documentation 
 #
 deploy:
   provider: releases
@@ -61,5 +67,6 @@ deploy:
     - Handbook/org.moflon.doc.handbook/src/eMoflonHandbook.pdf
   skip_cleanup: true
   on:
+    repo: eMoflon/emoflon-docu
     tags: true
     all_branches: true
