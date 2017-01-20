@@ -1,4 +1,7 @@
 # Originally from https://github.com/scottclowe/latex-continuous-integration
+#
+# Allow for automatic deployment to GitHub:
+# https://github.com/quantum/shippable-utils/blob/master/github-release.sh
 
 build_image: harshjv/texlive-2015
 
