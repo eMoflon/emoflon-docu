@@ -57,16 +57,15 @@ script:
 # How to deploy (experimental!):
 # 1. Commit your code:            e.g., git commit -am "Intermediate release"
 # 2. Create a tag:                e.g., git tag -a -m "Intermediate release" intermediate-release_2017-01-19
-# 3. Push the commit and the tag: e.g., git push origin master --tags
+# 3. Push the commit and the tag: e.g., git push --tags
 # 4. Travis CI will create a new release of the documentation 
 #
 deploy:
   provider: releases
   api_key: '$GITHUB_API_KEY'
   file:
-    - Handbook/org.moflon.doc.handbook/src/eMoflonHandbook.pdf
+    - eMoflonHandbook.pdf
   skip_cleanup: true
   on:
-#    repo: eMoflon/emoflon-docu
     tags: true
     all_branches: true
