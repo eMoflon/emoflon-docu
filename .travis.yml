@@ -67,6 +67,6 @@ deploy:
     - Handbook/org.moflon.doc.handbook/src/eMoflonHandbook.pdf
   skip_cleanup: true
   on:
-    repo: eMoflon/emoflon-docu
+#    repo: eMoflon/emoflon-docu
     tags: true
     all_branches: true
