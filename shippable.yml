@@ -6,13 +6,13 @@ install:
   # Check texlive version
   - tlmgr version -v
   # Update texlive
-  - tlmgr update --all
+  #- tlmgr update --all
 
 before_script:
   # Check texlive version
   - tlmgr version -v
   # Check which tex packages we have available
-  # - tlmgr info --only-installed || echo "Couldn't retrieve the texlive package list!"
+  - tlmgr info --only-installed || echo "Couldn't retrieve the texlive package list!"
 
 script:
   - cd Handbook/org.moflon.doc.handbook/src
