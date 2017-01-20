@@ -43,10 +43,10 @@ script:
     pdflatex -halt-on-error -interaction nonstopmode eMoflonHandbook_mainFile
   - cp eMoflonHandbook_mainFile.pdf eMoflonHandbook.pdf
 
-after_success:
-  # Check that current branch is master, or quit
-  - if [[ "$TRAVIS_BRANCH" != "master" ]]; then echo "Deployments are only done for the master branch. Current branch is $TRAVIS_BRANCH"; exit 0; fi
-  - echo "Deploying build $TRAVIS_BUILD_NUMBER"  
+#after_success:
+#  # Check that current branch is master, or quit
+#  - if [[ "$TRAVIS_BRANCH" != "master" ]]; then echo "Deployments are only done for the master branch. Current branch is $TRAVIS_BRANCH"; exit 0; fi
+#  - echo "Deploying build $TRAVIS_BUILD_NUMBER"  
   
 ###############################################################################
 # Deployment after successful build
