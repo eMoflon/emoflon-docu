@@ -1,3 +1,7 @@
+# LaTeX is currently not supported
+# See: http://docs.shippable.com/ci/languages/customImages/
+language: none
+
 # Originally from https://github.com/scottclowe/latex-continuous-integration
 #
 # Allow for automatic deployment to GitHub:
