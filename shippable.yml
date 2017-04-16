@@ -5,6 +5,11 @@
 
 build_image: harshjv/texlive-2015
 
+# The following directive instructs Shippable to cache the container.
+# To invalidate the cache, you need to add '[reset_minion]' to a commit message.
+# See: http://blog.shippable.com/faster-builds-by-caching-containers
+cache: true
+
 install:
   # Check texlive version
   - tlmgr version -v
