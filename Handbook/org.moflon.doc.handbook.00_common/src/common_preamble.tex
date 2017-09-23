@@ -38,11 +38,11 @@
 
 \def\emoflonMail{contact@emoflon.org}
 \def\eMoflonURL{www.emoflon.org}
-\def\versionNumber{2.24}
+\def\versionNumber{2.32.*}
 \def\suggestedUpdateSiteType{beta} % beta, release
 
-\def\eMoflonUpdateSite{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/update-site2/}}
-\def\eMoflonEAAddin{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/update-site2/ea-ecore-addin.zip}}
+\def\eMoflonUpdateSite{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/updatesite/}}
+\def\eMoflonEAAddin{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/updatesite/ea-ecore-addin.zip}}
 
 
 
@@ -114,17 +114,20 @@
 \newcommand{\moslTggCode}[1]{\lstinline{#1}\xspace}
 
 % Use \raisebox{-.5ex}{<content>} to move the given content down by .5ex
-\newcommand{\eMoflonMenuButton}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{moflon_menu_cloud.png}}\xspace}
-\newcommand{\eMoflonCreateNewIntegrationProjectIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{integrationProjectWizard.png}}\xspace}
-\newcommand{\eMoflonCreateNewRepositoryProjectIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{integrationProjectWizard.png}}\xspace}
-\newcommand{\eMoflonCreateTGGRuleIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{createTGGRuleIcon.png}}\xspace}
-\newcommand{\eMoflonConfigureLoggingIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{logfile.png}}\xspace}
-\newcommand{\eMoflonFullBuildIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{fullBuild.png}}\xspace}
-\newcommand{\eMoflonIncrementalBuildIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{incrementalBuild.png}}\xspace}
+\newcommand{\eMoflonMenuButton}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{../../org.moflon.doc.handbook.00_common/images/moflon_menu_cloud.png}}\xspace}
+\newcommand{\eMoflonCreateNewIntegrationProjectIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{../../org.moflon.doc.handbook.00_common/images/integrationProjectWizard.png}}\xspace}
+\newcommand{\eMoflonCreateNewRepositoryProjectIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{../../org.moflon.doc.handbook.00_common/images/integrationProjectWizard.png}}\xspace}
+\newcommand{\eMoflonCreateTGGRuleIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{../../org.moflon.doc.handbook.00_common/images/createTGGRuleIcon.png}}\xspace}
+\newcommand{\eMoflonConfigureLoggingIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{../../org.moflon.doc.handbook.00_common/images/logfile.png}}\xspace}
+\newcommand{\eMoflonFullBuildIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{../../org.moflon.doc.handbook.00_common/images/fullBuild.png}}\xspace}
+\newcommand{\eMoflonIncrementalBuildIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{../../org.moflon.doc.handbook.00_common/images/incrementalBuild.png}}\xspace}
 
 
 % --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
 % Default plain header; turn off all lines and colors; turn on page numbers for all
+% The following line fixes the too small header height
+% 'Package Fancyhdr Warning: \headheight is too small (12.0pt):'
+\setlength{\headheight}{14pt}
 \newcommand{\noHeader}{
     \fancyhead[R]{\thepage}
     \fancyhead[L]{}
@@ -151,8 +154,7 @@
 \newcommand{\EclipseVersion}{Neon\xspace}
 \newcommand{\JavaVersion}{1.8\xspace}
 
-\newcommand{\EclipseDownloadImage}{eclipseDownloadPage}
-\newcommand{\EclipseDownloadLink}{\url{http://www.eclipse.org/downloads/index.php}\xspace}
+\newcommand{\EclipseDownloadLink}{\url{https://www.eclipse.org/downloads/eclipse-packages/}\xspace}
 
 
 \titleclass{\part}{top}
@@ -165,7 +167,7 @@
     \noindent\rule[-1ex]{\textwidth}{5pt}\\[2.5ex]
     \hfill\emph{\LARGE\bfseries with eMoflon}\\
     \center
-    \includegraphics[width=0.55\textwidth]{eMoflon3}
+    \includegraphics[width=0.55\textwidth]{../../org.moflon.doc.handbook.00_common/images/eMoflon3}
     \flushleft
     \noindent\rule[-1ex]{0.5\textwidth}{1.5pt}\\[1.5 ex]
 }%
