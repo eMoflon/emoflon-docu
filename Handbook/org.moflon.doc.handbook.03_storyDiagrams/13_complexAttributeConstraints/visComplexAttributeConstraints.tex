@@ -1,8 +1,6 @@
 \newpage
-\section{Complex Attribute Manipulation}
+\chapter{Complex Attribute Manipulation}
 \genHeader
-
-\insertNoteAboutOptionalFeatures{Complex attribute manipulation}
 
 Instead of going through the whole of this part, you may simply fetch the final state of the handbook example via \menuPath{Install Workspace \menuSep eMoflon Examples \menuSep Handbook Part 3 Final}.
 
@@ -11,7 +9,7 @@ However, as you might realized, our implementation ignores the \texttt{partition
 To prevent our implementation from \enquote{bursting} a partition we will use \emph{complex attribute constraints} to extend the SDM for the \texttt{Partition::check()} method. 
 In contrast to simple attribute constrains\footnote{First used in \Cref{sec: Implementing check} to compare user’s guess against the card's face value}, which provide only binary operations for comparing attribute values (or literals), complex attribute constraints provides a language to specify arbitrary relations on attributes.
 
-\subsection{Using Complex Attribute Constrains}     
+\section{Using Complex Attribute Constrains}     
 We start by extending the \texttt{penalizeCard} pattern of the \texttt{Partition::check()} method in such a way that it only moves a card to the previous partition if the additional card does not exceed the actual \texttt{partitionSize} of the previous partition.
 First, we extend \texttt{Partition} class by an attribute that keeps track of the actual number of card contained in a partition.
 \begin{figure}[htbp]
@@ -160,7 +158,7 @@ Notice that the attribute variables \texttt{this.currentSize'} and \\
 %\end{center}
 %\end{figure}
 
-\subsection{Defining Your Own Complex Attribute Constraints}  
+\section{Defining Your Own Complex Attribute Constraints}  
 In \Cref{sec_A string representation of our learning box} we have implemented the \texttt{Box::toString()} method to obtain a string representation of the box. 
 Internally, this method uses the method \texttt{Box::addToStringRep(Card) : EString} to create a string from a card, that was realized using handwritten code via injections.
 
@@ -252,7 +250,7 @@ Inside the template code, the variables are refered to using \entity{\$}.
 The surrounding code has to be valid Java code.
 \end{stepbystep}
 
-\subsection{Built-in Attribute Constraint Types}
+\section{Built-in Attribute Constraint Types}
 %Please visit the following URL to get a full overview of supported attribute constraint types:\\
 %{\footnotesize
 %\url{https://github.com/eMoflon/emoflon/wiki/Attribute-Constraints-Library}}.  
