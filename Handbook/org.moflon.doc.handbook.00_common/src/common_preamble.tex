@@ -7,46 +7,47 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{graphicx}
-\usepackage[extendedchars,filenameencoding=utf8]{grffile}
+%\usepackage[extendedchars,filenameencoding=utf8]{grffile}
 \usepackage[colorlinks,hyperindex,plainpages=false,breaklinks]{hyperref}
 \usepackage{amssymb}
-\usepackage{wasysym} 
+%\usepackage{wasysym} 
 \usepackage{wrapfig}
 \usepackage{enumerate}
-\usepackage{placeins} % Necessary for \FloatBarrier
-\usepackage{subfig}   % Necessary for subfloat (images next to each other)
-\usepackage{color}
+\usepackage{placeins} % e.g., \FloatBarrier
+\usepackage{subfig}   % e.g., subfloat (images next to each other)
+%\usepackage{color}
 \usepackage[usenames,dvipsnames,svgnames]{xcolor}
 \usepackage{listings}
-\usepackage{upquote}
-\usepackage{paralist}
+%\usepackage{upquote}
+\usepackage{paralist} % e.g., '\begin{inparaenum}'
 \usepackage[nodayofweek]{datetime}
-\usepackage{chngcntr}
-\usepackage{xspace}
-\usepackage[]{todonotes}
-\usepackage{cleveref}
-\usepackage{longtable}
-\usepackage{booktabs}
-\usepackage{siunitx}
-\usepackage{verbatim}
-\usepackage{titlesec}
+\usepackage{chngcntr} % e.g., '\counterwithin'
+\usepackage{xspace} % '\xspace'
+\usepackage[]{todonotes} % e.g., '\todo'
+\usepackage{cleveref} % e.g., '\Cref'
+\usepackage{longtable} % e.g. '\begin{longtable}'
+\usepackage{booktabs} % e.g., '\toprule'
+\usepackage{siunitx} % e.g., '\SI'
+%\usepackage{verbatim} % e.g., '\begin{comment}
+\usepackage{titlesec} % Used for typesetting the part title pages
+\usepackage{csquotes} % '\enquote'
 
 %change the numbering of pictures and listings
 \AtBeginDocument{\counterwithin{lstlisting}{section}}
-\counterwithin{figure}{section}
-\counterwithin{section}{part}
+\counterwithin{figure}{chapter}
+\counterwithin{section}{chapter}
+\counterwithin{subsection}{section}
 
 \def\emoflonMail{contact@emoflon.org}
 \def\eMoflonURL{www.emoflon.org}
-\def\versionNumber{2.24}
+\def\versionNumber{2.32.*}
 \def\suggestedUpdateSiteType{beta} % beta, release
 
-\def\eMoflonUpdateSite{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/update-site2/}}
-\def\eMoflonEAAddin{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/update-site2/ea-ecore-addin.zip}}
+\def\eMoflonUpdateSite{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/updatesite/}}
+\def\eMoflonEAAddin{\linkto{https://emoflon.github.io/eclipse-plugin/\suggestedUpdateSiteType/updatesite/ea-ecore-addin.zip}}
 
 
 
-%\include{common_definitions}
 \newcommand{\linkto}[1]{\linktoTwo{#1}{#1}}
 \newcommand{\linktoTwo}[2]{\href{#1}{\textsf{#2}}}
 \newcommand{\eMoflonContact}{\linktoTwo{mailto:\emoflonMail}{\emoflonMail}}
@@ -64,7 +65,7 @@
     filecolor=blue,% 
     menucolor=black,%
     urlcolor=black,%
-    pdfauthor={The eMoflon Developer Team},%
+    pdfauthor={The eMoflon Development Team},%
     pdftitle={The eMoflon \versionNumber{} Handbook}%
 }
 
@@ -80,7 +81,6 @@
 \def\cf{cf.\xspace}
 \def\vs{vs.\xspace}
 
-\newcommand{\enquote}[1]{``#1''}
 \newcommand{\shortcut}[1]{\enquote{#1}\xspace}
 
 % To be used to describe how to navigate through menus (use \menuSep to separate the different levels of the menu)
@@ -97,15 +97,6 @@
 % This env. should be used for step-by-step instructions
 \newenvironment{stepbystep}{\begin{itemize}[$\blacktriangleright$]}{\end{itemize}}
 
-%
-% @param 1 The name of the feature in singular
-\newcommand{\insertNoteAboutOptionalFeatures}[1]{
-    \emph{Note: #1 is an optional feature of eMoflon. 
-        If you are in a hurry, just skip this section.}
-}
-
-\newcommand{\needsUpdate}[1]{\todo{\textbf{Maintenance required:} #1}}
-
 \hyphenation{me-ta-mo-del-ing Card-To-Ent-ry}
 \hyphenation{att-ribute-Con-di-tions}
 \hyphenation{Dictionary-Language}
@@ -114,17 +105,20 @@
 \newcommand{\moslTggCode}[1]{\lstinline{#1}\xspace}
 
 % Use \raisebox{-.5ex}{<content>} to move the given content down by .5ex
-\newcommand{\eMoflonMenuButton}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{moflon_menu_cloud.png}}\xspace}
-\newcommand{\eMoflonCreateNewIntegrationProjectIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{integrationProjectWizard.png}}\xspace}
-\newcommand{\eMoflonCreateNewRepositoryProjectIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{integrationProjectWizard.png}}\xspace}
-\newcommand{\eMoflonCreateTGGRuleIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{createTGGRuleIcon.png}}\xspace}
-\newcommand{\eMoflonConfigureLoggingIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{logfile.png}}\xspace}
-\newcommand{\eMoflonFullBuildIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{fullBuild.png}}\xspace}
-\newcommand{\eMoflonIncrementalBuildIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{incrementalBuild.png}}\xspace}
+\newcommand{\eMoflonMenuButton}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{../../org.moflon.doc.handbook.00_common/images/moflon_menu_cloud.png}}\xspace}
+\newcommand{\eMoflonCreateNewIntegrationProjectIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{../../org.moflon.doc.handbook.00_common/images/integrationProjectWizard.png}}\xspace}
+\newcommand{\eMoflonCreateNewRepositoryProjectIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{../../org.moflon.doc.handbook.00_common/images/integrationProjectWizard.png}}\xspace}
+\newcommand{\eMoflonCreateTGGRuleIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{../../org.moflon.doc.handbook.00_common/images/createTGGRuleIcon.png}}\xspace}
+\newcommand{\eMoflonConfigureLoggingIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{../../org.moflon.doc.handbook.00_common/images/logfile.png}}\xspace}
+\newcommand{\eMoflonFullBuildIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{../../org.moflon.doc.handbook.00_common/images/fullBuild.png}}\xspace}
+\newcommand{\eMoflonIncrementalBuildIcon}[0]{\raisebox{-.5ex}{\includegraphics[height=1em]{../../org.moflon.doc.handbook.00_common/images/incrementalBuild.png}}\xspace}
 
 
 % --- HEADER FUNCTIONS % --------------------------------------------------------------------------------------------------------------------------------------
 % Default plain header; turn off all lines and colors; turn on page numbers for all
+% The following line fixes the too small header height
+% 'Package Fancyhdr Warning: \headheight is too small (12.0pt):'
+\setlength{\headheight}{14pt}
 \newcommand{\noHeader}{
     \fancyhead[R]{\thepage}
     \fancyhead[L]{}
@@ -146,13 +140,9 @@
 % Textual syntax EBNF statement format
 \newcommand{\syntax}[1]{ \begin{quote} \small \texttt{#1} \end{quote}}	
 
-\renewcommand{\thesection}{\arabic{section}}
-
-\newcommand{\EclipseVersion}{Neon\xspace}
+\newcommand{\EclipseVersion}{Oxygen\xspace}
 \newcommand{\JavaVersion}{1.8\xspace}
-
-\newcommand{\EclipseDownloadImage}{eclipseDownloadPage}
-\newcommand{\EclipseDownloadLink}{\url{http://www.eclipse.org/downloads/index.php}\xspace}
+\newcommand{\EclipseDownloadLink}{\url{https://www.eclipse.org/downloads/eclipse-packages/}\xspace}
 
 
 \titleclass{\part}{top}
@@ -165,51 +155,11 @@
     \noindent\rule[-1ex]{\textwidth}{5pt}\\[2.5ex]
     \hfill\emph{\LARGE\bfseries with eMoflon}\\
     \center
-    \includegraphics[width=0.55\textwidth]{eMoflon3}
+    \includegraphics[width=0.55\textwidth]{../../org.moflon.doc.handbook.00_common/images/eMoflon3}
     \flushleft
     \noindent\rule[-1ex]{0.5\textwidth}{1.5pt}\\[1.5 ex]
 }%
 {}
 \newcommand{\chapterbreak}{\clearpage}
 
-
 \input{../../org.moflon.doc.handbook.00_common/src/titlepage}
-
-%%%%
-% COMMANDS RELATED TO TEXTUAL SYNTAX OR SPLIT OF VISUAL AND TEXTUAL SYNTAX
-%
-
-%\newcommand{\disclaimerForTextualSyntax}{\fbox{\parbox{\textwidth}{
-%Please note that the textual syntax is not as thoroughly tested as the visual syntax because most of our projects are built with the visual syntax.
-%This means: Whenever something goes wrong even though you are sure to have followed the instructions precisely, do not hesitate to contact us via \eMoflonContact.
-%}}}
-
-% Visual instructions; Red header
-%\newcommand{\visHeader}{
-%	\fancyhead[L]{\color{RedOrange}\tiny \bf VISUAL}
-%	\renewcommand{\headrulewidth}{1.5pt}
-%	\renewcommand{\headrule}{\hbox to\headwidth{%
-% 		\color{RedOrange}\leaders\hrule height \headrulewidth\hfill}}
-%  	\fancyfoot{}
-%}
-
-% Text instructions; Blue header
-%\newcommand{\texHeader}{
-%	\fancyhead[L]{\color{CornflowerBlue}\tiny \bf TEXTUAL}
-%	\renewcommand{\headrulewidth}{1.5pt}
-%	\renewcommand{\headrule}{\hbox to\headwidth{%
-%  		\color{CornflowerBlue}\leaders\hrule height \headrulewidth\hfill}}
-%  	\fancyfoot{}
-%}
-
-
-% --- FORMATTING COMMANDS --------------------------------------------------------------------------------------------------------------------------------------
-% 'Next..' jump links (bottom right)
-%\newcommand{\jumpSingle}[1]{
-%\fancyfoot[OR]{$\triangleright$ \hyperlink{#1}{\texttt{Next}}}
-%}
-
-%\newcommand{\jumpDual}[2]{
-%\fancyfoot[RO]{ $\triangleright$ \hyperlink{#1}{\texttt{Next [visual]\hspace{0.2cm}}}%
-% \\ $\triangleright$ \hyperlink{#2}{\texttt{Next [textual]}}}
-%}

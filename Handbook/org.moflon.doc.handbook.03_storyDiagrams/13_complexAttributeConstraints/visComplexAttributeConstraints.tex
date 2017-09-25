@@ -1,8 +1,6 @@
 \newpage
-\section{Complex Attribute Manipulation}
+\chapter{Complex Attribute Manipulation}
 \genHeader
-
-\insertNoteAboutOptionalFeatures{Complex attribute manipulation}
 
 Instead of going through the whole of this part, you may simply fetch the final state of the handbook example via \menuPath{Install Workspace \menuSep eMoflon Examples \menuSep Handbook Part 3 Final}.
 
@@ -11,12 +9,12 @@ However, as you might realized, our implementation ignores the \texttt{partition
 To prevent our implementation from \enquote{bursting} a partition we will use \emph{complex attribute constraints} to extend the SDM for the \texttt{Partition::check()} method. 
 In contrast to simple attribute constrains\footnote{First used in \Cref{sec: Implementing check} to compare user’s guess against the card's face value}, which provide only binary operations for comparing attribute values (or literals), complex attribute constraints provides a language to specify arbitrary relations on attributes.
 
-\subsection{Using Complex Attribute Constrains}     
+\section{Using Complex Attribute Constrains}     
 We start by extending the \texttt{penalizeCard} pattern of the \texttt{Partition::check()} method in such a way that it only moves a card to the previous partition if the additional card does not exceed the actual \texttt{partitionSize} of the previous partition.
 First, we extend \texttt{Partition} class by an attribute that keeps track of the actual number of card contained in a partition.
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.4\textwidth]{ea_CAC_newAtributes}
+  \includegraphics[width=0.4\textwidth]{../../org.moflon.doc.handbook.03_storyDiagrams/13_complexAttributeConstraints/visCACImages/ea_CAC_newAtributes}
   \caption{Adding the attribute \texttt{currentSize} of type \entity{EInt} to \texttt{Partition}}  
   \label{ea_CAC_newAtributes}
 \end{center}
@@ -29,7 +27,7 @@ First, we extend \texttt{Partition} class by an attribute that keeps track of th
 Now we start defining complex attribute constraints.
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{ea_CAC_NewCSP}
+  \includegraphics[width=0.8\textwidth]{../../org.moflon.doc.handbook.03_storyDiagrams/13_complexAttributeConstraints/visCACImages/ea_CAC_NewCSP}
   \caption{Creating a new \texttt{CSP instance}}  
   \label{ea:CAC_NewCSP}
 \end{center}
@@ -89,7 +87,7 @@ importPackage Ecore;
 %
 \begin{figure}[htbp]
     \begin{center}
-        \includegraphics[width=0.9\textwidth]{ea_CAC_DefineCSP}
+        \includegraphics[width=0.9\textwidth]{../../org.moflon.doc.handbook.03_storyDiagrams/13_complexAttributeConstraints/visCACImages/ea_CAC_DefineCSP}
         \caption{Attribute constraints that prevent exceeding the partition size}  
         \label{ea:ea_CAC_DefineCSP}
     \end{center}
@@ -102,7 +100,7 @@ Open \entity{moflon.properties.xmi} located in your project and change the \menu
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.99\textwidth]{ec_CAC_SwitchCGE}
+  \includegraphics[width=0.99\textwidth]{../../org.moflon.doc.handbook.03_storyDiagrams/13_complexAttributeConstraints/visCACImages/ec_CAC_SwitchCGE}
   \caption{Switching SDM code generator to \entity{DEMOCLES\_ATTRIBUTES}}  
   \label{ec_CAC_SwitchCGE}
 \end{center}
@@ -160,7 +158,7 @@ Notice that the attribute variables \texttt{this.currentSize'} and \\
 %\end{center}
 %\end{figure}
 
-\subsection{Defining Your Own Complex Attribute Constraints}  
+\section{Defining Your Own Complex Attribute Constraints}  
 In \Cref{sec_A string representation of our learning box} we have implemented the \texttt{Box::toString()} method to obtain a string representation of the box. 
 Internally, this method uses the method \texttt{Box::addToStringRep(Card) : EString} to create a string from a card, that was realized using handwritten code via injections.
 
@@ -191,7 +189,7 @@ The complete SDM should now look as shown in \Cref{ea_CAC_CompletToString}.
 %
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.99\textwidth]{ea_CAC_CompletToString.pdf}
+  \includegraphics[width=0.99\textwidth]{../../org.moflon.doc.handbook.03_storyDiagrams/13_complexAttributeConstraints/visCACImages/ea_CAC_CompletToString.pdf}
   \caption{Complete SDM for \texttt{Box::toString()}}  
   \label{ea_CAC_CompletToString}
 \end{center}
@@ -211,7 +209,7 @@ You find a new file called \texttt{LearningBoxLanguageAttributeConstraintsLib.xm
  
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.99\textwidth]{ec_CAC_Malformed}
+  \includegraphics[width=0.99\textwidth]{../../org.moflon.doc.handbook.03_storyDiagrams/13_complexAttributeConstraints/visCACImages/ec_CAC_Malformed}
   \caption{Error}  
   \label{ec_CAC_Malformed}
 \end{center}
@@ -226,7 +224,7 @@ To define the meaning of \texttt{myConcat} we have to define operations for the 
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.95\textwidth]{ec_CAC_lib}
+  \includegraphics[width=0.95\textwidth]{../../org.moflon.doc.handbook.03_storyDiagrams/13_complexAttributeConstraints/visCACImages/ec_CAC_lib}
   \caption{\entity{LearningBoxLanguageAttributeConstraintsLib.xmi}}  
   \label{ec_CAC_lib}
 \end{center}
@@ -239,7 +237,7 @@ An operation\footnote{Double click on the operation specification to open the pr
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.99\textwidth]{ea_CAC_opSpec}
+  \includegraphics[width=0.99\textwidth]{../../org.moflon.doc.handbook.03_storyDiagrams/13_complexAttributeConstraints/visCACImages/ea_CAC_opSpec}
   \caption{Operation specification for \entity{myConcat}}  
   \label{ea_CAC_opSpec}
 \end{center}
@@ -252,7 +250,7 @@ Inside the template code, the variables are refered to using \entity{\$}.
 The surrounding code has to be valid Java code.
 \end{stepbystep}
 
-\subsection{Built-in Attribute Constraint Types}
+\section{Built-in Attribute Constraint Types}
 %Please visit the following URL to get a full overview of supported attribute constraint types:\\
 %{\footnotesize
 %\url{https://github.com/eMoflon/emoflon/wiki/Attribute-Constraints-Library}}.  

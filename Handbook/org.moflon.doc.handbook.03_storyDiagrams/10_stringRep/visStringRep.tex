@@ -1,6 +1,6 @@
 \newpage
 \hypertarget{stringRep vis}{}
-\subsection{Implementing toString for \texttt{Box}}
+\section{Implementing toString for \texttt{Box}}
 \genHeader
 
 \begin{stepbystep}
@@ -12,7 +12,7 @@ control flow that is \emph{nested} and executed for each match. Go ahead and cre
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{ea_toStringStart}
+  \includegraphics[width=0.8\textwidth]{../../org.moflon.doc.handbook.03_storyDiagrams/10_stringRep/visSRImages/ea_toStringStart}
   \caption{Control flow with nested loops} 
   \label{ea:sdm_tostring_1}
 \end{center}
@@ -32,7 +32,7 @@ into a \texttt{StatementNode}. Then, analogously to how you established a \emph{
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{ea_editStatementNode1}
+  \includegraphics[width=0.5\textwidth]{../../org.moflon.doc.handbook.03_storyDiagrams/10_stringRep/visSRImages/ea_editStatementNode1}
   \caption{Add a \emph{MethodCallExpression}}
   \label{ea:editStatement1}
 \end{center}
@@ -40,7 +40,7 @@ into a \texttt{StatementNode}. Then, analogously to how you established a \emph{
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.5\textwidth]{ea_editStatementNode2}
+  \includegraphics[width=0.5\textwidth]{../../org.moflon.doc.handbook.03_storyDiagrams/10_stringRep/visSRImages/ea_editStatementNode2}
   \caption{Add a parameter to the \emph{MethodCallExpression}}
   \label{ea:editStatement2}
 \end{center}
@@ -53,7 +53,7 @@ binds the \texttt{stringRep} attribute of the box (\texttt{this}) to the return 
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.45\textwidth]{ea_returnAttributeStopNode}
+  \includegraphics[width=0.45\textwidth]{../../org.moflon.doc.handbook.03_storyDiagrams/10_stringRep/visSRImages/ea_returnAttributeStopNode}
   \caption{Specify a return value as an \emph{AttributeValueExpression}}
   \label{ea:toStringStopNode}
 \end{center}
@@ -76,7 +76,7 @@ to invoke a void helper method only for its side effects (building up the string
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{ea_toStringComplete}
+  \includegraphics[width=0.8\textwidth]{../../org.moflon.doc.handbook.03_storyDiagrams/10_stringRep/visSRImages/ea_toStringComplete}
   \caption{The complete SDM for \texttt{Box::toString}}  
   \label{ea:sdm_tostringComplete}
 \end{center}

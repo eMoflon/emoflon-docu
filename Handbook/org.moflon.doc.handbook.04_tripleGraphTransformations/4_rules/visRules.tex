@@ -1,6 +1,6 @@
 \newpage
 \hypertarget{rules vis}{}
-\subsection{BoxToDictionaryRule}
+\section{BoxToDictionaryRule}
 \genHeader
 
 \begin{stepbystep}
@@ -11,7 +11,7 @@ Open the newly created file.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{ea_TGGNewRule}
+  \includegraphics[width=0.8\textwidth]{../../org.moflon.doc.handbook.04_tripleGraphTransformations/4_rules/visRImages/ea_TGGNewRule.jpg}
   \caption{Creating a TGG rule}
   \label{ea:create_tgg_rule}
 \end{center}
@@ -19,7 +19,7 @@ Open the newly created file.
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[angle=90,width=\textwidth]{ea_BoxToDictionaryRuleComplete}
+  \includegraphics[angle=90,width=\textwidth]{../../org.moflon.doc.handbook.04_tripleGraphTransformations/4_rules/visRImages/ea_BoxToDictionaryRuleComplete.pdf}
   \caption{Complete TGG rule diagram for \texttt{BoxToDictionaryRule}}
   \label{ea:boxtodictionaryrule_complete}
   \end{center}
@@ -57,7 +57,7 @@ There you can transform a box to a dictionary and vice-versa, but please be awar
 Handling additional elements (i.e., cards in the learning box and entries in the dictionary) requires a second rule.
 We intend to specify this next.
 
-\subsection{CardToEntryRule}
+\section{CardToEntryRule}
 
 Our next goal is to be able to handle \texttt{Card} and \texttt{Entry} elements. 
 The new thing here is that it will require a pre-condition -- you should not be able to transform these child elements (cards and entries) unless certain structural conditions (their parents exist and are related) are met. 
@@ -82,7 +82,7 @@ Although this could be an interesting solution, we'll see how to fully specify t
 
 \begin{figure}[htbp]
   \begin{center}
-    \includegraphics[width=\textwidth]{ea_cardToEntryRule}
+    \includegraphics[width=\textwidth]{../../org.moflon.doc.handbook.04_tripleGraphTransformations/4_rules/visRImages/ea_cardToEntryRule.PNG}
     \caption{\texttt{CardToEntryRule} without attribute manipulation}
     \label{ea:cardtoentry_1}
   \end{center}
@@ -114,7 +114,7 @@ Name it \moslTggCode{indexToLevel}, and enter the values given in \Cref{ea:creat
 
 \begin{figure}[htbp]
 \begin{center}
-  \includegraphics[width=0.45\textwidth]{ea_uniqueConstraint}
+  \includegraphics[width=0.45\textwidth]{../../org.moflon.doc.handbook.04_tripleGraphTransformations/4_rules/visRImages/ea_uniqueConstraint.PNG}
   \caption{Specifying the new attribute condition \moslTggCode{indexToLevel}}
   \label{ea:create_new_constraint}
 \end{center}
@@ -145,15 +145,10 @@ All compilations errors should now be resolved.
 
 \begin{figure}[htb]
 \begin{center}
-  \includegraphics[width=0.8\textwidth]{eclipse_generatedTGG}
+  \includegraphics[width=0.8\textwidth]{../../org.moflon.doc.handbook.04_tripleGraphTransformations/4_rules/eclipse_generatedTGG.pdf}
   \caption{Add source and target projects as dependencies}
   \label{eclipse:tggGenerated}
 \end{center}
 \end{figure}
 
 Great work! All that's left to do is implement the \texttt{indexToLevel} constraint, and give your transformation a test run.
-
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: "../src/TGG_mainFile"
-%%% End: 
